@@ -1,0 +1,115 @@
+%% Level-2 Application Architecture (ArchiMate application layer)
+flowchart BT
+  classDef cap fill:#FBE2B5,stroke:#B5821E,color:#000;
+  classDef svc fill:#CFE8FB,stroke:#2E6CA4,color:#000;
+  classDef cmp fill:#BBD7F0,stroke:#1F5C95,color:#000;
+  classDef dat fill:#E3F0FB,stroke:#3A6EA5,color:#000;
+  subgraph CAPS["Capabilities (L2 — Extensible Platform)"]
+    B_CT_1["B.CT.1 Skills & Talent Management"]:::cap
+    B_SE_4["B.SE.4 Business Glossary & Terminology Management"]:::cap
+    B_SG_4["B.SG.4 Funding & Investment Management"]:::cap
+    T_AC_1["T.AC.1 Search & Query (SPARQL)"]:::cap
+    T_AC_2["T.AC.2 Visualization & Exploration"]:::cap
+    T_AC_3["T.AC.3 Documentation & Publishing"]:::cap
+    T_DA_2["T.DA.2 Ontology Formalization (OWL/RDFS/SKOS)"]:::cap
+    T_DA_3["T.DA.3 Foundational / Top-down Ontology Reuse"]:::cap
+    T_DA_6["T.DA.6 Vocabulary & Controlled-Term Management"]:::cap
+    T_OO_1["T.OO.1 Triplestore & Ontology Storage"]:::cap
+    T_OO_2["T.OO.2 Versioning & Release Management"]:::cap
+    T_QV_1["T.QV.1 Ontology Validation (SHACL/constraints)"]:::cap
+    T_QV_2["T.QV.2 Ontology Testing (Competency-Question tests)"]:::cap
+    T_RI_1["T.RI.1 Logical Consistency & Reasoning"]:::cap
+  end
+  subgraph SVCS["Application Services"]
+    S_AUTH(["S.AUTH Ontology Authoring Service"]):::svc
+    S_IMPORT(["S.IMPORT Foundational Ontology Import Service"]):::svc
+    S_VOCAB(["S.VOCAB Controlled Vocabulary Management Service"]):::svc
+    S_GLOSS(["S.GLOSS Business Glossary Service"]):::svc
+    S_REASON(["S.REASON Consistency Reasoning Service"]):::svc
+    S_VALIDATE(["S.VALIDATE Constraint Validation Service"]):::svc
+    S_CQTEST(["S.CQTEST Competency-Question Testing Service"]):::svc
+    S_STORE(["S.STORE Graph Storage Service"]):::svc
+    S_SPARQL(["S.SPARQL SPARQL Query Service"]):::svc
+    S_VERSION(["S.VERSION Ontology Versioning & Release Service"]):::svc
+    S_VIZ(["S.VIZ Ontology Visualization Service"]):::svc
+    S_DOCS(["S.DOCS Documentation Publishing Service"]):::svc
+    S_FUND(["S.FUND Funding & Portfolio Service"]):::svc
+    S_SKILL(["S.SKILL Skills & Competency Service"]):::svc
+  end
+  subgraph CMPS["Application Components"]
+    C_AUTH["C.AUTH Ontology Authoring Workbench"]:::cmp
+    C_VOCAB["C.VOCAB Vocabulary & Thesaurus Manager"]:::cmp
+    C_GLOSS["C.GLOSS Business Glossary Manager"]:::cmp
+    C_RVE["C.RVE Reasoning & Validation Engine"]:::cmp
+    C_KGS["C.KGS Knowledge Graph Store & Query Engine"]:::cmp
+    C_REPO["C.REPO Ontology Repository & Version Control"]:::cmp
+    C_VIZ["C.VIZ Ontology Visualization & Exploration"]:::cmp
+    C_DOC["C.DOC Documentation Generator & Portal"]:::cmp
+    C_FUND["C.FUND Portfolio & Funding Management"]:::cmp
+    C_SKILL["C.SKILL Skills & Talent Management"]:::cmp
+  end
+  subgraph DATA["Data Objects"]
+    D_ONT[("D.ONT OWL Ontology")]:::dat
+    D_VOC[("D.VOC SKOS Vocabulary / Thesaurus")]:::dat
+    D_GLO[("D.GLO Business Glossary")]:::dat
+    D_SHP[("D.SHP SHACL Shapes")]:::dat
+    D_CQ[("D.CQ Competency-Question Test Suite")]:::dat
+    D_GRAPH[("D.GRAPH RDF Graph (Triples)")]:::dat
+    D_INF[("D.INF Inference Result")]:::dat
+    D_REL[("D.REL Ontology Release / Version")]:::dat
+    D_QRY[("D.QRY SPARQL Query / Result")]:::dat
+    D_DOC[("D.DOC Documentation Site")]:::dat
+    D_FUND[("D.FUND Funding / Portfolio Record")]:::dat
+    D_SKILL[("D.SKILL Skills Profile")]:::dat
+  end
+  %% realization (component -> service) and serving (service -> capability)
+  C_AUTH -. realizes .-> S_AUTH
+  C_AUTH -. realizes .-> S_IMPORT
+  C_VOCAB -. realizes .-> S_VOCAB
+  C_GLOSS -. realizes .-> S_GLOSS
+  C_RVE -. realizes .-> S_REASON
+  C_RVE -. realizes .-> S_VALIDATE
+  C_RVE -. realizes .-> S_CQTEST
+  C_KGS -. realizes .-> S_STORE
+  C_KGS -. realizes .-> S_SPARQL
+  C_REPO -. realizes .-> S_VERSION
+  C_VIZ -. realizes .-> S_VIZ
+  C_DOC -. realizes .-> S_DOCS
+  C_FUND -. realizes .-> S_FUND
+  C_SKILL -. realizes .-> S_SKILL
+  S_AUTH --> |serves| T_DA_2
+  S_IMPORT --> |serves| T_DA_3
+  S_VOCAB --> |serves| T_DA_6
+  S_GLOSS --> |serves| B_SE_4
+  S_REASON --> |serves| T_RI_1
+  S_VALIDATE --> |serves| T_QV_1
+  S_CQTEST --> |serves| T_QV_2
+  S_STORE --> |serves| T_OO_1
+  S_SPARQL --> |serves| T_AC_1
+  S_VERSION --> |serves| T_OO_2
+  S_VIZ --> |serves| T_AC_2
+  S_DOCS --> |serves| T_AC_3
+  S_FUND --> |serves| B_SG_4
+  S_SKILL --> |serves| B_CT_1
+  C_AUTH -.->|writes| D_ONT
+  D_VOC -.->|read by| C_AUTH
+  D_GLO -.->|read by| C_AUTH
+  C_VOCAB -.->|writes| D_VOC
+  C_GLOSS -.->|writes| D_GLO
+  D_VOC -.->|read by| C_GLOSS
+  C_RVE -.->|writes| D_SHP
+  C_RVE -.->|writes| D_CQ
+  C_RVE -.->|writes| D_INF
+  D_ONT -.->|read by| C_RVE
+  D_GRAPH -.->|read by| C_RVE
+  C_KGS -.->|writes| D_GRAPH
+  C_KGS -.->|writes| D_QRY
+  D_ONT -.->|read by| C_KGS
+  C_REPO -.->|writes| D_REL
+  D_ONT -.->|read by| C_REPO
+  D_GRAPH -.->|read by| C_VIZ
+  D_ONT -.->|read by| C_VIZ
+  C_DOC -.->|writes| D_DOC
+  D_ONT -.->|read by| C_DOC
+  C_FUND -.->|writes| D_FUND
+  C_SKILL -.->|writes| D_SKILL

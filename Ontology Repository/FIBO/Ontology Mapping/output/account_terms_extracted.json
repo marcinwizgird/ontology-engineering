@@ -1,0 +1,335 @@
+{
+  "category": {
+    "id": "dc-account-global",
+    "name": "Account",
+    "assetType": "Data Category",
+    "scope": "Global",
+    "definition": "Global data category grouping all account-related business concepts used across retail and commercial banking lines of business."
+  },
+  "business_terms": [
+    {
+      "id": "bt-account",
+      "name": "Account",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "A formal banking arrangement under which a financial institution holds funds or records financial activity on behalf of one or more parties.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Account",
+        "Acronym": "ACCT",
+        "Synonym": [
+          "Banking Account"
+        ],
+        "Data Steward": "j.smith",
+        "Example": "Checking account, savings account, brokerage account.",
+        "Note": "Top-level concept of the Account data category."
+      }
+    },
+    {
+      "id": "bt-current-account",
+      "name": "Current Account",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "A demand deposit account from which the holder may withdraw or transfer funds at any time without prior notice, typically used for everyday transactions.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Current Account",
+        "Acronym": "CA",
+        "Synonym": [
+          "Checking Account",
+          "Demand Deposit Account"
+        ],
+        "Data Steward": "j.smith",
+        "Example": "Personal current account with debit card and overdraft."
+      }
+    },
+    {
+      "id": "bt-checking-account",
+      "name": "Checking Account",
+      "assetType": "Business Term",
+      "status": "Candidate",
+      "attributes": {
+        "Definition": "US English term for a current account.",
+        "Preferred Term": false,
+        "Data Steward": "j.smith",
+        "Note": "Non-preferred synonym; preferred term is 'Current Account'."
+      }
+    },
+    {
+      "id": "bt-savings-account",
+      "name": "Savings Account",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "An interest-bearing non-transaction deposit account intended to hold funds that are not needed for everyday transactions.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Savings Account",
+        "Acronym": "SAV",
+        "Synonym": [
+          "Non-Transaction Deposit Account"
+        ],
+        "Data Steward": "a.kumar"
+      }
+    },
+    {
+      "id": "bt-deposit-account",
+      "name": "Deposit Account",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "An account held at a depository institution that allows the account holder to deposit and withdraw funds.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Deposit Account",
+        "Data Steward": "a.kumar"
+      }
+    },
+    {
+      "id": "bt-account-holder",
+      "name": "Account Holder",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "A party that owns or holds an account and is entitled to operate it according to the account agreement.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Account Holder",
+        "Synonym": [
+          "Accountholder"
+        ],
+        "Data Steward": "j.smith"
+      }
+    },
+    {
+      "id": "bt-account-balance",
+      "name": "Account Balance",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "The amount of funds recorded in an account at a given point in time.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Account Balance",
+        "Synonym": [
+          "Balance"
+        ],
+        "Data Steward": "a.kumar"
+      }
+    },
+    {
+      "id": "bt-account-identifier",
+      "name": "Account Identifier",
+      "assetType": "Business Term",
+      "status": "Approved",
+      "attributes": {
+        "Definition": "A code or number that uniquely identifies an account, such as an IBAN or account number.",
+        "Preferred Term": true,
+        "Preferred Term Label": "Account Identifier",
+        "Synonym": [
+          "IBAN",
+          "Account Number"
+        ],
+        "Data Steward": "j.smith"
+      }
+    }
+  ],
+  "preferred_attributes": {
+    "bt-account": {
+      "name": "Account",
+      "is_preferred": true,
+      "preferred_label": "Account",
+      "acronym": "ACCT",
+      "synonyms": [
+        "Banking Account"
+      ],
+      "definition": "A formal banking arrangement under which a financial institution holds funds or records financial activity on behalf of one or more parties.",
+      "status": "Approved"
+    },
+    "bt-current-account": {
+      "name": "Current Account",
+      "is_preferred": true,
+      "preferred_label": "Current Account",
+      "acronym": "CA",
+      "synonyms": [
+        "Checking Account",
+        "Demand Deposit Account"
+      ],
+      "definition": "A demand deposit account from which the holder may withdraw or transfer funds at any time without prior notice, typically used for everyday transactions.",
+      "status": "Approved"
+    },
+    "bt-checking-account": {
+      "name": "Checking Account",
+      "is_preferred": false,
+      "preferred_label": null,
+      "acronym": null,
+      "synonyms": [],
+      "definition": "US English term for a current account.",
+      "status": "Candidate"
+    },
+    "bt-savings-account": {
+      "name": "Savings Account",
+      "is_preferred": true,
+      "preferred_label": "Savings Account",
+      "acronym": "SAV",
+      "synonyms": [
+        "Non-Transaction Deposit Account"
+      ],
+      "definition": "An interest-bearing non-transaction deposit account intended to hold funds that are not needed for everyday transactions.",
+      "status": "Approved"
+    },
+    "bt-deposit-account": {
+      "name": "Deposit Account",
+      "is_preferred": true,
+      "preferred_label": "Deposit Account",
+      "acronym": null,
+      "synonyms": [],
+      "definition": "An account held at a depository institution that allows the account holder to deposit and withdraw funds.",
+      "status": "Approved"
+    },
+    "bt-account-holder": {
+      "name": "Account Holder",
+      "is_preferred": true,
+      "preferred_label": "Account Holder",
+      "acronym": null,
+      "synonyms": [
+        "Accountholder"
+      ],
+      "definition": "A party that owns or holds an account and is entitled to operate it according to the account agreement.",
+      "status": "Approved"
+    },
+    "bt-account-balance": {
+      "name": "Account Balance",
+      "is_preferred": true,
+      "preferred_label": "Account Balance",
+      "acronym": null,
+      "synonyms": [
+        "Balance"
+      ],
+      "definition": "The amount of funds recorded in an account at a given point in time.",
+      "status": "Approved"
+    },
+    "bt-account-identifier": {
+      "name": "Account Identifier",
+      "is_preferred": true,
+      "preferred_label": "Account Identifier",
+      "acronym": null,
+      "synonyms": [
+        "IBAN",
+        "Account Number"
+      ],
+      "definition": "A code or number that uniquely identifies an account, such as an IBAN or account number.",
+      "status": "Approved"
+    }
+  },
+  "relations": [
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-current-account",
+      "source": "Current Account",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-savings-account",
+      "source": "Savings Account",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-deposit-account",
+      "source": "Deposit Account",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-account-holder",
+      "source": "Account Holder",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-account-balance",
+      "source": "Account Balance",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-account-identifier",
+      "source": "Account Identifier",
+      "type": "is classified by",
+      "target_id": "dc-account-global",
+      "target": "Account (Data Category)"
+    },
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "groups",
+      "target_id": "bt-current-account",
+      "target": "Current Account"
+    },
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "groups",
+      "target_id": "bt-savings-account",
+      "target": "Savings Account"
+    },
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "groups",
+      "target_id": "bt-deposit-account",
+      "target": "Deposit Account"
+    },
+    {
+      "source_id": "bt-deposit-account",
+      "source": "Deposit Account",
+      "type": "is broader than",
+      "target_id": "bt-current-account",
+      "target": "Current Account"
+    },
+    {
+      "source_id": "bt-deposit-account",
+      "source": "Deposit Account",
+      "type": "is broader than",
+      "target_id": "bt-savings-account",
+      "target": "Savings Account"
+    },
+    {
+      "source_id": "bt-current-account",
+      "source": "Current Account",
+      "type": "is synonym of",
+      "target_id": "bt-checking-account",
+      "target": "Checking Account"
+    },
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "has attribute",
+      "target_id": "bt-account-balance",
+      "target": "Account Balance"
+    },
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "is identified by",
+      "target_id": "bt-account-identifier",
+      "target": "Account Identifier"
+    },
+    {
+      "source_id": "bt-account",
+      "source": "Account",
+      "type": "is held by",
+      "target_id": "bt-account-holder",
+      "target": "Account Holder"
+    }
+  ]
+}

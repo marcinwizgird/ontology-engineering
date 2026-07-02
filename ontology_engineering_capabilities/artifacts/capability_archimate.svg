@@ -1,0 +1,389 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1046" height="1550" viewBox="0 0 1046 1550" font-family="Segoe UI, Arial">
+<rect x="0" y="0" width="1046" height="1550" fill="#FFFFFF"/>
+<text x="24" y="32" font-size="20" font-weight="700" fill="#212121">Ontology Engineering — Capability Map (ArchiMate)</text>
+<text x="24" y="52" font-size="12" fill="#616161">Capability elements grouped by domain &amp; category · fill colour = target EKGF EKG/MM maturity level</text>
+<rect x="24" y="88" width="484" height="874" rx="10" fill="#FFE0B2" fill-opacity="0.35" stroke="#9E9E9E" stroke-width="1"/>
+<text x="36" y="111" font-size="15" font-weight="700" fill="#263238">Business Capabilities</text>
+<rect x="38" y="136" width="456" height="242" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="48" y="153" font-size="12" font-weight="700" fill="#37474F">BSG · Ontology Strategy &amp; Governance</text>
+<g>
+<rect x="50" y="162" width="210" height="56" rx="7" ry="7" fill="#FFF6C8" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="168" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="173" x2="252" y2="173" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="180" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Vision &amp;</text>
+<text x="60" y="193" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Strategy</text>
+<text x="60" y="210" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SG.1 · L1 EKG Initiation · Business</text>
+</g>
+<g>
+<rect x="272" y="162" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="458" y="168" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="458" y1="173" x2="474" y2="173" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="282" y="180" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Governance &amp;</text>
+<text x="282" y="193" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Stewardship</text>
+<text x="282" y="210" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SG.2 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="50" y="230" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="236" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="241" x2="252" y2="241" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="248" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Policy, Standards &amp;</text>
+<text x="60" y="261" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Conventions Management</text>
+<text x="60" y="278" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SG.3 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="272" y="230" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="458" y="236" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="458" y1="241" x2="474" y2="241" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="282" y="248" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Funding &amp; Investment</text>
+<text x="282" y="261" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="282" y="278" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SG.4 · L2 Extensible Platform · Organization</text>
+</g>
+<g>
+<rect x="50" y="298" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="304" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="309" x2="252" y2="309" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="316" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Risk &amp;</text>
+<text x="60" y="329" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Compliance Management</text>
+<text x="60" y="346" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SG.5 · L4 Strategic Asset · Data</text>
+</g>
+<rect x="38" y="390" width="456" height="174" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="48" y="407" font-size="12" font-weight="700" fill="#37474F">BSE · Stakeholder &amp; Domain Engagement</text>
+<g>
+<rect x="50" y="416" width="210" height="56" rx="7" ry="7" fill="#FFF6C8" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="422" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="427" x2="252" y2="427" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="434" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Domain Knowledge</text>
+<text x="60" y="447" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Elicitation</text>
+<text x="60" y="464" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SE.1 · L1 EKG Initiation · Business</text>
+</g>
+<g>
+<rect x="272" y="416" width="210" height="56" rx="7" ry="7" fill="#FFF6C8" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="458" y="422" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="458" y1="427" x2="474" y2="427" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="282" y="434" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Competency Question</text>
+<text x="282" y="447" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="282" y="464" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SE.2 · L1 EKG Initiation · Business</text>
+</g>
+<g>
+<rect x="50" y="484" width="210" height="56" rx="7" ry="7" fill="#FFF6C8" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="490" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="495" x2="252" y2="495" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="502" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Use-Case &amp; Requirements</text>
+<text x="60" y="515" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="60" y="532" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SE.3 · L1 EKG Initiation · Organization</text>
+</g>
+<g>
+<rect x="272" y="484" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="458" y="490" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="458" y1="495" x2="474" y2="495" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="282" y="502" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Business Glossary &amp;</text>
+<text x="282" y="515" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Terminology Management</text>
+<text x="282" y="532" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.SE.4 · L2 Extensible Platform · Data</text>
+</g>
+<rect x="38" y="576" width="456" height="174" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="48" y="593" font-size="12" font-weight="700" fill="#37474F">BVP · Value &amp; Performance Management</text>
+<g>
+<rect x="50" y="602" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="608" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="613" x2="252" y2="613" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="620" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Value Case &amp; Benefits</text>
+<text x="60" y="633" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Realization</text>
+<text x="60" y="650" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.VP.1 · L4 Strategic Asset · Business</text>
+</g>
+<g>
+<rect x="272" y="602" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="458" y="608" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="458" y1="613" x2="474" y2="613" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="282" y="620" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Performance Measurement</text>
+<text x="282" y="633" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">(KPIs)</text>
+<text x="282" y="650" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.VP.2 · L4 Strategic Asset · Business</text>
+</g>
+<g>
+<rect x="50" y="670" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="676" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="681" x2="252" y2="681" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="688" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Adoption &amp; Change</text>
+<text x="60" y="701" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="60" y="718" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.VP.3 · L3 Enterprise Ready · Organization</text>
+</g>
+<rect x="38" y="762" width="456" height="174" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="48" y="779" font-size="12" font-weight="700" fill="#37474F">BCT · Capability &amp; Talent Development</text>
+<g>
+<rect x="50" y="788" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="794" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="799" x2="252" y2="799" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="806" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Skills &amp; Talent</text>
+<text x="60" y="819" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="60" y="836" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.CT.1 · L2 Extensible Platform · Organization</text>
+</g>
+<g>
+<rect x="272" y="788" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="458" y="794" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="458" y1="799" x2="474" y2="799" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="282" y="806" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Knowledge Sharing &amp;</text>
+<text x="282" y="819" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Community of Practice</text>
+<text x="282" y="836" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.CT.2 · L3 Enterprise Ready · Organization</text>
+</g>
+<g>
+<rect x="50" y="856" width="210" height="56" rx="7" ry="7" fill="#E0667A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="236" y="862" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="236" y1="867" x2="252" y2="867" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="60" y="874" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ecosystem &amp; Standards</text>
+<text x="60" y="887" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Collaboration</text>
+<text x="60" y="904" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">B.CT.3 · L5 Operational Ecosystem · Organization</text>
+</g>
+<rect x="538" y="88" width="484" height="1382" rx="10" fill="#BBDEFB" fill-opacity="0.35" stroke="#9E9E9E" stroke-width="1"/>
+<text x="550" y="111" font-size="15" font-weight="700" fill="#263238">Technology Capabilities</text>
+<rect x="552" y="136" width="456" height="242" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="562" y="153" font-size="12" font-weight="700" fill="#37474F">TDA · Ontology Development &amp; Authoring</text>
+<g>
+<rect x="564" y="162" width="210" height="56" rx="7" ry="7" fill="#FFF6C8" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="168" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="173" x2="766" y2="173" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="180" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology</text>
+<text x="574" y="193" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Conceptualization &amp;…</text>
+<text x="574" y="210" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.DA.1 · L1 EKG Initiation · Data</text>
+</g>
+<g>
+<rect x="786" y="162" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="168" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="173" x2="988" y2="173" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="180" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Formalization</text>
+<text x="796" y="193" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">(OWL/RDFS/SKOS)</text>
+<text x="796" y="210" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.DA.2 · L2 Extensible Platform · Data</text>
+</g>
+<g>
+<rect x="564" y="230" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="236" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="241" x2="766" y2="241" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="248" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Foundational / Top-down</text>
+<text x="574" y="261" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Reuse</text>
+<text x="574" y="278" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.DA.3 · L2 Extensible Platform · Data</text>
+</g>
+<g>
+<rect x="786" y="230" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="236" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="241" x2="988" y2="241" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="248" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Bottom-up Ontology</text>
+<text x="796" y="261" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Learning</text>
+<text x="796" y="278" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.DA.4 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="564" y="298" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="304" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="309" x2="766" y2="309" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="316" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Design Pattern</text>
+<text x="574" y="329" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">(ODP) Management</text>
+<text x="574" y="346" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.DA.5 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="786" y="298" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="304" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="309" x2="988" y2="309" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="316" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Vocabulary &amp; Controlled-</text>
+<text x="796" y="329" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Term Management</text>
+<text x="796" y="346" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.DA.6 · L2 Extensible Platform · Data</text>
+</g>
+<rect x="552" y="390" width="456" height="174" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="562" y="407" font-size="12" font-weight="700" fill="#37474F">TIA · Ontology Integration &amp; Alignment</text>
+<g>
+<rect x="564" y="416" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="422" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="427" x2="766" y2="427" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="434" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Mapping &amp;</text>
+<text x="574" y="447" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Alignment</text>
+<text x="574" y="464" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.IA.1 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="786" y="416" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="422" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="427" x2="988" y2="427" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="434" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Modularization &amp; Import</text>
+<text x="796" y="447" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="796" y="464" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.IA.2 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="564" y="484" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="490" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="495" x2="766" y2="495" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="502" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Semantic Data</text>
+<text x="574" y="515" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Integration</text>
+<text x="574" y="532" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.IA.3 · L3 Enterprise Ready · Technology</text>
+</g>
+<g>
+<rect x="786" y="484" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="490" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="495" x2="988" y2="495" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="502" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Identity Resolution &amp;</text>
+<text x="796" y="515" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Entity Reconciliation</text>
+<text x="796" y="532" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.IA.4 · L3 Enterprise Ready · Technology</text>
+</g>
+<rect x="552" y="576" width="456" height="174" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="562" y="593" font-size="12" font-weight="700" fill="#37474F">TRI · Reasoning &amp; Inference</text>
+<g>
+<rect x="564" y="602" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="608" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="613" x2="766" y2="613" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="620" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Logical Consistency &amp;</text>
+<text x="574" y="633" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Reasoning</text>
+<text x="574" y="650" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.RI.1 · L2 Extensible Platform · Technology</text>
+</g>
+<g>
+<rect x="786" y="602" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="608" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="613" x2="988" y2="613" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="620" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Inferencing &amp;</text>
+<text x="796" y="633" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Materialization</text>
+<text x="796" y="650" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.RI.2 · L3 Enterprise Ready · Technology</text>
+</g>
+<g>
+<rect x="564" y="670" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="676" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="681" x2="766" y2="681" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="688" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Rule &amp; Constraint</text>
+<text x="574" y="701" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management (SHACL/SWRL)</text>
+<text x="574" y="718" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.RI.3 · L3 Enterprise Ready · Technology</text>
+</g>
+<g>
+<rect x="786" y="670" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="676" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="681" x2="988" y2="681" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="688" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Inference Explainability</text>
+<text x="796" y="718" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.RI.4 · L4 Strategic Asset · Technology</text>
+</g>
+<rect x="552" y="762" width="456" height="174" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="562" y="779" font-size="12" font-weight="700" fill="#37474F">TQV · Quality, Validation &amp; Verification</text>
+<g>
+<rect x="564" y="788" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="794" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="799" x2="766" y2="799" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="806" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Validation</text>
+<text x="574" y="819" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">(SHACL/constraints)</text>
+<text x="574" y="836" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.QV.1 · L2 Extensible Platform · Data</text>
+</g>
+<g>
+<rect x="786" y="788" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="794" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="799" x2="988" y2="799" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="806" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology Testing</text>
+<text x="796" y="819" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">(Competency-Question…</text>
+<text x="796" y="836" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.QV.2 · L2 Extensible Platform · Data</text>
+</g>
+<g>
+<rect x="564" y="856" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="862" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="867" x2="766" y2="867" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="874" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Quality Assurance &amp;</text>
+<text x="574" y="887" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Metrics</text>
+<text x="574" y="904" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.QV.3 · L3 Enterprise Ready · Data</text>
+</g>
+<g>
+<rect x="786" y="856" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="862" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="867" x2="988" y2="867" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="874" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Verification &amp;</text>
+<text x="796" y="887" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Evaluation (gold…</text>
+<text x="796" y="904" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.QV.4 · L3 Enterprise Ready · Data</text>
+</g>
+<rect x="552" y="948" width="456" height="242" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="562" y="965" font-size="12" font-weight="700" fill="#37474F">TOO · Ontology Operations (OntoOps)</text>
+<g>
+<rect x="564" y="974" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="980" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="985" x2="766" y2="985" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="992" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Triplestore &amp; Ontology</text>
+<text x="574" y="1005" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Storage</text>
+<text x="574" y="1022" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.OO.1 · L2 Extensible Platform · Technology</text>
+</g>
+<g>
+<rect x="786" y="974" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="980" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="985" x2="988" y2="985" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="992" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Versioning &amp; Release</text>
+<text x="796" y="1005" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Management</text>
+<text x="796" y="1022" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.OO.2 · L2 Extensible Platform · Data</text>
+</g>
+<g>
+<rect x="564" y="1042" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="1048" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="1053" x2="766" y2="1053" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="1060" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology CI/CD (OntoOps</text>
+<text x="574" y="1073" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">/ DataOps)</text>
+<text x="574" y="1090" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.OO.3 · L4 Strategic Asset · Technology</text>
+</g>
+<g>
+<rect x="786" y="1042" width="210" height="56" rx="7" ry="7" fill="#E0667A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="1048" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="1053" x2="988" y2="1053" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="1060" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Federation &amp;</text>
+<text x="796" y="1073" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Virtualization</text>
+<text x="796" y="1090" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.OO.4 · L5 Operational Ecosystem · Technology</text>
+</g>
+<g>
+<rect x="564" y="1110" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="1116" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="1121" x2="766" y2="1121" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="1128" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Observability &amp;</text>
+<text x="574" y="1141" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Monitoring</text>
+<text x="574" y="1158" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.OO.5 · L4 Strategic Asset · Technology</text>
+</g>
+<rect x="552" y="1202" width="456" height="242" rx="6" fill="#FFFFFF" fill-opacity="0.55" stroke="#78909C" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="562" y="1219" font-size="12" font-weight="700" fill="#37474F">TAC · Access, Consumption &amp; Visualization</text>
+<g>
+<rect x="564" y="1228" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="1234" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="1239" x2="766" y2="1239" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="1246" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Search &amp; Query (SPARQL)</text>
+<text x="574" y="1276" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.AC.1 · L2 Extensible Platform · Technology</text>
+</g>
+<g>
+<rect x="786" y="1228" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="1234" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="1239" x2="988" y2="1239" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="1246" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Visualization &amp;</text>
+<text x="796" y="1259" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Exploration</text>
+<text x="796" y="1276" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.AC.2 · L2 Extensible Platform · Technology</text>
+</g>
+<g>
+<rect x="564" y="1296" width="210" height="56" rx="7" ry="7" fill="#FFE08A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="1302" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="1307" x2="766" y2="1307" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="1314" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Documentation &amp;</text>
+<text x="574" y="1327" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Publishing</text>
+<text x="574" y="1344" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.AC.3 · L2 Extensible Platform · Technology</text>
+</g>
+<g>
+<rect x="786" y="1296" width="210" height="56" rx="7" ry="7" fill="#FFB860" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="1302" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="1307" x2="988" y2="1307" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="1314" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Ontology-based Access,</text>
+<text x="796" y="1327" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">APIs &amp; Entitlements</text>
+<text x="796" y="1344" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.AC.4 · L3 Enterprise Ready · Technology</text>
+</g>
+<g>
+<rect x="564" y="1364" width="210" height="56" rx="7" ry="7" fill="#FF8A5C" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="750" y="1370" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="750" y1="1375" x2="766" y2="1375" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="574" y="1382" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Multilingual &amp;</text>
+<text x="574" y="1395" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">Localization Support</text>
+<text x="574" y="1412" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.AC.5 · L4 Strategic Asset · Technology</text>
+</g>
+<g>
+<rect x="786" y="1364" width="210" height="56" rx="7" ry="7" fill="#E0667A" stroke="#6D4C41" stroke-width="1.2"/>
+<rect x="972" y="1370" width="16" height="12" rx="2" fill="none" stroke="#6D4C41" stroke-width="1.1"/>
+<line x1="972" y1="1375" x2="988" y2="1375" stroke="#6D4C41" stroke-width="1.1"/>
+<text x="796" y="1382" font-family="Segoe UI, Arial" font-size="11.5" font-weight="600" fill="#212121">LLM / AI Augmentation</text>
+<text x="796" y="1412" font-family="Segoe UI, Arial" font-size="9.5" fill="#5D4037">T.AC.6 · L5 Operational Ecosystem · Technology</text>
+</g>
+<text x="24" y="1488" font-size="12" font-weight="700" fill="#212121">EKGF maturity level:</text>
+<rect x="174" y="1476" width="16" height="16" rx="3" fill="#FFF6C8" stroke="#6D4C41"/>
+<text x="196" y="1488" font-size="11" fill="#424242">L1 EKG Initiation</text>
+<rect x="324" y="1476" width="16" height="16" rx="3" fill="#FFE08A" stroke="#6D4C41"/>
+<text x="346" y="1488" font-size="11" fill="#424242">L2 Extensible Platform</text>
+<rect x="474" y="1476" width="16" height="16" rx="3" fill="#FFB860" stroke="#6D4C41"/>
+<text x="496" y="1488" font-size="11" fill="#424242">L3 Enterprise Ready</text>
+<rect x="624" y="1476" width="16" height="16" rx="3" fill="#FF8A5C" stroke="#6D4C41"/>
+<text x="646" y="1488" font-size="11" fill="#424242">L4 Strategic Asset</text>
+<rect x="774" y="1476" width="16" height="16" rx="3" fill="#E0667A" stroke="#6D4C41"/>
+<text x="796" y="1488" font-size="11" fill="#424242">L5 Operational Ecosystem</text>
+</svg>

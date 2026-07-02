@@ -1,0 +1,830 @@
+@prefix cap: <https://example.org/oec/cap/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ekgf: <https://maturity.ekgf.org/def#> .
+@prefix oec: <https://example.org/oec#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/oec> a owl:Ontology ;
+    dct:title "Ontology Engineering Capability Ontology" ;
+    rdfs:comment "Business and technology capabilities for an ontology-engineering practice, mapped to the EKGF EKG Maturity Model." .
+
+oec:governedBy a owl:ObjectProperty ;
+    rdfs:label "governed by" .
+
+oec:inCategory a owl:ObjectProperty ;
+    rdfs:label "in category" .
+
+oec:inDomain a owl:ObjectProperty ;
+    rdfs:label "in domain" .
+
+oec:requirementText a owl:DatatypeProperty .
+
+oec:supports a owl:ObjectProperty ;
+    rdfs:label "supports" .
+
+oec:targetMaturityLevel a owl:ObjectProperty ;
+    rdfs:label "target maturity level" .
+
+cap:B-CT-3 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Engaging external standards bodies and reusing public vocabularies." ;
+    skos:broader cap:cat-BCT ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.CT.3" ;
+    skos:prefLabel "Ecosystem & Standards Collaboration" ;
+    oec:dependsOn cap:B-CT-2 ;
+    oec:inCategory cap:cat-BCT ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall collaborate with external standards ecosystems and adopt shared vocabularies." ;
+    oec:targetMaturityLevel ekgf:Level5 ;
+    ekgf:pillar ekgf:Pillar_Organization .
+
+cap:T-AC-2 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Interactive visual exploration of the ontology." ;
+    skos:broader cap:cat-TAC ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.AC.2" ;
+    skos:prefLabel "Visualization & Exploration" ;
+    oec:dependsOn cap:T-AC-1 ;
+    oec:inCategory cap:cat-TAC ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall offer visual exploration of ontology structure and content." ;
+    oec:supports cap:B-SE-1 ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-AC-3 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Generating and publishing human-readable ontology documentation." ;
+    skos:broader cap:cat-TAC ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.AC.3" ;
+    skos:prefLabel "Documentation & Publishing" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:inCategory cap:cat-TAC ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall publish up-to-date, human-readable documentation for every ontology." ;
+    oec:supports cap:B-VP-3 ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-AC-4 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Governed API/data access driven by the ontology." ;
+    skos:broader cap:cat-TAC ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.AC.4" ;
+    skos:prefLabel "Ontology-based Access, APIs & Entitlements" ;
+    oec:dependsOn cap:T-AC-1,
+        cap:T-IA-3 ;
+    oec:governedBy cap:B-SG-5 ;
+    oec:inCategory cap:cat-TAC ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall expose governed, entitlement-aware access to ontology-based data services." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-AC-5 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Multilingual labels and locale-aware presentation." ;
+    skos:broader cap:cat-TAC ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.AC.5" ;
+    skos:prefLabel "Multilingual & Localization Support" ;
+    oec:dependsOn cap:T-DA-6 ;
+    oec:inCategory cap:cat-TAC ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall support multilingual labels and locale-aware consumption of the ontology." ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-AC-6 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "LLM-assisted authoring, querying and grounding (RAG over the KG)." ;
+    skos:broader cap:cat-TAC ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.AC.6" ;
+    skos:prefLabel "LLM / AI Augmentation" ;
+    oec:dependsOn cap:T-AC-1,
+        cap:T-RI-2 ;
+    oec:inCategory cap:cat-TAC ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall use the ontology to ground AI/LLM services and accelerate authoring." ;
+    oec:supports cap:B-VP-1 ;
+    oec:targetMaturityLevel ekgf:Level5 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-DA-3 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Reusing upper/foundational ontologies (e.g. DOLCE, BFO)." ;
+    skos:broader cap:cat-TDA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.DA.3" ;
+    skos:prefLabel "Foundational / Top-down Ontology Reuse" ;
+    oec:dependsOn cap:T-DA-1 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TDA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall reuse foundational ontologies where they improve interoperability." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-DA-4 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Deriving ontologies from data, databases, text and other legacy resources." ;
+    skos:broader cap:cat-TDA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.DA.4" ;
+    skos:prefLabel "Bottom-up Ontology Learning" ;
+    oec:dependsOn cap:T-DA-1,
+        cap:T-IA-3 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TDA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall extract candidate ontology content from existing data and text sources." ;
+    oec:supports cap:B-SE-1 ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-DA-5 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Cataloguing and applying reusable modelling patterns." ;
+    skos:broader cap:cat-TDA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.DA.5" ;
+    skos:prefLabel "Ontology Design Pattern (ODP) Management" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TDA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall maintain and apply a catalogue of ontology design patterns." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-IA-2 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Decomposing ontologies into modules with managed imports." ;
+    skos:broader cap:cat-TIA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.IA.2" ;
+    skos:prefLabel "Modularization & Import Management" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:inCategory cap:cat-TIA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall organise ontologies into versioned, importable modules." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-IA-4 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Resolving co-referent entities across sources." ;
+    skos:broader cap:cat-TIA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.IA.4" ;
+    skos:prefLabel "Identity Resolution & Entity Reconciliation" ;
+    oec:dependsOn cap:T-IA-3 ;
+    oec:inCategory cap:cat-TIA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall reconcile co-referent entities to stable identifiers." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-OO-3 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Automated build, test and deployment pipelines for ontologies." ;
+    skos:broader cap:cat-TOO ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.OO.3" ;
+    skos:prefLabel "Ontology CI/CD (OntoOps / DataOps)" ;
+    oec:dependsOn cap:T-OO-2,
+        cap:T-QV-1,
+        cap:T-QV-2 ;
+    oec:inCategory cap:cat-TOO ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall automate build, test and deployment of ontology releases." ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-OO-4 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Querying across distributed graphs / virtual integration." ;
+    skos:broader cap:cat-TOO ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.OO.4" ;
+    skos:prefLabel "Federation & Virtualization" ;
+    oec:dependsOn cap:T-IA-3,
+        cap:T-OO-1 ;
+    oec:inCategory cap:cat-TOO ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall enable federated, virtualised access across distributed knowledge graphs." ;
+    oec:targetMaturityLevel ekgf:Level5 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-OO-5 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Monitoring availability, performance and drift of the ontology service." ;
+    skos:broader cap:cat-TOO ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.OO.5" ;
+    skos:prefLabel "Observability & Monitoring" ;
+    oec:dependsOn cap:T-OO-1 ;
+    oec:inCategory cap:cat-TOO ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall monitor the health, performance and drift of ontology services." ;
+    oec:supports cap:B-VP-2 ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-QV-4 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Comparing the ontology to a gold standard / use case." ;
+    skos:broader cap:cat-TQV ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.QV.4" ;
+    skos:prefLabel "Verification & Evaluation (gold standard)" ;
+    oec:dependsOn cap:T-QV-2,
+        cap:T-QV-3 ;
+    oec:inCategory cap:cat-TQV ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall evaluate the ontology against gold standards and application use cases." ;
+    oec:supports cap:B-VP-2 ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-RI-4 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Explaining and justifying derived results." ;
+    skos:broader cap:cat-TRI ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.RI.4" ;
+    skos:prefLabel "Inference Explainability" ;
+    oec:dependsOn cap:T-RI-2 ;
+    oec:inCategory cap:cat-TRI ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall provide human-readable justifications for inferred results." ;
+    oec:supports cap:B-SG-5 ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+ekgf:pillar a owl:ObjectProperty ;
+    rdfs:label "EKGF pillar" .
+
+oec:dependsOn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "depends on" ;
+    owl:inverseOf oec:enables .
+
+oec:enables a owl:ObjectProperty ;
+    rdfs:label "enables" ;
+    owl:inverseOf oec:dependsOn .
+
+cap:B-CT-1 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Recruiting and developing ontology-engineering competencies." ;
+    skos:broader cap:cat-BCT ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.CT.1" ;
+    skos:prefLabel "Skills & Talent Management" ;
+    oec:dependsOn cap:B-SG-1 ;
+    oec:inCategory cap:cat-BCT ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall build and retain the ontology-engineering skills needed by the roadmap." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Organization .
+
+cap:B-CT-2 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Internal reuse of patterns, lessons and assets." ;
+    skos:broader cap:cat-BCT ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.CT.2" ;
+    skos:prefLabel "Knowledge Sharing & Community of Practice" ;
+    oec:dependsOn cap:B-CT-1 ;
+    oec:inCategory cap:cat-BCT ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall operate a community of practice that shares ontology assets and lessons." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Organization .
+
+cap:B-SG-4 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Securing and allocating budget for ontology work." ;
+    skos:broader cap:cat-BSG ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SG.4" ;
+    skos:prefLabel "Funding & Investment Management" ;
+    oec:dependsOn cap:B-SG-1 ;
+    oec:inCategory cap:cat-BSG ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall secure sustained funding tied to the ontology roadmap and value case." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Organization .
+
+cap:B-VP-3 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Driving uptake of the ontology across the organization." ;
+    skos:broader cap:cat-BVP ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.VP.3" ;
+    skos:prefLabel "Adoption & Change Management" ;
+    oec:dependsOn cap:B-SE-3 ;
+    oec:inCategory cap:cat-BVP ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall actively manage adoption and change for ontology-based ways of working." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Organization .
+
+cap:T-DA-6 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Managing controlled vocabularies, thesauri and code lists (SKOS)." ;
+    skos:broader cap:cat-TDA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.DA.6" ;
+    skos:prefLabel "Vocabulary & Controlled-Term Management" ;
+    oec:dependsOn cap:B-SE-4 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TDA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall manage controlled vocabularies and thesauri reconciled with the ontology." ;
+    oec:supports cap:B-SE-4 ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-IA-1 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Aligning concepts across ontologies and schemas." ;
+    skos:broader cap:cat-TIA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.IA.1" ;
+    skos:prefLabel "Ontology Mapping & Alignment" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:governedBy cap:B-SG-2 ;
+    oec:inCategory cap:cat-TIA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall create and maintain mappings that align internal and external ontologies." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-OO-2 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Semantic versioning, change logs and deprecation of ontologies." ;
+    skos:broader cap:cat-TOO ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.OO.2" ;
+    skos:prefLabel "Versioning & Release Management" ;
+    oec:dependsOn cap:T-OO-1 ;
+    oec:governedBy cap:B-SG-2 ;
+    oec:inCategory cap:cat-TOO ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall version, release and deprecate ontologies under change control." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-QV-3 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Measuring structural and semantic quality of the ontology." ;
+    skos:broader cap:cat-TQV ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.QV.3" ;
+    skos:prefLabel "Quality Assurance & Metrics" ;
+    oec:dependsOn cap:T-QV-1 ;
+    oec:inCategory cap:cat-TQV ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall measure ontology quality (coverage, cohesion, conciseness) continuously." ;
+    oec:supports cap:B-VP-2 ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-RI-1 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Classification and satisfiability checking with a reasoner." ;
+    skos:broader cap:cat-TRI ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.RI.1" ;
+    skos:prefLabel "Logical Consistency & Reasoning" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:inCategory cap:cat-TRI ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall verify logical consistency and classify the ontology with a reasoner." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-RI-3 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Authoring and executing business rules over the graph." ;
+    skos:broader cap:cat-TRI ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.RI.3" ;
+    skos:prefLabel "Rule & Constraint Management (SHACL/SWRL)" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:inCategory cap:cat-TRI ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall manage and execute rules that augment the ontology with domain logic." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+oec:Capability a owl:Class ;
+    rdfs:label "Capability" .
+
+oec:CapabilityDomain a owl:Class ;
+    rdfs:label "Capability Domain" .
+
+cap:B-SE-3 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Eliciting, prioritising and tracing ontology requirements." ;
+    skos:broader cap:cat-BSE ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SE.3" ;
+    skos:prefLabel "Use-Case & Requirements Management" ;
+    oec:dependsOn cap:B-SE-2 ;
+    oec:inCategory cap:cat-BSE ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall manage prioritised, traceable ontology requirements linked to use cases." ;
+    oec:targetMaturityLevel ekgf:Level1 ;
+    ekgf:pillar ekgf:Pillar_Organization .
+
+cap:B-SE-4 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Agreed business terms and definitions feeding the ontology." ;
+    skos:broader cap:cat-BSE ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SE.4" ;
+    skos:prefLabel "Business Glossary & Terminology Management" ;
+    oec:dependsOn cap:B-SE-1 ;
+    oec:inCategory cap:cat-BSE ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall maintain an authoritative business glossary reconciled with the ontology." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:B-SG-5 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Managing semantic, legal, privacy and regulatory risk of ontologies." ;
+    skos:broader cap:cat-BSG ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SG.5" ;
+    skos:prefLabel "Ontology Risk & Compliance Management" ;
+    oec:dependsOn cap:B-SG-2,
+        cap:B-SG-3 ;
+    oec:inCategory cap:cat-BSG ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall identify and mitigate risks arising from ontology content and its use." ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-QV-1 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Validating data and models against shapes/constraints." ;
+    skos:broader cap:cat-TQV ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.QV.1" ;
+    skos:prefLabel "Ontology Validation (SHACL/constraints)" ;
+    oec:dependsOn cap:T-DA-2,
+        cap:T-RI-3 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TQV ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall validate ontology and data against declared constraints." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-QV-2 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Executable tests that the ontology answers its competency questions." ;
+    skos:broader cap:cat-TQV ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.QV.2" ;
+    skos:prefLabel "Ontology Testing (Competency-Question tests)" ;
+    oec:dependsOn cap:B-SE-2,
+        cap:T-DA-2 ;
+    oec:inCategory cap:cat-TQV ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall test the ontology against its competency questions on every change." ;
+    oec:supports cap:B-SE-2 ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:T-RI-2 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Computing and (optionally) materialising entailed facts." ;
+    skos:broader cap:cat-TRI ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.RI.2" ;
+    skos:prefLabel "Inferencing & Materialization" ;
+    oec:dependsOn cap:T-IA-3,
+        cap:T-RI-1 ;
+    oec:inCategory cap:cat-TRI ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall compute entailments and make inferred knowledge available to consumers." ;
+    oec:supports cap:B-VP-1 ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:B-VP-2 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Metrics for ontology quality, coverage, reuse and usage." ;
+    skos:broader cap:cat-BVP ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.VP.2" ;
+    skos:prefLabel "Performance Measurement (KPIs)" ;
+    oec:dependsOn cap:B-VP-1 ;
+    oec:inCategory cap:cat-BVP ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall measure ontology performance against defined KPIs and report them." ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Business .
+
+cap:T-AC-1 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Query interfaces over the ontology and graph." ;
+    skos:broader cap:cat-TAC ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.AC.1" ;
+    skos:prefLabel "Search & Query (SPARQL)" ;
+    oec:dependsOn cap:T-OO-1 ;
+    oec:inCategory cap:cat-TAC ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall provide standards-based query access (SPARQL) to the knowledge graph." ;
+    oec:supports cap:B-SE-2 ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+cap:T-DA-1 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Building the conceptual model (classes, relations, attributes)." ;
+    skos:broader cap:cat-TDA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.DA.1" ;
+    skos:prefLabel "Ontology Conceptualization & Modelling" ;
+    oec:dependsOn cap:B-SE-2 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TDA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall produce a conceptual model satisfying the competency questions." ;
+    oec:supports cap:B-SE-2 ;
+    oec:targetMaturityLevel ekgf:Level1 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+ekgf:Level5 a ekgf:MaturityLevel ;
+    rdfs:label "L5 Operational Ecosystem" ;
+    oec:levelNumber 5 .
+
+cap:B-SE-1 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Structured capture of expert knowledge (interviews, workshops)." ;
+    skos:broader cap:cat-BSE ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SE.1" ;
+    skos:prefLabel "Domain Knowledge Elicitation" ;
+    oec:dependsOn cap:B-SG-1 ;
+    oec:inCategory cap:cat-BSE ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall systematically elicit and record domain knowledge from subject-matter experts." ;
+    oec:targetMaturityLevel ekgf:Level1 ;
+    ekgf:pillar ekgf:Pillar_Business .
+
+cap:B-SG-1 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Define the vision, scope, objectives and roadmap for the ontology programme." ;
+    skos:broader cap:cat-BSG ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SG.1" ;
+    skos:prefLabel "Ontology Vision & Strategy" ;
+    oec:inCategory cap:cat-BSG ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall maintain an explicit ontology vision and strategy aligned to business goals." ;
+    oec:targetMaturityLevel ekgf:Level1 ;
+    ekgf:pillar ekgf:Pillar_Business .
+
+cap:B-SG-2 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Roles, decision rights and stewardship over ontological assets." ;
+    skos:broader cap:cat-BSG ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SG.2" ;
+    skos:prefLabel "Ontology Governance & Stewardship" ;
+    oec:dependsOn cap:B-SG-1 ;
+    oec:inCategory cap:cat-BSG ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall establish governance bodies and assign stewards for every ontology asset." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:B-VP-1 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Articulating and tracking the business value of the ontology." ;
+    skos:broader cap:cat-BVP ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.VP.1" ;
+    skos:prefLabel "Value Case & Benefits Realization" ;
+    oec:dependsOn cap:B-SE-3,
+        cap:B-SG-4 ;
+    oec:inCategory cap:cat-BVP ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall quantify and track the realised business value of ontology investments." ;
+    oec:targetMaturityLevel ekgf:Level4 ;
+    ekgf:pillar ekgf:Pillar_Business .
+
+cap:T-OO-1 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Persisting ontologies and graphs in a managed store." ;
+    skos:broader cap:cat-TOO ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.OO.1" ;
+    skos:prefLabel "Triplestore & Ontology Storage" ;
+    oec:dependsOn cap:T-DA-2 ;
+    oec:inCategory cap:cat-TOO ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall store ontologies and instance data in a managed, backed-up triplestore." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+ekgf:Pillar a owl:Class .
+
+cap:T-IA-3 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Lifting and linking source data to the ontology (R2RML/RML, OBDA)." ;
+    skos:broader cap:cat-TIA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.IA.3" ;
+    skos:prefLabel "Semantic Data Integration" ;
+    oec:dependsOn cap:T-DA-2,
+        cap:T-IA-1 ;
+    oec:inCategory cap:cat-TIA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall integrate heterogeneous source data through the ontology." ;
+    oec:supports cap:B-VP-1 ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Technology .
+
+ekgf:Level1 a ekgf:MaturityLevel ;
+    rdfs:label "L1 EKG Initiation" ;
+    oec:levelNumber 1 .
+
+ekgf:MaturityLevel a owl:Class .
+
+ekgf:Pillar_Business a ekgf:Pillar ;
+    rdfs:label "Business pillar" .
+
+cap:B-SE-2 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Capturing the questions the ontology must answer." ;
+    skos:broader cap:cat-BSE ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SE.2" ;
+    skos:prefLabel "Competency Question Management" ;
+    oec:dependsOn cap:B-SE-1 ;
+    oec:inCategory cap:cat-BSE ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall define and maintain competency questions that scope and validate the ontology." ;
+    oec:targetMaturityLevel ekgf:Level1 ;
+    ekgf:pillar ekgf:Pillar_Business .
+
+cap:cat-BCT a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "People, skills and ecosystem collaboration that sustain the practice." ;
+    skos:broader cap:domain-business ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Capability & Talent Development" .
+
+cap:cat-BVP a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Justifying, measuring and driving adoption of the ontology." ;
+    skos:broader cap:domain-business ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Value & Performance Management" .
+
+ekgf:Pillar_Organization a ekgf:Pillar ;
+    rdfs:label "Organization pillar" .
+
+ekgf:Level4 a ekgf:MaturityLevel ;
+    rdfs:label "L4 Strategic Asset" ;
+    oec:levelNumber 4 .
+
+cap:B-SG-3 a skos:Concept,
+        oec:BusinessCapability ;
+    dct:description "Modelling guidelines, naming conventions, reuse and licensing policies." ;
+    skos:broader cap:cat-BSG ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "B.SG.3" ;
+    skos:prefLabel "Policy, Standards & Conventions Management" ;
+    oec:dependsOn cap:B-SG-2 ;
+    oec:inCategory cap:cat-BSG ;
+    oec:inDomain cap:domain-business ;
+    oec:requirementText "The practice shall publish and enforce ontology modelling standards and naming conventions." ;
+    oec:targetMaturityLevel ekgf:Level3 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:cat-BSE a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Capturing intent and knowledge from domain experts and consumers." ;
+    skos:broader cap:domain-business ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Stakeholder & Domain Engagement" .
+
+cap:cat-TIA a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Connecting ontologies and data into a coherent semantic layer." ;
+    skos:broader cap:domain-technology ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Ontology Integration & Alignment" .
+
+cap:cat-TQV a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Ensuring the ontology is correct, consistent and fit for purpose." ;
+    skos:broader cap:domain-technology ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Quality, Validation & Verification" .
+
+cap:cat-TRI a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Deriving and explaining new knowledge from the ontology." ;
+    skos:broader cap:domain-technology ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Reasoning & Inference" .
+
+oec:CapabilityCategory a owl:Class ;
+    rdfs:label "Capability Category" .
+
+cap:T-DA-2 a skos:Concept,
+        oec:TechnologyCapability ;
+    dct:description "Encoding the conceptual model in a formal logic / W3C language." ;
+    skos:broader cap:cat-TDA ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:notation "T.DA.2" ;
+    skos:prefLabel "Ontology Formalization (OWL/RDFS/SKOS)" ;
+    oec:dependsOn cap:T-DA-1 ;
+    oec:governedBy cap:B-SG-3 ;
+    oec:inCategory cap:cat-TDA ;
+    oec:inDomain cap:domain-technology ;
+    oec:requirementText "The capability shall formalise the conceptual model in a standard ontology language." ;
+    oec:targetMaturityLevel ekgf:Level2 ;
+    ekgf:pillar ekgf:Pillar_Data .
+
+cap:cat-BSG a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Direction-setting, policy, funding and oversight of the ontology practice." ;
+    skos:broader cap:domain-business ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Ontology Strategy & Governance" .
+
+cap:cat-TOO a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Storing, versioning, releasing and operating ontologies at scale." ;
+    skos:broader cap:domain-technology ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Ontology Operations (OntoOps)" .
+
+cap:cat-TAC a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Publishing, querying, exploring and exploiting the ontology." ;
+    skos:broader cap:domain-technology ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Access, Consumption & Visualization" .
+
+cap:cat-TDA a skos:Concept,
+        oec:CapabilityCategory ;
+    dct:description "Conceptualising and formalising ontologies and vocabularies." ;
+    skos:broader cap:domain-technology ;
+    skos:inScheme oec:CapabilityScheme ;
+    skos:prefLabel "Ontology Development & Authoring" .
+
+ekgf:Level2 a ekgf:MaturityLevel ;
+    rdfs:label "L2 Extensible Platform" ;
+    oec:levelNumber 2 .
+
+oec:BusinessCapability a owl:Class ;
+    rdfs:subClassOf oec:Capability .
+
+ekgf:Level3 a ekgf:MaturityLevel ;
+    rdfs:label "L3 Enterprise Ready" ;
+    oec:levelNumber 3 .
+
+ekgf:Pillar_Technology a ekgf:Pillar ;
+    rdfs:label "Technology pillar" .
+
+ekgf:Pillar_Data a ekgf:Pillar ;
+    rdfs:label "Data pillar" .
+
+cap:domain-business a skos:Concept,
+        oec:CapabilityDomain ;
+    skos:prefLabel "Business Capabilities" ;
+    skos:topConceptOf oec:CapabilityScheme .
+
+oec:TechnologyCapability a owl:Class ;
+    rdfs:subClassOf oec:Capability .
+
+cap:domain-technology a skos:Concept,
+        oec:CapabilityDomain ;
+    skos:prefLabel "Technology Capabilities" ;
+    skos:topConceptOf oec:CapabilityScheme .
+
+oec:CapabilityScheme a skos:ConceptScheme ;
+    rdfs:label "Ontology Engineering Capability Taxonomy" ;
+    skos:hasTopConcept cap:domain-business,
+        cap:domain-technology .
+

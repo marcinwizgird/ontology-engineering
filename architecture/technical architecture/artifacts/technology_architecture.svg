@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1956" height="586" viewBox="0 0 1956 586" font-family="Segoe UI, Arial">
+<defs>
+<marker id="open" markerWidth="11" markerHeight="11" refX="9" refY="5" orient="auto"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#37474F" stroke-width="1.3"/></marker>
+<marker id="tri" markerWidth="13" markerHeight="13" refX="10" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11 Z" fill="white" stroke="#37474F" stroke-width="1.1"/></marker>
+</defs>
+<rect width="1956" height="586" fill="#FFFFFF"/>
+<text x="24" y="32" font-size="20" font-weight="700" fill="#15301a">Ontology Engineering — Technology Architecture (ArchiMate)</text>
+<text x="24" y="54" font-size="12" fill="#4d6b50">Technology services &amp; nodes realising the Level-2 application components · FalkorDB (property graph) + Fuseki (RDF/SPARQL) on GKE</text>
+<rect x="24" y="90" width="1908" height="70" rx="8" fill="#EEF6FD" stroke="#CFD8DC"/>
+<text x="30" y="86" font-size="11" font-weight="700" fill="#5a7a5e">Application (consumers)</text>
+<rect x="24" y="190" width="1908" height="76" rx="8" fill="#EFF7EC" stroke="#CFD8DC"/>
+<text x="30" y="186" font-size="11" font-weight="700" fill="#5a7a5e">Technology Services</text>
+<rect x="24" y="296" width="1908" height="84" rx="8" fill="#EAF4E6" stroke="#CFD8DC"/>
+<text x="30" y="292" font-size="11" font-weight="700" fill="#5a7a5e">System Software / Platforms</text>
+<rect x="24" y="410" width="1908" height="76" rx="8" fill="#F1F8EE" stroke="#CFD8DC"/>
+<text x="30" y="406" font-size="11" font-weight="700" fill="#5a7a5e">GKE / GCP Infrastructure</text>
+<path d="M224.0,200.0 C247.9,200.0 247.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,200.0 C375.6,200.0 375.6,150.0 527.1,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,200.0 C503.3,200.0 503.3,150.0 782.6,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,200.0 C631.0,200.0 631.0,150.0 1038.0,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,200.0 C886.4,200.0 886.4,150.0 1548.9,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,200.0 C758.7,200.0 758.7,150.0 1293.4,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M404.0,200.0 C337.9,200.0 337.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M404.0,200.0 C848.7,200.0 848.7,150.0 1293.4,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M404.0,200.0 C465.6,200.0 465.6,150.0 527.1,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M584.0,200.0 C427.9,200.0 427.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M764.0,200.0 C1284.1,200.0 1284.1,150.0 1804.3,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M764.0,200.0 C1156.4,200.0 1156.4,150.0 1548.9,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M944.0,200.0 C1374.1,200.0 1374.1,150.0 1804.3,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1124.0,200.0 C1464.1,200.0 1464.1,150.0 1804.3,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1124.0,200.0 C825.6,200.0 825.6,150.0 527.1,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1304.0,200.0 C1043.3,200.0 1043.3,150.0 782.6,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1304.0,200.0 C1171.0,200.0 1171.0,150.0 1038.0,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1304.0,200.0 C787.9,200.0 787.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1304.0,200.0 C1298.7,200.0 1298.7,150.0 1293.4,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1304.0,200.0 C1426.4,200.0 1426.4,150.0 1548.9,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1484.0,200.0 C877.9,200.0 877.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1484.0,200.0 C1388.7,200.0 1388.7,150.0 1293.4,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1484.0,200.0 C1516.4,200.0 1516.4,150.0 1548.9,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1484.0,200.0 C1133.3,200.0 1133.3,150.0 782.6,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1484.0,200.0 C1261.0,200.0 1261.0,150.0 1038.0,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1664.0,200.0 C967.9,200.0 967.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1664.0,200.0 C1095.6,200.0 1095.6,150.0 527.1,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1664.0,200.0 C1734.1,200.0 1734.1,150.0 1804.3,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1313.3,200.0 1313.3,150.0 782.6,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1441.0,200.0 1441.0,150.0 1038.0,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1185.6,200.0 1185.6,150.0 527.1,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1057.9,200.0 1057.9,150.0 271.7,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1824.1,200.0 1824.1,150.0 1804.3,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1568.7,200.0 1568.7,150.0 1293.4,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M1844.0,200.0 C1696.4,200.0 1696.4,150.0 1548.9,150.0" fill="none" stroke="#5a8a53" stroke-width="1.0" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,306.0 L224.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M404.0,306.0 L404.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M584.0,306.0 L584.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M764.0,306.0 L764.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M944.0,306.0 L944.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M1124.0,306.0 L1124.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M1304.0,306.0 L1304.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M1484.0,306.0 L1484.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M1664.0,306.0 L1664.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M1844.0,306.0 L1844.0,256.0" fill="none" stroke="#37474F" stroke-width="1.1" stroke-dasharray="5 4" marker-end="url(#tri)" opacity="0.75"/>
+<path d="M404.0,370.0 C465.6,370.0 465.6,420.0 527.1,420.0" fill="none" stroke="#8aa" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#open)" opacity="0.75"/>
+<path d="M224.0,370.0 C503.3,370.0 503.3,420.0 782.6,420.0" fill="none" stroke="#8aa" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#open)" opacity="0.75"/>
+<path d="M584.0,370.0 C683.3,370.0 683.3,420.0 782.6,420.0" fill="none" stroke="#8aa" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#open)" opacity="0.75"/>
+<rect x="191.7" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="186.7" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="186.7" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="199.7" y="115" font-size="10" font-weight="600" fill="#16251a">Knowledge Graph Store</text>
+<text x="199.7" y="127" font-size="10" font-weight="600" fill="#16251a">&amp; Query Engine</text>
+<text x="199.7" y="144" font-size="8.5" fill="#4d6b50">C.KGS</text>
+<rect x="447.1" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="442.1" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="442.1" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="455.1" y="115" font-size="10" font-weight="600" fill="#16251a">Reasoning &amp; Validation</text>
+<text x="455.1" y="127" font-size="10" font-weight="600" fill="#16251a">Engine</text>
+<text x="455.1" y="144" font-size="8.5" fill="#4d6b50">C.RVE</text>
+<rect x="702.6" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="697.6" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="697.6" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="710.6" y="115" font-size="10" font-weight="600" fill="#16251a">Ontology Authoring</text>
+<text x="710.6" y="127" font-size="10" font-weight="600" fill="#16251a">Workbench</text>
+<text x="710.6" y="144" font-size="8.5" fill="#4d6b50">C.AUTH</text>
+<rect x="958.0" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="953.0" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="953.0" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="966.0" y="115" font-size="10" font-weight="600" fill="#16251a">Vocabulary &amp; Thesaurus</text>
+<text x="966.0" y="127" font-size="10" font-weight="600" fill="#16251a">Manager</text>
+<text x="966.0" y="144" font-size="8.5" fill="#4d6b50">C.VOCAB</text>
+<rect x="1213.4" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="1208.4" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="1208.4" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="1221.4" y="115" font-size="10" font-weight="600" fill="#16251a">Ontology Visualization</text>
+<text x="1221.4" y="127" font-size="10" font-weight="600" fill="#16251a">&amp; Exploration</text>
+<text x="1221.4" y="144" font-size="8.5" fill="#4d6b50">C.VIZ</text>
+<rect x="1468.9" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="1463.9" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="1463.9" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="1476.9" y="115" font-size="10" font-weight="600" fill="#16251a">Documentation</text>
+<text x="1476.9" y="127" font-size="10" font-weight="600" fill="#16251a">Generator &amp; Portal</text>
+<text x="1476.9" y="144" font-size="8.5" fill="#4d6b50">C.DOC</text>
+<rect x="1724.3" y="100" width="160" height="50" rx="3" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.2"/>
+<rect x="1719.3" y="110" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<rect x="1719.3" y="126" width="10" height="7" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1"/>
+<text x="1732.3" y="115" font-size="10" font-weight="600" fill="#16251a">Ontology Repository &amp;</text>
+<text x="1732.3" y="127" font-size="10" font-weight="600" fill="#16251a">Version Control</text>
+<text x="1732.3" y="144" font-size="8.5" fill="#4d6b50">C.REPO</text>
+<rect x="144.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="152.0" y="215" font-size="10" font-weight="600" fill="#16251a">RDF Triplestore &amp;</text>
+<text x="152.0" y="227" font-size="10" font-weight="600" fill="#16251a">SPARQL Service</text>
+<text x="152.0" y="250" font-size="8.5" fill="#4d6b50">TS.RDF</text>
+<rect x="144.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="288.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="152.0" y="322" font-size="10" font-weight="600" fill="#16251a">Apache Jena Fuseki</text>
+<text x="152.0" y="364" font-size="8.5" fill="#4d6b50">N.FUSEKI</text>
+<rect x="324.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="332.0" y="215" font-size="10" font-weight="600" fill="#16251a">Property-Graph Service</text>
+<text x="332.0" y="250" font-size="8.5" fill="#4d6b50">TS.PG</text>
+<rect x="324.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="468.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="332.0" y="322" font-size="10" font-weight="600" fill="#16251a">FalkorDB (Redis</text>
+<text x="332.0" y="334" font-size="10" font-weight="600" fill="#16251a">module)</text>
+<text x="332.0" y="364" font-size="8.5" fill="#4d6b50">N.FALKOR</text>
+<rect x="504.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="512.0" y="215" font-size="10" font-weight="600" fill="#16251a">Graph Projection &amp;</text>
+<text x="512.0" y="227" font-size="10" font-weight="600" fill="#16251a">Sync Service</text>
+<text x="512.0" y="250" font-size="8.5" fill="#4d6b50">TS.SYNC</text>
+<rect x="504.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="648.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="512.0" y="322" font-size="10" font-weight="600" fill="#16251a">RDF Delta (change log)</text>
+<text x="512.0" y="364" font-size="8.5" fill="#4d6b50">N.RDFDELTA</text>
+<rect x="684.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="692.0" y="215" font-size="10" font-weight="600" fill="#16251a">Object Storage Service</text>
+<text x="692.0" y="250" font-size="8.5" fill="#4d6b50">TS.OBJ</text>
+<rect x="684.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="828.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="692.0" y="322" font-size="10" font-weight="600" fill="#16251a">Cloud Storage (GCS)</text>
+<text x="692.0" y="364" font-size="8.5" fill="#4d6b50">N.GCS</text>
+<rect x="864.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="872.0" y="215" font-size="10" font-weight="600" fill="#16251a">Source Control Service</text>
+<text x="872.0" y="250" font-size="8.5" fill="#4d6b50">TS.SCM</text>
+<rect x="864.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="1008.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="872.0" y="322" font-size="10" font-weight="600" fill="#16251a">Source Control (Git)</text>
+<text x="872.0" y="364" font-size="8.5" fill="#4d6b50">N.SCM</text>
+<rect x="1044.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="1052.0" y="215" font-size="10" font-weight="600" fill="#16251a">CI/CD (OntoOps)</text>
+<text x="1052.0" y="227" font-size="10" font-weight="600" fill="#16251a">Service</text>
+<text x="1052.0" y="250" font-size="8.5" fill="#4d6b50">TS.CICD</text>
+<rect x="1044.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="1188.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="1052.0" y="322" font-size="10" font-weight="600" fill="#16251a">CI/CD (Cloud Build /</text>
+<text x="1052.0" y="334" font-size="10" font-weight="600" fill="#16251a">GitHub Actions)</text>
+<text x="1052.0" y="364" font-size="8.5" fill="#4d6b50">N.CICD</text>
+<rect x="1224.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="1232.0" y="215" font-size="10" font-weight="600" fill="#16251a">Identity &amp; Access</text>
+<text x="1232.0" y="227" font-size="10" font-weight="600" fill="#16251a">Service</text>
+<text x="1232.0" y="250" font-size="8.5" fill="#4d6b50">TS.IAM</text>
+<rect x="1224.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="1368.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="1232.0" y="322" font-size="10" font-weight="600" fill="#16251a">Cloud IAM + IAP / OIDC</text>
+<text x="1232.0" y="364" font-size="8.5" fill="#4d6b50">N.IAM</text>
+<rect x="1404.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="1412.0" y="215" font-size="10" font-weight="600" fill="#16251a">Ingress / API Gateway</text>
+<text x="1412.0" y="227" font-size="10" font-weight="600" fill="#16251a">Service</text>
+<text x="1412.0" y="250" font-size="8.5" fill="#4d6b50">TS.GW</text>
+<rect x="1404.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="1548.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="1412.0" y="322" font-size="10" font-weight="600" fill="#16251a">Gateway API + Cloud LB</text>
+<text x="1412.0" y="334" font-size="10" font-weight="600" fill="#16251a">+ Cloud Armor</text>
+<text x="1412.0" y="364" font-size="8.5" fill="#4d6b50">N.GW</text>
+<rect x="1584.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="1592.0" y="215" font-size="10" font-weight="600" fill="#16251a">Secret &amp; Key</text>
+<text x="1592.0" y="227" font-size="10" font-weight="600" fill="#16251a">Management Service</text>
+<text x="1592.0" y="250" font-size="8.5" fill="#4d6b50">TS.SEC</text>
+<rect x="1584.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="1728.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="1592.0" y="322" font-size="10" font-weight="600" fill="#16251a">Secret Manager +</text>
+<text x="1592.0" y="334" font-size="10" font-weight="600" fill="#16251a">External Secrets</text>
+<text x="1592.0" y="364" font-size="8.5" fill="#4d6b50">N.SM</text>
+<rect x="1764.0" y="200" width="160" height="56" rx="28" fill="#CDE9C6" stroke="#3F7E3A" stroke-width="1.3"/>
+<text x="1772.0" y="215" font-size="10" font-weight="600" fill="#16251a">Observability Service</text>
+<text x="1772.0" y="250" font-size="8.5" fill="#4d6b50">TS.OBS</text>
+<rect x="1764.0" y="306" width="160" height="64" rx="3" fill="#BFE0B6" stroke="#2F6B2A" stroke-width="1.2"/>
+<rect x="1908.0" y="311" width="10" height="8" fill="none" stroke="#2F6B2A" stroke-width="1"/>
+<text x="1772.0" y="322" font-size="10" font-weight="600" fill="#16251a">Managed Prometheus +</text>
+<text x="1772.0" y="334" font-size="10" font-weight="600" fill="#16251a">Cloud Ops</text>
+<text x="1772.0" y="364" font-size="8.5" fill="#4d6b50">N.OBS</text>
+<rect x="191.7" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="335.7" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="199.7" y="435" font-size="10" font-weight="600" fill="#16251a">GKE Regional Cluster</text>
+<text x="199.7" y="470" font-size="8.5" fill="#4d6b50">N.GKE</text>
+<rect x="447.1" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="591.1" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="455.1" y="435" font-size="10" font-weight="600" fill="#16251a">Memory-optimised Node</text>
+<text x="455.1" y="447" font-size="10" font-weight="600" fill="#16251a">Pool</text>
+<text x="455.1" y="470" font-size="8.5" fill="#4d6b50">N.POOL.MEM</text>
+<rect x="702.6" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="846.6" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="710.6" y="435" font-size="10" font-weight="600" fill="#16251a">General-purpose Node</text>
+<text x="710.6" y="447" font-size="10" font-weight="600" fill="#16251a">Pool</text>
+<text x="710.6" y="470" font-size="8.5" fill="#4d6b50">N.POOL.GP</text>
+<rect x="958.0" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="1102.0" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="966.0" y="435" font-size="10" font-weight="600" fill="#16251a">FalkorDB SSD Volume</text>
+<text x="966.0" y="470" font-size="8.5" fill="#4d6b50">N.FALKOR.PV</text>
+<rect x="1213.4" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="1357.4" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="1221.4" y="435" font-size="10" font-weight="600" fill="#16251a">Fuseki TDB2 SSD Volume</text>
+<text x="1221.4" y="470" font-size="8.5" fill="#4d6b50">N.FUSEKI.PV</text>
+<rect x="1468.9" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="1612.9" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="1476.9" y="435" font-size="10" font-weight="600" fill="#16251a">Redis Sentinel</text>
+<text x="1476.9" y="470" font-size="8.5" fill="#4d6b50">N.SENTINEL</text>
+<rect x="1724.3" y="420" width="160" height="56" rx="3" fill="#E6F3E1" stroke="#5A8A53" stroke-width="1.2"/>
+<rect x="1868.3" y="425" width="10" height="8" fill="none" stroke="#5A8A53" stroke-width="1"/>
+<text x="1732.3" y="435" font-size="10" font-weight="600" fill="#16251a">Artifact Registry</text>
+<text x="1732.3" y="470" font-size="8.5" fill="#4d6b50">N.AR</text>
+<rect x="24" y="538" width="20" height="14" rx="3" fill="#CFE8FB" stroke="#2E6CA4"/>
+<text x="50" y="550" font-size="10.5" fill="#37474F">Application component</text>
+<rect x="224" y="538" width="20" height="14" rx="7" fill="#CDE9C6" stroke="#3F7E3A"/>
+<text x="250" y="550" font-size="10.5" fill="#37474F">Technology service</text>
+<rect x="424" y="538" width="20" height="14" rx="3" fill="#BFE0B6" stroke="#2F6B2A"/>
+<text x="450" y="550" font-size="10.5" fill="#37474F">System software / node</text>
+<line x1="624" y1="545" x2="650" y2="545" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<text x="656" y="549" font-size="10.5" fill="#37474F">serving ▸</text>
+<line x1="784" y1="545" x2="810" y2="545" stroke="#37474F" stroke-width="1.3" marker-end="url(#tri)" stroke-dasharray="5 4"/>
+<text x="816" y="549" font-size="10.5" fill="#37474F">realization ▷</text>
+</svg>

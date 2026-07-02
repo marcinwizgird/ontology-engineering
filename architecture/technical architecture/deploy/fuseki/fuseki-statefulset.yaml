@@ -1,0 +1,84 @@
+# Apache Jena Fuseki (TDB2) on GKE — starter StatefulSet (single active writer)
+# Satisfies (see ../../REQUIREMENTS_CATALOG.md): TR.SK.01,02,03,04,07,08 ; TR.CN.04,05
+# NOTE: illustrative starting point. One JVM per TDB2 DB (single-writer); RWO volume.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuseki-writer
+  namespace: knowledge-graph
+spec:
+  type: ClusterIP                      # TR.SK.07 — no public IP; front with Gateway+IAP
+  selector: { app: fuseki, role: writer }
+  ports:
+    - { name: http, port: 3030, targetPort: 3030 }
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: fuseki-writer
+  namespace: knowledge-graph
+spec:
+  serviceName: fuseki-writer
+  replicas: 1                          # TR.SK.02 — exactly one writer JVM per TDB2 DB
+  selector: { matchLabels: { app: fuseki, role: writer } }
+  template:
+    metadata:
+      labels: { app: fuseki, role: writer }
+    spec:
+      serviceAccountName: fuseki        # Workload Identity (TR.CN.03)
+      nodeSelector: { workload: general-purpose }
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }   # TR.SK.07
+      containers:
+        - name: fuseki
+          image: REGION-docker.pkg.dev/PROJECT/ontology/jena-fuseki:5.x@sha256:REPLACE
+          args: ["--config=/fuseki/config/config.ttl"]
+          env:
+            # TR.SK.01 — bounded heap; pod memory limit leaves RAM for TDB2 mmap page cache
+            - { name: JAVA_OPTIONS, value: "-Xmx4g -XX:+UseG1GC" }
+            - { name: FUSEKI_BASE, value: "/fuseki/base" }   # TR.SK.04 — base on PVC
+            - name: ADMIN_PASSWORD
+              valueFrom: { secretKeyRef: { name: fuseki-admin, key: password } }  # TR.CN.04
+          ports: [{ containerPort: 3030, name: http }]
+          resources:                    # TR.SK.01 — limit >> heap (page-cache headroom)
+            requests: { cpu: "2", memory: 16Gi }
+            limits:   { cpu: "4", memory: 16Gi }
+          volumeMounts:
+            - { name: tdb2, mountPath: /fuseki/base }
+            - { name: config, mountPath: /fuseki/config }
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }
+          readinessProbe: { httpGet: { path: /$/ping, port: 3030 }, initialDelaySeconds: 20 }
+          livenessProbe:  { httpGet: { path: /$/ping, port: 3030 }, initialDelaySeconds: 60 }
+      volumes:
+        - name: config
+          configMap: { name: fuseki-config }   # TR.SK.04 — version-controlled assembler
+  volumeClaimTemplates:
+    - metadata: { name: tdb2 }
+      spec:
+        accessModes: ["ReadWriteOnce"]          # TR.SK.02 — single attach
+        storageClassName: premium-rwo           # TR.CN.05 — SSD
+        resources: { requests: { storage: 60Gi } }   # TR.SK.03 — >= 2x live DB (compaction)
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: fuseki-writer, namespace: knowledge-graph }
+spec:
+  minAvailable: 1
+  selector: { matchLabels: { app: fuseki, role: writer } }
+---
+# default-deny + explicit allow (gateway, sync, CI) — TR.SK.07 / TR.CN.01
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: fuseki-writer, namespace: knowledge-graph }
+spec:
+  podSelector: { matchLabels: { app: fuseki, role: writer } }
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector: { matchLabels: { role: gateway } }
+        - podSelector: { matchLabels: { app: graph-sync } }
+        - podSelector: { matchLabels: { role: ci } }
+      ports: [{ port: 3030 }]

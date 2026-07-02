@@ -1,0 +1,44 @@
+# Fuseki assembler config (config.ttl) — TDB2 dataset with per-endpoint auth & timeouts.
+# Mount via ConfigMap 'fuseki-config' at /fuseki/config/config.ttl (TR.SK.04).
+# Endpoints are split read / update / admin so they can be authorised separately (TR.SK.07).
+
+@prefix :        <#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+@prefix text:    <http://jena.apache.org/text#> .
+
+[] rdf:type fuseki:Server ;
+   # bound runtime to protect the server (TR.SK.06)
+   ja:context [ ja:cxtName "arq:queryTimeout" ; ja:cxtValue "30000,60000" ] ;
+   fuseki:services ( :ontologyService ) .
+
+:ontologyService rdf:type fuseki:Service ;
+    fuseki:name "ontology" ;
+    # read endpoints (anonymous read may be allowed; update/admin must not be)
+    fuseki:endpoint [ fuseki:operation fuseki:query ;  fuseki:name "sparql" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:query ;  fuseki:name "query" ] ;
+    # update endpoint — restrict to the 'editor'/'steward' role via Shiro/IAP (TR.SK.07)
+    fuseki:endpoint [ fuseki:operation fuseki:update ; fuseki:name "update" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_rw ; fuseki:name "data" ] ;
+    fuseki:dataset :textDataset .
+
+# Optional Jena text (Lucene) index for label search over the TDB2 dataset (TR.SK.10)
+:textDataset rdf:type text:TextDataset ;
+    text:dataset :tdb2Dataset ;
+    text:index   :luceneIndex .
+
+:luceneIndex a text:TextIndexLucene ;
+    text:directory "file:/fuseki/base/databases/ontology-text" ;
+    text:entityMap :entMap .
+
+:entMap a text:EntityMap ;
+    text:defaultField "label" ;
+    text:entityField  "uri" ;
+    text:map ( [ text:field "label" ; text:predicate <http://www.w3.org/2000/01/rdf-schema#label> ] ) .
+
+# TDB2 persistent dataset on the PVC (one named graph per ontology/release, TR.SK.10)
+:tdb2Dataset rdf:type tdb2:DatasetTDB2 ;
+    tdb2:location "/fuseki/base/databases/ontology" ;
+    tdb2:unionDefaultGraph true .

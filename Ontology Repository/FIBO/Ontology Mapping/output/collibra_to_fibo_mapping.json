@@ -1,0 +1,93 @@
+{
+  "category": "Account",
+  "term_mappings": [
+    {
+      "collibra_id": "bt-account",
+      "business_term": "Account",
+      "preferred_label": "Account",
+      "is_preferred": true,
+      "fibo_curie": "caa:Account",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account",
+      "mapping_kind": "exact"
+    },
+    {
+      "collibra_id": "bt-current-account",
+      "business_term": "Current Account",
+      "preferred_label": "Current Account",
+      "is_preferred": true,
+      "fibo_curie": "caa:DemandDepositAccount",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount",
+      "mapping_kind": "narrower"
+    },
+    {
+      "collibra_id": "bt-checking-account",
+      "business_term": "Checking Account",
+      "preferred_label": "Checking Account",
+      "is_preferred": false,
+      "fibo_curie": "caa:DemandDepositAccount",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount",
+      "mapping_kind": "close"
+    },
+    {
+      "collibra_id": "bt-savings-account",
+      "business_term": "Savings Account",
+      "preferred_label": "Savings Account",
+      "is_preferred": true,
+      "fibo_curie": "caa:NonTransactionDepositAccount",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/NonTransactionDepositAccount",
+      "mapping_kind": "narrower"
+    },
+    {
+      "collibra_id": "bt-deposit-account",
+      "business_term": "Deposit Account",
+      "preferred_label": "Deposit Account",
+      "is_preferred": true,
+      "fibo_curie": "caa:DepositAccount",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount",
+      "mapping_kind": "exact"
+    },
+    {
+      "collibra_id": "bt-account-holder",
+      "business_term": "Account Holder",
+      "preferred_label": "Account Holder",
+      "is_preferred": true,
+      "fibo_curie": "caa:AccountHolder",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder",
+      "mapping_kind": "exact"
+    },
+    {
+      "collibra_id": "bt-account-balance",
+      "business_term": "Account Balance",
+      "preferred_label": "Account Balance",
+      "is_preferred": true,
+      "fibo_curie": "caa:Account",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account",
+      "mapping_kind": "close"
+    },
+    {
+      "collibra_id": "bt-account-identifier",
+      "business_term": "Account Identifier",
+      "preferred_label": "Account Identifier",
+      "is_preferred": true,
+      "fibo_curie": "caa:AccountIdentifier",
+      "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountIdentifier",
+      "mapping_kind": "exact"
+    }
+  ],
+  "relation_mappings": [
+    {
+      "collibra_relation": "is identified by",
+      "source": "bt-account",
+      "target": "bt-account-identifier",
+      "fibo_property_curie": "cmns-id:isIdentifiedBy",
+      "fibo_property_iri": "https://www.omg.org/spec/Commons/Identifiers/isIdentifiedBy"
+    },
+    {
+      "collibra_relation": "is held by",
+      "source": "bt-account",
+      "target": "bt-account-holder",
+      "fibo_property_curie": "rel:isHeldBy",
+      "fibo_property_iri": "https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy"
+    }
+  ]
+}

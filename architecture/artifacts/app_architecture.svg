@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1562" height="1028" viewBox="0 0 1562 1028" font-family="Segoe UI, Arial">
+<defs>
+<marker id="open" markerWidth="11" markerHeight="11" refX="9" refY="5" orient="auto"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#37474F" stroke-width="1.4"/></marker>
+<marker id="tri" markerWidth="13" markerHeight="13" refX="10" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11 Z" fill="white" stroke="#37474F" stroke-width="1.2"/></marker>
+<marker id="dot" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M1,1 L7,4.5 L1,8" fill="none" stroke="#5C7A99" stroke-width="1.2"/></marker>
+</defs>
+<rect width="1562" height="1028" fill="#FFFFFF"/>
+<text x="24" y="34" font-size="20" font-weight="700" fill="#1A2733">Ontology Engineering — Application Architecture (ArchiMate)</text>
+<text x="24" y="56" font-size="12" fill="#546170">Logical application services supporting EKGF maturity Level 2 “Extensible Platform” capabilities · service ▸ serves capability · component ▸ realizes service · component ⋯ accesses data object</text>
+<rect x="24" y="88" width="1514" height="194" rx="8" fill="#FFF8EC" stroke="#CFD8DC" stroke-width="1"/>
+<text x="32" y="84" font-size="11.5" font-weight="700" fill="#607D8B">Capabilities (L2)</text>
+<rect x="24" y="308" width="1514" height="218" rx="8" fill="#EEF6FD" stroke="#CFD8DC" stroke-width="1"/>
+<text x="32" y="304" font-size="11.5" font-weight="700" fill="#607D8B">Application Services</text>
+<rect x="24" y="552" width="1514" height="184" rx="8" fill="#E7F1FB" stroke="#CFD8DC" stroke-width="1"/>
+<text x="32" y="548" font-size="11.5" font-weight="700" fill="#607D8B">Application Components</text>
+<rect x="24" y="762" width="1514" height="188" rx="8" fill="#F2F8FD" stroke="#CFD8DC" stroke-width="1"/>
+<text x="32" y="758" font-size="11.5" font-weight="700" fill="#607D8B">Data Objects</text>
+<text x="262.0" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">MOD · Modelling &amp; Authoring</text>
+<text x="496.0" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">VOC · Vocabulary &amp; Glossary</text>
+<text x="730.0" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">RVT · Reasoning, Validation &amp; Testing</text>
+<text x="964.0" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">KGP · Knowledge Graph Platform</text>
+<text x="1198.0" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">ACP · Access &amp; Publishing</text>
+<text x="1432.0" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">ENB · Enterprise Enablement</text>
+<path d="M262.0,318.0 L262.0,144.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M262.0,384.0 L262.0,202.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M496.0,318.0 L496.0,144.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M496.0,384.0 L496.0,202.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M730.0,318.0 L730.0,144.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M730.0,384.0 L730.0,202.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M730.0,450.0 L730.0,260.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M964.0,318.0 L964.0,144.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M964.0,384.0 L964.0,202.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M964.0,450.0 L964.0,260.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M1198.0,318.0 L1198.0,144.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M1198.0,384.0 L1198.0,202.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M1432.0,318.0 L1432.0,144.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M1432.0,384.0 L1432.0,202.0" fill="none" stroke="#37474F" stroke-width="1.3" marker-end="url(#open)"/>
+<path d="M262.0,562.0 L262.0,372.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M262.0,562.0 L262.0,438.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M496.0,772.0 C379.0,772.0 379.0,632.0 262.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M496.0,828.0 C379.0,828.0 379.0,632.0 262.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M262.0,632.0 L262.0,772.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M393.0,597.0 C379.0,597.0 379.0,597.0 365.0,597.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M627.0,597.0 C496.0,597.0 496.0,597.0 365.0,597.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M861.0,597.0 C613.0,597.0 613.0,597.0 365.0,597.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M496.0,562.0 L496.0,372.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M496.0,632.0 L496.0,772.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M861.0,597.0 C730.0,597.0 730.0,597.0 599.0,597.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M496.0,644.0 L496.0,438.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M496.0,772.0 L496.0,714.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M496.0,714.0 L496.0,828.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M730.0,562.0 L730.0,372.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M730.0,562.0 L730.0,438.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M730.0,562.0 L730.0,504.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M262.0,772.0 C496.0,772.0 496.0,632.0 730.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M964.0,772.0 C847.0,772.0 847.0,632.0 730.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M730.0,632.0 L730.0,772.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M730.0,632.0 L730.0,828.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M730.0,632.0 L730.0,884.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M861.0,597.0 C847.0,597.0 847.0,597.0 833.0,597.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M964.0,562.0 L964.0,372.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M964.0,562.0 L964.0,438.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M262.0,772.0 C613.0,772.0 613.0,632.0 964.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M964.0,632.0 L964.0,772.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M964.0,632.0 L964.0,884.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M964.0,644.0 L964.0,504.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M262.0,772.0 C613.0,772.0 613.0,714.0 964.0,714.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M964.0,714.0 L964.0,828.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M1067.0,597.0 C964.0,597.0 964.0,679.0 861.0,679.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M1198.0,562.0 L1198.0,372.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M964.0,772.0 C1081.0,772.0 1081.0,632.0 1198.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M262.0,772.0 C730.0,772.0 730.0,632.0 1198.0,632.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M1067.0,597.0 C1081.0,597.0 1081.0,597.0 1095.0,597.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M1198.0,644.0 L1198.0,438.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M262.0,772.0 C730.0,772.0 730.0,714.0 1198.0,714.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M1198.0,714.0 L1198.0,772.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M1067.0,679.0 C1081.0,679.0 1081.0,679.0 1095.0,679.0" fill="none" stroke="#7E9AB5" stroke-width="1.0" marker-end="url(#open)"/>
+<path d="M1432.0,562.0 L1432.0,372.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M1432.0,632.0 L1432.0,772.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<path d="M1432.0,644.0 L1432.0,438.0" fill="none" stroke="#37474F" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#tri)"/>
+<path d="M1432.0,714.0 L1432.0,828.0" fill="none" stroke="#5C7A99" stroke-width="1.0" stroke-dasharray="2 3" marker-end="url(#dot)"/>
+<rect x="171.0" y="98" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="331.0" y="104" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="331.0" y1="109" x2="345.0" y2="109" stroke="#B5821E" stroke-width="1"/>
+<text x="180.0" y="114" font-size="10.5" font-weight="600" fill="#16242E">Ontology Formalization</text>
+<text x="180.0" y="126" font-size="10.5" font-weight="600" fill="#16242E">(OWL/RDFS/SKOS)</text>
+<text x="180.0" y="138" font-size="8.5" fill="#4E6473">T.DA.2</text>
+<rect x="171.0" y="156" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="331.0" y="162" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="331.0" y1="167" x2="345.0" y2="167" stroke="#B5821E" stroke-width="1"/>
+<text x="180.0" y="172" font-size="10.5" font-weight="600" fill="#16242E">Foundational / Top-</text>
+<text x="180.0" y="184" font-size="10.5" font-weight="600" fill="#16242E">down Ontology Reuse</text>
+<text x="180.0" y="196" font-size="8.5" fill="#4E6473">T.DA.3</text>
+<rect x="163.0" y="318" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="172.0" y="334" font-size="10.5" font-weight="600" fill="#16242E">Ontology Authoring</text>
+<text x="172.0" y="346" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="172.0" y="366" font-size="8.5" fill="#4E6473">S.AUTH</text>
+<rect x="163.0" y="384" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="172.0" y="400" font-size="10.5" font-weight="600" fill="#16242E">Foundational Ontology</text>
+<text x="172.0" y="412" font-size="10.5" font-weight="600" fill="#16242E">Import Service</text>
+<text x="172.0" y="432" font-size="8.5" fill="#4E6473">S.IMPORT</text>
+<rect x="159.0" y="562" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="153.0" y="574" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="153.0" y="592" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="168.0" y="588" font-size="10.5" font-weight="600" fill="#16242E">Ontology Authoring</text>
+<text x="168.0" y="600" font-size="10.5" font-weight="600" fill="#16242E">Workbench</text>
+<text x="168.0" y="626" font-size="8.5" fill="#4E6473">C.AUTH</text>
+<rect x="176.0" y="772" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="176.0" y1="784" x2="348.0" y2="784" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="185.0" y="788" font-size="10.5" font-weight="600" fill="#16242E">OWL Ontology</text>
+<text x="185.0" y="810" font-size="8.5" fill="#4E6473">D.ONT</text>
+<rect x="405.0" y="98" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="565.0" y="104" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="565.0" y1="109" x2="579.0" y2="109" stroke="#B5821E" stroke-width="1"/>
+<text x="414.0" y="114" font-size="10.5" font-weight="600" fill="#16242E">Vocabulary &amp;</text>
+<text x="414.0" y="126" font-size="10.5" font-weight="600" fill="#16242E">Controlled-Term…</text>
+<text x="414.0" y="138" font-size="8.5" fill="#4E6473">T.DA.6</text>
+<rect x="405.0" y="156" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="565.0" y="162" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="565.0" y1="167" x2="579.0" y2="167" stroke="#B5821E" stroke-width="1"/>
+<text x="414.0" y="172" font-size="10.5" font-weight="600" fill="#16242E">Business Glossary &amp;</text>
+<text x="414.0" y="184" font-size="10.5" font-weight="600" fill="#16242E">Terminology Management</text>
+<text x="414.0" y="196" font-size="8.5" fill="#4E6473">B.SE.4</text>
+<rect x="397.0" y="318" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="406.0" y="334" font-size="10.5" font-weight="600" fill="#16242E">Controlled Vocabulary</text>
+<text x="406.0" y="346" font-size="10.5" font-weight="600" fill="#16242E">Management Service</text>
+<text x="406.0" y="366" font-size="8.5" fill="#4E6473">S.VOCAB</text>
+<rect x="397.0" y="384" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="406.0" y="400" font-size="10.5" font-weight="600" fill="#16242E">Business Glossary</text>
+<text x="406.0" y="412" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="406.0" y="432" font-size="8.5" fill="#4E6473">S.GLOSS</text>
+<rect x="393.0" y="562" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="387.0" y="574" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="387.0" y="592" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="402.0" y="588" font-size="10.5" font-weight="600" fill="#16242E">Vocabulary &amp; Thesaurus</text>
+<text x="402.0" y="600" font-size="10.5" font-weight="600" fill="#16242E">Manager</text>
+<text x="402.0" y="626" font-size="8.5" fill="#4E6473">C.VOCAB</text>
+<rect x="393.0" y="644" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="387.0" y="656" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="387.0" y="674" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="402.0" y="670" font-size="10.5" font-weight="600" fill="#16242E">Business Glossary</text>
+<text x="402.0" y="682" font-size="10.5" font-weight="600" fill="#16242E">Manager</text>
+<text x="402.0" y="708" font-size="8.5" fill="#4E6473">C.GLOSS</text>
+<rect x="410.0" y="772" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="410.0" y1="784" x2="582.0" y2="784" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="419.0" y="788" font-size="10.5" font-weight="600" fill="#16242E">SKOS Vocabulary /</text>
+<text x="419.0" y="800" font-size="10.5" font-weight="600" fill="#16242E">Thesaurus</text>
+<text x="419.0" y="810" font-size="8.5" fill="#4E6473">D.VOC</text>
+<rect x="410.0" y="828" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="410.0" y1="840" x2="582.0" y2="840" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="419.0" y="844" font-size="10.5" font-weight="600" fill="#16242E">Business Glossary</text>
+<text x="419.0" y="866" font-size="8.5" fill="#4E6473">D.GLO</text>
+<rect x="639.0" y="98" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="799.0" y="104" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="799.0" y1="109" x2="813.0" y2="109" stroke="#B5821E" stroke-width="1"/>
+<text x="648.0" y="114" font-size="10.5" font-weight="600" fill="#16242E">Logical Consistency &amp;</text>
+<text x="648.0" y="126" font-size="10.5" font-weight="600" fill="#16242E">Reasoning</text>
+<text x="648.0" y="138" font-size="8.5" fill="#4E6473">T.RI.1</text>
+<rect x="639.0" y="156" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="799.0" y="162" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="799.0" y1="167" x2="813.0" y2="167" stroke="#B5821E" stroke-width="1"/>
+<text x="648.0" y="172" font-size="10.5" font-weight="600" fill="#16242E">Ontology Validation</text>
+<text x="648.0" y="184" font-size="10.5" font-weight="600" fill="#16242E">(SHACL/constraints)</text>
+<text x="648.0" y="196" font-size="8.5" fill="#4E6473">T.QV.1</text>
+<rect x="639.0" y="214" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="799.0" y="220" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="799.0" y1="225" x2="813.0" y2="225" stroke="#B5821E" stroke-width="1"/>
+<text x="648.0" y="230" font-size="10.5" font-weight="600" fill="#16242E">Ontology Testing</text>
+<text x="648.0" y="242" font-size="10.5" font-weight="600" fill="#16242E">(Competency-Question…</text>
+<text x="648.0" y="254" font-size="8.5" fill="#4E6473">T.QV.2</text>
+<rect x="631.0" y="318" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="640.0" y="334" font-size="10.5" font-weight="600" fill="#16242E">Consistency Reasoning</text>
+<text x="640.0" y="346" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="640.0" y="366" font-size="8.5" fill="#4E6473">S.REASON</text>
+<rect x="631.0" y="384" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="640.0" y="400" font-size="10.5" font-weight="600" fill="#16242E">Constraint Validation</text>
+<text x="640.0" y="412" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="640.0" y="432" font-size="8.5" fill="#4E6473">S.VALIDATE</text>
+<rect x="631.0" y="450" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="640.0" y="466" font-size="10.5" font-weight="600" fill="#16242E">Competency-Question</text>
+<text x="640.0" y="478" font-size="10.5" font-weight="600" fill="#16242E">Testing Service</text>
+<text x="640.0" y="498" font-size="8.5" fill="#4E6473">S.CQTEST</text>
+<rect x="627.0" y="562" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="621.0" y="574" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="621.0" y="592" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="636.0" y="588" font-size="10.5" font-weight="600" fill="#16242E">Reasoning &amp; Validation</text>
+<text x="636.0" y="600" font-size="10.5" font-weight="600" fill="#16242E">Engine</text>
+<text x="636.0" y="626" font-size="8.5" fill="#4E6473">C.RVE</text>
+<rect x="644.0" y="772" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="644.0" y1="784" x2="816.0" y2="784" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="653.0" y="788" font-size="10.5" font-weight="600" fill="#16242E">SHACL Shapes</text>
+<text x="653.0" y="810" font-size="8.5" fill="#4E6473">D.SHP</text>
+<rect x="644.0" y="828" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="644.0" y1="840" x2="816.0" y2="840" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="653.0" y="844" font-size="10.5" font-weight="600" fill="#16242E">Competency-Question</text>
+<text x="653.0" y="856" font-size="10.5" font-weight="600" fill="#16242E">Test Suite</text>
+<text x="653.0" y="866" font-size="8.5" fill="#4E6473">D.CQ</text>
+<rect x="644.0" y="884" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="644.0" y1="896" x2="816.0" y2="896" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="653.0" y="900" font-size="10.5" font-weight="600" fill="#16242E">Inference Result</text>
+<text x="653.0" y="922" font-size="8.5" fill="#4E6473">D.INF</text>
+<rect x="873.0" y="98" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1033.0" y="104" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1033.0" y1="109" x2="1047.0" y2="109" stroke="#B5821E" stroke-width="1"/>
+<text x="882.0" y="114" font-size="10.5" font-weight="600" fill="#16242E">Triplestore &amp; Ontology</text>
+<text x="882.0" y="126" font-size="10.5" font-weight="600" fill="#16242E">Storage</text>
+<text x="882.0" y="138" font-size="8.5" fill="#4E6473">T.OO.1</text>
+<rect x="873.0" y="156" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1033.0" y="162" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1033.0" y1="167" x2="1047.0" y2="167" stroke="#B5821E" stroke-width="1"/>
+<text x="882.0" y="172" font-size="10.5" font-weight="600" fill="#16242E">Search &amp; Query</text>
+<text x="882.0" y="184" font-size="10.5" font-weight="600" fill="#16242E">(SPARQL)</text>
+<text x="882.0" y="196" font-size="8.5" fill="#4E6473">T.AC.1</text>
+<rect x="873.0" y="214" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1033.0" y="220" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1033.0" y1="225" x2="1047.0" y2="225" stroke="#B5821E" stroke-width="1"/>
+<text x="882.0" y="230" font-size="10.5" font-weight="600" fill="#16242E">Versioning &amp; Release</text>
+<text x="882.0" y="242" font-size="10.5" font-weight="600" fill="#16242E">Management</text>
+<text x="882.0" y="254" font-size="8.5" fill="#4E6473">T.OO.2</text>
+<rect x="865.0" y="318" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="874.0" y="334" font-size="10.5" font-weight="600" fill="#16242E">Graph Storage Service</text>
+<text x="874.0" y="366" font-size="8.5" fill="#4E6473">S.STORE</text>
+<rect x="865.0" y="384" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="874.0" y="400" font-size="10.5" font-weight="600" fill="#16242E">SPARQL Query Service</text>
+<text x="874.0" y="432" font-size="8.5" fill="#4E6473">S.SPARQL</text>
+<rect x="865.0" y="450" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="874.0" y="466" font-size="10.5" font-weight="600" fill="#16242E">Ontology Versioning &amp;</text>
+<text x="874.0" y="478" font-size="10.5" font-weight="600" fill="#16242E">Release Service</text>
+<text x="874.0" y="498" font-size="8.5" fill="#4E6473">S.VERSION</text>
+<rect x="861.0" y="562" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="855.0" y="574" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="855.0" y="592" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="870.0" y="588" font-size="10.5" font-weight="600" fill="#16242E">Knowledge Graph Store &amp;</text>
+<text x="870.0" y="600" font-size="10.5" font-weight="600" fill="#16242E">Query Engine</text>
+<text x="870.0" y="626" font-size="8.5" fill="#4E6473">C.KGS</text>
+<rect x="861.0" y="644" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="855.0" y="656" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="855.0" y="674" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="870.0" y="670" font-size="10.5" font-weight="600" fill="#16242E">Ontology Repository &amp;</text>
+<text x="870.0" y="682" font-size="10.5" font-weight="600" fill="#16242E">Version Control</text>
+<text x="870.0" y="708" font-size="8.5" fill="#4E6473">C.REPO</text>
+<rect x="878.0" y="772" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="878.0" y1="784" x2="1050.0" y2="784" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="887.0" y="788" font-size="10.5" font-weight="600" fill="#16242E">RDF Graph (Triples)</text>
+<text x="887.0" y="810" font-size="8.5" fill="#4E6473">D.GRAPH</text>
+<rect x="878.0" y="828" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="878.0" y1="840" x2="1050.0" y2="840" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="887.0" y="844" font-size="10.5" font-weight="600" fill="#16242E">Ontology Release /</text>
+<text x="887.0" y="856" font-size="10.5" font-weight="600" fill="#16242E">Version</text>
+<text x="887.0" y="866" font-size="8.5" fill="#4E6473">D.REL</text>
+<rect x="878.0" y="884" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="878.0" y1="896" x2="1050.0" y2="896" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="887.0" y="900" font-size="10.5" font-weight="600" fill="#16242E">SPARQL Query / Result</text>
+<text x="887.0" y="922" font-size="8.5" fill="#4E6473">D.QRY</text>
+<rect x="1107.0" y="98" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1267.0" y="104" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1267.0" y1="109" x2="1281.0" y2="109" stroke="#B5821E" stroke-width="1"/>
+<text x="1116.0" y="114" font-size="10.5" font-weight="600" fill="#16242E">Visualization &amp;</text>
+<text x="1116.0" y="126" font-size="10.5" font-weight="600" fill="#16242E">Exploration</text>
+<text x="1116.0" y="138" font-size="8.5" fill="#4E6473">T.AC.2</text>
+<rect x="1107.0" y="156" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1267.0" y="162" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1267.0" y1="167" x2="1281.0" y2="167" stroke="#B5821E" stroke-width="1"/>
+<text x="1116.0" y="172" font-size="10.5" font-weight="600" fill="#16242E">Documentation &amp;</text>
+<text x="1116.0" y="184" font-size="10.5" font-weight="600" fill="#16242E">Publishing</text>
+<text x="1116.0" y="196" font-size="8.5" fill="#4E6473">T.AC.3</text>
+<rect x="1099.0" y="318" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="1108.0" y="334" font-size="10.5" font-weight="600" fill="#16242E">Ontology Visualization</text>
+<text x="1108.0" y="346" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="1108.0" y="366" font-size="8.5" fill="#4E6473">S.VIZ</text>
+<rect x="1099.0" y="384" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="1108.0" y="400" font-size="10.5" font-weight="600" fill="#16242E">Documentation Publishing</text>
+<text x="1108.0" y="412" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="1108.0" y="432" font-size="8.5" fill="#4E6473">S.DOCS</text>
+<rect x="1095.0" y="562" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="1089.0" y="574" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="1089.0" y="592" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="1104.0" y="588" font-size="10.5" font-weight="600" fill="#16242E">Ontology Visualization &amp;</text>
+<text x="1104.0" y="600" font-size="10.5" font-weight="600" fill="#16242E">Exploration</text>
+<text x="1104.0" y="626" font-size="8.5" fill="#4E6473">C.VIZ</text>
+<rect x="1095.0" y="644" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="1089.0" y="656" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="1089.0" y="674" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="1104.0" y="670" font-size="10.5" font-weight="600" fill="#16242E">Documentation Generator</text>
+<text x="1104.0" y="682" font-size="10.5" font-weight="600" fill="#16242E">&amp; Portal</text>
+<text x="1104.0" y="708" font-size="8.5" fill="#4E6473">C.DOC</text>
+<rect x="1112.0" y="772" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="1112.0" y1="784" x2="1284.0" y2="784" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="1121.0" y="788" font-size="10.5" font-weight="600" fill="#16242E">Documentation Site</text>
+<text x="1121.0" y="810" font-size="8.5" fill="#4E6473">D.DOC</text>
+<rect x="1341.0" y="98" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1501.0" y="104" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1501.0" y1="109" x2="1515.0" y2="109" stroke="#B5821E" stroke-width="1"/>
+<text x="1350.0" y="114" font-size="10.5" font-weight="600" fill="#16242E">Funding &amp; Investment</text>
+<text x="1350.0" y="126" font-size="10.5" font-weight="600" fill="#16242E">Management</text>
+<text x="1350.0" y="138" font-size="8.5" fill="#4E6473">B.SG.4</text>
+<rect x="1341.0" y="156" width="182" height="46" rx="7" fill="#FBE2B5" stroke="#B5821E" stroke-width="1.2"/>
+<rect x="1501.0" y="162" width="14" height="10" rx="2" fill="none" stroke="#B5821E" stroke-width="1"/>
+<line x1="1501.0" y1="167" x2="1515.0" y2="167" stroke="#B5821E" stroke-width="1"/>
+<text x="1350.0" y="172" font-size="10.5" font-weight="600" fill="#16242E">Skills &amp; Talent</text>
+<text x="1350.0" y="184" font-size="10.5" font-weight="600" fill="#16242E">Management</text>
+<text x="1350.0" y="196" font-size="8.5" fill="#4E6473">B.CT.1</text>
+<rect x="1333.0" y="318" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="1342.0" y="334" font-size="10.5" font-weight="600" fill="#16242E">Funding &amp; Portfolio</text>
+<text x="1342.0" y="346" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="1342.0" y="366" font-size="8.5" fill="#4E6473">S.FUND</text>
+<rect x="1333.0" y="384" width="198" height="54" rx="27" fill="#CFE8FB" stroke="#2E6CA4" stroke-width="1.3"/>
+<text x="1342.0" y="400" font-size="10.5" font-weight="600" fill="#16242E">Skills &amp; Competency</text>
+<text x="1342.0" y="412" font-size="10.5" font-weight="600" fill="#16242E">Service</text>
+<text x="1342.0" y="432" font-size="8.5" fill="#4E6473">S.SKILL</text>
+<rect x="1329.0" y="562" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="1323.0" y="574" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="1323.0" y="592" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="1338.0" y="588" font-size="10.5" font-weight="600" fill="#16242E">Portfolio &amp; Funding</text>
+<text x="1338.0" y="600" font-size="10.5" font-weight="600" fill="#16242E">Management</text>
+<text x="1338.0" y="626" font-size="8.5" fill="#4E6473">C.FUND</text>
+<rect x="1329.0" y="644" width="206" height="70" rx="3" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.3"/>
+<rect x="1323.0" y="656" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<rect x="1323.0" y="674" width="12" height="9" fill="#BBD7F0" stroke="#1F5C95" stroke-width="1.1"/>
+<text x="1338.0" y="670" font-size="10.5" font-weight="600" fill="#16242E">Skills &amp; Talent</text>
+<text x="1338.0" y="682" font-size="10.5" font-weight="600" fill="#16242E">Management</text>
+<text x="1338.0" y="708" font-size="8.5" fill="#4E6473">C.SKILL</text>
+<rect x="1346.0" y="772" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="1346.0" y1="784" x2="1518.0" y2="784" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="1355.0" y="788" font-size="10.5" font-weight="600" fill="#16242E">Funding / Portfolio</text>
+<text x="1355.0" y="800" font-size="10.5" font-weight="600" fill="#16242E">Record</text>
+<text x="1355.0" y="810" font-size="8.5" fill="#4E6473">D.FUND</text>
+<rect x="1346.0" y="828" width="172" height="44" rx="2" fill="#E3F0FB" stroke="#3A6EA5" stroke-width="1.2"/>
+<line x1="1346.0" y1="840" x2="1518.0" y2="840" stroke="#3A6EA5" stroke-width="1.1"/>
+<text x="1355.0" y="844" font-size="10.5" font-weight="600" fill="#16242E">Skills Profile</text>
+<text x="1355.0" y="866" font-size="8.5" fill="#4E6473">D.SKILL</text>
+<rect x="24" y="970" width="22" height="14" rx="2" fill="#FBE2B5" stroke="#B5821E"/>
+<text x="52" y="982" font-size="10.5" fill="#37474F">Capability (L2)</text>
+<rect x="199" y="970" width="22" height="14" rx="7" fill="#CFE8FB" stroke="#2E6CA4"/>
+<text x="227" y="982" font-size="10.5" fill="#37474F">Application Service</text>
+<rect x="374" y="970" width="22" height="14" rx="2" fill="#BBD7F0" stroke="#1F5C95"/>
+<text x="402" y="982" font-size="10.5" fill="#37474F">Application Component</text>
+<rect x="549" y="970" width="22" height="14" rx="2" fill="#E3F0FB" stroke="#3A6EA5"/>
+<text x="577" y="982" font-size="10.5" fill="#37474F">Data Object</text>
+<line x1="24" y1="999" x2="52" y2="999" stroke="#37474F" stroke-width="1.4" marker-end="url(#open)"/>
+<text x="58" y="1003" font-size="10.5" fill="#37474F">serving ▸ serves</text>
+<line x1="199" y1="999" x2="227" y2="999" stroke="#37474F" stroke-width="1.4" marker-end="url(#tri)" stroke-dasharray="5 4"/>
+<text x="233" y="1003" font-size="10.5" fill="#37474F">realization ▷</text>
+<line x1="374" y1="999" x2="402" y2="999" stroke="#5C7A99" stroke-width="1.4" marker-end="url(#dot)" stroke-dasharray="2 3"/>
+<text x="408" y="1003" font-size="10.5" fill="#37474F">access ⋯</text>
+<line x1="549" y1="999" x2="577" y2="999" stroke="#7E9AB5" stroke-width="1.4" marker-end="url(#open)"/>
+<text x="583" y="1003" font-size="10.5" fill="#37474F">uses ▸</text>
+</svg>

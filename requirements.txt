@@ -1,0 +1,11 @@
+# Core runtime dependency (the workflow graph + executor)
+networkx>=3.0
+
+# Notebook visualisation
+matplotlib>=3.5
+
+# Only needed to run / (re)generate the demo notebooks
+nbformat>=5.0
+jupyter
+nbconvert>=7.0
+ipykernel

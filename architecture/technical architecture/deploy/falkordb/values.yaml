@@ -1,0 +1,107 @@
+# FalkorDB on GKE — starter Helm values (Bitnami Redis chart + FalkorDB module)
+# Chart:  oci://registry-1.docker.io/bitnamicharts/redis
+# Install: helm install falkordb oci://registry-1.docker.io/bitnamicharts/redis \
+#            -n knowledge-graph -f values.yaml
+# Satisfies (see ../../REQUIREMENTS_CATALOG.md): TR.PG.01,03,04,05,06,07,09,10 + TR.CN.06
+# NOTE: illustrative starting point — validate tiers by load test; pin the image digest.
+
+global:
+  security:
+    allowInsecureImages: true        # TR.CN.06 — accept the FalkorDB image in the Bitnami chart
+
+image:
+  registry: REGION-docker.pkg.dev    # TR.CN.06 — pull from Artifact Registry
+  repository: PROJECT/ontology/falkordb
+  tag: "vX.Y.Z@sha256:REPLACE_WITH_DIGEST"   # pin by digest
+
+architecture: replication            # TR.PG.07 — primary + replica(s)
+
+auth:
+  enabled: true                      # TR.PG.10 — require auth
+  existingSecret: falkordb-auth      # from Secret Manager via External Secrets
+  existingSecretPasswordKey: password
+
+tls:
+  enabled: true                      # TR.PG.10 — TLS in transit
+  existingSecret: falkordb-tls
+  certFilename: tls.crt
+  certKeyFilename: tls.key
+  certCAFilename: ca.crt
+
+commonConfiguration: |-
+  maxmemory-policy noeviction        # TR.PG.04 — never evict graph keys
+  appendonly yes                     # TR.PG.05 — AOF durability
+  appendfsync everysec
+  save "900 1 300 10 60 10000"       # RDB snapshot schedule
+
+# ---- Primary (writer) ----
+master:
+  count: 1
+  extraFlags:
+    # TR.PG.06 — load-time module config baked into args (GRAPH.CONFIG SET is NOT persisted)
+    - "--loadmodule /opt/falkordb/falkordb.so
+       THREAD_COUNT 6 OMP_THREAD_COUNT 2 CACHE_SIZE 100
+       NODE_CREATION_BUFFER 16384 QUERY_MEM_CAPACITY 4294967296
+       TIMEOUT_MAX 30000 TIMEOUT_DEFAULT 10000
+       RESULTSET_SIZE 100000 MAX_QUEUED_QUERIES 256"
+  resources:                         # TR.PG.03 — requests == limits (Guaranteed QoS)
+    requests: { cpu: "4", memory: 16Gi }
+    limits:   { cpu: "6", memory: 16Gi }
+  persistence:                       # TR.PG.05 — SSD PVC >= 3x RDB size
+    enabled: true
+    storageClass: premium-rwo        # pd-ssd / hyperdisk
+    size: 50Gi
+  nodeSelector: { workload: memory-optimised }   # TR.PG.01 — dedicated mem pool
+  tolerations:
+    - { key: "dedicated", operator: "Equal", value: "falkordb", effect: "NoSchedule" }
+  podSecurityContext: { runAsNonRoot: true, runAsUser: 1001, fsGroup: 1001 }   # TR.PG.10
+  containerSecurityContext:
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    capabilities: { drop: ["ALL"] }
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway
+      labelSelector: { matchLabels: { app.kubernetes.io/component: master } }
+
+# ---- Replicas (read scale-out; GRAPH.RO_QUERY) ---- TR.PG.08
+replica:
+  replicaCount: 2
+  extraFlags:                        # mirror the master module flags
+    - "--loadmodule /opt/falkordb/falkordb.so
+       THREAD_COUNT 6 OMP_THREAD_COUNT 2 CACHE_SIZE 100
+       NODE_CREATION_BUFFER 16384 QUERY_MEM_CAPACITY 4294967296
+       TIMEOUT_MAX 30000 TIMEOUT_DEFAULT 10000
+       RESULTSET_SIZE 100000 MAX_QUEUED_QUERIES 256"
+  resources:
+    requests: { cpu: "4", memory: 16Gi }
+    limits:   { cpu: "6", memory: 16Gi }
+  persistence: { enabled: true, storageClass: premium-rwo, size: 50Gi }
+  nodeSelector: { workload: memory-optimised }
+  tolerations:
+    - { key: "dedicated", operator: "Equal", value: "falkordb", effect: "NoSchedule" }
+
+# ---- Sentinel (automatic failover) ---- TR.PG.07
+sentinel:
+  enabled: true
+  quorum: 2
+  replicaCount: 3                    # one per zone
+
+# ---- HA / disruption ----
+pdb:
+  create: true
+  minAvailable: 1
+
+# ---- Network: ClusterIP only, no public exposure ---- TR.PG.10
+service:
+  type: ClusterIP
+
+networkPolicy:
+  enabled: true
+  allowExternal: false
+
+# ---- Metrics to Managed Prometheus ---- TR.PG.11
+metrics:
+  enabled: true
+  serviceMonitor: { enabled: true }

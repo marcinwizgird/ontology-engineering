@@ -1,0 +1,7 @@
+rdflib>=7.0
+owlrl>=6.0
+pandas>=2.0
+networkx>=3.0
+matplotlib>=3.7
+jupyterlab>=4.0
+nbformat>=5.0

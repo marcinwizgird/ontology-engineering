@@ -1,0 +1,66 @@
+@prefix caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix cmns-id: <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix hbim: <https://example.org/hbim/account/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://example.org/hbim/account> a owl:Ontology ;
+    rdfs:label "HBIM - Account subject area (aligned to FIBO)" .
+
+hbim:Account a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty rel:isHeldBy ;
+            owl:someValuesFrom hbim:AccountHolder ],
+        [ a owl:Restriction ;
+            owl:onProperty cmns-id:isIdentifiedBy ;
+            owl:someValuesFrom hbim:AccountIdentifier ] ;
+    owl:equivalentClass caa:Account ;
+    skos:altLabel "ACCT"@en,
+        "Banking Account"@en ;
+    skos:definition "A formal banking arrangement under which a financial institution holds funds or records financial activity on behalf of one or more parties."@en ;
+    skos:prefLabel "Account"@en .
+
+hbim:AccountBalance a owl:Class ;
+    skos:altLabel "Balance"@en ;
+    skos:closeMatch caa:Account ;
+    skos:definition "The amount of funds recorded in an account at a given point in time."@en ;
+    skos:prefLabel "Account Balance"@en .
+
+hbim:DepositAccount a owl:Class ;
+    owl:equivalentClass caa:DepositAccount ;
+    skos:definition "An account held at a depository institution that allows the account holder to deposit and withdraw funds."@en ;
+    skos:prefLabel "Deposit Account"@en .
+
+hbim:SavingsAccount a owl:Class ;
+    rdfs:subClassOf caa:NonTransactionDepositAccount ;
+    skos:altLabel "Non-Transaction Deposit Account"@en,
+        "SAV"@en ;
+    skos:definition "An interest-bearing non-transaction deposit account intended to hold funds that are not needed for everyday transactions."@en ;
+    skos:prefLabel "Savings Account"@en .
+
+hbim:account-GB29NWBK60161331926819 a hbim:CurrentAccount ;
+    rdfs:label "Customer current account GB29 NWBK ...6819" .
+
+hbim:AccountHolder a owl:Class ;
+    owl:equivalentClass caa:AccountHolder ;
+    skos:altLabel "Accountholder"@en ;
+    skos:definition "A party that owns or holds an account and is entitled to operate it according to the account agreement."@en ;
+    skos:prefLabel "Account Holder"@en .
+
+hbim:AccountIdentifier a owl:Class ;
+    owl:equivalentClass caa:AccountIdentifier ;
+    skos:altLabel "Account Number"@en,
+        "IBAN"@en ;
+    skos:definition "A code or number that uniquely identifies an account, such as an IBAN or account number."@en ;
+    skos:prefLabel "Account Identifier"@en .
+
+hbim:CurrentAccount a owl:Class ;
+    rdfs:subClassOf caa:DemandDepositAccount ;
+    skos:altLabel "CA"@en,
+        "Checking Account"@en,
+        "Demand Deposit Account"@en ;
+    skos:definition "A demand deposit account from which the holder may withdraw or transfer funds at any time without prior notice, typically used for everyday transactions."@en ;
+    skos:prefLabel "Current Account"@en .
+

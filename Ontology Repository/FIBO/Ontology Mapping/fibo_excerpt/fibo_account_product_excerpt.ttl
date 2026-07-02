@@ -1,0 +1,98 @@
+# ---------------------------------------------------------------------------
+# FIBO excerpt - Account & Product axioms relevant to the Account data category
+# ---------------------------------------------------------------------------
+# These are REAL FIBO IRIs and REAL axioms, transcribed from:
+#   FBC/ProductsAndServices/ClientsAndAccounts.rdf
+#   FBC/ProductsAndServices/FinancialProductsAndServices.rdf
+#   FBC/FunctionalEntities/FinancialServicesEntities.rdf
+#
+# We use a self-contained excerpt (rather than importing the whole of FIBO with
+# all of its `owl:imports`) so the OWL RL reasoner runs in seconds and the
+# inferences are easy to trace.  Every class/property below keeps its canonical
+# FIBO IRI, so an HBIM model aligned here is aligned to real FIBO.
+#
+# Key hierarchy reproduced:
+#   DemandDepositAccount  rdfs:subClassOf TransactionDepositAccount
+#   TransactionDepositAccount rdfs:subClassOf DepositAccount
+#   NonTransactionDepositAccount rdfs:subClassOf DepositAccount
+#   TransactionDepositAccount owl:disjointWith NonTransactionDepositAccount
+#   DepositAccount rdfs:subClassOf BankingProduct, InvestmentOrDepositAccount
+#   InvestmentOrDepositAccount rdfs:subClassOf Account
+#   BankingProduct rdfs:subClassOf FinancialProduct
+# ---------------------------------------------------------------------------
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix caa:   <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix fpas:  <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fse:   <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/> .
+@prefix rel:   <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix cmns-id:  <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix cmns-org: <https://www.omg.org/spec/Commons/Organizations/> .
+
+<https://spec.edmcouncil.org/fibo/ontology/FBC/AccountProductExcerpt/>
+    a owl:Ontology ;
+    rdfs:label "FIBO Account & Product excerpt (for HBIM mapping/reasoning demo)" .
+
+# ---- Object properties --------------------------------------------------
+rel:isHeldBy        a owl:ObjectProperty ; rdfs:label "is held by" .
+rel:holds           a owl:ObjectProperty ; rdfs:label "holds" ; owl:inverseOf rel:isHeldBy .
+cmns-id:isIdentifiedBy a owl:ObjectProperty ; rdfs:label "is identified by" .
+cmns-org:isProvidedBy  a owl:ObjectProperty ; rdfs:label "is provided by" .
+
+# ---- Product layer ------------------------------------------------------
+fpas:FinancialProductOrService a owl:Class ; rdfs:label "financial product or service" .
+fpas:FinancialProduct a owl:Class ;
+    rdfs:label "financial product" ;
+    rdfs:subClassOf fpas:FinancialProductOrService .
+
+fse:BankingProduct a owl:Class ;
+    rdfs:label "banking product" ;
+    rdfs:subClassOf fpas:FinancialProduct ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty cmns-org:isProvidedBy ;
+        owl:someValuesFrom fse:DepositoryInstitution ] .
+
+fse:DepositoryInstitution a owl:Class ; rdfs:label "depository institution" .
+
+# ---- Account layer ------------------------------------------------------
+caa:AccountHolder    a owl:Class ; rdfs:label "account holder" .
+caa:AccountIdentifier a owl:Class ; rdfs:label "account identifier" .
+
+caa:Account a owl:Class ;
+    rdfs:label "account" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty rel:isHeldBy ;
+        owl:someValuesFrom caa:AccountHolder ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty cmns-id:isIdentifiedBy ;
+        owl:someValuesFrom caa:AccountIdentifier ] .
+
+caa:InvestmentOrDepositAccount a owl:Class ;
+    rdfs:label "investment or deposit account" ;
+    rdfs:subClassOf caa:Account .
+
+caa:DepositAccount a owl:Class ;
+    rdfs:label "deposit account" ;
+    rdfs:subClassOf fse:BankingProduct ;
+    rdfs:subClassOf caa:InvestmentOrDepositAccount ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty cmns-org:isProvidedBy ;
+        owl:someValuesFrom fse:DepositoryInstitution ] .
+
+caa:TransactionDepositAccount a owl:Class ;
+    rdfs:label "transaction deposit account" ;
+    rdfs:subClassOf caa:DepositAccount .
+
+caa:NonTransactionDepositAccount a owl:Class ;
+    rdfs:label "non-transaction deposit account" ;
+    rdfs:subClassOf caa:DepositAccount ;
+    owl:disjointWith caa:TransactionDepositAccount .
+
+caa:DemandDepositAccount a owl:Class ;
+    rdfs:label "demand deposit account" ;
+    rdfs:subClassOf caa:TransactionDepositAccount .

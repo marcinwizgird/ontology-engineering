@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Root (domain) ontology for the LPG converter demo.
+  Ontology IRI: http://example.org/domain
+  Imports the foundational ontology to demonstrate recursive loading.
+-->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:dom="http://example.org/domain#"
+    xmlns:found="http://example.org/foundational#">
+
+    <owl:Ontology rdf:about="http://example.org/domain">
+        <rdfs:label>Domain Ontology</rdfs:label>
+        <owl:imports rdf:resource="http://example.org/foundational"/>
+    </owl:Ontology>
+
+    <!-- Classes that specialise imported foundational classes -->
+    <owl:Class rdf:about="http://example.org/domain#Company">
+        <rdfs:label>Company</rdfs:label>
+        <skos:definition>A commercial organization that provides goods or services.</skos:definition>
+        <rdfs:subClassOf rdf:resource="http://example.org/foundational#Organization"/>
+        <rdfs:isDefinedBy rdf:resource="http://example.org/domain"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/domain#Employee">
+        <rdfs:label>Employee</rdfs:label>
+        <skos:definition>A person employed by a company.</skos:definition>
+        <rdfs:subClassOf rdf:resource="http://example.org/foundational#Person"/>
+        <rdfs:isDefinedBy rdf:resource="http://example.org/domain"/>
+    </owl:Class>
+
+    <!-- Object property specialising an imported object property -->
+    <owl:ObjectProperty rdf:about="http://example.org/domain#employs">
+        <rdfs:label>employs</rdfs:label>
+        <skos:definition>Relates a company to an employee that works for it.</skos:definition>
+        <rdfs:subPropertyOf rdf:resource="http://example.org/foundational#hasMember"/>
+        <rdfs:domain rdf:resource="http://example.org/domain#Company"/>
+        <rdfs:range rdf:resource="http://example.org/domain#Employee"/>
+        <rdfs:isDefinedBy rdf:resource="http://example.org/domain"/>
+    </owl:ObjectProperty>
+
+    <!-- Datatype property -->
+    <owl:DatatypeProperty rdf:about="http://example.org/domain#employeeCount">
+        <rdfs:label>employee count</rdfs:label>
+        <skos:definition>The number of employees working for a company.</skos:definition>
+        <rdfs:domain rdf:resource="http://example.org/domain#Company"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:isDefinedBy rdf:resource="http://example.org/domain"/>
+    </owl:DatatypeProperty>
+
+</rdf:RDF>

@@ -1,0 +1,129 @@
+%% Ontology Engineering Capability Model - Ontology relations
+flowchart LR
+  classDef biz fill:#FFE0B2,stroke:#E65100,color:#000;
+  classDef tech fill:#BBDEFB,stroke:#0D47A1,color:#000;
+  B_SG_1["B.SG.1<br/>Ontology Vision & Strategy<br/><i>L1</i>"]:::biz
+  B_SG_2["B.SG.2<br/>Ontology Governance & Stewardship<br/><i>L3</i>"]:::biz
+  B_SG_3["B.SG.3<br/>Policy, Standards & Conventions Management<br/><i>L3</i>"]:::biz
+  B_SG_4["B.SG.4<br/>Funding & Investment Management<br/><i>L2</i>"]:::biz
+  B_SG_5["B.SG.5<br/>Ontology Risk & Compliance Management<br/><i>L4</i>"]:::biz
+  B_SE_1["B.SE.1<br/>Domain Knowledge Elicitation<br/><i>L1</i>"]:::biz
+  B_SE_2["B.SE.2<br/>Competency Question Management<br/><i>L1</i>"]:::biz
+  B_SE_3["B.SE.3<br/>Use-Case & Requirements Management<br/><i>L1</i>"]:::biz
+  B_SE_4["B.SE.4<br/>Business Glossary & Terminology Management<br/><i>L2</i>"]:::biz
+  B_VP_1["B.VP.1<br/>Value Case & Benefits Realization<br/><i>L4</i>"]:::biz
+  B_VP_2["B.VP.2<br/>Performance Measurement (KPIs)<br/><i>L4</i>"]:::biz
+  B_VP_3["B.VP.3<br/>Adoption & Change Management<br/><i>L3</i>"]:::biz
+  B_CT_1["B.CT.1<br/>Skills & Talent Management<br/><i>L2</i>"]:::biz
+  B_CT_2["B.CT.2<br/>Knowledge Sharing & Community of Practice<br/><i>L3</i>"]:::biz
+  B_CT_3["B.CT.3<br/>Ecosystem & Standards Collaboration<br/><i>L5</i>"]:::biz
+  T_DA_1["T.DA.1<br/>Ontology Conceptualization & Modelling<br/><i>L1</i>"]:::tech
+  T_DA_2["T.DA.2<br/>Ontology Formalization (OWL/RDFS/SKOS)<br/><i>L2</i>"]:::tech
+  T_DA_3["T.DA.3<br/>Foundational / Top-down Ontology Reuse<br/><i>L2</i>"]:::tech
+  T_DA_4["T.DA.4<br/>Bottom-up Ontology Learning<br/><i>L3</i>"]:::tech
+  T_DA_5["T.DA.5<br/>Ontology Design Pattern (ODP) Management<br/><i>L3</i>"]:::tech
+  T_DA_6["T.DA.6<br/>Vocabulary & Controlled-Term Management<br/><i>L2</i>"]:::tech
+  T_IA_1["T.IA.1<br/>Ontology Mapping & Alignment<br/><i>L3</i>"]:::tech
+  T_IA_2["T.IA.2<br/>Modularization & Import Management<br/><i>L3</i>"]:::tech
+  T_IA_3["T.IA.3<br/>Semantic Data Integration<br/><i>L3</i>"]:::tech
+  T_IA_4["T.IA.4<br/>Identity Resolution & Entity Reconciliation<br/><i>L3</i>"]:::tech
+  T_RI_1["T.RI.1<br/>Logical Consistency & Reasoning<br/><i>L2</i>"]:::tech
+  T_RI_2["T.RI.2<br/>Inferencing & Materialization<br/><i>L3</i>"]:::tech
+  T_RI_3["T.RI.3<br/>Rule & Constraint Management (SHACL/SWRL)<br/><i>L3</i>"]:::tech
+  T_RI_4["T.RI.4<br/>Inference Explainability<br/><i>L4</i>"]:::tech
+  T_QV_1["T.QV.1<br/>Ontology Validation (SHACL/constraints)<br/><i>L2</i>"]:::tech
+  T_QV_2["T.QV.2<br/>Ontology Testing (Competency-Question tests)<br/><i>L2</i>"]:::tech
+  T_QV_3["T.QV.3<br/>Quality Assurance & Metrics<br/><i>L3</i>"]:::tech
+  T_QV_4["T.QV.4<br/>Verification & Evaluation (gold standard)<br/><i>L3</i>"]:::tech
+  T_OO_1["T.OO.1<br/>Triplestore & Ontology Storage<br/><i>L2</i>"]:::tech
+  T_OO_2["T.OO.2<br/>Versioning & Release Management<br/><i>L2</i>"]:::tech
+  T_OO_3["T.OO.3<br/>Ontology CI/CD (OntoOps / DataOps)<br/><i>L4</i>"]:::tech
+  T_OO_4["T.OO.4<br/>Federation & Virtualization<br/><i>L5</i>"]:::tech
+  T_OO_5["T.OO.5<br/>Observability & Monitoring<br/><i>L4</i>"]:::tech
+  T_AC_1["T.AC.1<br/>Search & Query (SPARQL)<br/><i>L2</i>"]:::tech
+  T_AC_2["T.AC.2<br/>Visualization & Exploration<br/><i>L2</i>"]:::tech
+  T_AC_3["T.AC.3<br/>Documentation & Publishing<br/><i>L2</i>"]:::tech
+  T_AC_4["T.AC.4<br/>Ontology-based Access, APIs & Entitlements<br/><i>L3</i>"]:::tech
+  T_AC_5["T.AC.5<br/>Multilingual & Localization Support<br/><i>L4</i>"]:::tech
+  T_AC_6["T.AC.6<br/>LLM / AI Augmentation<br/><i>L5</i>"]:::tech
+  %% dependsOn (solid), supports (dotted), governedBy (thick)
+  B_SG_2 -->|dependsOn| B_SG_1
+  B_SG_3 -->|dependsOn| B_SG_2
+  B_SG_4 -->|dependsOn| B_SG_1
+  B_SG_5 -->|dependsOn| B_SG_2
+  B_SG_5 -->|dependsOn| B_SG_3
+  B_SE_1 -->|dependsOn| B_SG_1
+  B_SE_2 -->|dependsOn| B_SE_1
+  B_SE_3 -->|dependsOn| B_SE_2
+  B_SE_4 -->|dependsOn| B_SE_1
+  B_VP_1 -->|dependsOn| B_SG_4
+  B_VP_1 -->|dependsOn| B_SE_3
+  B_VP_2 -->|dependsOn| B_VP_1
+  B_VP_3 -->|dependsOn| B_SE_3
+  B_CT_1 -->|dependsOn| B_SG_1
+  B_CT_2 -->|dependsOn| B_CT_1
+  B_CT_3 -->|dependsOn| B_CT_2
+  T_DA_1 -->|dependsOn| B_SE_2
+  T_DA_1 -.->|supports| B_SE_2
+  T_DA_1 ==>|governedBy| B_SG_3
+  T_DA_2 -->|dependsOn| T_DA_1
+  T_DA_2 ==>|governedBy| B_SG_3
+  T_DA_3 -->|dependsOn| T_DA_1
+  T_DA_3 ==>|governedBy| B_SG_3
+  T_DA_4 -->|dependsOn| T_DA_1
+  T_DA_4 -->|dependsOn| T_IA_3
+  T_DA_4 -.->|supports| B_SE_1
+  T_DA_4 ==>|governedBy| B_SG_3
+  T_DA_5 -->|dependsOn| T_DA_2
+  T_DA_5 ==>|governedBy| B_SG_3
+  T_DA_6 -->|dependsOn| B_SE_4
+  T_DA_6 -.->|supports| B_SE_4
+  T_DA_6 ==>|governedBy| B_SG_3
+  T_IA_1 -->|dependsOn| T_DA_2
+  T_IA_1 ==>|governedBy| B_SG_2
+  T_IA_2 -->|dependsOn| T_DA_2
+  T_IA_3 -->|dependsOn| T_DA_2
+  T_IA_3 -->|dependsOn| T_IA_1
+  T_IA_3 -.->|supports| B_VP_1
+  T_IA_4 -->|dependsOn| T_IA_3
+  T_RI_1 -->|dependsOn| T_DA_2
+  T_RI_2 -->|dependsOn| T_RI_1
+  T_RI_2 -->|dependsOn| T_IA_3
+  T_RI_2 -.->|supports| B_VP_1
+  T_RI_3 -->|dependsOn| T_DA_2
+  T_RI_4 -->|dependsOn| T_RI_2
+  T_RI_4 -.->|supports| B_SG_5
+  T_QV_1 -->|dependsOn| T_DA_2
+  T_QV_1 -->|dependsOn| T_RI_3
+  T_QV_1 ==>|governedBy| B_SG_3
+  T_QV_2 -->|dependsOn| B_SE_2
+  T_QV_2 -->|dependsOn| T_DA_2
+  T_QV_2 -.->|supports| B_SE_2
+  T_QV_3 -->|dependsOn| T_QV_1
+  T_QV_3 -.->|supports| B_VP_2
+  T_QV_4 -->|dependsOn| T_QV_2
+  T_QV_4 -->|dependsOn| T_QV_3
+  T_QV_4 -.->|supports| B_VP_2
+  T_OO_1 -->|dependsOn| T_DA_2
+  T_OO_2 -->|dependsOn| T_OO_1
+  T_OO_2 ==>|governedBy| B_SG_2
+  T_OO_3 -->|dependsOn| T_OO_2
+  T_OO_3 -->|dependsOn| T_QV_2
+  T_OO_3 -->|dependsOn| T_QV_1
+  T_OO_4 -->|dependsOn| T_IA_3
+  T_OO_4 -->|dependsOn| T_OO_1
+  T_OO_5 -->|dependsOn| T_OO_1
+  T_OO_5 -.->|supports| B_VP_2
+  T_AC_1 -->|dependsOn| T_OO_1
+  T_AC_1 -.->|supports| B_SE_2
+  T_AC_2 -->|dependsOn| T_AC_1
+  T_AC_2 -.->|supports| B_SE_1
+  T_AC_3 -->|dependsOn| T_DA_2
+  T_AC_3 -.->|supports| B_VP_3
+  T_AC_4 -->|dependsOn| T_AC_1
+  T_AC_4 -->|dependsOn| T_IA_3
+  T_AC_4 ==>|governedBy| B_SG_5
+  T_AC_5 -->|dependsOn| T_DA_6
+  T_AC_6 -->|dependsOn| T_RI_2
+  T_AC_6 -->|dependsOn| T_AC_1
+  T_AC_6 -.->|supports| B_VP_1

@@ -1,0 +1,706 @@
+@prefix caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix cmns-id: <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix cmns-org: <https://www.omg.org/spec/Commons/Organizations/> .
+@prefix fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fse: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/> .
+@prefix hbim: <https://example.org/hbim/account/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+rdf:HTML a rdfs:Datatype ;
+    owl:sameAs rdf:HTML .
+
+rdf:PlainLiteral a rdfs:Datatype ;
+    owl:sameAs rdf:PlainLiteral .
+
+rdf:XMLLiteral a rdfs:Datatype ;
+    owl:sameAs rdf:XMLLiteral .
+
+rdf:langString a rdfs:Datatype ;
+    owl:sameAs rdf:langString .
+
+rdf:type owl:sameAs rdf:type .
+
+rdfs:Literal a rdfs:Datatype ;
+    owl:sameAs rdfs:Literal .
+
+rdfs:comment a owl:AnnotationProperty ;
+    owl:sameAs rdfs:comment .
+
+rdfs:isDefinedBy a owl:AnnotationProperty ;
+    owl:sameAs rdfs:isDefinedBy .
+
+rdfs:label a owl:AnnotationProperty ;
+    owl:sameAs rdfs:label .
+
+rdfs:seeAlso a owl:AnnotationProperty ;
+    owl:sameAs rdfs:seeAlso .
+
+rdfs:subClassOf owl:sameAs rdfs:subClassOf .
+
+rdfs:subPropertyOf owl:sameAs rdfs:subPropertyOf .
+
+xsd:NCName a rdfs:Datatype ;
+    owl:sameAs xsd:NCName .
+
+xsd:NMTOKEN a rdfs:Datatype ;
+    owl:sameAs xsd:NMTOKEN .
+
+xsd:Name a rdfs:Datatype ;
+    owl:sameAs xsd:Name .
+
+xsd:anyURI a rdfs:Datatype ;
+    owl:sameAs xsd:anyURI .
+
+xsd:base64Binary a rdfs:Datatype ;
+    owl:sameAs xsd:base64Binary .
+
+xsd:boolean a rdfs:Datatype ;
+    owl:sameAs xsd:boolean .
+
+xsd:byte a rdfs:Datatype ;
+    owl:sameAs xsd:byte .
+
+xsd:date a rdfs:Datatype ;
+    owl:sameAs xsd:date .
+
+xsd:dateTime a rdfs:Datatype ;
+    owl:sameAs xsd:dateTime .
+
+xsd:dateTimeStamp a rdfs:Datatype ;
+    owl:sameAs xsd:dateTimeStamp .
+
+xsd:decimal a rdfs:Datatype ;
+    owl:sameAs xsd:decimal .
+
+xsd:double a rdfs:Datatype ;
+    owl:sameAs xsd:double .
+
+xsd:float a rdfs:Datatype ;
+    owl:sameAs xsd:float .
+
+xsd:hexBinary a rdfs:Datatype ;
+    owl:sameAs xsd:hexBinary .
+
+xsd:int a rdfs:Datatype ;
+    owl:sameAs xsd:int .
+
+xsd:integer a rdfs:Datatype ;
+    owl:sameAs xsd:integer .
+
+xsd:language a rdfs:Datatype ;
+    owl:sameAs xsd:language .
+
+xsd:long a rdfs:Datatype ;
+    owl:sameAs xsd:long .
+
+xsd:negativeInteger a rdfs:Datatype ;
+    owl:sameAs xsd:negativeInteger .
+
+xsd:nonNegativeInteger a rdfs:Datatype ;
+    owl:sameAs xsd:nonNegativeInteger .
+
+xsd:nonPositiveInteger a rdfs:Datatype ;
+    owl:sameAs xsd:nonPositiveInteger .
+
+xsd:normalizedString a rdfs:Datatype ;
+    owl:sameAs xsd:normalizedString .
+
+xsd:positiveInteger a rdfs:Datatype ;
+    owl:sameAs xsd:positiveInteger .
+
+xsd:short a rdfs:Datatype ;
+    owl:sameAs xsd:short .
+
+xsd:string a rdfs:Datatype ;
+    owl:sameAs xsd:string .
+
+xsd:time a rdfs:Datatype ;
+    owl:sameAs xsd:time .
+
+xsd:token a rdfs:Datatype ;
+    owl:sameAs xsd:token .
+
+xsd:unsignedByte a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedByte .
+
+xsd:unsignedInt a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedInt .
+
+xsd:unsignedLong a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedLong .
+
+xsd:unsignedShort a rdfs:Datatype ;
+    owl:sameAs xsd:unsignedShort .
+
+owl:backwardCompatibleWith a owl:AnnotationProperty ;
+    owl:sameAs owl:backwardCompatibleWith .
+
+owl:deprecated a owl:AnnotationProperty ;
+    owl:sameAs owl:deprecated .
+
+owl:disjointWith owl:sameAs owl:disjointWith .
+
+owl:equivalentClass owl:sameAs owl:equivalentClass .
+
+owl:equivalentProperty owl:sameAs owl:equivalentProperty .
+
+owl:incompatibleWith a owl:AnnotationProperty ;
+    owl:sameAs owl:incompatibleWith .
+
+owl:inverseOf owl:sameAs owl:inverseOf .
+
+owl:onProperty owl:sameAs owl:onProperty .
+
+owl:priorVersion a owl:AnnotationProperty ;
+    owl:sameAs owl:priorVersion .
+
+owl:sameAs owl:sameAs owl:sameAs .
+
+owl:someValuesFrom owl:sameAs owl:someValuesFrom .
+
+owl:versionInfo a owl:AnnotationProperty ;
+    owl:sameAs owl:versionInfo .
+
+skos:altLabel owl:sameAs skos:altLabel .
+
+skos:closeMatch owl:sameAs skos:closeMatch .
+
+skos:definition owl:sameAs skos:definition .
+
+skos:prefLabel owl:sameAs skos:prefLabel .
+
+<https://example.org/hbim/account> a owl:Ontology ;
+    rdfs:label "HBIM - Account subject area (aligned to FIBO)" ;
+    owl:sameAs <https://example.org/hbim/account> .
+
+hbim:account-GB29NWBK60161331926819 a _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:CurrentAccount,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DemandDepositAccount,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    rdfs:label "Customer current account GB29 NWBK ...6819" ;
+    owl:sameAs hbim:account-GB29NWBK60161331926819 .
+
+<https://spec.edmcouncil.org/fibo/ontology/FBC/AccountProductExcerpt/> a owl:Ontology ;
+    rdfs:label "FIBO Account & Product excerpt (for HBIM mapping/reasoning demo)" ;
+    owl:sameAs <https://spec.edmcouncil.org/fibo/ontology/FBC/AccountProductExcerpt/> .
+
+"Customer current account GB29 NWBK ...6819" owl:sameAs "Customer current account GB29 NWBK ...6819" .
+
+"FIBO Account & Product excerpt (for HBIM mapping/reasoning demo)" owl:sameAs "FIBO Account & Product excerpt (for HBIM mapping/reasoning demo)" .
+
+"HBIM - Account subject area (aligned to FIBO)" owl:sameAs "HBIM - Account subject area (aligned to FIBO)" .
+
+"account" owl:sameAs "account" .
+
+"account holder" owl:sameAs "account holder" .
+
+"account identifier" owl:sameAs "account identifier" .
+
+"banking product" owl:sameAs "banking product" .
+
+"demand deposit account" owl:sameAs "demand deposit account" .
+
+"deposit account" owl:sameAs "deposit account" .
+
+"depository institution" owl:sameAs "depository institution" .
+
+"financial product" owl:sameAs "financial product" .
+
+"financial product or service" owl:sameAs "financial product or service" .
+
+"holds" owl:sameAs "holds" .
+
+"investment or deposit account" owl:sameAs "investment or deposit account" .
+
+"is held by" owl:sameAs "is held by" .
+
+"is identified by" owl:sameAs "is identified by" .
+
+"is provided by" owl:sameAs "is provided by" .
+
+"non-transaction deposit account" owl:sameAs "non-transaction deposit account" .
+
+"transaction deposit account" owl:sameAs "transaction deposit account" .
+
+"A code or number that uniquely identifies an account, such as an IBAN or account number."@en owl:sameAs "A code or number that uniquely identifies an account, such as an IBAN or account number."@en .
+
+"A demand deposit account from which the holder may withdraw or transfer funds at any time without prior notice, typically used for everyday transactions."@en owl:sameAs "A demand deposit account from which the holder may withdraw or transfer funds at any time without prior notice, typically used for everyday transactions."@en .
+
+"A formal banking arrangement under which a financial institution holds funds or records financial activity on behalf of one or more parties."@en owl:sameAs "A formal banking arrangement under which a financial institution holds funds or records financial activity on behalf of one or more parties."@en .
+
+"A party that owns or holds an account and is entitled to operate it according to the account agreement."@en owl:sameAs "A party that owns or holds an account and is entitled to operate it according to the account agreement."@en .
+
+"ACCT"@en owl:sameAs "ACCT"@en .
+
+"Account"@en owl:sameAs "Account"@en .
+
+"Account Balance"@en owl:sameAs "Account Balance"@en .
+
+"Account Holder"@en owl:sameAs "Account Holder"@en .
+
+"Account Identifier"@en owl:sameAs "Account Identifier"@en .
+
+"Account Number"@en owl:sameAs "Account Number"@en .
+
+"Accountholder"@en owl:sameAs "Accountholder"@en .
+
+"An account held at a depository institution that allows the account holder to deposit and withdraw funds."@en owl:sameAs "An account held at a depository institution that allows the account holder to deposit and withdraw funds."@en .
+
+"An interest-bearing non-transaction deposit account intended to hold funds that are not needed for everyday transactions."@en owl:sameAs "An interest-bearing non-transaction deposit account intended to hold funds that are not needed for everyday transactions."@en .
+
+"Balance"@en owl:sameAs "Balance"@en .
+
+"Banking Account"@en owl:sameAs "Banking Account"@en .
+
+"CA"@en owl:sameAs "CA"@en .
+
+"Checking Account"@en owl:sameAs "Checking Account"@en .
+
+"Current Account"@en owl:sameAs "Current Account"@en .
+
+"Demand Deposit Account"@en owl:sameAs "Demand Deposit Account"@en .
+
+"Deposit Account"@en owl:sameAs "Deposit Account"@en .
+
+"IBAN"@en owl:sameAs "IBAN"@en .
+
+"Non-Transaction Deposit Account"@en owl:sameAs "Non-Transaction Deposit Account"@en .
+
+"SAV"@en owl:sameAs "SAV"@en .
+
+"Savings Account"@en owl:sameAs "Savings Account"@en .
+
+"The amount of funds recorded in an account at a given point in time."@en owl:sameAs "The amount of funds recorded in an account at a given point in time."@en .
+
+owl:Nothing a owl:Class ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Nothing,
+        owl:Thing,
+        hbim:Account,
+        hbim:AccountBalance,
+        hbim:AccountHolder,
+        hbim:AccountIdentifier,
+        hbim:CurrentAccount,
+        hbim:DepositAccount,
+        hbim:SavingsAccount,
+        fse:BankingProduct,
+        fse:DepositoryInstitution,
+        caa:Account,
+        caa:AccountHolder,
+        caa:AccountIdentifier,
+        caa:DemandDepositAccount,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:NonTransactionDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass owl:Nothing ;
+    owl:sameAs owl:Nothing .
+
+owl:Ontology owl:sameAs owl:Ontology .
+
+rel:holds a owl:ObjectProperty ;
+    rdfs:label "holds" ;
+    rdfs:subPropertyOf rel:holds ;
+    owl:equivalentProperty rel:holds ;
+    owl:inverseOf rel:isHeldBy ;
+    owl:sameAs rel:holds .
+
+hbim:AccountBalance a owl:Class ;
+    rdfs:subClassOf owl:Thing,
+        hbim:AccountBalance ;
+    owl:equivalentClass hbim:AccountBalance ;
+    owl:sameAs hbim:AccountBalance ;
+    skos:altLabel "Balance"@en ;
+    skos:closeMatch caa:Account ;
+    skos:definition "The amount of funds recorded in an account at a given point in time."@en ;
+    skos:prefLabel "Account Balance"@en .
+
+hbim:SavingsAccount a owl:Class ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:DepositAccount,
+        hbim:SavingsAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:NonTransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass hbim:SavingsAccount ;
+    owl:sameAs hbim:SavingsAccount ;
+    skos:altLabel "Non-Transaction Deposit Account"@en,
+        "SAV"@en ;
+    skos:definition "An interest-bearing non-transaction deposit account intended to hold funds that are not needed for everyday transactions."@en ;
+    skos:prefLabel "Savings Account"@en .
+
+owl:ObjectProperty owl:sameAs owl:ObjectProperty .
+
+hbim:CurrentAccount a owl:Class ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:CurrentAccount,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DemandDepositAccount,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass hbim:CurrentAccount ;
+    owl:sameAs hbim:CurrentAccount ;
+    skos:altLabel "CA"@en,
+        "Checking Account"@en,
+        "Demand Deposit Account"@en ;
+    skos:definition "A demand deposit account from which the holder may withdraw or transfer funds at any time without prior notice, typically used for everyday transactions."@en ;
+    skos:prefLabel "Current Account"@en .
+
+caa:NonTransactionDepositAccount a owl:Class ;
+    rdfs:label "non-transaction deposit account" ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:NonTransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:disjointWith caa:TransactionDepositAccount ;
+    owl:equivalentClass caa:NonTransactionDepositAccount ;
+    owl:sameAs caa:NonTransactionDepositAccount .
+
+cmns-id:isIdentifiedBy a owl:ObjectProperty ;
+    rdfs:label "is identified by" ;
+    rdfs:subPropertyOf cmns-id:isIdentifiedBy ;
+    owl:equivalentProperty cmns-id:isIdentifiedBy ;
+    owl:sameAs cmns-id:isIdentifiedBy .
+
+cmns-org:isProvidedBy a owl:ObjectProperty ;
+    rdfs:label "is provided by" ;
+    rdfs:subPropertyOf cmns-org:isProvidedBy ;
+    owl:equivalentProperty cmns-org:isProvidedBy ;
+    owl:sameAs cmns-org:isProvidedBy .
+
+fse:DepositoryInstitution a owl:Class ;
+    rdfs:label "depository institution" ;
+    rdfs:subClassOf owl:Thing,
+        fse:DepositoryInstitution ;
+    owl:equivalentClass fse:DepositoryInstitution ;
+    owl:sameAs fse:DepositoryInstitution .
+
+caa:DemandDepositAccount a owl:Class ;
+    rdfs:label "demand deposit account" ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DemandDepositAccount,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass caa:DemandDepositAccount ;
+    owl:sameAs caa:DemandDepositAccount .
+
+rel:isHeldBy a owl:ObjectProperty ;
+    rdfs:label "is held by" ;
+    rdfs:subPropertyOf rel:isHeldBy ;
+    owl:equivalentProperty rel:isHeldBy ;
+    owl:sameAs rel:isHeldBy .
+
+owl:Restriction owl:sameAs owl:Restriction .
+
+hbim:AccountHolder a owl:Class ;
+    rdfs:subClassOf owl:Thing,
+        hbim:AccountHolder,
+        caa:AccountHolder ;
+    owl:equivalentClass hbim:AccountHolder,
+        caa:AccountHolder ;
+    owl:sameAs hbim:AccountHolder ;
+    skos:altLabel "Accountholder"@en ;
+    skos:definition "A party that owns or holds an account and is entitled to operate it according to the account agreement."@en ;
+    skos:prefLabel "Account Holder"@en .
+
+hbim:AccountIdentifier a owl:Class ;
+    rdfs:subClassOf owl:Thing,
+        hbim:AccountIdentifier,
+        caa:AccountIdentifier ;
+    owl:equivalentClass hbim:AccountIdentifier,
+        caa:AccountIdentifier ;
+    owl:sameAs hbim:AccountIdentifier ;
+    skos:altLabel "Account Number"@en,
+        "IBAN"@en ;
+    skos:definition "A code or number that uniquely identifies an account, such as an IBAN or account number."@en ;
+    skos:prefLabel "Account Identifier"@en .
+
+caa:AccountHolder a owl:Class ;
+    rdfs:label "account holder" ;
+    rdfs:subClassOf owl:Thing,
+        hbim:AccountHolder,
+        caa:AccountHolder ;
+    owl:equivalentClass hbim:AccountHolder,
+        caa:AccountHolder ;
+    owl:sameAs caa:AccountHolder .
+
+caa:AccountIdentifier a owl:Class ;
+    rdfs:label "account identifier" ;
+    rdfs:subClassOf owl:Thing,
+        hbim:AccountIdentifier,
+        caa:AccountIdentifier ;
+    owl:equivalentClass hbim:AccountIdentifier,
+        caa:AccountIdentifier ;
+    owl:sameAs caa:AccountIdentifier .
+
+caa:TransactionDepositAccount a owl:Class ;
+    rdfs:label "transaction deposit account" ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass caa:TransactionDepositAccount ;
+    owl:sameAs caa:TransactionDepositAccount .
+
+owl:AnnotationProperty owl:sameAs owl:AnnotationProperty .
+
+hbim:DepositAccount a owl:Class ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass hbim:DepositAccount,
+        caa:DepositAccount ;
+    owl:sameAs hbim:DepositAccount ;
+    skos:definition "An account held at a depository institution that allows the account holder to deposit and withdraw funds."@en ;
+    skos:prefLabel "Deposit Account"@en .
+
+fse:BankingProduct a owl:Class ;
+    rdfs:label "banking product" ;
+    rdfs:subClassOf _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        fse:BankingProduct,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass fse:BankingProduct ;
+    owl:sameAs fse:BankingProduct .
+
+caa:DepositAccount a owl:Class ;
+    rdfs:label "deposit account" ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        _:n8855731d5415488db1e2602c822b6534b4,
+        owl:Thing,
+        hbim:Account,
+        hbim:DepositAccount,
+        fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass hbim:DepositAccount,
+        caa:DepositAccount ;
+    owl:sameAs caa:DepositAccount .
+
+caa:InvestmentOrDepositAccount a owl:Class ;
+    rdfs:label "investment or deposit account" ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        owl:Thing,
+        hbim:Account,
+        caa:Account,
+        caa:InvestmentOrDepositAccount ;
+    owl:equivalentClass caa:InvestmentOrDepositAccount ;
+    owl:sameAs caa:InvestmentOrDepositAccount .
+
+fpas:FinancialProduct a owl:Class ;
+    rdfs:label "financial product" ;
+    rdfs:subClassOf owl:Thing,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass fpas:FinancialProduct ;
+    owl:sameAs fpas:FinancialProduct .
+
+fpas:FinancialProductOrService a owl:Class ;
+    rdfs:label "financial product or service" ;
+    rdfs:subClassOf owl:Thing,
+        fpas:FinancialProductOrService ;
+    owl:equivalentClass fpas:FinancialProductOrService ;
+    owl:sameAs fpas:FinancialProductOrService .
+
+hbim:Account a owl:Class ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        owl:Thing,
+        hbim:Account,
+        caa:Account ;
+    owl:equivalentClass hbim:Account,
+        caa:Account ;
+    owl:sameAs hbim:Account ;
+    skos:altLabel "ACCT"@en,
+        "Banking Account"@en ;
+    skos:definition "A formal banking arrangement under which a financial institution holds funds or records financial activity on behalf of one or more parties."@en ;
+    skos:prefLabel "Account"@en .
+
+caa:Account a owl:Class ;
+    rdfs:label "account" ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b2,
+        _:n8855731d5415488db1e2602c822b6534b3,
+        owl:Thing,
+        hbim:Account,
+        caa:Account ;
+    owl:equivalentClass hbim:Account,
+        caa:Account ;
+    owl:sameAs caa:Account .
+
+owl:Class owl:sameAs owl:Class .
+
+owl:Thing a owl:Class ;
+    rdfs:subClassOf owl:Thing ;
+    owl:equivalentClass owl:Thing ;
+    owl:sameAs owl:Thing .
+
+rdfs:Datatype owl:sameAs rdfs:Datatype .
+
+_:n8855731d5415488db1e2602c822b6534b1 a owl:Restriction ;
+    rdfs:subClassOf _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b4 ;
+    owl:equivalentClass _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b4 ;
+    owl:onProperty cmns-org:isProvidedBy ;
+    owl:sameAs _:n8855731d5415488db1e2602c822b6534b1 ;
+    owl:someValuesFrom fse:DepositoryInstitution .
+
+_:n8855731d5415488db1e2602c822b6534b4 a owl:Restriction ;
+    rdfs:subClassOf _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b4 ;
+    owl:equivalentClass _:n8855731d5415488db1e2602c822b6534b1,
+        _:n8855731d5415488db1e2602c822b6534b4 ;
+    owl:onProperty cmns-org:isProvidedBy ;
+    owl:sameAs _:n8855731d5415488db1e2602c822b6534b4 ;
+    owl:someValuesFrom fse:DepositoryInstitution .
+
+_:n26302f5b89f44d62b6097c64ebddaacfb1 a owl:Restriction ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n8855731d5415488db1e2602c822b6534b2 ;
+    owl:equivalentClass _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n8855731d5415488db1e2602c822b6534b2 ;
+    owl:onProperty rel:isHeldBy ;
+    owl:sameAs _:n26302f5b89f44d62b6097c64ebddaacfb1 ;
+    owl:someValuesFrom hbim:AccountHolder .
+
+_:n26302f5b89f44d62b6097c64ebddaacfb2 a owl:Restriction ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b3 ;
+    owl:equivalentClass _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b3 ;
+    owl:onProperty cmns-id:isIdentifiedBy ;
+    owl:sameAs _:n26302f5b89f44d62b6097c64ebddaacfb2 ;
+    owl:someValuesFrom hbim:AccountIdentifier .
+
+_:n8855731d5415488db1e2602c822b6534b2 a owl:Restriction ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n8855731d5415488db1e2602c822b6534b2 ;
+    owl:equivalentClass _:n26302f5b89f44d62b6097c64ebddaacfb1,
+        _:n8855731d5415488db1e2602c822b6534b2 ;
+    owl:onProperty rel:isHeldBy ;
+    owl:sameAs _:n8855731d5415488db1e2602c822b6534b2 ;
+    owl:someValuesFrom caa:AccountHolder .
+
+_:n8855731d5415488db1e2602c822b6534b3 a owl:Restriction ;
+    rdfs:subClassOf _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b3 ;
+    owl:equivalentClass _:n26302f5b89f44d62b6097c64ebddaacfb2,
+        _:n8855731d5415488db1e2602c822b6534b3 ;
+    owl:onProperty cmns-id:isIdentifiedBy ;
+    owl:sameAs _:n8855731d5415488db1e2602c822b6534b3 ;
+    owl:someValuesFrom caa:AccountIdentifier .
+
