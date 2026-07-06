@@ -1,0 +1,186 @@
+{
+  "counts": {
+    "concepts": 7,
+    "asserted": 154,
+    "inferred": 591,
+    "new_triples": 437
+  },
+  "bridge": [
+    {
+      "mapping": "skos:exactMatch",
+      "hbim": "hbim:FinancialAccount",
+      "fibo": "caa:Account",
+      "owl_axiom": "hbim:FinancialAccount owl:equivalentClass caa:Account"
+    },
+    {
+      "mapping": "skos:exactMatch",
+      "hbim": "hbim:SavingsAccount",
+      "fibo": "caa:SavingsAccount",
+      "owl_axiom": "hbim:SavingsAccount owl:equivalentClass caa:SavingsAccount"
+    },
+    {
+      "mapping": "skos:exactMatch",
+      "hbim": "hbim:AccountHolder",
+      "fibo": "caa:AccountHolder",
+      "owl_axiom": "hbim:AccountHolder owl:equivalentClass caa:AccountHolder"
+    },
+    {
+      "mapping": "skos:closeMatch",
+      "hbim": "hbim:CurrentAccount",
+      "fibo": "caa:DemandDepositAccount",
+      "owl_axiom": "hbim:CurrentAccount rdfs:subClassOf caa:DemandDepositAccount"
+    },
+    {
+      "mapping": "skos:closeMatch",
+      "hbim": "hbim:AccountNumber",
+      "fibo": "caa:AccountIdentifier",
+      "owl_axiom": "hbim:AccountNumber rdfs:subClassOf caa:AccountIdentifier"
+    },
+    {
+      "mapping": "skos:broadMatch",
+      "hbim": "hbim:TermDepositAccount",
+      "fibo": "caa:DepositAccount",
+      "owl_axiom": "hbim:TermDepositAccount rdfs:subClassOf caa:DepositAccount"
+    },
+    {
+      "mapping": "skos:relatedMatch",
+      "hbim": "hbim:FinancialAccount",
+      "fibo": "caa:AccountHolder",
+      "owl_axiom": "(none - annotation only)"
+    }
+  ],
+  "subsumption": {
+    "hbim:AccountHolder": {
+      "equivalentTo": [
+        "caa:AccountHolder"
+      ],
+      "mapped_parent": [],
+      "inferred_ancestors": []
+    },
+    "hbim:AccountNumber": {
+      "equivalentTo": [],
+      "mapped_parent": [
+        "caa:AccountIdentifier"
+      ],
+      "inferred_ancestors": []
+    },
+    "hbim:CurrentAccount": {
+      "equivalentTo": [],
+      "mapped_parent": [
+        "caa:DemandDepositAccount"
+      ],
+      "inferred_ancestors": [
+        "caa:Account",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "caa:TransactionDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService",
+        "fse:BankingProduct"
+      ]
+    },
+    "hbim:FinancialAccount": {
+      "equivalentTo": [
+        "caa:Account"
+      ],
+      "mapped_parent": [],
+      "inferred_ancestors": []
+    },
+    "hbim:SavingsAccount": {
+      "equivalentTo": [
+        "caa:SavingsAccount"
+      ],
+      "mapped_parent": [],
+      "inferred_ancestors": [
+        "caa:Account",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "caa:NonTransactionDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService",
+        "fse:BankingProduct"
+      ]
+    },
+    "hbim:TermDepositAccount": {
+      "equivalentTo": [],
+      "mapped_parent": [
+        "caa:DepositAccount"
+      ],
+      "inferred_ancestors": [
+        "caa:Account",
+        "caa:InvestmentOrDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService",
+        "fse:BankingProduct"
+      ]
+    }
+  },
+  "annotations": [
+    {
+      "concept": "hbim:AccountHolder",
+      "source": "caa:AccountHolder",
+      "definition": "party that holds and may operate an account in accordance with the account terms and conditions."
+    },
+    {
+      "concept": "hbim:AccountNumber",
+      "source": "caa:AccountIdentifier",
+      "definition": "identifier that is unique to and used to identify a specific account."
+    },
+    {
+      "concept": "hbim:CurrentAccount",
+      "source": "caa:DemandDepositAccount",
+      "definition": "non-interest-bearing deposit account in which deposits are payable immediately on demand, or that are issued with an original maturity or required notice period of less than seven days."
+    },
+    {
+      "concept": "hbim:FinancialAccount",
+      "source": "caa:Account",
+      "definition": "formal banking, brokerage, or business relationship established to provide for regular services, dealings, and other financial transactions."
+    },
+    {
+      "concept": "hbim:SavingsAccount",
+      "source": "caa:SavingsAccount",
+      "definition": "interest-bearing deposit account, held at a bank or other depository institution, from which withdrawals may be restricted."
+    },
+    {
+      "concept": "hbim:TermDepositAccount",
+      "source": "caa:DepositAccount",
+      "definition": "deposit-based product involving funds placed into a banking institution for safekeeping, held at a depository institution."
+    }
+  ],
+  "instances": {
+    "hbim:acct-GB29NWBK60161331926819": {
+      "inferred_fibo_types": [
+        "caa:Account",
+        "caa:DemandDepositAccount",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "caa:TransactionDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService",
+        "fse:BankingProduct"
+      ],
+      "newly_inferred": [
+        "caa:Account",
+        "caa:DemandDepositAccount",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "caa:TransactionDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService",
+        "fse:BankingProduct"
+      ]
+    }
+  },
+  "validation_clashes": [
+    {
+      "offending": "hbim:CurrentAccount",
+      "disjoint_a": "caa:NonTransactionDepositAccount",
+      "disjoint_b": "caa:TransactionDepositAccount"
+    },
+    {
+      "offending": "hbim:acct-GB29NWBK60161331926819",
+      "disjoint_a": "caa:NonTransactionDepositAccount",
+      "disjoint_b": "caa:TransactionDepositAccount"
+    }
+  ]
+}

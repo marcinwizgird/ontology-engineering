@@ -1,0 +1,72 @@
+# ===========================================================================
+# HBIM  ->  FIBO   mappings
+# ===========================================================================
+# The human-curated alignment a data steward produces in Collibra when
+# reconciling the HBIM business-assets taxonomy with FIBO.
+#
+# Three flavours of mapping are shown, per the request ("rdf or skos
+# properties or annotations"):
+#
+#   1. SKOS mapping properties (the primary mechanism)
+#         skos:exactMatch  -> bridged to  owl:equivalentClass
+#         skos:closeMatch  -> bridged to  rdfs:subClassOf  (HBIM subClassOf FIBO)
+#         skos:broadMatch  -> bridged to  rdfs:subClassOf  (FIBO is broader)
+#         skos:narrowMatch -> bridged to  rdfs:subClassOf  (FIBO is narrower)
+#         skos:relatedMatch-> kept as annotation only (NO OWL axiom)
+#
+#   2. RDF annotation (rdfs:seeAlso) - a lightweight pointer to the FIBO IRI.
+#
+#   3. Custom annotation (hbim:mappingConfidence) - governance metadata.
+#
+# The enricher's "bridge" step turns (1) into OWL axioms so a DL reasoner
+# (owlrl in Python, HermiT/ELK in Protege) can propagate FIBO knowledge into
+# HBIM. (2) and (3) are metadata that travel with the mapping but do not drive
+# inference.
+# ===========================================================================
+
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix hbim: <https://example.org/hbim/> .
+@prefix caa:  <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+
+# --- annotation property used for governance metadata ---
+hbim:mappingConfidence a owl:AnnotationProperty ;
+    rdfs:label "mapping confidence" .
+
+# --- exact matches (=> owl:equivalentClass) --------------------------------
+hbim:FinancialAccount
+    skos:exactMatch caa:Account ;
+    rdfs:seeAlso caa:Account ;
+    hbim:mappingConfidence "high" .
+
+hbim:SavingsAccount
+    skos:exactMatch caa:SavingsAccount ;
+    rdfs:seeAlso caa:SavingsAccount ;
+    hbim:mappingConfidence "high" .
+
+hbim:AccountHolder
+    skos:exactMatch caa:AccountHolder ;
+    rdfs:seeAlso caa:AccountHolder ;
+    hbim:mappingConfidence "high" .
+
+# --- close matches (=> rdfs:subClassOf, HBIM ⊑ FIBO) -----------------------
+hbim:CurrentAccount
+    skos:closeMatch caa:DemandDepositAccount ;
+    rdfs:seeAlso caa:DemandDepositAccount ;
+    hbim:mappingConfidence "medium" .
+
+hbim:AccountNumber
+    skos:closeMatch caa:AccountIdentifier ;
+    hbim:mappingConfidence "medium" .
+
+# --- broad match (=> HBIM ⊑ FIBO, FIBO is the broader concept) -------------
+hbim:TermDepositAccount
+    skos:broadMatch caa:DepositAccount ;
+    rdfs:seeAlso caa:DepositAccount ;
+    hbim:mappingConfidence "medium" .
+
+# --- related match (annotation only; NOT bridged to OWL) -------------------
+# "a financial account is related to (but not a kind of) an account holder"
+hbim:FinancialAccount
+    skos:relatedMatch caa:AccountHolder .

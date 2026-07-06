@@ -1,0 +1,76 @@
+# ===========================================================================
+# HBIM - Harmonised Business Information Model
+# "Business Assets" taxonomy exported from Collibra (business glossary)
+# ===========================================================================
+# This is the SOURCE taxonomy we want to ENRICH with FIBO.
+#
+# It is intentionally "thin", the way a real business glossary usually is:
+#   * a shallow skos:broader hierarchy (only immediate parents)
+#   * several concepts with NO definition
+#   * NO formal relationships (an account has a holder? not stated)
+#   * NO cross-links to any industry standard
+#
+# Everything below is a skos:Concept in one skos:ConceptScheme.  The enricher
+# will (a) lift it to OWL classes, (b) map it to FIBO, (c) reason, and
+# (d) write the inferred knowledge back as enrichment.
+# ===========================================================================
+
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix hbim: <https://example.org/hbim/> .
+
+hbim:BusinessAssetsScheme a skos:ConceptScheme ;
+    dct:title "HBIM Business Assets Taxonomy" ;
+    dct:source "Collibra Business Glossary export" ;
+    skos:prefLabel "Business Assets"@en .
+
+# ---- Top concept ----------------------------------------------------------
+hbim:BusinessAsset a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:topConceptOf hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Business Asset"@en ;
+    skos:definition "Anything of value tracked by the bank as part of its business information model."@en .
+
+# ---- Financial account branch --------------------------------------------
+hbim:FinancialAccount a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:broader hbim:BusinessAsset ;
+    skos:prefLabel "Financial Account"@en ;
+    skos:altLabel "Account"@en .
+    # NOTE: no skos:definition -> enrichment can supply one from FIBO.
+
+hbim:CurrentAccount a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:broader hbim:FinancialAccount ;
+    skos:prefLabel "Current Account"@en ;
+    skos:altLabel "Checking Account"@en .
+    # no definition, no stated relationships.
+
+hbim:SavingsAccount a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:broader hbim:FinancialAccount ;
+    skos:prefLabel "Savings Account"@en .
+
+hbim:TermDepositAccount a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:broader hbim:FinancialAccount ;
+    skos:prefLabel "Term Deposit Account"@en ;
+    skos:altLabel "Fixed Deposit"@en .
+
+# ---- Party / identifier branch (flat, unclassified) ----------------------
+hbim:AccountHolder a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:broader hbim:BusinessAsset ;
+    skos:prefLabel "Account Holder"@en .
+
+hbim:AccountNumber a skos:Concept ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:broader hbim:BusinessAsset ;
+    skos:prefLabel "Account Number"@en ;
+    skos:altLabel "IBAN"@en .
+
+# ---- A concrete business-data instance (for instance-level inference) -----
+# One real customer account, typed only by the local HBIM concept.
+hbim:acct-GB29NWBK60161331926819 a hbim:CurrentAccount ;
+    rdfs:label "Customer current account GB29NWBK60161331926819" .

@@ -1,0 +1,190 @@
+@prefix caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix cmns-id: <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix cmns-org: <https://www.omg.org/spec/Commons/Organizations/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fse: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/> .
+@prefix hbim: <https://example.org/hbim/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+hbim:AccountHolder a owl:Class,
+        skos:Concept ;
+    rdfs:seeAlso caa:AccountHolder ;
+    rdfs:subClassOf hbim:BusinessAsset ;
+    owl:equivalentClass caa:AccountHolder ;
+    skos:broader hbim:BusinessAsset ;
+    skos:exactMatch caa:AccountHolder ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Account Holder"@en ;
+    hbim:mappingConfidence "high" .
+
+hbim:AccountNumber a owl:Class,
+        skos:Concept ;
+    rdfs:subClassOf hbim:BusinessAsset,
+        caa:AccountIdentifier ;
+    skos:altLabel "IBAN"@en ;
+    skos:broader hbim:BusinessAsset ;
+    skos:closeMatch caa:AccountIdentifier ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Account Number"@en ;
+    hbim:mappingConfidence "medium" .
+
+hbim:SavingsAccount a owl:Class,
+        skos:Concept ;
+    rdfs:seeAlso caa:SavingsAccount ;
+    rdfs:subClassOf hbim:FinancialAccount ;
+    owl:equivalentClass caa:SavingsAccount ;
+    skos:broader hbim:FinancialAccount ;
+    skos:exactMatch caa:SavingsAccount ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Savings Account"@en ;
+    hbim:mappingConfidence "high" .
+
+hbim:TermDepositAccount a owl:Class,
+        skos:Concept ;
+    rdfs:seeAlso caa:DepositAccount ;
+    rdfs:subClassOf hbim:FinancialAccount,
+        caa:DepositAccount ;
+    skos:altLabel "Fixed Deposit"@en ;
+    skos:broadMatch caa:DepositAccount ;
+    skos:broader hbim:FinancialAccount ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Term Deposit Account"@en ;
+    hbim:mappingConfidence "medium" .
+
+hbim:acct-GB29NWBK60161331926819 a hbim:CurrentAccount ;
+    rdfs:label "Customer current account GB29NWBK60161331926819" .
+
+hbim:mappingConfidence a owl:AnnotationProperty ;
+    rdfs:label "mapping confidence" .
+
+<https://spec.edmcouncil.org/fibo/ontology/FBC/AccountProductEnrichmentExcerpt/> a owl:Ontology ;
+    rdfs:label "FIBO Account & Product excerpt (HBIM enrichment demo)" .
+
+rel:holds a owl:ObjectProperty ;
+    rdfs:label "holds" ;
+    owl:inverseOf rel:isHeldBy .
+
+hbim:CurrentAccount a owl:Class,
+        skos:Concept ;
+    rdfs:seeAlso caa:DemandDepositAccount ;
+    rdfs:subClassOf hbim:FinancialAccount,
+        caa:DemandDepositAccount ;
+    skos:altLabel "Checking Account"@en ;
+    skos:broader hbim:FinancialAccount ;
+    skos:closeMatch caa:DemandDepositAccount ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Current Account"@en ;
+    hbim:mappingConfidence "medium" .
+
+fse:BankingProduct a owl:Class ;
+    rdfs:label "banking product" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty cmns-org:isProvidedBy ;
+            owl:someValuesFrom fse:DepositoryInstitution ],
+        fpas:FinancialProduct ;
+    skos:definition "financial product that is offered by a bank or similar depository institution."@en .
+
+caa:InvestmentOrDepositAccount a owl:Class ;
+    rdfs:label "investment or deposit account" ;
+    rdfs:subClassOf caa:Account ;
+    skos:definition "account associated with a product or service that requires the account holder to provide funds for management by the account provider."@en .
+
+caa:NonTransactionDepositAccount a owl:Class ;
+    rdfs:label "non-transaction deposit account" ;
+    rdfs:subClassOf caa:DepositAccount ;
+    owl:disjointWith caa:TransactionDepositAccount ;
+    skos:definition "any deposit account that is not explicitly considered a transaction account."@en .
+
+fpas:FinancialProduct a owl:Class ;
+    rdfs:label "financial product" ;
+    rdfs:subClassOf fpas:FinancialProductOrService ;
+    skos:definition "product provided to parties in the course of financial services offered by a financial institution or intermediary."@en .
+
+fpas:FinancialProductOrService a owl:Class ;
+    rdfs:label "financial product or service" ;
+    skos:definition "product or service, offered or provided by a financial institution or intermediary, or an agent thereof, to one or more parties."@en .
+
+cmns-id:isIdentifiedBy a owl:ObjectProperty ;
+    rdfs:label "is identified by" .
+
+fse:DepositoryInstitution a owl:Class ;
+    rdfs:label "depository institution" ;
+    skos:definition "financial institution whose primary function is accepting and safeguarding monetary deposits."@en .
+
+caa:TransactionDepositAccount a owl:Class ;
+    rdfs:label "transaction deposit account" ;
+    rdfs:subClassOf caa:DepositAccount ;
+    skos:definition "deposit account from which the depositor or account holder is permitted to make transfers or withdrawals by negotiable or transferable instruments, payment orders of withdrawal, telephone transfers, and so forth."@en .
+
+rel:isHeldBy a owl:ObjectProperty ;
+    rdfs:label "is held by" .
+
+cmns-org:isProvidedBy a owl:ObjectProperty ;
+    rdfs:label "is provided by" .
+
+caa:AccountIdentifier a owl:Class ;
+    rdfs:label "account identifier" ;
+    skos:definition "identifier that is unique to and used to identify a specific account."@en .
+
+caa:DemandDepositAccount a owl:Class ;
+    rdfs:label "demand deposit account" ;
+    rdfs:subClassOf caa:TransactionDepositAccount ;
+    skos:definition "non-interest-bearing deposit account in which deposits are payable immediately on demand, or that are issued with an original maturity or required notice period of less than seven days."@en .
+
+caa:SavingsAccount a owl:Class ;
+    rdfs:label "savings account" ;
+    rdfs:subClassOf caa:NonTransactionDepositAccount ;
+    skos:definition "interest-bearing deposit account, held at a bank or other depository institution, from which withdrawals may be restricted."@en .
+
+caa:Account a owl:Class ;
+    rdfs:label "account" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty rel:isHeldBy ;
+            owl:someValuesFrom caa:AccountHolder ],
+        [ a owl:Restriction ;
+            owl:onProperty cmns-id:isIdentifiedBy ;
+            owl:someValuesFrom caa:AccountIdentifier ] ;
+    skos:definition "formal banking, brokerage, or business relationship established to provide for regular services, dealings, and other financial transactions."@en .
+
+caa:AccountHolder a owl:Class ;
+    rdfs:label "account holder" ;
+    skos:definition "party that holds and may operate an account in accordance with the account terms and conditions."@en .
+
+caa:DepositAccount a owl:Class ;
+    rdfs:label "deposit account" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty cmns-org:isProvidedBy ;
+            owl:someValuesFrom fse:DepositoryInstitution ],
+        fse:BankingProduct,
+        caa:InvestmentOrDepositAccount ;
+    skos:definition "deposit-based product involving funds placed into a banking institution for safekeeping, held at a depository institution."@en .
+
+hbim:BusinessAsset a owl:Class,
+        skos:Concept ;
+    skos:definition "Anything of value tracked by the bank as part of its business information model."@en ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Business Asset"@en ;
+    skos:topConceptOf hbim:BusinessAssetsScheme .
+
+hbim:FinancialAccount a owl:Class,
+        skos:Concept ;
+    rdfs:seeAlso caa:Account ;
+    rdfs:subClassOf hbim:BusinessAsset ;
+    owl:equivalentClass caa:Account ;
+    skos:altLabel "Account"@en ;
+    skos:broader hbim:BusinessAsset ;
+    skos:exactMatch caa:Account ;
+    skos:inScheme hbim:BusinessAssetsScheme ;
+    skos:prefLabel "Financial Account"@en ;
+    skos:relatedMatch caa:AccountHolder ;
+    hbim:mappingConfidence "high" .
+
+hbim:BusinessAssetsScheme a skos:ConceptScheme ;
+    dct:source "Collibra Business Glossary export" ;
+    dct:title "HBIM Business Assets Taxonomy" ;
+    skos:prefLabel "Business Assets"@en .
+
