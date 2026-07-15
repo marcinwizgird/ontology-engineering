@@ -14,11 +14,15 @@ except (AttributeError, ValueError):
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "hbim_business_assets.ttl"
 FIBO = ROOT / "fibo" / "fibo_enrichment_excerpt.ttl"
+FIBO_SUPPLEMENT = ROOT / "fibo" / "fibo_coverage_supplement.ttl"
 MAPPINGS = ROOT / "mappings" / "hbim_to_fibo_mappings.ttl"
 OUTPUT = ROOT / "output"
 OUTPUT.mkdir(exist_ok=True)
 
 HBIM_ENRICHED = OUTPUT / "hbim_enriched.ttl"
+HBIM_DERIVED = OUTPUT / "hbim_derived.ttl"
+HBIM_CANDIDATES = OUTPUT / "hbim_candidates.ttl"
+PATTERNS_REPORT = OUTPUT / "reasoning_patterns_report.json"
 PROTEGE_TTL = OUTPUT / "protege_reasoning_ready.ttl"
 PROTEGE_RDF = OUTPUT / "protege_reasoning_ready.rdf"
 INFERRED_TTL = OUTPUT / "inferred_closure.ttl"
@@ -32,13 +36,14 @@ FSE = Namespace("https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntitie
 REL = Namespace("https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/")
 CMNS_ID = Namespace("https://www.omg.org/spec/Commons/Identifiers/")
 CMNS_ORG = Namespace("https://www.omg.org/spec/Commons/Organizations/")
+FIBOD = Namespace("https://example.org/fibo-demo/")   # illustrative FIBO-side attribute
 
 # FIBO namespaces (for "is this node from FIBO?" checks)
 FIBO_NS = (CAA, FPAS, FSE, REL, CMNS_ID, CMNS_ORG)
 
 PREFIXES = {
     "hbim": HBIM, "caa": CAA, "fpas": FPAS, "fse": FSE, "rel": REL,
-    "cmns-id": CMNS_ID, "cmns-org": CMNS_ORG,
+    "cmns-id": CMNS_ID, "cmns-org": CMNS_ORG, "fibod": FIBOD,
     "skos": SKOS, "owl": OWL, "rdfs": RDFS, "dct": DCTERMS,
 }
 

@@ -174,13 +174,13 @@
   "validation_clashes": [
     {
       "offending": "hbim:CurrentAccount",
-      "disjoint_a": "caa:NonTransactionDepositAccount",
-      "disjoint_b": "caa:TransactionDepositAccount"
+      "disjoint_a": "caa:TransactionDepositAccount",
+      "disjoint_b": "caa:NonTransactionDepositAccount"
     },
     {
       "offending": "hbim:acct-GB29NWBK60161331926819",
-      "disjoint_a": "caa:NonTransactionDepositAccount",
-      "disjoint_b": "caa:TransactionDepositAccount"
+      "disjoint_a": "caa:TransactionDepositAccount",
+      "disjoint_b": "caa:NonTransactionDepositAccount"
     }
   ]
 }

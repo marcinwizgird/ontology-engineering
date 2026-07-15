@@ -7,222 +7,222 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount">
-    <rdfs:label>deposit account</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition xml:lang="en">deposit-based product involving funds placed into a banking institution for safekeeping, held at a depository institution.</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/BankingProduct"/>
-    <rdfs:subClassOf rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b4"/>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentOrDepositAccount"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/TermDepositAccount">
-    <skos:altLabel xml:lang="en">Fixed Deposit</skos:altLabel>
-    <skos:prefLabel xml:lang="en">Term Deposit Account</skos:prefLabel>
-    <skos:broader rdf:resource="https://example.org/hbim/FinancialAccount"/>
-    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://example.org/hbim/FinancialAccount"/>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
-    <hbim:mappingConfidence>medium</hbim:mappingConfidence>
-    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
-    <skos:broadMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount">
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/NonTransactionDepositAccount"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>savings account</rdfs:label>
-    <skos:definition xml:lang="en">interest-bearing deposit account, held at a bank or other depository institution, from which withdrawals may be restricted.</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/holds">
-    <rdfs:label>holds</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentOrDepositAccount">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition xml:lang="en">account associated with a product or service that requires the account holder to provide funds for management by the account provider.</skos:definition>
-    <rdfs:label>investment or deposit account</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/AccountProductEnrichmentExcerpt/">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>FIBO Account &amp; Product excerpt (HBIM enrichment demo)</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/CurrentAccount">
-    <skos:prefLabel xml:lang="en">Current Account</skos:prefLabel>
-    <skos:altLabel xml:lang="en">Checking Account</skos:altLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broader rdf:resource="https://example.org/hbim/FinancialAccount"/>
-    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <rdfs:subClassOf rdf:resource="https://example.org/hbim/FinancialAccount"/>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount"/>
-    <skos:closeMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount"/>
-    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount"/>
-    <hbim:mappingConfidence>medium</hbim:mappingConfidence>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/SavingsAccount">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broader rdf:resource="https://example.org/hbim/FinancialAccount"/>
-    <skos:prefLabel xml:lang="en">Savings Account</skos:prefLabel>
-    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <rdfs:subClassOf rdf:resource="https://example.org/hbim/FinancialAccount"/>
-    <owl:equivalentClass rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount"/>
-    <hbim:mappingConfidence>high</hbim:mappingConfidence>
-    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount"/>
-    <skos:exactMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/AccountHolder">
-    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <skos:broader rdf:resource="https://example.org/hbim/BusinessAsset"/>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:prefLabel xml:lang="en">Account Holder</skos:prefLabel>
-    <rdfs:subClassOf rdf:resource="https://example.org/hbim/BusinessAsset"/>
-    <owl:equivalentClass rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
-    <skos:exactMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
-    <hbim:mappingConfidence>high</hbim:mappingConfidence>
-    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct">
-    <skos:definition xml:lang="en">product provided to parties in the course of financial services offered by a financial institution or intermediary.</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProductOrService"/>
-    <rdfs:label>financial product</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount">
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/TransactionDepositAccount"/>
-    <rdfs:label>demand deposit account</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition xml:lang="en">non-interest-bearing deposit account in which deposits are payable immediately on demand, or that are issued with an original maturity or required notice period of less than seven days.</skos:definition>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b4">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/DepositoryInstitution"/>
-    <owl:onProperty rdf:resource="https://www.omg.org/spec/Commons/Organizations/isProvidedBy"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://www.omg.org/spec/Commons/Organizations/isProvidedBy">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>is provided by</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/BankingProduct">
-    <rdfs:label>banking product</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition xml:lang="en">financial product that is offered by a bank or similar depository institution.</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct"/>
-    <rdfs:subClassOf rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b1"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b2">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:onProperty rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy"/>
-    <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/TransactionDepositAccount">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>transaction deposit account</rdfs:label>
-    <skos:definition xml:lang="en">deposit account from which the depositor or account holder is permitted to make transfers or withdrawals by negotiable or transferable instruments, payment orders of withdrawal, telephone transfers, and so forth.</skos:definition>
-    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://example.org/hbim/AccountNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:broader rdf:resource="https://example.org/hbim/BusinessAsset"/>
+    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
     <skos:prefLabel xml:lang="en">Account Number</skos:prefLabel>
     <skos:altLabel xml:lang="en">IBAN</skos:altLabel>
-    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broader rdf:resource="https://example.org/hbim/BusinessAsset"/>
     <rdfs:subClassOf rdf:resource="https://example.org/hbim/BusinessAsset"/>
     <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountIdentifier"/>
     <skos:closeMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountIdentifier"/>
     <hbim:mappingConfidence>medium</hbim:mappingConfidence>
   </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/DepositoryInstitution">
-    <rdfs:label>depository institution</rdfs:label>
-    <skos:definition xml:lang="en">financial institution whose primary function is accepting and safeguarding monetary deposits.</skos:definition>
+  <rdf:Description rdf:about="https://example.org/hbim/TermDepositAccount">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:altLabel xml:lang="en">Fixed Deposit</skos:altLabel>
+    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
+    <skos:broader rdf:resource="https://example.org/hbim/FinancialAccount"/>
+    <skos:prefLabel xml:lang="en">Term Deposit Account</skos:prefLabel>
+    <rdfs:subClassOf rdf:resource="https://example.org/hbim/FinancialAccount"/>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
+    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
+    <hbim:mappingConfidence>medium</hbim:mappingConfidence>
+    <skos:broadMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account">
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount">
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/BankingProduct"/>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentOrDepositAccount"/>
+    <rdfs:subClassOf rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b4"/>
+    <rdfs:label>deposit account</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b3"/>
-    <rdfs:subClassOf rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b2"/>
-    <rdfs:label>account</rdfs:label>
-    <skos:definition xml:lang="en">formal banking, brokerage, or business relationship established to provide for regular services, dealings, and other financial transactions.</skos:definition>
+    <skos:definition xml:lang="en">deposit-based product involving funds placed into a banking institution for safekeeping, held at a depository institution.</skos:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://www.omg.org/spec/Commons/Identifiers/isIdentifiedBy">
-    <rdfs:label>is identified by</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>is identified by</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://example.org/hbim/FinancialAccount">
-    <skos:altLabel xml:lang="en">Account</skos:altLabel>
     <skos:prefLabel xml:lang="en">Financial Account</skos:prefLabel>
     <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
     <skos:broader rdf:resource="https://example.org/hbim/BusinessAsset"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:altLabel xml:lang="en">Account</skos:altLabel>
     <rdfs:subClassOf rdf:resource="https://example.org/hbim/BusinessAsset"/>
     <owl:equivalentClass rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"/>
-    <skos:exactMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"/>
-    <skos:relatedMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
     <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"/>
+    <skos:exactMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"/>
     <hbim:mappingConfidence>high</hbim:mappingConfidence>
+    <skos:relatedMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b3">
-    <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountIdentifier"/>
-    <owl:onProperty rdf:resource="https://www.omg.org/spec/Commons/Identifiers/isIdentifiedBy"/>
+  <rdf:Description rdf:about="https://example.org/hbim/SavingsAccount">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
+    <skos:prefLabel xml:lang="en">Savings Account</skos:prefLabel>
+    <skos:broader rdf:resource="https://example.org/hbim/FinancialAccount"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/hbim/FinancialAccount"/>
+    <owl:equivalentClass rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount"/>
+    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount"/>
+    <hbim:mappingConfidence>high</hbim:mappingConfidence>
+    <skos:exactMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/hbim/AccountHolder">
+    <skos:broader rdf:resource="https://example.org/hbim/BusinessAsset"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
+    <skos:prefLabel xml:lang="en">Account Holder</skos:prefLabel>
+    <rdfs:subClassOf rdf:resource="https://example.org/hbim/BusinessAsset"/>
+    <owl:equivalentClass rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
+    <hbim:mappingConfidence>high</hbim:mappingConfidence>
+    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
+    <skos:exactMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b1">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy">
-    <rdfs:label>is held by</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="n96da6a1e96004ea8b9ec19e21e604f26b1">
     <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/DepositoryInstitution"/>
     <owl:onProperty rdf:resource="https://www.omg.org/spec/Commons/Organizations/isProvidedBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/SavingsAccount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>savings account</rdfs:label>
+    <skos:definition xml:lang="en">interest-bearing deposit account, held at a bank or other depository institution, from which withdrawals may be restricted.</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/NonTransactionDepositAccount"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/DepositoryInstitution">
+    <skos:definition xml:lang="en">financial institution whose primary function is accepting and safeguarding monetary deposits.</skos:definition>
+    <rdfs:label>depository institution</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b3">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountIdentifier"/>
+    <owl:onProperty rdf:resource="https://www.omg.org/spec/Commons/Identifiers/isIdentifiedBy"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/acct-GB29NWBK60161331926819">
-    <rdfs:label>Customer current account GB29NWBK60161331926819</rdfs:label>
-    <rdf:type rdf:resource="https://example.org/hbim/CurrentAccount"/>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/BankingProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition xml:lang="en">financial product that is offered by a bank or similar depository institution.</skos:definition>
+    <rdfs:subClassOf rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b1"/>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct"/>
+    <rdfs:label>banking product</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/NonTransactionDepositAccount">
-    <owl:disjointWith rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/TransactionDepositAccount"/>
-    <rdfs:label>non-transaction deposit account</rdfs:label>
-    <skos:definition xml:lang="en">any deposit account that is not explicitly considered a transaction account.</skos:definition>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/TransactionDepositAccount"/>
+    <rdfs:label>demand deposit account</rdfs:label>
+    <skos:definition xml:lang="en">non-interest-bearing deposit account in which deposits are payable immediately on demand, or that are issued with an original maturity or required notice period of less than seven days.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/hbim/CurrentAccount">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:prefLabel xml:lang="en">Current Account</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
+    <skos:altLabel xml:lang="en">Checking Account</skos:altLabel>
+    <skos:broader rdf:resource="https://example.org/hbim/FinancialAccount"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/hbim/FinancialAccount"/>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount"/>
+    <rdfs:seeAlso rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount"/>
+    <hbim:mappingConfidence>medium</hbim:mappingConfidence>
+    <skos:closeMatch rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DemandDepositAccount"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/holds">
+    <rdfs:label>holds</rdfs:label>
+    <owl:inverseOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy"/>
+    <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/TransactionDepositAccount">
+    <rdfs:label>transaction deposit account</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
+    <skos:definition xml:lang="en">deposit account from which the depositor or account holder is permitted to make transfers or withdrawals by negotiable or transferable instruments, payment orders of withdrawal, telephone transfers, and so forth.</skos:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountIdentifier">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skos:definition xml:lang="en">identifier that is unique to and used to identify a specific account.</skos:definition>
     <rdfs:label>account identifier</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/BusinessAssetsScheme">
-    <skos:prefLabel xml:lang="en">Business Assets</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
-    <dct:source>Collibra Business Glossary export</dct:source>
-    <dct:title>HBIM Business Assets Taxonomy</dct:title>
+  <rdf:Description rdf:about="https://example.org/hbim/acct-GB29NWBK60161331926819">
+    <rdf:type rdf:resource="https://example.org/hbim/CurrentAccount"/>
+    <rdfs:label>Customer current account GB29NWBK60161331926819</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProductOrService">
     <skos:definition xml:lang="en">product or service, offered or provided by a financial institution or intermediary, or an agent thereof, to one or more parties.</skos:definition>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>financial product or service</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="https://example.org/hbim/BusinessAsset">
-    <skos:prefLabel xml:lang="en">Business Asset</skos:prefLabel>
-    <skos:topConceptOf rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProduct">
+    <rdfs:label>financial product</rdfs:label>
+    <skos:definition xml:lang="en">product provided to parties in the course of financial services offered by a financial institution or intermediary.</skos:definition>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/FinancialProductOrService"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:definition xml:lang="en">Anything of value tracked by the bank as part of its business information model.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/NonTransactionDepositAccount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:definition xml:lang="en">any deposit account that is not explicitly considered a transaction account.</skos:definition>
+    <owl:disjointWith rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/TransactionDepositAccount"/>
+    <rdfs:label>non-transaction deposit account</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/DepositAccount"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account">
+    <skos:definition xml:lang="en">formal banking, brokerage, or business relationship established to provide for regular services, dealings, and other financial transactions.</skos:definition>
+    <rdfs:label>account</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b2"/>
+    <rdfs:subClassOf rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b3"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nfafaf0e1b69d47cdacb3ea5f7acac551b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:someValuesFrom rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/DepositoryInstitution"/>
+    <owl:onProperty rdf:resource="https://www.omg.org/spec/Commons/Organizations/isProvidedBy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/AccountProductEnrichmentExcerpt/">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>FIBO Account &amp; Product excerpt (HBIM enrichment demo)</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountHolder">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skos:definition xml:lang="en">party that holds and may operate an account in accordance with the account terms and conditions.</skos:definition>
     <rdfs:label>account holder</rdfs:label>
   </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/hbim/BusinessAsset">
+    <skos:prefLabel xml:lang="en">Business Asset</skos:prefLabel>
+    <skos:definition xml:lang="en">Anything of value tracked by the bank as part of its business information model.</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skos:inScheme rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
+    <skos:topConceptOf rdf:resource="https://example.org/hbim/BusinessAssetsScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.omg.org/spec/Commons/Organizations/isProvidedBy">
+    <rdfs:label>is provided by</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/hbim/BusinessAssetsScheme">
+    <dct:title>HBIM Business Assets Taxonomy</dct:title>
+    <skos:prefLabel xml:lang="en">Business Assets</skos:prefLabel>
+    <dct:source>Collibra Business Glossary export</dct:source>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
   <rdf:Description rdf:about="https://example.org/hbim/mappingConfidence">
     <rdfs:label>mapping confidence</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentOrDepositAccount">
+    <rdfs:subClassOf rdf:resource="https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/Account"/>
+    <rdfs:label>investment or deposit account</rdfs:label>
+    <skos:definition xml:lang="en">account associated with a product or service that requires the account holder to provide funds for management by the account provider.</skos:definition>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>is held by</rdfs:label>
   </rdf:Description>
 </rdf:RDF>

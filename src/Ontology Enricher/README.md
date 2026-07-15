@@ -71,6 +71,31 @@ The **bridge** turns the reasoning-relevant SKOS mappings into OWL:
 | `skos:narrowMatch` | `rdfs:subClassOf` (FIBO is narrower) |
 | `skos:relatedMatch` | *(none — annotation only)* |
 
+## Catalog of reasoning patterns
+
+Beyond the one-shot enrichment above, **[`catalog/REASONING_PATTERNS.md`](catalog/REASONING_PATTERNS.md)**
+is a reusable catalog of eight reasoning patterns that turn the FIBO mapping into
+concrete HBIM augmentation — with a **persistence policy** on each (MATERIALISE /
+PROPOSE / REPORT):
+
+| # | Pattern | Augments |
+|---|---------|----------|
+| P1 | Ancestry derivation | inheritance hierarchy (persisted) |
+| P2 | Correct parent (existing) | right parent for HBIM concepts |
+| P3 / P4 | Missing intermediate / narrower concepts | **missing concepts** |
+| P5 / P6 | Missing object / data properties | **missing relationships & attributes** |
+| P7 | Parent assignment (discovered) | correct parents for new concepts |
+| P8 | Parent validation | rejects impossible parents (disjointness) |
+
+```bash
+cd src && python run_patterns.py
+```
+
+Writes `output/hbim_derived.ttl` (materialised sound ancestry),
+`output/hbim_candidates.ttl` (proposed concepts / re-parenting / properties for
+steward review), and `output/reasoning_patterns_report.json`. The machine-readable
+index is [`catalog/reasoning_patterns.yaml`](catalog/reasoning_patterns.yaml).
+
 ## Reproduce in Protégé
 
 See **[PROTEGE.md](PROTEGE.md)**. Open `output/protege_reasoning_ready.rdf`,

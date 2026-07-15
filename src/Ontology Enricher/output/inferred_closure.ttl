@@ -191,10 +191,10 @@ skos:relatedMatch owl:sameAs skos:relatedMatch .
 
 skos:topConceptOf owl:sameAs skos:topConceptOf .
 
-hbim:acct-GB29NWBK60161331926819 a _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+hbim:acct-GB29NWBK60161331926819 a _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:CurrentAccount,
@@ -319,10 +319,10 @@ skos:ConceptScheme owl:sameAs skos:ConceptScheme .
 "product provided to parties in the course of financial services offered by a financial institution or intermediary."@en owl:sameAs "product provided to parties in the course of financial services offered by a financial institution or intermediary."@en .
 
 owl:Nothing a owl:Class ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Nothing,
         owl:Thing,
         hbim:AccountHolder,
@@ -373,10 +373,10 @@ hbim:AccountNumber a owl:Class,
 hbim:TermDepositAccount a owl:Class,
         skos:Concept ;
     rdfs:seeAlso caa:DepositAccount ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -413,10 +413,10 @@ owl:Restriction owl:sameAs owl:Restriction .
 hbim:CurrentAccount a owl:Class,
         skos:Concept ;
     rdfs:seeAlso caa:DemandDepositAccount ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:CurrentAccount,
@@ -469,10 +469,10 @@ hbim:AccountHolder a owl:Class,
 hbim:SavingsAccount a owl:Class,
         skos:Concept ;
     rdfs:seeAlso caa:SavingsAccount ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -504,10 +504,10 @@ fse:DepositoryInstitution a owl:Class ;
 
 caa:NonTransactionDepositAccount a owl:Class ;
     rdfs:label "non-transaction deposit account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -535,10 +535,10 @@ skos:Concept owl:sameAs skos:Concept .
 
 caa:DemandDepositAccount a owl:Class ;
     rdfs:label "demand deposit account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -556,10 +556,10 @@ caa:DemandDepositAccount a owl:Class ;
 
 caa:SavingsAccount a owl:Class ;
     rdfs:label "savings account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -579,10 +579,10 @@ caa:SavingsAccount a owl:Class ;
 
 caa:TransactionDepositAccount a owl:Class ;
     rdfs:label "transaction deposit account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -618,8 +618,8 @@ owl:AnnotationProperty owl:sameAs owl:AnnotationProperty .
 
 fse:BankingProduct a owl:Class ;
     rdfs:label "banking product" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         fse:BankingProduct,
         fpas:FinancialProduct,
@@ -630,8 +630,8 @@ fse:BankingProduct a owl:Class ;
 
 caa:InvestmentOrDepositAccount a owl:Class ;
     rdfs:label "investment or deposit account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -643,10 +643,10 @@ caa:InvestmentOrDepositAccount a owl:Class ;
 
 caa:DepositAccount a owl:Class ;
     rdfs:label "deposit account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -679,8 +679,8 @@ fpas:FinancialProductOrService a owl:Class ;
 
 caa:Account a owl:Class ;
     rdfs:label "account" ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -693,8 +693,8 @@ caa:Account a owl:Class ;
 hbim:FinancialAccount a owl:Class,
         skos:Concept ;
     rdfs:seeAlso caa:Account ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b2,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b3,
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b2,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b3,
         owl:Thing,
         hbim:BusinessAsset,
         hbim:FinancialAccount,
@@ -730,35 +730,35 @@ owl:Thing a owl:Class ;
 
 rdfs:Datatype owl:sameAs rdfs:Datatype .
 
-_:n96da6a1e96004ea8b9ec19e21e604f26b1 a owl:Restriction ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4 ;
-    owl:equivalentClass _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4 ;
+_:nfafaf0e1b69d47cdacb3ea5f7acac551b1 a owl:Restriction ;
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4 ;
+    owl:equivalentClass _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4 ;
     owl:onProperty cmns-org:isProvidedBy ;
-    owl:sameAs _:n96da6a1e96004ea8b9ec19e21e604f26b1 ;
+    owl:sameAs _:nfafaf0e1b69d47cdacb3ea5f7acac551b1 ;
     owl:someValuesFrom fse:DepositoryInstitution .
 
-_:n96da6a1e96004ea8b9ec19e21e604f26b2 a owl:Restriction ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b2 ;
-    owl:equivalentClass _:n96da6a1e96004ea8b9ec19e21e604f26b2 ;
+_:nfafaf0e1b69d47cdacb3ea5f7acac551b2 a owl:Restriction ;
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b2 ;
+    owl:equivalentClass _:nfafaf0e1b69d47cdacb3ea5f7acac551b2 ;
     owl:onProperty rel:isHeldBy ;
-    owl:sameAs _:n96da6a1e96004ea8b9ec19e21e604f26b2 ;
+    owl:sameAs _:nfafaf0e1b69d47cdacb3ea5f7acac551b2 ;
     owl:someValuesFrom caa:AccountHolder .
 
-_:n96da6a1e96004ea8b9ec19e21e604f26b3 a owl:Restriction ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b3 ;
-    owl:equivalentClass _:n96da6a1e96004ea8b9ec19e21e604f26b3 ;
+_:nfafaf0e1b69d47cdacb3ea5f7acac551b3 a owl:Restriction ;
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b3 ;
+    owl:equivalentClass _:nfafaf0e1b69d47cdacb3ea5f7acac551b3 ;
     owl:onProperty cmns-id:isIdentifiedBy ;
-    owl:sameAs _:n96da6a1e96004ea8b9ec19e21e604f26b3 ;
+    owl:sameAs _:nfafaf0e1b69d47cdacb3ea5f7acac551b3 ;
     owl:someValuesFrom caa:AccountIdentifier .
 
-_:n96da6a1e96004ea8b9ec19e21e604f26b4 a owl:Restriction ;
-    rdfs:subClassOf _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4 ;
-    owl:equivalentClass _:n96da6a1e96004ea8b9ec19e21e604f26b1,
-        _:n96da6a1e96004ea8b9ec19e21e604f26b4 ;
+_:nfafaf0e1b69d47cdacb3ea5f7acac551b4 a owl:Restriction ;
+    rdfs:subClassOf _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4 ;
+    owl:equivalentClass _:nfafaf0e1b69d47cdacb3ea5f7acac551b1,
+        _:nfafaf0e1b69d47cdacb3ea5f7acac551b4 ;
     owl:onProperty cmns-org:isProvidedBy ;
-    owl:sameAs _:n96da6a1e96004ea8b9ec19e21e604f26b4 ;
+    owl:sameAs _:nfafaf0e1b69d47cdacb3ea5f7acac551b4 ;
     owl:someValuesFrom fse:DepositoryInstitution .
 
