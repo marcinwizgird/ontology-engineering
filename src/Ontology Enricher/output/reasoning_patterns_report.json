@@ -1,0 +1,340 @@
+{
+  "catalog": [
+    {
+      "id": "P1",
+      "name": "ancestry_derivation",
+      "persistence": "MATERIALISE",
+      "intent": "Derive the full FIBO inheritance chain for every mapped HBIM concept."
+    },
+    {
+      "id": "P2",
+      "name": "correct_parent_existing",
+      "persistence": "PROPOSE",
+      "intent": "Use FIBO to find the correct (most specific) parent for existing HBIM concepts."
+    },
+    {
+      "id": "P3",
+      "name": "missing_intermediate_concepts",
+      "persistence": "PROPOSE",
+      "intent": "Surface FIBO classes that sit between mapped HBIM concepts but have no HBIM twin."
+    },
+    {
+      "id": "P4",
+      "name": "missing_narrower_concepts",
+      "persistence": "PROPOSE",
+      "intent": "Surface FIBO subclasses of mapped concepts that HBIM does not cover."
+    },
+    {
+      "id": "P5",
+      "name": "missing_object_properties",
+      "persistence": "PROPOSE",
+      "intent": "Surface object properties (relationships) FIBO attaches to mapped classes."
+    },
+    {
+      "id": "P6",
+      "name": "missing_data_properties",
+      "persistence": "PROPOSE",
+      "intent": "Surface datatype properties (attributes) FIBO attaches to mapped classes."
+    },
+    {
+      "id": "P7",
+      "name": "parent_assignment_candidates",
+      "persistence": "PROPOSE",
+      "intent": "Assign each discovered concept its correct HBIM parent / re-parent existing ones."
+    },
+    {
+      "id": "P8",
+      "name": "parent_validation",
+      "persistence": "REPORT",
+      "intent": "Use FIBO disjointness to reject impossible parent assignments."
+    }
+  ],
+  "P1_ancestry": [
+    {
+      "concept": "hbim:AccountHolder",
+      "equivalent_to": [
+        "caa:AccountHolder"
+      ],
+      "derived_ancestors": [
+        "caa:AccountHolder"
+      ]
+    },
+    {
+      "concept": "hbim:AccountNumber",
+      "equivalent_to": [],
+      "derived_ancestors": [
+        "caa:AccountIdentifier"
+      ]
+    },
+    {
+      "concept": "hbim:CurrentAccount",
+      "equivalent_to": [],
+      "derived_ancestors": [
+        "fse:BankingProduct",
+        "caa:Account",
+        "caa:DemandDepositAccount",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "caa:TransactionDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService"
+      ]
+    },
+    {
+      "concept": "hbim:FinancialAccount",
+      "equivalent_to": [
+        "caa:Account"
+      ],
+      "derived_ancestors": [
+        "caa:Account"
+      ]
+    },
+    {
+      "concept": "hbim:SavingsAccount",
+      "equivalent_to": [
+        "caa:SavingsAccount"
+      ],
+      "derived_ancestors": [
+        "fse:BankingProduct",
+        "caa:Account",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "caa:NonTransactionDepositAccount",
+        "caa:SavingsAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService"
+      ]
+    },
+    {
+      "concept": "hbim:TermDepositAccount",
+      "equivalent_to": [],
+      "derived_ancestors": [
+        "fse:BankingProduct",
+        "caa:Account",
+        "caa:DepositAccount",
+        "caa:InvestmentOrDepositAccount",
+        "fpas:FinancialProduct",
+        "fpas:FinancialProductOrService"
+      ]
+    }
+  ],
+  "P2_correct_parent": [
+    {
+      "concept": "hbim:CurrentAccount",
+      "current_parent": [
+        "hbim:FinancialAccount"
+      ],
+      "fibo_correct_parent": [
+        "hbim:TransactionDepositAccount (propose)"
+      ]
+    },
+    {
+      "concept": "hbim:SavingsAccount",
+      "current_parent": [
+        "hbim:FinancialAccount"
+      ],
+      "fibo_correct_parent": [
+        "hbim:NonTransactionDepositAccount (propose)"
+      ]
+    },
+    {
+      "concept": "hbim:TermDepositAccount",
+      "current_parent": [
+        "hbim:FinancialAccount"
+      ],
+      "fibo_correct_parent": [
+        "hbim:DepositAccount (propose)"
+      ]
+    }
+  ],
+  "P3_missing_intermediate": [
+    {
+      "fibo_class": "fse:BankingProduct",
+      "category": "ancestor",
+      "label": "banking product",
+      "suggested_hbim_concept": "hbim:BankingProduct",
+      "suggested_parent": "hbim:FinancialProduct"
+    },
+    {
+      "fibo_class": "caa:DepositAccount",
+      "category": "intermediate",
+      "label": "deposit account",
+      "suggested_hbim_concept": "hbim:DepositAccount",
+      "suggested_parent": "hbim:BankingProduct"
+    },
+    {
+      "fibo_class": "caa:InvestmentOrDepositAccount",
+      "category": "intermediate",
+      "label": "investment or deposit account",
+      "suggested_hbim_concept": "hbim:InvestmentOrDepositAccount",
+      "suggested_parent": "hbim:FinancialAccount"
+    },
+    {
+      "fibo_class": "caa:NonTransactionDepositAccount",
+      "category": "intermediate",
+      "label": "non-transaction deposit account",
+      "suggested_hbim_concept": "hbim:NonTransactionDepositAccount",
+      "suggested_parent": "hbim:DepositAccount"
+    },
+    {
+      "fibo_class": "caa:TransactionDepositAccount",
+      "category": "intermediate",
+      "label": "transaction deposit account",
+      "suggested_hbim_concept": "hbim:TransactionDepositAccount",
+      "suggested_parent": "hbim:DepositAccount"
+    },
+    {
+      "fibo_class": "fpas:FinancialProduct",
+      "category": "ancestor",
+      "label": "financial product",
+      "suggested_hbim_concept": "hbim:FinancialProduct",
+      "suggested_parent": "hbim:FinancialProductOrService"
+    },
+    {
+      "fibo_class": "fpas:FinancialProductOrService",
+      "category": "ancestor",
+      "label": "financial product or service",
+      "suggested_hbim_concept": "hbim:FinancialProductOrService",
+      "suggested_parent": "hbim:BusinessAsset"
+    }
+  ],
+  "P4_missing_narrower": [
+    {
+      "fibo_class": "fse:DepositoryInstitution",
+      "category": "referenced",
+      "label": "depository institution",
+      "suggested_hbim_concept": "hbim:DepositoryInstitution",
+      "suggested_parent": "hbim:BusinessAsset"
+    },
+    {
+      "fibo_class": "caa:BrokerageAccount",
+      "category": "narrower",
+      "label": "brokerage account",
+      "suggested_hbim_concept": "hbim:BrokerageAccount",
+      "suggested_parent": "hbim:InvestmentAccount"
+    },
+    {
+      "fibo_class": "caa:CustomerAccount",
+      "category": "narrower",
+      "label": "customer account",
+      "suggested_hbim_concept": "hbim:CustomerAccount",
+      "suggested_parent": "hbim:FinancialAccount"
+    },
+    {
+      "fibo_class": "caa:InvestmentAccount",
+      "category": "narrower",
+      "label": "investment account",
+      "suggested_hbim_concept": "hbim:InvestmentAccount",
+      "suggested_parent": "hbim:InvestmentOrDepositAccount"
+    },
+    {
+      "fibo_class": "caa:LoanOrCreditAccount",
+      "category": "narrower",
+      "label": "loan or credit account",
+      "suggested_hbim_concept": "hbim:LoanOrCreditAccount",
+      "suggested_parent": "hbim:FinancialAccount"
+    }
+  ],
+  "P5_missing_object_properties": [
+    {
+      "hbim_concept": "hbim:FinancialAccount",
+      "missing_property": "rel:isHeldBy",
+      "value_type": "caa:AccountHolder"
+    },
+    {
+      "hbim_concept": "hbim:FinancialAccount",
+      "missing_property": "cmns-id:isIdentifiedBy",
+      "value_type": "caa:AccountIdentifier"
+    },
+    {
+      "hbim_concept": "hbim:BankingProduct",
+      "missing_property": "cmns-org:isProvidedBy",
+      "value_type": "fse:DepositoryInstitution"
+    }
+  ],
+  "P6_missing_data_properties": [
+    {
+      "hbim_concept": "hbim:FinancialAccount",
+      "missing_property": "fibod:hasAccountOpeningDate",
+      "value_type": "xsd:date"
+    }
+  ],
+  "P7_parent_assignment": [
+    {
+      "new_concept": "hbim:BankingProduct",
+      "assign_parent": "hbim:FinancialProduct",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:DepositoryInstitution",
+      "assign_parent": "hbim:BusinessAsset",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:BrokerageAccount",
+      "assign_parent": "hbim:InvestmentAccount",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:CustomerAccount",
+      "assign_parent": "hbim:FinancialAccount",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:DepositAccount",
+      "assign_parent": "hbim:BankingProduct",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:InvestmentAccount",
+      "assign_parent": "hbim:InvestmentOrDepositAccount",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:InvestmentOrDepositAccount",
+      "assign_parent": "hbim:FinancialAccount",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:LoanOrCreditAccount",
+      "assign_parent": "hbim:FinancialAccount",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:NonTransactionDepositAccount",
+      "assign_parent": "hbim:DepositAccount",
+      "reparent_children": [
+        "hbim:SavingsAccount"
+      ]
+    },
+    {
+      "new_concept": "hbim:TransactionDepositAccount",
+      "assign_parent": "hbim:DepositAccount",
+      "reparent_children": [
+        "hbim:CurrentAccount"
+      ]
+    },
+    {
+      "new_concept": "hbim:FinancialProduct",
+      "assign_parent": "hbim:FinancialProductOrService",
+      "reparent_children": []
+    },
+    {
+      "new_concept": "hbim:FinancialProductOrService",
+      "assign_parent": "hbim:BusinessAsset",
+      "reparent_children": []
+    }
+  ],
+  "P8_validation": [
+    {
+      "offending": "hbim:acct-GB29NWBK60161331926819",
+      "disjoint_a": "caa:NonTransactionDepositAccount",
+      "disjoint_b": "caa:TransactionDepositAccount"
+    },
+    {
+      "offending": "hbim:CurrentAccount",
+      "disjoint_a": "caa:NonTransactionDepositAccount",
+      "disjoint_b": "caa:TransactionDepositAccount"
+    }
+  ]
+}

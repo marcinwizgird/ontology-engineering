@@ -1,0 +1,50 @@
+# ===========================================================================
+# FIBO coverage supplement  (loaded IN ADDITION to fibo_enrichment_excerpt.ttl)
+# ===========================================================================
+# Extra REAL FIBO account subtypes so the discovery reasoning patterns have
+# genuine targets to surface as "missing in HBIM". Kept in a separate file so
+# the base excerpt / enricher / enrichment notebook stay unchanged.
+#
+# Class IRIs and subclass axioms below are real FIBO ClientsAndAccounts classes:
+#   CustomerAccount ⊑ Account
+#   LoanOrCreditAccount ⊑ Account
+#   InvestmentAccount ⊑ InvestmentOrDepositAccount
+#   BrokerageAccount ⊑ InvestmentAccount
+# ===========================================================================
+
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix caa:   <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix fibod: <https://example.org/fibo-demo/> .
+
+caa:CustomerAccount a owl:Class ;
+    rdfs:label "customer account" ;
+    skos:definition "account held on behalf of one or more customers of a financial institution."@en ;
+    rdfs:subClassOf caa:Account .
+
+caa:LoanOrCreditAccount a owl:Class ;
+    rdfs:label "loan or credit account" ;
+    skos:definition "account reflecting funds lent to, or credit extended to, a borrower."@en ;
+    rdfs:subClassOf caa:Account .
+
+caa:InvestmentAccount a owl:Class ;
+    rdfs:label "investment account" ;
+    skos:definition "account used to hold and manage investments on behalf of an account holder."@en ;
+    rdfs:subClassOf caa:InvestmentOrDepositAccount .
+
+caa:BrokerageAccount a owl:Class ;
+    rdfs:label "brokerage account" ;
+    skos:definition "investment account through which an investor places trades via a brokerage firm."@en ;
+    rdfs:subClassOf caa:InvestmentAccount .
+
+# ---- Illustrative attribute (data property) -------------------------------
+# NOTE: canonical FIBO models account dates via value classes (e.g. caa:OpenDate).
+# This single datatype property is illustrative — namespaced under 'fibod:' to
+# keep it distinct from canonical FIBO IRIs — so the DATA-property discovery
+# pattern has a concrete example to surface.
+fibod:hasAccountOpeningDate a owl:DatatypeProperty ;
+    rdfs:label "has account opening date" ;
+    rdfs:domain caa:Account ;
+    rdfs:range xsd:date .

@@ -1,0 +1,39 @@
+# Local dev assembler for the 'ontology' dataset (TDB2).
+#
+# Mounted at /fuseki/configuration/ontology.ttl, so Fuseki loads it as a service
+# description at startup. Endpoint names mirror the GKE assembler in
+# ../../architecture/technical architecture/deploy/fuseki/config-tdb2.ttl so that
+# query/update URLs are identical locally and in the cluster.
+#
+# Deliberately different from prod:
+#   - no auth split on update/data (localhost-only; see docker-compose.yml)
+#   - no query timeout (local exploration is allowed to run long)
+#   - no Lucene text index (see optional/ontology-text.ttl to enable it)
+
+@prefix :        <#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+
+:ontologyService rdf:type fuseki:Service ;
+    rdfs:label "Ontology Engineering — local TDB2 store" ;
+    fuseki:name "ontology" ;
+
+    # read
+    fuseki:endpoint [ fuseki:operation fuseki:query ;  fuseki:name "sparql" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:query ;  fuseki:name "query" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_r ;  fuseki:name "get" ] ;
+
+    # write — anonymous here, role-restricted in the cluster
+    fuseki:endpoint [ fuseki:operation fuseki:update ; fuseki:name "update" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_rw ; fuseki:name "data" ] ;
+
+    fuseki:dataset :tdb2Dataset .
+
+# One named graph per source file (loaded by scripts/load.ps1); unionDefaultGraph
+# lets an unqualified query see every graph at once, as in prod.
+:tdb2Dataset rdf:type tdb2:DatasetTDB2 ;
+    tdb2:location "/fuseki/databases/ontology" ;
+    tdb2:unionDefaultGraph true .

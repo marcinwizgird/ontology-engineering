@@ -1,0 +1,48 @@
+name: ontology-fuseki
+
+services:
+  # Fuseki needs /fuseki/configuration to be writable (it formats the base area
+  # there at startup), but that directory only comes into existence because of
+  # the ontology.ttl bind mount below -- and Docker creates missing bind-mount
+  # parents as root:root, which uid 100 cannot write. Pre-create it with the
+  # right owner so the server starts on a fresh volume.
+  fuseki-init:
+    image: stain/jena-fuseki:5.1.0
+    user: "0"
+    volumes:
+      - fuseki-base:/fuseki
+    entrypoint: ["sh", "-c", "mkdir -p /fuseki/configuration && chown 100:101 /fuseki/configuration"]
+    restart: "no"
+
+  fuseki:
+    image: stain/jena-fuseki:5.1.0
+    container_name: ontology-fuseki
+    restart: unless-stopped
+    depends_on:
+      fuseki-init:
+        condition: service_completed_successfully
+    ports:
+      # Bound to loopback on purpose: this stack has a dev-grade default password
+      # and anonymous SPARQL update enabled. Do not expose it on the LAN.
+      - "127.0.0.1:${FUSEKI_PORT:-3030}:3030"
+    environment:
+      ADMIN_PASSWORD: ${FUSEKI_ADMIN_PASSWORD:-admin}
+      # Heap only; TDB2 also mmaps files outside the heap, so leave the container
+      # some headroom beyond this value.
+      JVM_ARGS: ${FUSEKI_JVM_ARGS:--Xmx2g}
+    volumes:
+      # FUSEKI_BASE. Holds databases/, shiro.ini and the generated system files.
+      - fuseki-base:/fuseki
+      # Assembler for the 'ontology' dataset, picked up from the configuration dir
+      # at startup. Read-only: the server must never rewrite version-controlled config.
+      - ./config/ontology.ttl:/fuseki/configuration/ontology.ttl:ro
+    healthcheck:
+      # $$ escapes to a literal $ for Fuseki's /$/ping endpoint.
+      test: ["CMD", "curl", "-fsS", "http://localhost:3030/$$/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+volumes:
+  fuseki-base:

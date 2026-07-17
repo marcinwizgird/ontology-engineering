@@ -1,0 +1,63 @@
+@prefix caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fse: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/> .
+@prefix hbim: <https://example.org/hbim/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+hbim:AccountHolder rdfs:subClassOf caa:AccountHolder ;
+    skos:broaderTransitive caa:AccountHolder .
+
+hbim:AccountNumber rdfs:subClassOf caa:AccountIdentifier ;
+    skos:broaderTransitive caa:AccountIdentifier .
+
+hbim:CurrentAccount rdfs:subClassOf fse:BankingProduct,
+        caa:Account,
+        caa:DemandDepositAccount,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    skos:broaderTransitive fse:BankingProduct,
+        caa:Account,
+        caa:DemandDepositAccount,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:TransactionDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService .
+
+hbim:FinancialAccount rdfs:subClassOf caa:Account ;
+    skos:broaderTransitive caa:Account .
+
+hbim:SavingsAccount rdfs:subClassOf fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:NonTransactionDepositAccount,
+        caa:SavingsAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    skos:broaderTransitive fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        caa:NonTransactionDepositAccount,
+        caa:SavingsAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService .
+
+hbim:TermDepositAccount rdfs:subClassOf fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService ;
+    skos:broaderTransitive fse:BankingProduct,
+        caa:Account,
+        caa:DepositAccount,
+        caa:InvestmentOrDepositAccount,
+        fpas:FinancialProduct,
+        fpas:FinancialProductOrService .
+

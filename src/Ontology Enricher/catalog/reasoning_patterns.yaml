@@ -1,0 +1,86 @@
+# Catalog of reasoning patterns for augmenting a local ontology (HBIM)
+# mapped to an upper/industry ontology (FIBO).
+#
+# persistence:
+#   MATERIALISE - sound entailment, safe to write into the ontology (hbim_derived.ttl)
+#   PROPOSE     - needs steward review, written as candidates (hbim_candidates.ttl)
+#   REPORT      - surfaced in the report only
+version: 1
+target: HBIM        # local ontology being augmented
+source: FIBO        # ontology it is mapped to
+mapping: SKOS mapping properties (exact/close/broad/narrowMatch) bridged to OWL
+
+patterns:
+  - id: P1
+    name: ancestry_derivation
+    intent: Derive the full inheritance hierarchy for every mapped concept.
+    augments: inheritance hierarchy
+    precondition: >
+      Concept mapped to a FIBO class via exact/close/broadMatch, bridged to
+      owl:equivalentClass / rdfs:subClassOf.
+    entailment: rdfs:subClassOf transitivity + owl:equivalentClass
+    output: rdfs:subClassOf* / skos:broaderTransitive to each FIBO ancestor
+    persistence: MATERIALISE
+
+  - id: P2
+    name: correct_parent_existing
+    intent: Find the correct (most specific) parent for existing HBIM concepts.
+    augments: correct parents
+    precondition: Concept has a FIBO anchor and an asserted skos:broader.
+    entailment: direct rdfs:subClassOf of the anchor in FIBO
+    output: suggested parent (existing HBIM concept or a proposed concept)
+    persistence: PROPOSE       # hbim:suggestedBroader annotation
+
+  - id: P3
+    name: missing_intermediate_concepts
+    intent: Surface FIBO classes between mapped concepts that HBIM lacks.
+    augments: missing concepts
+    precondition: An uncovered FIBO class has both a mapped ancestor and descendant (or only ancestors → higher-level concept).
+    entailment: FIBO subclass topology vs. the covered set
+    output: candidate skos:Concept + closeMatch + suggested parent
+    persistence: PROPOSE
+
+  - id: P4
+    name: missing_narrower_concepts
+    intent: Surface FIBO subclasses / referenced classes HBIM does not cover.
+    augments: missing concepts
+    precondition: Uncovered FIBO class is a subclass of a mapped concept, or is the value type of a discovered property.
+    entailment: FIBO subclass topology + property ranges
+    output: candidate skos:Concept + closeMatch + suggested parent
+    persistence: PROPOSE
+
+  - id: P5
+    name: missing_object_properties
+    intent: Surface relationships FIBO attaches to mapped classes.
+    augments: missing object properties
+    precondition: FIBO declares an object property on a mapped/candidate class (someValuesFrom restriction or rdfs:domain).
+    entailment: property inheritance along rdfs:subClassOf
+    output: proposed owl:ObjectProperty with rdfs:domain / rdfs:range
+    persistence: PROPOSE
+
+  - id: P6
+    name: missing_data_properties
+    intent: Surface attributes FIBO attaches to mapped classes.
+    augments: missing data properties
+    precondition: FIBO declares a datatype property on a mapped/candidate class.
+    entailment: property inheritance along rdfs:subClassOf
+    output: proposed owl:DatatypeProperty with rdfs:domain / rdfs:range
+    persistence: PROPOSE
+
+  - id: P7
+    name: parent_assignment_candidates
+    intent: Place each discovered concept and re-parent affected existing concepts.
+    augments: correct parents (for new concepts)
+    precondition: A missing concept exists (from P3/P4).
+    entailment: nearest ancestor among {covered ∪ missing} classes
+    output: skos:broader for candidates + re-parent suggestions for existing concepts
+    persistence: PROPOSE
+
+  - id: P8
+    name: parent_validation
+    intent: Reject impossible parent assignments.
+    augments: quality / correctness of parents
+    precondition: FIBO declares owl:disjointWith between candidate parents.
+    entailment: disjointness → unsatisfiability / inconsistency
+    output: rejected placements
+    persistence: REPORT

@@ -1,0 +1,138 @@
+@prefix caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix cmns-id: <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix cmns-org: <https://www.omg.org/spec/Commons/Organizations/> .
+@prefix fibod: <https://example.org/fibo-demo/> .
+@prefix fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fse: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/> .
+@prefix hbim: <https://example.org/hbim/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+fibod:hasAccountOpeningDate a owl:DatatypeProperty ;
+    rdfs:comment "Proposed for hbim:FinancialAccount from FIBO restriction/domain."@en ;
+    rdfs:domain hbim:FinancialAccount ;
+    rdfs:range xsd:date .
+
+hbim:BrokerageAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:InvestmentAccount ;
+    skos:closeMatch caa:BrokerageAccount ;
+    skos:definition "investment account through which an investor places trades via a brokerage firm."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:BrokerageAccount (category: narrower)."@en ;
+    skos:prefLabel "brokerage account"@en .
+
+hbim:CurrentAccount hbim:suggestedBroader hbim:TransactionDepositAccount .
+
+hbim:CustomerAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:FinancialAccount ;
+    skos:closeMatch caa:CustomerAccount ;
+    skos:definition "account held on behalf of one or more customers of a financial institution."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:CustomerAccount (category: narrower)."@en ;
+    skos:prefLabel "customer account"@en .
+
+hbim:DepositoryInstitution a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:BusinessAsset ;
+    skos:closeMatch fse:DepositoryInstitution ;
+    skos:definition "financial institution whose primary function is accepting and safeguarding monetary deposits."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO fse:DepositoryInstitution (category: referenced)."@en ;
+    skos:prefLabel "depository institution"@en .
+
+hbim:LoanOrCreditAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:FinancialAccount ;
+    skos:closeMatch caa:LoanOrCreditAccount ;
+    skos:definition "account reflecting funds lent to, or credit extended to, a borrower."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:LoanOrCreditAccount (category: narrower)."@en ;
+    skos:prefLabel "loan or credit account"@en .
+
+hbim:SavingsAccount hbim:suggestedBroader hbim:NonTransactionDepositAccount .
+
+hbim:TermDepositAccount hbim:suggestedBroader hbim:DepositAccount .
+
+hbim:suggestedBroader a owl:AnnotationProperty ;
+    rdfs:label "suggested broader (auto-proposed)" .
+
+rel:isHeldBy a owl:ObjectProperty ;
+    rdfs:comment "Proposed for hbim:FinancialAccount from FIBO restriction/domain."@en ;
+    rdfs:domain hbim:FinancialAccount ;
+    rdfs:range caa:AccountHolder .
+
+cmns-id:isIdentifiedBy a owl:ObjectProperty ;
+    rdfs:comment "Proposed for hbim:FinancialAccount from FIBO restriction/domain."@en ;
+    rdfs:domain hbim:FinancialAccount ;
+    rdfs:range caa:AccountIdentifier .
+
+cmns-org:isProvidedBy a owl:ObjectProperty ;
+    rdfs:comment "Proposed for hbim:BankingProduct from FIBO restriction/domain."@en ;
+    rdfs:domain hbim:BankingProduct ;
+    rdfs:range fse:DepositoryInstitution .
+
+hbim:FinancialProduct a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:FinancialProductOrService ;
+    skos:closeMatch fpas:FinancialProduct ;
+    skos:definition "product provided to parties in the course of financial services offered by a financial institution or intermediary."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO fpas:FinancialProduct (category: ancestor)."@en ;
+    skos:prefLabel "financial product"@en .
+
+hbim:FinancialProductOrService a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:BusinessAsset ;
+    skos:closeMatch fpas:FinancialProductOrService ;
+    skos:definition "product or service, offered or provided by a financial institution or intermediary, or an agent thereof, to one or more parties."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO fpas:FinancialProductOrService (category: ancestor)."@en ;
+    skos:prefLabel "financial product or service"@en .
+
+hbim:InvestmentAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:InvestmentOrDepositAccount ;
+    skos:closeMatch caa:InvestmentAccount ;
+    skos:definition "account used to hold and manage investments on behalf of an account holder."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:InvestmentAccount (category: narrower)."@en ;
+    skos:prefLabel "investment account"@en .
+
+hbim:InvestmentOrDepositAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:FinancialAccount ;
+    skos:closeMatch caa:InvestmentOrDepositAccount ;
+    skos:definition "account associated with a product or service that requires the account holder to provide funds for management by the account provider."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:InvestmentOrDepositAccount (category: intermediate)."@en ;
+    skos:prefLabel "investment or deposit account"@en .
+
+hbim:NonTransactionDepositAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:DepositAccount ;
+    skos:closeMatch caa:NonTransactionDepositAccount ;
+    skos:definition "any deposit account that is not explicitly considered a transaction account."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:NonTransactionDepositAccount (category: intermediate)."@en ;
+    skos:prefLabel "non-transaction deposit account"@en .
+
+hbim:TransactionDepositAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:DepositAccount ;
+    skos:closeMatch caa:TransactionDepositAccount ;
+    skos:definition "deposit account from which the depositor or account holder is permitted to make transfers or withdrawals by negotiable or transferable instruments, payment orders of withdrawal, telephone transfers, and so forth."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:TransactionDepositAccount (category: intermediate)."@en ;
+    skos:prefLabel "transaction deposit account"@en .
+
+hbim:BankingProduct a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:FinancialProduct ;
+    skos:closeMatch fse:BankingProduct ;
+    skos:definition "financial product that is offered by a bank or similar depository institution."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO fse:BankingProduct (category: ancestor)."@en ;
+    skos:prefLabel "banking product"@en .
+
+hbim:DepositAccount a owl:Class,
+        skos:Concept ;
+    skos:broader hbim:BankingProduct ;
+    skos:closeMatch caa:DepositAccount ;
+    skos:definition "deposit-based product involving funds placed into a banking institution for safekeeping, held at a depository institution."@en ;
+    skos:editorialNote "Candidate concept proposed from FIBO caa:DepositAccount (category: intermediate)."@en ;
+    skos:prefLabel "deposit account"@en .
+

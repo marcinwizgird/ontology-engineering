@@ -1,0 +1,31 @@
+name: ontology-falkordb
+
+services:
+  falkordb:
+    image: falkordb/falkordb:v4.20.1
+    container_name: ontology-falkordb
+    restart: unless-stopped
+    ports:
+      # Bound to loopback on purpose: local dev runs without auth by default and
+      # FalkorDB speaks the Redis wire protocol (arbitrary command execution). Do
+      # not expose it on the LAN. Set FALKORDB_ARGS to require a password if you must.
+      - "127.0.0.1:${FALKORDB_PORT:-6379}:6379"
+      # FalkorDB Browser UI (visual graph explorer).
+      - "127.0.0.1:${FALKORDB_BROWSER_PORT:-3000}:3000"
+    environment:
+      # Extra arguments passed to the Redis server. Empty = no auth. To require a
+      # password: FALKORDB_ARGS=--requirepass yourpass (and set FALKORDB_PASSWORD
+      # so the converter's client matches).
+      REDIS_ARGS: ${FALKORDB_ARGS:-}
+    volumes:
+      # Persists the RDB/AOF so the converted graph survives a restart.
+      - falkordb-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+volumes:
+  falkordb-data:

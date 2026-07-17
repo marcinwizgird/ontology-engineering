@@ -1,0 +1,53 @@
+# OPT-IN variant: 'ontology' dataset wrapped in a Jena text (Lucene) index,
+# matching the text:TextDataset layer of the GKE assembler.
+#
+# Not mounted by default. To use it, point the config bind mount in
+# docker-compose.yml at this file instead:
+#
+#   - ./config/optional/ontology-text.ttl:/fuseki/configuration/ontology.ttl:ro
+#
+# then recreate the container. The Lucene index is built on write, so reload the
+# data afterwards (scripts/load.ps1) or the index will be empty:
+#
+#   docker compose down && docker compose up -d && ./scripts/load.ps1 -Clear
+#
+# Caveat: this needs jena-text on the server classpath. It ships with the Fuseki
+# distribution, but if the server fails to start with an assembler/class error on
+# text:TextIndexLucene, revert to ../ontology.ttl — plain TDB2 is the safe default.
+
+@prefix :        <#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+@prefix text:    <http://jena.apache.org/text#> .
+
+:ontologyService rdf:type fuseki:Service ;
+    rdfs:label "Ontology Engineering — local TDB2 store + Lucene text index" ;
+    fuseki:name "ontology" ;
+
+    fuseki:endpoint [ fuseki:operation fuseki:query ;  fuseki:name "sparql" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:query ;  fuseki:name "query" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_r ;  fuseki:name "get" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:update ; fuseki:name "update" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_rw ; fuseki:name "data" ] ;
+
+    fuseki:dataset :textDataset .
+
+:textDataset rdf:type text:TextDataset ;
+    text:dataset :tdb2Dataset ;
+    text:index   :luceneIndex .
+
+:luceneIndex a text:TextIndexLucene ;
+    text:directory "file:/fuseki/databases/ontology-text" ;
+    text:entityMap :entMap .
+
+:entMap a text:EntityMap ;
+    text:defaultField "label" ;
+    text:entityField  "uri" ;
+    text:map ( [ text:field "label" ; text:predicate rdfs:label ] ) .
+
+:tdb2Dataset rdf:type tdb2:DatasetTDB2 ;
+    tdb2:location "/fuseki/databases/ontology" ;
+    tdb2:unionDefaultGraph true .
