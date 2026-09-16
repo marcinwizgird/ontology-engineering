@@ -17,6 +17,21 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 
 INFRA = REPO_ROOT / "infra"
 
+# Fitted embedders and other build outputs of the projection. Kept beside the package
+# rather than in the repo root because they belong to a specific FalkorDB graph.
+ARTIFACTS = Path(__file__).resolve().parents[1] / "artifacts"
+
+
+def embedder_path(graph_name: str) -> Path:
+    """Where the embedder fitted for `graph_name` is stored.
+
+    A query has to be embedded by the *same* fitted model that produced the vectors in
+    the index -- a TF-IDF/SVD basis refitted on different text puts the query in a
+    different space, and the nearest-neighbour scores come back meaningless rather than
+    obviously wrong. Persisting it next to the graph keeps the two together.
+    """
+    return ARTIFACTS / f"{graph_name}.embedder.pkl"
+
 
 def read_env(compose_dir: Path) -> dict[str, str]:
     """Parse a docker-compose .env file into a dict (missing file -> empty)."""

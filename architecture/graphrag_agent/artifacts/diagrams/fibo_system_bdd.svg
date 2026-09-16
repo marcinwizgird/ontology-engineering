@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1496" height="928" viewBox="0 0 1496 928" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<defs><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5a6b82"/></marker><marker id="arrow-closed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6fa5"/></marker><marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9a5ea8"/></marker><marker id="arrow-verify" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5545f"/></marker><marker id="arrow-satisfy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c07a34"/></marker><marker id="arrow-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4f9d69"/></marker><marker id="diamond" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse"><path d="M 0 5 L 6 0 L 12 5 L 6 10 z" fill="#4a6fa5"/></marker><marker id="triangle" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M 0 0 L 12 6 L 0 12 z" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.4"/></marker></defs>
+<rect width="1496" height="928" fill="#ffffff"/>
+<text x="34" y="38" font-size="19" font-weight="650" fill="#1d2430">FiboProjectionSystem — Block Definition Diagram</text>
+<text x="34" y="60" font-size="12" fill="#6b7686">21 part definitions · 0 specialisations · 17 compositions</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 1352.6 231.0 1352.6 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1177.1" y="222.0" width="54.8" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1204.5" y="233.0" font-size="10" text-anchor="middle" fill="#5a6b82">engineer</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 984.6 231.0 984.6 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1004.3" y="222.0" width="32.4" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1020.5" y="233.0" font-size="10" text-anchor="middle" fill="#5a6b82">fibo</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 348.0 231.0 348.0 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="677.6" y="222.0" width="49.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="702.2" y="233.0" font-size="10" text-anchor="middle" fill="#5a6b82">commons</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 1168.6 231.0 1168.6 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1090.7" y="222.0" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1112.5" y="233.0" font-size="10" text-anchor="middle" fill="#5a6b82">fuseki</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 559.3 231.0 559.3 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="786.0" y="254.0" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="807.8" y="265.0" font-size="10" text-anchor="middle" fill="#5a6b82">falkor</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 147.4 231.0 147.4 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="571.7" y="222.0" width="60.4" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="601.9" y="233.0" font-size="10" text-anchor="middle" fill="#5a6b82">artifacts</text>
+<path d="M 1056.4 142.0 C 1056.4 231.0 777.2 231.0 777.2 320.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="895.0" y="254.0" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="916.8" y="265.0" font-size="10" text-anchor="middle" fill="#5a6b82">system</text>
+<path d="M 777.2 376.0 C 777.2 552.0 522.1 552.0 522.1 728.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<path d="M 777.2 376.0 C 777.2 552.0 780.7 552.0 780.7 728.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<path d="M 777.2 376.0 C 777.2 552.0 1043.3 552.0 1043.3 728.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<path d="M 777.2 376.0 C 777.2 442.5 201.5 442.5 201.5 509.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="462.0" y="433.5" width="54.8" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="489.4" y="444.5" font-size="10" text-anchor="middle" fill="#5a6b82">unfolder</text>
+<path d="M 777.2 376.0 C 777.2 442.5 1302.7 442.5 1302.7 509.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1015.4" y="433.5" width="49.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1040.0" y="444.5" font-size="10" text-anchor="middle" fill="#5a6b82">builder</text>
+<path d="M 777.2 376.0 C 777.2 552.0 290.8 552.0 290.8 728.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<path d="M 777.2 376.0 C 777.2 552.0 1244.0 552.0 1244.0 728.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<path d="M 777.2 376.0 C 777.2 442.5 708.9 442.5 708.9 509.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="721.3" y="433.5" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="743.1" y="444.5" font-size="10" text-anchor="middle" fill="#5a6b82">loader</text>
+<path d="M 777.2 376.0 C 777.2 442.5 1023.0 442.5 1023.0 509.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="875.5" y="433.5" width="49.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="900.1" y="444.5" font-size="10" text-anchor="middle" fill="#5a6b82">indexer</text>
+<path d="M 777.2 376.0 C 777.2 442.5 440.1 442.5 440.1 509.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="572.9" y="433.5" width="71.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="608.7" y="444.5" font-size="10" text-anchor="middle" fill="#5a6b82">artifactMgr</text>
+<rect x="1277.6" y="320.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1352.6" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1352.6" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">OntologyEngineer</text>
+<rect x="909.6" y="320.0" width="150.0" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="984.6" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="984.6" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">FiboRepository</text>
+<line x1="917.6" y1="365.0" x2="1051.6" y2="365.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="920.6" y="380.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">releasePath: String</text>
+<text x="920.6" y="395.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">fileCount: Integer</text>
+<rect x="256.4" y="320.0" width="183.3" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="348.0" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="348.0" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">CommonsRegistry</text>
+<line x1="264.4" y1="365.0" x2="431.7" y2="365.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="267.4" y="380.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">reachable: Boolean = false</text>
+<rect x="1093.6" y="320.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1168.6" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1168.6" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">FusekiDataset</text>
+<rect x="473.7" y="320.0" width="171.2" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="559.3" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="559.3" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">FalkorDbInstance</text>
+<line x1="481.7" y1="365.0" x2="636.9" y2="365.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="484.7" y="380.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">host: String = localhost</text>
+<text x="484.7" y="395.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">port: Integer = 6379</text>
+<text x="484.7" y="410.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">graphName: String = fibo</text>
+<rect x="72.4" y="320.0" width="150.0" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="147.4" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="147.4" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ArtifactStore</text>
+<line x1="80.4" y1="365.0" x2="214.4" y2="365.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="83.4" y="380.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">path: String</text>
+<rect x="981.4" y="86.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1056.4" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1056.4" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">SystemContext</text>
+<rect x="678.9" y="320.0" width="196.8" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="777.2" y="340.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="777.2" y="357.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">FiboProjectionSystemDef</text>
+<rect x="434.6" y="728.0" width="175.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="522.1" y="748.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="522.1" y="765.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ProjectionController</text>
+<rect x="643.6" y="728.0" width="274.0" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="780.7" y="748.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="780.7" y="765.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">SourceAdapter</text>
+<line x1="651.6" y1="773.0" x2="909.7" y2="773.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="654.6" y="788.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">parsedFiles: Integer</text>
+<text x="654.6" y="803.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">failedFiles: Integer</text>
+<text x="654.6" y="818.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">tolerateMalformedLiterals: Boolean = true</text>
+<rect x="951.7" y="728.0" width="183.3" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1043.3" y="748.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1043.3" y="765.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">TboxReader</text>
+<line x1="959.7" y1="773.0" x2="1127.0" y2="773.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="962.7" y="788.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">declaredClasses: Integer</text>
+<text x="962.7" y="803.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">referencedClasses: Integer</text>
+<rect x="91.7" y="509.0" width="219.6" height="141.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="201.5" y="529.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="201.5" y="546.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">AxiomUnfolder</text>
+<line x1="99.7" y1="554.0" x2="303.3" y2="554.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="102.7" y="569.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">maxExpressionDepth: Integer = 4</text>
+<text x="102.7" y="584.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">maxFillerDepth: Integer = 3</text>
+<text x="102.7" y="599.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">quantifiersHandled: String[1..*]</text>
+<text x="102.7" y="614.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">unfolded: Integer</text>
+<text x="102.7" y="629.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">landed: Integer</text>
+<rect x="1197.0" y="509.0" width="211.2" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1302.7" y="529.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1302.7" y="546.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">MetaGraphBuilderComponent</text>
+<line x1="1205.0" y1="554.0" x2="1400.3" y2="554.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="1208.0" y="569.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">nodes: Integer</text>
+<text x="1208.0" y="584.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">edges: Integer</text>
+<rect x="181.0" y="728.0" width="219.6" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="290.8" y="748.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="290.8" y="765.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ProfileComposer</text>
+<line x1="189.0" y1="773.0" x2="392.6" y2="773.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="192.0" y="788.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">includeRelations: Boolean = true</text>
+<text x="192.0" y="803.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">maxRelations: Integer = 12</text>
+<rect x="1169.0" y="728.0" width="150.0" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1244.0" y="748.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1244.0" y="765.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">VectorEncoder</text>
+<line x1="1177.0" y1="773.0" x2="1311.0" y2="773.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="1180.0" y="788.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">kind: String</text>
+<text x="1180.0" y="803.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">dimension: Integer</text>
+<text x="1180.0" y="818.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">fitted: Boolean</text>
+<rect x="568.8" y="509.0" width="280.1" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="708.9" y="529.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="708.9" y="546.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">GraphLoader</text>
+<line x1="576.8" y1="554.0" x2="840.9" y2="554.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="579.8" y="569.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">batchSize: Integer = 1000</text>
+<text x="579.8" y="584.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">relTypePattern: String = ^[A-Z][A-Z0-9_]*$</text>
+<rect x="882.9" y="509.0" width="280.1" height="126.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1023.0" y="529.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1023.0" y="546.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">IndexManager</text>
+<line x1="890.9" y1="554.0" x2="1155.0" y2="554.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="893.9" y="569.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">vectorDimension: Integer = 256</text>
+<text x="893.9" y="584.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">similarity: String = cosine</text>
+<text x="893.9" y="599.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">fulltextFields: String[1..*] = (name, def…</text>
+<text x="893.9" y="614.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">lookupFields: String[1..*] = (iri)</text>
+<rect x="345.3" y="509.0" width="189.5" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="440.1" y="529.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="440.1" y="546.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">EncoderArtifactManager</text>
+<line x1="353.3" y1="554.0" x2="526.8" y2="554.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="356.3" y="569.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">artifactPath: String</text>
+<text x="356.3" y="584.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">sizeBytes: Integer</text>
+<rect x="552.6" y="86.0" width="153.2" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="629.2" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="629.2" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ExtractionVariant</text>
+<rect x="368.6" y="86.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="443.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="443.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">EncoderVariant</text>
+<rect x="739.9" y="86.0" width="207.5" height="156.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="843.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="843.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">FiboCharacterisation</text>
+<line x1="747.9" y1="131.0" x2="939.4" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="750.9" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">filesParsed: Integer = 299</text>
+<text x="750.9" y="161.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">filesFailed: Integer = 0</text>
+<text x="750.9" y="176.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">triples: Integer = 132939</text>
+<text x="750.9" y="191.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">classes: Integer = 3258</text>
+<text x="750.9" y="206.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">externalClasses: Integer = 253</text>
+<text x="750.9" y="221.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">… 11 more</text>
+<rect x="34" y="896.0" width="15" height="12" rx="3" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.2"/>
+<text x="55" y="906.0" font-size="11" fill="#4a5566">block</text>
+<rect x="95.0" y="896.0" width="15" height="12" rx="3" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.2"/>
+<text x="116.0" y="906.0" font-size="11" fill="#4a5566">abstract</text>
+<rect x="174.6" y="896.0" width="15" height="12" rx="3" fill="#fdf4ec" stroke="#c07a34" stroke-width="1.2"/>
+<text x="195.6" y="906.0" font-size="11" fill="#4a5566">requirement</text>
+</svg>

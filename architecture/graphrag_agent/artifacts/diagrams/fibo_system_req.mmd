@@ -1,0 +1,133 @@
+%% Requirement Diagram — generated from fibo_projection_system.sysml
+requirementDiagram
+
+    requirement AxiomFidelity {
+        id: R1
+        text: "Every named class, every subClassOf between named classes, and every restriction whose fi…"
+        risk: high
+        verifymethod: test
+    }
+    requirement CitationTraceability {
+        id: R2
+        text: "Every graph node carries the unchanged IRI of the ontology entity it came from"
+        risk: high
+        verifymethod: test
+    }
+    requirement Repeatability {
+        id: R3
+        text: "Re-projecting an unchanged source leaves the graph byte-identical in shape: same node cou…"
+        risk: high
+        verifymethod: test
+    }
+    requirement OfflineOperation {
+        id: R4
+        text: "A projection of the vendored FIBO release completes with no network access"
+        risk: high
+        verifymethod: test
+    }
+    requirement Retrievability {
+        id: R5
+        text: "The loaded graph supports both semantic and lexical lookup over classes, and exact lookup…"
+        risk: high
+        verifymethod: test
+    }
+    requirement BulkThroughput {
+        id: R6
+        text: "The full FIBO release projects in minutes on a developer machine, because a projection no…"
+        risk: high
+        verifymethod: test
+    }
+    requirement SourceIndependence {
+        id: R7
+        text: "The same pipeline projects from a triplestore or from a directory of files"
+        risk: high
+        verifymethod: test
+    }
+    requirement InjectionSafety {
+        id: R8
+        text: "A Cypher relationship type cannot be parameterised, so it is interpolated into the query…"
+        risk: high
+        verifymethod: test
+    }
+    requirement EmbeddingCoherence {
+        id: R9
+        text: "The encoder that produced the indexed vectors is persisted with the graph and is the one…"
+        risk: high
+        verifymethod: test
+    }
+    element VerifyAxiomCoverage {
+        type: verification
+        docref: "V1"
+    }
+    element VerifyQuantifierDistinction {
+        type: verification
+        docref: "V2"
+    }
+    element VerifyIdempotence {
+        type: verification
+        docref: "V3"
+    }
+    element VerifyOfflineRun {
+        type: verification
+        docref: "V4"
+    }
+    element VerifyIndexesOperational {
+        type: verification
+        docref: "V5"
+    }
+    element VerifyRelTypeSanitisation {
+        type: verification
+        docref: "V6"
+    }
+    element VerifyEncoderCoherence {
+        type: verification
+        docref: "V7"
+    }
+    element adapter {
+        type: component
+    }
+    element artifactMgr {
+        type: component
+    }
+    element builder {
+        type: component
+    }
+    element controller {
+        type: component
+    }
+    element encoder {
+        type: component
+    }
+    element indexer {
+        type: component
+    }
+    element loader {
+        type: component
+    }
+    element reader {
+        type: component
+    }
+    element unfolder {
+        type: component
+    }
+
+    unfolder - satisfies -> AxiomFidelity
+    builder - satisfies -> AxiomFidelity
+    reader - satisfies -> AxiomFidelity
+    loader - satisfies -> CitationTraceability
+    loader - satisfies -> Repeatability
+    adapter - satisfies -> OfflineOperation
+    reader - satisfies -> OfflineOperation
+    indexer - satisfies -> Retrievability
+    controller - satisfies -> BulkThroughput
+    adapter - satisfies -> SourceIndependence
+    loader - satisfies -> InjectionSafety
+    artifactMgr - satisfies -> EmbeddingCoherence
+    encoder - satisfies -> EmbeddingCoherence
+    VerifyAxiomCoverage - verifies -> AxiomFidelity
+    VerifyQuantifierDistinction - verifies -> AxiomFidelity
+    VerifyIdempotence - verifies -> Repeatability
+    VerifyOfflineRun - verifies -> OfflineOperation
+    VerifyIndexesOperational - verifies -> Retrievability
+    VerifyRelTypeSanitisation - verifies -> InjectionSafety
+    VerifyEncoderCoherence - verifies -> EmbeddingCoherence

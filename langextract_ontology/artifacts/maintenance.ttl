@@ -1,0 +1,232 @@
+@prefix : <https://example.org/onto/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix lxo: <https://w3id.org/langextract-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/onto> a owl:Ontology ;
+    dcterms:source <https://example.org/onto/source/maintenance-notes> ;
+    prov:wasGeneratedBy "langextract/simulated-ontology-extractor" .
+
+:BoilerFeedPump a owl:Class ;
+    rdfs:label "boiler feed pump" ;
+    rdfs:subClassOf :CentrifugalPump .
+
+:Compressor a owl:Class ;
+    rdfs:label "compressor" ;
+    rdfs:subClassOf :RotatingEquipment .
+
+:Impeller a owl:Class ;
+    rdfs:label "impeller" .
+
+:P-101 a owl:NamedIndividual,
+        :CentrifugalPump ;
+    rdfs:label "P-101" .
+
+:SlurryPump a owl:Class ;
+    rdfs:label "slurry pump" ;
+    rdfs:subClassOf :CentrifugalPump .
+
+:hasImpeller a owl:ObjectProperty .
+
+:ConditionMonitoring a owl:Class ;
+    rdfs:label "condition monitoring" .
+
+:RotodynamicPump a owl:Class ;
+    rdfs:label "rotodynamic pump" .
+
+:Valve a owl:Class ;
+    rdfs:label "valve" .
+
+:requires a owl:ObjectProperty ;
+    rdfs:domain :Turbine ;
+    rdfs:range :ConditionMonitoring .
+
+:serialNumber a owl:DatatypeProperty ;
+    rdfs:domain :Pump ;
+    rdfs:range xsd:string .
+
+:Turbine a owl:Class ;
+    rdfs:label "turbine" ;
+    rdfs:subClassOf :RotatingEquipment .
+
+:Pump a owl:Class ;
+    rdfs:label "pump" ;
+    rdfs:subClassOf _:N0bf8c62afcad4aca9d9e6dd3140b5d19,
+        :RotatingEquipment ;
+    owl:disjointWith :Valve .
+
+:RotatingEquipment a owl:Class ;
+    rdfs:label "rotating equipment" .
+
+:CentrifugalPump a owl:Class ;
+    rdfs:label "centrifugal pump" ;
+    rdfs:subClassOf :RotodynamicPump .
+
+<https://example.org/onto/source/maintenance-notes> a prov:Entity ;
+    dcterms:identifier "maintenance-notes" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:range ;
+    owl:annotatedSource :requires ;
+    owl:annotatedTarget :ConditionMonitoring ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_fuzzy" ;
+    lxo:charEnd 171 ;
+    lxo:charStart 133 ;
+    lxo:exactQuote "turbines requires condition monitoring" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "object_property" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:domain ;
+    owl:annotatedSource :serialNumber ;
+    owl:annotatedTarget :Pump ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 328 ;
+    lxo:charStart 282 ;
+    lxo:exactQuote "Each pump has a serial number recorded as text" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "data_property" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Turbine ;
+    owl:annotatedTarget :RotatingEquipment ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 141 ;
+    lxo:charStart 83 ;
+    lxo:exactQuote "Rotating equipment such as pumps, compressors and turbines" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "subsumption" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdf:type ;
+    owl:annotatedSource :P-101 ;
+    owl:annotatedTarget :CentrifugalPump ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 413 ;
+    lxo:charStart 408 ;
+    lxo:exactQuote "P-101" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "individual" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Pump ;
+    owl:annotatedTarget _:N0bf8c62afcad4aca9d9e6dd3140b5d19 ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 280 ;
+    lxo:charStart 239 ;
+    lxo:exactQuote "Every pump must have exactly one impeller" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "axiom" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:domain ;
+    owl:annotatedSource :requires ;
+    owl:annotatedTarget :Turbine ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_fuzzy" ;
+    lxo:charEnd 171 ;
+    lxo:charStart 133 ;
+    lxo:exactQuote "turbines requires condition monitoring" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "object_property" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :SlurryPump ;
+    owl:annotatedTarget :CentrifugalPump ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_fuzzy" ;
+    lxo:charEnd 237 ;
+    lxo:charStart 195 ;
+    lxo:exactQuote "slurry pumps are types of centrifugal pump" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "subsumption" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :CentrifugalPump ;
+    owl:annotatedTarget :RotodynamicPump ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 40 ;
+    lxo:charStart 0 ;
+    lxo:exactQuote "A centrifugal pump is a rotodynamic pump" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "subsumption" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :BoilerFeedPump ;
+    owl:annotatedTarget :CentrifugalPump ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 237 ;
+    lxo:charStart 173 ;
+    lxo:exactQuote "Boiler feed pumps and slurry pumps are types of centrifugal pump" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "subsumption" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Pump ;
+    owl:annotatedTarget :RotatingEquipment ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_fuzzy" ;
+    lxo:charEnd 115 ;
+    lxo:charStart 83 ;
+    lxo:exactQuote "Rotating equipment such as pumps" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "subsumption" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty owl:disjointWith ;
+    owl:annotatedSource :Pump ;
+    owl:annotatedTarget :Valve ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 406 ;
+    lxo:charStart 388 ;
+    lxo:exactQuote "No pump is a valve" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "axiom" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Compressor ;
+    owl:annotatedTarget :RotatingEquipment ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_fuzzy" ;
+    lxo:charEnd 128 ;
+    lxo:charStart 83 ;
+    lxo:exactQuote "Rotating equipment such as pumps, compressors" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "subsumption" .
+
+[] a owl:Axiom ;
+    owl:annotatedProperty rdfs:range ;
+    owl:annotatedSource :serialNumber ;
+    owl:annotatedTarget xsd:string ;
+    prov:wasQuotedFrom <https://example.org/onto/source/maintenance-notes> ;
+    lxo:alignment "match_exact" ;
+    lxo:charEnd 328 ;
+    lxo:charStart 282 ;
+    lxo:exactQuote "Each pump has a serial number recorded as text" ;
+    lxo:extractedBy "simulated-ontology-extractor" ;
+    lxo:extractionClass "data_property" .
+
+_:N0bf8c62afcad4aca9d9e6dd3140b5d19 a owl:Restriction ;
+    owl:onClass :Impeller ;
+    owl:onProperty :hasImpeller ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger .
+

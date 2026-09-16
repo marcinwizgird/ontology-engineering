@@ -1,0 +1,10 @@
+%% Internal Block Diagram — OntologyAgentSystem, generated from agent_architecture.sysml
+flowchart LR
+    reasoner["<b>reasoner</b><br/><i>«LanguageModel»</i>"]
+    loop["<b>loop</b><br/><i>«AgentLoop»</i>"]
+    toolbelt["<b>toolbelt</b><br/><i>«ToolBelt»</i>"]
+    retriever["<b>retriever</b><br/><i>«GraphRagRetriever»</i>"]
+    store["<b>store</b><br/><i>«GraphStore»</i>"]
+    embedder["<b>embedder</b><br/><i>«FittedEmbedder»</i>"]
+    question(["question<br/><i>«QuestionPort»</i>"])
+    answer(["answer<br/><i>«GroundedAnswerPort»</i>"])

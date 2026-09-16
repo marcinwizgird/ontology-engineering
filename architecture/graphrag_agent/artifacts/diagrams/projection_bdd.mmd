@@ -1,0 +1,107 @@
+%% Block Definition Diagram — generated from ontology_projection.sysml
+%% Regenerate: python architecture/graphrag_agent/build_diagrams.py
+classDiagram
+    direction TB
+    class Ontology {
+        iri : String
+    }
+    class NamedClass {
+        iri : String
+        label : String
+        definition : String
+        altLabels : String
+        declared : Boolean
+    }
+    class ObjectProperty {
+        iri : String
+        label : String
+    }
+    class Axiom {
+        <<abstract>>
+    }
+    class SubClassOfAxiom
+    class RestrictionAxiom {
+        quantifier : QuantifierKind
+        cardinality : Integer
+        origin : AxiomOrigin
+    }
+    class OntologyModule {
+        iri : String
+        name : String
+        path : String
+    }
+    class PropertyGraph {
+        graphName : String
+    }
+    class ClassNode {
+        iri : String
+        name : String
+        shortName : String
+        definition : String
+        altLabels : String
+        external : Boolean
+    }
+    class ModuleNode {
+        iri : String
+        name : String
+        path : String
+    }
+    class GraphEdge {
+        relType : String
+        kind : EdgeKind
+        via : String
+        quantifier : String
+    }
+    class GraphIndex {
+        label : String
+        fields : String
+        indexKind : IndexKind
+    }
+    class ProjectionFunction
+    class ExtractionStrategy {
+        <<abstract>>
+    }
+    class SparqlExtraction
+    class FileExtraction
+    class TransformationStrategy {
+        <<abstract>>
+    }
+    class EmbeddingStrategy {
+        <<abstract>>
+        dimension : Integer
+        fitted : Boolean
+    }
+    class LoadingStrategy {
+        <<abstract>>
+    }
+    class ExtractionRecords
+    class IntermediateRepresentation
+    class ConceptProfile {
+        text : String
+    }
+    class EmbeddingVector {
+        values : Real
+    }
+    Ontology *-- NamedClass : namedClasses
+    Ontology *-- ObjectProperty : properties
+    Ontology *-- Axiom : axioms
+    Ontology *-- OntologyModule : modules
+    ObjectProperty *-- NamedClass : domain
+    ObjectProperty *-- NamedClass : range
+    Axiom <|-- SubClassOfAxiom
+    SubClassOfAxiom *-- NamedClass : sub
+    SubClassOfAxiom *-- NamedClass : super
+    Axiom <|-- RestrictionAxiom
+    RestrictionAxiom *-- ObjectProperty : onProperty
+    RestrictionAxiom *-- NamedClass : filler
+    PropertyGraph *-- ClassNode : classNodes
+    PropertyGraph *-- ModuleNode : moduleNodes
+    PropertyGraph *-- GraphEdge : edges
+    PropertyGraph *-- GraphIndex : indexes
+    GraphEdge *-- ClassNode : source
+    GraphEdge *-- ClassNode : target
+    ProjectionFunction *-- TransformationStrategy : transformation
+    ProjectionFunction *-- EmbeddingStrategy : embedding
+    ProjectionFunction *-- LoadingStrategy : loading
+    ExtractionStrategy <|-- SparqlExtraction
+    ExtractionStrategy <|-- FileExtraction

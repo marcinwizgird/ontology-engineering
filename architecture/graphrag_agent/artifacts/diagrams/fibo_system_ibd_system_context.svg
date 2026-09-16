@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1488" height="286" viewBox="0 0 1488 286" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<defs><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5a6b82"/></marker><marker id="arrow-closed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6fa5"/></marker><marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9a5ea8"/></marker><marker id="arrow-verify" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5545f"/></marker><marker id="arrow-satisfy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c07a34"/></marker><marker id="arrow-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4f9d69"/></marker><marker id="diamond" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse"><path d="M 0 5 L 6 0 L 12 5 L 6 10 z" fill="#4a6fa5"/></marker><marker id="triangle" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M 0 0 L 12 6 L 0 12 z" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.4"/></marker></defs>
+<rect width="1488" height="286" fill="#ffffff"/>
+<text x="34" y="38" font-size="19" font-weight="650" fill="#1d2430">SystemContext — Internal Block Diagram</text>
+<text x="34" y="60" font-size="12" fill="#6b7686">7 parts and ports · 0 connections</text>
+<rect x="481.4" y="86.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="556.4" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«OntologyEngineer»</text>
+<text x="556.4" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">engineer</text>
+<rect x="870.6" y="86.0" width="150.0" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="945.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«FiboRepository»</text>
+<text x="945.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">fibo</text>
+<line x1="878.6" y1="131.0" x2="1012.6" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="881.6" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">releasePath: String</text>
+<text x="881.6" y="161.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">fileCount: Integer</text>
+<rect x="264.1" y="86.0" width="183.3" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="355.8" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«CommonsRegistry»</text>
+<text x="355.8" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">commons</text>
+<line x1="272.1" y1="131.0" x2="439.4" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="275.1" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">reachable: Boolean = false</text>
+<rect x="1054.6" y="86.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1129.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«FusekiDataset»</text>
+<text x="1129.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">fuseki</text>
+<rect x="665.4" y="86.0" width="171.2" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="751.0" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«FalkorDbInstance»</text>
+<text x="751.0" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">falkor</text>
+<line x1="673.4" y1="131.0" x2="828.6" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="676.4" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">host: String = localhost</text>
+<text x="676.4" y="161.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">port: Integer = 6379</text>
+<text x="676.4" y="176.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">graphName: String = fibo</text>
+<rect x="80.1" y="86.0" width="150.0" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="155.1" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«ArtifactStore»</text>
+<text x="155.1" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">artifacts</text>
+<line x1="88.1" y1="131.0" x2="222.1" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="91.1" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">path: String</text>
+<rect x="1238.6" y="86.0" width="181.2" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1329.2" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«FiboProjectionSystemDef»</text>
+<text x="1329.2" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">system</text>
+<rect x="34" y="254.0" width="15" height="12" rx="3" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.2"/>
+<text x="55" y="264.0" font-size="11" fill="#4a5566">part</text>
+<rect x="88.8" y="254.0" width="15" height="12" rx="3" fill="#fffdf0" stroke="#b09a3a" stroke-width="1.2"/>
+<text x="109.8" y="264.0" font-size="11" fill="#4a5566">port</text>
+</svg>

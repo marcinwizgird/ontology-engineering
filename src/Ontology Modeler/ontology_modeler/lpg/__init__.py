@@ -10,14 +10,20 @@ The Redis "schema pruning cache" from Section 6 of the spec is intentionally not
 """
 
 from .extract import TboxExtractor, ClassRecord, TaxonomyEdge, PropertyEdge
+from .rdf_source import (RdfFileExtractor, FileClassRecord, ModuleRecord,
+                         RestrictionEdge, DefinedIn)
 from .transform import MetaGraphBuilder, concept_profile
-from .embed import Embedder, HashingEmbedder, SentenceTransformerEmbedder, get_embedder
+from .embed import (Embedder, HashingEmbedder, TfidfSvdEmbedder,
+                    SentenceTransformerEmbedder, get_embedder,
+                    save_embedder, load_embedder)
 from .load import FalkorDBExporter
 from .converter import LpgConverter
 
 __all__ = [
     "TboxExtractor", "ClassRecord", "TaxonomyEdge", "PropertyEdge",
+    "RdfFileExtractor", "FileClassRecord", "ModuleRecord", "RestrictionEdge", "DefinedIn",
     "MetaGraphBuilder", "concept_profile",
-    "Embedder", "HashingEmbedder", "SentenceTransformerEmbedder", "get_embedder",
+    "Embedder", "HashingEmbedder", "TfidfSvdEmbedder",
+    "SentenceTransformerEmbedder", "get_embedder", "save_embedder", "load_embedder",
     "FalkorDBExporter", "LpgConverter",
 ]

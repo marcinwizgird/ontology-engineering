@@ -1,0 +1,82 @@
+%% Block Definition Diagram — generated from agent_architecture.sysml
+%% Regenerate: python architecture/graphrag_agent/build_diagrams.py
+classDiagram
+    direction TB
+    class OntologyAgentSystem
+    class LanguageModel {
+        modelId : String
+        mayAssertFacts : Boolean
+    }
+    class AgentLoop {
+        maxIterations : Integer
+    }
+    class ToolBelt
+    class RetrievalTool {
+        <<abstract>>
+        readOnly : Boolean
+        carriesIri : Boolean
+    }
+    class OntologyOverviewTool
+    class SearchConceptsTool
+    class GetConceptTool
+    class GetNeighbourhoodTool
+    class GetAncestorsTool
+    class FindPathTool
+    class QueryGraphTool {
+        guardEnforced : Boolean
+    }
+    class GraphRagRetriever
+    class GraphStore
+    class VectorIndex {
+        label : String
+        field : String
+        dimension : Integer
+        similarity : String
+    }
+    class FulltextIndex {
+        label : String
+        fields : String
+    }
+    class FittedEmbedder {
+        artifactPath : String
+        dimension : Integer
+    }
+    class SchemaSummary
+    class Anchor {
+        iri : String
+        name : String
+        score : Real
+        foundBy : AnchorSource
+    }
+    class EvidenceBundle
+    class EvidenceRecord {
+        sourceIri : String
+        tool : String
+        content : String
+    }
+    class GroundedAnswer {
+        prose : String
+        citations : String
+    }
+    OntologyAgentSystem *-- LanguageModel : reasoner
+    OntologyAgentSystem *-- AgentLoop : loop
+    OntologyAgentSystem *-- ToolBelt : toolbelt
+    OntologyAgentSystem *-- GraphRagRetriever : retriever
+    OntologyAgentSystem *-- GraphStore : store
+    OntologyAgentSystem *-- FittedEmbedder : embedder
+    ToolBelt *-- OntologyOverviewTool : overview
+    ToolBelt *-- SearchConceptsTool : search
+    ToolBelt *-- GetConceptTool : concept
+    ToolBelt *-- GetNeighbourhoodTool : neighbourhood
+    ToolBelt *-- GetAncestorsTool : ancestors
+    ToolBelt *-- FindPathTool : path
+    ToolBelt *-- QueryGraphTool : cypher
+    RetrievalTool <|-- OntologyOverviewTool
+    RetrievalTool <|-- SearchConceptsTool
+    RetrievalTool <|-- GetConceptTool
+    RetrievalTool <|-- GetNeighbourhoodTool
+    RetrievalTool <|-- GetAncestorsTool
+    RetrievalTool <|-- FindPathTool
+    RetrievalTool <|-- QueryGraphTool
+    GraphStore *-- VectorIndex : vectorIndex
+    GraphStore *-- FulltextIndex : fulltextIndex

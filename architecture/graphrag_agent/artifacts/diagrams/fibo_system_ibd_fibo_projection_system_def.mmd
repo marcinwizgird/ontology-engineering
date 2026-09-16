@@ -1,0 +1,26 @@
+%% Internal Block Diagram — FiboProjectionSystemDef, generated from fibo_projection_system.sysml
+flowchart LR
+    controller["<b>controller</b><br/><i>«ProjectionController»</i>"]
+    adapter["<b>adapter</b><br/><i>«SourceAdapter»</i>"]
+    reader["<b>reader</b><br/><i>«TboxReader»</i>"]
+    unfolder["<b>unfolder</b><br/><i>«AxiomUnfolder»</i>"]
+    builder["<b>builder</b><br/><i>«MetaGraphBuilderComponent»</i>"]
+    composer["<b>composer</b><br/><i>«ProfileComposer»</i>"]
+    encoder["<b>encoder</b><br/><i>«VectorEncoder»</i>"]
+    loader["<b>loader</b><br/><i>«GraphLoader»</i>"]
+    indexer["<b>indexer</b><br/><i>«IndexManager»</i>"]
+    artifactMgr["<b>artifactMgr</b><br/><i>«EncoderArtifactManager»</i>"]
+    report(["report<br/><i>«ReportPort»</i>"])
+    toSource(["toSource<br/><i>«RdfFilePort»</i>"])
+    toStore(["toStore<br/><i>«CypherPort»</i>"])
+    toArtifacts(["toArtifacts<br/><i>«ArtifactPort»</i>"])
+    adapter --> reader
+    reader --> builder
+    reader --> unfolder
+    unfolder --> builder
+    builder --> composer
+    composer --> encoder
+    builder --> loader
+    encoder --> loader
+    loader --> indexer
+    encoder --> artifactMgr

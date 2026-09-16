@@ -1,0 +1,61 @@
+%% Companion view of models/agent_architecture.sysml -- action def AnswerQuestion.
+sequenceDiagram
+    autonumber
+    actor U as Analyst
+    participant A as AgentLoop
+    participant T as ToolBelt
+    participant R as GraphRagRetriever
+    participant E as FittedEmbedder
+    participant F as FalkorDB
+
+    U->>A: "What is a demand deposit account?"
+
+    rect rgb(244, 240, 250)
+    Note over A,F: orient — once per session
+    A->>T: ontology_overview()
+    T->>R: schema_summary()
+    R->>F: CALL db.relationshipTypes() + typed counts
+    Note right of F: 906 types — an untyped ()-[r]->()<br/>scan times out, so count per type
+    F-->>R: labels, counts, top types
+    R-->>A: schema + "do not assume a type exists"
+    end
+
+    rect rgb(238, 250, 241)
+    Note over A,F: anchor — hybrid, fused by reciprocal rank (k=60)
+    A->>T: search_concepts("demand deposit account")
+    T->>R: anchor(query, k=8)
+    R->>E: encode(query)
+    E-->>R: 256-d vector (same basis as the index)
+    par vector
+        R->>F: db.idx.vector.queryNodes(:Class, embedding, 16)
+        F-->>R: ranked by cosine
+    and full-text
+        R->>F: db.idx.fulltext.queryNodes(:Class, terms)
+        F-->>R: ranked by BM25
+    end
+    R-->>A: candidates, each {iri, name, found_by}
+    Note right of R: found_by = "both" is the strong signal:<br/>semantic and lexical agree
+    end
+
+    rect rgb(253, 244, 236)
+    Note over A,F: gather — the citable records
+    A->>T: get_concept("demand deposit account")
+    T->>R: concept_card(term)
+    R->>F: resolve → node props → super/sub → property edges
+    F-->>R: definition, "DDA", module, relations
+    R-->>A: ConceptCard (IRI on every record)
+    opt question spans concepts
+        A->>T: get_ancestors / find_path / get_neighbourhood
+        T->>R: traversal
+        R->>F: typed MATCH
+        F-->>A: triples, each with source_iri and target_iri
+    end
+    end
+
+    rect rgb(251, 238, 240)
+    Note over A,U: compose — under the grounding rules
+    A->>A: every claim ← an evidence record?<br/>every class cited with its IRI?<br/>anything missing stated as missing?
+    A-->>U: answer + IRIs
+    end
+
+    Note over U,F: trace() returns the tool calls beside the answer,<br/>so grounding is measurable rather than asserted.

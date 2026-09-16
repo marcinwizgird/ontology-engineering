@@ -1,0 +1,63 @@
+%% Companion view of models/agent_architecture.sysml -- part def OntologyAgentSystem.
+%% The dashed line is the trust boundary: below it, evidence; above it, language.
+flowchart TB
+    Q(["QuestionPort<br/>natural-language question"])
+
+    subgraph LANG["Language side — may plan and write, may NOT assert facts"]
+        direction TB
+        LM["<b>LanguageModel</b><br/>claude-sonnet-5<br/>mayAssertFacts = false"]
+        LOOP["<b>AgentLoop</b><br/>langchain create_agent<br/>plan → call → observe → answer<br/>maxIterations = 12"]
+        LM <--> LOOP
+    end
+
+    subgraph BELT["ToolBelt — every result carries its IRI"]
+        direction TB
+        T0["<b>ontology_overview</b><br/>labels, counts, 906 rel types<br/><i>mandatory first call</i>"]
+        T1["<b>search_concepts</b><br/>hybrid anchor"]
+        T2["<b>get_concept</b><br/>the citable record"]
+        T3["<b>get_ancestors</b> · <b>find_path</b><br/><b>get_neighbourhood</b>"]
+        T4["<b>query_graph</b><br/>read-only Cypher<br/><i>guarded, 15s timeout</i>"]
+    end
+
+    subgraph EVID["Evidence side — the only source of fact"]
+        direction TB
+        R["<b>GraphRagRetriever</b><br/>graphrag/retriever.py"]
+        EMB["<b>FittedEmbedder</b><br/>artifacts/fibo.embedder.pkl<br/><i>the same object that built the index</i>"]
+        subgraph STORE["GraphStore · FalkorDB"]
+            direction LR
+            G["(:Class) 3,258<br/>(:Module) 299<br/>10,498 edges"]
+            VI["VectorIndex<br/>256-d cosine HNSW"]
+            FI["FulltextIndex<br/>name · definition · alt_text"]
+        end
+        R --> EMB
+        R --> STORE
+    end
+
+    A(["GroundedAnswerPort<br/>prose + IRI citations"])
+
+    Q --> LOOP
+    LOOP --> BELT
+    BELT --> R
+    R -. "EvidenceBundle<br/>records, each with sourceIri" .-> LOOP
+    LOOP --> A
+
+    BOUND["· · · · ·  trust boundary  · · · · ·<br/>nothing reaches the answer except through the retriever"]
+    BELT --- BOUND
+    BOUND --- EVID
+
+    subgraph GRD["Grounding constraints"]
+        direction LR
+        C1["<b>NoUngroundedClaim</b><br/>every claim ← an EvidenceRecord"]
+        C2["<b>CitationCoverage</b><br/>classesCited == classesMentioned"]
+        C3["<b>ExplicitAbsence</b><br/>a miss is reported as a miss"]
+        C4["<b>ReadOnlyBoundary</b><br/>enforced in code, not in the prompt"]
+        C5["<b>AnchorRecall</b><br/>recall@k ≥ 0.90 — the system's ceiling"]
+    end
+    A -.checked by.-> GRD
+
+    style LANG fill:#fdf4ec,stroke:#c07a34
+    style BELT fill:#f4f0fa,stroke:#7a5ea8
+    style EVID fill:#eefaf1,stroke:#4f9d69
+    style STORE fill:#e3f4e9,stroke:#4f9d69
+    style GRD fill:#fbeef0,stroke:#b5545f
+    style BOUND fill:#ffffff,stroke:#999,stroke-dasharray: 5 5

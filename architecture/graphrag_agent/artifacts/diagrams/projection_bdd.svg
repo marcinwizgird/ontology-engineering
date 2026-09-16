@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1564" height="1380" viewBox="0 0 1564 1380" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<defs><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5a6b82"/></marker><marker id="arrow-closed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6fa5"/></marker><marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9a5ea8"/></marker><marker id="arrow-verify" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5545f"/></marker><marker id="arrow-satisfy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c07a34"/></marker><marker id="arrow-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4f9d69"/></marker><marker id="diamond" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse"><path d="M 0 5 L 6 0 L 12 5 L 6 10 z" fill="#4a6fa5"/></marker><marker id="triangle" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M 0 0 L 12 6 L 0 12 z" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.4"/></marker></defs>
+<rect width="1564" height="1380" fill="#ffffff"/>
+<text x="34" y="38" font-size="19" font-weight="650" fill="#1d2430">OntologyProjection — Block Definition Diagram</text>
+<text x="34" y="60" font-size="12" fill="#6b7686">23 part definitions · 4 specialisations · 19 compositions</text>
+<path d="M 1153.9 167.0 C 1153.9 658.5 750.0 658.5 750.0 1150.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="913.3" y="666.5" width="77.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="951.9" y="677.5" font-size="10" text-anchor="middle" fill="#5a6b82">namedClasses</text>
+<path d="M 1153.9 167.0 C 1153.9 571.5 750.0 571.5 750.0 976.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="918.9" y="562.5" width="66.0" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="951.9" y="573.5" font-size="10" text-anchor="middle" fill="#5a6b82">properties</text>
+<path d="M 1153.9 167.0 C 1153.9 285.5 1050.2 285.5 1050.2 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1080.2" y="276.5" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1102.0" y="287.5" font-size="10" text-anchor="middle" fill="#5a6b82">axioms</text>
+<path d="M 1153.9 167.0 C 1153.9 285.5 1234.2 285.5 1234.2 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1169.4" y="276.5" width="49.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1194.0" y="287.5" font-size="10" text-anchor="middle" fill="#5a6b82">modules</text>
+<path d="M 750.0 1072.0 C 750.0 1111.0 750.0 1111.0 750.0 1150.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="728.2" y="1102.0" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="750.0" y="1113.0" font-size="10" text-anchor="middle" fill="#5a6b82">domain</text>
+<path d="M 750.0 1072.0 C 750.0 1111.0 750.0 1111.0 750.0 1150.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="731.0" y="1102.0" width="38.0" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="750.0" y="1113.0" font-size="10" text-anchor="middle" fill="#5a6b82">range</text>
+<path d="M 1050.2 460.0 C 1050.2 601.0 958.2 601.0 958.2 742.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#triangle)"/>
+<rect x="968.4" y="592.0" width="71.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1004.2" y="603.0" font-size="10" text-anchor="middle" fill="#5a6b82">specialises</text>
+<path d="M 958.2 798.0 C 958.2 974.0 750.0 974.0 750.0 1150.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="840.7" y="965.0" width="26.8" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="854.1" y="976.0" font-size="10" text-anchor="middle" fill="#5a6b82">sub</text>
+<path d="M 958.2 798.0 C 958.2 974.0 750.0 974.0 750.0 1150.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="835.1" y="965.0" width="38.0" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="854.1" y="976.0" font-size="10" text-anchor="middle" fill="#5a6b82">super</text>
+<path d="M 1050.2 460.0 C 1050.2 601.0 757.6 601.0 757.6 742.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#triangle)"/>
+<rect x="868.1" y="592.0" width="71.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="903.9" y="603.0" font-size="10" text-anchor="middle" fill="#5a6b82">specialises</text>
+<path d="M 757.6 853.0 C 757.6 914.5 750.0 914.5 750.0 976.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="720.8" y="905.5" width="66.0" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="753.8" y="916.5" font-size="10" text-anchor="middle" fill="#5a6b82">onProperty</text>
+<path d="M 757.6 853.0 C 757.6 1001.5 750.0 1001.5 750.0 1150.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="732.0" y="960.5" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="753.8" y="971.5" font-size="10" text-anchor="middle" fill="#5a6b82">filler</text>
+<path d="M 750.0 326.0 C 750.0 534.0 549.4 534.0 549.4 742.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="616.7" y="525.0" width="66.0" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="649.7" y="536.0" font-size="10" text-anchor="middle" fill="#5a6b82">classNodes</text>
+<path d="M 750.0 326.0 C 750.0 365.0 866.2 365.0 866.2 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="772.3" y="356.0" width="71.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="808.1" y="367.0" font-size="10" text-anchor="middle" fill="#5a6b82">moduleNodes</text>
+<path d="M 750.0 326.0 C 750.0 365.0 487.6 365.0 487.6 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="599.8" y="356.0" width="38.0" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="618.8" y="367.0" font-size="10" text-anchor="middle" fill="#5a6b82">edges</text>
+<path d="M 750.0 326.0 C 750.0 365.0 682.2 365.0 682.2 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="691.5" y="356.0" width="49.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="716.1" y="367.0" font-size="10" text-anchor="middle" fill="#5a6b82">indexes</text>
+<path d="M 487.6 530.0 C 487.6 636.0 549.4 636.0 549.4 742.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="496.7" y="627.0" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="518.5" y="638.0" font-size="10" text-anchor="middle" fill="#5a6b82">source</text>
+<path d="M 487.6 530.0 C 487.6 636.0 549.4 636.0 549.4 742.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="496.7" y="627.0" width="43.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="518.5" y="638.0" font-size="10" text-anchor="middle" fill="#5a6b82">target</text>
+<path d="M 1343.1 142.0 C 1343.1 375.0 842.0 375.0 842.0 608.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1048.4" y="366.0" width="88.4" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1092.6" y="377.0" font-size="10" text-anchor="middle" fill="#5a6b82">transformation</text>
+<path d="M 1343.1 142.0 C 1343.1 273.0 1419.8 273.0 1419.8 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="1351.3" y="264.0" width="60.4" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="1381.5" y="275.0" font-size="10" text-anchor="middle" fill="#5a6b82">embedding</text>
+<path d="M 1343.1 142.0 C 1343.1 375.0 638.2 375.0 638.2 608.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#diamond)"/>
+<rect x="966.1" y="366.0" width="49.2" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="990.7" y="377.0" font-size="10" text-anchor="middle" fill="#5a6b82">loading</text>
+<path d="M 712.1 142.0 C 712.1 273.0 293.0 273.0 293.0 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#triangle)"/>
+<rect x="466.8" y="264.0" width="71.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="502.6" y="275.0" font-size="10" text-anchor="middle" fill="#5a6b82">specialises</text>
+<path d="M 712.1 142.0 C 712.1 273.0 109.0 273.0 109.0 404.0" fill="none" stroke="#5a6b82" stroke-width="1.5" marker-end="url(#triangle)"/>
+<rect x="374.8" y="264.0" width="71.6" height="15" rx="7" fill="#ffffff" fill-opacity="0.92"/>
+<text x="410.6" y="275.0" font-size="10" text-anchor="middle" fill="#5a6b82">specialises</text>
+<rect x="1078.9" y="86.0" width="150.0" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1153.9" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1153.9" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">Ontology</text>
+<line x1="1086.9" y1="131.0" x2="1220.9" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="1089.9" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">iri: String</text>
+<rect x="664.4" y="1150.0" width="171.2" height="141.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="750.0" y="1170.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="750.0" y="1187.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">NamedClass</text>
+<line x1="672.4" y1="1195.0" x2="827.6" y2="1195.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="675.4" y="1210.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">iri: String</text>
+<text x="675.4" y="1225.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">label: String[0..1]</text>
+<text x="675.4" y="1240.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">definition: String[0..1]</text>
+<text x="675.4" y="1255.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">altLabels: String[0..*]</text>
+<text x="675.4" y="1270.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">declared: Boolean</text>
+<rect x="675.0" y="976.0" width="150.0" height="96.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="750.0" y="996.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="750.0" y="1013.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ObjectProperty</text>
+<line x1="683.0" y1="1021.0" x2="817.0" y2="1021.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="686.0" y="1036.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">iri: String</text>
+<text x="686.0" y="1051.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">label: String[0..1]</text>
+<rect x="975.2" y="404.0" width="150.0" height="56.0" rx="8" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.4"/>
+<text x="1050.2" y="424.0" font-size="10" text-anchor="middle" fill="#8fa3bf" font-style="italic">«abstract part def»</text>
+<text x="1050.2" y="441.0" font-size="12.5" font-weight="500" text-anchor="middle" fill="#41506b" font-style="italic">Axiom</text>
+<rect x="883.2" y="742.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="958.2" y="762.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="958.2" y="779.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">SubClassOfAxiom</text>
+<rect x="665.9" y="742.0" width="183.3" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="757.6" y="762.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="757.6" y="779.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">RestrictionAxiom</text>
+<line x1="673.9" y1="787.0" x2="841.2" y2="787.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="676.9" y="802.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">quantifier: QuantifierKind</text>
+<text x="676.9" y="817.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">cardinality: Integer[0..1]</text>
+<text x="676.9" y="832.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">origin: AxiomOrigin</text>
+<rect x="1159.2" y="404.0" width="150.0" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1234.2" y="424.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1234.2" y="441.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">OntologyModule</text>
+<line x1="1167.2" y1="449.0" x2="1301.2" y2="449.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="1170.2" y="464.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">iri: String</text>
+<text x="1170.2" y="479.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">name: String</text>
+<text x="1170.2" y="494.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">path: String[0..1]</text>
+<rect x="675.0" y="245.0" width="150.0" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="750.0" y="265.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="750.0" y="282.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">PropertyGraph</text>
+<line x1="683.0" y1="290.0" x2="817.0" y2="290.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="686.0" y="305.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">graphName: String</text>
+<rect x="466.8" y="742.0" width="165.2" height="156.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="549.4" y="762.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="549.4" y="779.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ClassNode</text>
+<line x1="474.8" y1="787.0" x2="623.9" y2="787.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="477.8" y="802.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">iri: String</text>
+<text x="477.8" y="817.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">name: String</text>
+<text x="477.8" y="832.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">shortName: String</text>
+<text x="477.8" y="847.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">definition: String</text>
+<text x="477.8" y="862.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">altLabels: String[0..*]</text>
+<text x="477.8" y="877.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">… 3 more</text>
+<rect x="791.2" y="404.0" width="150.0" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="866.2" y="424.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="866.2" y="441.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ModuleNode</text>
+<line x1="799.2" y1="449.0" x2="933.2" y2="449.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="802.2" y="464.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">iri: String</text>
+<text x="802.2" y="479.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">name: String</text>
+<text x="802.2" y="494.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">path: String[0..1]</text>
+<rect x="402.0" y="404.0" width="171.2" height="126.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="487.6" y="424.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="487.6" y="441.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">GraphEdge</text>
+<line x1="410.0" y1="449.0" x2="565.2" y2="449.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="413.0" y="464.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">relType: String</text>
+<text x="413.0" y="479.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">kind: EdgeKind</text>
+<text x="413.0" y="494.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">via: String[0..1]</text>
+<text x="413.0" y="509.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">quantifier: String[0..1]</text>
+<rect x="607.2" y="404.0" width="150.0" height="111.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="682.2" y="424.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="682.2" y="441.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">GraphIndex</text>
+<line x1="615.2" y1="449.0" x2="749.2" y2="449.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="618.2" y="464.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">label: String</text>
+<text x="618.2" y="479.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">fields: String[1..*]</text>
+<text x="618.2" y="494.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">indexKind: IndexKind</text>
+<rect x="1262.9" y="86.0" width="160.5" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="1343.1" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="1343.1" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ProjectionFunction</text>
+<rect x="631.9" y="86.0" width="160.5" height="56.0" rx="8" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.4"/>
+<text x="712.1" y="106.0" font-size="10" text-anchor="middle" fill="#8fa3bf" font-style="italic">«abstract part def»</text>
+<text x="712.1" y="123.0" font-size="12.5" font-weight="500" text-anchor="middle" fill="#41506b" font-style="italic">ExtractionStrategy</text>
+<rect x="218.0" y="404.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="293.0" y="424.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="293.0" y="441.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">SparqlExtraction</text>
+<rect x="34.0" y="404.0" width="150.0" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="109.0" y="424.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="109.0" y="441.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">FileExtraction</text>
+<rect x="747.2" y="608.0" width="189.5" height="56.0" rx="8" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.4"/>
+<text x="842.0" y="628.0" font-size="10" text-anchor="middle" fill="#8fa3bf" font-style="italic">«abstract part def»</text>
+<text x="842.0" y="645.0" font-size="12.5" font-weight="500" text-anchor="middle" fill="#41506b" font-style="italic">TransformationStrategy</text>
+<rect x="1343.2" y="404.0" width="153.2" height="96.0" rx="8" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.4"/>
+<text x="1419.8" y="424.0" font-size="10" text-anchor="middle" fill="#8fa3bf" font-style="italic">«abstract part def»</text>
+<text x="1419.8" y="441.0" font-size="12.5" font-weight="500" text-anchor="middle" fill="#41506b" font-style="italic">EmbeddingStrategy</text>
+<line x1="1351.2" y1="449.0" x2="1488.5" y2="449.0" stroke="#8fa3bf" stroke-opacity="0.35"/>
+<text x="1354.2" y="464.0" font-size="10.5" fill="#41506b" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">dimension: Integer</text>
+<text x="1354.2" y="479.0" font-size="10.5" fill="#41506b" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">fitted: Boolean</text>
+<rect x="563.2" y="608.0" width="150.0" height="56.0" rx="8" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.4"/>
+<text x="638.2" y="628.0" font-size="10" text-anchor="middle" fill="#8fa3bf" font-style="italic">«abstract part def»</text>
+<text x="638.2" y="645.0" font-size="12.5" font-weight="500" text-anchor="middle" fill="#41506b" font-style="italic">LoadingStrategy</text>
+<rect x="444.6" y="86.0" width="153.2" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="521.2" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="521.2" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ExtractionRecords</text>
+<rect x="826.4" y="86.0" width="218.5" height="56.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="935.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="935.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">IntermediateRepresentation</text>
+<rect x="76.6" y="86.0" width="150.0" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="151.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="151.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">ConceptProfile</text>
+<line x1="84.6" y1="131.0" x2="218.6" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="87.6" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">text: String</text>
+<rect x="260.6" y="86.0" width="150.0" height="81.0" rx="8" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.4"/>
+<text x="335.6" y="106.0" font-size="10" text-anchor="middle" fill="#4a6fa5" font-style="italic">«part def»</text>
+<text x="335.6" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1d3557">EmbeddingVector</text>
+<line x1="268.6" y1="131.0" x2="402.6" y2="131.0" stroke="#4a6fa5" stroke-opacity="0.35"/>
+<text x="271.6" y="146.0" font-size="10.5" fill="#1d3557" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">values: Real[1..*]</text>
+<rect x="34" y="1348.0" width="15" height="12" rx="3" fill="#eef3fb" stroke="#4a6fa5" stroke-width="1.2"/>
+<text x="55" y="1358.0" font-size="11" fill="#4a5566">block</text>
+<rect x="95.0" y="1348.0" width="15" height="12" rx="3" fill="#f5f7fa" stroke="#8fa3bf" stroke-width="1.2"/>
+<text x="116.0" y="1358.0" font-size="11" fill="#4a5566">abstract</text>
+<rect x="174.6" y="1348.0" width="15" height="12" rx="3" fill="#fdf4ec" stroke="#c07a34" stroke-width="1.2"/>
+<text x="195.6" y="1358.0" font-size="11" fill="#4a5566">requirement</text>
+</svg>

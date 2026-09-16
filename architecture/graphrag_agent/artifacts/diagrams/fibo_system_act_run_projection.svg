@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="946" height="1621" viewBox="0 0 946 1621" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<defs><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5a6b82"/></marker><marker id="arrow-closed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6fa5"/></marker><marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9a5ea8"/></marker><marker id="arrow-verify" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5545f"/></marker><marker id="arrow-satisfy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c07a34"/></marker><marker id="arrow-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#4f9d69"/></marker><marker id="diamond" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="11" markerHeight="9" orient="auto-start-reverse"><path d="M 0 5 L 6 0 L 12 5 L 6 10 z" fill="#4a6fa5"/></marker><marker id="triangle" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M 0 0 L 12 6 L 0 12 z" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.4"/></marker></defs>
+<rect width="946" height="1621" fill="#ffffff"/>
+<text x="34" y="38" font-size="19" font-weight="650" fill="#1d2430">RunProjection — Activity Diagram</text>
+<text x="34" y="60" font-size="12" fill="#6b7686">11 actions · 10 successions and flows</text>
+<path d="M 750.0 142.0 C 750.0 181.0 750.0 181.0 750.0 220.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 276.0 C 750.0 315.0 750.0 315.0 750.0 354.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 435.0 C 750.0 474.0 750.0 474.0 750.0 513.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 569.0 C 750.0 608.0 750.0 608.0 750.0 647.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 703.0 C 750.0 742.0 750.0 742.0 750.0 781.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 837.0 C 750.0 876.0 750.0 876.0 750.0 915.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 971.0 C 750.0 1010.0 750.0 1010.0 750.0 1049.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 1130.0 C 750.0 1169.0 750.0 1169.0 750.0 1208.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 1264.0 C 750.0 1303.0 750.0 1303.0 750.0 1342.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<path d="M 750.0 1398.0 C 750.0 1437.0 750.0 1437.0 750.0 1476.0" fill="none" stroke="#4f9d69" stroke-width="1.5" marker-end="url(#arrow-flow)"/>
+<rect x="675.0" y="86.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="106.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="123.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">parseSource</text>
+<rect x="675.0" y="220.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="240.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="257.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">readTbox</text>
+<rect x="622.0" y="354.0" width="255.9" height="81.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="374.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="391.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">stubExternals</text>
+<line x1="630.0" y1="399.0" x2="869.9" y2="399.0" stroke="#4f9d69" stroke-opacity="0.35"/>
+<text x="633.0" y="414.0" font-size="10.5" fill="#256341" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Materialise referenced-but-undeclared…</text>
+<rect x="669.8" y="513.0" width="160.5" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="533.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="550.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">unfoldRestrictions</text>
+<rect x="675.0" y="647.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="667.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="684.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">buildIr</text>
+<rect x="675.0" y="781.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="801.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="818.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">composeProfiles</text>
+<rect x="675.0" y="915.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="935.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="952.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">fitAndEncode</text>
+<rect x="622.0" y="1049.0" width="255.9" height="81.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="1069.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="1086.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">persistEncoder</text>
+<line x1="630.0" y1="1094.0" x2="869.9" y2="1094.0" stroke="#4f9d69" stroke-opacity="0.35"/>
+<text x="633.0" y="1109.0" font-size="10.5" fill="#256341" fill-opacity="0.85" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Before load, so a load failure cannot…</text>
+<rect x="675.0" y="1208.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="1228.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="1245.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">loadGraph</text>
+<rect x="675.0" y="1342.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="1362.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="1379.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">declareIndexes</text>
+<rect x="675.0" y="1476.0" width="150.0" height="56.0" rx="8" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.4"/>
+<text x="750.0" y="1496.0" font-size="10" text-anchor="middle" fill="#4f9d69" font-style="italic">«action»</text>
+<text x="750.0" y="1513.0" font-size="12.5" font-weight="600" text-anchor="middle" fill="#256341">verifyRun</text>
+<rect x="34" y="1589.0" width="15" height="12" rx="3" fill="#eefaf1" stroke="#4f9d69" stroke-width="1.2"/>
+<text x="55" y="1599.0" font-size="11" fill="#4a5566">action</text>
+</svg>

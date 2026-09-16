@@ -1,0 +1,26 @@
+%% Activity Diagram — RunProjection, generated from fibo_projection_system.sysml
+flowchart TB
+    START(( ))
+    parseSource["<b>parseSource</b>"]
+    readTbox["<b>readTbox</b>"]
+    stubExternals["<b>stubExternals</b><br/><i>Materialise referenced-but-undeclared…</i>"]
+    unfoldRestrictions["<b>unfoldRestrictions</b>"]
+    buildIr["<b>buildIr</b>"]
+    composeProfiles["<b>composeProfiles</b>"]
+    fitAndEncode["<b>fitAndEncode</b>"]
+    persistEncoder["<b>persistEncoder</b><br/><i>Before load, so a load failure cannot…</i>"]
+    loadGraph["<b>loadGraph</b>"]
+    declareIndexes["<b>declareIndexes</b>"]
+    verifyRun["<b>verifyRun</b>"]
+    START --> parseSource
+    parseSource --> readTbox
+    readTbox --> stubExternals
+    stubExternals --> unfoldRestrictions
+    unfoldRestrictions --> buildIr
+    buildIr --> composeProfiles
+    composeProfiles --> fitAndEncode
+    fitAndEncode --> persistEncoder
+    persistEncoder --> loadGraph
+    loadGraph --> declareIndexes
+    declareIndexes --> verifyRun
+    verifyRun --> STOP(((  )))

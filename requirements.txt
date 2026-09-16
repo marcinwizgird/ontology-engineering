@@ -1,11 +1,35 @@
-# Core runtime dependency (the workflow graph + executor)
-networkx>=3.0
+# --------------------------------------------------------------------------- #
+# Ontology Engineering course + bottom-up workflow
+#
+# Everything below runs the course OFFLINE: no API key, no Docker, no cost.
+# Live mode additionally needs ANTHROPIC_API_KEY (and, optionally, the Fuseki
+# stack in infra/fuseki).
+# --------------------------------------------------------------------------- #
 
-# Notebook visualisation
-matplotlib>=3.5
+# --- Ontology / RDF core ---------------------------------------------------- #
+rdflib>=7.0            # RDF graphs, Turtle/RDF-XML, SPARQL
+owlrl>=6.0             # pure-Python OWL 2 RL reasoner (entailment without Java)
+owlready2>=0.45        # Pythonic OWL authoring (Chapter 4)
 
-# Only needed to run / (re)generate the demo notebooks
+# --- Workflow + analysis ---------------------------------------------------- #
+networkx>=3.0          # the bottom-up workflow graph
+pandas>=2.0            # notebook tables
+matplotlib>=3.5        # notebook figures
+
+# --- Agents and optimisation ------------------------------------------------ #
+langchain>=1.0         # create_agent, tool abstractions
+langchain-core>=1.0
+langgraph>=1.0         # decomposed plan -> act -> critique pipelines
+langchain-anthropic>=1.0   # live mode: Claude
+dspy>=3.0              # programs, metrics, and GEPA
+requests>=2.28         # Fuseki HTTP client
+
+# --- Grounded extraction ---------------------------------------------------- #
+langextract>=1.6       # span-grounded LLM extraction (langextract_ontology/)
+anthropic>=0.96        # live mode for the Claude LangExtract provider
+
+# --- Notebooks -------------------------------------------------------------- #
 nbformat>=5.0
-jupyter
 nbconvert>=7.0
+jupyter
 ipykernel

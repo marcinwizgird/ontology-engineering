@@ -1,0 +1,12 @@
+%% Activity Diagram — AnswerQuestion, generated from agent_architecture.sysml
+flowchart TB
+    START(( ))
+    orient["<b>orient</b><br/><i>Overview once per session</i>"]
+    anchor["<b>anchor</b><br/><i>Hybrid: vector kNN and full-text, fus…</i>"]
+    gather["<b>gather</b><br/><i>Concept cards, ancestors, neighbourho…</i>"]
+    compose["<b>compose</b><br/><i>Prose from evidence, with IRIs attach…</i>"]
+    START --> orient
+    orient -.->|flow| anchor
+    anchor -.->|flow| gather
+    gather -.->|flow| compose
+    compose --> STOP(((  )))

@@ -1,0 +1,263 @@
+{
+  "document_id": "maintenance-notes",
+  "model": "simulated-ontology-extractor",
+  "summary": {
+    "model": "simulated-ontology-extractor",
+    "extractions": 22,
+    "grounded": 22,
+    "grounded_ratio": 1.0,
+    "classes": 11,
+    "subsumptions": 6,
+    "object_properties": 1,
+    "data_properties": 1,
+    "individuals": 1,
+    "axioms": 2
+  },
+  "items": [
+    {
+      "kind": "subsumption",
+      "quote": "A centrifugal pump is a rotodynamic pump",
+      "attributes": {
+        "subclass": "centrifugal pump",
+        "superclass": "rotodynamic pump",
+        "pattern": "copular definition"
+      },
+      "start": 0,
+      "end": 40,
+      "alignment": "match_exact"
+    },
+    {
+      "kind": "class",
+      "quote": "centrifugal pump",
+      "attributes": {
+        "label": "centrifugal pump"
+      },
+      "start": 2,
+      "end": 18,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "class",
+      "quote": "rotodynamic pump",
+      "attributes": {
+        "label": "rotodynamic pump"
+      },
+      "start": 24,
+      "end": 40,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "class",
+      "quote": "Rotating equipment",
+      "attributes": {
+        "label": "rotating equipment"
+      },
+      "start": 83,
+      "end": 101,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "subsumption",
+      "quote": "Rotating equipment such as pumps",
+      "attributes": {
+        "subclass": "pump",
+        "superclass": "rotating equipment",
+        "pattern": "such as"
+      },
+      "start": 83,
+      "end": 115,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "subsumption",
+      "quote": "Rotating equipment such as pumps, compressors",
+      "attributes": {
+        "subclass": "compressor",
+        "superclass": "rotating equipment",
+        "pattern": "such as"
+      },
+      "start": 83,
+      "end": 128,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "subsumption",
+      "quote": "Rotating equipment such as pumps, compressors and turbines",
+      "attributes": {
+        "subclass": "turbine",
+        "superclass": "rotating equipment",
+        "pattern": "such as"
+      },
+      "start": 83,
+      "end": 141,
+      "alignment": "match_exact"
+    },
+    {
+      "kind": "class",
+      "quote": "pumps",
+      "attributes": {
+        "label": "pump"
+      },
+      "start": 14,
+      "end": 18,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "class",
+      "quote": "compressors",
+      "attributes": {
+        "label": "compressor"
+      },
+      "start": 117,
+      "end": 128,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "class",
+      "quote": "turbines",
+      "attributes": {
+        "label": "turbine"
+      },
+      "start": 133,
+      "end": 141,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "object_property",
+      "quote": "turbines requires condition monitoring",
+      "attributes": {
+        "property": "requires",
+        "domain": "turbine",
+        "range": "condition monitoring"
+      },
+      "start": 133,
+      "end": 171,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "class",
+      "quote": "condition monitoring",
+      "attributes": {
+        "label": "condition monitoring"
+      },
+      "start": 151,
+      "end": 171,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "class",
+      "quote": "Boiler feed pumps",
+      "attributes": {
+        "label": "boiler feed pump"
+      },
+      "start": 173,
+      "end": 190,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "subsumption",
+      "quote": "Boiler feed pumps and slurry pumps are types of centrifugal pump",
+      "attributes": {
+        "subclass": "boiler feed pump",
+        "superclass": "centrifugal pump",
+        "pattern": "types of"
+      },
+      "start": 173,
+      "end": 237,
+      "alignment": "match_exact"
+    },
+    {
+      "kind": "class",
+      "quote": "slurry pumps",
+      "attributes": {
+        "label": "slurry pump"
+      },
+      "start": 195,
+      "end": 207,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "subsumption",
+      "quote": "slurry pumps are types of centrifugal pump",
+      "attributes": {
+        "subclass": "slurry pump",
+        "superclass": "centrifugal pump",
+        "pattern": "types of"
+      },
+      "start": 195,
+      "end": 237,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "axiom",
+      "quote": "Every pump must have exactly one impeller",
+      "attributes": {
+        "axiom_type": "cardinality",
+        "subject": "pump",
+        "property": "hasImpeller",
+        "filler": "impeller",
+        "cardinality": "1",
+        "expression": "pump SubClassOf hasImpeller exactly 1 impeller"
+      },
+      "start": 239,
+      "end": 280,
+      "alignment": "match_exact"
+    },
+    {
+      "kind": "class",
+      "quote": "impeller",
+      "attributes": {
+        "label": "impeller"
+      },
+      "start": 272,
+      "end": 280,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "data_property",
+      "quote": "Each pump has a serial number recorded as text",
+      "attributes": {
+        "property": "serialNumber",
+        "domain": "pump",
+        "datatype": "xsd:string"
+      },
+      "start": 282,
+      "end": 328,
+      "alignment": "match_exact"
+    },
+    {
+      "kind": "axiom",
+      "quote": "No pump is a valve",
+      "attributes": {
+        "axiom_type": "disjointness",
+        "subject": "pump",
+        "filler": "valve",
+        "expression": "pump DisjointWith valve"
+      },
+      "start": 388,
+      "end": 406,
+      "alignment": "match_exact"
+    },
+    {
+      "kind": "class",
+      "quote": "valve",
+      "attributes": {
+        "label": "valve"
+      },
+      "start": 401,
+      "end": 406,
+      "alignment": "match_fuzzy"
+    },
+    {
+      "kind": "individual",
+      "quote": "P-101",
+      "attributes": {
+        "label": "P-101",
+        "type": "centrifugal pump"
+      },
+      "start": 408,
+      "end": 413,
+      "alignment": "match_exact"
+    }
+  ]
+}

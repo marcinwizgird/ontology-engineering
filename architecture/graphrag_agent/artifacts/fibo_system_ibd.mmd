@@ -1,0 +1,63 @@
+%% Companion view of models/fibo_projection_system.sysml -- internal structure
+%% (part def FiboProjectionSystemDef) with allocation to implementation modules.
+flowchart TB
+    OPT(["ControlPort<br/>ProjectionOptions"])
+
+    CTRL["<b>ProjectionController</b><br/><code>lpg/converter.py · LpgConverter</code><br/><i>the only component that knows the stage order</i>"]
+
+    subgraph EXTRACT["Extraction — variation point (R7)"]
+        direction TB
+        ADPT["<b>SourceAdapter</b><br/><code>rdf_source.py · load()</code><br/>parses per file, keeps the file boundary<br/>299 parsed · 0 failed"]
+        RDR["<b>TboxReader</b><br/><code>rdf_source.py · classes/taxonomy/object_properties</code><br/>3,258 classes incl. 253 external stubs"]
+        UNF["<b>AxiomUnfolder</b> ⚑<br/><code>rdf_source.py · restrictions()</code><br/>blank-node class expressions → edges<br/>unions/intersections to bounded depth<br/><b>2,721 edges vs 560 domain/range</b>"]
+        ADPT --> RDR --> UNF
+    end
+
+    subgraph XFORM["Transformation"]
+        direction TB
+        IR["<b>MetaGraphBuilder</b><br/><code>transform.py</code><br/>NetworkX MultiDiGraph<br/>edge <code>kind</code> discriminator<br/><i>lets --dry-run count without a DB</i>"]
+        PRF["<b>ProfileComposer</b><br/><code>transform.py · concept_profile</code><br/>name · synonyms · definition ·<br/>superclasses · <b>relations</b> · module"]
+        IR --> PRF
+    end
+
+    subgraph ENC["Encoding — variation point"]
+        direction TB
+        VE["<b>VectorEncoder</b><br/><code>embed.py</code><br/>tfidf-svd (256d, fitted) ▪ hash ▪ sbert"]
+        AM["<b>EncoderArtifactManager</b><br/><code>embed.py · save/load_embedder</code><br/>artifacts/fibo.embedder.pkl"]
+        VE --> AM
+    end
+
+    subgraph LOADSG["Loading"]
+        direction TB
+        LD["<b>GraphLoader</b><br/><code>load.py · FalkorDBExporter</code><br/>MERGE only · UNWIND-batched<br/><code>via</code> + <code>quantifier</code> in the MERGE <i>pattern</i><br/>rel type re-validated ^[A-Z][A-Z0-9_]*$"]
+        IX["<b>IndexManager</b><br/><code>load.py · create_*_index</code><br/>VECTOR(256,cosine) · FULLTEXT ·<br/>RANGE(iri) · vecf32() required"]
+        LD --> IX
+    end
+
+    STORE[("FalkorDB · graph 'fibo'")]
+    REP(["ReportPort<br/>ProjectionReport"])
+
+    OPT --> CTRL
+    CTRL -.orchestrates.-> EXTRACT
+    CTRL -.orchestrates.-> XFORM
+    CTRL -.orchestrates.-> ENC
+    CTRL -.orchestrates.-> LOADSG
+
+    RDR -- "classes · taxonomy · modules" --> IR
+    UNF -- "restriction edges" --> IR
+    PRF -- "3,005 profiles" --> VE
+    VE -- "3,005 × 256-d vectors" --> LD
+    IR -- "IR" --> LD
+    IX --> STORE
+    CTRL --> REP
+
+    NOTE["<b>Ordering is load-bearing</b><br/>modules → classes → external stubs → restrictions.<br/>The loader MATCHes both endpoints, so a filler<br/>with no node is an edge that never lands (V1)."]
+    EXTRACT -.-> NOTE
+
+    style CTRL fill:#f4f0fa,stroke:#7a5ea8,stroke-width:2px
+    style UNF fill:#fdf0e3,stroke:#c07a34,stroke-width:2px
+    style EXTRACT fill:#eef3fb,stroke:#5b7fb5
+    style XFORM fill:#f7f2fb,stroke:#7a5ea8
+    style ENC fill:#fdf4ec,stroke:#c07a34
+    style LOADSG fill:#eefaf1,stroke:#4f9d69
+    style NOTE fill:#ffffff,stroke:#999,stroke-dasharray: 4 4

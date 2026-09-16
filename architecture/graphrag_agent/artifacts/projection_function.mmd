@@ -1,0 +1,49 @@
+%% Companion view of models/ontology_projection.sysml -- the action def Project.
+%% The .sysml file is the model; this is a rendering of its flow and its constraints.
+flowchart TB
+    subgraph SRC["Domain · Ontology (RDF/OWL TBox)"]
+        direction LR
+        S1["owl:Class<br/>3,258 in FIBO"]
+        S2["rdfs:subClassOf<br/>4,212"]
+        S3["owl:Restriction<br/>2,721 — anonymous"]
+        S4["owl:ObjectProperty<br/>560 with domain+range"]
+        S5["owl:Ontology<br/>299 modules"]
+    end
+
+    subgraph PI["π · ProjectionFunction — four strategies"]
+        direction TB
+        E["<b>ExtractionStrategy</b><br/>lpg/extract.py · SPARQL over Fuseki<br/>lpg/rdf_source.py · rdflib over files<br/><i>only the file path sees restrictions</i>"]
+        T["<b>TransformationStrategy</b><br/>lpg/transform.py<br/>NetworkX MultiDiGraph IR<br/>+ Concept Profile Documents"]
+        M["<b>EmbeddingStrategy</b><br/>lpg/embed.py<br/>TF-IDF + SVD, fitted on the profiles<br/><i>persisted with the graph</i>"]
+        L["<b>LoadingStrategy</b><br/>lpg/load.py<br/>MERGE-only parameterised Cypher"]
+        E --> T --> M --> L
+        T -. "IR bypasses embedding" .-> L
+    end
+
+    subgraph DST["Codomain · Labeled Property Graph (FalkorDB)"]
+        direction LR
+        D1["(:Class {iri, name, definition,<br/>alt_labels, external, embedding})"]
+        D2["(:Module {iri, name, path})"]
+        D3["[:SUBCLASS_OF] 4,212<br/>[:DEFINED_IN] 3,005"]
+        D4["906 property types<br/>{via, quantifier} 3,281"]
+        D5["RANGE · VECTOR(256, cosine)<br/>FULLTEXT(name, definition, alt_text)"]
+    end
+
+    SRC --> PI --> DST
+
+    subgraph INV["Invariants — assert constraint in the model, tests in the code"]
+        direction TB
+        C1["<b>IriPreservation</b><br/>node.iri ≡ class IRI, unchanged<br/><i>the basis of every citation</i>"]
+        C2["<b>AxiomCoverage</b><br/>unfolded == landed<br/><i>measured, not assumed</i>"]
+        C3["<b>QuantifierDistinction</b><br/>`p some D` ≠ `p only D`<br/><i>quantifier is in the MERGE pattern</i>"]
+        C4["<b>Idempotence</b><br/>π(π(O)) == π(O)"]
+        C5["<b>EmbedderProvenance</b><br/>query embedder == index embedder<br/><i>violation degrades silently</i>"]
+        C6["<b>ExternalHonesty</b><br/>referenced-not-declared is flagged,<br/>never presented as defined"]
+    end
+
+    DST -.verified by.-> INV
+
+    style SRC fill:#eef3fb,stroke:#5b7fb5
+    style PI fill:#f4f0fa,stroke:#7a5ea8
+    style DST fill:#eefaf1,stroke:#4f9d69
+    style INV fill:#fdf4ec,stroke:#c07a34

@@ -1,0 +1,17 @@
+%% Activity Diagram — Project, generated from ontology_projection.sysml
+flowchart TB
+    START(( ))
+    extract["<b>extract</b><br/><i>Classes, taxonomy, object properties,…</i>"]
+    transform["<b>transform</b><br/><i>Build the IR</i>"]
+    profile["<b>profile</b><br/><i>Name, synonyms, definition, superclas…</i>"]
+    embed["<b>embed</b>"]
+    load["<b>load</b>"]
+    index["<b>index</b><br/><i>Range on :Class(iri) and :Module(iri)…</i>"]
+    START --> extract
+    extract -.->|flow| transform
+    transform -.->|flow| profile
+    profile -.->|flow| embed
+    transform -.->|flow| load
+    embed -.->|flow| load
+    load -.->|flow| index
+    index --> STOP(((  )))

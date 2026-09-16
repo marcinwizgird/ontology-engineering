@@ -23,7 +23,8 @@ from __future__ import annotations
 
 from .config import FusekiSettings, FalkorSettings, REPO_ROOT
 from .fuseki import FusekiClient, FusekiError
-from .rdf import CONTENT_TYPES, graph_uri, iter_rdf_files, content_type_for, local_name, short_name, rel_type_of
+from .rdf import (CONTENT_TYPES, graph_uri, iter_rdf_files, content_type_for,
+                  local_name, short_name, rel_type_of, readable_name, split_camel)
 from .upload import Uploader, AsyncUploader, UploadResult
 from .diff import OntologyDiffer, GraphSynchronizer, UpdatePlan, SyncResult
 from .structure import StructureExplorer
@@ -39,7 +40,7 @@ __all__ = [
     "FusekiSettings", "FalkorSettings", "REPO_ROOT", "FusekiClient", "FusekiError",
     # rdf helpers
     "CONTENT_TYPES", "graph_uri", "iter_rdf_files", "content_type_for",
-    "local_name", "short_name", "rel_type_of",
+    "local_name", "short_name", "rel_type_of", "readable_name", "split_camel",
     # upload
     "Uploader", "AsyncUploader", "UploadResult",
     # diff

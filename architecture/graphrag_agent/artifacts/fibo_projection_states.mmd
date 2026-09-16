@@ -1,0 +1,86 @@
+%% Companion view of models/fibo_projection_system.sysml -- state def ProjectionRun.
+stateDiagram-v2
+    direction TB
+    [*] --> Idle
+
+    Idle --> Parsing : options : ProjectionOptions
+
+    state Parsing {
+        [*] --> DiscoverFiles
+        DiscoverFiles --> ParseFile : skip .git, catalogs
+        ParseFile --> ParseFile : next file (299)
+        ParseFile --> RegisterModule : owl:Ontology found
+        RegisterModule --> ParseFile
+        ParseFile --> [*] : union graph ready
+    }
+
+    Parsing --> Failed : unreadable source
+
+    state Building {
+        [*] --> ReadTbox
+        ReadTbox --> StubExternals
+        StubExternals --> UnfoldRestrictions
+        UnfoldRestrictions --> AssembleIR
+        AssembleIR --> [*]
+        note right of StubExternals
+            Before unfolding, not after.
+            A filler with no node is an
+            edge the loader silently drops.
+        end note
+    }
+
+    Parsing --> Building
+
+    Building --> Encoding : options.embed
+    Building --> Loading : not options.embed
+
+    state Encoding {
+        [*] --> ComposeProfiles
+        ComposeProfiles --> FitEncoder
+        FitEncoder --> EncodeAll
+        EncodeAll --> PersistArtifact
+        PersistArtifact --> [*]
+        note right of PersistArtifact
+            Persisted before load, so a
+            load failure cannot leave an
+            index with no encoder (R9).
+        end note
+    }
+
+    Encoding --> Loading
+
+    state Loading {
+        [*] --> ClearGraph : options.clearFirst
+        [*] --> MergeModules : not options.clearFirst
+        ClearGraph --> MergeModules
+        MergeModules --> MergeClasses
+        MergeClasses --> LookupIndexes
+        LookupIndexes --> MergeTaxonomy
+        MergeTaxonomy --> MergeDefinedIn
+        MergeDefinedIn --> MergeProperties
+        MergeProperties --> MergeRestrictions
+        MergeRestrictions --> [*]
+    }
+
+    Loading --> Indexing
+
+    state Indexing {
+        [*] --> VectorIndex : vecf32, 256-d cosine
+        VectorIndex --> FulltextIndex : name · definition · alt_text
+        FulltextIndex --> [*]
+    }
+
+    Indexing --> Verified : landed == unfolded
+    Indexing --> Failed : landed != unfolded
+
+    Verified --> [*]
+    Failed --> [*]
+
+    note left of Verified
+        The only state in which the graph
+        should be served. A run is a
+        transaction in intent but not in
+        the store: a failure between
+        Loading and Indexing leaves a
+        graph that is present but unindexed.
+    end note

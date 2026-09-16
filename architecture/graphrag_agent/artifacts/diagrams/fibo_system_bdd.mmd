@@ -1,0 +1,94 @@
+%% Block Definition Diagram — generated from fibo_projection_system.sysml
+%% Regenerate: python architecture/graphrag_agent/build_diagrams.py
+classDiagram
+    direction TB
+    class OntologyEngineer
+    class FiboRepository {
+        releasePath : String
+        fileCount : Integer
+    }
+    class CommonsRegistry {
+        reachable : Boolean
+    }
+    class FusekiDataset
+    class FalkorDbInstance {
+        host : String
+        port : Integer
+        graphName : String
+    }
+    class ArtifactStore {
+        path : String
+    }
+    class SystemContext
+    class FiboProjectionSystemDef
+    class ProjectionController
+    class SourceAdapter {
+        parsedFiles : Integer
+        failedFiles : Integer
+        tolerateMalformedLiterals : Boolean
+    }
+    class TboxReader {
+        declaredClasses : Integer
+        referencedClasses : Integer
+    }
+    class AxiomUnfolder {
+        maxExpressionDepth : Integer
+        maxFillerDepth : Integer
+        quantifiersHandled : String
+        unfolded : Integer
+        landed : Integer
+    }
+    class MetaGraphBuilderComponent {
+        nodes : Integer
+        edges : Integer
+    }
+    class ProfileComposer {
+        includeRelations : Boolean
+        maxRelations : Integer
+    }
+    class VectorEncoder {
+        kind : String
+        dimension : Integer
+        fitted : Boolean
+    }
+    class GraphLoader {
+        batchSize : Integer
+        relTypePattern : String
+    }
+    class IndexManager {
+        vectorDimension : Integer
+        similarity : String
+        fulltextFields : String
+        lookupFields : String
+    }
+    class EncoderArtifactManager {
+        artifactPath : String
+        sizeBytes : Integer
+    }
+    class ExtractionVariant
+    class EncoderVariant
+    class FiboCharacterisation {
+        filesParsed : Integer
+        filesFailed : Integer
+        triples : Integer
+        classes : Integer
+        externalClasses : Integer
+        modules : Integer
+    }
+    SystemContext *-- OntologyEngineer : engineer
+    SystemContext *-- FiboRepository : fibo
+    SystemContext *-- CommonsRegistry : commons
+    SystemContext *-- FusekiDataset : fuseki
+    SystemContext *-- FalkorDbInstance : falkor
+    SystemContext *-- ArtifactStore : artifacts
+    SystemContext *-- FiboProjectionSystemDef : system
+    FiboProjectionSystemDef *-- ProjectionController : controller
+    FiboProjectionSystemDef *-- SourceAdapter : adapter
+    FiboProjectionSystemDef *-- TboxReader : reader
+    FiboProjectionSystemDef *-- AxiomUnfolder : unfolder
+    FiboProjectionSystemDef *-- MetaGraphBuilderComponent : builder
+    FiboProjectionSystemDef *-- ProfileComposer : composer
+    FiboProjectionSystemDef *-- VectorEncoder : encoder
+    FiboProjectionSystemDef *-- GraphLoader : loader
+    FiboProjectionSystemDef *-- IndexManager : indexer
+    FiboProjectionSystemDef *-- EncoderArtifactManager : artifactMgr

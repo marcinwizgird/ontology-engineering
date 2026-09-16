@@ -7,6 +7,7 @@ and the LPG converter (IRI -> short name / edge type).
 
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 from urllib.parse import quote
@@ -116,13 +117,44 @@ def short_name(iri: str) -> str:
     return f"{module}:{local}" if module else local
 
 
-def rel_type_of(prop_iri: str) -> str:
-    """A sanitised uppercase Cypher relationship type for an object property.
+_CAMEL_RE = re.compile(r"[A-Z]+(?![a-z])|[A-Z][a-z0-9]*|[a-z0-9]+")
 
-    The local name, uppercased, non-alphanumerics to underscore; a leading digit gets a
-    'P_' prefix so the token is a legal (and safely interpolatable) relationship type.
+
+def split_camel(token: str) -> list[str]:
+    """Split a camelCase/PascalCase identifier into words, keeping acronyms whole.
+
+    'hasDefaultThresholdAmount' -> ['has','Default','Threshold','Amount']
+    'LEIEntities'               -> ['LEI','Entities']
     """
-    token = "".join(ch if ch.isalnum() else "_" for ch in local_name(prop_iri)).upper().strip("_")
+    return _CAMEL_RE.findall(token)
+
+
+def readable_name(iri: str) -> str:
+    """A human-readable name derived from an IRI's local name.
+
+    Used only when an entity carries no rdfs:label -- a fifth of FIBO's classes. The
+    result follows FIBO's own label convention (lower case, spaced), so a derived name
+    and a declared one read alike in search results and in an embedding's input text.
+    """
+    words = split_camel(local_name(iri))
+    if not words:
+        return local_name(iri)
+    return " ".join(w if w.isupper() else w.lower() for w in words)
+
+
+def rel_type_of(prop_iri: str) -> str:
+    """A sanitised upper SNAKE_CASE Cypher relationship type for an object property.
+
+    'hasDefaultThresholdAmount' -> HAS_DEFAULT_THRESHOLD_AMOUNT. Word boundaries are kept
+    because these tokens are read by people (and by an LLM writing Cypher), not just
+    matched; a leading digit gets a 'P_' prefix so the token stays a legal -- and safely
+    interpolatable -- relationship type.
+    """
+    words = split_camel(local_name(prop_iri))
+    token = "_".join(words).upper() if words else ""
+    token = "".join(ch if (ch.isalnum() or ch == "_") else "_" for ch in token).strip("_")
+    while "__" in token:
+        token = token.replace("__", "_")
     if not token:
         token = "REL"
     if token[0].isdigit():

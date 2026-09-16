@@ -1,0 +1,37 @@
+%% Companion view of models/fibo_projection_system.sysml -- part def SystemContext.
+flowchart LR
+    ENG(["<b>Ontology Engineer</b><br/>runs the projection,<br/>reads the report"])
+
+    subgraph EXT_IN["Sources"]
+        direction TB
+        FIBO[("<b>FIBO Repository</b><br/>Ontology Repository/FIBO/fibo<br/>299 RDF/XML files · 132,939 triples<br/><i>read-only</i>")]
+        FUS[("<b>Fuseki Dataset</b><br/>infra/fuseki<br/><i>alternative source — R7</i>")]
+        CMNS[("<b>OMG Commons</b><br/>spec.omg.org<br/><i>not vendored · reachable = false</i><br/><i>--follow-imports only</i>")]
+    end
+
+    SYS["<b>FIBO Projection System</b><br/>ontology_modeler.lpg<br/><br/>control ▸ options<br/>report ◂ ProjectionReport"]
+
+    subgraph EXT_OUT["Targets"]
+        direction TB
+        FDB[("<b>FalkorDB</b><br/>127.0.0.1:6379 · graph 'fibo'<br/>3,258 :Class · 299 :Module<br/>10,498 edges · 906 rel types")]
+        ART[("<b>Artifact Store</b><br/>artifacts/fibo.embedder.pkl<br/><i>keeps encoder and index in step — R9</i>")]
+    end
+
+    ENG -- "ProjectionOptions<br/>graphName · clear · embed · encoderKind" --> SYS
+    SYS -- "ProjectionReport<br/>parsed · landed · elapsed" --> ENG
+
+    FIBO -- "RdfSourceInterface<br/>(file variant — sees restrictions + modules)" --> SYS
+    FUS -. "RdfSourceInterface<br/>(SPARQL variant — sees neither)" .-> SYS
+    CMNS -. "owl:imports · optional · off by default" .-> SYS
+
+    SYS -- "GraphWriteInterface<br/>parameterised UNWIND Cypher · MERGE only" --> FDB
+    SYS -- "ArtifactInterface<br/>fitted encoder" --> ART
+
+    ART -.->|"loaded by the retrieval layer"| RET(["GraphRAG retriever<br/><i>see agent_architecture.sysml</i>"])
+    FDB -.->|"read-only"| RET
+
+    style SYS fill:#f4f0fa,stroke:#7a5ea8,stroke-width:2px
+    style EXT_IN fill:#eef3fb,stroke:#5b7fb5
+    style EXT_OUT fill:#eefaf1,stroke:#4f9d69
+    style CMNS stroke-dasharray: 5 5
+    style FUS stroke-dasharray: 5 5

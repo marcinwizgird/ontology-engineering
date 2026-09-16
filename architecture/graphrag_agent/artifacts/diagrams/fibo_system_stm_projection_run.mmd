@@ -1,0 +1,15 @@
+%% State Machine — ProjectionRun, generated from fibo_projection_system.sysml
+stateDiagram-v2
+    direction TB
+    [*] --> Idle
+    Idle --> Parsing : start
+    Parsing --> Building
+    Building --> Encoding : options.embed
+    Building --> Loading : not options.embed
+    Encoding --> Loading
+    Loading --> Indexing
+    Indexing --> Verified : landed == unfolded
+    Indexing --> Failed : landed != unfolded
+    Parsing --> Failed
+    Failed --> [*]
+    Verified --> [*]

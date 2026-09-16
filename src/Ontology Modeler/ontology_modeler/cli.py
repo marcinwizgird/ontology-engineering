@@ -3,7 +3,12 @@
     python -m ontology_modeler upload  [--clear] [--workers N] [PATH ...]
     python -m ontology_modeler upload  --async [--concurrency N] [PATH ...]
     python -m ontology_modeler lpg     [--clear] [--embed] [--embedder KIND] [--dry-run]
+    python -m ontology_modeler project [--graph-name G] [--embed] [--dry-run] [PATH ...]
     python -m ontology_modeler ping
+
+`lpg` projects what Fuseki holds; `project` projects RDF files straight from disk,
+capturing owl:Restriction shadow edges and module provenance that the SPARQL path
+does not see. Use `project` for a large vendored ontology such as FIBO.
 
 Connection settings come from infra/*/.env (see FusekiSettings/FalkorSettings).
 """
@@ -19,7 +24,7 @@ from pathlib import Path
 from .config import REPO_ROOT, FusekiSettings, FalkorSettings
 from .fuseki import FusekiClient
 from .upload import Uploader, AsyncUploader
-from .lpg import LpgConverter
+from .lpg import LpgConverter, RdfFileExtractor
 
 log = logging.getLogger("ontology_modeler")
 
@@ -87,6 +92,30 @@ def _cmd_lpg(args) -> int:
     return 0
 
 
+def _cmd_project(args) -> int:
+    """Project RDF files directly into FalkorDB -- no Fuseki in the path."""
+    paths = args.paths or [REPO_ROOT / "Ontology Repository"]
+    extractor = RdfFileExtractor([Path(p) for p in paths],
+                                 follow_imports=args.follow_imports)
+    conv = LpgConverter(extractor=extractor,
+                        falkor=FalkorSettings.from_env(graph_name=args.graph_name))
+    ir = conv.extract_transform()
+    print("source:", extractor.report())
+    print("IR:", ir)
+    if extractor.report()["files_failed"]:
+        for path, error in extractor.report()["failures"]:
+            print(f"  unparsed: {path}: {error}", file=sys.stderr)
+
+    embeddings = conv.build_embeddings(args.embedder) if args.embed else None
+    if args.dry_run:
+        print("dry run: FalkorDB not touched")
+        return 0
+    print("Loaded:", conv.load(clear=args.clear, embeddings=embeddings))
+    if embeddings:
+        print("Embedder:", conv.save_embedder())
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="ontology_modeler",
                                      description="Manage an ontology across Fuseki and FalkorDB.")
@@ -111,9 +140,22 @@ def main(argv: list[str] | None = None) -> int:
     p_lpg.add_argument("--graph-name", default=None)
     p_lpg.add_argument("--clear", action="store_true", help="drop the FalkorDB graph first")
     p_lpg.add_argument("--embed", action="store_true", help="generate + load embeddings")
-    p_lpg.add_argument("--embedder", default="hash", help="'hash' or 'sentence-transformers'")
+    p_lpg.add_argument("--embedder", default="tfidf",
+                   help="'tfidf' (default), 'hash', or 'sentence-transformers'")
     p_lpg.add_argument("--dry-run", action="store_true", help="IR only; don't touch FalkorDB")
     p_lpg.set_defaults(func=_cmd_lpg)
+
+    p_pr = sub.add_parser("project", help="project RDF files straight into FalkorDB")
+    p_pr.add_argument("paths", nargs="*", type=Path)
+    p_pr.add_argument("--graph-name", default=None)
+    p_pr.add_argument("--clear", action="store_true", help="drop the FalkorDB graph first")
+    p_pr.add_argument("--embed", action="store_true", help="generate + load embeddings")
+    p_pr.add_argument("--embedder", default="tfidf",
+                      help="'tfidf' (default), 'hash', or 'sentence-transformers'")
+    p_pr.add_argument("--follow-imports", action="store_true",
+                      help="fetch unresolved owl:imports over the network")
+    p_pr.add_argument("--dry-run", action="store_true", help="IR only; don't touch FalkorDB")
+    p_pr.set_defaults(func=_cmd_project)
 
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO if args.verbose else logging.WARNING, format="%(message)s")

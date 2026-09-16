@@ -1,0 +1,249 @@
+flowchart LR
+  APRJ["PRJ Project & Workspace Management"]
+  AGOV["GOV Governance, Identity & Access Control"]
+  ACHG["CHG Change Tracking, History & Validation"]
+  AVER["VER Versioning, Snapshots & Time Travel"]
+  ASTO["STO Storage & Repository Management"]
+  AEDT["EDT OWL / RDFS Authoring"]
+  ASKO["SKO SKOS / Thesaurus Authoring"]
+  ALEX["LEX Lexicon & Terminology Authoring"]
+  ABRW["BRW Browsing, Resource View & Navigation"]
+  ASRCH["SRCH Search & Lookup"]
+  AFRM["FRM Custom Forms & Custom Views"]
+  ARSN["RSN Reasoning & Explanation"]
+  AQLT["QLT Quality, Constraints & Testing"]
+  AIO["IO Import, Export, Transform & Deploy"]
+  AMAP["MAP Alignment, Mapping & Reconciliation"]
+  AMDR["MDR Metadata, Catalogs & Publishing"]
+  ASPQ["SPQ SPARQL & Programmatic Access"]
+  ACOL["COL Collaboration & Notification"]
+  AEXT["EXT Extension & Configuration Framework"]
+  AS2R["S2R Structured-Source Lifting"]
+  AAGT["AGT Agentic Layer"]
+  AUIX["UIX UI Shell & Client"]
+  CB_CT_1(["B.CT.1<br/>Skills & Talent Management<br/>L2"])
+  CB_CT_2(["B.CT.2<br/>Knowledge Sharing & Community of Practice<br/>L3"])
+  CB_CT_3(["B.CT.3<br/>Ecosystem & Standards Collaboration<br/>L5"])
+  CB_SE_1(["B.SE.1<br/>Domain Knowledge Elicitation<br/>L1"])
+  CB_SE_2(["B.SE.2<br/>Competency Question Management<br/>L1"])
+  CB_SE_3(["B.SE.3<br/>Use-Case & Requirements Management<br/>L1"])
+  CB_SE_4(["B.SE.4<br/>Business Glossary & Terminology Management<br/>L2"])
+  CB_SG_1(["B.SG.1<br/>Ontology Vision & Strategy<br/>L1"])
+  CB_SG_2(["B.SG.2<br/>Ontology Governance & Stewardship<br/>L3"])
+  CB_SG_3(["B.SG.3<br/>Policy, Standards & Conventions Management<br/>L3"])
+  CB_SG_5(["B.SG.5<br/>Ontology Risk & Compliance Management<br/>L4"])
+  CB_VP_2(["B.VP.2<br/>Performance Measurement (KPIs)<br/>L4"])
+  CB_VP_3(["B.VP.3<br/>Adoption & Change Management<br/>L3"])
+  CT_AC_1(["T.AC.1<br/>Search & Query (SPARQL)<br/>L2"])
+  CT_AC_2(["T.AC.2<br/>Visualization & Exploration<br/>L2"])
+  CT_AC_3(["T.AC.3<br/>Documentation & Publishing<br/>L2"])
+  CT_AC_4(["T.AC.4<br/>Ontology-based Access, APIs & Entitlements<br/>L3"])
+  CT_AC_5(["T.AC.5<br/>Multilingual & Localization Support<br/>L4"])
+  CT_AC_6(["T.AC.6<br/>LLM / AI Augmentation<br/>L5"])
+  CT_DA_1(["T.DA.1<br/>Ontology Conceptualization & Modelling<br/>L1"])
+  CT_DA_2(["T.DA.2<br/>Ontology Formalization (OWL/RDFS/SKOS)<br/>L2"])
+  CT_DA_3(["T.DA.3<br/>Foundational / Top-down Ontology Reuse<br/>L2"])
+  CT_DA_4(["T.DA.4<br/>Bottom-up Ontology Learning<br/>L3"])
+  CT_DA_5(["T.DA.5<br/>Ontology Design Pattern (ODP) Management<br/>L3"])
+  CT_DA_6(["T.DA.6<br/>Vocabulary & Controlled-Term Management<br/>L2"])
+  CT_IA_1(["T.IA.1<br/>Ontology Mapping & Alignment<br/>L3"])
+  CT_IA_2(["T.IA.2<br/>Modularization & Import Management<br/>L3"])
+  CT_IA_3(["T.IA.3<br/>Semantic Data Integration<br/>L3"])
+  CT_IA_4(["T.IA.4<br/>Identity Resolution & Entity Reconciliation<br/>L3"])
+  CT_OO_1(["T.OO.1<br/>Triplestore & Ontology Storage<br/>L2"])
+  CT_OO_2(["T.OO.2<br/>Versioning & Release Management<br/>L2"])
+  CT_OO_3(["T.OO.3<br/>Ontology CI/CD (OntoOps / DataOps)<br/>L4"])
+  CT_OO_4(["T.OO.4<br/>Federation & Virtualization<br/>L5"])
+  CT_OO_5(["T.OO.5<br/>Observability & Monitoring<br/>L4"])
+  CT_QV_1(["T.QV.1<br/>Ontology Validation (SHACL/constraints)<br/>L2"])
+  CT_QV_2(["T.QV.2<br/>Ontology Testing (Competency-Question tests)<br/>L2"])
+  CT_QV_3(["T.QV.3<br/>Quality Assurance & Metrics<br/>L3"])
+  CT_QV_4(["T.QV.4<br/>Verification & Evaluation (gold standard)<br/>L3"])
+  CT_RI_1(["T.RI.1<br/>Logical Consistency & Reasoning<br/>L2"])
+  CT_RI_2(["T.RI.2<br/>Inferencing & Materialization<br/>L3"])
+  CT_RI_3(["T.RI.3<br/>Rule & Constraint Management (SHACL/SWRL)<br/>L3"])
+  CT_RI_4(["T.RI.4<br/>Inference Explainability<br/>L4"])
+  AAGT --> CB_SE_1
+  AAGT --> CB_SE_2
+  AAGT --> CB_SG_2
+  AAGT --> CB_SG_5
+  AAGT --> CB_VP_2
+  AAGT --> CT_AC_2
+  AAGT --> CT_AC_6
+  AAGT --> CT_DA_1
+  AAGT --> CT_DA_2
+  AAGT --> CT_IA_1
+  AAGT --> CT_IA_4
+  AAGT --> CT_OO_3
+  AAGT --> CT_QV_1
+  AAGT --> CT_QV_2
+  AAGT --> CT_QV_3
+  AAGT --> CT_QV_4
+  ABRW --> CB_SG_2
+  ABRW --> CB_VP_3
+  ABRW --> CT_AC_2
+  ABRW --> CT_DA_1
+  ABRW --> CT_DA_2
+  ABRW --> CT_DA_5
+  ABRW --> CT_OO_1
+  ABRW --> CT_RI_2
+  ABRW --> CT_RI_4
+  ACHG --> CB_SG_2
+  ACHG --> CB_SG_5
+  ACHG --> CT_OO_2
+  ACHG --> CT_QV_1
+  ACHG --> CT_QV_3
+  ACHG --> CT_RI_4
+  ACOL --> CB_CT_2
+  ACOL --> CB_SE_1
+  ACOL --> CB_SE_3
+  ACOL --> CB_VP_3
+  ACOL --> CT_OO_2
+  ACOL --> CT_OO_3
+  ACOL --> CT_OO_5
+  AEDT --> CB_SG_3
+  AEDT --> CT_AC_2
+  AEDT --> CT_AC_3
+  AEDT --> CT_AC_5
+  AEDT --> CT_DA_1
+  AEDT --> CT_DA_2
+  AEDT --> CT_DA_3
+  AEDT --> CT_IA_2
+  AEDT --> CT_IA_4
+  AEDT --> CT_OO_2
+  AEDT --> CT_OO_3
+  AEDT --> CT_RI_1
+  AEXT --> CB_CT_2
+  AEXT --> CB_CT_3
+  AEXT --> CB_SG_3
+  AEXT --> CT_AC_2
+  AEXT --> CT_DA_2
+  AEXT --> CT_OO_3
+  AEXT --> CT_RI_1
+  AEXT --> CT_RI_4
+  AFRM --> CB_SE_1
+  AFRM --> CB_SG_3
+  AFRM --> CB_VP_3
+  AFRM --> CT_AC_2
+  AFRM --> CT_DA_5
+  AFRM --> CT_QV_1
+  AFRM --> CT_QV_3
+  AGOV --> CB_CT_1
+  AGOV --> CB_CT_2
+  AGOV --> CB_SG_2
+  AGOV --> CB_SG_3
+  AGOV --> CB_SG_5
+  AGOV --> CB_VP_3
+  AGOV --> CT_AC_4
+  AGOV --> CT_AC_5
+  AGOV --> CT_AC_6
+  AGOV --> CT_OO_3
+  AIO --> CB_VP_3
+  AIO --> CT_AC_3
+  AIO --> CT_AC_4
+  AIO --> CT_DA_4
+  AIO --> CT_IA_1
+  AIO --> CT_IA_2
+  AIO --> CT_IA_3
+  AIO --> CT_OO_1
+  AIO --> CT_OO_2
+  AIO --> CT_OO_3
+  ALEX --> CT_AC_2
+  ALEX --> CT_AC_5
+  ALEX --> CT_DA_6
+  AMAP --> CB_CT_3
+  AMAP --> CB_SG_2
+  AMAP --> CT_AC_6
+  AMAP --> CT_IA_1
+  AMAP --> CT_IA_2
+  AMAP --> CT_IA_3
+  AMAP --> CT_OO_1
+  AMAP --> CT_QV_4
+  AMDR --> CB_CT_3
+  AMDR --> CB_SE_3
+  AMDR --> CB_SG_2
+  AMDR --> CB_SG_5
+  AMDR --> CB_VP_3
+  AMDR --> CT_AC_3
+  AMDR --> CT_DA_3
+  AMDR --> CT_DA_5
+  AMDR --> CT_IA_1
+  AMDR --> CT_OO_2
+  AMDR --> CT_QV_3
+  APRJ --> CB_CT_2
+  APRJ --> CB_SE_3
+  APRJ --> CB_SG_1
+  APRJ --> CB_SG_2
+  APRJ --> CB_SG_3
+  APRJ --> CB_SG_5
+  APRJ --> CB_VP_2
+  APRJ --> CT_AC_4
+  APRJ --> CT_AC_5
+  APRJ --> CT_DA_2
+  APRJ --> CT_DA_6
+  APRJ --> CT_OO_1
+  APRJ --> CT_OO_2
+  APRJ --> CT_QV_3
+  AQLT --> CB_SE_2
+  AQLT --> CB_SG_3
+  AQLT --> CB_SG_5
+  AQLT --> CB_VP_2
+  AQLT --> CT_AC_3
+  AQLT --> CT_OO_3
+  AQLT --> CT_QV_1
+  AQLT --> CT_QV_2
+  AQLT --> CT_QV_3
+  AQLT --> CT_RI_3
+  ARSN --> CB_SG_5
+  ARSN --> CT_AC_6
+  ARSN --> CT_DA_5
+  ARSN --> CT_OO_1
+  ARSN --> CT_QV_1
+  ARSN --> CT_RI_1
+  ARSN --> CT_RI_2
+  ARSN --> CT_RI_3
+  ARSN --> CT_RI_4
+  AS2R --> CB_SE_1
+  AS2R --> CT_DA_4
+  AS2R --> CT_IA_3
+  AS2R --> CT_QV_4
+  ASKO --> CB_SE_4
+  ASKO --> CB_VP_3
+  ASKO --> CT_AC_5
+  ASKO --> CT_DA_5
+  ASKO --> CT_DA_6
+  ASPQ --> CB_CT_2
+  ASPQ --> CB_SG_2
+  ASPQ --> CT_AC_1
+  ASPQ --> CT_AC_4
+  ASPQ --> CT_AC_6
+  ASPQ --> CT_DA_5
+  ASPQ --> CT_OO_3
+  ASPQ --> CT_OO_4
+  ASRCH --> CT_AC_1
+  ASRCH --> CT_AC_2
+  ASRCH --> CT_DA_5
+  ASRCH --> CT_OO_4
+  ASTO --> CB_SG_2
+  ASTO --> CT_AC_1
+  ASTO --> CT_AC_2
+  ASTO --> CT_IA_2
+  ASTO --> CT_IA_3
+  ASTO --> CT_IA_4
+  ASTO --> CT_OO_1
+  ASTO --> CT_OO_4
+  ASTO --> CT_OO_5
+  AUIX --> CB_SG_2
+  AUIX --> CB_VP_3
+  AUIX --> CT_AC_2
+  AUIX --> CT_AC_4
+  AUIX --> CT_AC_5
+  AUIX --> CT_DA_2
+  AUIX --> CT_OO_3
+  AVER --> CB_SG_3
+  AVER --> CT_AC_2
+  AVER --> CT_AC_3
+  AVER --> CT_OO_1
+  AVER --> CT_OO_2
+  AVER --> CT_OO_3
+  AVER --> CT_QV_3

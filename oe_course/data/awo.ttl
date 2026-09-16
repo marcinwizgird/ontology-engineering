@@ -1,0 +1,142 @@
+# African Wildlife Ontology (AWO) — the running example of Keet, *Ontology
+# Engineering* (2nd ed.), rendered in Turtle for the course toolkit.
+#
+# Deliberately small and *correct*: it is the positive control against which the
+# course's ontology "smell" detectors and competency questions are calibrated.
+
+@prefix awo:  <http://example.org/awo#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+<http://example.org/awo> a owl:Ontology ;
+    dct:title "African Wildlife Ontology"@en ;
+    rdfs:comment "Tutorial ontology from Keet, Ontology Engineering (2nd ed.)."@en .
+
+# --- Top-level ------------------------------------------------------------- #
+awo:Animal a owl:Class ;
+    rdfs:label "animal"@en ;
+    rdfs:comment "An organism that eats other organisms."@en .
+
+awo:Plant a owl:Class ;
+    rdfs:label "plant"@en ;
+    owl:disjointWith awo:Animal .
+
+awo:TerrestrialPart a owl:Class ;
+    rdfs:label "terrestrial part"@en .
+
+# --- Plant parts ----------------------------------------------------------- #
+awo:PlantParts a owl:Class ;
+    rdfs:label "plant parts"@en .
+
+awo:Branch a owl:Class ;
+    rdfs:label "branch"@en ;
+    rdfs:subClassOf awo:PlantParts ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:isPartOf ;
+        owl:someValuesFrom awo:Tree ] .
+
+awo:Leaf a owl:Class ;
+    rdfs:label "leaf"@en ;
+    rdfs:subClassOf awo:PlantParts ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:isPartOf ;
+        owl:someValuesFrom awo:Branch ] .
+
+awo:Twig a owl:Class ;
+    rdfs:label "twig"@en ;
+    rdfs:subClassOf awo:PlantParts ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:isPartOf ;
+        owl:someValuesFrom awo:Branch ] .
+
+awo:Tree a owl:Class ;
+    rdfs:label "tree"@en ;
+    rdfs:subClassOf awo:Plant .
+
+# --- Animals --------------------------------------------------------------- #
+awo:Herbivore a owl:Class ;
+    rdfs:label "herbivore"@en ;
+    rdfs:subClassOf awo:Animal ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:eats ;
+        owl:allValuesFrom [ a owl:Class ;
+            owl:unionOf ( awo:Plant awo:PlantParts ) ] ] .
+
+awo:Carnivore a owl:Class ;
+    rdfs:label "carnivore"@en ;
+    rdfs:subClassOf awo:Animal ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:eats ;
+        owl:allValuesFrom awo:Animal ] .
+
+awo:Giraffe a owl:Class ;
+    rdfs:label "giraffe"@en ;
+    rdfs:subClassOf awo:Herbivore ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:eats ;
+        owl:allValuesFrom awo:Leaf ] .
+
+awo:Lion a owl:Class ;
+    rdfs:label "lion"@en ;
+    rdfs:subClassOf awo:Carnivore ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:eats ;
+        owl:someValuesFrom awo:Herbivore ] .
+
+awo:Impala a owl:Class ;
+    rdfs:label "impala"@en ;
+    rdfs:subClassOf awo:Herbivore .
+
+awo:Warthog a owl:Class ;
+    rdfs:label "warthog"@en ;
+    rdfs:subClassOf awo:Animal ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty awo:eats ;
+        owl:someValuesFrom awo:Plant ] .
+
+awo:RockDassie a owl:Class ;
+    rdfs:label "rock dassie"@en ;
+    rdfs:subClassOf awo:Herbivore .
+
+# --- Properties ------------------------------------------------------------ #
+awo:eats a owl:ObjectProperty ;
+    rdfs:label "eats"@en ;
+    rdfs:domain awo:Animal ;
+    rdfs:range awo:Organism .
+
+awo:isEatenBy a owl:ObjectProperty ;
+    rdfs:label "is eaten by"@en ;
+    rdfs:domain awo:Organism ;
+    rdfs:range awo:Animal ;
+    owl:inverseOf awo:eats .
+
+awo:isPartOf a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "is part of"@en ;
+    rdfs:domain awo:TerrestrialPart ;
+    rdfs:range awo:Organism .
+
+awo:hasPart a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "has part"@en ;
+    rdfs:domain awo:Organism ;
+    rdfs:range awo:TerrestrialPart ;
+    owl:inverseOf awo:isPartOf .
+
+awo:Organism a owl:Class ;
+    rdfs:label "organism"@en .
+
+awo:Animal rdfs:subClassOf awo:Organism .
+awo:Plant  rdfs:subClassOf awo:Organism .
+
+# --- A few individuals, for query exercises -------------------------------- #
+awo:lion_of_kruger a owl:NamedIndividual , awo:Lion ;
+    rdfs:label "the lion of Kruger"@en ;
+    awo:eats awo:impala_01 .
+
+awo:impala_01 a owl:NamedIndividual , awo:Impala ;
+    rdfs:label "impala 01"@en .
+
+awo:giraffe_01 a owl:NamedIndividual , awo:Giraffe ;
+    rdfs:label "giraffe 01"@en .
