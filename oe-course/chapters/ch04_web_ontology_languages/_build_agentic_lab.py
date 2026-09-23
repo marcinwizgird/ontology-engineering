@@ -1,0 +1,359 @@
+"""Generate the Chapter 4 agentic lab.  Run:  python _build_agentic_lab.py"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent.parent))   # repo root, for oe_course
+
+from oe_course.nbbuild import code, exercise, header, learning_outcomes, md, save  # noqa: E402
+from oe_course.assignment import save_assignment, task  # noqa: E402
+
+SETUP = """\
+import sys, json, logging
+from pathlib import Path
+here = Path.cwd()
+for candidate in [here, *here.parents]:
+    if (candidate / "oe_course").is_dir():
+        sys.path.insert(0, str(candidate)); break
+sys.path.insert(0, str(Path.cwd()))
+
+import ch4_agentic as A
+from oe_course import evaluation as ev, llm, mdp, optimize as opt
+import oe_course, pandas as pd
+logging.getLogger("dspy").setLevel(logging.WARNING)
+print(json.dumps(oe_course.describe_environment(), indent=1))\
+"""
+
+
+def build():
+    cells = header(
+        "Chapter 4 — The Web Ontology Languages",
+        "Notebook 5 · Agentic lab — axiomatisation under profile constraints",
+        "Extends §4.2 (OWL 2 features and profiles)",
+        "Notebooks 1–4 taught you to *read and write* OWL 2 and to reason about "
+        "its profiles. This lab builds an agent that does the writing — and, "
+        "crucially, one that must respect the profile it was asked to target.",
+    )
+    cells += [
+        code(SETUP),
+        md(
+            learning_outcomes(
+                [
+                    "Turn §4.2's profile restrictions into a **reward signal** an optimiser "
+                    "can act on.",
+                    "Build a task whose score splits *faithfulness* from *profile compliance*, "
+                    "and see why that split matters.",
+                    "Formalise axiomatisation as a **construction MDP** — where actions change "
+                    "the artefact — and contrast it with Chapter 1's evidence-gathering MDP.",
+                    "Optimise the axiomatiser with GEPA and read which OWL 2 rules it learned.",
+                ]
+            )
+        ),
+        md(
+            "> **Prerequisite.** This lab assumes Chapter 1 Notebook 5, which introduced tools, "
+            "metrics, MDPs, GEPA and skills. Here we change the *task* and keep the discipline."
+        ),
+        # --- 1 ---------------------------------------------------------------
+        md(
+            "## 1. The task: requirement → axiom, inside a profile\n\n"
+            "A domain expert writes a requirement in English. The agent must emit an OWL axiom "
+            "that is both a faithful reading **and** legal in the OWL 2 profile the project has "
+            "committed to.\n\n"
+            "These two goals genuinely conflict, which is what makes the task worth studying. "
+            "'Giraffes eat nothing but leaves' is faithfully a *universal* restriction — and "
+            "OWL 2 **EL has no universal restrictions at all**. An agent that only optimises "
+            "faithfulness will hand you an ontology that falls out of your profile and loses "
+            "you the polynomial-time reasoning you chose EL for."
+        ),
+        code(
+            "print('Axiom shapes the agent may emit:', A.AXIOM_OPERATORS)\n"
+            "print()\n"
+            "print('Which profiles admit each shape (teaching-grade simplification):')\n"
+            "for op, profiles in A.PROFILE_TABLE.items():\n"
+            "    print(f'  {op:12s} {sorted(profiles)}')\n"
+            "print()\n"
+            "print('Note: EL lacks universal restrictions; QL lacks existential restrictions')\n"
+            "print('in the subclass position. Those two facts drive the whole exercise.')"
+        ),
+        code(
+            "for r in A.REQUIREMENTS[:5]:\n"
+            "    print(f\"{r['id']:22s} [{r['profile']}]  {r['text']}\")\n"
+            "    print(f\"{'':22s} gold: {r['axiom']}\")"
+        ),
+        md(
+            "### The axiom compiler and the reasoner are the tools\n\n"
+            "The agent emits *structure*, not OWL syntax. Deterministic code compiles that "
+            "structure into real triples and a reasoner checks what it entails. Same division "
+            "of labour as Chapter 1: **tools do what is mechanical, the model does what is "
+            "interpretive** — which is also what keeps the output space small enough to grade."
+        ),
+        code(
+            "ax = A.Axiom('Giraffe', 'some', 'Leaf', 'eats')\n"
+            "print('axiom      :', ax)\n"
+            "print('profiles OK:', sorted(A.profiles_allowing(ax)))\n"
+            "g = A.axiom_to_graph(ax)\n"
+            "print('\\ncompiled to OWL:')\n"
+            "print(g.serialize(format='turtle'))"
+        ),
+        code(
+            "chain = [A.Axiom('Giraffe', 'subclassof', 'Herbivore'),\n"
+            "         A.Axiom('Herbivore', 'subclassof', 'Animal')]\n"
+            "print('Giraffe SubClassOf Animal entailed?',\n"
+            "      A.entails_subclass(chain, 'Giraffe', 'Animal'))\n"
+            "print('...from only the first axiom?',\n"
+            "      A.entails_subclass(chain[:1], 'Giraffe', 'Animal'))"
+        ),
+        # --- 2 ---------------------------------------------------------------
+        md(
+            "## 2. The metric: faithfulness and compliance, scored separately\n\n"
+            "Half the mark for the right axiom, half for staying in profile. Collapsing these "
+            "into one number would hide *which* half failed — and a metric that cannot say "
+            "which half failed cannot drive GEPA (Ch. 1 §4.4)."
+        ),
+        code(
+            "train, dev = A.build_dataset('train'), A.build_dataset('dev')\n"
+            "print(f'train {len(train)}, dev {len(dev)}')\n\n"
+            "class Faithful:  # right reading, wrong profile\n"
+            "    axiom = json.dumps({'subject': 'Giraffe', 'operator': 'only',\n"
+            "                        'property': 'eats', 'filler': 'Leaf'})\n"
+            "example = [e for e in train if e.requirement_id == 'giraffe-eats-only'][0]\n"
+            "el_version = example.copy(profile='EL')   # same requirement, stricter profile\n"
+            "for label, ex in [('target RL', example), ('target EL', el_version)]:\n"
+            "    r = A.axiom_scorer(ex, Faithful())\n"
+            "    print(f'{label}: score={r.score}  violated={r.violated}')\n"
+            "    for n in r.notes: print('   ', n)"
+        ),
+        md(
+            "The *same* axiom scores 1.0 against RL and 0.5 against EL. That is the profile "
+            "trade-off from §4.2 turned into a gradient the optimiser can follow."
+        ),
+        # --- 3 ---------------------------------------------------------------
+        md("## 3. Baseline, then GEPA"),
+        code(
+            "lm = llm.configure_dspy(A.AXIOM_RULEBOOK, A.axiom_responder)\n"
+            "baseline = A.AxiomProgram()\n"
+            "for ex in dev:\n"
+            "    pred = baseline(**ex.inputs())\n"
+            "    print(f'{ex.requirement_id:22s} -> {A.Axiom.parse(pred.axiom)}')\n"
+            "before = ev.evaluate_dataset(baseline, dev, A.axiom_scorer)\n"
+            "print('\\nBEFORE:', before['mean_score'], before['violations'])"
+        ),
+        code(
+            "metric = ev.make_gepa_metric(A.axiom_scorer, A.AXIOM_RULEBOOK)\n"
+            "reflect = llm.reflection_lm(A.AXIOM_RULEBOOK, A.axiom_responder)\n"
+            "tuned = opt.run_gepa(baseline, train, metric, valset=train,\n"
+            "                     max_metric_calls=40, reflection_lm=reflect)\n"
+            "result = opt.compare(A.AxiomProgram(), tuned, dev, A.axiom_scorer)\n"
+            "print(result.report())"
+        ),
+        md(
+            "Read the diff: the optimiser recovered, from failure feedback alone, four rules "
+            "that Chapter 4 spends pages establishing — the existential/universal distinction, "
+            "is-a versus instance-of, and the profile restrictions. It did not *understand* "
+            "OWL 2; it responded to a metric that punished each error specifically. That is "
+            "worth being clear-eyed about: **the knowledge came from the metric**, and the "
+            "metric came from you."
+        ),
+        # --- 4 ---------------------------------------------------------------
+        md(
+            "## 4. A construction MDP\n\n"
+            "Chapter 1's MDP had actions that only *bought information*. Here an action "
+            "**changes the artefact**, so the formalisation differs:\n\n"
+            "| | Ch. 1 (evidence) | Ch. 4 (construction) |\n|---|---|---|\n"
+            "| **S** | evidence gathered | axioms asserted so far |\n"
+            "| **A** | run a tool, or submit | assert a candidate axiom, or submit |\n"
+            "| **T** | deterministic | deterministic |\n"
+            "| **R** | −cost; score on submit | −cost; **entailment coverage − profile penalty** |\n\n"
+            "The reward now contains a *penalty term*, because a wrong action here does not "
+            "merely waste money — it damages the artefact."
+        ),
+        code(
+            "candidates = [\n"
+            "    A.Axiom('Giraffe', 'subclassof', 'Herbivore'),\n"
+            "    A.Axiom('Herbivore', 'subclassof', 'Animal'),\n"
+            "    A.Axiom('Giraffe', 'only', 'Leaf', 'eats'),     # illegal in EL\n"
+            "    A.Axiom('Giraffe', 'some', 'Leaf', 'eats'),     # legal in EL\n"
+            "]\n"
+            "M = A.AxiomConstructionMDP(candidates, required_entailments=[('Giraffe', 'Animal')],\n"
+            "                           profile='EL', step_cost=0.05, profile_penalty=0.5)\n"
+            "V, pi = mdp.value_iteration(M)\n"
+            "s0 = M.initial_state()\n"
+            "print(f'|S| = {len(M.states())}   V*(s0) = {V[s0]:.3f}')\n"
+            "plan = mdp.run_episode(M, mdp.greedy_policy(pi))\n"
+            "for a in plan.actions:\n"
+            "    print('  ', 'submit' if a == 'submit' else str(candidates[int(a.split(\":\")[1])]))"
+        ),
+        md(
+            "The optimal plan asserts the two subsumptions that produce the required "
+            "entailment **through a reasoner**, and declines both `eats` axioms — they cost "
+            "money, add no required entailment, and one of them would have cost an extra 0.5 "
+            "for leaving EL. Notice that the agent is rewarded for exploiting *entailment* "
+            "rather than asserting `Giraffe SubClassOf Animal` directly: that is precisely the "
+            "argument of Chapter 4 §4.3, expressed as a policy."
+        ),
+        code(
+            "print('what happens if we drop the profile penalty:')\n"
+            "M2 = A.AxiomConstructionMDP(candidates, [('Giraffe', 'Animal')],\n"
+            "                            profile='EL', step_cost=0.05, profile_penalty=0.0)\n"
+            "V2, pi2 = mdp.value_iteration(M2)\n"
+            "print('  V* =', round(V2[M2.initial_state()], 3),\n"
+            "      '| plan:', mdp.run_episode(M2, mdp.greedy_policy(pi2)).actions)\n"
+            "print('\\nThe plan is unchanged -- the illegal axiom was already not worth its\\n'\n"
+            "      'step cost. A penalty only changes behaviour when the illegal action is\\n'\n"
+            "      'otherwise attractive; see Exercise 4.2.')"
+        ),
+    ]
+    cells += task(
+        "4.1",
+        "Try to make the profile penalty bite",
+        "Set up a case where an EL-illegal axiom is available, sweep `profile_penalty` from "
+        "0 to 1, and report the penalty at which the optimal policy stops using it. Then "
+        "explain your result — it is probably not the one you expected.",
+        "# YOUR CODE HERE\n",
+        "cands = [A.Axiom('Giraffe', 'only', 'Leaf', 'eats'),\n"
+        "         A.Axiom('Giraffe', 'subclassof', 'Herbivore')]\n"
+        "req = [('Giraffe', 'Herbivore')]\n"
+        "rows = []\n"
+        "for penalty in [0.0, 0.25, 0.5, 1.0]:\n"
+        "    Mp = A.AxiomConstructionMDP(cands, req, profile='EL',\n"
+        "                                step_cost=0.05, profile_penalty=penalty)\n"
+        "    Vp, pip = mdp.value_iteration(Mp)\n"
+        "    ep = mdp.run_episode(Mp, mdp.greedy_policy(pip))\n"
+        "    asserted = [str(cands[int(a.split(':')[1])]) for a in ep.actions if a != 'submit']\n"
+        "    illegal = [a for a in asserted if 'only' in a]\n"
+        "    rows.append({'penalty': penalty, 'V*': round(Vp[Mp.initial_state()], 3),\n"
+        "                 'n_asserted': len(asserted), 'breaks_EL': bool(illegal)})\n"
+        "print(pd.DataFrame(rows).to_string(index=False))\n"
+        "print('\\nThe subsumption axiom alone satisfies the requirement legally, so the\\n'\n"
+        "      'optimal policy never needs the EL-illegal axiom -- the penalty is not what\\n'\n"
+        "      'protects the profile here; having a legal alternative is. That is the real\\n'\n"
+        "      'lesson: reward shaping cannot rescue a candidate set with no legal option.')",
+        hint="Build the MDP with only two candidates and sweep `profile_penalty`.",
+        checks=(
+            "assert [r['penalty'] for r in rows] == [0.0, 0.25, 0.5, 1.0]\n"
+            "assert all(r['n_asserted'] >= 1 for r in rows), 'the requirement must still be met'\n"
+            '# The lesson: a legal alternative exists, so the penalty never has to bite.\n'
+            "assert not any(r['breaks_EL'] for r in rows)\n"
+            '# Raising a penalty cannot raise the optimal value.\n'
+            "assert rows[-1]['V*'] <= rows[0]['V*'] + 1e-9"
+        ),
+    )
+    cells += task(
+        "4.2",
+        "Force the conflict",
+        "Now construct a case where **no** legal axiom satisfies the requirement, and decide "
+        "what the agent should do. Argue for a reward design that makes the right choice "
+        "optimal.",
+        "# YOUR CODE HERE\n",
+        "# Only an EL-illegal axiom can produce the required entailment.\n"
+        "cands = [A.Axiom('Giraffe', 'only', 'Leaf', 'eats')]\n"
+        "req = [('Giraffe', 'Leaf')]      # not entailed by a universal restriction\n"
+        "for penalty in [0.0, 0.5]:\n"
+        "    Mx = A.AxiomConstructionMDP(cands, req, profile='EL',\n"
+        "                                step_cost=0.05, profile_penalty=penalty)\n"
+        "    Vx, pix = mdp.value_iteration(Mx)\n"
+        "    ep = mdp.run_episode(Mx, mdp.greedy_policy(pix))\n"
+        "    print(f'penalty={penalty}: V*={Vx[Mx.initial_state()]:.2f} plan={ep.actions}')\n"
+        "print('\\nAt every penalty -- including zero -- the agent submits an EMPTY ontology.\\n'\n"
+        "      'The requirement is unsatisfiable from the available axioms, so asserting\\n'\n"
+        "      'anything only costs. Silence is optimal here only because the reward has no\\n'\n"
+        "      'way to express partial credit or escalation. The right engineering answer is\\n'\n"
+        "      'to escalate (change the profile, or renegotiate the requirement). A reward\\n'\n"
+        "      'function with only two options cannot express that, so a third action --\\n'\n"
+        "      'ESCALATE, with a small negative reward -- belongs in the action set. Reward\\n'\n"
+        "      'design is where you decide what your agent is allowed to do when it cannot win.')",
+        checks=(
+            '# The requirement is unsatisfiable from the candidate set, so at every penalty --\n'
+            '# including zero -- the optimal policy asserts nothing and submits an empty\n'
+            '# ontology. Silence is optimal only because the reward cannot express escalation.\n'
+            'for penalty in [0.0, 0.5]:\n'
+            "    Mx = A.AxiomConstructionMDP(cands, req, profile='EL',\n"
+            '                                step_cost=0.05, profile_penalty=penalty)\n'
+            '    Vx, pix = mdp.value_iteration(Mx)\n'
+            '    plan = mdp.run_episode(Mx, mdp.greedy_policy(pix)).actions\n'
+            "    assert [a for a in plan if a != 'submit'] == [], (\n"
+            "        f'asserted an axiom at penalty={penalty}; the empty ontology is optimal')\n"
+            "    assert plan[-1] == 'submit'"
+        ),
+    )
+    cells += task(
+        "4.3",
+        "Add a Chapter 4 rule the optimiser must discover",
+        "OWL 2 DL forbids non-simple (e.g. transitive) properties in cardinality restrictions "
+        "— the rule behind Example 4.2. Add a `simple-property-only` rule and a requirement "
+        "that punishes violating it, then show GEPA discovers it.",
+        "# YOUR CODE HERE\n",
+        "from oe_course.llm import Rule, RuleBook\n"
+        "from oe_course.evaluation import ScoreReport\n\n"
+        "TRANSITIVE = {'isPartOf'}\n\n"
+        "def strict_scorer(gold, pred):\n"
+        "    report = A.axiom_scorer(gold, pred)\n"
+        "    ax = A.Axiom.parse(getattr(pred, 'axiom', None))\n"
+        "    if ax and ax.property in TRANSITIVE and ax.operator == 'only':\n"
+        "        report.score *= 0.5\n"
+        "        report.notes.append(\n"
+        "            f\"'{ax.property}' is transitive; OWL 2 DL forbids non-simple properties \"\n"
+        "            'in universal/cardinality restrictions (Example 4.2).')\n"
+        "        report.violated = list(dict.fromkeys(report.violated + ['simple-property-only']))\n"
+        "    return report\n\n"
+        "strict_rules = RuleBook(list(A.AXIOM_RULEBOOK) + [Rule(\n"
+        "    'simple-property-only',\n"
+        "    'Never use a transitive property (such as isPartOf) inside a universal or '\n"
+        "    'cardinality restriction; OWL 2 DL requires simple properties there.')])\n\n"
+        "lm2 = llm.configure_dspy(strict_rules, A.axiom_responder)\n"
+        "reflect2 = llm.reflection_lm(strict_rules, A.axiom_responder)\n"
+        "strict_metric = ev.make_gepa_metric(strict_scorer, strict_rules)\n"
+        "tuned2 = opt.run_gepa(A.AxiomProgram(), A.build_dataset('all'), strict_metric,\n"
+        "                      valset=A.build_dataset('all'), max_metric_calls=50,\n"
+        "                      reflection_lm=reflect2)\n"
+        "found = strict_rules.active_in(opt.instruction_of(tuned2))\n"
+        "print('rules discovered:', sorted(found))\n"
+        "print('\\nWhether simple-property-only appears depends on whether the training set\\n'\n"
+        "      'ever punished it. Check the violation histogram before concluding the\\n'\n"
+        "      'optimiser failed -- an undiscovered rule usually means an unrepresented case.')\n"
+        "print('violations seen:',\n"
+        "      ev.evaluate_dataset(A.AxiomProgram(), A.build_dataset('all'), strict_scorer)['violations'])",
+        hint="Wrap `axiom_scorer`, halve the score when a transitive property appears under "
+        "`only`, and add the rule id to `violated`.",
+        checks=(
+            'from types import SimpleNamespace\n'
+            '\n'
+            "assert any(r.id == 'simple-property-only' for r in strict_rules)\n"
+            '\n'
+            '# The rule has to bite: a transitive property inside a universal restriction is\n'
+            '# exactly what OWL 2 DL forbids, so the strict scorer must penalise and record it.\n'
+            '# Axiom.parse takes a dict, a JSON object or an Axiom -- not the display form.\n'
+            "gold = A.build_dataset('all')[0]\n"
+            "offender = SimpleNamespace(axiom=A.Axiom('Wheel', 'only', 'Car', 'isPartOf'))\n"
+            'assert strict_scorer(gold, offender).score <= A.axiom_scorer(gold, offender).score\n'
+            "assert 'simple-property-only' in strict_scorer(gold, offender).violated\n"
+            '\n'
+            '# A simple property in the same position is not penalised by the new rule.\n'
+            "innocent = SimpleNamespace(axiom=A.Axiom('Giraffe', 'only', 'Leaf', 'eats'))\n"
+            "assert 'simple-property-only' not in strict_scorer(gold, innocent).violated"
+        ),
+    )
+    cells += [
+        md(
+            "## Carrying this forward\n\n"
+            "Chapters 1 and 4 now share one scaffolding and differ only in the task:\n\n"
+            "| | Ch. 1 | Ch. 4 |\n|---|---|---|\n"
+            "| task | assess an artefact | build an axiom |\n"
+            "| MDP | gather evidence | construct, under constraints |\n"
+            "| metric | level + defect F1 | faithfulness + profile compliance |\n"
+            "| what GEPA learns | reporting discipline | OWL 2 semantics and profile limits |\n\n"
+            "The pattern is the deliverable. Every remaining chapter plugs a new task into it — "
+            "see `course/README.md` for the task, MDP and metric proposed for each."
+        )
+    ]
+    return save_assignment(cells, HERE / "05_agentic_lab.ipynb",
+                           lab_title="ch04_web_ontology_languages — agentic lab")
+
+
+if __name__ == "__main__":
+    written = build()
+    for path in (written if isinstance(written, tuple) else (written,)):
+        print("wrote", path.name)

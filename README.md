@@ -4,13 +4,14 @@
 > per-chapter agentic lab (LangChain/LangGraph tools, MDP formulation, evaluation
 > datasets and metrics, DSPy **GEPA** optimisation, self-improving agents).
 >
-> **Start here: [`course/README.md`](course/README.md)**. Shared framework:
-> [`oe_course/`](oe_course). Part I is complete — [Ch. 1 Introduction](course/ch01_introduction),
-> [Ch. 2 First-Order Logic](course/ch02_first_order_logic),
-> [Ch. 3 Description Logics](course/ch03_description_logics),
-> [Ch. 4 Web Ontology Languages](course/ch04_web_ontology_languages). Everything runs
-> offline — no API key, no Docker. The material below (Chapter 7's bottom-up pipeline)
-> is one of the course's components.
+> **Start here: [`oe-course/README.md`](oe-course/README.md)**. Shared framework:
+> [`oe-course/oe_course/`](oe-course/oe_course). Part I is complete —
+> [Ch. 1 Introduction](oe-course/chapters/ch01_introduction),
+> [Ch. 2 First-Order Logic](oe-course/chapters/ch02_first_order_logic),
+> [Ch. 3 Description Logics](oe-course/chapters/ch03_description_logics),
+> [Ch. 4 Web Ontology Languages](oe-course/chapters/ch04_web_ontology_languages).
+> Everything runs offline — no API key, no Docker. The material below (Chapter 7's
+> bottom-up pipeline) is one of the course's components.
 
 ---
 
