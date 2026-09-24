@@ -49,7 +49,10 @@ def nb00():
            "| 1 | `01_standardising_and_owl1` | 4.1 Standardising an ontology language |\n"
            "| 2 | `02_owl2_features_profiles_syntaxes` | 4.2 OWL 2 |\n"
            "| 3 | `03_owl_in_context` | 4.3 OWL in context |\n"
-           "| 4 | `04_exercises` | 4.4 Exercises (Python-based) |\n"),
+           "| 4 | `04_exercises` | 4.4 Exercises (Python-based) |\n"
+           "| 5 | `05_assignment` / `05_solutions` | problem set | axiomatisation under "
+           "EL/QL/RL profile constraints with Claude, a module-building agent, and a "
+           "construction MDP |\n"),
         md("## Tooling\n"
            "The book uses **Protégé + HermiT/Pellet** (Java). To keep everything runnable in "
            "Python with no Java, we use:\n\n"

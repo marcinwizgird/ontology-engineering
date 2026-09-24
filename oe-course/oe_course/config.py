@@ -1,17 +1,14 @@
 """Environment detection and shared paths for the Ontology Engineering course.
 
-Everything in `oe_course` runs in one of two modes:
+The course runs against the real thing: every LLM call goes to Anthropic, and
+SPARQL goes to Apache Jena Fuseki when it is up (``infra/fuseki``). There is no
+simulated model. The assignments measure what Claude actually does, so a number
+in a notebook is a number about the model — with the cost that implies.
 
-* **live**   — a real LLM (Anthropic) and, if it is up, a real Fuseki triplestore;
-* **offline** — a deterministic *simulator* stands in for the LLM and an
-  in-memory rdflib dataset stands in for Fuseki.
-
-Offline mode exists so that every notebook in the course executes end-to-end
-with no API key, no Docker, and no cost. It is **not** a pretend LLM that
-returns canned strings: the simulator reacts to the instruction it is given
-(see :mod:`oe_course.llm`), which is what makes the DSPy/GEPA optimisation labs
-meaningful without spend. Students flip one environment variable to run the
-same code against the real thing.
+Credentials are resolved the way the Anthropic SDK resolves them
+(``ANTHROPIC_API_KEY`` or ``ANTHROPIC_AUTH_TOKEN``). For convenience a ``.env``
+file at the course root (``oe-course/.env``, see ``.env.example``) is loaded on
+import; values already set in the environment win.
 """
 
 from __future__ import annotations
@@ -26,6 +23,7 @@ PKG_DIR = Path(__file__).resolve().parent
 DATA_DIR = PKG_DIR / "data"
 REPO_ROOT = PKG_DIR.parent
 ARTIFACTS_DIR = REPO_ROOT / "course" / "artifacts"
+ENV_FILE = REPO_ROOT / ".env"
 
 
 def artifacts_dir() -> Path:
@@ -34,13 +32,32 @@ def artifacts_dir() -> Path:
     return ARTIFACTS_DIR
 
 
+def _load_env_file(path: Path = ENV_FILE) -> None:
+    """Load ``KEY=VALUE`` lines from the course ``.env``; never override the shell."""
+    if not path.is_file():
+        return
+    try:
+        from dotenv import load_dotenv
+    except ImportError:  # python-dotenv is optional; parse the simple format by hand
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip("'\""))
+        return
+    load_dotenv(path, override=False)
+
+
+_load_env_file()
+
 # --------------------------------------------------------------------------- #
 # Models
 #
 # Model ids are pinned here so a course-wide upgrade is a one-line change.
-# `claude-opus-5` is the current flagship; it rejects `temperature`/`top_p`/
-# `top_k` at non-default values, which is why `dspy_lm()` in oe_course.llm
-# passes temperature=1.0 (the accepted default) rather than DSPy's usual 0.0.
+# `claude-opus-5` rejects `temperature`/`top_p`/`top_k` at non-default values,
+# which is why `dspy_lm()` in oe_course.llm passes temperature=1.0 (the accepted
+# default) rather than DSPy's usual 0.0.
 # --------------------------------------------------------------------------- #
 CHAT_MODEL = os.environ.get("OE_COURSE_MODEL", "claude-opus-5")
 #: DSPy routes through LiteLLM, which wants a `provider/model` string.
@@ -60,18 +77,23 @@ FUSEKI_DATASET = os.environ.get("OE_COURSE_FUSEKI_DATASET", "ontology")
 FUSEKI_TIMEOUT = float(os.environ.get("OE_COURSE_FUSEKI_TIMEOUT", "2.0"))
 
 
-def offline() -> bool:
-    """True when the course should use simulators instead of a live LLM.
+def has_credentials() -> bool:
+    """Is an Anthropic credential visible to the SDK?"""
+    return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"))
 
-    Forced on with ``OE_COURSE_OFFLINE=1``; otherwise offline iff no Anthropic
-    credential is visible in the environment.
-    """
-    forced = os.environ.get("OE_COURSE_OFFLINE", "").strip().lower()
-    if forced in {"1", "true", "yes"}:
-        return True
-    if forced in {"0", "false", "no"}:
-        return False
-    return not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"))
+
+class MissingCredentialsError(RuntimeError):
+    """Raised before the first billed call when no Anthropic credential is set."""
+
+
+def require_credentials() -> None:
+    """Fail fast, with instructions, when there is nothing to authenticate with."""
+    if not has_credentials():
+        raise MissingCredentialsError(
+            "No Anthropic credential found. Set ANTHROPIC_API_KEY in your shell, or put "
+            f"it in {ENV_FILE} (copy .env.example). The course calls the live API; "
+            "there is no offline mode."
+        )
 
 
 def describe_environment() -> dict:
@@ -79,9 +101,10 @@ def describe_environment() -> dict:
     from oe_course.sparql import fuseki_available  # local import: avoids cycle
 
     return {
-        "mode": "offline (simulated LLM)" if offline() else "live",
+        "credentials": "found" if has_credentials() else "MISSING - set ANTHROPIC_API_KEY",
         "chat_model": CHAT_MODEL,
         "dspy_model": DSPY_MODEL,
+        "reflection_model": REFLECTION_MODEL,
         "fuseki": f"{FUSEKI_URL}/{FUSEKI_DATASET}" if fuseki_available() else "in-memory rdflib",
         "artifacts": str(ARTIFACTS_DIR),
     }

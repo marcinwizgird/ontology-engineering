@@ -29,29 +29,36 @@ anywhere, the notebooks use:
 | 2 | `02_owl2_features_profiles_syntaxes.ipynb` | 4.2 | SROIQ features (qualified cardinality, Self, irreflexive/asymmetric, property chains); **Example 4.2 cakes & the simple-property rule**; profiles EL/QL/RL + a heuristic OWL Classifier; **Listings 4.2–4.7** (one axiom, every syntax); **Table 4.3** complexity |
 | 3 | `03_owl_in_context.ipynb` | 4.3 | Semantic Web **layer cake (Fig 4.4)**; SPARQL over the ontology; reason-then-query; Common Logic; **DOL** |
 | 4 | `04_exercises.ipynb` | 4.4 | All 10 review questions + 14 exercises as Python (property chains, vegan⊑vegetarian, Joint/Single Honours, =2-modules consistency, principal vs knock-on errors, penguins & Lepidoptera, mini-project scaffold) |
-| 5 | `05_agentic_lab.ipynb` | extends 4.2 | **Agentic lab**: requirement → OWL axiom *inside a requested profile*; a **construction MDP** (actions change the artefact) solved by value iteration; a metric splitting faithfulness from profile compliance; GEPA recovering the EL/QL/RL restrictions from failure feedback alone |
+| 5 | `05_assignment.ipynb` / `05_solutions.ipynb` | extends 4.2 | **Problem set** (100 pts, live Claude API): the Mopane Ridge Conservancy's monitoring ontology, deployed as EL / QL / RL modules. Requirement → OWL axiom *inside the module's profile*, with **escalation** when the profile cannot express it; why a faithfulness/profile split metric rewards silent substitution; the simple-property global restriction (Example 4.2); a staged scorer, a DSPy axiomatiser, GEPA reported on a held-out split with cost and noise; a module-building agent whose actions change the artefact; and a **construction MDP** with an entailment-based reward, used to design the reward for escalation |
 
 `ch4_toolkit.py` is the shared module holding every artefact (the notebooks
-import it). `ch4_agentic.py` holds the agentic lab's task: the axiom vocabulary,
-the profile table, the dataset, the scorer, and the construction MDP.
+import it). `ch4_agentic.py` is the problem set's provided code: the signature
+and axiom language, its compiler to OWL 2 triples, the profile table and an
+RDF-level profile checker, the requirements corpus (24 items, fixed 8/8/8
+split, gold validated with rdflib/owlrl/owlready2), OWL 2 RL entailment probes,
+the module workspace and agent tools, and the construction MDP. The scorer, the
+DSPy program and the agent are for the student to build.
 `artifacts/` holds generated files (e.g. the layer-cake PNG, and any `.owl` you
 save).
 
-This chapter is part of the wider [course](../README.md); the agentic lab
+This chapter is part of the wider [course](../README.md); the problem set
 builds on the shared framework in [`oe_course/`](../../oe_course) and assumes
-Chapter 1's lab (`../ch01_introduction/05_agentic_lab.ipynb`).
+Chapter 1's (tools, metrics, MDPs, GEPA).
 
 ## Run
 
 ```bash
 pip install owlready2 rdflib owlrl pandas matplotlib nbformat jupyter
 python _build_notebooks.py     # (re)generate notebooks 0-4
-python _build_agentic_lab.py   # (re)generate notebook 5
-jupyter nbconvert --to notebook --execute --inplace 0*.ipynb   # run / validate
+python _build_assignment.py    # (re)generate 05_assignment + 05_solutions
+jupyter nbconvert --to notebook --execute --inplace 0[0-4]*.ipynb   # run / validate
 # or just open them:  jupyter lab
 ```
 
-All six notebooks execute end-to-end with **0 errors**.
+Notebooks 0–4 execute end-to-end offline. The problem set calls the live
+Anthropic API (set `ANTHROPIC_API_KEY`, or `oe-course/.env`); only
+`05_solutions.ipynb` is expected to run clean — the assignment stops at its first
+`TODO` by design.
 
 ## Mapping: book artefact → Python artefact
 

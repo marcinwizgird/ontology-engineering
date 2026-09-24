@@ -9,53 +9,52 @@ Two things distinguish it from a reading course:
 1. **Every example and exercise is executable.** Chapters ship Jupyter notebooks that
    run end to end; exercise solutions carry assertions, and those assertions are the
    marking scheme.
-2. **Every chapter ends with an agentic lab.** You build a LangChain/LangGraph agent
-   for that chapter's task, formalise it as an MDP, construct an evaluation dataset and
-   metrics (deterministic *and* LLM-as-judge), optimise it with DSPy — including GEPA —
-   and, where it applies, close a self-improvement loop behind a promotion gate.
+2. **Every chapter ends with a real-life problem set.** A concrete brief from a
+   (fictional) organisation, worked with Claude on the live API: build the grader, build
+   a DSPy/LangChain program or agent for the chapter's task, optimise it with GEPA on an
+   honest train/dev/test split, put a cost and a noise estimate next to every number,
+   and analyse the chapter's decision problem as an MDP.
 
 ---
 
 ## Status
 
-| Part | Chapters | Notebooks | Agentic lab |
+| Part | Chapter | Chapter notebooks | Problem set |
 |---|---|---|---|
-| — | **1. Introduction** | ✅ complete (6 notebooks) | ✅ complete |
-| I | **2. First-Order Logic and Reasoning** | ✅ complete (5 notebooks) | ✅ complete |
-| I | **3. Description Logics** | ✅ complete (6 notebooks) | ✅ complete |
-| I | **4. The Web Ontology Languages** | ✅ complete (6 notebooks) | ✅ complete |
-| II | **5. Methods and Methodologies** | ✅ complete (5 notebooks) | ✅ complete |
-| II | **6. Top-down Ontology Development** | ✅ complete (5 notebooks) | ✅ complete |
+| — | **1. Introduction** | ✅ 5 | ✅ Triaging submissions to an ontology registry |
+| I | **2. First-Order Logic and Reasoning** | ✅ 4 | ✅ Formalising a hospital access policy |
+| I | **3. Description Logics** | ✅ 5 | ✅ Reviewing rail-ontology change requests |
+| I | **4. The Web Ontology Languages** | ✅ 5 | ✅ Axiomatising a conservancy's ontology inside OWL 2 profiles |
+| II | **5. Methods and Methodologies** | ✅ 4 | ✅ An automated first-pass ontology design review |
+| II | **6. Top-down Ontology Development** | ✅ 4 | ✅ Untangling a museum catalogue's single `partOf` |
 | II | 7. Bottom-up Ontology Development | partial — see `../bottomup_ontology/` | specified below |
-| III | 8. Linking Ontologies to Data | planned | specified below |
-| III | 9. Ontologies and Natural Languages | planned | specified below |
-| III | 10. Rough, Temporal, and Fuzzy Modelling | planned | specified below |
+| III | **8. Linking Ontologies to Data** | ✅ 4 | ✅ Mapping and serving a hospital trust's clinical data |
+| III | **9. Ontologies and Natural Languages** | ✅ 4 | ✅ Multilingual review sheets for a zoo alliance |
+| III | **10. Rough, Temporal, and Fuzzy Modelling** | ✅ 4 | ✅ Choosing — and pricing — the formalism for an ED ontology |
 | III | 11. More Topics to Explore | planned | specified below |
 
-**Part I is complete**, and **Part II is half built** (Ch. 5–6 of 7). Each chapter has
-its own executable engine — a FOL model checker and resolution prover (Ch. 2), an ALC
-tableau reasoner (Ch. 3), an OntoClean constraint checker (Ch. 5), a part-whole
-taxonomy with a chaining checker (Ch. 6) — and its own agentic lab. The per-chapter
-specifications below fix the task, the MDP, the metrics and the self-improvement angle
-for what remains.
+Each chapter has its own executable engine — a FOL model checker and resolution prover
+(Ch. 2), an ALC tableau reasoner (Ch. 3), OWL 2 profile checking (Ch. 4), an OntoClean
+constraint checker (Ch. 5), a part-whole taxonomy with a chaining checker (Ch. 6), and
+so on — and the problem sets use that engine as the grader wherever the task has a
+decision procedure.
 
-### The six MDP shapes built so far
+### The MDP shapes
 
-Each completed chapter contributes a genuinely different decision problem. That is the
-point: "formalise the task as an MDP" is not one exercise repeated six times.
+Each chapter contributes a different decision problem: "formalise the task as an MDP"
+is not one exercise repeated nine times.
 
 | Chapter | Shape | Actions | Transitions |
 |---|---|---|---|
 | 1 | **evidence gathering** | buy a piece of evidence, or submit | deterministic |
 | 2 | **proof search** | derive a resolvent, or claim a verdict | deterministic |
 | 3 | **budgeted oracle** | guess cheaply, or pay for soundness | **stochastic** |
-| 4 | **construction** | assert an axiom (changing the artefact), or submit | deterministic |
+| 4 | **construction** | assert an axiom (changing the artefact), escalate, or submit | deterministic |
 | 5 | **planning under prerequisites** | perform a step whose preconditions are met, or ship | deterministic |
 | 6 | **diagnosis** | ask a discriminating question, or commit | **stochastic** |
-
-Chapter 6's is the one to look at if you only look at one: solving it exactly
-**derives DOLCE's decision tree** — endurant/perdurant first, then telicity — from a
-cost model, rather than taking the textbook's tree on authority.
+| 8 | **execution strategy** | materialise or rewrite, under staleness and latency | see the problem set |
+| 9 | **revision / stopping** | redraft a verbalisation, or stop | **stochastic** |
+| 10 | **search cost** | propagate constraints, or commit | deterministic |
 
 ---
 
@@ -64,15 +63,17 @@ cost model, rather than taking the textbook's tree on authority.
 ```
 oe-course/
 ├── README.md              ← you are here
-├── oe_course/            # the shared framework package
+├── .env.example           # copy to .env and add ANTHROPIC_API_KEY
+├── requirements.txt
+├── oe_course/             # the shared framework package
 └── chapters/
     ├── ch01_introduction/
     ├── ch02_first_order_logic/
-    └── …                 # one directory per chapter
+    └── …                  # one directory per chapter
 ```
 
-Each chapter directory holds its notebooks, its engine (`chNN_toolkit.py`), its agentic
-lab module (`chNN_agentic.py`), and the builder that emits the notebooks:
+Each chapter directory holds its notebooks, its engine (`chNN_toolkit.py`), the problem
+set's provided code (`chNN_agentic.py`), and the builders that emit the notebooks:
 
 ```
 chapters/ch02_first_order_logic/
@@ -80,114 +81,92 @@ chapters/ch02_first_order_logic/
 ├── 01_syntax_and_semantics.ipynb
 ├── 02_reasoning.ipynb
 ├── 03_exercises.ipynb
-├── 04_agentic_lab.ipynb            ← the assignment (student)
-├── 04_agentic_lab_solution.ipynb   ← the same lab, worked
+├── 04_assignment.ipynb     ← the problem set (student)
+├── 04_solutions.ipynb      ← the same problem set, worked (instructor)
 ├── ch02_toolkit.py · ch02_agentic.py
-└── _build_notebooks.py
+├── _build_notebooks.py     # chapter notebooks
+└── _build_assignment.py    # the problem set
 ```
 
 Chapter 7's material lives outside this directory, in `../bottomup_ontology/`, because it
 is also a standalone component of the wider repository rather than course-only material.
 
-Each chapter directory holds its notebooks, its engine (`chNN_toolkit.py`), its agentic
-lab module (`chNN_agentic.py`), and the builder that emits the notebooks.
-
 ## Running it
 
 ```bash
 pip install -r requirements.txt
+cp .env.example .env            # then put your ANTHROPIC_API_KEY in it
 
-# Every chapter builds and runs the same way
+# Rebuild everything
 for ch in chapters/ch*/; do
-  (cd "$ch" && python _build_notebooks.py \
-     && python -m jupyter nbconvert --to notebook --execute --inplace 0*.ipynb)
+  (cd "$ch" && python _build_notebooks.py && python _build_assignment.py)
 done
 
-# Chapter 4 has a second build script for its agentic lab
-(cd chapters/ch04_web_ontology_languages && python _build_agentic_lab.py)
-
-# ...or just read them
 jupyter lab
 ```
 
 Notebooks are **build artefacts**: edit the `_build_*.py` source, not the `.ipynb`.
 
-## Agentic labs are assignments
+**The problem sets call the live Anthropic API** (`claude-opus-5` by default; override
+with `OE_COURSE_MODEL`). There is no offline mode: the numbers in a problem set are
+numbers about the model, and each one costs money. Every problem set states its
+estimated budget in its header (typically $5–20 for a full run), and `llm.meter(...)`
+records what each block of work actually cost. DSPy caches identical requests on disk,
+so re-running unchanged cells is free. Fuseki is optional; without it the course uses an
+in-memory rdflib store.
 
-Each chapter's agentic lab ships as a **pair** of notebooks, built from one source by
-`oe_course.assignment`:
+## Problem sets
+
+Each chapter's problem set ships as a **pair** of notebooks, built from one source by
+`oe_course.assignment.ProblemSet`:
 
 | | contains | executes clean |
 |---|---|---|
-| `NN_agentic_lab.ipynb` | the lab, with the graded tasks left as `NotImplementedError` stubs | **no** — by design |
-| `NN_agentic_lab_solution.ipynb` | the same lab with every task worked | yes |
+| `NN_assignment.ipynb` | the brief, provided code, `# TODO` stubs ending in `raise NotImplementedError`, and *Your answer* cells | **no** — by design |
+| `NN_solutions.ipynb` | the same problem set with every stub implemented and every written answer given | yes, and it ends by asserting every check passed |
 
-**28 graded tasks across the nine labs**, 3–4 each. Everything outside a task — the
-prose, the setup, the worked examples, *and the checks* — is emitted into both notebooks
-from the same cells, so the two variants cannot drift apart.
+The format:
 
-The checks appearing in both is the point of the design. In the solution notebook they
-pass, which is what proves the reference implementation satisfies the marking scheme; in
-the student notebook they fail until the task is done, which is what makes them a marking
-scheme rather than a suggestion.
+* **A brief** — a stakeholder, an artefact, a real problem — plus topic coverage, total
+  points, estimated effort and **API budget**.
+* **Parts A–D**, typically: A — concepts and the limits of the chapter's machinery;
+  B — build the grader/metric and the Claude program; C — optimise with GEPA honestly
+  (optimise on `train`, select on `dev`, report on `test`, with cost and run-to-run
+  noise); D — the agent and the chapter's MDP.
+* **100 points per set**, roughly half auto-graded by `with GRADER.check("B1", points=…)`
+  cells and half marked by hand against the rubric (written answers, error analyses, the
+  quality of the engineering evidence).
+* **Checks never assert on model quality.** They test deterministic behaviour (scorers on
+  hand-made predictions, tools, parsers, MDP properties) and the *reporting discipline*
+  of live runs (right split, sample size, cost recorded, artefacts saved, verdicts
+  consistent with the statistics). A student is graded on doing the work properly, not
+  on how Claude happened to sample that day.
+* **A grading rubric and a self-test** close every notebook.
 
 To hand out a repository without answers:
 
 ```bash
-rm chapters/*/[0-9]*_agentic_lab_solution.ipynb
+rm chapters/*/[0-9]*_solutions.ipynb
 ```
 
-### Authoring a task
-
-`task()` takes the same arguments as `exercise()` and lifts the solution's **top-level**
-assertions into their own cell automatically — an assert nested in a loop or a function
-stays where its author put it, because moving it would either break it or quietly stop it
-checking anything. Pass `checks=` explicitly when a solution asserts nothing of its own;
-`task()` refuses to build a task with no marking scheme rather than emitting one silently.
+### Authoring a problem set
 
 ```python
-from oe_course.nbbuild import code, header, md
-from oe_course.assignment import save_assignment, task
+from oe_course.assignment import ProblemSet
 
-cells += task(
-    "4.2", "Break the semantic grader",
-    "Find a predicted formula that is not equivalent to the gold formula in general, "
-    "but that `equivalent(..., max_size=2)` accepts.",
-    "# YOUR CODE HERE
-",                      # → the student stub
-    "gold = fol.parse('forall x exists y T(x, y)')
-"
-    "guess = fol.parse('exists y forall x T(x, y)')
-"
-    "assert A.equivalent(guess, gold, max_size=1)
-"
-    "assert not A.equivalent(guess, gold, max_size=2)",
-)
-return save_assignment(cells, HERE / "04_agentic_lab.ipynb", lab_title="…")
+ps = ProblemSet(chapter="Chapter 2 — …", title="…", coverage="…", scenario="…",
+                effort="10–12 hours", api_budget="≈ $6–12 estimated …")
+ps.setup("import ch02_agentic as A")
+ps.part("B", "Build the grader")
+ps.problem("B1", "A staged, diagnostic scorer", 14, "brief…", auto_points=12)
+ps.todo(stub="def policy_scorer(gold, pred): ...", solution="def policy_scorer(gold, pred): …")
+ps.written("model answer…")          # a *Your answer* cell in the assignment
+ps.check("B1", "assert policy_scorer(...).score == 1.0")
+ps.save(HERE, "04")                  # -> 04_assignment.ipynb, 04_solutions.ipynb
 ```
-Authoring in Python keeps diffs reviewable and makes course-wide changes one edit.
 
-### Two modes, one codebase
-
-Everything runs **offline** — no API key, no Docker, no cost:
-
-| | offline (default) | live |
-|---|---|---|
-| LLM | deterministic simulator | Claude (`claude-opus-5`) via `langchain-anthropic` / DSPy |
-| triplestore | in-memory `rdflib` | Apache Jena Fuseki (`infra/fuseki`) |
-| enabled by | nothing to do | `export ANTHROPIC_API_KEY=...`, `docker compose up -d` |
-
-> **What the offline LLM is, precisely.** It is a *simulator*, not a model: a weak agent
-> that follows explicit instructions and ignores everything else. This is a deliberate
-> design choice, because a fake LLM that ignored its prompt would make prompt
-> optimisation a no-op — GEPA would search instructions that cannot change the score,
-> and students would watch a loop that proves nothing. The simulator instead starts from
-> a naive strategy and adopts a better one for each rule the instruction conveys, so the
-> optimisation loop genuinely converges for a reason you can read in the instruction diff.
->
-> **Numbers obtained offline describe the simulator, not Claude.** The notebooks say so
-> at every point where a number appears. Set `ANTHROPIC_API_KEY` and the identical code
-> produces numbers about the model.
+Cells not marked for one variant — the brief, the provided code, the checks — go into
+both notebooks, so the two cannot drift apart.
 
 ---
 
@@ -200,40 +179,41 @@ folder is this one.
 
 | Module | What it provides |
 |---|---|
-| `config` | environment detection, model ids, offline/live switch |
-| `llm` | Anthropic clients; the rule-conditioned task and reflection simulators |
+| `config` | model ids, credentials (`.env`), Fuseki settings, paths |
+| `llm` | Anthropic clients (LangChain `ChatAnthropic`, DSPy `LM`), spend accounting (`meter`, `spend`, `chat_usage`) |
 | `sparql` | one SPARQL API over Fuseki **or** in-memory rdflib |
 | `ontology` | graph metrics, spectrum classification, modelling-defect detectors |
 | `tools` | LangChain function tools, bound to a workspace, with call logging |
 | `agents` | single-loop agents and decomposed plan→act→critique pipelines |
 | `mdp` | finite MDPs, value iteration, policy evaluation, trajectory replay |
-| `evaluation` | datasets, deterministic metrics, LLM-as-judge, GEPA feedback metrics |
+| `evaluation` | rulebooks, datasets, deterministic metrics, LLM-as-judge, GEPA feedback metrics |
 | `optimize` | GEPA/DSPy compilation with before/after and instruction diffs |
 | `skills` | versioned capability bundles and skill cards |
 | `selfimprove` | experience buffers, failure mining, held-out promotion gates |
 | `programs` | the worked reference task (ontology triage) |
+| `assignment` · `grading` | the problem-set builder and its runtime marking |
 | `data/corpus` | 11 labelled ontologies — the shared evaluation substrate |
 
-### The five things every agentic lab does
+### The five things every problem set exercises
 
-1. **Function tools.** Narrow, composable, bound to a `ToolContext`, every call logged.
-   Descriptions state a *trigger* ("call this whenever asked to review an ontology"), not
-   just a behaviour — models select tools from descriptions.
-2. **Functional decomposition.** Compare a single ReAct loop against an explicit
-   plan→act→critique pipeline on **score and cost**. The critic stage is a verification
-   step with access to raw tool output, which turns a class of hallucination into an
-   impossibility.
-3. **MDP formulation.** State, actions, transitions, reward, γ — written down, then
-   solved exactly by value iteration so the agent's **regret** against `V*` can be
-   reported. "Is the agent efficient?" becomes arithmetic.
-4. **Evaluation.** A dataset split *by artefact* (never by random row), a deterministic
-   metric, an LLM-as-judge for the qualities set comparison cannot reach, and a
-   **GEPA feedback metric** that emits `MISSING RULE <id>: <fix>` lines. A metric that
-   returns only a number cannot drive reflection — this is the single most common reason
-   GEPA appears not to work.
-5. **Optimisation and self-improvement.** GEPA on `train`, report on held-out `dev`,
-   attribute the gain to a specific instruction change, package as a versioned skill,
-   then run failure-mining rounds behind a promotion gate with a minimum margin.
+1. **Function tools.** Narrow, composable, bound to a workspace, every call logged.
+   Descriptions state a *trigger*, not just a behaviour — models select tools from
+   descriptions.
+2. **Functional decomposition.** Where it applies, compare a single loop against an
+   explicit pipeline, or a program that puts measurement in code and only judgement in
+   the model, on **score and cost**.
+3. **MDP formulation.** State, actions, transitions, reward, γ — written down, solved
+   exactly by value iteration, with decision thresholds derived in closed form and
+   checked by a sweep.
+4. **Evaluation.** A dataset split *by item* (never by random row), a deterministic
+   metric wherever a decision procedure exists, an LLM-as-judge **validated against
+   labels** where one does not, and a **GEPA feedback metric** that emits
+   `VIOLATED GUIDELINE <id>: <fix>` lines. A metric that returns only a number cannot
+   drive reflection.
+5. **Optimisation, honestly reported.** GEPA on `train`, selection on `dev`, the report on
+   an untouched `test`; the cost of the run; the run-to-run noise; and a comparison
+   against a hand-written-guidelines baseline, because "the optimiser helped" is only a
+   finding if it beats the cheap alternative.
 
 ---
 
@@ -243,7 +223,7 @@ Each entry fixes the chapter's agent task, its MDP, and its metrics.
 
 ### Chapter 1 — Introduction ✅
 *Notebooks:* spectrum classification · integration with a reasoner (recall 0 → 1) ·
-the definition game as a scorecard · defect scanning · exercises · agentic lab.
+the definition game as a scorecard · defect scanning · exercises · problem set.
 
 **Agent:** ontology triage — place an artefact on the spectrum and list its defects.
 **MDP:** *evidence-gathering.* S = evidence held; A = one tool per evidence kind + submit;
@@ -254,7 +234,7 @@ written justification (judge).
 
 ### Chapter 2 — First-Order Logic and Reasoning ✅
 *Notebooks:* syntax as an AST + Tarskian semantics as code · entailment, countermodels,
-resolution proofs, and the decidability wall · exercises · agentic lab.
+resolution proofs, and the decidability wall · exercises · problem set.
 
 **Engine:** `ch02_toolkit` — tokeniser, recursive-descent parser, evaluator, finite-model
 enumerator, ground resolution prover. No external solver.
@@ -273,7 +253,7 @@ negation scope).
 
 ### Chapter 3 — Description Logics ✅
 *Notebooks:* concepts, models and **a tableau you can read** · naming the logic and
-measuring what expressivity costs · reasoning services · exercises · agentic lab.
+measuring what expressivity costs · reasoning services · exercises · problem set.
 
 **Engine:** `ch03_toolkit` — concept AST, NNF, expressivity analysis, and a working **ALC
 tableau reasoner** with TBox internalisation and subset blocking (so cyclic axioms such as
@@ -302,7 +282,7 @@ penalty − step cost.
 
 ### Chapter 5 — Methods and Methodologies ✅
 *Notebooks:* methodology selection + **competency questions as SPARQL tests** ·
-**OntoClean** · exercises · agentic lab.
+**OntoClean** · exercises · problem set.
 
 **Engine:** `ch05_toolkit` — a methodology catalogue with selection *signals*, competency
 questions that execute, and an OntoClean constraint checker (rigidity, identity, unity,
@@ -322,7 +302,7 @@ shows a rule becoming permanently unlearnable.
 
 ### Chapter 6 — Top-down Ontology Development ✅
 *Notebooks:* foundational categories + a decision procedure · **part-whole relations and
-chaining** · exercises · agentic lab.
+chaining** · exercises · problem set.
 
 **Engine:** `ch06_toolkit` — a DOLCE-style category tree with yes/no decision questions,
 a DOLCE↔BFO comparison, the seven-way part-whole taxonomy with parthood/transitivity
@@ -401,7 +381,7 @@ making this the chapter where the self-improvement loop has the most to work wit
 | Weight | Component |
 |---|---|
 | 30% | Notebook exercises (autograded by the shipped assertions) |
-| 30% | Agentic labs — a working agent **with a skill card**: held-out score, the diff that caused it, and the failure mode it did not fix |
+| 30% | Problem sets — a working agent **with a skill card**: held-out score, the diff that caused it, and the failure mode it did not fix |
 | 20% | A written critique of one metric in the course: what it fails to measure, with evidence |
 | 20% | Capstone (Ch. 11) — an ontology matcher evaluated against a reference alignment |
 

@@ -1,59 +1,187 @@
-"""Chapter 2 agentic lab — formalisation, and proof search as an MDP.
+"""Chapter 2 problem-set support — formalising an access policy, and checking it.
 
-The task: turn an English statement into a first-order formula. What makes it a
-*good* teaching task for agents is that the metric can be **semantic rather than
-textual**. Two formulas are scored equal when they have the same models up to a
-finite size — so `forall x (P(x) -> Q(x))` and `~exists x (P(x) & ~Q(x))` both
-earn full marks, and no amount of superficial string similarity earns any.
+Provided code for ``04_assignment.ipynb``. The student builds the grader, the
+Claude formaliser and the compliance agent in the notebook; this module supplies
+what a real project would already have in its codebase:
 
-That is unusual and worth dwelling on: most LLM evaluation is stuck with string
-overlap or a judge because the task has no decision procedure. Here Chapter 2's
-own semantics *is* the grader.
+* the **policy corpus** — English policy statements, a fixed predicate
+  vocabulary, gold formulas, and a train / dev / test split by item;
+* **semantic comparison** (:func:`equivalent`) and **mistake naming**
+  (:func:`diagnose`) on top of Chapter 2's model checker;
+* the **guidelines** a formalisation scorer reports (:data:`POLICY_RULEBOOK`);
+* a **compliance knowledge base** and a ground entailment checker
+  (:func:`ground_entails`, a small DPLL solver) for the agent's tools;
+* **proof search as an MDP** (:class:`ProofSearchMDP`).
 
-The MDP is proof search: states are sets of derived clauses, actions are
-resolution steps, and the reward pays for a correct verdict minus the cost of
-getting there. Solving it exactly shows the shortest proof — and how fast the
-state space grows.
+Why the grader is unusual and worth dwelling on: most LLM evaluation is stuck
+with string overlap or a judge because the task has no decision procedure.
+Formalisation has one — two formulas mean the same thing when they have the same
+models — so Chapter 2's own semantics *is* the grader.
 """
 
 from __future__ import annotations
 
+import functools
 import itertools
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import ch02_toolkit as fol
 
 __all__ = [
-    "TRANSLATION_TASKS", "build_dataset", "translation_scorer",
-    "FOL_RULEBOOK", "fol_responder", "FormalisationProgram", "BASELINE_INSTRUCTION",
-    "equivalent", "diagnose", "build_toolset", "Ch2Context", "ProofSearchMDP",
+    "VOCABULARY", "vocabulary_text", "POLICY_ITEMS", "build_dataset",
+    "equivalent", "diagnose", "model_space_bits", "POLICY_RULEBOOK",
+    "POLICY_KB", "FACTS", "COMPLIANCE_QUERIES", "ground_entails", "verdict",
+    "PolicyWorkspace", "build_policy_tools", "ProofSearchMDP",
 ]
 
 
 # --------------------------------------------------------------------------- #
-# Semantic comparison — the grader
+# The vocabulary the formaliser must use
 # --------------------------------------------------------------------------- #
+#: predicate -> (arity, gloss). The gold formulas use exactly these names.
+VOCABULARY: dict[str, tuple[int, str]] = {
+    "Clinician": (1, "x is a clinician"),
+    "Nurse": (1, "x is a nurse"),
+    "Employee": (1, "x is an employee of the hospital"),
+    "Contractor": (1, "x is a contractor"),
+    "Auditor": (1, "x is an auditor"),
+    "External": (1, "x is external to the hospital"),
+    "Patient": (1, "x is a patient"),
+    "Consented": (1, "x (a patient) has given research consent"),
+    "Record": (1, "x is a health record"),
+    "Sensitive": (1, "x (a record) is marked sensitive"),
+    "Treats": (2, "x treats y"),
+    "About": (2, "record x is about patient y"),
+    "CanAccess": (2, "x can access record y"),
+    "Supervises": (2, "x supervises y"),
+}
+
+
+def vocabulary_text() -> str:
+    """The vocabulary as the formaliser sees it: one predicate per line."""
+    lines = []
+    for name, (arity, gloss) in VOCABULARY.items():
+        args = "x" if arity == 1 else "x, y"
+        lines.append(f"{name}({args}): {gloss}")
+    return "\n".join(lines)
+
+
+# --------------------------------------------------------------------------- #
+# The policy corpus
+# --------------------------------------------------------------------------- #
+#: (id, split, statement, gold formula). Split is fixed by item and balanced by
+#: phenomenon, so no split can be solved by memorising a sibling item.
+POLICY_ITEMS: list[tuple[str, str, str, str]] = [
+    # --- train ---------------------------------------------------------------
+    ("clinicians-are-employees", "train", "Every clinician is an employee.",
+     "forall x (Clinician(x) -> Employee(x))"),
+    ("some-auditor-external", "train", "Some auditor is external.",
+     "exists x (Auditor(x) & External(x))"),
+    ("no-contractor-clinician", "train", "No contractor is a clinician.",
+     "forall x (Contractor(x) -> ~Clinician(x))"),
+    ("records-about-patients", "train", "Every record is about some patient.",
+     "forall x (Record(x) -> exists y (Patient(y) & About(x, y)))"),
+    ("someone-supervises-all-nurses", "train", "There is someone who supervises every nurse.",
+     "exists x forall y (Nurse(y) -> Supervises(x, y))"),
+    ("only-clinicians-access", "train", "Only clinicians can access records.",
+     "forall x forall y ((Record(y) & CanAccess(x, y)) -> Clinician(x))"),
+    ("not-all-employees-clinicians", "train", "Not every employee is a clinician.",
+     "~forall x (Employee(x) -> Clinician(x))"),
+    ("no-self-treatment", "train", "No clinician treats themselves.",
+     "forall x (Clinician(x) -> ~Treats(x, x))"),
+    # --- dev -----------------------------------------------------------------
+    ("nurses-are-clinicians", "dev", "All nurses are clinicians.",
+     "forall x (Nurse(x) -> Clinician(x))"),
+    ("some-record-sensitive", "dev", "Some records are sensitive.",
+     "exists x (Record(x) & Sensitive(x))"),
+    ("contractors-no-access", "dev", "Contractors cannot access any record.",
+     "forall x (Contractor(x) -> ~exists y (Record(y) & CanAccess(x, y)))"),
+    ("clinicians-treat-someone", "dev", "Every clinician treats some patient.",
+     "forall x (Clinician(x) -> exists y (Patient(y) & Treats(x, y)))"),
+    ("every-nurse-supervised", "dev", "Every nurse is supervised by someone.",
+     "forall y (Nurse(y) -> exists x Supervises(x, y))"),
+    ("auditor-external-or-employee", "dev", "Every auditor is either external or an employee.",
+     "forall x (Auditor(x) -> (External(x) | Employee(x)))"),
+    ("some-nurse-treats-nobody", "dev", "Some nurse treats no patient.",
+     "exists x (Nurse(x) & ~exists y (Patient(y) & Treats(x, y)))"),
+    ("supervisors-of-nurses-clinicians", "dev", "Anyone who supervises a nurse is a clinician.",
+     "forall x forall y ((Supervises(x, y) & Nurse(y)) -> Clinician(x))"),
+    # --- test ----------------------------------------------------------------
+    ("contractors-not-employees", "test", "No contractor is an employee.",
+     "forall x (Contractor(x) -> ~Employee(x))"),
+    ("some-patient-consented", "test", "At least one patient has given research consent.",
+     "exists x (Patient(x) & Consented(x))"),
+    ("external-auditors-no-sensitive", "test",
+     "No external auditor can access a sensitive record.",
+     "forall x ((Auditor(x) & External(x)) -> ~exists y (Record(y) & Sensitive(y) & CanAccess(x, y)))"),
+    ("patients-have-records", "test", "Every patient has at least one record about them.",
+     "forall y (Patient(y) -> exists x (Record(x) & About(x, y)))"),
+    ("one-clinician-treats-all", "test", "Some clinician treats every patient.",
+     "exists x (Clinician(x) & forall y (Patient(y) -> Treats(x, y)))"),
+    ("only-consented-sensitive", "test",
+     "Sensitive records exist only about patients who have consented.",
+     "forall x forall y ((Record(x) & Sensitive(x) & About(x, y)) -> Consented(y))"),
+    ("auditor-external-iff-not-employee", "test",
+     "An auditor is external exactly when they are not an employee.",
+     "forall x (Auditor(x) -> (External(x) <-> ~Employee(x)))"),
+    ("every-patient-treated", "test", "Every patient is treated by some clinician.",
+     "forall y (Patient(y) -> exists x (Clinician(x) & Treats(x, y)))"),
+]
+
+
+def build_dataset(split: str = "all"):
+    """The corpus as ``dspy.Example`` rows (inputs: statement, vocabulary)."""
+    import dspy
+
+    vocab = vocabulary_text()
+    rows = [
+        dspy.Example(id=item_id, split=item_split, statement=text, vocabulary=vocab,
+                     gold_formula=formula).with_inputs("statement", "vocabulary")
+        for item_id, item_split, text, formula in POLICY_ITEMS
+    ]
+    return rows if split == "all" else [r for r in rows if r.split == split]
+
+
+# --------------------------------------------------------------------------- #
+# Semantic comparison — the grader's core
+# --------------------------------------------------------------------------- #
+def model_space_bits(formulas, size: int) -> int:
+    """How many ground atoms a model of this size must decide.
+
+    The number of models the checker enumerates is ``2 ** bits`` — which is why
+    the grader refuses (rather than hangs on) a formula with too big a signature.
+    """
+    signature: dict[str, int] = {}
+    for f in formulas:
+        signature.update(fol.predicates(f))
+    return sum(size ** arity for arity in signature.values())
+
+
+@functools.lru_cache(maxsize=4096)
+def _equivalent_cached(a_text: str, b_text: str, max_size: int) -> bool:
+    a, b = fol.parse(a_text), fol.parse(b_text)
+    return fol.entails([a], b, max_size)[0] and fol.entails([b], a, max_size)[0]
+
+
 def equivalent(a, b, max_size: int = 2) -> bool:
-    """Do two formulas have the same models up to ``max_size``?
+    """Do two closed formulas have the same models on every domain up to ``max_size``?
 
     Two-way finite entailment. Not full logical equivalence (undecidable), but
     sound in the direction that matters for grading: a *difference* found is a
-    real difference, witnessed by an explicit model.
+    real difference, witnessed by an explicit model. Memoised on the normalised
+    text, because an optimiser grades the same answer many times.
     """
-    return fol.entails([a], b, max_size)[0] and fol.entails([b], a, max_size)[0]
+    return _equivalent_cached(fol.to_string(a), fol.to_string(b), max_size)
 
 
 def diagnose(predicted, gold) -> str | None:
     """Name the classic mistake, when the shape of the error is recognisable.
 
-    Returning a *named* pitfall rather than "wrong" is what lets the GEPA metric
+    Returning a *named* pitfall rather than "wrong" is what lets a GEPA metric
     tell the optimiser something it can act on.
     """
     match (predicted, gold):
-        # 'No X is Y' first. Negating the whole universal is a *scope* error, and
-        # naming it that way matters: told only "use implication", the author
-        # would fix nothing here.
         case (fol.Not(fol.ForAll(_, _)), fol.ForAll(_, fol.Implies(_, fol.Not(_)))):
             return "negation-scope"
         case (fol.ForAll(_, fol.And(_, _)), fol.ForAll(_, fol.Implies(_, _))):
@@ -67,304 +195,205 @@ def diagnose(predicted, gold) -> str | None:
     return None
 
 
+def _rulebook():
+    from oe_course.evaluation import Rule, RuleBook
+
+    return RuleBook([
+        Rule("emit-parseable-formula",
+             "Answer with one formula in the ASCII syntax -- forall/exists, ~ & | -> <->, "
+             "predicates written Name(arg, ...) -- and nothing else: no prose, no "
+             "Unicode symbols, no code fences."),
+        Rule("close-every-variable",
+             "Bind every variable with a quantifier; a free variable leaves the "
+             "statement without a truth value."),
+        Rule("use-the-vocabulary",
+             "Use only the predicates listed in the vocabulary, with exactly the "
+             "listed arity and argument order; do not invent synonyms."),
+        Rule("universal-uses-implication",
+             "Translate 'every/all X is Y' as forall x (X(x) -> Y(x)); a conjunction "
+             "under a universal claims everything in the domain is an X."),
+        Rule("existential-uses-conjunction",
+             "Translate 'some X is Y' as exists x (X(x) & Y(x)); an implication under "
+             "an existential is satisfied by any non-X and asserts almost nothing."),
+        Rule("quantifier-order-matters",
+             "Keep the quantifier order of the English: 'everyone R something' is "
+             "forall x exists y, 'someone R everything' is exists x forall y."),
+        Rule("negation-scope",
+             "Translate 'no X is Y' as forall x (X(x) -> ~Y(x)), with the negation "
+             "inside the universal; 'not every X is Y' negates the whole universal."),
+        Rule("match-the-intended-reading",
+             "Check the formula against the English: direction of 'only', what is "
+             "required versus permitted, and which argument plays which role."),
+    ])
+
+
+#: The guidelines a formalisation scorer reports as violated.
+POLICY_RULEBOOK = _rulebook()
+
+
 # --------------------------------------------------------------------------- #
-# Dataset
+# The compliance knowledge base (Part D)
 # --------------------------------------------------------------------------- #
-#: Each item targets one formalisation decision from §2.1.
-TRANSLATION_TASKS = [
-    ("every-human-mortal", "Every human is mortal.",
-     "forall x (Human(x) -> Mortal(x))"),
-    ("some-student-enrolled", "Some student is enrolled.",
-     "exists x (Student(x) & Enrolled(x))"),
-    ("all-giraffes-herbivores", "All giraffes are herbivores.",
-     "forall x (Giraffe(x) -> Herbivore(x))"),
-    ("some-lion-hungry", "Some lion is hungry.",
-     "exists x (Lion(x) & Hungry(x))"),
-    ("everyone-teaches-something", "Everyone teaches something.",
-     "forall x exists y Teaches(x, y)"),
-    ("no-plant-animal", "No plant is an animal.",
-     "forall x (Plant(x) -> ~Animal(x))"),
-    ("every-branch-part-tree", "Every branch is part of some tree.",
-     "forall x (Branch(x) -> exists y (Tree(y) & PartOf(x, y)))"),
-    ("some-carnivore-eats-impala", "Some carnivore eats an impala.",
-     "exists x (Carnivore(x) & exists y (Impala(y) & Eats(x, y)))"),
-    ("all-trees-plants", "All trees are plants.",
-     "forall x (Tree(x) -> Plant(x))"),
-    ("someone-teaches-everything", "There is someone who teaches everything.",
-     "exists x forall y Teaches(x, y)"),
+#: The policy the checker enforces (already formalised and reviewed).
+POLICY_KB: list[tuple[str, str]] = [
+    ("nurses-are-clinicians", "forall x (Nurse(x) -> Clinician(x))"),
+    ("clinicians-are-employees", "forall x (Clinician(x) -> Employee(x))"),
+    ("contractors-no-access",
+     "forall x (Contractor(x) -> ~exists y (Record(y) & CanAccess(x, y)))"),
+    ("treating-clinician-access",
+     "forall x forall y forall z ((Clinician(x) & Treats(x, y) & About(z, y)) -> CanAccess(x, z))"),
+    ("only-clinicians-access",
+     "forall x forall y ((Record(y) & CanAccess(x, y)) -> Clinician(x))"),
+    ("external-auditors-no-sensitive",
+     "forall x ((Auditor(x) & External(x)) -> ~exists y (Record(y) & Sensitive(y) & CanAccess(x, y)))"),
+]
+
+#: Ground facts about the hospital on the day of the audit (closed domain).
+FACTS: list[str] = [
+    "Nurse(Ana)", "Treats(Ana, Pia)", "Patient(Pia)", "Record(R1)", "About(R1, Pia)",
+    "Clinician(Ben)", "Patient(Ole)", "Record(R2)", "About(R2, Ole)", "Sensitive(R2)",
+    "Contractor(Cal)", "Auditor(Dee)", "External(Dee)",
+]
+
+#: (id, question, conclusion to test, gold verdict). Gold verdicts are recomputed
+#: with :func:`verdict` in the notebook, and asserted there, so they cannot drift.
+#: Constants start with an upper-case letter (Chapter 2's syntax); variables do not.
+COMPLIANCE_QUERIES: list[tuple[str, str, str, str]] = [
+    ("ana-r1", "May Ana read record R1?", "CanAccess(Ana, R1)", "yes"),
+    ("ana-employee", "Is Ana an employee?", "Employee(Ana)", "yes"),
+    ("cal-r1", "May Cal read record R1?", "CanAccess(Cal, R1)", "no"),
+    ("dee-r2", "May Dee read record R2?", "CanAccess(Dee, R2)", "no"),
+    ("ben-r2", "May Ben read record R2?", "CanAccess(Ben, R2)", "undetermined"),
+    ("dee-r1", "May Dee read record R1?", "CanAccess(Dee, R1)", "undetermined"),
 ]
 
 
-def build_dataset(split: str = "all"):
-    import dspy
-
-    examples = [
-        dspy.Example(statement=text, gold_formula=formula, id=task_id).with_inputs("statement")
-        for task_id, text, formula in TRANSLATION_TASKS
-    ]
-    if split == "train":
-        return examples[:6]
-    if split == "dev":
-        return examples[6:]
-    return examples
+def _constants(formulas) -> list[str]:
+    names: set[str] = set()
+    for f in formulas:
+        names |= fol.constants_in(f)
+    return sorted(names)
 
 
-# --------------------------------------------------------------------------- #
-# Scoring
-# --------------------------------------------------------------------------- #
-#: Partial credit for a well-formed but wrong formula. The staging matters: it
-#: gives the optimiser a gradient to climb in two steps (first *be parseable*,
-#: then *be right*) instead of a flat zero that names no direction.
-WELLFORMED_CREDIT = 0.25
+def _dpll(clauses: list[frozenset[str]], assignment: dict[str, bool]) -> dict[str, bool] | None:
+    """Tiny DPLL: a satisfying assignment of literal strings, or None."""
+    clauses = [c for c in clauses]
+    while True:
+        simplified = []
+        unit = None
+        for clause in clauses:
+            if any(_lit_value(l, assignment) is True for l in clause):
+                continue
+            rest = frozenset(l for l in clause if _lit_value(l, assignment) is None)
+            if not rest:
+                return None
+            if len(rest) == 1 and unit is None:
+                unit = next(iter(rest))
+            simplified.append(rest)
+        clauses = simplified
+        if not clauses:
+            return assignment
+        if unit is None:
+            break
+        atom, value = (unit[1:], False) if unit.startswith("~") else (unit, True)
+        assignment = {**assignment, atom: value}
+    literal = next(iter(clauses[0]))
+    atom = literal.lstrip("~")
+    for value in (True, False):
+        result = _dpll(clauses, {**assignment, atom: value})
+        if result is not None:
+            return result
+    return None
 
 
-def translation_scorer(gold, pred):
-    """Score a formalisation semantically, and name the mistake when it is classic."""
-    from oe_course.evaluation import ScoreReport
-
-    text = str(getattr(pred, "formula", "") or "").strip()
-    gold_formula = fol.parse(gold.gold_formula)
-
-    if not text:
-        return ScoreReport(0.0, ["No formula produced."], ["emit-parseable-formula"])
-    try:
-        predicted = fol.parse(text)
-    except ValueError as exc:
-        return ScoreReport(
-            0.0,
-            [f"Formula does not parse ({exc}). Answer with the formula alone, in ASCII "
-             f"FOL such as 'forall x (P(x) -> Q(x))' -- no surrounding prose."],
-            ["emit-parseable-formula"],
-        )
-
-    if equivalent(predicted, gold_formula):
-        return ScoreReport(1.0, [f"Semantically equivalent to {gold.gold_formula}."], [])
-
-    notes = [
-        f"Well-formed, but not equivalent to the intended reading.",
-        f"  produced: {fol.to_string(predicted)}",
-        f"  intended: {gold.gold_formula}",
-    ]
-    violated: list[str] = []
-    pitfall = diagnose(predicted, gold_formula)
-    if pitfall:
-        violated.append(pitfall)
-        entry = next((p for p in fol.QUANTIFIER_PITFALLS if p["id"] == pitfall), None)
-        if entry:
-            notes.append(f"  this is the '{pitfall}' error: {entry['why']}")
-    else:
-        violated.append("match-the-intended-reading")
-
-    countermodel = fol.find_countermodel([predicted], gold_formula, max_size=2) or \
-        fol.find_countermodel([gold_formula], predicted, max_size=2)
-    if countermodel:
-        notes.append("  witnessed by this model, where the two readings differ:")
-        notes += [f"    {line}" for line in countermodel.describe().splitlines()]
-    return ScoreReport(WELLFORMED_CREDIT, notes, violated)
+def _lit_value(literal: str, assignment: dict[str, bool]):
+    atom = literal.lstrip("~")
+    if atom not in assignment:
+        return None
+    return assignment[atom] != literal.startswith("~")
 
 
-# --------------------------------------------------------------------------- #
-# Rulebook + offline simulator
-# --------------------------------------------------------------------------- #
-def _rulebook():
-    from oe_course.llm import Rule, RuleBook
+def ground_entails(premises, conclusion) -> tuple[bool, dict[str, bool] | None]:
+    """Does the policy entail ``conclusion`` when the domain is the named individuals?
 
-    return RuleBook(
-        [
-            Rule("universal-uses-implication",
-                 "Translate 'every/all X is Y' as forall x (X(x) -> Y(x)); a conjunction "
-                 "under a universal claims every object in the domain is an X."),
-            Rule("existential-uses-conjunction",
-                 "Translate 'some X is Y' as exists x (X(x) & Y(x)); an implication under "
-                 "an existential is satisfied by any non-X and asserts almost nothing."),
-            Rule("quantifier-order-matters",
-                 "Keep the quantifier order of the English: 'everyone R something' is "
-                 "forall x exists y, never exists y forall x."),
-            Rule("negation-scope",
-                 "Translate 'no X is Y' as forall x (X(x) -> ~Y(x)), putting the negation "
-                 "inside the scope of the universal."),
-            Rule("emit-parseable-formula",
-                 "Answer with a formula in the ASCII syntax: forall/exists, ~ & | -> <->, "
-                 "predicates as Name(arg). Nothing else."),
-        ]
-    )
+    The closed-domain assumption (only the constants mentioned exist) turns FOL
+    entailment into propositional satisfiability, which DPLL decides. Returns
+    ``(entailed, counterexample)``: when not entailed, the counterexample is a
+    world consistent with the premises in which the conclusion is false.
+    """
+    premises = list(premises)
+    names = _constants(premises + [conclusion]) or ["a"]
+    clauses: list[frozenset[str]] = []
+    for f in premises + [fol.Not(conclusion)]:
+        clauses += fol.to_cnf_clauses(fol.ground(f, names))
+    model = _dpll(clauses, {})
+    return model is None, model
 
 
-FOL_RULEBOOK = _rulebook()
-
-BASELINE_INSTRUCTION = "Translate the statement into first-order logic."
-
-_UNIVERSAL = ("every", "all ", "each ")
-_EXISTENTIAL = ("some", "there is", "a ", "an ")
-
-
-def fol_responder(inputs: dict, active: set[str]) -> dict:
-    """A weak formaliser that makes exactly the mistakes §2.1 warns about."""
-    statement = (inputs.get("statement", "") or "").strip()
-    lowered = statement.lower()
-
-    task = next((t for t in TRANSLATION_TASKS if t[1].lower() == lowered), None)
-    if task is None:
-        return {"formula": "", "reading": "unrecognised statement"}
-    gold = fol.parse(task[2])
-
-    formula = gold
-    # Introduce the classic errors unless the instruction rules them out.
-    match gold:
-        case fol.ForAll(var, fol.Implies(left, right)):
-            if isinstance(right, fol.Not) and "negation-scope" not in active:
-                # 'no X is Y' misread as 'not all X are Y'
-                formula = fol.Not(fol.ForAll(var, fol.Implies(left, right.sub)))
-            elif not isinstance(right, fol.Not) and "universal-uses-implication" not in active:
-                formula = fol.ForAll(var, fol.And(left, right))
-        case fol.Exists(var, fol.And(left, right)):
-            if "existential-uses-conjunction" not in active:
-                formula = fol.Exists(var, fol.Implies(left, right))
-        case fol.ForAll(v1, fol.Exists(v2, body)):
-            if "quantifier-order-matters" not in active:
-                formula = fol.Exists(v2, fol.ForAll(v1, body))
-        case fol.Exists(v1, fol.ForAll(v2, body)):
-            if "quantifier-order-matters" not in active:
-                formula = fol.ForAll(v2, fol.Exists(v1, body))
-
-    rendered = fol.to_string(formula)
-    if "emit-parseable-formula" not in active:
-        rendered = f"The formula is: {rendered}."   # unparseable prose wrapper
-    return {"formula": rendered, "reading": f"Read as {fol.to_string(formula)}."}
+def verdict(premises, conclusion) -> str:
+    """'yes' if entailed, 'no' if its negation is entailed, else 'undetermined'."""
+    if ground_entails(premises, conclusion)[0]:
+        return "yes"
+    if ground_entails(premises, fol.Not(conclusion))[0]:
+        return "no"
+    return "undetermined"
 
 
 # --------------------------------------------------------------------------- #
-# DSPy program
-# --------------------------------------------------------------------------- #
-_SIG = None
-
-
-def FormalisationSignature():
-    global _SIG
-    if _SIG is None:
-        import dspy
-
-        class _FormalisationSignature(dspy.Signature):
-            """Translate an English statement into first-order logic."""
-
-            statement: str = dspy.InputField(desc="a statement in English")
-            formula: str = dspy.OutputField(desc="the formula in ASCII FOL syntax")
-            reading: str = dspy.OutputField(desc="one sentence on the reading chosen")
-
-        _SIG = _FormalisationSignature
-    return _SIG
-
-
-def FormalisationProgram(instruction: str | None = BASELINE_INSTRUCTION):
-    import dspy
-
-    class _Program(dspy.Module):
-        def __init__(self):
-            super().__init__()
-            self.translate = dspy.Predict(FormalisationSignature())
-            if instruction:
-                self.translate.signature = self.translate.signature.with_instructions(instruction)
-
-        def forward(self, statement: str):
-            return self.translate(statement=statement)
-
-    return _Program()
-
-
-# --------------------------------------------------------------------------- #
-# Function tools
+# Agent tools (Part D)
 # --------------------------------------------------------------------------- #
 @dataclass
-class Ch2Context:
-    """Workspace for the Chapter 2 agent: the formulas asserted so far."""
+class PolicyWorkspace:
+    """What the compliance agent can see: the policy, the facts, and its call log."""
 
-    premises: list = None
+    policy: list[tuple[str, str]] = field(default_factory=lambda: list(POLICY_KB))
+    facts: list[str] = field(default_factory=lambda: list(FACTS))
     log: object = None
 
     def __post_init__(self):
         from oe_course.tools import ToolCallLog
 
-        self.premises = self.premises or []
         self.log = self.log or ToolCallLog()
 
+    def premises(self) -> list:
+        return [fol.parse(f) for _, f in self.policy] + [fol.parse(f) for f in self.facts]
 
-def build_toolset(ctx: Ch2Context):
-    """Tools for reasoning about formulas — parse, model-check, refute, prove."""
+
+def build_policy_tools(ws: PolicyWorkspace):
+    """The compliance agent's tools: read the policy, read the facts, check a claim."""
     from langchain_core.tools import tool
 
-    from oe_course.tools import _instrument
+    from oe_course.tools import instrument
 
-    def parse_formula(text: str) -> str:
-        """Check that a formula parses, and report its predicates and free variables.
+    def read_policy() -> str:
+        """List the formalised access policy: one (id, formula) pair per rule."""
+        return json.dumps([{"id": i, "formula": f} for i, f in ws.policy])
 
-        Call this before asserting or reasoning with any formula you wrote.
+    def read_facts() -> str:
+        """List the ground facts about named people, patients and records."""
+        return json.dumps(ws.facts)
+
+    def check_entailment(conclusion: str) -> str:
+        """Decide whether policy + facts entail a closed formula over the named individuals.
+
+        Use the policy's predicate names and the capitalised constants from the facts,
+        e.g. 'CanAccess(Ana, R1)' or '~CanAccess(Cal, R1)'. Returns entailed=true/false and, when false, a
+        counterexample world. To answer a yes/no question, check the claim AND its
+        negation: neither entailed means the policy does not settle the question.
         """
-        f = fol.parse(text)
-        return json.dumps(
-            {"ok": True, "normalised": fol.to_string(f),
-             "predicates": fol.predicates(f), "free_vars": sorted(fol.free_vars(f))}
-        )
+        entailed, model = ground_entails(ws.premises(), fol.parse(conclusion))
+        counter = None
+        if model is not None:
+            counter = {k: v for k, v in sorted(model.items()) if "(" in k}
+        return json.dumps({"conclusion": conclusion, "entailed": entailed,
+                           "counterexample": counter})
 
-    def assert_premise(text: str) -> str:
-        """Add a formula to the working premise set."""
-        ctx.premises.append(fol.parse(text))
-        return json.dumps({"premises": [fol.to_string(p) for p in ctx.premises]})
-
-    def check_entailment(conclusion: str, max_size: int = 3) -> str:
-        """Do the asserted premises entail this conclusion over small finite models?
-
-        Call this to test a claim. If entailment fails you get an explicit
-        countermodel, which is the evidence you should report.
-        """
-        holds, countermodel = fol.entails(ctx.premises, fol.parse(conclusion), max_size)
-        return json.dumps(
-            {"entails": holds,
-             "countermodel": countermodel.describe() if countermodel else None,
-             "searched_domains_up_to": max_size}
-        )
-
-    def find_countermodel(premise: str, conclusion: str, max_size: int = 3) -> str:
-        """Search for a model making `premise` true and `conclusion` false.
-
-        Use this to show that a proposed formalisation is *not* equivalent to
-        another one.
-        """
-        model = fol.find_countermodel([fol.parse(premise)], fol.parse(conclusion), max_size)
-        return json.dumps({"countermodel": model.describe() if model else None})
-
-    def prove(conclusion: str, constants: str = "") -> str:
-        """Attempt a ground resolution refutation of premises + negated conclusion.
-
-        `constants` is a comma-separated list naming the finite domain. Returns
-        the proof trace when it succeeds -- report the proof, not just the verdict.
-        """
-        names = [c.strip() for c in constants.split(",") if c.strip()]
-        goal = fol.parse(conclusion)
-        if not names:
-            names = sorted(
-                set().union(*[fol.constants_in(p) for p in ctx.premises] or [set()])
-                | fol.constants_in(goal)
-            ) or ["a"]
-        clauses = []
-        for f in ctx.premises + [fol.Not(goal)]:
-            clauses += fol.to_cnf_clauses(fol.ground(f, names))
-        refuted, steps, trace = fol.resolution_refutation(clauses)
-        return json.dumps(
-            {"proved": refuted, "resolution_steps": steps, "domain": names,
-             "trace": [[sorted(a), sorted(b), sorted(r)] for a, b, r in trace[:12]]}
-        )
-
-    def list_pitfalls() -> str:
-        """List the classic formalisation mistakes and how to avoid each one."""
-        return json.dumps(fol.QUANTIFIER_PITFALLS)
-
-    impls = [parse_formula, assert_premise, check_entailment,
-             find_countermodel, prove, list_pitfalls]
-    return [tool(_instrument(fn, fn.__name__, ctx.log)) for fn in impls]
+    impls = [read_policy, read_facts, check_entailment]
+    return [tool(instrument(fn, fn.__name__, ws.log)) for fn in impls]
 
 
 # --------------------------------------------------------------------------- #
-# Proof search as an MDP
+# Proof search as an MDP (Part D)
 # --------------------------------------------------------------------------- #
 @dataclass(frozen=True)
 class ProofState:
@@ -380,23 +409,21 @@ class ProofState:
 class ProofSearchMDP:
     """Resolution proof search over a fixed, pre-computed clause universe.
 
-    Chapter 1's MDP bought information and Chapter 4's built an artefact. This
-    one *searches*: actions derive new clauses, and the agent must decide when it
-    has seen enough to commit to a verdict.
+    States are sets of derived clauses; actions derive a resolvent or claim a
+    verdict. Claiming entailment is rewarded only once the empty clause has been
+    derived — the reward pays for *proving*, not for guessing right. Each
+    derivation costs ``step_cost``; a wrong or unjustified verdict costs
+    ``wrong_verdict_penalty``.
 
     The clause universe is the resolution closure, capped — which is itself the
-    lesson. Proof search is only enumerable here because the problem is tiny; the
-    same construction on a real knowledge base is exactly the intractability
-    §2.2 warns about.
+    lesson: proof search is only enumerable here because the problem is tiny.
     """
 
     def __init__(self, base_clauses, entailed: bool, step_cost: float = 0.05,
                  wrong_verdict_penalty: float = 1.0, cap: int = 10, gamma: float = 1.0):
         self.universe = self._closure(base_clauses, cap)
-        self.base = frozenset(self.universe.index(c) for c in base_clauses)
-        self.empty_index = next(
-            (i for i, c in enumerate(self.universe) if not c), None
-        )
+        self.base = frozenset(self.universe.index(frozenset(c)) for c in base_clauses)
+        self.empty_index = next((i for i, c in enumerate(self.universe) if not c), None)
         self.entailed = entailed
         self.step_cost = step_cost
         self.wrong_verdict_penalty = wrong_verdict_penalty
@@ -450,13 +477,11 @@ class ProofSearchMDP:
         if state.finished:
             return []
         return [f"derive:{i}" for i in self._available_resolutions(state)] + [
-            "claim:entailed", "claim:not-entailed"
-        ]
+            "claim:entailed", "claim:not-entailed"]
 
     def transition(self, state: ProofState, action: str):
         if action.startswith("claim:"):
             claimed = action == "claim:entailed"
-            # A claim of entailment is only justified once the empty clause is derived.
             justified = (self.empty_index in state.derived) if claimed else True
             correct = (claimed == self.entailed) and justified
             reward = 1.0 if correct else -self.wrong_verdict_penalty

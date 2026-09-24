@@ -25,7 +25,8 @@ from typing import Any, Callable
 from oe_course.llm import chat_model
 from oe_course.tools import ToolContext, build_toolset
 
-__all__ = ["AgentRun", "build_agent", "run_agent", "build_pipeline", "TRIAGE_SYSTEM_PROMPT"]
+__all__ = ["AgentRun", "build_agent", "run_agent", "message_text", "build_pipeline",
+           "TRIAGE_SYSTEM_PROMPT"]
 
 
 TRIAGE_SYSTEM_PROMPT = """\
@@ -86,11 +87,30 @@ def run_agent(agent, ctx: ToolContext, task: str, *, recursion_limit: int = 25) 
     messages = result.get("messages", [])
     answer = ""
     for message in reversed(messages):
-        content = getattr(message, "content", "")
-        if content and getattr(message, "type", "") == "ai":
-            answer = content if isinstance(content, str) else json.dumps(content)
+        if getattr(message, "type", "") != "ai":
+            continue
+        answer = message_text(message)
+        if answer:
             break
     return AgentRun(answer=answer, messages=messages, context=ctx)
+
+
+def message_text(message) -> str:
+    """The visible text of a chat message.
+
+    Claude's replies can be a list of content blocks (thinking, text, tool use);
+    only the ``text`` blocks are the answer.
+    """
+    content = getattr(message, "content", "")
+    if isinstance(content, str):
+        return content
+    parts = []
+    for block in content or []:
+        if isinstance(block, dict) and block.get("type") == "text":
+            parts.append(block.get("text", ""))
+        elif isinstance(block, str):
+            parts.append(block)
+    return "\n".join(p for p in parts if p).strip()
 
 
 # --------------------------------------------------------------------------- #

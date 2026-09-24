@@ -6,10 +6,8 @@ later chapters copy. It has the three parts every task in the course needs:
 1. **a signature** — the typed contract between evidence and answer;
 2. **a program** — deterministic tool calls to gather evidence, then one LM call
    to interpret it (tools do what tools do well; the model does judgement);
-3. **a rulebook** — the task knowledge an instruction may or may not convey,
-   shared by the offline simulator and the evaluation metric so that "the metric
-   complained about rule X" and "the model now applies rule X" refer to the same
-   X.
+3. **a rulebook** — the named guidelines the scorer can report as violated, so
+   the GEPA feedback says which guideline failed and what to do instead.
 
 The split in (2) is a deliberate design lesson. Putting the *measurement* in
 code and only the *interpretation* in the model makes the system cheaper, more
@@ -21,12 +19,10 @@ from __future__ import annotations
 
 import json
 
-from oe_course.evaluation import TRIAGE_RULES
-from oe_course.llm import Rule, RuleBook
+from oe_course.evaluation import TRIAGE_RULES, Rule, RuleBook
 
 __all__ = [
     "TRIAGE_RULEBOOK",
-    "triage_responder",
     "TriageSignature",
     "TriageProgram",
     "BASELINE_INSTRUCTION",
@@ -68,64 +64,6 @@ def gather_evidence(artefact: str, ctx=None) -> tuple[str, object]:
         "scanner_findings": json.loads(tools["scan_smells"].invoke({})),
     }
     return json.dumps(evidence, indent=1), ctx
-
-
-# --------------------------------------------------------------------------- #
-# The offline simulator's behaviour for this task
-# --------------------------------------------------------------------------- #
-def triage_responder(inputs: dict, active: set[str]) -> dict:
-    """Simulate a weak model that improves as its instruction gets specific.
-
-    With no rules active it behaves the way an unguided model typically does on
-    this task: it paraphrases the level instead of using the controlled
-    vocabulary, reports only the most salient defect, pads the list with a
-    plausible guess, and justifies nothing with numbers. Each rule the
-    instruction conveys removes one of those failures.
-    """
-    try:
-        evidence = json.loads(inputs.get("evidence", "{}"))
-    except json.JSONDecodeError:
-        evidence = {}
-
-    detected = [f["smell"] for f in evidence.get("scanner_findings", [])]
-    detected = list(dict.fromkeys(detected))
-    true_level = evidence.get("spectrum", {}).get("level", "")
-    metrics = evidence.get("metrics", {})
-
-    # --- level ---------------------------------------------------------------
-    if "cite-spectrum-evidence" in active:
-        level = true_level
-    else:
-        level = {
-            "controlled-vocabulary": "just a word list",
-            "taxonomy": "a hierarchy of terms",
-            "thesaurus": "a rich thesaurus-like vocabulary",
-            "formal-ontology": "quite formal",
-        }.get(true_level, "unclear")
-
-    # --- defects -------------------------------------------------------------
-    if "report-all-smells" in active:
-        smells = list(detected)
-    else:
-        smells = detected[:1]
-    if "no-unsupported-claims" not in active:
-        # the classic failure: adding a defect that "usually" applies
-        if "missing-label" not in smells:
-            smells = smells + ["missing-label"]
-
-    # --- justification -------------------------------------------------------
-    if "ground-in-tool-output" in active:
-        justification = (
-            f"The scanner was run and returned {len(detected)} finding(s). "
-            f"The artefact has {metrics.get('classes', 0)} classes, "
-            f"{metrics.get('subclass_axioms', 0)} subsumption axioms and "
-            f"{metrics.get('restrictions', 0)} restrictions, which is the evidence "
-            f"for the level given."
-        )
-    else:
-        justification = "This ontology looks about right for its purpose."
-
-    return {"level": level, "smells": json.dumps(smells), "justification": justification}
 
 
 # --------------------------------------------------------------------------- #

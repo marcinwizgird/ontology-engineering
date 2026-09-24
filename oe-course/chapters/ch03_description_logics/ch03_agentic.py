@@ -1,131 +1,323 @@
-"""Chapter 3 agentic lab — naming the logic, and paying for the reasoner.
+"""Chapter 3 problem-set support — reviewing ontology change requests with a DL reasoner.
 
-Two things distinguish this lab from Chapters 1, 2 and 4.
+Provided code for ``05_assignment.ipynb``. The student builds the heuristic, the
+grader, the Claude reviewer, the self-labeller and the review agent in the
+notebook; this module supplies what a real project would already have:
 
-**The oracle is free and always right.** The tableau reasoner settles every
-question in the dataset, so labels cost nothing to produce. That makes this the
-cleanest self-improvement setting in the course: the agent can label its own
-failures without a human in the loop.
+* the **change-request corpus** — 24 modules of Meridian Rail's asset ontology,
+  each with a reviewer's subsumption question, a fixed train / dev / test split
+  by item (balanced by phenomenon and by verdict), and 6 *unlabelled* field
+  requests;
+* **gold validation** (:func:`validate_gold`) — every stored label is re-derived
+  with the Chapter 3 engine, and every "not subsumed" verdict the ALC tableau
+  cannot certify on its own carries an explicit **countermodel** checked under
+  the full SHOIQ semantics (:class:`Interpretation`, :func:`is_countermodel`);
+* the **guidelines** a review scorer reports (:data:`DL_RULEBOOK`);
+* the review agent's **tools** (:func:`build_review_tools`);
+* the **budgeted, stochastic reasoning MDP** (:class:`ReasoningBudgetMDP`).
 
-**The MDP is stochastic.** Every earlier MDP had deterministic transitions. Here
-the agent chooses, per query, between a cheap heuristic that is *sometimes*
-right and an expensive reasoner that is *always* right — under a call budget.
-The optimal policy spends the budget where the heuristic is least reliable, and
-value iteration finds it exactly. That is the reasoning-cost trade of §3.3,
-expressed as a policy rather than a table of complexity classes.
+Two ideas make this chapter different from the others.
+
+**The oracle is free and (on this corpus) always right.** The tableau settles
+every question in the dataset, so labels cost nothing: a deployed reviewer can
+label its own failures with no human in the loop. The caveat is the chapter's
+own: the tableau decides **ALC**. Transitivity, role hierarchies, inverses and
+number restrictions are *named* by :func:`ch03_toolkit.dl_name` but not reasoned
+over, so the tableau is sound for "subsumed" and only conditionally complete for
+"not subsumed" — which is exactly why the non-ALC negative labels carry
+certificates.
+
+**The MDP is stochastic.** A cheap heuristic is sometimes right; the reasoner is
+always right but costs CI minutes and is budgeted. The optimal policy spends the
+budget where the heuristic is least reliable.
 """
 
 from __future__ import annotations
 
-import itertools
 import json
-from dataclasses import dataclass
+import random
+from dataclasses import dataclass, field
+from typing import Callable
 
 import ch03_toolkit as dl
 
 __all__ = [
-    "KB_CASES", "build_dataset", "dl_scorer", "DL_RULEBOOK", "dl_responder",
-    "DLProgram", "BASELINE_INSTRUCTION", "build_toolset", "Ch3Context",
-    "ReasoningBudgetMDP", "describe_kb",
+    "Case", "CASES", "FIELD_CASES", "case", "describe_kb", "build_dataset",
+    "field_requests", "DL_RULEBOOK", "Interpretation", "is_countermodel",
+    "CERTIFICATES", "ALC_CONSTRUCTORS", "validate_gold", "rbox_licensed", "risk_class",
+    "ReviewWorkspace", "build_review_tools", "ReasoningBudgetMDP", "BudgetState",
 ]
 
 A = dl.Atomic
+E = dl.Exists
+F = dl.ForAll
+N = dl.Not
+Inv = dl.Inverse
+
+
+def _and(*parts):
+    out = parts[0]
+    for p in parts[1:]:
+        out = dl.And(out, p)
+    return out
 
 
 # --------------------------------------------------------------------------- #
-# Knowledge bases the agent is asked about
+# The corpus: ontology modules submitted for review
 # --------------------------------------------------------------------------- #
-def _kb_basic() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Dog"), A("Mammal"))
-    t.add(A("Mammal"), A("Animal"))
-    return t
+@dataclass(frozen=True)
+class Case:
+    """One change request: an ontology module plus the reviewer's question.
+
+    ``build`` returns a fresh :class:`ch03_toolkit.TBox` each call (TBoxes are
+    mutable). ``gold_dl`` / ``gold_subsumed`` are the *stored* labels; they are
+    re-derived by :func:`validate_gold` and never trusted on their own.
+    ``phenomenon`` is the balancing stratum: each appears once per split.
+    """
+
+    id: str
+    split: str
+    phenomenon: str
+    request: str
+    build: Callable[[], dl.TBox]
+    sub: str
+    sup: str
+    gold_dl: str | None = None
+    gold_subsumed: bool | None = None
+
+    def tbox(self) -> dl.TBox:
+        return self.build()
 
 
-def _kb_alc() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Vegetarian"), dl.And(A("Person"), dl.ForAll("eats", dl.Not(A("Meat")))))
-    t.add(A("Vegan"), dl.And(A("Vegetarian"), dl.ForAll("eats", dl.Not(A("Dairy")))))
-    return t
+def _tb(*axioms, transitive=(), hierarchy=(), equiv=()):
+    """Helper: a TBox from (left, right) pairs; ``equiv`` lists equivalence pairs."""
+    def build():
+        t = dl.TBox()
+        for left, right in equiv:
+            t.add(left, right, equivalence=True)
+        for left, right in axioms:
+            t.add(left, right)
+        t.transitive_roles.update(transitive)
+        t.role_hierarchy.extend(hierarchy)
+        return t
+    return build
 
 
-def _kb_transitive() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Twig"), A("Branch"))
-    t.add(A("Branch"), A("TreePart"))
-    t.add(A("Branch"), dl.Exists("isPartOf", A("Tree")))
-    t.transitive_roles.add("isPartOf")
-    return t
-
-
-def _kb_hierarchy() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Parent"), dl.Exists("hasChild", A("Person")))
-    t.role_hierarchy.append(("hasChild", "hasRelative"))
-    return t
-
-
-def _kb_inverse() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Child"), dl.Exists(dl.Inverse("hasChild"), A("Person")))
-    return t
-
-
-def _kb_qualified() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Trilogy"), dl.AtLeast(3, "hasPart", A("Book")))
-    return t
-
-
-def _kb_unqualified() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Overloaded"), A("Busy"))
-    t.add(A("Busy"), dl.AtLeast(2, "hasTask"))
-    return t
-
-
-def _kb_wildlife() -> dl.TBox:
-    return dl.wildlife_tbox()
-
-
-def _kb_shiq() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Manager"), dl.AtLeast(2, "supervises", A("Employee")))
-    t.add(A("Employee"), dl.Exists(dl.Inverse("supervises"), A("Manager")))
-    t.transitive_roles.add("supervises")
-    t.role_hierarchy.append(("supervises", "worksWith"))
-    return t
-
-
-def _kb_cyclic() -> dl.TBox:
-    t = dl.TBox()
-    t.add(A("Head"), A("Node"))
-    t.add(A("Node"), dl.Exists("next", A("Node")))
-    return t
-
-
-#: Each case: a TBox, and a subsumption query.
-#:
-#: The queries are deliberately **balanced between holding and not holding**. An
-#: all-true set would let "assume it follows" score full marks, the rule about
-#: actually running the reasoner would never be punished, and the optimiser
-#: would never learn it. A dataset that cannot punish a mistake cannot teach it.
-KB_CASES = [
-    ("basic-taxonomy", _kb_basic, ("Dog", "Animal")),            # True
-    ("vegetarian-alc", _kb_alc, ("Vegetarian", "Vegan")),        # False
-    ("parts-transitive", _kb_transitive, ("Twig", "TreePart")),  # True
-    ("family-hierarchy", _kb_hierarchy, ("Parent", "Person")),   # False
-    ("child-inverse", _kb_inverse, ("Child", "Person")),         # False
-    ("trilogy-qualified", _kb_qualified, ("Trilogy", "Book")),   # False
-    ("busy-unqualified", _kb_unqualified, ("Overloaded", "Busy")),  # True
-    ("wildlife", _kb_wildlife, ("Giraffe", "Animal")),           # True
-    ("supervision-shiq", _kb_shiq, ("Manager", "Employee")),     # False
-    ("cyclic-nodes", _kb_cyclic, ("Head", "Node")),              # True
+# Phenomena (one item per split each):
+#   inferred-definition   ALC, subsumption holds only through a defined class      (true)
+#   universal-trap        ALC, "only" read as "some", or the converse direction    (false)
+#   transitive-told       S, a told chain in a module with a transitive role      (true)
+#   role-hierarchy        H, a sub-role read in the wrong direction                (false)
+#   inverse-definition    I, holds through a definition over an inverse role      (true)
+#   number-restriction    N/Q, "at least 2" is not "at least 3"                    (false)
+#   unsatisfiable-subject ALC, the subject class is unsatisfiable -> vacuous       (true)
+#   expressive-combo      SHIQ-family module, plausible but not entailed            (false)
+CASES: list[Case] = [
+    # ============================== train ================================= #
+    Case("barrier-safety-critical", "train", "inferred-definition",
+         "Signalling asks: is every level-crossing barrier a safety-critical asset?",
+         _tb((A("LevelCrossingBarrier"), _and(A("Asset"), E("protects", A("LevelCrossing")))),
+             (A("LevelCrossing"), A("Crossing")),
+             equiv=[(A("SafetyCriticalAsset"), _and(A("Asset"), E("protects", A("Crossing"))))]),
+         "LevelCrossingBarrier", "SafetyCriticalAsset", "ALC", True),
+    Case("drainage-culvert", "train", "universal-trap",
+         "Drainage asks: is every drainage asset a culvert?",
+         _tb((A("DrainageAsset"), _and(A("Asset"), F("drains", A("Watercourse")))),
+             equiv=[(A("Culvert"), _and(A("Asset"), E("drains", A("Watercourse"))))]),
+         "DrainageAsset", "Culvert", "ALC", False),
+    Case("fishplate-component", "train", "transitive-told",
+         "Track asks: is a fishplate a track component?",
+         _tb((A("Fishplate"), A("RailJoint")),
+             (A("RailJoint"), A("TrackComponent")),
+             (A("TrackComponent"), E("partOf", A("TrackSection"))),
+             transitive=["partOf"]),
+         "Fishplate", "TrackComponent", "S", True),
+    Case("depot-signal-maintainer", "train", "role-hierarchy",
+         "Maintenance asks: is every maintenance depot a signal maintainer?",
+         _tb((A("MaintenanceDepot"), E("isResponsibleFor", A("Signal"))),
+             hierarchy=[("maintains", "isResponsibleFor")],
+             equiv=[(A("SignalMaintainer"), E("maintains", A("Signal")))]),
+         "MaintenanceDepot", "SignalMaintainer", "ALCH", False),
+    Case("bridge-inspected", "train", "inverse-definition",
+         "Structures asks: does the module make every bridge an inspected asset?",
+         _tb((A("Bridge"), _and(A("Asset"), E(Inv("inspects"), A("AnnualInspection")))),
+             (A("AnnualInspection"), A("Inspection")),
+             equiv=[(A("InspectedAsset"), _and(A("Asset"), E(Inv("inspects"), A("Inspection"))))]),
+         "Bridge", "InspectedAsset", "ALCI", True),
+    Case("double-slip-heavy", "train", "number-restriction",
+         "Track asks: is a double-slip switch a heavy switch?",
+         _tb((A("DoubleSlip"), _and(A("Switch"), dl.AtLeast(2, "hasPart", A("PointsMotor")))),
+             equiv=[(A("HeavySwitch"), _and(A("Switch"), dl.AtLeast(3, "hasPart", A("PointsMotor"))))]),
+         "DoubleSlip", "HeavySwitch", "ALCQ", False),
+    Case("automated-manual-crossing", "train", "unsatisfiable-subject",
+         "Data quality asks: is an automated-manual crossing a bridge? (the class came from a merge)",
+         _tb((A("UnmannedCrossing"), _and(A("LevelCrossing"), F("staffedBy", N(A("Person"))))),
+             (A("ManualCrossing"), _and(A("LevelCrossing"), E("staffedBy", A("CrossingKeeper")))),
+             (A("CrossingKeeper"), A("Person")),
+             (A("AutomatedManualCrossing"), _and(A("UnmannedCrossing"), A("ManualCrossing")))),
+         "AutomatedManualCrossing", "Bridge", "ALC", True),
+    Case("interlocking-control-centre", "train", "expressive-combo",
+         "Signalling asks: is every interlocking a control centre?",
+         _tb((A("Interlocking"), dl.AtLeast(2, "controls", A("Signal"))),
+             (A("Signal"), E(Inv("controls"), A("Interlocking"))),
+             transitive=["supervises"], hierarchy=[("controls", "supervises")],
+             equiv=[(A("ControlCentre"), E("supervises", A("Interlocking")))]),
+         "Interlocking", "ControlCentre", "SHIQ", False),
+    # =============================== dev ================================== #
+    Case("viaduct-critical", "dev", "inferred-definition",
+         "Structures asks: is every viaduct a critical structure?",
+         _tb((A("Viaduct"), _and(A("Bridge"), E("carries", A("MainLine")))),
+             (A("Bridge"), A("Structure")),
+             (A("MainLine"), A("Railway")),
+             equiv=[(A("CriticalStructure"), _and(A("Structure"), E("carries", A("Railway"))))]),
+         "Viaduct", "CriticalStructure", "ALC", True),
+    Case("clearance-habitat", "dev", "universal-trap",
+         "Environment asks: is every vegetation-clearance zone a protected habitat?",
+         _tb((A("ProtectedHabitat"), _and(A("Zone"), F("contains", N(A("InvasiveSpecies"))))),
+             equiv=[(A("ClearanceZone"), _and(A("Zone"), E("contains", A("InvasiveSpecies"))))]),
+         "ClearanceZone", "ProtectedHabitat", "ALC", False),
+    Case("tunnel-ring-civil", "dev", "transitive-told",
+         "Structures asks: is a tunnel ring a civil asset?",
+         _tb((A("TunnelRing"), A("TunnelLining")),
+             (A("TunnelLining"), _and(A("CivilAsset"), E("partOf", A("Tunnel")))),
+             transitive=["partOf"]),
+         "TunnelRing", "CivilAsset", "S", True),
+    Case("substation-feeder", "dev", "role-hierarchy",
+         "Power asks: is every substation a feeder station?",
+         _tb((A("Substation"), E("feeds", A("OverheadLine"))),
+             transitive=["connectedTo"], hierarchy=[("feeds", "connectedTo")],
+             equiv=[(A("FeederStation"), E("feeds", A("Substation")))]),
+         "Substation", "FeederStation", "SH", False),
+    Case("switch-monitored", "dev", "inverse-definition",
+         "Remote condition monitoring asks: is every switch a monitored asset?",
+         _tb((A("Switch"), _and(A("TrackAsset"), E(Inv("mountedOn"), A("HeatSensor")))),
+             (A("HeatSensor"), A("Sensor")),
+             (A("TrackAsset"), _and(A("Asset"), E("partOf", A("Route")))),
+             transitive=["partOf"],
+             equiv=[(A("MonitoredAsset"), _and(A("Asset"), E(Inv("mountedOn"), A("Sensor"))))]),
+         "Switch", "MonitoredAsset", "SI", True),
+    Case("bay-platform-low-use", "dev", "number-restriction",
+         "Stations asks: is every bay platform a low-use platform?",
+         _tb((A("BayPlatform"), _and(A("Platform"), dl.AtMost(2, "servedBy"))),
+             equiv=[(A("LowUsePlatform"), _and(A("Platform"), dl.AtMost(1, "servedBy")))]),
+         "BayPlatform", "LowUsePlatform", "ALCN", False),
+    Case("permissive-stop-signal", "dev", "unsatisfiable-subject",
+         "Data quality asks: is a permissive stop signal a level crossing?",
+         _tb((A("StopSignal"), _and(A("Signal"), F("shows", A("RedAspect")))),
+             (A("ProceedSignal"), _and(A("Signal"), E("shows", A("GreenAspect")))),
+             (A("GreenAspect"), N(A("RedAspect"))),
+             (A("PermissiveStopSignal"), _and(A("StopSignal"), A("ProceedSignal")))),
+         "PermissiveStopSignal", "LevelCrossing", "ALC", True),
+    Case("junction-route", "dev", "expressive-combo",
+         "Network asks: is every junction a route?",
+         _tb((A("Junction"), dl.AtLeast(3, Inv("partOf"))),
+             transitive=["partOf"], hierarchy=[("partOf", "locatedIn")],
+             equiv=[(A("Route"), E(Inv("partOf"), A("Junction")))]),
+         "Junction", "Route", "SHIN", False),
+    # =============================== test ================================= #
+    Case("rail-break-urgent", "test", "inferred-definition",
+         "Maintenance planning asks: is every rail-break repair an urgent renewal?",
+         _tb((A("RailBreakRepair"), _and(A("MaintenanceTask"), E("targets", A("BrokenRail")))),
+             (A("BrokenRail"), _and(A("Rail"), A("CrackedAsset"))),
+             equiv=[(A("UrgentRenewal"), _and(A("MaintenanceTask"), E("targets", A("DefectiveAsset")))),
+                    (A("DefectiveAsset"), dl.Or(A("CrackedAsset"), A("WornAsset")))]),
+         "RailBreakRepair", "UrgentRenewal", "ALC", True),
+    Case("possession-safe-window", "test", "universal-trap",
+         "Possession planning asks: is every possession a safe work window?",
+         _tb((A("Possession"), _and(A("WorkWindow"), F("authorisedBy", A("Controller")))),
+             equiv=[(A("SafeWorkWindow"), _and(A("WorkWindow"), E("authorisedBy", A("Controller"))))]),
+         "Possession", "SafeWorkWindow", "ALC", False),
+    Case("dropper-asset", "test", "transitive-told",
+         "Electrification asks: is a dropper an asset?",
+         _tb((A("Dropper"), A("CatenaryComponent")),
+             (A("CatenaryComponent"), _and(A("ElectrificationAsset"), E("partOf", A("OverheadLine")))),
+             (A("ElectrificationAsset"), A("Asset")),
+             transitive=["partOf"]),
+         "Dropper", "Asset", "S", True),
+    Case("patroller-inspector", "test", "role-hierarchy",
+         "Drainage asks: is every patroller a culvert inspector?",
+         _tb((A("Patroller"), E("visits", A("Culvert"))),
+             hierarchy=[("inspects", "visits")],
+             equiv=[(A("CulvertInspector"), E("inspects", A("Culvert")))]),
+         "Patroller", "CulvertInspector", "ALCH", False),
+    Case("tunnel-managed", "test", "inverse-definition",
+         "Asset management asks: is every tunnel a managed asset?",
+         _tb((A("Tunnel"), _and(A("CivilAsset"), E(Inv("manages"), A("StructuresTeam")))),
+             (A("CivilAsset"), A("Asset")),
+             (A("StructuresTeam"), A("Team")),
+             equiv=[(A("ManagedAsset"), _and(A("Asset"), E(Inv("manages"), A("Team"))))]),
+         "Tunnel", "ManagedAsset", "ALCI", True),
+    Case("plain-line-detection", "test", "number-restriction",
+         "Train detection asks: is every plain-line section fully detected?",
+         _tb((A("PlainLineSection"), _and(A("TrackSection"), dl.AtLeast(1, "hasPart", A("AxleCounter")))),
+             equiv=[(A("FullyDetectedSection"),
+                     _and(A("TrackSection"), dl.AtLeast(2, "hasPart", A("AxleCounter"))))]),
+         "PlainLineSection", "FullyDetectedSection", "ALCQ", False),
+    Case("electrified-low-bridge", "test", "unsatisfiable-subject",
+         "Data quality asks: is an electrified low bridge a tunnel?",
+         _tb((A("LowBridge"), _and(A("Bridge"), F("spans", N(A("ElectrifiedLine"))))),
+             (A("ElectrifiedCrossing"), _and(A("Bridge"), E("spans", A("MainLine")))),
+             (A("MainLine"), A("ElectrifiedLine")),
+             (A("ElectrifiedLowBridge"), _and(A("LowBridge"), A("ElectrifiedCrossing")))),
+         "ElectrifiedLowBridge", "Tunnel", "ALC", True),
+    Case("depot-major", "test", "expressive-combo",
+         "Fleet asks: is every depot a major depot?",
+         _tb((A("Depot"), dl.AtLeast(2, Inv("stabledAt"), A("Train"))),
+             (A("Train"), E("assignedTo", A("Depot"))),
+             hierarchy=[("stabledAt", "assignedTo")],
+             equiv=[(A("MajorDepot"), _and(A("Depot"), dl.AtLeast(3, Inv("stabledAt"), A("Train"))))]),
+         "Depot", "MajorDepot", "ALCHIQ", False),
 ]
+
+#: Requests that arrive in production with **no label** — the self-labelling pool.
+FIELD_CASES: list[Case] = [
+    Case("town-crossing-risk", "field", "inferred-definition",
+         "Level crossings asks: is every town crossing a high-risk crossing?",
+         _tb((A("TownCrossing"), _and(A("LevelCrossing"), E("nearTo", A("PrimarySchool")))),
+             (A("PrimarySchool"), A("School")),
+             equiv=[(A("HighRiskCrossing"), _and(A("LevelCrossing"), E("nearTo", A("School"))))]),
+         "TownCrossing", "HighRiskCrossing"),
+    Case("footbridge-rail-bridge", "field", "universal-trap",
+         "Structures asks: is every footbridge a rail bridge?",
+         _tb((A("Footbridge"), _and(A("Bridge"), F("carries", A("Pedestrian")))),
+             equiv=[(A("RailBridge"), _and(A("Bridge"), E("carries", A("Train"))))]),
+         "Footbridge", "RailBridge"),
+    Case("major-station-staffed", "field", "inverse-definition",
+         "Stations asks: is every major station a staffed station?",
+         _tb((A("MajorStation"), _and(A("Station"), E(Inv("worksAt"), A("StationManager")))),
+             (A("StationManager"), A("Employee")),
+             equiv=[(A("StaffedStation"), _and(A("Station"), E(Inv("worksAt"), A("Employee"))))]),
+         "MajorStation", "StaffedStation"),
+    Case("underbridge-twin-track", "field", "number-restriction",
+         "Structures asks: is every underbridge a twin-track bridge?",
+         _tb((A("Underbridge"), _and(A("Bridge"), dl.AtLeast(1, "carries", A("Track")))),
+             equiv=[(A("TwinTrackBridge"), _and(A("Bridge"), dl.AtLeast(2, "carries", A("Track"))))]),
+         "Underbridge", "TwinTrackBridge"),
+    Case("hybrid-corridor", "field", "unsatisfiable-subject",
+         "Data quality asks: is a hybrid corridor a depot?",
+         _tb((A("DieselOnlyRoute"), _and(A("Route"), F("servedBy", N(A("ElectricTrain"))))),
+             (A("ElectrifiedRoute"), _and(A("Route"), E("servedBy", A("EMU")))),
+             (A("EMU"), A("ElectricTrain")),
+             (A("HybridCorridor"), _and(A("DieselOnlyRoute"), A("ElectrifiedRoute")))),
+         "HybridCorridor", "Depot"),
+    Case("sleeper-track", "field", "role-hierarchy",
+         "Track asks: is a sleeper a track?",
+         _tb((A("Sleeper"), A("TrackComponent")),
+             (A("TrackComponent"), E("partOf", A("Track"))),
+             transitive=["partOf"], hierarchy=[("partOf", "locatedIn")]),
+         "Sleeper", "Track"),
+]
+
+_BY_ID = {c.id: c for c in CASES + FIELD_CASES}
+
+
+def case(case_id: str) -> Case:
+    """Look a case (labelled or field) up by id."""
+    return _BY_ID[case_id]
 
 
 def describe_kb(tbox: dl.TBox) -> str:
-    """A neutral, textual rendering of a TBox — the agent's input.
+    """A neutral, textual rendering of a module — the reviewer's input.
 
     Deliberately *syntactic*: it states the axioms and role facts without naming
     the logic, so the naming task is not given away in the prompt.
@@ -134,7 +326,8 @@ def describe_kb(tbox: dl.TBox) -> str:
     if tbox.transitive_roles:
         lines.append(f"transitive roles: {sorted(tbox.transitive_roles)}")
     if tbox.role_hierarchy:
-        lines.append(f"role hierarchy: {[f'{a} sub-role of {b}' for a, b in tbox.role_hierarchy]}")
+        lines.append("role hierarchy: "
+                     + ", ".join(f"{a} sub-role of {b}" for a, b in tbox.role_hierarchy))
     if tbox.functional_roles:
         lines.append(f"functional roles: {sorted(tbox.functional_roles)}")
     if tbox.nominals:
@@ -142,271 +335,350 @@ def describe_kb(tbox: dl.TBox) -> str:
     return "\n".join(lines)
 
 
+def _query_text(c: Case) -> str:
+    return f"{c.request}  Formally: is {c.sub} subsumed by {c.sup}?"
+
+
 def build_dataset(split: str = "all"):
-    """Each example: a KB description + a subsumption query, with gold answers."""
+    """The labelled corpus as ``dspy.Example`` rows (inputs: ``kb``, ``query``).
+
+    Gold fields: ``gold_dl``, ``gold_subsumption`` (bool), plus ``constructors``
+    and ``sub_satisfiable`` for diagnostics. ``split`` is ``train``, ``dev``,
+    ``test`` or ``all``; the split is fixed by item, never random.
+    """
     import dspy
 
-    examples = []
-    for name, builder, (sub, sup) in KB_CASES:
-        tbox = builder()
-        examples.append(
-            dspy.Example(
-                kb=describe_kb(tbox),
-                query=f"{sub} subsumed by {sup}?",
-                gold_dl=dl.dl_name(tbox),
-                gold_subsumption=dl.subsumes(A(sub), A(sup), tbox),
-                id=name,
-            ).with_inputs("kb", "query")
-        )
-    # Stratified, not sequential. A first-six/last-four cut would put every
-    # transitive and inverse case in train and leave dev almost trivial, so the
-    # held-out score would flatter the agent. Alternating keeps both halves
-    # covering the constructor range and both verdicts.
-    if split == "train":
-        return examples[0::2]
-    if split == "dev":
-        return examples[1::2]
-    return examples
+    rows = []
+    for c in CASES:
+        if split not in ("all", c.split):
+            continue
+        t = c.tbox()
+        rows.append(dspy.Example(
+            id=c.id, split=c.split, phenomenon=c.phenomenon,
+            kb=describe_kb(t), query=_query_text(c), sub=c.sub, sup=c.sup,
+            gold_dl=c.gold_dl, gold_subsumption=bool(c.gold_subsumed),
+            constructors=sorted(dl.constructors_used(t)),
+            sub_satisfiable=dl.satisfiable(A(c.sub), t).satisfiable,
+        ).with_inputs("kb", "query"))
+    return rows
+
+
+def field_requests():
+    """Unlabelled production requests: the same inputs, **no gold fields**."""
+    import dspy
+
+    return [dspy.Example(id=c.id, split="field", kb=describe_kb(c.tbox()),
+                         query=_query_text(c), sub=c.sub, sup=c.sup).with_inputs("kb", "query")
+            for c in FIELD_CASES]
 
 
 # --------------------------------------------------------------------------- #
-# Scoring
-# --------------------------------------------------------------------------- #
-def dl_scorer(gold, pred):
-    """Half for naming the logic, half for the entailment verdict."""
-    from oe_course.evaluation import ScoreReport
-
-    predicted_dl = str(getattr(pred, "dl", "") or "").strip()
-    raw_verdict = str(getattr(pred, "subsumption", "") or "").strip().lower()
-    verdict = raw_verdict in {"true", "yes", "y", "1"}
-
-    notes, violated = [], []
-
-    dl_ok = predicted_dl.upper() == gold.gold_dl.upper()
-    if not dl_ok:
-        notes.append(f"DL name wrong: answered {predicted_dl!r}, correct is {gold.gold_dl!r}.")
-        expected, got = gold.gold_dl.upper(), predicted_dl.upper()
-        if expected.startswith("S") and got.startswith("ALC"):
-            violated.append("s-for-transitive")
-        if "H" in expected and "H" not in got:
-            violated.append("h-for-role-hierarchy")
-        if "I" in expected and "I" not in got:
-            violated.append("i-for-inverse")
-        if "Q" in expected and "Q" not in got:
-            violated.append("q-for-qualified-number")
-        if not violated:
-            violated.append("name-the-logic-exactly")
-
-    verdict_ok = verdict == bool(gold.gold_subsumption)
-    if not verdict_ok:
-        notes.append(
-            f"Subsumption verdict wrong: answered {verdict}, the reasoner says "
-            f"{bool(gold.gold_subsumption)}."
-        )
-        violated.append("use-the-reasoner")
-
-    notes.append(f"dl_ok={int(dl_ok)} verdict_ok={int(verdict_ok)}")
-    return ScoreReport(0.5 * dl_ok + 0.5 * verdict_ok, notes, list(dict.fromkeys(violated)))
-
-
-# --------------------------------------------------------------------------- #
-# Rulebook + offline simulator
+# Guidelines a review scorer can report
 # --------------------------------------------------------------------------- #
 def _rulebook():
-    from oe_course.llm import Rule, RuleBook
+    from oe_course.evaluation import Rule, RuleBook
 
-    return RuleBook(
-        [
-            Rule("s-for-transitive",
-                 "When any role is transitive the base logic is S, not ALC: S abbreviates "
-                 "ALC extended with transitive roles."),
-            Rule("h-for-role-hierarchy",
-                 "Append H when the knowledge base declares a sub-role axiom."),
-            Rule("i-for-inverse",
-                 "Append I when any role appears inverted (written r-)."),
-            Rule("q-for-qualified-number",
-                 "Append Q for number restrictions with a filler concept (>=n r.C); use N "
-                 "only for unqualified ones (>=n r)."),
-            Rule("use-the-reasoner",
-                 "Never guess a subsumption. Run the reasoner: C is subsumed by D exactly "
-                 "when C and not D is unsatisfiable."),
-        ]
-    )
+    return RuleBook([
+        Rule("s-for-transitive",
+             "Start the name from S, not ALC, exactly when some role is declared "
+             "transitive: S abbreviates ALC plus transitive roles."),
+        Rule("h-for-role-hierarchy",
+             "Add H exactly when the module declares a sub-role (role hierarchy) axiom."),
+        Rule("i-for-inverse",
+             "Add I exactly when some role is used inverted (written r-)."),
+        Rule("q-for-qualified-number",
+             "Use Q for number restrictions with a filler class (>=n r.C, <=n r.C) and N "
+             "only for unqualified ones (>=n r.Top); never both."),
+        Rule("no-unused-letters",
+             "Do not add letters for constructors the module does not use: claiming more "
+             "expressivity than needed sends the module to a heavier reasoner for nothing."),
+        Rule("name-the-logic-exactly",
+             "Report the name in the standard order -- base (ALC or S), then H, O, I, then "
+             "Q/N/F -- e.g. ALCHIQ or SHIN, with no prose and no '(D)' suffix."),
+        Rule("answer-true-or-false",
+             "Answer the subsumption question with exactly 'true' or 'false'."),
+        Rule("use-the-reasoner",
+             "Never judge subsumption from the shape of the axioms. C is subsumed by D "
+             "exactly when C and not D is unsatisfiable: follow definitions (==) on the "
+             "right-hand side, and remember that 'only' (forall) never implies 'some'."),
+        Rule("unsatisfiable-subsumed-by-everything",
+             "If the subject class is unsatisfiable (its definition is contradictory) it is "
+             "subsumed by every class: answer true, and flag the class as a modelling error."),
+    ])
 
 
+#: The guidelines a review scorer reports as violated.
 DL_RULEBOOK = _rulebook()
 
-BASELINE_INSTRUCTION = (
-    "You are a description logic expert. Given the knowledge base, say which "
-    "description logic it needs and answer the subsumption query."
-)
-
-
-def _degrade(name: str, active: set[str]) -> str:
-    """Turn the correct DL name into the one a partly-instructed model gives."""
-    out = name
-    if "s-for-transitive" not in active and out.startswith("S"):
-        out = "ALC" + out[1:]
-    if "h-for-role-hierarchy" not in active:
-        out = out.replace("H", "")
-    if "i-for-inverse" not in active:
-        out = out.replace("I", "")
-    if "q-for-qualified-number" not in active:
-        out = out.replace("Q", "N")
-    return out
-
-
-def dl_responder(inputs: dict, active: set[str]) -> dict:
-    """A weak DL expert that improves as the instruction gets specific."""
-    kb_text = inputs.get("kb", "") or ""
-    query = inputs.get("query", "") or ""
-
-    case = next(
-        (
-            (name, builder, pair)
-            for name, builder, pair in KB_CASES
-            if describe_kb(builder()) == kb_text
-        ),
-        None,
-    )
-    if case is None:
-        return {"dl": "ALC", "subsumption": "true", "justification": "unrecognised KB"}
-
-    _, builder, (sub, sup) = case
-    tbox = builder()
-    correct_dl = dl.dl_name(tbox)
-
-    answer_dl = _degrade(correct_dl, active)
-    if "use-the-reasoner" in active:
-        verdict = dl.subsumes(A(sub), A(sup), tbox)
-        justification = f"Checked with the tableau: {sub} and not {sup} is " + (
-            "unsatisfiable." if verdict else "satisfiable."
-        )
-    else:
-        # the classic failure: assume the hierarchy says what it looks like
-        verdict = True
-        justification = "It looks like it follows from the axioms."
-
-    return {"dl": answer_dl, "subsumption": str(verdict).lower(), "justification": justification}
-
 
 # --------------------------------------------------------------------------- #
-# DSPy program
-# --------------------------------------------------------------------------- #
-_SIG = None
-
-
-def DLSignature():
-    global _SIG
-    if _SIG is None:
-        import dspy
-
-        class _DLSignature(dspy.Signature):
-            """Name the description logic and answer a subsumption query."""
-
-            kb: str = dspy.InputField(desc="the knowledge base axioms and role facts")
-            query: str = dspy.InputField(desc="a subsumption question")
-            dl: str = dspy.OutputField(desc="the description logic name, e.g. ALC, SHIQ")
-            subsumption: str = dspy.OutputField(desc="true or false")
-            justification: str = dspy.OutputField(desc="one sentence")
-
-        _SIG = _DLSignature
-    return _SIG
-
-
-def DLProgram(instruction: str | None = BASELINE_INSTRUCTION):
-    import dspy
-
-    class _Program(dspy.Module):
-        def __init__(self):
-            super().__init__()
-            self.answer = dspy.Predict(DLSignature())
-            if instruction:
-                self.answer.signature = self.answer.signature.with_instructions(instruction)
-
-        def forward(self, kb: str, query: str):
-            return self.answer(kb=kb, query=query)
-
-    return _Program()
-
-
-# --------------------------------------------------------------------------- #
-# Tools
+# Full-semantics interpretations: certificates for "not subsumed"
 # --------------------------------------------------------------------------- #
 @dataclass
-class Ch3Context:
+class Interpretation:
+    """A finite interpretation: a domain, concept extensions, role extensions.
+
+    Concepts and roles not listed are empty. This evaluates the *full* concept
+    language of the toolkit — inverses and (qualified) number restrictions
+    included — which the ALC tableau does not.
+    """
+
+    domain: set
+    concepts: dict = field(default_factory=dict)
+    roles: dict = field(default_factory=dict)
+
+    def pairs(self, role) -> set:
+        if isinstance(role, dl.Inverse):
+            return {(b, a) for a, b in self.roles.get(role.role, set())}
+        return set(self.roles.get(role, set()))
+
+    def successors(self, x, role) -> set:
+        return {b for a, b in self.pairs(role) if a == x}
+
+    def ext(self, c) -> set:
+        """The extension of a concept."""
+        match c:
+            case dl._Top():
+                return set(self.domain)
+            case dl._Bottom():
+                return set()
+            case dl.Atomic(name):
+                return set(self.concepts.get(name, set())) & set(self.domain)
+            case dl.Not(sub):
+                return set(self.domain) - self.ext(sub)
+            case dl.And(left, right):
+                return self.ext(left) & self.ext(right)
+            case dl.Or(left, right):
+                return self.ext(left) | self.ext(right)
+            case dl.Exists(role, filler):
+                f = self.ext(filler)
+                return {x for x in self.domain if self.successors(x, role) & f}
+            case dl.ForAll(role, filler):
+                f = self.ext(filler)
+                return {x for x in self.domain if self.successors(x, role) <= f}
+            case dl.AtLeast(n, role, filler):
+                f = self.ext(filler)
+                return {x for x in self.domain if len(self.successors(x, role) & f) >= n}
+            case dl.AtMost(n, role, filler):
+                f = self.ext(filler)
+                return {x for x in self.domain if len(self.successors(x, role) & f) <= n}
+        raise TypeError(f"not a concept: {c!r}")
+
+    def violations(self, tbox: dl.TBox) -> list[str]:
+        """Every axiom or role fact of ``tbox`` this interpretation breaks."""
+        out = []
+        for ax in tbox.axioms:
+            left, right = self.ext(ax.left), self.ext(ax.right)
+            if not left <= right:
+                out.append(f"{ax}: {sorted(map(str, left - right))} in left, not right")
+            if ax.equivalence and not right <= left:
+                out.append(f"{ax}: {sorted(map(str, right - left))} in right, not left")
+        for r in tbox.transitive_roles:
+            rel = self.pairs(r)
+            missing = {(a, d) for a, b in rel for c, d in rel if b == c} - rel
+            if missing:
+                out.append(f"transitive {r}: missing {sorted(missing)}")
+        for r, s in tbox.role_hierarchy:
+            if not self.pairs(r) <= self.pairs(s):
+                out.append(f"{r} sub-role of {s}: {sorted(self.pairs(r) - self.pairs(s))} missing")
+        return out
+
+    def is_model_of(self, tbox: dl.TBox) -> bool:
+        return not self.violations(tbox)
+
+
+def is_countermodel(tbox: dl.TBox, sub: str, sup: str, interp: Interpretation) -> bool:
+    """Does ``interp`` satisfy the module **and** put an instance of ``sub`` outside ``sup``?
+
+    If so, ``sub ⊑ sup`` is certainly *not* entailed, under the full semantics.
+    """
+    return interp.is_model_of(tbox) and bool(interp.ext(A(sub)) - interp.ext(A(sup)))
+
+
+def _I(domain, concepts, roles=None):
+    return Interpretation(set(domain), {k: set(v) for k, v in concepts.items()},
+                          {k: set(v) for k, v in (roles or {}).items()})
+
+
+#: Countermodels for the "not subsumed" labels of **non-ALC** modules. The ALC
+#: tableau cannot certify these on its own (it ignores the non-ALC constructors),
+#: so each one is witnessed by a finite model checked under the full semantics.
+CERTIFICATES: dict[str, Interpretation] = {
+    "depot-signal-maintainer": _I({"d", "s"}, {"MaintenanceDepot": {"d"}, "Signal": {"s"}},
+                                  {"isResponsibleFor": {("d", "s")}}),
+    "double-slip-heavy": _I({"d", "m1", "m2"},
+                            {"DoubleSlip": {"d"}, "Switch": {"d"}, "PointsMotor": {"m1", "m2"}},
+                            {"hasPart": {("d", "m1"), ("d", "m2")}}),
+    "interlocking-control-centre": _I(
+        {"i", "s1", "s2"}, {"Interlocking": {"i"}, "Signal": {"s1", "s2"}},
+        {"controls": {("i", "s1"), ("i", "s2")}, "supervises": {("i", "s1"), ("i", "s2")}}),
+    "substation-feeder": _I({"s", "o"}, {"Substation": {"s"}, "OverheadLine": {"o"}},
+                            {"feeds": {("s", "o")}, "connectedTo": {("s", "o")}}),
+    "bay-platform-low-use": _I({"b", "t1", "t2"}, {"BayPlatform": {"b"}, "Platform": {"b"}},
+                               {"servedBy": {("b", "t1"), ("b", "t2")}}),
+    "junction-route": _I({"j", "a", "b", "c"}, {"Junction": {"j"}},
+                         {"partOf": {("a", "j"), ("b", "j"), ("c", "j")},
+                          "locatedIn": {("a", "j"), ("b", "j"), ("c", "j")}}),
+    "patroller-inspector": _I({"p", "c"}, {"Patroller": {"p"}, "Culvert": {"c"}},
+                              {"visits": {("p", "c")}}),
+    "plain-line-detection": _I({"s", "a"},
+                               {"PlainLineSection": {"s"}, "TrackSection": {"s"},
+                                "AxleCounter": {"a"}},
+                               {"hasPart": {("s", "a")}}),
+    "depot-major": _I({"d", "t1", "t2"}, {"Depot": {"d"}, "Train": {"t1", "t2"}},
+                      {"stabledAt": {("t1", "d"), ("t2", "d")},
+                       "assignedTo": {("t1", "d"), ("t2", "d")}}),
+    "underbridge-twin-track": _I({"u", "k"}, {"Underbridge": {"u"}, "Bridge": {"u"},
+                                              "Track": {"k"}},
+                                 {"carries": {("u", "k")}}),
+    "sleeper-track": _I({"s", "t"}, {"Sleeper": {"s"}, "TrackComponent": {"s"}, "Track": {"t"}},
+                        {"partOf": {("s", "t")}, "locatedIn": {("s", "t")}}),
+}
+
+ALC_CONSTRUCTORS = {"negation-atomic", "negation-full", "conjunction", "disjunction",
+                     "existential", "qualified-existential", "universal"}
+
+
+def validate_gold() -> dict[str, str]:
+    """Re-derive every label with the engine; return how each verdict is certified.
+
+    * the DL name must equal :func:`ch03_toolkit.dl_name`;
+    * "subsumed" is certified by the tableau alone — it reasons over a weakening
+      of the module (non-ALC constructors treated as opaque), so a subsumption it
+      finds holds in the full logic too;
+    * "not subsumed" is certified by the tableau when the module is pure ALC (the
+      tableau is complete there), and otherwise by a countermodel in
+      :data:`CERTIFICATES` checked under the full semantics.
+
+    Field cases have no stored label; their tableau verdicts are certified the
+    same way. Raises ``AssertionError`` on any disagreement.
+    """
+    how = {}
+    for c in CASES + FIELD_CASES:
+        t = c.tbox()
+        verdict = dl.subsumes(A(c.sub), A(c.sup), t)
+        if c.gold_dl is not None:
+            assert dl.dl_name(t) == c.gold_dl, (c.id, dl.dl_name(t), c.gold_dl)
+            assert verdict == c.gold_subsumed, (c.id, verdict, c.gold_subsumed)
+        if verdict:
+            how[c.id] = "subsumed: tableau (sound)"
+        elif dl.constructors_used(t) <= ALC_CONSTRUCTORS:
+            how[c.id] = "not subsumed: tableau (complete for ALC)"
+        else:
+            assert c.id in CERTIFICATES, f"{c.id}: non-ALC negative without a certificate"
+            cert = CERTIFICATES[c.id]
+            assert is_countermodel(t, c.sub, c.sup, cert), (c.id, cert.violations(t))
+            how[c.id] = "not subsumed: countermodel (full semantics)"
+    return how
+
+
+# --------------------------------------------------------------------------- #
+# What the role box licenses (for the "blind spot" problem)
+# --------------------------------------------------------------------------- #
+def rbox_licensed(axiom: dl.Axiom, tbox: dl.TBox) -> bool:
+    """Is ``axiom`` a valid consequence of the module's role box alone?
+
+    Accepts the three schemata that compile role facts into ALC axioms:
+
+    * ``exists r.C <= exists s.C``   for a declared sub-role ``r`` of ``s``;
+    * ``forall s.C <= forall r.C``   for a declared sub-role ``r`` of ``s``;
+    * ``forall r.C <= forall r.(forall r.C)``  for a transitive ``r``.
+    """
+    if axiom.equivalence:
+        return False
+    left, right = axiom.left, axiom.right
+    for r, s in tbox.role_hierarchy:
+        if left == dl.Exists(r, getattr(left, "filler", None)) and right == dl.Exists(s, left.filler):
+            return True
+        if left == dl.ForAll(s, getattr(left, "filler", None)) and right == dl.ForAll(r, left.filler):
+            return True
+    for r in tbox.transitive_roles:
+        if (isinstance(left, dl.ForAll) and left.role == r
+                and right == dl.ForAll(r, dl.ForAll(r, left.filler))):
+            return True
+    return False
+
+
+def risk_class(tbox: dl.TBox) -> str:
+    """An *observable* feature of a module, for estimating heuristic reliability.
+
+    ``negation`` if any axiom negates a class (contradictions become possible),
+    else ``definitions`` if any axiom is an equivalence (subsumptions can arise
+    through a definition's right-hand side), else ``plain``.
+    """
+    used = dl.constructors_used(tbox)
+    if used & {"negation-atomic", "negation-full"}:
+        return "negation"
+    if any(ax.equivalence for ax in tbox.axioms):
+        return "definitions"
+    return "plain"
+
+
+# --------------------------------------------------------------------------- #
+# Agent tools (Part D)
+# --------------------------------------------------------------------------- #
+@dataclass
+class ReviewWorkspace:
+    """The module under review, and the agent's call log."""
+
+    case_id: str
     tbox: dl.TBox = None
-    name: str = ""
     log: object = None
 
     def __post_init__(self):
         from oe_course.tools import ToolCallLog
 
-        self.tbox = self.tbox if self.tbox is not None else dl.TBox()
+        self.tbox = self.tbox if self.tbox is not None else case(self.case_id).tbox()
         self.log = self.log or ToolCallLog()
 
 
-def build_toolset(ctx: Ch3Context):
+def build_review_tools(ws: ReviewWorkspace):
+    """The review agent's tools. ``check_subsumption`` is the expensive, sound one."""
     from langchain_core.tools import tool
 
     from oe_course.tools import instrument
 
-    cases = {name: builder for name, builder, _ in KB_CASES}
-
-    def load_kb(name: str) -> str:
-        """Load a named knowledge base from the chapter's case set.
-
-        Call this first. Use list_kbs if you do not know the names.
-        """
-        ctx.tbox = cases[name]()
-        ctx.name = name
-        return json.dumps({"loaded": name, "axioms": len(ctx.tbox.axioms)})
-
-    def list_kbs() -> str:
-        """List the available knowledge base names."""
-        return json.dumps(sorted(cases))
-
-    def show_axioms() -> str:
-        """Show the loaded knowledge base's axioms and role facts."""
-        return describe_kb(ctx.tbox)
+    def show_module() -> str:
+        """Show the module under review: its axioms and role facts."""
+        return describe_kb(ws.tbox)
 
     def dl_expressivity() -> str:
-        """Report which DL constructors the loaded KB uses, and its DL name.
+        """Report which DL constructors the module uses, and the DL name they imply.
 
-        Call this before claiming a knowledge base is in a particular logic --
-        the constructors, not your impression of the axioms, decide the name.
+        Call this before naming the logic -- the constructors, not your impression
+        of the axioms, decide the name.
         """
-        return json.dumps(
-            {"dl": dl.dl_name(ctx.tbox), "constructors": sorted(dl.constructors_used(ctx.tbox))}
-        )
+        return json.dumps({"dl": dl.dl_name(ws.tbox),
+                           "constructors": sorted(dl.constructors_used(ws.tbox))})
 
-    def check_satisfiability(concept_a: str, concept_b: str = "") -> str:
-        """Is `concept_a` (optionally conjoined with `concept_b`) satisfiable?
+    def check_satisfiability(concept: str) -> str:
+        """Can the named class have any instances at all under the module?
 
-        Use this to test whether a class can have any instances at all.
+        An unsatisfiable class is a modelling error, and is subsumed by every class.
         """
-        c = A(concept_a) if not concept_b else dl.And(A(concept_a), A(concept_b))
-        result = dl.satisfiable(c, ctx.tbox)
-        return json.dumps({"satisfiable": result.satisfiable, "steps": result.steps,
-                           "branches": result.branches})
+        result = dl.satisfiable(A(concept), ws.tbox)
+        return json.dumps({"concept": concept, "satisfiable": result.satisfiable,
+                           "steps": result.steps})
 
     def check_subsumption(sub: str, sup: str) -> str:
-        """Does the KB entail that `sub` is subsumed by `sup`?
+        """Run the tableau reasoner: does the module entail that `sub` is subsumed by `sup`?
 
-        Call this instead of reasoning by eye whenever asked whether one class
-        falls under another. It runs a tableau, so the answer is sound.
+        Sound for ALC modules and sound for 'subsumed' in general; ignores
+        transitivity, role hierarchies, inverses and number restrictions when
+        searching for a counterexample. Call it instead of judging by eye.
         """
-        return json.dumps({"subsumed": dl.subsumes(A(sub), A(sup), ctx.tbox)})
+        result = dl.satisfiable(dl.And(A(sub), dl.Not(A(sup))), ws.tbox)
+        return json.dumps({"sub": sub, "sup": sup, "subsumed": not result.satisfiable,
+                           "steps": result.steps, "branches": result.branches})
 
-    def tableau_trace(concept_a: str, concept_b: str = "") -> str:
-        """Return the tableau expansion trace -- the proof behind a verdict."""
-        c = A(concept_a) if not concept_b else dl.And(A(concept_a), A(concept_b))
-        result = dl.satisfiable(c, ctx.tbox, trace=True)
-        return json.dumps({"satisfiable": result.satisfiable, "trace": result.trace[:25]})
+    def tableau_trace(sub: str, sup: str) -> str:
+        """The tableau expansion for `sub and not sup` -- the proof behind a verdict."""
+        result = dl.satisfiable(dl.And(A(sub), dl.Not(A(sup))), ws.tbox, trace=True)
+        return json.dumps({"subsumed": not result.satisfiable, "trace": result.trace[:25]})
 
-    impls = [load_kb, list_kbs, show_axioms, dl_expressivity,
-             check_satisfiability, check_subsumption, tableau_trace]
-    return [tool(instrument(fn, fn.__name__, ctx.log)) for fn in impls]
+    impls = [show_module, dl_expressivity, check_satisfiability, check_subsumption,
+             tableau_trace]
+    return [tool(instrument(fn, fn.__name__, ws.log)) for fn in impls]
 
 
 # --------------------------------------------------------------------------- #
@@ -424,30 +696,26 @@ class BudgetState:
 
 
 class ReasoningBudgetMDP:
-    """Answer a series of queries: cheap guess, or costly sound reasoning?
+    """Answer a queue of queries: cheap guess, or costly sound reasoning?
 
     For each query the agent may:
 
-    * **guess** — free, correct with probability ``p_i`` (a structural heuristic
-      such as "it is asserted in the hierarchy, so it must follow");
+    * **guess** — free, correct with probability ``p_i`` (a structural heuristic);
     * **reason** — always correct, costs ``reasoner_cost`` and consumes one unit
       of a limited budget.
 
     Transitions are genuinely **stochastic**: guessing lands in the same next
     state either way, but the reward is Bernoulli. Value iteration therefore
-    computes an *expected* return, and the optimal policy is the one §3.3 argues
-    for informally — spend soundness where unsoundness is most likely to bite.
-
-    ``p_i`` is per-query on purpose: a uniform accuracy makes the allocation
-    problem trivial and hides the interesting behaviour.
+    computes an *expected* return; :meth:`step` samples one outcome.
     """
 
     def __init__(self, heuristic_accuracy: list[float], reasoner_cost: float = 0.2,
-                 budget: int = 2, gamma: float = 1.0):
+                 budget: int = 2, gamma: float = 1.0, rng: random.Random | None = None):
         self.accuracy = list(heuristic_accuracy)
         self.reasoner_cost = reasoner_cost
         self.budget = budget
         self.gamma = gamma
+        self.rng = rng or random.Random(0)
 
     def initial_state(self) -> BudgetState:
         return BudgetState(0, 0)
@@ -456,43 +724,34 @@ class ReasoningBudgetMDP:
         return state.index >= len(self.accuracy)
 
     def states(self) -> list[BudgetState]:
-        return [
-            BudgetState(i, u)
-            for i in range(len(self.accuracy) + 1)
-            for u in range(self.budget + 1)
-        ]
+        return [BudgetState(i, u) for i in range(len(self.accuracy) + 1)
+                for u in range(self.budget + 1)]
 
     def actions(self, state: BudgetState) -> list[str]:
         if self.is_terminal(state):
             return []
-        acts = ["guess"]
-        if state.used < self.budget:
-            acts.append("reason")
-        return acts
+        return ["guess", "reason"] if state.used < self.budget else ["guess"]
 
     def transition(self, state: BudgetState, action: str):
         i, used = state.index, state.used
         if action == "guess":
             p = self.accuracy[i]
             nxt = BudgetState(i + 1, used)
-            # Same successor, different reward: a Bernoulli outcome.
             return [(p, nxt, 1.0), (1.0 - p, nxt, 0.0)]
         return [(1.0, BudgetState(i + 1, used + 1), 1.0 - self.reasoner_cost)]
 
     def step(self, state: BudgetState, action: str):
-        import random
-
         outcomes = self.transition(state, action)
-        roll, cumulative = random.random(), 0.0
+        roll, cumulative = self.rng.random(), 0.0
         for p, nxt, reward in outcomes:
             cumulative += p
-            if roll <= cumulative:
+            if roll < cumulative:
                 return nxt, reward, self.is_terminal(nxt)
-        p, nxt, reward = outcomes[-1]
+        _, nxt, reward = outcomes[-1]
         return nxt, reward, self.is_terminal(nxt)
 
     def optimal_plan(self, policy: dict) -> list[str]:
-        """The action the optimal policy takes on each query, budget permitting."""
+        """The action the policy takes on each query, following its own budget use."""
         plan, state = [], self.initial_state()
         while not self.is_terminal(state):
             action = policy[state]

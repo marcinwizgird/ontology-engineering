@@ -11,18 +11,9 @@ gives a runnable starter, and ships an *executable* solution whose assertions
 are the grading criteria. An exercise whose solution does not assert anything is
 not an exercise — it is a suggestion.
 
-``oe_course.assignment`` extends that to the agentic labs, which ship in two
-variants built from one source. It imports from here, so import it from its own
-module rather than expecting a re-export. ``task`` marks a stub cell as student-only and
-the worked implementation as solution-only; ``save_assignment`` writes both
-notebooks. Shared cells — the prose, the setup, the checks — are emitted into
-both, so the two variants cannot drift apart: there is one authored sequence of
-cells and two filters over it.
-
-The check cells deliberately appear in **both**. In the solution notebook they
-pass; in the student notebook they fail until the task is done, which is what
-makes them a marking scheme rather than a suggestion. A consequence worth
-knowing before wiring CI: only the solution notebooks execute clean.
+``oe_course.assignment`` builds each chapter's problem set on top of these
+helpers: one authored cell sequence, saved as an assignment notebook and a
+solutions notebook. Import it from its own module.
 """
 
 from __future__ import annotations
@@ -36,7 +27,7 @@ __all__ = ["md", "code", "save", "SETUP_CELL", "header", "exercise", "learning_o
 
 
 
-#: Standard first code cell: puts the repo root on the path and reports the mode.
+#: Standard first code cell: puts the repo root on the path and reports the environment.
 SETUP_CELL = """\
 import sys, os, json, textwrap
 from pathlib import Path

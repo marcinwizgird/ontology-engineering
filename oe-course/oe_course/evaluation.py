@@ -10,15 +10,15 @@ basis for a regression test. Their weakness: they cannot judge *prose*.
 
 **LLM-as-judge** (:func:`judge`) scores the qualities a set comparison cannot —
 is the justification grounded in evidence the agent actually gathered, or
-plausible-sounding fabrication? Offline it degrades to an explicit rubric proxy
-(:class:`RubricJudge`), which is stated plainly rather than dressed up as a
-model.
+plausible-sounding fabrication? A judge is itself a model and must be validated
+against labels before its scores mean anything; the assignments make you do it.
 
 **GEPA feedback metrics** (:func:`make_gepa_metric`) return a *score plus a
 textual diagnosis*. This is the part people skip and then wonder why
 optimisation stalls: GEPA's reflection step can only propose a better
-instruction if the metric tells it what went wrong. Every scorer here emits
-``MISSING RULE <id>: <what to do instead>`` lines for exactly that reason.
+instruction if the metric tells it what went wrong. Each task keeps a
+:class:`RuleBook` — the named guidelines its scorer can report as violated — so
+the feedback says *which* guideline failed and what to do instead.
 """
 
 from __future__ import annotations
@@ -27,9 +27,10 @@ import json
 from dataclasses import dataclass, field
 from typing import Callable, Iterable, Sequence
 
-from oe_course import config
 
 __all__ = [
+    "Rule",
+    "RuleBook",
     "ScoreReport",
     "set_f1",
     "exact_match",
@@ -39,9 +40,54 @@ __all__ = [
     "make_metric",
     "make_gepa_metric",
     "judge",
-    "RubricJudge",
     "evaluate_dataset",
 ]
+
+
+# --------------------------------------------------------------------------- #
+# Guidelines a scorer can report as violated
+# --------------------------------------------------------------------------- #
+@dataclass(frozen=True)
+class Rule:
+    """One named guideline of a task, written the way feedback should state it.
+
+    ``id``          stable slug the scorer puts in :attr:`ScoreReport.violated`;
+    ``description`` what to do instead — the sentence GEPA's reflection reads.
+    """
+
+    id: str
+    description: str
+
+    def feedback_line(self) -> str:
+        return f"VIOLATED GUIDELINE {self.id}: {self.description}"
+
+
+class RuleBook:
+    """The named guidelines of one task, shared by its scorer and its feedback."""
+
+    def __init__(self, rules: Iterable[Rule]):
+        self._rules: dict[str, Rule] = {r.id: r for r in rules}
+
+    def __iter__(self):
+        return iter(self._rules.values())
+
+    def __len__(self) -> int:
+        return len(self._rules)
+
+    def __getitem__(self, rule_id: str) -> Rule:
+        return self._rules[rule_id]
+
+    def __contains__(self, rule_id: str) -> bool:
+        return rule_id in self._rules
+
+    @property
+    def ids(self) -> list[str]:
+        return list(self._rules)
+
+    def as_guidelines(self, preamble: str = "") -> str:
+        """The guidelines written out as an instruction — a hand-written baseline."""
+        body = "\n".join(f"- {r.description}" for r in self._rules.values())
+        return f"{preamble}\n{body}".strip()
 
 
 # --------------------------------------------------------------------------- #
@@ -52,8 +98,8 @@ class ScoreReport:
     """A score, a human-readable diagnosis, and the rules that were violated.
 
     ``violated`` is what makes the report usable by GEPA: each id names a rule
-    in the task's :class:`oe_course.llm.RuleBook`, and the feedback text spells
-    out the fix so the reflection step has something concrete to write down.
+    in the task's :class:`RuleBook`, and the feedback text spells out the fix so
+    the reflection step has something concrete to write down.
     """
 
     score: float
@@ -64,10 +110,10 @@ class ScoreReport:
         lines = list(self.notes)
         if rulebook is not None:
             for rule_id in self.violated:
-                try:
-                    lines.append(rulebook[rule_id].missing_line())
-                except KeyError:
-                    lines.append(f"MISSING RULE {rule_id}: (no description registered)")
+                if rule_id in rulebook:
+                    lines.append(rulebook[rule_id].feedback_line())
+                else:
+                    lines.append(f"VIOLATED GUIDELINE {rule_id}")
         lines.append(f"Score: {self.score:.3f}")
         return "\n".join(lines)
 
@@ -231,7 +277,7 @@ def make_gepa_metric(scorer: Callable[..., ScoreReport], rulebook=None):
 
     GEPA calls this with ``(gold, pred, trace, pred_name, pred_trace)`` and uses
     the feedback string to write a better instruction. The rulebook turns each
-    violated rule id into a concrete ``MISSING RULE`` line.
+    violated rule id into a concrete ``VIOLATED GUIDELINE`` line.
     """
     import dspy
 
@@ -284,46 +330,8 @@ def evaluate_dataset(program, dataset, scorer: Callable[..., ScoreReport]) -> di
 # --------------------------------------------------------------------------- #
 # LLM-as-judge
 # --------------------------------------------------------------------------- #
-@dataclass
-class RubricJudge:
-    """The offline stand-in for an LLM judge — an explicit, checkable rubric.
-
-    It is *not* pretending to be a model. It scores the three properties the
-    course cares about in a written justification, so the judging machinery
-    (dataset, aggregation, disagreement analysis) can be exercised offline:
-
-    1. does the report name the correct level?
-    2. does it mention each defect it claims, by id?
-    3. does it cite numeric evidence rather than asserting?
-    """
-
-    def __call__(self, task: str, gold: str, report: str) -> ScoreReport:
-        text = (report or "").lower()
-        notes, points = [], 0.0
-
-        if gold and gold.lower() in text:
-            points += 0.4
-        else:
-            notes.append(f"Report does not state the expected level {gold!r}.")
-
-        if any(ch.isdigit() for ch in text):
-            points += 0.3
-        else:
-            notes.append("Report cites no numeric evidence from the metrics tool.")
-
-        if "because" in text or "evidence" in text or "found" in text:
-            points += 0.3
-        else:
-            notes.append("Report asserts a conclusion without explaining the reasoning.")
-
-        return ScoreReport(score=round(points, 3), notes=notes)
-
-
 def judge(task: str, gold: str, report: str) -> ScoreReport:
-    """Score a written justification — live LLM judge, or the offline rubric."""
-    if config.offline():
-        return RubricJudge()(task, gold, report)
-
+    """Score a written justification with an LLM judge (the configured DSPy LM)."""
     import dspy
 
     class JudgeJustification(dspy.Signature):

@@ -9,7 +9,6 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent.parent))
 
 from oe_course.nbbuild import code, exercise, header, learning_outcomes, md, save  # noqa: E402
-from oe_course.assignment import save_assignment, task  # noqa: E402
 
 CHAPTER = "Chapter 10 — Rough, Temporal, and Fuzzy Modelling"
 
@@ -49,7 +48,8 @@ def nb00():
             "| 1 | `01_temporal` | 10.1 | **Allen's interval algebra**, composition table derived |\n"
             "| 2 | `02_vagueness_and_granularity` | 10.2 | fuzzy membership + rough approximations |\n"
             "| 3 | `03_exercises` | 10.3 | autograded answers |\n"
-            "| 4 | `04_agentic_lab` | — | a formalism-choosing agent + a **propagation MDP** |\n"
+            "| 4 | `04_assignment` / `04_solutions` | — | problem set: a Claude advisor that "
+            "chooses **and prices** the formalism, a review agent, and a **propagation MDP** |\n"
         ),
         md(
             learning_outcomes(
@@ -72,8 +72,8 @@ def nb00():
             "Each formalism buys the ability to say something a crisp ontology cannot, and "
             "each charges for it. The bill is not rhetorical: deciding consistency of a "
             "general Allen network is **NP-complete**, while fuzzy membership and rough "
-            "approximation stay polynomial. The agent in Notebook 4 is scored on getting "
-            "*both* the choice and its price right."
+            "approximation stay polynomial. The Claude advisor in the Notebook 4 problem "
+            "set is scored on getting *both* the choice and its price right."
         ),
         md("### Sanity check: all thirteen relations, and a derived composition table"),
         code(
@@ -483,277 +483,8 @@ def nb03():
 
 
 # --------------------------------------------------------------------------- #
-def nb04():
-    cells = header(
-        CHAPTER,
-        "Notebook 4 · Agentic lab — choosing a formalism, and paying for search",
-        "Extends §10.1–10.2",
-        "An agent whose reflex is 'model it crisply', and an MDP that makes it "
-        "prove inconsistency rather than assert it.",
-    )
-    cells += [
-        code(BOOT),
-        code(
-            "import ch10_agentic as AG\n"
-            "from oe_course import evaluation as ev, llm, mdp, optimize as opt\n"
-            "import oe_course\n"
-            "print(json.dumps(oe_course.describe_environment(), indent=1))"
-        ),
-        md(
-            learning_outcomes(
-                [
-                    "Score a choice **and its cost**, so an agent cannot buy accuracy with "
-                    "unlimited expressivity.",
-                    "Recognise the default-answer effect: a rule for behaviour the agent "
-                    "already has is never learned.",
-                    "Model **constraint propagation** as a search MDP with early exit.",
-                    "Spot an asymmetric reward that lets one verdict be claimed for free.",
-                ]
-            )
-        ),
-        md("> **Prerequisite:** the Chapter 1 agentic lab."),
-        md(
-            "## 1. Tools\n\n"
-            "`check_temporal_consistency` is the one that changes outcomes: humans — and "
-            "language models — are poor at spotting cycles in interval constraints, and this "
-            "is a decision procedure for exactly that."
-        ),
-        code(
-            "ctx = AG.Ch10Context()\n"
-            "tools = {t.name: t for t in AG.build_toolset(ctx)}\n"
-            "for name, t in tools.items():\n"
-            "    print(f'{name:28s} {list(t.args_schema.model_json_schema().get(\"properties\", {}))}')\n"
-            "    print(f'{\"\":28s} {t.description.splitlines()[0]}')"
-        ),
-        code(
-            "print(tools['relation_between'].invoke(\n"
-            "    {'a_start': 0, 'a_end': 3, 'b_start': 3, 'b_end': 5}))\n"
-            "print(tools['check_temporal_consistency'].invoke(\n"
-            "    {'constraints': '{\"A,B\": [\"b\"], \"B,C\": [\"b\"], \"A,C\": [\"bi\"]}'}))\n"
-            "print(tools['fuzzy_membership'].invoke({'set_name': 'tall', 'value': 182}))\n"
-            "print(tools['rough_approximation'].invoke({'target': 'p1,p3,p5'}))\n"
-            "print(tools['expressivity_cost'].invoke({'formalism': 'temporal'}))\n"
-            "print('\\ntrajectory:', ctx.log.names())"
-        ),
-        md(
-            "## 2. The dataset\n\n"
-            "Twelve requirements, three per formalism, stratified so both halves see all "
-            "four. The agent answers **which formalism** and **what it costs** — because an "
-            "agent scored only on the choice can buy accuracy by always reaching for the most "
-            "expressive option."
-        ),
-        code(
-            "train, dev = AG.build_dataset('train'), AG.build_dataset('dev')\n"
-            "print(pd.DataFrame([{'id': e.id, 'formalism': e.gold_formalism,\n"
-            "                     'cost': e.gold_cost,\n"
-            "                     'split': 'train' if e in train else 'dev'}\n"
-            "                    for e in AG.build_dataset('all')]).to_string(index=False))\n"
-            "assert ({e.gold_formalism for e in train} == {e.gold_formalism for e in dev})"
-        ),
-        code(
-            "lm = llm.configure_dspy(AG.FORMALISM_RULEBOOK, AG.formalism_responder)\n"
-            "baseline = AG.FormalismProgram()\n"
-            "for e in dev:\n"
-            "    p = baseline(**e.inputs())\n"
-            "    print(f'{e.id:24s} {p.formalism:9s}/{p.cost:5s}  '\n"
-            "          f'gold {e.gold_formalism:9s}/{e.gold_cost}')"
-        ),
-        code(
-            "before = ev.evaluate_dataset(baseline, dev, AG.formalism_scorer)\n"
-            "print('BEFORE:', before['mean_score'])\n"
-            "print('violations:', before['violations'])"
-        ),
-        code(
-            "gepa_metric = ev.make_gepa_metric(AG.formalism_scorer, AG.FORMALISM_RULEBOOK)\n"
-            "reflect = llm.reflection_lm(AG.FORMALISM_RULEBOOK, AG.formalism_responder)\n"
-            "tuned = opt.run_gepa(baseline, train, gepa_metric, valset=train,\n"
-            "                     max_metric_calls=100, reflection_lm=reflect)\n"
-            "result = opt.compare(AG.FormalismProgram(), tuned, dev, AG.formalism_scorer)\n"
-            "print(result.report()[:1400])"
-        ),
-        code(
-            "found = AG.FORMALISM_RULEBOOK.active_in(result.instruction_after)\n"
-            "print('rules discovered:', sorted(found))\n"
-            "print('rules not needed:', sorted(set(AG.FORMALISM_RULEBOOK.ids) - found))\n"
-            "print('\\nThe undiscovered rule describes the agent\\'s DEFAULT: it already\\n'\n"
-            "      'reaches for crisp, so the metric never punished it and there was\\n'\n"
-            "      'nothing to learn. As in Chapter 8, an unlearned rule is not\\n'\n"
-            "      'automatically a failure -- check whether it was ever violated.')"
-        ),
-        md(
-            "## 3. Constraint propagation as an MDP\n\n"
-            "A solver narrows label sets by composing through a third interval. Each "
-            "composition costs; the agent chooses **which** to do and **when to stop**.\n\n"
-            "| | |\n|---|---|\n"
-            "| **S** | the three label sets, and whether a verdict was given |\n"
-            "| **A** | propagate through A, B or C; or declare consistent / inconsistent |\n"
-            "| **T** | deterministic — composition is a function |\n"
-            "| **R** | −cost per propagation; `+1` for a **justified** correct verdict |\n\n"
-            "As in Chapter 2, *justified* is load-bearing: declaring inconsistency is only "
-            "rewarded once a label has actually emptied."
-        ),
-        code(
-            "M = AG.PropagationMDP(ab={'b'}, bc={'b'}, ac={'bi'}, consistent=False)\n"
-            "print('network: A before B, B before C, A after C  (inconsistent)')\n"
-            "print('reachable states:', len(M.states()))\n"
-            "V, pi = mdp.value_iteration(M)\n"
-            "state = M.initial_state()\n"
-            "print(f'V*(s0) = {V[state]:.3f}\\n')\n"
-            "while not M.is_terminal(state):\n"
-            "    action = pi[state]\n"
-            "    print(f'  {str(state):22s} -> {action}')\n"
-            "    state = M.transition(state, action)[0][1]"
-        ),
-        md(
-            "One propagation is enough: composing through **A** empties the B–C label, which "
-            "witnesses the contradiction. The agent then declares — and gets paid, because "
-            "the claim is backed by an empty label rather than a hunch."
-        ),
-        code(
-            "rows = []\n"
-            "for name, kwargs in [\n"
-            "        ('inconsistent cycle', dict(ab={'b'}, bc={'b'}, ac={'bi'}, consistent=False)),\n"
-            "        ('consistent chain', dict(ab={'b'}, bc={'b'}, ac={'b'}, consistent=True)),\n"
-            "        ('consistent, AC open',\n"
-            "         dict(ab={'b'}, bc={'b'}, ac=set(AG.MDP_RELATIONS), consistent=True)),\n"
-            "        ('inconsistent via meets',\n"
-            "         dict(ab={'m'}, bc={'m'}, ac={'eq'}, consistent=False))]:\n"
-            "    Mx = AG.PropagationMDP(**kwargs)\n"
-            "    Vx, pix = mdp.value_iteration(Mx)\n"
-            "    st, plan = Mx.initial_state(), []\n"
-            "    while not Mx.is_terminal(st):\n"
-            "        a = pix[st]; plan.append(a.replace('propagate:', 'prop-')\n"
-            "                                  .replace('declare:', ''))\n"
-            "        st = Mx.transition(st, a)[0][1]\n"
-            "    rows.append({'network': name, 'states': len(Mx.states()),\n"
-            "                 'V*': round(Vx[Mx.initial_state()], 3), 'plan': ' -> '.join(plan)})\n"
-            "print(pd.DataFrame(rows).to_string(index=False))"
-        ),
-        md(
-            "> **Look at the asymmetry.** Inconsistency costs a propagation to witness; "
-            "consistency is declared immediately, for free, at `V* = 1.0`.\n\n"
-            "That is a **reward-design flaw**, not a discovery about temporal reasoning. Path "
-            "consistency is *incomplete*, so a network that survives propagation is not "
-            "actually proven consistent — yet this reward pays full marks for saying so "
-            "without doing any work. Exercise 4.2 fixes it."
-        ),
-    ]
-    cells += task(
-        "4.1",
-        "Make propagation expensive",
-        "Raise the propagation cost until the agent stops bothering to prove inconsistency. "
-        "Report the threshold and explain it.",
-        "# YOUR CODE HERE\n",
-        "rows = []\n"
-        "for cost in [0.05, 0.3, 0.5, 0.9, 1.5]:\n"
-        "    Mc = AG.PropagationMDP(ab={'b'}, bc={'b'}, ac={'bi'},\n"
-        "                           consistent=False, cost=cost)\n"
-        "    Vc, pic = mdp.value_iteration(Mc)\n"
-        "    st, plan = Mc.initial_state(), []\n"
-        "    while not Mc.is_terminal(st):\n"
-        "        a = pic[st]; plan.append(a); st = Mc.transition(st, a)[0][1]\n"
-        "    rows.append({'cost': cost, 'V*': round(Vc[Mc.initial_state()], 3),\n"
-        "                 'propagations': sum(1 for a in plan if a.startswith('propagate')),\n"
-        "                 'verdict': plan[-1]})\n"
-        "print(pd.DataFrame(rows).to_string(index=False))\n"
-        "print('\\nProving inconsistency is worth 1 + penalty (avoiding a wrong answer)\\n'\n"
-        "      'and costs one propagation. Past that price the agent guesses -- and here\\n'\n"
-        "      'guessing \"consistent\" on an inconsistent network is exactly the failure\\n'\n"
-        "      'mode of a solver given too small a time budget.')",
-        checks=(
-            "assert [r['cost'] for r in rows] == [0.05, 0.3, 0.5, 0.9, 1.5]\n"
-            "assert rows[0]['propagations'] > 0, 'cheap propagation should be used'\n"
-            '# Raising the price of propagation cannot raise the optimal value, nor buy more\n'
-            '# propagations than the cheapest setting did.\n'
-            "assert rows[-1]['V*'] <= rows[0]['V*'] + 1e-9\n"
-            "assert rows[-1]['propagations'] <= rows[0]['propagations']"
-        ),
-    )
-    cells += task(
-        "4.2",
-        "Fix the asymmetric reward",
-        "Require a consistency claim to be justified too — say, by at least one propagation "
-        "that changed nothing. Show the optimal policy now doing work before declaring "
-        "consistency.",
-        "# YOUR CODE HERE: PropagationMDP takes a require_check flag\n",
-        "def plan_for(**kwargs):\n"
-        "    m = AG.PropagationMDP(**kwargs)\n"
-        "    _, policy = mdp.value_iteration(m)\n"
-        "    state, steps = m.initial_state(), []\n"
-        "    while not m.is_terminal(state):\n"
-        "        action = policy[state]\n"
-        "        steps.append(action)\n"
-        "        state = m.transition(state, action)[0][1]\n"
-        "    values, _ = mdp.value_iteration(m)\n"
-        "    return steps, values[m.initial_state()]\n\n"
-        "loose, loose_value = plan_for(ab={'b'}, bc={'b'}, ac={'b'}, consistent=True)\n"
-        "strict, strict_value = plan_for(ab={'b'}, bc={'b'}, ac={'b'}, consistent=True,\n"
-        "                                require_check=True)\n"
-        "print(f'consistency free to claim : V*={loose_value:.3f}  plan={loose}')\n"
-        "print(f'consistency must be earned: V*={strict_value:.3f}  plan={strict}')\n"
-        "assert not any(a.startswith('propagate') for a in loose)\n"
-        "assert any(a.startswith('propagate') for a in strict)\n"
-        "assert strict_value < loose_value\n"
-        "print('\\nNow both verdicts cost something, and the value drops accordingly. The\\n'\n"
-        "      'LOWER number is the honest one: it reflects the work a sound answer\\n'\n"
-        "      'actually requires. A reward that lets one answer be claimed for free\\n'\n"
-        "      'will always produce an agent that prefers that answer -- and here the\\n'\n"
-        "      'free answer is \"looks fine to me\".')",
-        hint="`PropagationMDP(..., require_check=True)` makes a consistency claim "
-        "require at least one propagation.",
-    )
-    cells += task(
-        "4.3",
-        "Score the formalism only, and watch the agent overspend",
-        "Build a metric that ignores the cost half, optimise against it, and show the "
-        "resulting agent has learned nothing about what expressivity costs.",
-        "# YOUR CODE HERE\n",
-        "from oe_course.evaluation import ScoreReport\n\n"
-        "def choice_only(gold, pred):\n"
-        "    formalism = str(getattr(pred, 'formalism', '') or '').strip().lower()\n"
-        "    ok = formalism == gold.gold_formalism\n"
-        "    violated = [] if ok else [{\n"
-        "        'temporal': 'temporal-for-interval-relations',\n"
-        "        'fuzzy': 'fuzzy-for-vague-predicates',\n"
-        "        'rough': 'rough-for-indiscernible-data',\n"
-        "        'crisp': 'crisp-when-boundaries-are-sharp'}[gold.gold_formalism]]\n"
-        "    return ScoreReport(float(ok), [] if ok else ['Wrong formalism.'], violated)\n\n"
-        "blind_metric = ev.make_gepa_metric(choice_only, AG.FORMALISM_RULEBOOK)\n"
-        "blind = opt.run_gepa(AG.FormalismProgram(), train, blind_metric, valset=train,\n"
-        "                     max_metric_calls=100, reflection_lm=reflect)\n"
-        "blind_rules = AG.FORMALISM_RULEBOOK.active_in(opt.instruction_of(blind))\n"
-        "print('rules discovered:', sorted(blind_rules))\n"
-        "print('priced expressivity?', 'price-the-expressivity' in blind_rules)\n"
-        "print()\n"
-        "print('scored on choice only:',\n"
-        "      ev.evaluate_dataset(blind, dev, choice_only)['mean_score'])\n"
-        "print('scored on the full metric:',\n"
-        "      ev.evaluate_dataset(blind, dev, AG.formalism_scorer)['mean_score'])\n"
-        "assert 'price-the-expressivity' not in blind_rules\n"
-        "print('\\nPerfect on the metric it saw, and unable to say what anything costs.\\n'\n"
-        "      'An agent that picks the most expressive formalism every time scores full\\n'\n"
-        "      'marks here and hands you an NP-complete reasoning problem you did not\\n'\n"
-        "      'need -- the exact failure Chapter 10 exists to prevent.')",
-    )
-    cells += [
-        md(
-            "## Chapter 10 in the course arc\n\n"
-            "| | Ch. 8 | Ch. 9 | Ch. 10 |\n|---|---|---|---|\n"
-            "| MDP | serve under staleness | optimal stopping | **propagation with early exit** |\n"
-            "| second half of the score | execution strategy | presentation | **the price of the choice** |\n"
-            "| the failure it prevents | stale answers | unreadable output | **unaffordable reasoning** |\n\n"
-            "Chapter 10 adds a habit worth keeping: **score the cost, not just the answer**. "
-            "An agent judged only on correctness will happily buy it with expressivity you "
-            "cannot afford — and it will look perfect in the report while doing so."
-        )
-    ]
-    return save_assignment(cells, HERE / "04_agentic_lab.ipynb",
-                           lab_title="Chapter 10 — Rough, Temporal, and Fuzzy Modelling — agentic lab")
-
-
-# --------------------------------------------------------------------------- #
 if __name__ == "__main__":
-    for build in (nb00, nb01, nb02, nb03, nb04):
+    for build in (nb00, nb01, nb02, nb03):
         written = build()
         for path in (written if isinstance(written, tuple) else (written,)):
             print("wrote", path.name)

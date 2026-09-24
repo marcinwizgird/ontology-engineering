@@ -7,8 +7,8 @@ and can be graded on.
 Layers
 ------
 =====================  =====================================================
-:mod:`~oe_course.config`       environment, model ids, offline/live detection
-:mod:`~oe_course.llm`          Anthropic clients + the offline simulators
+:mod:`~oe_course.config`       environment, model ids, credentials
+:mod:`~oe_course.llm`          Anthropic clients + spend accounting
 :mod:`~oe_course.sparql`       one SPARQL API over Fuseki or in-memory rdflib
 :mod:`~oe_course.ontology`     metrics, spectrum classification, defect scanning
 :mod:`~oe_course.tools`        LangChain function tools + call logging
@@ -21,7 +21,7 @@ Layers
 :mod:`~oe_course.programs`     the worked reference task (ontology triage)
 =====================  =====================================================
 
-Everything runs with no API key and no Docker; see :func:`oe_course.config.offline`.
+Every LLM call goes to the live Anthropic API; see :mod:`oe_course.config`.
 """
 
 from oe_course import config
