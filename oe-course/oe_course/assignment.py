@@ -25,11 +25,22 @@ every check passed). An assignment notebook stops at its first stub, by design.
 from __future__ import annotations
 
 import copy
+import re
 import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .nbbuild import code, md, save
+from .nbbuild import code, save
+from .nbbuild import md as _raw_md
+
+#: A dollar sign followed by a digit is a price, not the start of inline maths.
+#: Jupyter's MathJax would otherwise pair "$5 ... $25" into one formula.
+_CURRENCY = re.compile(r"(?<![\\$])\$(?=\d)")
+
+
+def md(text: str):
+    return _raw_md(_CURRENCY.sub(r"\\$", text))
+
 
 __all__ = ["ProblemSet", "STUDENT", "SOLUTION", "VARIANT_KEY", "ASSIGNMENT_SETUP"]
 
