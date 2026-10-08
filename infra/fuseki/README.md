@@ -4,7 +4,7 @@ A single-node Fuseki + TDB2 triplestore for local development: somewhere to load
 this repo's ontologies and run SPARQL against them without touching a cluster.
 
 The dataset name (`ontology`) and the endpoint names match the GKE assembler in
-[`../../architecture/technical architecture/deploy/fuseki/config-tdb2.ttl`](../../architecture/technical%20architecture/deploy/fuseki/config-tdb2.ttl),
+[`../../architecture/technical architecture/deploy/fuseki/config-tdb2.ttl`](../../capabilities/architecture/technical%20architecture/deploy/fuseki/config-tdb2.ttl),
 so a query URL that works here works there. This stack is **not** a model of that
 deployment — see [Differences from the cluster](#differences-from-the-cluster).
 
@@ -53,7 +53,7 @@ With the stack running:
 
 That loads the Ontology Enricher's `data/`, `mappings/`, `fibo/` and `output/`
 files, each into its own named graph such as
-`urn:graph:src/Ontology%20Enricher/output/hbim_enriched.ttl`. Uploads use HTTP
+`urn:graph:capabilities/ontology_enricher/output/hbim_enriched.ttl`. Uploads use HTTP
 `PUT`, so re-running the script refreshes graphs instead of duplicating triples.
 
 That default set currently resolves to 10 files, which includes

@@ -10,7 +10,7 @@
     unqualified query sees the union of everything loaded.
 
     Graph URIs are derived from the repo-relative path, e.g.
-      urn:graph:src/Ontology%20Enricher/data/hbim_business_assets.ttl
+      urn:graph:capabilities/ontology_enricher/data/hbim_business_assets.ttl
 
     Requires the stack to be running: docker compose up -d
 
@@ -30,7 +30,7 @@
     Wipe the dataset, then reload it from scratch.
 
 .EXAMPLE
-    .\load.ps1 -Path "..\..\..\src\Ontology Enricher\output\hbim_enriched.ttl"
+    .\load.ps1 -Path "..\..\..\capabilities\ontology_enricher\output\hbim_enriched.ttl"
     Load a single file.
 
 .EXAMPLE
@@ -101,10 +101,10 @@ $contentTypes = @{
 
 if (-not $Path) {
     $Path = @(
-        "src\Ontology Enricher\data",
-        "src\Ontology Enricher\mappings",
-        "src\Ontology Enricher\fibo",
-        "src\Ontology Enricher\output"
+        "capabilities\ontology_enricher\data",
+        "capabilities\ontology_enricher\mappings",
+        "capabilities\ontology_enricher\fibo",
+        "capabilities\ontology_enricher\output"
     ) | ForEach-Object { Join-Path $repoRoot $_ } | Where-Object { Test-Path $_ }
 }
 
