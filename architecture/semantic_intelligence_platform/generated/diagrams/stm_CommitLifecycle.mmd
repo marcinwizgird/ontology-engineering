@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> building
+  building --> committed : direct
+  building --> staged : propose
+  staged --> accepted : accept
+  staged --> erased : reject
+  committed --> undone : undoCommitted
+  accepted --> undone : undoAccepted
+  undone --> committed : redo

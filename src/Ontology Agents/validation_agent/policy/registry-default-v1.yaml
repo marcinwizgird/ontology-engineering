@@ -1,0 +1,21 @@
+# Strict profile for governed enterprise ontologies (SPECIFICATION.md s.6.2).
+# The catalogue's default severities apply unless overridden here. This pack is a
+# proposal: it needs sign-off from the first design partners' curators (open decision 1).
+name: registry-default
+version: 1
+description: >-
+  Governed registry intake. Blockers reject; major and minor findings send the
+  submission back for revision. Sibling disjointness is waived for vocabularies and
+  thesauri (W1).
+severity_overrides: {}
+cap_non_blockers_at: null
+waivers:
+  - id: W1
+    check: HIER-08
+    when: {measured_level: [controlled-vocabulary, thesaurus]}
+    reason: Vocabularies and thesauri do not commit to disjoint categories.
+params:
+  META-01:
+    required: [dcterms:title, dcterms:license, owl:versionIRI]
+disabled_checks: []
+house_rules: house_rules.ttl

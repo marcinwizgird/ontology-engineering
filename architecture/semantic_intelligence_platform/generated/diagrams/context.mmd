@@ -1,0 +1,16 @@
+flowchart LR
+  sip[["Semantic Intelligence Platform"]]
+  people(["people<br/><small>HumanUser</small>"])
+  llmProvider(["llmProvider<br/><small>LlmProvider</small>"])
+  fuseki(["fuseki<br/><small>CanonicalStore</small>"])
+  falkor(["falkor<br/><small>PropertyGraphStore</small>"])
+  idp(["idp<br/><small>IdentityProvider</small>"])
+  sourceSystems(["sourceSystems<br/><small>SourceSystems</small>"])
+  consumers(["consumers<br/><small>ConsumerApplications</small>"])
+  legacy(["legacy<br/><small>LegacyTools</small>"])
+  sip -- llm --- llmProvider
+  sip -- store --- fuseki
+  sip -- lpg --- falkor
+  sip -- identity --- idp
+  sip -- sources --- sourceSystems
+  consumers -- q --- sip

@@ -1,0 +1,27 @@
+flowchart LR
+  subgraph agents_node["agents"]
+    reasoning
+    quality
+    alignment
+    io
+    kg
+    runtime
+    conductor
+    gateway
+  end
+  subgraph api_node["api"]
+    edge
+    registry
+    pdp
+    governance
+    authoring
+    vocabulary
+    search
+  end
+  subgraph fuseki_node["fuseki"]
+    store
+  end
+  subgraph writer_node["writer"]
+    tracker
+    events
+  end

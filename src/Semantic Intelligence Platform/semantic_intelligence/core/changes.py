@@ -295,6 +295,25 @@ class ChangeTracker:
                 hist_add = []
         self.store.apply(additions + hist_add, removals + hist_rem)
 
+    def replace_derived(self, graph: URIRef, triples: Iterable[tuple]) -> int:
+        """Replace a *derived* graph (inferred closure, materialised import) wholesale.
+
+        The one sanctioned write that is not a commit: derived graphs are never edited,
+        are recomputable from content, and recording a materialisation triple by triple
+        would bury the history. Content graphs are refused.
+        """
+        lay = self.layout
+        derived = {lay.inferred} | {g for g in self.store.graphs()
+                                    if str(g).startswith(f"urn:sip:p:{lay.project}:imports:")}
+        if graph not in derived and not str(graph).startswith(
+                f"urn:sip:p:{lay.project}:imports:"):
+            raise PermissionError(f"{graph} is not a derived graph of {lay.project}")
+        with self._lock:
+            old = [(s, p, o, graph) for s, p, o in self.store.graph(graph)]
+            new = [(s, p, o, graph) for s, p, o in triples]
+            self.store.apply(new, old)
+        return len(new)
+
     def _register(self, commit: Commit) -> None:
         if commit.id not in self._commits:
             self._order.append(commit.id)

@@ -99,6 +99,24 @@ class Check:
     def deterministic(self) -> bool:
         return self.adjudication == "none"
 
+    # Applicability groupings (see the end of this module). Kept out of the constructor so
+    # each grouping reads as one table instead of being scattered over 131 entries.
+    @property
+    def maturity(self) -> str:
+        return MATURITY_OF[self.id]
+
+    @property
+    def sip_stage(self) -> str:
+        return SIP_STAGE_OF[self.id]
+
+    @property
+    def gate(self) -> str:
+        return gate_of(self)
+
+    @property
+    def track(self) -> str:
+        return track_of(self)
+
 
 FAMILIES = [
     Family("SYN", "Syntax & well-formedness",
@@ -780,3 +798,246 @@ CHECKS: list[Check] = [
 del C
 
 CHECK_BY_ID = {c.id: c for c in CHECKS}
+
+
+# --------------------------------------------------------------------------- #
+# Applicability groupings
+# --------------------------------------------------------------------------- #
+#
+# Two orthogonal ways to slice the same checks, each assigning every check exactly once:
+#
+# * **Maturity** -- the lowest organisational modelling-maturity level at which a check
+#   should be switched on. The ladder follows the OWL 2 standards from the simplest
+#   constructs to the most expressive ones, because that is the order in which a domain
+#   ontology team adopts them. Levels are cumulative: an M3 organisation runs M1-M3.
+# * **SIP stage** -- the earliest stage of the Semantic Intelligence Platform lifecycle
+#   (scope -> acquire -> model -> validate -> review || populate -> reason -> publish ||
+#   consume) at which the check is decidable and actionable (shift-left). From that stage
+#   on it runs on every pass; the *gate* that enforces it is derived, not declared.
+#
+# The primary target is **domain ontology modelling** (the OWL TBox). Checks whose subject
+# is a SKOS scheme, instance data and shapes, or the release process sit on the same
+# ladder but carry a separate *track*, so a domain-ontology rollout can start without them.
+
+
+@dataclass(frozen=True)
+class MaturityLevel:
+    code: str
+    title: str
+    owl: str           # the OWL 2 / RDF constructs the organisation models with at this level
+    spectrum: str      # METRIC-01 spectrum position this level corresponds to
+    practice: str      # what the organisation does at this level
+    exit: str          # what passing this level's checks demonstrates
+
+
+MATURITY_LEVELS = [
+    MaturityLevel(
+        "M1", "Declared vocabulary",
+        "RDF 1.1 syntax, IRIs, the owl:Ontology header, owl:Class / owl:ObjectProperty / "
+        "owl:DatatypeProperty / owl:AnnotationProperty declarations, rdfs:label, "
+        "rdfs:comment, typed literals.",
+        "controlled vocabulary",
+        "First domain ontology. One or two modellers, files in version control, no shared "
+        "conventions yet.",
+        "Every file parses, every term is declared once with one kind, and every term has "
+        "a label."),
+    MaturityLevel(
+        "M2", "Taxonomy",
+        "rdfs:subClassOf hierarchies (single asserted inheritance), definitions "
+        "(skos:definition / IAO:0000115), naming conventions; SKOS concept schemes for "
+        "vocabularies kept beside the ontology.",
+        "taxonomy / thesaurus",
+        "Domain experts review the hierarchy. Naming and definition conventions are written "
+        "down and encoded as a house-rule shape pack.",
+        "The hierarchy is acyclic, every class is placed, defined in genus-differentia form "
+        "and distinguishable from its siblings."),
+    MaturityLevel(
+        "M3", "Relational (RDFS-Plus)",
+        "owl:ObjectProperty / owl:DatatypeProperty with rdfs:domain and rdfs:range, "
+        "rdfs:subPropertyOf, owl:inverseOf, XSD datatypes, owl:imports and namespace "
+        "ownership, owl:deprecated; the first instance data and SHACL data contracts.",
+        "formal ontology (RDFS level)",
+        "The ontology is reused through imports and drives a populated knowledge graph. "
+        "Releases are versioned; competency questions are written as SPARQL tests.",
+        "Properties commit to the domains and ranges the team means, RDFS inference "
+        "produces no surprise types, data conforms to its shapes, and releases do not "
+        "break consumers."),
+    MaturityLevel(
+        "M4", "Axiomatised (OWL 2 EL / QL / RL)",
+        "owl:disjointWith / AllDisjointClasses, owl:equivalentClass (defined classes), "
+        "owl:someValuesFrom, owl:intersectionOf / unionOf / oneOf, property characteristics "
+        "(transitive, symmetric, functional, inverse-functional), owl:hasKey; a profile "
+        "reasoner in the pipeline.",
+        "formal ontology (tractable profile)",
+        "The reasoner runs in CI. Classification and consistency are release criteria, and "
+        "the team chooses an OWL 2 profile on purpose.",
+        "The ontology is consistent, every class is satisfiable, and the inferred hierarchy "
+        "matches what the modellers intended."),
+    MaturityLevel(
+        "M5", "Expressive & foundational (OWL 2 DL)",
+        "Qualified cardinality, owl:allValuesFrom, property chains, owl:hasSelf, the OWL 2 "
+        "DL global restrictions (simple roles, regular RBox); upper-ontology alignment "
+        "(BFO / gist / DOLCE); OntoClean meta-properties.",
+        "formal ontology (SROIQ(D))",
+        "A DL reasoner with justifications is available to modellers. Ontologies are "
+        "aligned to an upper ontology and evolve under entailment-level regression tests.",
+        "The ontology stays inside OWL 2 DL, every entailment can be explained, and no "
+        "release loses or invents entailments unnoticed."),
+]
+MATURITY = {m.code: m for m in MATURITY_LEVELS}
+
+
+@dataclass(frozen=True)
+class SipStage:
+    code: str
+    actor: str         # who acts on the check's findings at this stage (SIP agent or role)
+    role: str          # what the check does at this stage
+
+
+SIP_STAGES = [
+    SipStage("scope", "RequirementsAgent; project manager",
+             "Sets the target maturity level (the declared level of METRIC-01), the policy "
+             "parameters and the competency questions. Checks here produce a worklist, not "
+             "a verdict."),
+    SipStage("acquire", "ExtractionAgent",
+             "Critic on extracted candidates and imported sources: a candidate that would "
+             "add a non-info finding is not submitted."),
+    SipStage("model", "ModelingCopilot, VocabularyAgent, AlignmentAgent; ontologist",
+             "Live feedback in the editor, and critic on proposed axioms, labels and "
+             "mappings: a proposal may not add a finding the baseline did not have."),
+    SipStage("validate", "QualityAgent",
+             "Full catalogue run on the staged TBox: measurements, reasoning, house rules, "
+             "competency-question tests. Repairs are proposed and verified by the engine."),
+    SipStage("review", "StewardAgent; validator (human)",
+             "Human-adjudicated checks and the release diff. Closes with the review gate, "
+             "which applies the verdict policy to every check that started up to here."),
+    SipStage("populate", "KnowledgeGraphBuilder",
+             "Critic on mapped instance data and on the SHACL data contracts."),
+    SipStage("reason", "classification run",
+             "Checks that need the TBox and the ABox together under a reasoner."),
+    SipStage("publish", "project manager (human)",
+             "Release metadata and versioning. Closes with the publish gate."),
+    SipStage("consume", "AssistantAgent; consumers",
+             "No check starts here. Questions raised in use become new competency "
+             "questions and re-enter at scope (CQ-02, then CQ-01)."),
+]
+SIP_STAGE = {s.code: s for s in SIP_STAGES}
+
+GATES = {
+    "review": "review gate (human), before the ontology is populated",
+    "publish": "publish gate (human), before the release is consumed",
+    "advisory": "info severity: reported, never changes a verdict",
+}
+
+TRACKS = {
+    "domain": "domain ontology modelling (OWL TBox) -- the primary target",
+    "vocabulary": "SKOS concept schemes kept beside the ontology",
+    "data": "instance data and SHACL data contracts",
+    "release": "versioning and competency-question testing of a release",
+}
+
+
+def _assign(groups: dict[str, str]) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for key, ids in groups.items():
+        for cid in ids.split():
+            if cid in out:
+                raise ValueError(f"{cid} assigned to both {out[cid]} and {key}")
+            out[cid] = key
+    return out
+
+
+# Lowest maturity level at which each check is switched on.
+MATURITY_OF = _assign({
+    "M1": """
+        SYN-01 SYN-02 SYN-03 SYN-04 SYN-07 SYN-08
+        DECL-01 DECL-02 DECL-03 DECL-04 DECL-06 DECL-09
+        LEX-01 LEX-04 LEX-05 LEX-09
+        META-01 METRIC-01 METRIC-02
+    """,
+    "M2": """
+        DL-02
+        HIER-01 HIER-02 HIER-03 HIER-04 HIER-09 HIER-10 HIER-11 HIER-12 HIER-13 HIER-14
+        HIER-16 HIER-17 HIER-19 HIER-21 HIER-22
+        LEX-02 LEX-03 LEX-06 LEX-07 LEX-08 LEX-10 LEX-12
+        MOD-01 MOD-02 MOD-03
+        SHC-08 METRIC-03 METRIC-04
+        SKOS-01 SKOS-02 SKOS-03 SKOS-04 SKOS-05 SKOS-06 SKOS-07 SKOS-08 SKOS-09 SKOS-10
+    """,
+    "M3": """
+        DECL-05 DECL-07 DECL-08 DL-01 DL-05 DL-06
+        PROP-01 PROP-02 PROP-03 PROP-07
+        PHIER-01 PHIER-02 PHIER-03 PHIER-04 PHIER-06 PHIER-07
+        RSN-04 HIER-23 LEX-11 MOD-04 META-02 META-03
+        ABOX-01 ABOX-02 ABOX-04 PROP-09
+        SHC-01 SHC-02 SHC-04 SHC-05 SHC-06 SHC-07 SHC-09
+        META-04 EVO-01 EVO-04 EVO-05 CQ-01 CQ-02
+    """,
+    "M4": """
+        SYN-05 SYN-06 DL-07 DL-08
+        HIER-05 HIER-06 HIER-08 HIER-20
+        PROP-04 PROP-05 PROP-06 PROP-08 PHIER-05
+        RSN-01 RSN-02 RSN-03 RSN-05 RSN-08
+        RSN-06 ABOX-03 ABOX-05 SHC-03 CQ-03
+    """,
+    "M5": """
+        DL-03 DL-04 PHIER-08 HIER-07
+        HIER-15 HIER-18 MOD-05
+        RSN-07 RSN-09 EVO-02 EVO-03
+    """,
+})
+
+# Earliest SIP stage at which each check is decidable and actionable.
+SIP_STAGE_OF = _assign({
+    "scope": "DECL-03 CQ-02",
+    "acquire": """
+        SYN-01 SYN-02 SYN-03 SYN-04 SYN-07 SYN-08
+        DECL-01 DECL-02 DECL-04 DECL-06 DECL-07 DECL-08 DECL-09 DL-02
+        HIER-01 HIER-02 HIER-03 HIER-16 HIER-17 HIER-22 PROP-03
+        LEX-01 LEX-03 LEX-05 LEX-08 LEX-09 LEX-12
+        MOD-01 MOD-02 MOD-03 MOD-04
+    """,
+    "model": """
+        SYN-05 SYN-06 DECL-05 DL-01 DL-03 DL-04 DL-05 DL-06 DL-07
+        HIER-04 HIER-05 HIER-06 HIER-07 HIER-08 HIER-09 HIER-10 HIER-15 HIER-19 HIER-20
+        HIER-21 HIER-23
+        PHIER-01 PHIER-02 PHIER-03 PHIER-04 PHIER-05 PHIER-06 PHIER-07 PHIER-08
+        PROP-01 PROP-02 PROP-04 PROP-05 PROP-06 PROP-07 PROP-08
+        LEX-02 LEX-04 LEX-06 LEX-07 LEX-10 LEX-11
+        SKOS-01 SKOS-02 SKOS-03 SKOS-04 SKOS-05 SKOS-06 SKOS-07 SKOS-08 SKOS-09 SKOS-10
+        META-02 META-03 RSN-01 RSN-02
+    """,
+    "validate": """
+        DL-08 HIER-11 HIER-12 HIER-13 HIER-14
+        RSN-03 RSN-04 RSN-05 RSN-07 RSN-08 RSN-09
+        SHC-01 SHC-04 SHC-05 SHC-06 SHC-08 SHC-09
+        CQ-01 METRIC-01 METRIC-02 METRIC-03 METRIC-04
+    """,
+    "review": "HIER-18 MOD-05 EVO-01 EVO-02 EVO-03 EVO-04 EVO-05",
+    "populate": "ABOX-01 ABOX-02 ABOX-04 ABOX-05 PROP-09 SHC-02 SHC-03 SHC-07",
+    "reason": "ABOX-03 RSN-06 CQ-03",
+    "publish": "META-01 META-04",
+})
+
+_STAGE_ORDER = [s.code for s in SIP_STAGES]
+
+
+def gate_of(check: Check) -> str:
+    """The human gate that enforces a check: the first gate at or after its stage."""
+    if check.severity == "info":
+        return "advisory"
+    if _STAGE_ORDER.index(SIP_STAGE_OF[check.id]) <= _STAGE_ORDER.index("review"):
+        return "review"
+    return "publish"
+
+
+def track_of(check: Check) -> str:
+    """Derived from ``applies``, so the track cannot drift from the check's profiles."""
+    a = set(check.applies)
+    if a == {"skos"}:
+        return "vocabulary"
+    if a & {"abox", "shacl"}:
+        return "data"
+    if a & {"versioned", "cq"}:
+        return "release"
+    return "domain"

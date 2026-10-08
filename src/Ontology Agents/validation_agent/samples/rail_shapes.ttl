@@ -1,0 +1,14 @@
+# Publisher shapes for the rail sample's instance data (SHC-02).
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix ex:  <https://example.org/rail#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:RailVehicleShape a sh:NodeShape ;
+    sh:targetClass ex:RailVehicle , ex:Wagon , ex:Locomotive ;
+    sh:property [
+        sh:path ex:axleCount ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:message "Every rail vehicle has exactly one integer axle count." ;
+    ] .

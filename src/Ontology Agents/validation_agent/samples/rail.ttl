@@ -1,0 +1,73 @@
+# Sample submission: a small rail ontology with defects planted in every automated layer.
+@prefix ex:      <https://example.org/rail#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://example.org/rail> a owl:Ontology ;
+    dcterms:title "Rail rolling stock"@en ;
+    owl:versionInfo "0.3" .
+
+ex:RailVehicle a owl:Class ;
+    rdfs:label "rail vehicle"@en ;
+    skos:definition "A vehicle that runs on rails."@en .
+
+ex:Locomotive a owl:Class ;
+    rdfs:label "locomotive"@en ;
+    rdfs:subClassOf ex:RailVehicle ;
+    owl:disjointWith ex:RailVehicle ;                       # disjoint with its own ancestor
+    skos:definition "A rail vehicle that provides motive power to a train."@en .
+
+ex:Wagon a owl:Class ;
+    rdfs:label "wagon"@en ;
+    rdfs:subClassOf ex:RailVehicle ;
+    skos:definition "A rail vehicle without its own motive power that carries goods."@en .
+
+ex:ShuntingLocomotive a owl:Class ;
+    rdfs:label "shunting locomotive"@en ;
+    rdfs:subClassOf ex:Locomotive ;
+    skos:definition "A locomotive used to move rail vehicles within a yard."@en .
+
+ex:Wheel a owl:Class ;
+    rdfs:label "wheel"@en ;
+    rdfs:subClassOf ex:Wagon .                              # part-of modelled as kind-of; no definition
+
+ex:Bogie a owl:Class ;
+    rdfs:subClassOf ex:Component .                          # ex:Component never declared
+
+ex:Train a owl:class ;                                      # reserved-vocabulary typo
+    rdfs:label "train"@en .
+
+ex:Driver a owl:Class ;
+    rdfs:label "driver"@en ;
+    skos:definition "A person qualified to operate a locomotive."@en .
+
+ex:hasDriver a owl:ObjectProperty ;
+    rdfs:label "has driver"@en ;
+    rdfs:domain ex:Locomotive ;
+    rdfs:range ex:Driver .
+
+ex:hauls a owl:ObjectProperty ;
+    rdfs:label "hauls"@en .                                 # no domain, no range
+
+ex:axleCount a owl:DatatypeProperty ;
+    rdfs:label "axle count"@en ;
+    rdfs:domain ex:RailVehicle ;
+    rdfs:range xsd:integer .
+
+ex:Locomotive rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty ex:hasDriver ;
+    owl:someValuesFrom ex:Driver ;
+    owl:allValuesFrom ex:Driver                             # two fillers: malformed
+] .
+
+ex:wagon42 a ex:Wagon ;
+    ex:axleCount "four"^^xsd:integer .                      # ill-typed literal
+
+ex:loco7 a ex:RailVehicle ;
+    ex:hasDriver ex:anna .
+
+ex:anna a ex:Driver .

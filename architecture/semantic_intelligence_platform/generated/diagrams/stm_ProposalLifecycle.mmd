@@ -1,0 +1,7 @@
+stateDiagram-v2
+  [*] --> proposed
+  proposed --> criticRejected : criticFails
+  proposed --> submitted : criticPasses
+  submitted --> pendingReview : staged
+  pendingReview --> acceptedByHuman : humanAccepts
+  pendingReview --> rejectedByHuman : humanRejects

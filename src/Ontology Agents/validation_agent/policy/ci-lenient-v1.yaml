@@ -1,0 +1,19 @@
+# Adoption profile for CI pipelines: everything except blockers is capped at minor, so a
+# team can adopt the gate without being blocked by its backlog of housekeeping findings.
+name: ci-lenient
+version: 1
+description: >-
+  CI adoption mode. Only blockers reject; every other finding is reported as minor
+  (revise). The house-rule pack is not applied.
+severity_overrides: {}
+cap_non_blockers_at: minor
+waivers:
+  - id: W1
+    check: HIER-08
+    when: {measured_level: [controlled-vocabulary, thesaurus]}
+    reason: Vocabularies and thesauri do not commit to disjoint categories.
+params:
+  META-01:
+    required: [dcterms:title, dcterms:license]
+disabled_checks: [SHC-08]
+house_rules: null

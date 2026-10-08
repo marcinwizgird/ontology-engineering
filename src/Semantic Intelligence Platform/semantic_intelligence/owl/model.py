@@ -220,11 +220,9 @@ def parse_ce(g: Graph, node: Node) -> CE:
             return parse_ce(g, n)
 
         if (v := g.value(node, OWL.someValuesFrom)) is not None:
-            f = filler(v)
-            return Some(prop, f, data or not _is_ce(f))
+            return Some(prop, filler(v), data or _is_datatype(g, v))
         if (v := g.value(node, OWL.allValuesFrom)) is not None:
-            f = filler(v)
-            return Only(prop, f, data or not _is_ce(f))
+            return Only(prop, filler(v), data or _is_datatype(g, v))
         if (v := g.value(node, OWL.hasValue)) is not None:
             return HasValue(prop, v, data or isinstance(v, Literal))
         if (v := g.value(node, OWL.hasSelf)) is not None:

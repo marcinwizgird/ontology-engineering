@@ -1,0 +1,66 @@
+flowchart TB
+  subgraph Edge
+    edge["ApiEdge"]
+  end
+  subgraph Core
+    registry["OperationRegistry"]
+    pdp["PolicyDecisionPoint"]
+    governance["GovernanceRegistry"]
+    tracker["ChangeTracker"]
+    store["QuadStore"]
+    events["EventBus"]
+  end
+  subgraph Services
+    authoring["OwlAuthoring"]
+    vocabulary["VocabularyManager"]
+    reasoning["ReasoningService"]
+    quality["QualityService"]
+    search["SearchService"]
+    alignment["AlignmentService"]
+    io["IoPipeline"]
+    kg["KgConstruction"]
+  end
+  subgraph Agents
+    gateway["LlmGateway"]
+    runtime["AgentRuntime"]
+    conductor["LifecycleConductor"]
+    requirementsAgent["RequirementsAgent"]
+    extractionAgent["ExtractionAgent"]
+    modelingCopilot["ModelingCopilot"]
+    vocabularyAgent["VocabularyAgent"]
+    alignmentAgent["AlignmentAgent"]
+    qualityAgent["QualityAgent"]
+    stewardAgent["StewardAgent"]
+    kgBuilder["KnowledgeGraphBuilder"]
+    assistant["AssistantAgent"]
+  end
+  edge -->|calls| registry
+  registry -->|decide| pdp
+  registry -->|commits| tracker
+  tracker ==>|write| store
+  registry -->|read| store
+  authoring -->|read| store
+  vocabulary -->|read| store
+  reasoning -->|read| store
+  quality -->|read| store
+  search -->|read| store
+  alignment -->|read| store
+  requirementsAgent -->|calls| registry
+  extractionAgent -->|calls| registry
+  modelingCopilot -->|calls| registry
+  vocabularyAgent -->|calls| registry
+  alignmentAgent -->|calls| registry
+  qualityAgent -->|calls| registry
+  stewardAgent -->|calls| registry
+  kgBuilder -->|calls| registry
+  assistant -->|calls| registry
+  conductor -->|calls| registry
+  requirementsAgent -->|serve| gateway
+  extractionAgent -->|serve| gateway
+  modelingCopilot -->|serve| gateway
+  vocabularyAgent -->|serve| gateway
+  alignmentAgent -->|serve| gateway
+  qualityAgent -->|serve| gateway
+  stewardAgent -->|serve| gateway
+  kgBuilder -->|serve| gateway
+  assistant -->|serve| gateway

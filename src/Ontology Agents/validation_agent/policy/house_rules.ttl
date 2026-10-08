@@ -1,0 +1,48 @@
+# House-rule shape pack (SHC-08): the organisation's modelling policy, stated as data.
+# TBox-level shapes over the ontology itself. Governance can change these without a
+# software release; S4 may add shapes here, never edit code.
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix hr:   <urn:ova:house-rules#> .
+
+hr:prefixes a owl:Ontology ;
+    sh:declare [ sh:prefix "owl" ; sh:namespace "http://www.w3.org/2002/07/owl#"^^xsd:anyURI ] .
+
+hr:NamedClassShape a sh:NodeShape ;
+    sh:name "Every named class has an English label" ;
+    sh:target [ a sh:SPARQLTarget ;
+        sh:prefixes hr:prefixes ;
+        sh:select "SELECT ?this WHERE { ?this a owl:Class . FILTER(isIRI(?this)) }" ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:qualifiedValueShape [ sh:languageIn ( "en" ) ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "House rule HR-1: every named class has an rdfs:label in English (@en)."
+    ] .
+
+hr:ClassDefinitionShape a sh:NodeShape ;
+    sh:name "Every named class has a skos:definition" ;
+    sh:target [ a sh:SPARQLTarget ;
+        sh:prefixes hr:prefixes ;
+        sh:select "SELECT ?this WHERE { ?this a owl:Class . FILTER(isIRI(?this)) }" ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "House rule HR-2: every named class has a skos:definition."
+    ] .
+
+hr:ObjectPropertyShape a sh:NodeShape ;
+    sh:name "Every object property has a domain and a range" ;
+    sh:targetClass owl:ObjectProperty ;
+    sh:property [
+        sh:path rdfs:domain ; sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "House rule HR-3: every object property has an rdfs:domain."
+    ] , [
+        sh:path rdfs:range ; sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "House rule HR-3: every object property has an rdfs:range."
+    ] .

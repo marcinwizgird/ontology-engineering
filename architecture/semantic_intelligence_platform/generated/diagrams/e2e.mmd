@@ -1,0 +1,11 @@
+flowchart LR
+  scope --> acquire
+  acquire --> model
+  model --> validate
+  validate --> review
+  review --> reviewGate{{"reviewGate"}}
+  reviewGate{{"reviewGate"}} --> populate
+  populate --> reason
+  reason --> publish
+  publish --> publishGate{{"publishGate"}}
+  publishGate{{"publishGate"}} --> consume

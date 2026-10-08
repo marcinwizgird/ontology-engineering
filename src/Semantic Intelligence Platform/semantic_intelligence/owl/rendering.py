@@ -44,6 +44,9 @@ BUILTIN_DATATYPES = {f"xsd:{n}": XSD[n] for n in (
     "date", "dateTime", "time", "anyURI", "nonNegativeInteger", "positiveInteger",
     "gYear", "duration", "language", "token", "normalizedString")}
 BUILTIN_DATATYPES["rdfs:Literal"] = RDFS.Literal
+BUILTIN_DATATYPES.update({f"rdf:{n}": RDF[n] for n in ("PlainLiteral", "langString",
+                                                       "XMLLiteral", "HTML")})
+BUILTIN_DATATYPES.update({"owl:real": OWL.real, "owl:rational": OWL.rational})
 BUILTIN_DATATYPES.update({"integer": XSD.integer, "decimal": XSD.decimal,
                           "float": XSD.float, "string": XSD.string})
 
@@ -135,11 +138,67 @@ class ShortFormProvider:
                     kind = "individual"
             if kind:
                 self._types.setdefault(s, set()).add(kind)
+        self._infer_undeclared()
         for s in self._types:
             name = self.render(s)
             self._index.setdefault(name, set()).add(s)
             self._index.setdefault(self.prefixed(s), set()).add(s)
             self._index.setdefault(local_name(s), set()).add(s)
+
+    def _infer_undeclared(self) -> None:
+        """Type entities that are *used* but not declared, as the OWL API's RDF consumer
+        does in lax mode: imported vocabularies are often absent (FIBO uses OMG Commons
+        properties without the Commons files being loaded). Declared kinds always win."""
+        g, T = self.graph, self._types
+
+        def add(x, kind):
+            if isinstance(x, URIRef) and not T.get(x) and not str(x).startswith(
+                    ("http://www.w3.org/2001/XMLSchema#", str(OWL), str(RDF), str(RDFS))):
+                T.setdefault(x, set()).add(kind)
+        data_fillers = (OWL.someValuesFrom, OWL.allValuesFrom, OWL.onDataRange)
+        for r in g.subjects(RDF.type, OWL.Restriction):
+            p = g.value(r, OWL.onProperty)
+            if not isinstance(p, URIRef) or T.get(p):
+                continue
+            filler = next((g.value(r, f) for f in data_fillers + (OWL.onClass,)
+                           if g.value(r, f) is not None), None)
+            hv = g.value(r, OWL.hasValue)
+            is_data = (isinstance(hv, Literal) or g.value(r, OWL.onDataRange) is not None
+                       or (isinstance(filler, URIRef) and (
+                           str(filler).startswith("http://www.w3.org/2001/XMLSchema#")
+                           or filler == RDFS.Literal
+                           or (filler, RDF.type, RDFS.Datatype) in g)))
+            add(p, "dataProperty" if is_data else "objectProperty")
+        for p in (RDFS.subClassOf, OWL.equivalentClass, OWL.disjointWith, OWL.someValuesFrom,
+                  OWL.allValuesFrom, OWL.onClass, RDFS.domain):
+            for s, o in g.subject_objects(p):
+                if p in (RDFS.subClassOf, OWL.equivalentClass, OWL.disjointWith):
+                    add(s, "class")
+                if p != RDFS.domain or isinstance(o, URIRef):
+                    if not (isinstance(o, URIRef) and str(o).startswith(
+                            "http://www.w3.org/2001/XMLSchema#")):
+                        add(o, "class")
+        for s, o in g.subject_objects(RDFS.subPropertyOf):
+            kind = next(iter(T.get(s, set()) | T.get(o, set())), None)
+            if kind in ("objectProperty", "dataProperty", "annotationProperty"):
+                add(s, kind)
+                add(o, kind)
+        # second pass, now that property kinds are known: fillers and values
+        for r in g.subjects(RDF.type, OWL.Restriction):
+            p = g.value(r, OWL.onProperty)
+            kinds = T.get(p, set()) if isinstance(p, URIRef) else set()
+            for f in data_fillers:
+                filler = g.value(r, f)
+                if "dataProperty" in kinds and isinstance(filler, URIRef):
+                    if "class" in T.get(filler, set()) and not (filler, RDF.type, OWL.Class) in g:
+                        T[filler].discard("class")
+                    add(filler, "datatype")
+            hv = g.value(r, OWL.hasValue)
+            if isinstance(hv, URIRef) and "objectProperty" in kinds:
+                add(hv, "individual")
+        for p, rng in g.subject_objects(RDFS.range):
+            if "dataProperty" in T.get(p, set()):
+                add(rng, "datatype")
 
     def types_of(self, iri: URIRef) -> set[str]:
         return self._types.get(iri, set())
@@ -184,8 +243,19 @@ class ShortFormProvider:
         return out
 
     def rendering(self, iri: URIRef) -> str:
-        """Render and quote — what goes into Manchester text."""
-        return quote(self.render(iri))
+        """Render and quote — what goes into Manchester text.
+
+        Lossless by construction: when the preferred rendering is shared by several
+        entities (FIBO has many properties labelled "identifies"), the prefixed name is
+        used, else the full IRI. Protégé instead resolves an ambiguous name to the most
+        used entity, which can silently change the meaning of an edited axiom."""
+        name = self.render(iri)
+        if len(self._index.get(name, ())) <= 1:
+            return quote(name)
+        pref = self.prefixed(iri)
+        if ":" in pref and len(self._index.get(pref, ())) <= 1:
+            return pref
+        return f"<{iri}>"
 
     # -- resolution (OWLEntityFinder) --------------------------------------- #
     def resolve(self, name: str, kinds: Iterable[str] | None = None) -> list[URIRef]:

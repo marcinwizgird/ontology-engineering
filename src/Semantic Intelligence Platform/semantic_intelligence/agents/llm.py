@@ -75,7 +75,9 @@ class ClaudeModel:
                            "format": {"type": "json_schema", "schema": schema}},
             cache_control={"type": "ephemeral"},
             betas=["server-side-fallback-2026-07-01"],
-            fallbacks="default",
+            # passed through extra_body: SDK releases before the parameter existed
+            # (this environment has anthropic 0.96) reject it as a keyword argument
+            extra_body={"fallbacks": "default"},
         )
         u = response.usage
         self.usage["calls"] += 1
@@ -122,11 +124,16 @@ class SimulatedModel:
 
 
 def default_model() -> LanguageModel:
-    """``SIP_MODEL=simulated`` (default without credentials) or a Claude model id."""
-    choice = os.environ.get("SIP_MODEL")
-    if choice in (None, "", "auto"):
+    """Offline unless asked: ``SIP_MODEL`` unset/``simulated`` → simulators;
+    ``SIP_MODEL=claude-opus-5-5`` (or ``auto`` with credentials) → Claude.
+
+    Live mode is an explicit opt-in because every call is billed; the presence of an
+    API key in the environment is not consent to spend it.
+    """
+    choice = os.environ.get("SIP_MODEL", "simulated")
+    if choice == "auto":
         choice = DEFAULT_MODEL if os.environ.get("ANTHROPIC_API_KEY") else "simulated"
-    if choice == "simulated":
+    if choice in ("", "simulated"):
         from .simulators import simulated_model
         return simulated_model()
     return ClaudeModel(model_id=choice)

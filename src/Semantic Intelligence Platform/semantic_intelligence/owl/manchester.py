@@ -426,7 +426,8 @@ def render(ce, sfp: ShortFormProvider) -> str:
 
     def dr(d) -> str:
         if isinstance(d, URIRef):
-            return sfp.prefixed(d) if str(d).startswith(str(XSD)) or d == RDFS.Literal else name(d)
+            builtin = next((k for k, v in BUILTIN_DATATYPES.items() if v == d and ":" in k), None)
+            return builtin or name(d)
         if isinstance(d, DatatypeRestriction):
             inv = {v: k for k, v in FACETS.items()}
             fs = ", ".join(f"{inv.get(f, sfp.prefixed(f))} {render_literal(v, sfp)}"

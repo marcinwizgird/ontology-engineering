@@ -33,4 +33,6 @@ class Principal:
         return self.display_name or self.id
 
 
-SYSTEM = Principal("system", "System", is_admin=True, is_machine=True)
+#: The platform itself (bootstrap commits, derived-graph refresh). Not a machine
+#: principal in the governance sense: it never acts on content on anyone's behalf.
+SYSTEM = Principal("system", "System", is_admin=True)

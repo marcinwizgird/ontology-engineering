@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> idle
+  idle --> applying : receive
+  applying --> verifying : applied
+  verifying --> idle : done
+  applying --> idle : failed

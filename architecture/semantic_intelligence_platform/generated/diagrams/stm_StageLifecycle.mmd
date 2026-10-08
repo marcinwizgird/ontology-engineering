@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> notStarted
+  notStarted --> inProgress : start
+  inProgress --> done : finish
+  inProgress --> awaitingGate : reachGate
+  awaitingGate --> done : humanCloses

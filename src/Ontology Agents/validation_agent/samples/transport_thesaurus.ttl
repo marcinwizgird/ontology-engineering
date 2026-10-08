@@ -1,0 +1,19 @@
+# Sample submission: a SKOS thesaurus with a broader cycle.
+@prefix ex:      <https://example.org/transport/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+
+<https://example.org/transport> a owl:Ontology , skos:ConceptScheme ;
+    dcterms:title "Transport modes"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionIRI <https://example.org/transport/1.0> .
+
+ex:transport a skos:Concept ; skos:prefLabel "transport"@en ; skos:inScheme <https://example.org/transport> .
+ex:landTransport a skos:Concept ; skos:prefLabel "land transport"@en ; skos:broader ex:transport .
+ex:railTransport a skos:Concept ; skos:prefLabel "rail transport"@en ; skos:broader ex:landTransport ;
+    skos:related ex:railInfrastructure .
+ex:freightRail a skos:Concept ; skos:prefLabel "freight rail"@en ; skos:broader ex:railTransport .
+ex:railInfrastructure a skos:Concept ; skos:prefLabel "rail infrastructure"@en ;
+    skos:broader ex:freightRail .
+ex:landTransport skos:broader ex:railInfrastructure .        # closes a cycle

@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> noReasonerFactoryChosen
+  noReasonerFactoryChosen --> reasonerNotInitialized : select
+  reasonerNotInitialized --> initializationInProgress : start
+  initializationInProgress --> initialized : classifiedOk
+  initializationInProgress --> inconsistent : classifiedBad
+  initialized --> outOfSync : edit
+  outOfSync --> initializationInProgress : sync
+  inconsistent --> initializationInProgress : resync

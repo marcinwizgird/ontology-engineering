@@ -14,9 +14,11 @@
 |  |  | | lexical | 21 | |  |  |
 |  |  | | diff | 6 | |  |  |
 
-**Legend.** *Method* names the engine that generates findings (or candidates). *Adj.* = adjudication: `none` (decidable; the critic overrides the model), `llm` (deterministic candidates, LLM labels true/false positive, severity capped at major), `human`. *Stage*: `S1a` deterministic MVP -- passes the reference conformance suite; `S1b` deterministic full catalogue; `S1c` needs the DL reasoner or the justification engine. *Mutation* is the S2 fault-injection operator whose mutants the check must kill.
+**Legend.** *Method* names the engine that generates findings (or candidates). *Adj.* = adjudication: `none` (decidable; the critic overrides the model), `llm` (deterministic candidates, LLM labels true/false positive, severity capped at major), `human`. *Stage*: `S1a` deterministic MVP -- passes the reference conformance suite; `S1b` deterministic full catalogue; `S1c` needs the DL reasoner or the justification engine. *Mutation* is the S2 fault-injection operator whose mutants the check must kill. *Mat.* is the lowest [modelling-maturity level](#maturity-ladder) at which the check is switched on; *SIP stage* is the earliest [Semantic Intelligence Platform stage](#sip-lifecycle-stages) at which it is decidable and actionable.
 
 OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P06, OOPS P07, OOPS P08, OOPS P10, OOPS P11, OOPS P13, OOPS P17, OOPS P19, OOPS P20, OOPS P21, OOPS P22, OOPS P24, OOPS P25, OOPS P26, OOPS P27, OOPS P28, OOPS P29, OOPS P30, OOPS P31, OOPS P32, OOPS P33, OOPS P34, OOPS P35, OOPS P36, OOPS P38, OOPS P39, OOPS P40, OOPS P41.
+
+**Contents.** [Families](#families) · [Maturity ladder](#maturity-ladder) · [SIP lifecycle stages](#sip-lifecycle-stages) · per-family detail: [SYN](#syn) · [DECL](#decl) · [DL](#dl) · [RSN](#rsn) · [SHC](#shc) · [HIER](#hier) · [PHIER](#phier) · [PROP](#prop) · [LEX](#lex) · [SKOS](#skos) · [META](#meta) · [ABOX](#abox) · [EVO](#evo) · [CQ](#cq) · [MOD](#mod) · [METRIC](#metric)
 
 ## Families
 
@@ -39,20 +41,318 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 | [MOD](#mod) | Modelling pitfalls | 5 | Design anti-patterns that need judgement to confirm. | -- |
 | [METRIC](#metric) | Profile & metrics | 4 | Measurements that plan the run and feed the policy (spectrum, size, expressivity). | -- |
 
+## Maturity ladder
+
+Which checks an organisation should switch on, given how far its **domain ontology modelling** has progressed. The ladder follows the OWL 2 standards from the simplest constructs to the most expressive, which is the order in which a modelling team adopts them: declare terms, arrange them in a taxonomy, relate them with properties, axiomatise them within a tractable OWL 2 profile, and finally use full OWL 2 DL with an upper ontology.
+
+* **Cumulative.** An organisation at M3 runs every M1-M3 check. Running the next level's checks as advisory shows the work needed to get there.
+* **Declared vs measured.** The level an organisation targets is the *declared level* that METRIC-01 compares the measured spectrum position against, so the spectrum column is what METRIC-01 expects to measure at that level.
+* **Domain ontology first.** Each check also carries a *track*: `domain` = domain ontology modelling (OWL TBox) -- the primary target; `vocabulary` = SKOS concept schemes kept beside the ontology; `data` = instance data and SHACL data contracts; `release` = versioning and competency-question testing of a release. A rollout that starts with domain ontology modelling enables the `domain` track of each level first and adds the other tracks when the platform reaches the matching stage.
+
+| level | name | OWL 2 / RDF constructs in use | spectrum (METRIC-01) | organisational practice | exit criterion | new | cumulative |
+|---|---|---|---|---|---|---|---|
+| [M1](#m1) | **Declared vocabulary** | RDF 1.1 syntax, IRIs, the owl:Ontology header, owl:Class / owl:ObjectProperty / owl:DatatypeProperty / owl:AnnotationProperty declarations, rdfs:label, rdfs:comment, typed literals. | controlled vocabulary | First domain ontology. One or two modellers, files in version control, no shared conventions yet. | Every file parses, every term is declared once with one kind, and every term has a label. | 19 | 19 |
+| [M2](#m2) | **Taxonomy** | rdfs:subClassOf hierarchies (single asserted inheritance), definitions (skos:definition / IAO:0000115), naming conventions; SKOS concept schemes for vocabularies kept beside the ontology. | taxonomy / thesaurus | Domain experts review the hierarchy. Naming and definition conventions are written down and encoded as a house-rule shape pack. | The hierarchy is acyclic, every class is placed, defined in genus-differentia form and distinguishable from its siblings. | 39 | 58 |
+| [M3](#m3) | **Relational (RDFS-Plus)** | owl:ObjectProperty / owl:DatatypeProperty with rdfs:domain and rdfs:range, rdfs:subPropertyOf, owl:inverseOf, XSD datatypes, owl:imports and namespace ownership, owl:deprecated; the first instance data and SHACL data contracts. | formal ontology (RDFS level) | The ontology is reused through imports and drives a populated knowledge graph. Releases are versioned; competency questions are written as SPARQL tests. | Properties commit to the domains and ranges the team means, RDFS inference produces no surprise types, data conforms to its shapes, and releases do not break consumers. | 39 | 97 |
+| [M4](#m4) | **Axiomatised (OWL 2 EL / QL / RL)** | owl:disjointWith / AllDisjointClasses, owl:equivalentClass (defined classes), owl:someValuesFrom, owl:intersectionOf / unionOf / oneOf, property characteristics (transitive, symmetric, functional, inverse-functional), owl:hasKey; a profile reasoner in the pipeline. | formal ontology (tractable profile) | The reasoner runs in CI. Classification and consistency are release criteria, and the team chooses an OWL 2 profile on purpose. | The ontology is consistent, every class is satisfiable, and the inferred hierarchy matches what the modellers intended. | 23 | 120 |
+| [M5](#m5) | **Expressive & foundational (OWL 2 DL)** | Qualified cardinality, owl:allValuesFrom, property chains, owl:hasSelf, the OWL 2 DL global restrictions (simple roles, regular RBox); upper-ontology alignment (BFO / gist / DOLCE); OntoClean meta-properties. | formal ontology (SROIQ(D)) | A DL reasoner with justifications is available to modellers. Ontologies are aligned to an upper ontology and evolve under entailment-level regression tests. | The ontology stays inside OWL 2 DL, every entailment can be explained, and no release loses or invents entailments unnoticed. | 11 | 131 |
+
+**Checks by maturity level and SIP stage** (count of checks first enabled at the level, by the stage where they start; the `domain` column counts the domain-ontology track).
+
+| level | scope | acquire | model | validate | review | populate | reason | publish | consume | all | domain |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| M1 | 1 | 14 | 1 | 2 |  |  |  | 1 |  | 19 | 19 |
+| M2 |  | 13 | 19 | 7 |  |  |  |  |  | 39 | 29 |
+| M3 | 1 | 4 | 17 | 7 | 3 | 6 |  | 1 |  | 39 | 22 |
+| M4 |  |  | 14 | 4 |  | 2 | 3 |  |  | 23 | 18 |
+| M5 |  |  | 5 | 2 | 4 |  |  |  |  | 11 | 9 |
+| **all** | 2 | 31 | 56 | 22 | 7 | 8 | 3 | 2 |  | 131 | 97 |
+
+### M1
+
+**Declared vocabulary.** *Constructs:* RDF 1.1 syntax, IRIs, the owl:Ontology header, owl:Class / owl:ObjectProperty / owl:DatatypeProperty / owl:AnnotationProperty declarations, rdfs:label, rdfs:comment, typed literals. *Exit:* Every file parses, every term is declared once with one kind, and every term has a label.
+
+| id | check | sev. | family | track | SIP stage | gate |
+|---|---|---|---|---|---|---|
+| SYN-01 | Document does not parse | blocker | [SYN](#syn) | domain | acquire | review |
+| SYN-02 | Invalid IRI | major | [SYN](#syn) | domain | acquire | review |
+| SYN-03 | Ill-typed literal | blocker | [SYN](#syn) | domain | acquire | review |
+| SYN-04 | Malformed language tag | minor | [SYN](#syn) | domain | acquire | review |
+| SYN-07 | IRI contains file extension | minor | [SYN](#syn) | domain | acquire | review |
+| SYN-08 | Empty or padded literal | minor | [SYN](#syn) | domain | acquire | review |
+| DECL-01 | Undeclared class | blocker | [DECL](#decl) | domain | acquire | review |
+| DECL-02 | Undeclared property | major | [DECL](#decl) | domain | acquire | review |
+| DECL-03 | Missing ontology header | minor | [DECL](#decl) | domain | scope | review |
+| DECL-04 | Reserved-vocabulary typo | blocker | [DECL](#decl) | domain | acquire | review |
+| DECL-06 | Ambiguous namespace | minor | [DECL](#decl) | domain | acquire | review |
+| DECL-09 | Entity declared with conflicting kinds | major | [DECL](#decl) | domain | acquire | review |
+| LEX-01 | Missing label | minor | [LEX](#lex) | domain | acquire | review |
+| LEX-04 | Missing language tag | minor | [LEX](#lex) | domain | model | review |
+| LEX-05 | Inconsistent naming convention | minor | [LEX](#lex) | domain | acquire | review |
+| LEX-09 | Annotation misuse | minor | [LEX](#lex) | domain | acquire | review |
+| META-01 | Missing ontology metadata | minor | [META](#meta) | domain | publish | publish |
+| METRIC-01 | Spectrum position and declared-level mismatch | major | [METRIC](#metric) | domain | validate | review |
+| METRIC-02 | Size and expressivity profile | info | [METRIC](#metric) | domain | validate | advisory |
+
+### M2
+
+**Taxonomy.** *Constructs:* rdfs:subClassOf hierarchies (single asserted inheritance), definitions (skos:definition / IAO:0000115), naming conventions; SKOS concept schemes for vocabularies kept beside the ontology. *Exit:* The hierarchy is acyclic, every class is placed, defined in genus-differentia form and distinguishable from its siblings.
+
+| id | check | sev. | family | track | SIP stage | gate |
+|---|---|---|---|---|---|---|
+| DL-02 | Class used as individual | blocker | [DL](#dl) | domain | acquire | review |
+| SHC-08 | House-rule shape pack violation | major | [SHC](#shc) | domain | validate | review |
+| HIER-01 | Subsumption cycle | blocker | [HIER](#hier) | domain | acquire | review |
+| HIER-02 | Individual in subsumption axiom | blocker | [HIER](#hier) | domain | acquire | review |
+| HIER-03 | Subclass of a non-class | blocker | [HIER](#hier) | domain | acquire | review |
+| HIER-04 | Redundant asserted subsumption | minor | [HIER](#hier) | domain | model | review |
+| HIER-09 | Asserted polyhierarchy | minor | [HIER](#hier) | domain | model | review |
+| HIER-10 | Orphan class | minor | [HIER](#hier) | domain | model | review |
+| HIER-11 | Single-child class | info | [HIER](#hier) | domain | validate | advisory |
+| HIER-12 | Excessive depth | info | [HIER](#hier) | domain | validate | advisory |
+| HIER-13 | Excessive fan-out | info | [HIER](#hier) | domain | validate | advisory |
+| HIER-14 | Too many roots | info | [HIER](#hier) | domain | validate | advisory |
+| HIER-16 | Is-a overload | major | [HIER](#hier) | domain | acquire | review |
+| HIER-17 | Instance modelled as class | minor | [HIER](#hier) | domain | acquire | review |
+| HIER-19 | SKOS/OWL hierarchy mixing | major | [HIER](#hier) | domain | model | review |
+| HIER-21 | Indistinguishable siblings | minor | [HIER](#hier) | domain | model | review |
+| HIER-22 | Child label does not specialise parent | info | [HIER](#hier) | domain | acquire | advisory |
+| LEX-02 | Missing definition | minor | [LEX](#lex) | domain | model | review |
+| LEX-03 | Duplicate label | major | [LEX](#lex) | domain | acquire | review |
+| LEX-06 | Label disagrees with IRI | info | [LEX](#lex) | domain | model | advisory |
+| LEX-07 | Circular definition | minor | [LEX](#lex) | domain | model | review |
+| LEX-08 | Plural class name | minor | [LEX](#lex) | domain | acquire | review |
+| LEX-10 | Definition not in genus-differentia form | info | [LEX](#lex) | domain | model | advisory |
+| LEX-12 | Unexpanded acronym | info | [LEX](#lex) | domain | acquire | advisory |
+| MOD-01 | Synonyms as separate classes | major | [MOD](#mod) | domain | acquire | review |
+| MOD-02 | Merged concepts | minor | [MOD](#mod) | domain | acquire | review |
+| MOD-03 | Miscellaneous class | minor | [MOD](#mod) | domain | acquire | review |
+| METRIC-03 | Disconnected components | minor | [METRIC](#metric) | domain | validate | review |
+| METRIC-04 | Annotation and axiom richness | info | [METRIC](#metric) | domain | validate | advisory |
+| SKOS-01 | Concept and ConceptScheme overlap (S9) | blocker | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-02 | Label kind clash (S13) | minor | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-03 | Several prefLabels per language (S14) | major | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-04 | Related and broader clash (S27) | major | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-05 | Broader cycle | major | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-06 | Orphan concept | minor | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-07 | Top concept with broader | minor | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-08 | Mapping relation clash (S46) | major | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-09 | Exact match within scheme | minor | [SKOS](#skos) | vocabulary | model | review |
+| SKOS-10 | Duplicate notation | major | [SKOS](#skos) | vocabulary | model | review |
+
+### M3
+
+**Relational (RDFS-Plus).** *Constructs:* owl:ObjectProperty / owl:DatatypeProperty with rdfs:domain and rdfs:range, rdfs:subPropertyOf, owl:inverseOf, XSD datatypes, owl:imports and namespace ownership, owl:deprecated; the first instance data and SHACL data contracts. *Exit:* Properties commit to the domains and ranges the team means, RDFS inference produces no surprise types, data conforms to its shapes, and releases do not break consumers.
+
+| id | check | sev. | family | track | SIP stage | gate |
+|---|---|---|---|---|---|---|
+| DECL-05 | Namespace hijacking | major | [DECL](#decl) | domain | model | review |
+| DECL-07 | Unresolvable import | major | [DECL](#decl) | domain | acquire | review |
+| DECL-08 | Reference to unimported external term | info | [DECL](#decl) | domain | acquire | advisory |
+| DL-01 | Illegal property punning | blocker | [DL](#dl) | domain | model | review |
+| DL-05 | Annotation property in logical axiom | major | [DL](#dl) | domain | model | review |
+| DL-06 | Datatype outside the OWL 2 datatype map | major | [DL](#dl) | domain | model | review |
+| RSN-04 | Unintended domain/range typing | major | [RSN](#rsn) | domain | validate | review |
+| HIER-23 | Subclass of deprecated class | major | [HIER](#hier) | domain | model | review |
+| PHIER-01 | Sub-property cycle | major | [PHIER](#phier) | domain | model | review |
+| PHIER-02 | Sub-property widens domain or range | major | [PHIER](#phier) | domain | model | review |
+| PHIER-03 | Inverse with mismatched domain/range | major | [PHIER](#phier) | domain | model | review |
+| PHIER-04 | Property inverse of itself | minor | [PHIER](#phier) | domain | model | review |
+| PHIER-06 | Object/datatype property hierarchy mixing | blocker | [PHIER](#phier) | domain | model | review |
+| PHIER-07 | Missing inverse | info | [PHIER](#phier) | domain | model | advisory |
+| PROP-01 | Property without domain or range | minor | [PROP](#prop) | domain | model | review |
+| PROP-02 | Multiple domains or ranges | major | [PROP](#prop) | domain | model | review |
+| PROP-03 | Range kind mismatch | blocker | [PROP](#prop) | domain | acquire | review |
+| PROP-07 | Unused property | info | [PROP](#prop) | domain | model | advisory |
+| LEX-11 | Language coverage gap | info | [LEX](#lex) | domain | model | advisory |
+| META-02 | Deprecated without replacement | minor | [META](#meta) | domain | model | review |
+| META-03 | Deprecated entity in use | major | [META](#meta) | domain | model | review |
+| MOD-04 | Attribute encoded in names | info | [MOD](#mod) | domain | acquire | advisory |
+| SHC-01 | Ill-formed shapes graph | blocker | [SHC](#shc) | data | validate | review |
+| SHC-02 | Data graph non-conformant | major | [SHC](#shc) | data | populate | publish |
+| SHC-04 | Dead shape | minor | [SHC](#shc) | data | validate | review |
+| SHC-05 | Shape references undeclared term | major | [SHC](#shc) | data | validate | review |
+| SHC-06 | Shape contradicts ontology | major | [SHC](#shc) | data | validate | review |
+| SHC-07 | Shape coverage gap | info | [SHC](#shc) | data | populate | advisory |
+| SHC-09 | SHACL-SPARQL constraint error | major | [SHC](#shc) | data | validate | review |
+| PROP-09 | Literal-valued object property in use | major | [PROP](#prop) | data | populate | publish |
+| ABOX-01 | Untyped individual | minor | [ABOX](#abox) | data | populate | publish |
+| ABOX-02 | Individual typed with undeclared class | major | [ABOX](#abox) | data | populate | publish |
+| ABOX-04 | Value outside property range | major | [ABOX](#abox) | data | populate | publish |
+| META-04 | Version IRI not advanced | minor | [META](#meta) | release | publish | publish |
+| EVO-01 | Entity removed without deprecation | major | [EVO](#evo) | release | review | review |
+| EVO-04 | Rename without redirect | major | [EVO](#evo) | release | review | review |
+| EVO-05 | Semantic diff summary | info | [EVO](#evo) | release | review | advisory |
+| CQ-01 | Competency question test failure | major | [CQ](#cq) | release | validate | review |
+| CQ-02 | Competency question vocabulary gap | major | [CQ](#cq) | release | scope | review |
+
+### M4
+
+**Axiomatised (OWL 2 EL / QL / RL).** *Constructs:* owl:disjointWith / AllDisjointClasses, owl:equivalentClass (defined classes), owl:someValuesFrom, owl:intersectionOf / unionOf / oneOf, property characteristics (transitive, symmetric, functional, inverse-functional), owl:hasKey; a profile reasoner in the pipeline. *Exit:* The ontology is consistent, every class is satisfiable, and the inferred hierarchy matches what the modellers intended.
+
+| id | check | sev. | family | track | SIP stage | gate |
+|---|---|---|---|---|---|---|
+| SYN-05 | Malformed RDF list | blocker | [SYN](#syn) | domain | model | review |
+| SYN-06 | Malformed restriction | blocker | [SYN](#syn) | domain | model | review |
+| DL-07 | Inverse-functional datatype property | major | [DL](#dl) | domain | model | review |
+| DL-08 | OWL 2 profile report | info | [DL](#dl) | domain | validate | advisory |
+| RSN-01 | Ontology inconsistent | blocker | [RSN](#rsn) | domain | model | review |
+| RSN-02 | Unsatisfiable class | blocker | [RSN](#rsn) | domain | model | review |
+| RSN-03 | Inferred equivalence collapse | major | [RSN](#rsn) | domain | validate | review |
+| RSN-05 | Cross-branch inferred subsumption | major | [RSN](#rsn) | domain | validate | review |
+| RSN-08 | Reasoning incomplete | info | [RSN](#rsn) | domain | validate | advisory |
+| HIER-05 | Disjoint with an ancestor | blocker | [HIER](#hier) | domain | model | review |
+| HIER-06 | Subclass of two disjoint classes | blocker | [HIER](#hier) | domain | model | review |
+| HIER-08 | Missing sibling disjointness | minor | [HIER](#hier) | domain | model | review |
+| HIER-20 | Equivalence plus subsumption | minor | [HIER](#hier) | domain | model | review |
+| PHIER-05 | Inverse declared for symmetric property | minor | [PHIER](#phier) | domain | model | review |
+| PROP-04 | Conflicting characteristics | major | [PROP](#prop) | domain | model | review |
+| PROP-05 | Symmetric property with distinct domain and range | major | [PROP](#prop) | domain | model | review |
+| PROP-06 | Suspicious transitivity | minor | [PROP](#prop) | domain | model | review |
+| PROP-08 | Wrong equivalent properties | major | [PROP](#prop) | domain | model | review |
+| RSN-06 | Identity clash | blocker | [RSN](#rsn) | data | reason | publish |
+| SHC-03 | Closed-world reading of OWL axioms violated | major | [SHC](#shc) | data | populate | publish |
+| ABOX-03 | Individual in disjoint classes | blocker | [ABOX](#abox) | data | reason | publish |
+| ABOX-05 | Several values for a functional property | major | [ABOX](#abox) | data | populate | publish |
+| CQ-03 | Answerable only under reasoning | info | [CQ](#cq) | release | reason | advisory |
+
+### M5
+
+**Expressive & foundational (OWL 2 DL).** *Constructs:* Qualified cardinality, owl:allValuesFrom, property chains, owl:hasSelf, the OWL 2 DL global restrictions (simple roles, regular RBox); upper-ontology alignment (BFO / gist / DOLCE); OntoClean meta-properties. *Exit:* The ontology stays inside OWL 2 DL, every entailment can be explained, and no release loses or invents entailments unnoticed.
+
+| id | check | sev. | family | track | SIP stage | gate |
+|---|---|---|---|---|---|---|
+| DL-03 | Non-simple property in restricted position | blocker | [DL](#dl) | domain | model | review |
+| DL-04 | Irregular role hierarchy | blocker | [DL](#dl) | domain | model | review |
+| RSN-07 | Redundant logical axiom | minor | [RSN](#rsn) | domain | validate | review |
+| RSN-09 | Justification for an entailment | info | [RSN](#rsn) | domain | validate | advisory |
+| HIER-07 | Inherited restriction conflict | blocker | [HIER](#hier) | domain | model | review |
+| HIER-15 | Upper-ontology alignment missing | major | [HIER](#hier) | domain | model | review |
+| HIER-18 | Rigidity violation (OntoClean) | major | [HIER](#hier) | domain | review | review |
+| PHIER-08 | Single-property chain | minor | [PHIER](#phier) | domain | model | review |
+| MOD-05 | Polysemous element | minor | [MOD](#mod) | domain | review | review |
+| EVO-02 | Entailment lost | major | [EVO](#evo) | release | review | review |
+| EVO-03 | New cross-branch entailment | info | [EVO](#evo) | release | review | advisory |
+
+## SIP lifecycle stages
+
+Where each check runs in the Semantic Intelligence Platform lifecycle:
+
+```
+scope → acquire → model → validate → review ║ populate → reason → publish ║ consume
+```
+
+A check is placed at the **earliest stage at which it is decidable and actionable**, so defects are caught by the agent or editor that introduces them, not at the gate. From that stage on it runs on every later pass. The **gate** that enforces it is derived: `review` = review gate (human), before the ontology is populated; `publish` = publish gate (human), before the release is consumed; `advisory` = info severity: reported, never changes a verdict.
+
+| stage | acts on findings | role of the checks | start here | running by the end |
+|---|---|---|---|---|
+| [scope](#stage-scope) | RequirementsAgent; project manager | Sets the target maturity level (the declared level of METRIC-01), the policy parameters and the competency questions. Checks here produce a worklist, not a verdict. | 2 | 2 |
+| [acquire](#stage-acquire) | ExtractionAgent | Critic on extracted candidates and imported sources: a candidate that would add a non-info finding is not submitted. | 31 | 33 |
+| [model](#stage-model) | ModelingCopilot, VocabularyAgent, AlignmentAgent; ontologist | Live feedback in the editor, and critic on proposed axioms, labels and mappings: a proposal may not add a finding the baseline did not have. | 56 | 89 |
+| [validate](#stage-validate) | QualityAgent | Full catalogue run on the staged TBox: measurements, reasoning, house rules, competency-question tests. Repairs are proposed and verified by the engine. | 22 | 111 |
+| [review](#stage-review) | StewardAgent; validator (human) | Human-adjudicated checks and the release diff. Closes with the review gate, which applies the verdict policy to every check that started up to here. | 7 | 118 |
+| [populate](#stage-populate) | KnowledgeGraphBuilder | Critic on mapped instance data and on the SHACL data contracts. | 8 | 126 |
+| [reason](#stage-reason) | classification run | Checks that need the TBox and the ABox together under a reasoner. | 3 | 129 |
+| [publish](#stage-publish) | project manager (human) | Release metadata and versioning. Closes with the publish gate. | 2 | 131 |
+| [consume](#stage-consume) | AssistantAgent; consumers | No check starts here. Questions raised in use become new competency questions and re-enter at scope (CQ-02, then CQ-01). | 0 | 131 |
+
+### stage: scope
+
+*RequirementsAgent; project manager.* Sets the target maturity level (the declared level of METRIC-01), the policy parameters and the competency questions. Checks here produce a worklist, not a verdict.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M1 | DECL-03 |
+| M3 | CQ-02 |
+
+### stage: acquire
+
+*ExtractionAgent.* Critic on extracted candidates and imported sources: a candidate that would add a non-info finding is not submitted.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M1 | SYN-01, SYN-02, SYN-03, SYN-04, SYN-07, SYN-08, DECL-01, DECL-02, DECL-04, DECL-06, DECL-09, LEX-01, LEX-05, LEX-09 |
+| M2 | DL-02, HIER-01, HIER-02, HIER-03, HIER-16, HIER-17, HIER-22, LEX-03, LEX-08, LEX-12, MOD-01, MOD-02, MOD-03 |
+| M3 | DECL-07, DECL-08, PROP-03, MOD-04 |
+
+### stage: model
+
+*ModelingCopilot, VocabularyAgent, AlignmentAgent; ontologist.* Live feedback in the editor, and critic on proposed axioms, labels and mappings: a proposal may not add a finding the baseline did not have.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M1 | LEX-04 |
+| M2 | HIER-04, HIER-09, HIER-10, HIER-19, HIER-21, LEX-02, LEX-06, LEX-07, LEX-10, SKOS-01, SKOS-02, SKOS-03, SKOS-04, SKOS-05, SKOS-06, SKOS-07, SKOS-08, SKOS-09, SKOS-10 |
+| M3 | DECL-05, DL-01, DL-05, DL-06, HIER-23, PHIER-01, PHIER-02, PHIER-03, PHIER-04, PHIER-06, PHIER-07, PROP-01, PROP-02, PROP-07, LEX-11, META-02, META-03 |
+| M4 | SYN-05, SYN-06, DL-07, RSN-01, RSN-02, HIER-05, HIER-06, HIER-08, HIER-20, PHIER-05, PROP-04, PROP-05, PROP-06, PROP-08 |
+| M5 | DL-03, DL-04, HIER-07, HIER-15, PHIER-08 |
+
+### stage: validate
+
+*QualityAgent.* Full catalogue run on the staged TBox: measurements, reasoning, house rules, competency-question tests. Repairs are proposed and verified by the engine.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M1 | METRIC-01, METRIC-02 |
+| M2 | SHC-08, HIER-11, HIER-12, HIER-13, HIER-14, METRIC-03, METRIC-04 |
+| M3 | RSN-04, SHC-01, SHC-04, SHC-05, SHC-06, SHC-09, CQ-01 |
+| M4 | DL-08, RSN-03, RSN-05, RSN-08 |
+| M5 | RSN-07, RSN-09 |
+
+### stage: review
+
+*StewardAgent; validator (human).* Human-adjudicated checks and the release diff. Closes with the review gate, which applies the verdict policy to every check that started up to here.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M3 | EVO-01, EVO-04, EVO-05 |
+| M5 | HIER-18, MOD-05, EVO-02, EVO-03 |
+
+### stage: populate
+
+*KnowledgeGraphBuilder.* Critic on mapped instance data and on the SHACL data contracts.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M3 | SHC-02, SHC-07, PROP-09, ABOX-01, ABOX-02, ABOX-04 |
+| M4 | SHC-03, ABOX-05 |
+
+### stage: reason
+
+*classification run.* Checks that need the TBox and the ABox together under a reasoner.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M4 | RSN-06, ABOX-03, CQ-03 |
+
+### stage: publish
+
+*project manager (human).* Release metadata and versioning. Closes with the publish gate.
+
+| level | checks starting here (domain track first) |
+|---|---|
+| M1 | META-01 |
+| M3 | META-04 |
+
+### stage: consume
+
+*AssistantAgent; consumers.* No check starts here. Questions raised in use become new competency questions and re-enter at scope (CQ-02, then CQ-01).
+
+
 ## SYN
 
 **Syntax & well-formedness.** Can the document be read at all, and are its terms and literals lexically valid?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| SYN-01 | **Document does not parse** | blocker | parse | none | all | S1a | truncate-statement |
-| SYN-02 | **Invalid IRI** | major | parse | none | all | S1a | inject-space-in-iri |
-| SYN-03 | **Ill-typed literal** | blocker | parse | none | all | S1a | corrupt-typed-literal |
-| SYN-04 | **Malformed language tag** | minor | parse | none | all | S1b | corrupt-language-tag |
-| SYN-05 | **Malformed RDF list** | blocker | sparql | none | owl | S1b | break-rdf-list |
-| SYN-06 | **Malformed restriction** | blocker | sparql | none | owl | S1a | drop-onProperty |
-| SYN-07 | **IRI contains file extension** | minor | lexical | none | all | S1b | add-file-extension |
-| SYN-08 | **Empty or padded literal** | minor | lexical | none | all | S1b | blank-label |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| SYN-01 | **Document does not parse** | blocker | parse | none | all | S1a | M1 | acquire | truncate-statement |
+| SYN-02 | **Invalid IRI** | major | parse | none | all | S1a | M1 | acquire | inject-space-in-iri |
+| SYN-03 | **Ill-typed literal** | blocker | parse | none | all | S1a | M1 | acquire | corrupt-typed-literal |
+| SYN-04 | **Malformed language tag** | minor | parse | none | all | S1b | M1 | acquire | corrupt-language-tag |
+| SYN-05 | **Malformed RDF list** | blocker | sparql | none | owl | S1b | M4 | model | break-rdf-list |
+| SYN-06 | **Malformed restriction** | blocker | sparql | none | owl | S1a | M4 | model | drop-onProperty |
+| SYN-07 | **IRI contains file extension** | minor | lexical | none | all | S1b | M1 | acquire | add-file-extension |
+| SYN-08 | **Empty or padded literal** | minor | lexical | none | all | S1b | M1 | acquire | blank-label |
 
 - **SYN-01** -- The submission fails to parse in its declared or sniffed serialisation. *Why:* Nothing downstream is meaningful; report the parser position and stop the run.
 - **SYN-02** -- IRIs containing spaces, illegal characters, or relative IRIs without a base. *Why:* Invalid IRIs are silently rewritten or rejected by different tools, so two stores disagree on what the ontology says.
@@ -67,17 +367,17 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Declarations & namespaces.** Is every term declared, owned by the right namespace, and resolvable?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| DECL-01 | **Undeclared class** | blocker | sparql | none | all | S1a | drop-class-declaration |
-| DECL-02 | **Undeclared property** | major | sparql | none | owl | S1a | drop-property-declaration |
-| DECL-03 | **Missing ontology header** | minor | sparql | none | owl | S1a | drop-ontology-header |
-| DECL-04 | **Reserved-vocabulary typo** | blocker | sparql | none | all | S1a | typo-reserved-term |
-| DECL-05 | **Namespace hijacking** | major | sparql | none | owl | S1b | assert-axiom-on-foreign-term |
-| DECL-06 | **Ambiguous namespace** | minor | lexical | none | owl | S1b | mint-under-second-namespace |
-| DECL-07 | **Unresolvable import** | major | parse | none | owl | S1b | point-import-to-missing |
-| DECL-08 | **Reference to unimported external term** | info | sparql | none | owl | S1b | reference-unimported-term |
-| DECL-09 | **Entity declared with conflicting kinds** | major | sparql | none | owl | S1b | add-conflicting-type |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| DECL-01 | **Undeclared class** | blocker | sparql | none | all | S1a | M1 | acquire | drop-class-declaration |
+| DECL-02 | **Undeclared property** | major | sparql | none | owl | S1a | M1 | acquire | drop-property-declaration |
+| DECL-03 | **Missing ontology header** | minor | sparql | none | owl | S1a | M1 | scope | drop-ontology-header |
+| DECL-04 | **Reserved-vocabulary typo** | blocker | sparql | none | all | S1a | M1 | acquire | typo-reserved-term |
+| DECL-05 | **Namespace hijacking** | major | sparql | none | owl | S1b | M3 | model | assert-axiom-on-foreign-term |
+| DECL-06 | **Ambiguous namespace** | minor | lexical | none | owl | S1b | M1 | acquire | mint-under-second-namespace |
+| DECL-07 | **Unresolvable import** | major | parse | none | owl | S1b | M3 | acquire | point-import-to-missing |
+| DECL-08 | **Reference to unimported external term** | info | sparql | none | owl | S1b | M3 | acquire | reference-unimported-term |
+| DECL-09 | **Entity declared with conflicting kinds** | major | sparql | none | owl | S1b | M1 | acquire | add-conflicting-type |
 
 - **DECL-01** -- An IRI used as a class (subject/object of rdfs:subClassOf, rdf:type object, restriction filler) that is never declared owl:Class / rdfs:Class. *Why:* Its type stays implicit; tools that enumerate the vocabulary cannot see it. *(refs: OOPS P34)*
 - **DECL-02** -- A predicate or restriction property used but never declared as an object, datatype or annotation property. *Why:* A DL parser must guess the property kind, and different parsers guess differently. *(refs: OOPS P35)*
@@ -93,16 +393,16 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **OWL 2 DL structure & profiles.** Does the ontology respect the OWL 2 DL global restrictions, and which profile is it in?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| DL-01 | **Illegal property punning** | blocker | sparql | none | dl | S1b | pun-object-datatype-property |
-| DL-02 | **Class used as individual** | blocker | sparql | none | all | S1a | type-class-as-individual |
-| DL-03 | **Non-simple property in restricted position** | blocker | graph | none | dl | S1b | cardinality-on-transitive |
-| DL-04 | **Irregular role hierarchy** | blocker | graph | none | dl | S1b | cyclic-property-chain |
-| DL-05 | **Annotation property in logical axiom** | major | sparql | none | owl | S1b | annotation-property-in-restriction |
-| DL-06 | **Datatype outside the OWL 2 datatype map** | major | sparql | none | dl | S1b | use-xsd-date-range |
-| DL-07 | **Inverse-functional datatype property** | major | sparql | none | dl | S1b | ifp-on-datatype-property |
-| DL-08 | **OWL 2 profile report** | info | graph | none | owl | S1a | -- |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| DL-01 | **Illegal property punning** | blocker | sparql | none | dl | S1b | M3 | model | pun-object-datatype-property |
+| DL-02 | **Class used as individual** | blocker | sparql | none | all | S1a | M2 | acquire | type-class-as-individual |
+| DL-03 | **Non-simple property in restricted position** | blocker | graph | none | dl | S1b | M5 | model | cardinality-on-transitive |
+| DL-04 | **Irregular role hierarchy** | blocker | graph | none | dl | S1b | M5 | model | cyclic-property-chain |
+| DL-05 | **Annotation property in logical axiom** | major | sparql | none | owl | S1b | M3 | model | annotation-property-in-restriction |
+| DL-06 | **Datatype outside the OWL 2 datatype map** | major | sparql | none | dl | S1b | M3 | model | use-xsd-date-range |
+| DL-07 | **Inverse-functional datatype property** | major | sparql | none | dl | S1b | M4 | model | ifp-on-datatype-property |
+| DL-08 | **OWL 2 profile report** | info | graph | none | owl | S1a | M4 | validate | -- |
 
 - **DL-01** -- An IRI used both as object and datatype property (or object/annotation). *Why:* Forbidden in OWL 2 DL; DL reasoners refuse the ontology.
 - **DL-02** -- A class IRI used in an individual position (rdf:type subject, ABox assertion) without a declared punning intent. *Why:* Conflates class and instance levels -- 'is Lion a kind or a thing?'
@@ -117,17 +417,17 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Reasoning.** What does a reasoner say: consistency, satisfiability, unintended entailments.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| RSN-01 | **Ontology inconsistent** | blocker | reasoner | none | owl | S1a | assert-individual-in-disjoint-classes |
-| RSN-02 | **Unsatisfiable class** | blocker | reasoner | none | owl | S1a | disjoint-child-parent |
-| RSN-03 | **Inferred equivalence collapse** | major | reasoner | none | owl | S1b | mutual-subclass |
-| RSN-04 | **Unintended domain/range typing** | major | reasoner | llm | owl | S1b | use-property-outside-domain |
-| RSN-05 | **Cross-branch inferred subsumption** | major | reasoner | llm | owl | S1b | overbroad-equivalent-definition |
-| RSN-06 | **Identity clash** | blocker | reasoner | none | abox | S1b | two-values-for-functional-object-property |
-| RSN-07 | **Redundant logical axiom** | minor | reasoner | none | owl | S1c | duplicate-entailed-axiom |
-| RSN-08 | **Reasoning incomplete** | info | reasoner | none | owl | S1a | -- |
-| RSN-09 | **Justification for an entailment** | info | reasoner | none | owl | S1c | -- |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| RSN-01 | **Ontology inconsistent** | blocker | reasoner | none | owl | S1a | M4 | model | assert-individual-in-disjoint-classes |
+| RSN-02 | **Unsatisfiable class** | blocker | reasoner | none | owl | S1a | M4 | model | disjoint-child-parent |
+| RSN-03 | **Inferred equivalence collapse** | major | reasoner | none | owl | S1b | M4 | validate | mutual-subclass |
+| RSN-04 | **Unintended domain/range typing** | major | reasoner | llm | owl | S1b | M3 | validate | use-property-outside-domain |
+| RSN-05 | **Cross-branch inferred subsumption** | major | reasoner | llm | owl | S1b | M4 | validate | overbroad-equivalent-definition |
+| RSN-06 | **Identity clash** | blocker | reasoner | none | abox | S1b | M4 | reason | two-values-for-functional-object-property |
+| RSN-07 | **Redundant logical axiom** | minor | reasoner | none | owl | S1c | M5 | validate | duplicate-entailed-axiom |
+| RSN-08 | **Reasoning incomplete** | info | reasoner | none | owl | S1a | M4 | validate | -- |
+| RSN-09 | **Justification for an entailment** | info | reasoner | none | owl | S1c | M5 | validate | -- |
 
 - **RSN-01** -- The ontology (with imports closure) has no model: owl:Nothing has an instance, or a clash is derived. *Why:* Everything is entailed; no other result can be trusted until this is fixed.
 - **RSN-02** -- A named class entailed to be equivalent to owl:Nothing; reported as root or derived (derived = unsatisfiable only because it uses a root one). *Why:* An unsatisfiable class can never have instances -- a modelling error with certainty. Root/derived separation usually turns 40 findings into 2 causes.
@@ -143,17 +443,17 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **SHACL.** Closed-world conformance of data and of the ontology itself against shapes.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| SHC-01 | **Ill-formed shapes graph** | blocker | shacl | none | shacl | S1b | corrupt-shape-path |
-| SHC-02 | **Data graph non-conformant** | major | shacl | none | shacl | S1a | violate-sh-minCount |
-| SHC-03 | **Closed-world reading of OWL axioms violated** | major | shacl | none | abox | S1b | omit-required-value |
-| SHC-04 | **Dead shape** | minor | shacl | none | shacl | S1b | retarget-shape-to-missing-class |
-| SHC-05 | **Shape references undeclared term** | major | sparql | none | shacl | S1b | rename-property-not-shape |
-| SHC-06 | **Shape contradicts ontology** | major | sparql | none | shacl | S1b | shape-maxcount-below-owl-min |
-| SHC-07 | **Shape coverage gap** | info | sparql | none | shacl | S1b | -- |
-| SHC-08 | **House-rule shape pack violation** | major | shacl | none | all | S1a | violate-house-rule |
-| SHC-09 | **SHACL-SPARQL constraint error** | major | shacl | none | shacl | S1b | break-sparql-constraint |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| SHC-01 | **Ill-formed shapes graph** | blocker | shacl | none | shacl | S1b | M3 | validate | corrupt-shape-path |
+| SHC-02 | **Data graph non-conformant** | major | shacl | none | shacl | S1a | M3 | populate | violate-sh-minCount |
+| SHC-03 | **Closed-world reading of OWL axioms violated** | major | shacl | none | abox | S1b | M4 | populate | omit-required-value |
+| SHC-04 | **Dead shape** | minor | shacl | none | shacl | S1b | M3 | validate | retarget-shape-to-missing-class |
+| SHC-05 | **Shape references undeclared term** | major | sparql | none | shacl | S1b | M3 | validate | rename-property-not-shape |
+| SHC-06 | **Shape contradicts ontology** | major | sparql | none | shacl | S1b | M3 | validate | shape-maxcount-below-owl-min |
+| SHC-07 | **Shape coverage gap** | info | sparql | none | shacl | S1b | M3 | populate | -- |
+| SHC-08 | **House-rule shape pack violation** | major | shacl | none | all | S1a | M2 | validate | violate-house-rule |
+| SHC-09 | **SHACL-SPARQL constraint error** | major | shacl | none | shacl | S1b | M3 | validate | break-sparql-constraint |
 
 - **SHC-01** -- The supplied shapes graph does not conform to the SHACL-for-SHACL meta-shapes. *Why:* A malformed shape validates nothing and reports success.
 - **SHC-02** -- sh:ValidationResult entries from the supplied shapes; severity mapped from sh:severity. *Why:* The contract the publishers declared for their own data.
@@ -169,31 +469,31 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Class hierarchy (inheritance).** Is the subsumption hierarchy acyclic, non-redundant, well-shaped and ontologically sound?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| HIER-01 | **Subsumption cycle** | blocker | graph | none | rdfs, owl | S1a | add-back-edge |
-| HIER-02 | **Individual in subsumption axiom** | blocker | sparql | none | rdfs, owl | S1a | subclass-of-individual |
-| HIER-03 | **Subclass of a non-class** | blocker | sparql | none | rdfs, owl | S1b | subclass-of-property |
-| HIER-04 | **Redundant asserted subsumption** | minor | graph | none | rdfs, owl | S1b | add-transitive-shortcut |
-| HIER-05 | **Disjoint with an ancestor** | blocker | graph | none | owl | S1a | disjoint-child-parent |
-| HIER-06 | **Subclass of two disjoint classes** | blocker | graph | none | owl | S1b | subclass-of-disjoint-pair |
-| HIER-07 | **Inherited restriction conflict** | blocker | sparql | none | owl | S1b | tighten-inherited-cardinality |
-| HIER-08 | **Missing sibling disjointness** | minor | sparql | none | owl | S1a | drop-disjointness |
-| HIER-09 | **Asserted polyhierarchy** | minor | graph | llm | owl | S1b | add-second-parent |
-| HIER-10 | **Orphan class** | minor | graph | none | owl | S1b | detach-subtree |
-| HIER-11 | **Single-child class** | info | graph | none | owl | S1b | collapse-siblings |
-| HIER-12 | **Excessive depth** | info | graph | none | owl | S1b | insert-chain |
-| HIER-13 | **Excessive fan-out** | info | graph | none | owl | S1b | flatten-subtree |
-| HIER-14 | **Too many roots** | info | graph | none | owl | S1b | detach-subtree |
-| HIER-15 | **Upper-ontology alignment missing** | major | graph | none | owl | S1b | detach-from-upper |
-| HIER-16 | **Is-a overload** | major | lexical | llm | owl | S1b | partof-as-subclass |
-| HIER-17 | **Instance modelled as class** | minor | lexical | llm | owl | S1b | individual-as-leaf-class |
-| HIER-18 | **Rigidity violation (OntoClean)** | major | sparql | human | owl | S1b | rigid-under-antirigid |
-| HIER-19 | **SKOS/OWL hierarchy mixing** | major | sparql | none | rdfs, owl, skos | S1b | broader-between-classes |
-| HIER-20 | **Equivalence plus subsumption** | minor | sparql | none | owl | S1b | add-subclass-to-equivalent |
-| HIER-21 | **Indistinguishable siblings** | minor | sparql | llm | owl | S1b | clone-sibling |
-| HIER-22 | **Child label does not specialise parent** | info | lexical | llm | owl | S1b | move-class-to-wrong-parent |
-| HIER-23 | **Subclass of deprecated class** | major | sparql | none | owl | S1b | deprecate-parent |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| HIER-01 | **Subsumption cycle** | blocker | graph | none | rdfs, owl | S1a | M2 | acquire | add-back-edge |
+| HIER-02 | **Individual in subsumption axiom** | blocker | sparql | none | rdfs, owl | S1a | M2 | acquire | subclass-of-individual |
+| HIER-03 | **Subclass of a non-class** | blocker | sparql | none | rdfs, owl | S1b | M2 | acquire | subclass-of-property |
+| HIER-04 | **Redundant asserted subsumption** | minor | graph | none | rdfs, owl | S1b | M2 | model | add-transitive-shortcut |
+| HIER-05 | **Disjoint with an ancestor** | blocker | graph | none | owl | S1a | M4 | model | disjoint-child-parent |
+| HIER-06 | **Subclass of two disjoint classes** | blocker | graph | none | owl | S1b | M4 | model | subclass-of-disjoint-pair |
+| HIER-07 | **Inherited restriction conflict** | blocker | sparql | none | owl | S1b | M5 | model | tighten-inherited-cardinality |
+| HIER-08 | **Missing sibling disjointness** | minor | sparql | none | owl | S1a | M4 | model | drop-disjointness |
+| HIER-09 | **Asserted polyhierarchy** | minor | graph | llm | owl | S1b | M2 | model | add-second-parent |
+| HIER-10 | **Orphan class** | minor | graph | none | owl | S1b | M2 | model | detach-subtree |
+| HIER-11 | **Single-child class** | info | graph | none | owl | S1b | M2 | validate | collapse-siblings |
+| HIER-12 | **Excessive depth** | info | graph | none | owl | S1b | M2 | validate | insert-chain |
+| HIER-13 | **Excessive fan-out** | info | graph | none | owl | S1b | M2 | validate | flatten-subtree |
+| HIER-14 | **Too many roots** | info | graph | none | owl | S1b | M2 | validate | detach-subtree |
+| HIER-15 | **Upper-ontology alignment missing** | major | graph | none | owl | S1b | M5 | model | detach-from-upper |
+| HIER-16 | **Is-a overload** | major | lexical | llm | owl | S1b | M2 | acquire | partof-as-subclass |
+| HIER-17 | **Instance modelled as class** | minor | lexical | llm | owl | S1b | M2 | acquire | individual-as-leaf-class |
+| HIER-18 | **Rigidity violation (OntoClean)** | major | sparql | human | owl | S1b | M5 | review | rigid-under-antirigid |
+| HIER-19 | **SKOS/OWL hierarchy mixing** | major | sparql | none | rdfs, owl, skos | S1b | M2 | model | broader-between-classes |
+| HIER-20 | **Equivalence plus subsumption** | minor | sparql | none | owl | S1b | M4 | model | add-subclass-to-equivalent |
+| HIER-21 | **Indistinguishable siblings** | minor | sparql | llm | owl | S1b | M2 | model | clone-sibling |
+| HIER-22 | **Child label does not specialise parent** | info | lexical | llm | owl | S1b | M2 | acquire | move-class-to-wrong-parent |
+| HIER-23 | **Subclass of deprecated class** | major | sparql | none | owl | S1b | M3 | model | deprecate-parent |
 
 - **HIER-01** -- A strongly connected component of size > 1 in the asserted rdfs:subClassOf graph. *Why:* A cycle forces every member equivalent and collapses the taxonomy under a reasoner. *(refs: OOPS P06)*
 - **HIER-02** -- rdfs:subClassOf with a named individual on either side. *Why:* A category error: the author meant rdf:type.
@@ -223,16 +523,16 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Property hierarchy.** Is the RBox (sub-property, inverse, chain) coherent with domains and ranges?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| PHIER-01 | **Sub-property cycle** | major | graph | none | rdfs, owl | S1b | property-back-edge |
-| PHIER-02 | **Sub-property widens domain or range** | major | reasoner | none | rdfs, owl | S1b | widen-subproperty-domain |
-| PHIER-03 | **Inverse with mismatched domain/range** | major | sparql | none | owl | S1b | swap-inverse-range |
-| PHIER-04 | **Property inverse of itself** | minor | sparql | none | owl | S1b | self-inverse |
-| PHIER-05 | **Inverse declared for symmetric property** | minor | sparql | none | owl | S1b | inverse-of-symmetric |
-| PHIER-06 | **Object/datatype property hierarchy mixing** | blocker | sparql | none | dl | S1b | object-under-datatype-property |
-| PHIER-07 | **Missing inverse** | info | sparql | none | owl | S1b | -- |
-| PHIER-08 | **Single-property chain** | minor | sparql | none | owl | S1b | truncate-chain |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| PHIER-01 | **Sub-property cycle** | major | graph | none | rdfs, owl | S1b | M3 | model | property-back-edge |
+| PHIER-02 | **Sub-property widens domain or range** | major | reasoner | none | rdfs, owl | S1b | M3 | model | widen-subproperty-domain |
+| PHIER-03 | **Inverse with mismatched domain/range** | major | sparql | none | owl | S1b | M3 | model | swap-inverse-range |
+| PHIER-04 | **Property inverse of itself** | minor | sparql | none | owl | S1b | M3 | model | self-inverse |
+| PHIER-05 | **Inverse declared for symmetric property** | minor | sparql | none | owl | S1b | M4 | model | inverse-of-symmetric |
+| PHIER-06 | **Object/datatype property hierarchy mixing** | blocker | sparql | none | dl | S1b | M3 | model | object-under-datatype-property |
+| PHIER-07 | **Missing inverse** | info | sparql | none | owl | S1b | M3 | model | -- |
+| PHIER-08 | **Single-property chain** | minor | sparql | none | owl | S1b | M5 | model | truncate-chain |
 
 - **PHIER-01** -- Cycle in rdfs:subPropertyOf. *Why:* Collapses the properties into equivalents.
 - **PHIER-02** -- A sub-property whose domain/range is not subsumed by its super-property's. *Why:* Every use of the sub-property infers the super-property's domain anyway; the declared narrower intent is contradicted or the wider one leaks.
@@ -247,17 +547,17 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Property semantics.** Domains, ranges and characteristics: do they commit to what the author meant?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| PROP-01 | **Property without domain or range** | minor | sparql | none | rdfs, owl | S1a | drop-domain |
-| PROP-02 | **Multiple domains or ranges** | major | sparql | none | rdfs, owl | S1b | add-second-domain |
-| PROP-03 | **Range kind mismatch** | blocker | sparql | none | owl | S1b | datatype-range-on-object-property |
-| PROP-04 | **Conflicting characteristics** | major | sparql | none | owl | S1b | symmetric-and-asymmetric |
-| PROP-05 | **Symmetric property with distinct domain and range** | major | sparql | none | owl | S1b | symmetric-with-distinct-range |
-| PROP-06 | **Suspicious transitivity** | minor | lexical | llm | owl | S1b | make-parent-transitive |
-| PROP-07 | **Unused property** | info | sparql | none | owl | S1b | declare-unused-property |
-| PROP-08 | **Wrong equivalent properties** | major | sparql | none | owl | S1b | equate-incompatible-properties |
-| PROP-09 | **Literal-valued object property in use** | major | sparql | none | abox | S1b | literal-on-object-property |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| PROP-01 | **Property without domain or range** | minor | sparql | none | rdfs, owl | S1a | M3 | model | drop-domain |
+| PROP-02 | **Multiple domains or ranges** | major | sparql | none | rdfs, owl | S1b | M3 | model | add-second-domain |
+| PROP-03 | **Range kind mismatch** | blocker | sparql | none | owl | S1b | M3 | acquire | datatype-range-on-object-property |
+| PROP-04 | **Conflicting characteristics** | major | sparql | none | owl | S1b | M4 | model | symmetric-and-asymmetric |
+| PROP-05 | **Symmetric property with distinct domain and range** | major | sparql | none | owl | S1b | M4 | model | symmetric-with-distinct-range |
+| PROP-06 | **Suspicious transitivity** | minor | lexical | llm | owl | S1b | M4 | model | make-parent-transitive |
+| PROP-07 | **Unused property** | info | sparql | none | owl | S1b | M3 | model | declare-unused-property |
+| PROP-08 | **Wrong equivalent properties** | major | sparql | none | owl | S1b | M4 | model | equate-incompatible-properties |
+| PROP-09 | **Literal-valued object property in use** | major | sparql | none | abox | S1b | M3 | populate | literal-on-object-property |
 
 - **PROP-01** -- Object (and datatype) properties lacking rdfs:domain or rdfs:range. *Why:* Without them the property carries no commitment and a reasoner infers nothing. *(refs: OOPS P11)*
 - **PROP-02** -- More than one rdfs:domain (or range) asserted for a property. *Why:* Multiple domains mean the intersection; the author almost always meant the union. *(refs: OOPS P19)*
@@ -273,20 +573,20 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Lexical & annotation.** Can a domain expert read and review it: labels, definitions, naming.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| LEX-01 | **Missing label** | minor | sparql | none | all | S1a | drop-label |
-| LEX-02 | **Missing definition** | minor | sparql | none | all | S1a | drop-definition |
-| LEX-03 | **Duplicate label** | major | lexical | none | all | S1b | copy-label |
-| LEX-04 | **Missing language tag** | minor | sparql | none | all | S1b | strip-language-tag |
-| LEX-05 | **Inconsistent naming convention** | minor | lexical | none | all | S1b | rename-snake-case |
-| LEX-06 | **Label disagrees with IRI** | info | lexical | none | all | S1b | swap-labels |
-| LEX-07 | **Circular definition** | minor | lexical | llm | all | S1b | circularise-definition |
-| LEX-08 | **Plural class name** | minor | lexical | llm | owl | S1b | pluralise-label |
-| LEX-09 | **Annotation misuse** | minor | lexical | none | all | S1b | definition-in-label |
-| LEX-10 | **Definition not in genus-differentia form** | info | lexical | llm | owl | S1b | replace-genus-in-definition |
-| LEX-11 | **Language coverage gap** | info | sparql | none | all | S1b | drop-translation |
-| LEX-12 | **Unexpanded acronym** | info | lexical | none | all | S1b | acronymise-label |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| LEX-01 | **Missing label** | minor | sparql | none | all | S1a | M1 | acquire | drop-label |
+| LEX-02 | **Missing definition** | minor | sparql | none | all | S1a | M2 | model | drop-definition |
+| LEX-03 | **Duplicate label** | major | lexical | none | all | S1b | M2 | acquire | copy-label |
+| LEX-04 | **Missing language tag** | minor | sparql | none | all | S1b | M1 | model | strip-language-tag |
+| LEX-05 | **Inconsistent naming convention** | minor | lexical | none | all | S1b | M1 | acquire | rename-snake-case |
+| LEX-06 | **Label disagrees with IRI** | info | lexical | none | all | S1b | M2 | model | swap-labels |
+| LEX-07 | **Circular definition** | minor | lexical | llm | all | S1b | M2 | model | circularise-definition |
+| LEX-08 | **Plural class name** | minor | lexical | llm | owl | S1b | M2 | acquire | pluralise-label |
+| LEX-09 | **Annotation misuse** | minor | lexical | none | all | S1b | M1 | acquire | definition-in-label |
+| LEX-10 | **Definition not in genus-differentia form** | info | lexical | llm | owl | S1b | M2 | model | replace-genus-in-definition |
+| LEX-11 | **Language coverage gap** | info | sparql | none | all | S1b | M3 | model | drop-translation |
+| LEX-12 | **Unexpanded acronym** | info | lexical | none | all | S1b | M2 | acquire | acronymise-label |
 
 - **LEX-01** -- Classes and properties without rdfs:label or skos:prefLabel. *Why:* A domain expert cannot review an IRI. *(refs: OOPS P08)*
 - **LEX-02** -- Classes without skos:definition / IAO:0000115 / rdfs:comment. *Why:* The label names the class; only a definition fixes what it means. *(refs: OOPS P08)*
@@ -305,18 +605,18 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **SKOS integrity.** The SKOS reference integrity conditions plus common thesaurus defects.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| SKOS-01 | **Concept and ConceptScheme overlap (S9)** | blocker | sparql | none | skos | S1b | type-concept-as-scheme |
-| SKOS-02 | **Label kind clash (S13)** | minor | sparql | none | skos | S1b | pref-as-alt |
-| SKOS-03 | **Several prefLabels per language (S14)** | major | sparql | none | skos | S1b | add-second-preflabel |
-| SKOS-04 | **Related and broader clash (S27)** | major | sparql | none | skos | S1b | relate-ancestor |
-| SKOS-05 | **Broader cycle** | major | graph | none | skos | S1a | broader-back-edge |
-| SKOS-06 | **Orphan concept** | minor | sparql | none | skos | S1b | detach-concept |
-| SKOS-07 | **Top concept with broader** | minor | sparql | none | skos | S1b | broader-on-top-concept |
-| SKOS-08 | **Mapping relation clash (S46)** | major | sparql | none | skos | S1b | exact-and-broad-match |
-| SKOS-09 | **Exact match within scheme** | minor | sparql | none | skos | S1b | exact-match-same-scheme |
-| SKOS-10 | **Duplicate notation** | major | sparql | none | skos | S1b | copy-notation |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| SKOS-01 | **Concept and ConceptScheme overlap (S9)** | blocker | sparql | none | skos | S1b | M2 | model | type-concept-as-scheme |
+| SKOS-02 | **Label kind clash (S13)** | minor | sparql | none | skos | S1b | M2 | model | pref-as-alt |
+| SKOS-03 | **Several prefLabels per language (S14)** | major | sparql | none | skos | S1b | M2 | model | add-second-preflabel |
+| SKOS-04 | **Related and broader clash (S27)** | major | sparql | none | skos | S1b | M2 | model | relate-ancestor |
+| SKOS-05 | **Broader cycle** | major | graph | none | skos | S1a | M2 | model | broader-back-edge |
+| SKOS-06 | **Orphan concept** | minor | sparql | none | skos | S1b | M2 | model | detach-concept |
+| SKOS-07 | **Top concept with broader** | minor | sparql | none | skos | S1b | M2 | model | broader-on-top-concept |
+| SKOS-08 | **Mapping relation clash (S46)** | major | sparql | none | skos | S1b | M2 | model | exact-and-broad-match |
+| SKOS-09 | **Exact match within scheme** | minor | sparql | none | skos | S1b | M2 | model | exact-match-same-scheme |
+| SKOS-10 | **Duplicate notation** | major | sparql | none | skos | S1b | M2 | model | copy-notation |
 
 - **SKOS-01** -- A resource typed both skos:Concept and skos:ConceptScheme. *Why:* Violates SKOS integrity condition S9. *(refs: SKOS S9)*
 - **SKOS-02** -- The same literal as prefLabel and altLabel/hiddenLabel of one concept. *Why:* Violates SKOS integrity condition S13. *(refs: SKOS S13)*
@@ -333,12 +633,12 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Metadata & governance.** Ontology-level metadata, licensing, deprecation discipline.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| META-01 | **Missing ontology metadata** | minor | sparql | none | all | S1a | drop-license |
-| META-02 | **Deprecated without replacement** | minor | sparql | none | all | S1b | deprecate-without-replacement |
-| META-03 | **Deprecated entity in use** | major | sparql | none | all | S1b | use-deprecated-term |
-| META-04 | **Version IRI not advanced** | minor | diff | none | versioned | S1b | keep-version-iri |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| META-01 | **Missing ontology metadata** | minor | sparql | none | all | S1a | M1 | publish | drop-license |
+| META-02 | **Deprecated without replacement** | minor | sparql | none | all | S1b | M3 | model | deprecate-without-replacement |
+| META-03 | **Deprecated entity in use** | major | sparql | none | all | S1b | M3 | model | use-deprecated-term |
+| META-04 | **Version IRI not advanced** | minor | diff | none | versioned | S1b | M3 | publish | keep-version-iri |
 
 - **META-01** -- No title, description, creator, version info/versionIRI or license on the ontology header. *Why:* A registry cannot catalogue, cite or legally reuse an ontology without them. *(refs: OOPS P41 · params: `required=['dcterms:title', 'dcterms:license', 'owl:versionIRI']`)*
 - **META-02** -- owl:deprecated true without dcterms:isReplacedBy / IAO 'term replaced by'. *Why:* Consumers cannot migrate.
@@ -349,13 +649,13 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Individuals & instance data.** Instance-level errors that make the knowledge base inconsistent or meaningless.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| ABOX-01 | **Untyped individual** | minor | sparql | none | abox | S1b | drop-individual-type |
-| ABOX-02 | **Individual typed with undeclared class** | major | sparql | none | abox | S1b | typo-type |
-| ABOX-03 | **Individual in disjoint classes** | blocker | reasoner | none | abox | S1b | assert-individual-in-disjoint-classes |
-| ABOX-04 | **Value outside property range** | major | sparql | none | abox | S1b | wrong-datatype-value |
-| ABOX-05 | **Several values for a functional property** | major | sparql | none | abox | S1b | two-values-for-functional-property |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| ABOX-01 | **Untyped individual** | minor | sparql | none | abox | S1b | M3 | populate | drop-individual-type |
+| ABOX-02 | **Individual typed with undeclared class** | major | sparql | none | abox | S1b | M3 | populate | typo-type |
+| ABOX-03 | **Individual in disjoint classes** | blocker | reasoner | none | abox | S1b | M4 | reason | assert-individual-in-disjoint-classes |
+| ABOX-04 | **Value outside property range** | major | sparql | none | abox | S1b | M3 | populate | wrong-datatype-value |
+| ABOX-05 | **Several values for a functional property** | major | sparql | none | abox | S1b | M4 | populate | two-values-for-functional-property |
 
 - **ABOX-01** -- A named individual with no rdf:type other than owl:NamedIndividual. *Why:* Carries no meaning a reasoner or query can use.
 - **ABOX-02** -- rdf:type to an IRI not declared as a class. *Why:* Usually a typo in a class name.
@@ -367,13 +667,13 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Change & versioning.** Is this version a safe successor of the previous one?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| EVO-01 | **Entity removed without deprecation** | major | diff | none | versioned | S1b | delete-class |
-| EVO-02 | **Entailment lost** | major | diff | none | versioned | S1c | drop-subclass-axiom |
-| EVO-03 | **New cross-branch entailment** | info | diff | none | versioned | S1c | overbroad-equivalent-definition |
-| EVO-04 | **Rename without redirect** | major | diff | none | versioned | S1b | rename-iri |
-| EVO-05 | **Semantic diff summary** | info | diff | none | versioned | S1b | -- |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| EVO-01 | **Entity removed without deprecation** | major | diff | none | versioned | S1b | M3 | review | delete-class |
+| EVO-02 | **Entailment lost** | major | diff | none | versioned | S1c | M5 | review | drop-subclass-axiom |
+| EVO-03 | **New cross-branch entailment** | info | diff | none | versioned | S1c | M5 | review | overbroad-equivalent-definition |
+| EVO-04 | **Rename without redirect** | major | diff | none | versioned | S1b | M3 | review | rename-iri |
+| EVO-05 | **Semantic diff summary** | info | diff | none | versioned | S1b | M3 | review | -- |
 
 - **EVO-01** -- An entity in the baseline that is absent now and was not deprecated first. *Why:* A breaking change for every consumer that references it.
 - **EVO-02** -- Subsumptions entailed by the baseline that are no longer entailed. *Why:* Queries that used to return results stop returning them, silently.
@@ -385,11 +685,11 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Competency questions.** Does the ontology answer the questions it was built for?
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| CQ-01 | **Competency question test failure** | major | sparql | none | cq | S1b | drop-cq-required-axiom |
-| CQ-02 | **Competency question vocabulary gap** | major | lexical | llm | cq | S1b | drop-cq-term |
-| CQ-03 | **Answerable only under reasoning** | info | reasoner | none | cq | S1b | -- |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| CQ-01 | **Competency question test failure** | major | sparql | none | cq | S1b | M3 | validate | drop-cq-required-axiom |
+| CQ-02 | **Competency question vocabulary gap** | major | lexical | llm | cq | S1b | M3 | scope | drop-cq-term |
+| CQ-03 | **Answerable only under reasoning** | info | reasoner | none | cq | S1b | M4 | reason | -- |
 
 - **CQ-01** -- A CQ formalised as SPARQL ASK/SELECT (Themis-style) with an expected result that fails. *Why:* The ontology does not do what its requirements say.
 - **CQ-02** -- CQ terms with no matching label or synonym in the ontology. *Why:* The question cannot even be formalised against the vocabulary.
@@ -399,13 +699,13 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Modelling pitfalls.** Design anti-patterns that need judgement to confirm.
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| MOD-01 | **Synonyms as separate classes** | major | lexical | llm | owl | S1b | duplicate-class-with-synonym |
-| MOD-02 | **Merged concepts** | minor | lexical | llm | owl | S1b | merge-two-classes |
-| MOD-03 | **Miscellaneous class** | minor | lexical | llm | owl | S1b | add-other-class |
-| MOD-04 | **Attribute encoded in names** | info | lexical | llm | owl | S1b | encode-value-in-name |
-| MOD-05 | **Polysemous element** | minor | lexical | human | owl | S1b | -- |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| MOD-01 | **Synonyms as separate classes** | major | lexical | llm | owl | S1b | M2 | acquire | duplicate-class-with-synonym |
+| MOD-02 | **Merged concepts** | minor | lexical | llm | owl | S1b | M2 | acquire | merge-two-classes |
+| MOD-03 | **Miscellaneous class** | minor | lexical | llm | owl | S1b | M2 | acquire | add-other-class |
+| MOD-04 | **Attribute encoded in names** | info | lexical | llm | owl | S1b | M3 | acquire | encode-value-in-name |
+| MOD-05 | **Polysemous element** | minor | lexical | human | owl | S1b | M5 | review | -- |
 
 - **MOD-01** -- Classes whose labels/altLabels are synonyms or near-duplicates and that are not declared equivalent. *Why:* Two IRIs for one concept split the data between them. *(refs: OOPS P02; OOPS P30)*
 - **MOD-02** -- Class labels joining two concepts with and/or (CarsAndTrucks, TrainOrBus). *Why:* One class, two meanings; the 'and' is usually a union that should be a parent. *(refs: OOPS P07)*
@@ -417,12 +717,12 @@ OOPS! pitfalls covered: OOPS P01, OOPS P02, OOPS P03, OOPS P04, OOPS P05, OOPS P
 
 **Profile & metrics.** Measurements that plan the run and feed the policy (spectrum, size, expressivity).
 
-| id | check | sev. | method | adj. | applies | stage | mutation |
-|---|---|---|---|---|---|---|---|
-| METRIC-01 | **Spectrum position and declared-level mismatch** | major | sparql | none | all | S1a | strip-formal-axioms |
-| METRIC-02 | **Size and expressivity profile** | info | graph | none | all | S1a | -- |
-| METRIC-03 | **Disconnected components** | minor | graph | none | all | S1b | detach-subtree |
-| METRIC-04 | **Annotation and axiom richness** | info | sparql | none | all | S1b | -- |
+| id | check | sev. | method | adj. | applies | stage | mat. | SIP stage | mutation |
+|---|---|---|---|---|---|---|---|---|---|
+| METRIC-01 | **Spectrum position and declared-level mismatch** | major | sparql | none | all | S1a | M1 | validate | strip-formal-axioms |
+| METRIC-02 | **Size and expressivity profile** | info | graph | none | all | S1a | M1 | validate | -- |
+| METRIC-03 | **Disconnected components** | minor | graph | none | all | S1b | M2 | validate | detach-subtree |
+| METRIC-04 | **Annotation and axiom richness** | info | sparql | none | all | S1b | M2 | validate | -- |
 
 - **METRIC-01** -- Measured position on the vocabulary -> taxonomy -> thesaurus -> formal-ontology spectrum below the level declared by the publisher. *Why:* A submission that over-promises its formality is sent back for revision.
 - **METRIC-02** -- Counts (classes, properties, axioms by type, individuals) and DL expressivity (e.g. ALCHIQ(D)). *Why:* Feeds the planner's cost model: which reasoner, which budget.

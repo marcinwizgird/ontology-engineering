@@ -172,11 +172,11 @@ class SkosService:
         def walk(n, path):
             if n in tops:
                 out.append(list(reversed(path + [n])))
-            for b in self.broaders(n):
+            for b in sorted(self.broaders(n)):
                 if b not in path:
                     walk(b, path + [n])
         walk(c, [])
-        return out
+        return sorted(out, key=lambda p: (len(p), [str(x) for x in p]))
 
     # ------------------------------------------------------------------ #
     # labels

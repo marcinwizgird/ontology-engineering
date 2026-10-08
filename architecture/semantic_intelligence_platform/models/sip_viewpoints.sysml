@@ -172,6 +172,8 @@ package SipViewpoints {
         frame concern vocab : VocabularyManagement;
         frame concern lifecycle : EndToEndLifecycle;
         frame concern ext : Extensibility;
+        frame concern access : AccessControl;
+        frame concern usefulness : AgentUsefulness;
     }
     viewpoint def InformationViewpoint {
         doc /* How SIP stores, manipulates, manages and distributes information: the named-graph
@@ -179,6 +181,8 @@ package SipViewpoints {
         frame concern history : CompleteHistory;
         frame concern pub : ControlledPublication;
         frame concern quality : DataQuality;
+        frame concern correctness : LogicalCorrectness;
+        frame concern access : AccessControl;
     }
     viewpoint def ConcurrencyViewpoint {
         doc /* Processes, threads and their coordination: the single-writer coordinator, agent

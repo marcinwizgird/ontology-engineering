@@ -12,9 +12,10 @@ deterministic tier that runs on-premises with no API key (R1), an opt-in agentic
 | read | for |
 |---|---|
 | [SPECIFICATION.md](SPECIFICATION.md) | what OVA does: inputs, engine (reasoning, SHACL, custom checks), finding schema, policy and verdict, tool belt, trust boundary, evaluation and evolution contracts, productisation (tenancy, LLM data governance, security, licensing, API, SLOs) |
-| [CHECK_CATALOGUE.md](CHECK_CATALOGUE.md) | all 131 checks in 16 families (generated) |
+| [CHECK_CATALOGUE.md](CHECK_CATALOGUE.md) | all 131 checks in 16 families, also grouped by modelling-maturity level (M1-M5, OWL constructs simplest first) and by SIP lifecycle stage (generated) |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | reading guide to the SysML architecture: structure, behaviour, design decisions, reuse, module layout |
 | [ROADMAP.md](ROADMAP.md) | stages S1 deterministic tool → S2 evaluation datasets → S3 DSPy → S4 self-evolution, each with a measured exit guard; release train R1–R3 and the productisation track |
+| [docs/ONTOLOGY_REVIEW_AND_VALIDATION.md](docs/ONTOLOGY_REVIEW_AND_VALIDATION.md) ([HTML](docs/ONTOLOGY_REVIEW_AND_VALIDATION.html)) | business-friendly overview: validation approaches, their benefits and shortcomings, how they complement each other |
 | [models/](models) | SysML v2: `ova_requirements`, `ova_architecture`, `ova_development` |
 | [spec/check_catalogue.py](spec/check_catalogue.py) | the check catalogue as code: source of truth for S1 detectors, S2 mutation operators and S3 rulebook ids |
 

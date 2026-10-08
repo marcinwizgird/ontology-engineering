@@ -1,0 +1,4 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <https://example.org/fx#> .
+ex:AShape a sh:NodeShape ; sh:targetClass ex:A ;
+    sh:property [ sh:path ex:p ; sh:minCount 1 ] .

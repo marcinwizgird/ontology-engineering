@@ -1,0 +1,42 @@
+# Sample submission: the rail ontology with its defects fixed (expected verdict: accept).
+@prefix ex:      <https://example.org/rail#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://example.org/rail> a owl:Ontology ;
+    dcterms:title "Rail rolling stock"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionIRI <https://example.org/rail/1.0> .
+
+ex:RailVehicle a owl:Class ;
+    rdfs:label "rail vehicle"@en ;
+    skos:definition "A vehicle that runs on rails."@en .
+
+ex:Locomotive a owl:Class ;
+    rdfs:label "locomotive"@en ;
+    rdfs:subClassOf ex:RailVehicle ;
+    skos:definition "A rail vehicle that provides motive power to a train."@en .
+
+ex:Wagon a owl:Class ;
+    rdfs:label "wagon"@en ;
+    rdfs:subClassOf ex:RailVehicle ;
+    skos:definition "A rail vehicle without its own motive power that carries goods."@en .
+
+[] a owl:AllDisjointClasses ; owl:members ( ex:Locomotive ex:Wagon ) .
+
+ex:Driver a owl:Class ;
+    rdfs:label "driver"@en ;
+    skos:definition "A person qualified to operate a locomotive."@en .
+
+ex:hasDriver a owl:ObjectProperty ;
+    rdfs:label "has driver"@en ;
+    rdfs:domain ex:Locomotive ;
+    rdfs:range ex:Driver .
+
+ex:axleCount a owl:DatatypeProperty ;
+    rdfs:label "axle count"@en ;
+    rdfs:domain ex:RailVehicle ;
+    rdfs:range xsd:integer .

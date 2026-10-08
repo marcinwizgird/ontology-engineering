@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ontology Review</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">◇</span>
+      <div>
+        <div class="brand-title">Ontology Review</div>
+        <div class="brand-sub" id="brand-sub">Ontology Validation Agent · S1a</div>
+      </div>
+    </div>
+    <div class="run" id="run-bar" hidden>
+      <span class="source" id="run-source"></span>
+      <span class="pill" id="run-verdict"></span>
+      <label class="policy-switch">Policy
+        <select id="run-policy"></select>
+      </label>
+      <a class="btn ghost" id="dl-md" href="#" download>Report .md</a>
+      <a class="btn ghost" id="dl-json" href="#" download>Report .json</a>
+      <button class="btn ghost" id="new-review">New review</button>
+    </div>
+  </header>
+
+  <main id="intake" class="intake" hidden>
+    <section class="intake-card">
+      <h1>Start a review</h1>
+      <p class="lede">Submit an ontology. The automated layers run first (structure, reasoning,
+        SHACL, custom checks); then you triage, review as an expert and sign off the verdict.
+        At every step the Ontology Review Assistant answers questions about what you see.</p>
+      <form id="intake-form">
+        <div class="field">
+          <label for="f-file">Ontology file</label>
+          <input id="f-file" name="file" type="file" accept=".ttl,.owl,.rdf,.xml,.nt,.jsonld,.json,.n3,.trig">
+          <small>Turtle, RDF/XML, N-Triples or JSON-LD. Imports are not fetched.</small>
+        </div>
+        <div class="field">
+          <label for="f-shapes">SHACL shapes <span class="opt">optional</span></label>
+          <input id="f-shapes" name="shapes" type="file" accept=".ttl,.rdf,.xml,.jsonld">
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="f-level">Declared level</label>
+            <select id="f-level" name="declared_level"><option value="">not declared</option></select>
+          </div>
+          <div class="field">
+            <label for="f-policy">Policy</label>
+            <select id="f-policy" name="policy"></select>
+          </div>
+        </div>
+        <button class="btn primary" type="submit" id="f-submit">Run validation</button>
+        <span class="form-msg" id="f-msg" role="status"></span>
+      </form>
+      <h2>Or open a sample</h2>
+      <div class="samples" id="samples"></div>
+    </section>
+  </main>
+
+  <div id="workspace" class="workspace" hidden>
+    <nav class="stepper" aria-label="Review steps">
+      <ol id="steps"></ol>
+      <div class="assist-status" id="assist-status"></div>
+    </nav>
+
+    <section class="stage" aria-live="polite">
+      <div id="stage"></div>
+      <footer class="stage-foot">
+        <button class="btn ghost" id="prev">← Previous</button>
+        <div class="signoff" id="signoff"></div>
+        <button class="btn primary" id="next">Next →</button>
+      </footer>
+    </section>
+
+    <aside class="assistant" aria-label="Ontology Review Assistant">
+      <div class="assistant-head">
+        <div>
+          <div class="assistant-title">Review Assistant</div>
+          <div class="assistant-sub" id="assistant-sub"></div>
+        </div>
+        <span class="mode" id="assistant-mode"></span>
+      </div>
+      <div class="transcript" id="transcript"></div>
+      <div class="chips" id="chips"></div>
+      <form class="composer" id="composer">
+        <div class="context-pill" id="context-pill" hidden>
+          <span id="context-text"></span><button type="button" id="context-clear" aria-label="Clear">×</button>
+        </div>
+        <textarea id="question" rows="2" placeholder="Ask about this step…"></textarea>
+        <button class="btn primary" type="submit" id="ask">Ask</button>
+      </form>
+    </aside>
+  </div>
+
+  <dialog id="entity-dialog">
+    <div class="dialog-head"><h3 id="entity-title"></h3><button class="btn ghost" id="entity-close">Close</button></div>
+    <div id="entity-body"></div>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
