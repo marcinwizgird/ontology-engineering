@@ -8,6 +8,7 @@ reasoner, and problem sets that become evaluation datasets.
 | item | what it is |
 |---|---|
 | [`oe-course/`](oe-course/README.md) | A practice-first graduate course on Keet, *An Introduction to Ontology Engineering* (2nd ed.): executable chapter notebooks, an engine per chapter, and an agentic problem set per chapter (LangChain/LangGraph, MDP formulation, DSPy GEPA). Runs offline. |
+| [`oe-agentic-course/`](oe-agentic-course/README.md) | The **agentic track**: the original course's notebooks and problem sets, ported so the code grows incrementally. `agentlab` gains only what each chapter needs (the original `oe_course` modules, split by first use), each chapter opens by reading that code, and problem-set parts move to the chapter that teaches their layer (GEPA ch2, agents ch3, judge ch5, MDP ch6, skills ch10). Chapters 1-3 ported (Ch 3 verified offline; its live record run is pending); 4-10 planned. |
 | `oe-course.zip` | Archived snapshot of the course. |
 
 Source texts (Keet's book, requirements reports, specifications) are in

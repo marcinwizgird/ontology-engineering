@@ -126,6 +126,13 @@ package SipFunctional {
         @Provenance { sourceTool = "SemanticTurkey+Protege+new"; sourceArtefact = "SVC/ICV.java; MetricsPanel; CQ suite"; }
         port reads : ~QuadReadPort;
     }
+    part def ScopeService {
+        doc /* Stage 1 (scope/orsd.py): the NeOn ORSD as RDF in the metadata graph, reuse
+             * candidates as void:Dataset, the pre-glossary next to the CQs, the scope exit
+             * criteria, and the ORSD document export. */
+        @Provenance { sourceTool = "SemanticTurkey+new"; sourceArtefact = "MetadataRegistry DatasetMetadata; NeOn ORSD"; }
+        port reads : ~QuadReadPort;
+    }
     part def SearchService {
         @Provenance { sourceTool = "SemanticTurkey+Protege"; sourceArtefact = "Search.searchResource; OWLEntityFinder"; }
         port reads : ~QuadReadPort;
@@ -164,12 +171,13 @@ package SipFunctional {
         port tools : ~OperationCallPort;
         port model : ~ModelCallPort;
     }
-    part def RequirementsAgent :> SpecialistAgent { doc /* scope: CQs + SPARQL tests */ }
+    part def RequirementsAgent :> SpecialistAgent { doc /* scope: ORSD fields, reuse, glossary, CQs + SPARQL tests */ }
     part def ExtractionAgent :> SpecialistAgent { doc /* acquire: grounded candidates */ }
     part def ModelingCopilot :> SpecialistAgent { doc /* model: Manchester axioms, reasoner critic */ }
     part def VocabularyAgent :> SpecialistAgent { doc /* model: missing labels */ }
     part def AlignmentAgent :> SpecialistAgent { doc /* model: correspondences */ }
     part def QualityAgent :> SpecialistAgent { doc /* validate: fixes, repairs */ }
+    part def SemanticCriticAgent :> SpecialistAgent { doc /* validate: calibrated, advisory "is this axiom true?" verdicts; writes nothing */ }
     part def StewardAgent :> SpecialistAgent { doc /* review: summaries, never decides */ }
     part def KnowledgeGraphBuilder :> SpecialistAgent { doc /* populate: mapping, lifting, sameAs */ }
     part def AssistantAgent :> SpecialistAgent { doc /* consume: grounded Q&A */ }
@@ -197,6 +205,7 @@ package SipFunctional {
         part vocabulary : VocabularyManager;
         part reasoning : ReasoningService;
         part quality : QualityService;
+        part scope : ScopeService;
         part search : SearchService;
         part alignment : AlignmentService;
         part io : IoPipeline;
@@ -211,6 +220,7 @@ package SipFunctional {
         part vocabularyAgent : VocabularyAgent;
         part alignmentAgent : AlignmentAgent;
         part qualityAgent : QualityAgent;
+        part semanticCritic : SemanticCriticAgent;
         part stewardAgent : StewardAgent;
         part kgBuilder : KnowledgeGraphBuilder;
         part assistant : AssistantAgent;
@@ -225,6 +235,7 @@ package SipFunctional {
         interface vocabularyReads : QuadRead connect vocabulary.reads to store.read;
         interface reasoningReads : QuadRead connect reasoning.reads to store.read;
         interface qualityReads : QuadRead connect quality.reads to store.read;
+        interface scopeReads : QuadRead connect scope.reads to store.read;
         interface searchReads : QuadRead connect search.reads to store.read;
         interface alignmentReads : QuadRead connect alignment.reads to store.read;
         // guarantee 2: agents reach the platform only through guarded operations
@@ -234,6 +245,7 @@ package SipFunctional {
         interface vocabularyTools : OperationCall connect vocabularyAgent.tools to registry.calls;
         interface alignmentTools : OperationCall connect alignmentAgent.tools to registry.calls;
         interface qualityTools : OperationCall connect qualityAgent.tools to registry.calls;
+        interface semanticCriticTools : OperationCall connect semanticCritic.tools to registry.calls;
         interface stewardTools : OperationCall connect stewardAgent.tools to registry.calls;
         interface kgTools : OperationCall connect kgBuilder.tools to registry.calls;
         interface assistantTools : OperationCall connect assistant.tools to registry.calls;
@@ -244,6 +256,7 @@ package SipFunctional {
         interface vocabularyModel : ModelCall connect vocabularyAgent.model to gateway.serve;
         interface alignmentModel : ModelCall connect alignmentAgent.model to gateway.serve;
         interface qualityModel : ModelCall connect qualityAgent.model to gateway.serve;
+        interface semanticCriticModel : ModelCall connect semanticCritic.model to gateway.serve;
         interface stewardModel : ModelCall connect stewardAgent.model to gateway.serve;
         interface kgModel : ModelCall connect kgBuilder.model to gateway.serve;
         interface assistantModel : ModelCall connect assistant.model to gateway.serve;
@@ -253,6 +266,10 @@ package SipFunctional {
         // ---------------- functional requirements ---------------- //
         satisfy requirement : LifecycleOrchestration by sip.conductor;
         satisfy requirement : CompetencyQuestionTests by sip.quality;
+        satisfy requirement : RequirementsSpecification by sip.scope;
+        satisfy requirement : ReuseCandidates by sip.scope;
+        satisfy requirement : ScopeExitCriteria by sip.scope;
+        satisfy requirement : ProjectTemplates by sip.governance;
         satisfy requirement : StageAssistance by sip.runtime;
         satisfy requirement : ProposalsViaStaging by sip.tracker;
         satisfy requirement : GroundedExtraction by sip.extractionAgent;
@@ -278,6 +295,8 @@ package SipFunctional {
         satisfy requirement : Explanation by sip.reasoning;
         satisfy requirement : IntegrityChecks by sip.quality;
         satisfy requirement : ReleaseGate by sip.quality;
+        satisfy requirement : DiscriminatingCompetencyQuestions by sip.quality;
+        satisfy requirement : SemanticAxiomVerification by sip.semanticCritic;
         satisfy requirement : SourceIngestion by sip.io;
         satisfy requirement : TabularLifting by sip.kg;
         satisfy requirement : EntityResolution by sip.kg;

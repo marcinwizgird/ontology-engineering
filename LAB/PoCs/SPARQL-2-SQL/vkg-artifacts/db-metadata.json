@@ -1,0 +1,419 @@
+{
+  "relations" : [ {
+    "uniqueConstraints" : [ {
+      "name" : "HOLDING_pkey",
+      "determinants" : [ "\"HOLDING_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "HOLDING_ACC_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"HOLDING\"" ],
+        "columns" : [ "\"ACC_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"ACCOUNT\"" ],
+        "columns" : [ "\"ACC_ID\"" ]
+      }
+    }, {
+      "name" : "HOLDING_SEC_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"HOLDING\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"SECURITY\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"HOLDING_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"ACC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"SEC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"QUANTITY\"",
+      "isNullable" : true,
+      "datatype" : "numeric(18, 4)"
+    }, {
+      "name" : "\"PURCHASE_PRICE\"",
+      "isNullable" : true,
+      "datatype" : "numeric(18, 4)"
+    }, {
+      "name" : "\"VALUATION_DATE\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"HOLDING\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "SECURITY_pkey",
+      "determinants" : [ "\"SEC_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "SECURITY_ISSUER_COMP_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"SECURITY\"" ],
+        "columns" : [ "\"ISSUER_COMP_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"COMPANY\"" ],
+        "columns" : [ "\"COMP_ID\"" ]
+      }
+    }, {
+      "name" : "SECURITY_EXCH_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"SECURITY\"" ],
+        "columns" : [ "\"EXCH_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"EXCHANGE\"" ],
+        "columns" : [ "\"EXCH_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"SEC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"ISSUER_COMP_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"EXCH_ID\"",
+      "isNullable" : true,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"SYMBOL\"",
+      "isNullable" : true,
+      "datatype" : "varchar(12)"
+    }, {
+      "name" : "\"SEC_NAME\"",
+      "isNullable" : true,
+      "datatype" : "varchar(200)"
+    }, {
+      "name" : "\"SEC_TYPE\"",
+      "isNullable" : false,
+      "datatype" : "varchar(5)"
+    }, {
+      "name" : "\"LAST_PRICE\"",
+      "isNullable" : true,
+      "datatype" : "numeric(18, 4)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"SECURITY\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "COMPANY_pkey",
+      "determinants" : [ "\"COMP_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"COMP_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"COMP_NAME\"",
+      "isNullable" : false,
+      "datatype" : "varchar(200)"
+    }, {
+      "name" : "\"CIK_CODE\"",
+      "isNullable" : true,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"SIC_CODE\"",
+      "isNullable" : true,
+      "datatype" : "varchar(4)"
+    }, {
+      "name" : "\"COUNTRY_INC\"",
+      "isNullable" : true,
+      "datatype" : "varchar(2)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"COMPANY\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "EXCHANGE_pkey",
+      "determinants" : [ "\"EXCH_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"EXCH_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"EXCH_SYMBOL\"",
+      "isNullable" : false,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"EXCH_NAME\"",
+      "isNullable" : true,
+      "datatype" : "varchar(100)"
+    }, {
+      "name" : "\"COUNTRY\"",
+      "isNullable" : true,
+      "datatype" : "varchar(2)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"EXCHANGE\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "FIN_REPORT_pkey",
+      "determinants" : [ "\"REPORT_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "FIN_REPORT_COMP_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"FIN_REPORT\"" ],
+        "columns" : [ "\"COMP_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"COMPANY\"" ],
+        "columns" : [ "\"COMP_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"REPORT_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"COMP_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"FISCAL_YEAR\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"FISCAL_PERIOD\"",
+      "isNullable" : true,
+      "datatype" : "varchar(3)"
+    }, {
+      "name" : "\"REVENUE_USD\"",
+      "isNullable" : true,
+      "datatype" : "numeric(20, 2)"
+    }, {
+      "name" : "\"NET_INCOME_USD\"",
+      "isNullable" : true,
+      "datatype" : "numeric(20, 2)"
+    }, {
+      "name" : "\"TOTAL_ASSETS_USD\"",
+      "isNullable" : true,
+      "datatype" : "numeric(20, 2)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"FIN_REPORT\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "STOCK_pkey",
+      "determinants" : [ "\"SEC_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "STOCK_SEC_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"STOCK\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"SECURITY\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"SEC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"SHARES_OUTSTANDING\"",
+      "isNullable" : true,
+      "datatype" : "int8"
+    }, {
+      "name" : "\"DIVIDEND_YIELD\"",
+      "isNullable" : true,
+      "datatype" : "numeric(9, 4)"
+    }, {
+      "name" : "\"PE_RATIO\"",
+      "isNullable" : true,
+      "datatype" : "numeric(9, 2)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"STOCK\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "BOND_pkey",
+      "determinants" : [ "\"SEC_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "BOND_SEC_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"BOND\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"SECURITY\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"SEC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"COUPON_RATE\"",
+      "isNullable" : true,
+      "datatype" : "numeric(9, 4)"
+    }, {
+      "name" : "\"MATURITY_DATE\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    }, {
+      "name" : "\"CREDIT_RATING\"",
+      "isNullable" : true,
+      "datatype" : "varchar(5)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"BOND\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "ACCOUNT_pkey",
+      "determinants" : [ "\"ACC_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "ACCOUNT_CUST_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"ACCOUNT\"" ],
+        "columns" : [ "\"CUST_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"CUSTOMER\"" ],
+        "columns" : [ "\"CUST_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"ACC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"CUST_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"ACC_NUMBER\"",
+      "isNullable" : false,
+      "datatype" : "varchar(20)"
+    }, {
+      "name" : "\"ACC_STATUS\"",
+      "isNullable" : true,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"CURRENCY\"",
+      "isNullable" : true,
+      "datatype" : "varchar(3)"
+    }, {
+      "name" : "\"CASH_BALANCE\"",
+      "isNullable" : true,
+      "datatype" : "numeric(18, 2)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"ACCOUNT\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "CUSTOMER_pkey",
+      "determinants" : [ "\"CUST_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"CUST_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"FULL_NAME\"",
+      "isNullable" : false,
+      "datatype" : "varchar(200)"
+    }, {
+      "name" : "\"CUST_TYPE\"",
+      "isNullable" : false,
+      "datatype" : "varchar(6)"
+    }, {
+      "name" : "\"TAX_ID\"",
+      "isNullable" : true,
+      "datatype" : "varchar(20)"
+    }, {
+      "name" : "\"DOMICILE\"",
+      "isNullable" : true,
+      "datatype" : "varchar(2)"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"CUSTOMER\"" ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "TRADE_ORDER_pkey",
+      "determinants" : [ "\"ORDER_ID\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "TRADE_ORDER_ACC_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"TRADE_ORDER\"" ],
+        "columns" : [ "\"ACC_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"ACCOUNT\"" ],
+        "columns" : [ "\"ACC_ID\"" ]
+      }
+    }, {
+      "name" : "TRADE_ORDER_SEC_ID_fkey",
+      "from" : {
+        "relation" : [ "\"PUBLIC\"", "\"TRADE_ORDER\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"PUBLIC\"", "\"SECURITY\"" ],
+        "columns" : [ "\"SEC_ID\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"ORDER_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"ACC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"SEC_ID\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    }, {
+      "name" : "\"ORDER_TYPE\"",
+      "isNullable" : false,
+      "datatype" : "varchar(4)"
+    }, {
+      "name" : "\"ORDER_QTY\"",
+      "isNullable" : true,
+      "datatype" : "numeric(18, 4)"
+    }, {
+      "name" : "\"LIMIT_PRICE\"",
+      "isNullable" : true,
+      "datatype" : "numeric(18, 4)"
+    }, {
+      "name" : "\"TRADE_DATE\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    } ],
+    "name" : [ "\"PUBLIC\"", "\"TRADE_ORDER\"" ]
+  } ],
+  "metadata" : {
+    "dbmsProductName" : "PostgreSQL",
+    "dbmsVersion" : "16.15",
+    "driverName" : "PostgreSQL JDBC Driver",
+    "driverVersion" : "42.7.4",
+    "quotationString" : "\"",
+    "extractionTime" : "2026-10-14T17:02:40",
+    "idFactoryType" : "POSTGRESQL"
+  }
+}

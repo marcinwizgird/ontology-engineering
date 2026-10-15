@@ -1,0 +1,21 @@
+# Demo overlay: adds the stakeholder sandbox (Streamlit + embedded DuckDB) and an `edge`
+# network so a browser can reach it. The compiler joins `edge` only to be callable from the
+# sandbox; the Ontop sidecar stays on the internal network.
+#   docker compose -f docker-compose.yml -f docker-compose.demo.yml up -d --build
+#   open http://localhost:8501   (compiler API: http://localhost:8000/docs)
+networks:
+  edge: {}
+
+services:
+  sparql2sql-service:
+    networks: [compile-net, edge]
+    ports: ["8000:8000"]
+
+  demo-sandbox:
+    build: ./demo-sandbox
+    image: fibo-demo-sandbox
+    environment:
+      COMPILER_URL: http://sparql2sql-service:8000
+    depends_on: [sparql2sql-service]
+    networks: [edge]
+    ports: ["8501:8501"]

@@ -30,7 +30,7 @@ from ..core.principal import Principal
 from .capabilities import CapabilitySet, Decision, parse_capability, role_grants
 
 __all__ = ["ModelType", "Lexicalization", "AccessLevel", "LockLevel", "ProjectACL",
-           "AiPolicy", "ProjectConfig", "Binding", "Group", "Registry",
+           "AiPolicy", "ProjectConfig", "ProjectTemplate", "Binding", "Group", "Registry",
            "PolicyDecisionPoint", "AuthorizationError"]
 
 
@@ -130,6 +130,26 @@ class ProjectConfig:
 
 
 @dataclass
+class ProjectTemplate:
+    """A named starting point for new projects (VocBench ``ProjectTemplates``).
+
+    Besides the creation settings VocBench stores, a SIP template can carry a scope
+    skeleton: ORSD fields (typically the non-functional requirements an organisation
+    always has) and reuse candidates (e.g. FIBO for a finance project). A project
+    created from the template starts its scope stage with them already in place.
+    """
+
+    name: str
+    model: str = "owl"
+    lexicalization: str = "rdfs"
+    languages: tuple[str, ...] = ("en",)
+    validation: bool = False
+    description: str = ""
+    specification: dict = field(default_factory=dict)
+    reuse: list[dict] = field(default_factory=list)
+
+
+@dataclass
 class Binding:
     """``ProjectUserBinding`` — roles, group, languages for (principal, project)."""
 
@@ -164,6 +184,7 @@ class Registry:
         self.groups: dict[str, Group] = {}
         self.custom_roles: dict[str, tuple[str, ...]] = {}
         self.superusers: set[str] = set()
+        self.templates: dict[str, ProjectTemplate] = {}
 
     # -- principals ------------------------------------------------------- #
     def add_principal(self, p: Principal, *, superuser: bool = False) -> Principal:

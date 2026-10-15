@@ -139,12 +139,12 @@ Scenarios are what the views are evaluated against. S1 runs as the demo
 
 | # | Scenario | Exercises |
 |---|---|---|
-| **S1** | *Brief + documents + a table → released graph.* A PM enables agents. RequirementsAgent writes 3 CQs with SPARQL tests. ExtractionAgent proposes 14 grounded candidates (classes, taxonomy, properties), each with a verbatim quote and offsets. ModelingCopilot proposes `'has wheel' some wheel` etc., quoting the sentence it rests on. Each proposal passes the reasoner critic. VocabularyAgent fills French labels. StewardAgent summarises 26 pending commits and the validator accepts them. KG builder lifts the CSV: 4 manufacturers, one bad integer rejected with a warning, `owl:sameAs` proposed for *Volvo Cars* ≈ *Volvo Car Corporation*. Classification runs. **The release gate fails on `cq_Manufacturer_Country`**, which no source supports, and Q&A answers cite rows. | Every stage, both gates, CQs, critics, staging, evidence, metrics |
+| **S1** | *Brief + documents + a table → released graph.* A PM enables agents. RequirementsAgent drafts the requirements specification (ORSD) from the brief: purpose, scope, intended user and use, a non-functional requirement, schema.org as a reuse candidate, a pre-glossary and 3 prioritised CQs with SPARQL tests, every item quoting the brief. The scope exit criteria pass on the staged view. ExtractionAgent proposes 14 grounded candidates (classes, taxonomy, properties), each with a verbatim quote and offsets. ModelingCopilot proposes `'has wheel' some wheel` etc., quoting the sentence it rests on. Each proposal passes the reasoner critic. VocabularyAgent fills French labels. StewardAgent summarises 33 pending commits and the validator accepts them. KG builder lifts the CSV: 4 manufacturers, one bad integer rejected with a warning, `owl:sameAs` proposed for *Volvo Cars* ≈ *Volvo Car Corporation*. Classification runs. **The release gate fails on `cq_Manufacturer_Country`**, which no source supports, and Q&A answers cite rows. | Every stage, both gates, CQs, critics, staging, evidence, metrics |
 | S2 | *Thesaurus team, French only.* A lexicographer bound with `languages=[fr]` edits a French prefLabel (allowed) and an English one (denied by the PDP). Setting a new prefLabel demotes the old one to altLabel. | PDP language rule, SKOS label rules |
 | S3 | *Align the org ontology to FIBO.* AlignmentAgent runs lexical matching. Cells ≥ 0.95 are auto-accepted; the model adjudicates borderline ones. Accepted cells become `skos:exactMatch` / `owl:equivalentClass` in the **mappings** graph, which needs `rdf(resource, alignment)`. | Alignment, project-scoped graphs |
 | S4 | *A modeller adds `Triffid ⊑ Plant` while `Animal ⊓ Plant ⊑ ⊥` holds.* The copilot's critic refuses that very proposal ("would make unsatisfiable: Triffid"). Made by a human, it lands. QualityAgent then explains it (one justification, 4 axioms) and proposes removing the class's own assertion. | Reasoner critic, explanation, repair |
 | S5 | *An agent goes wrong* (bad prompt, model drift). Every write it made is staged and attributed. The operator stops the run, rejects its commits by `evidence.run`, and disables the agent in the AI policy. **Nothing to roll back.** | Kill switch, staging, operational viewpoint |
-| S6 | *LLM provider outage.* Agents degrade (`status=degraded`, no proposals). All 66 operations remain usable by humans. | QR-AVL-02 |
+| S6 | *LLM provider outage.* Agents degrade (`status=degraded`, no proposals). All 77 operations remain usable by humans. | QR-AVL-02 |
 | S7 | *Restore after corruption.* The Fuseki backup is restored. History and content come back together because they are one dataset written in one transaction per commit. | QR-AVL-01, P1, P3 |
 | S8 | *Migrate a VocBench project.* Content and history graphs are imported unchanged (the CHANGELOG terms are identical) and roles map 1:1 (the same nine roles). | QR-EVO-02 |
 
@@ -192,7 +192,7 @@ Decisions visible in this view:
 
 *Viewpoint:* `FunctionalViewpoint`. *Model:* `models/sip_functional.sysml`: 18
 functional element defs, an abstract `SpecialistAgent` with 9 specialisations, 7 port
-defs, 6 interface defs, the `SipSystem` white box with 30 connections, and 52 `satisfy`
+defs, 6 interface defs, the `SipSystem` white box with 31 connections, and 56 `satisfy`
 relations.
 
 ### 6.1 Elements
@@ -200,7 +200,7 @@ relations.
 | Element | Responsibility | Python | Reverse-engineered from |
 |---|---|---|---|
 | ApiEdge | REST, discovery, agent endpoints | `api/app.py` | — |
-| **OperationRegistry** | 66 typed operations; `call()` authorises, executes, commits | `platform.py` | ST `@STServiceOperation` + `@PreAuthorize` |
+| **OperationRegistry** | 77 typed operations; `call()` authorises, executes, commits | `platform.py` | ST `@STServiceOperation` + `@PreAuthorize` |
 | **PolicyDecisionPoint** | CRUDV algebra + `isAuthorized` order of checks | `governance/capabilities.py`, `registry.py` | `STAuthorizationEvaluator`, `roles/*.pl`, `AuthorizationEvaluator.ts` |
 | GovernanceRegistry | principals, projects, ACL, bindings, groups, settings, URI generators, AI policy | `governance/` | `ProjectManager`, `STPropertiesManager`, `NativeTemplateBasedURIGenerator` |
 | **ChangeTracker** | the one write path; commits, staging, accept/reject, undo/redo | `core/changes.py` | `ChangeTrackerConnection`, `HistoryManagerImpl` |
@@ -209,6 +209,7 @@ relations.
 | VocabularyManager | SKOS + SKOS-XL | `skos/` | `SVC/SKOS.java`, `SVC/SKOSXL.java` |
 | ReasoningService | backends, derived status, inferred hierarchy, justifications | `reasoning/` | `OWLReasonerManagerImpl`, owlexplanation |
 | QualityService | ICV, metrics, CQ tests, release gate | `quality/` | `SVC/ICV.java`, `MetricsPanel` |
+| ScopeService | requirements specification (NeOn ORSD), reuse candidates, pre-glossary, scope exit criteria, ORSD export | `scope/` | ST `MetadataRegistry` (`DatasetMetadata`) for reuse candidates; the rest is new |
 | Search / Alignment / IoPipeline / KgConstruction | as named | `search/`, `alignment/`, `io/`, `kg/` | ST Search, Alignment, InputOutput/Export, Sheet2RDF |
 | LlmGateway | Claude or deterministic simulators, one JSON-schema contract | `agents/llm.py`, `simulators.py` | — |
 | AgentRuntime, LifecycleConductor, 9 SpecialistAgents | runs, budgets, kill switch, metrics; stage plan; per-stage assistance | `agents/` | — |
@@ -276,12 +277,13 @@ flowchart LR
 
 | Agent | Stage | Model task (schema) | Critic | Writes |
 |---|---|---|---|---|
-| RequirementsAgent | scope | `requirements.cqs` | SPARQL parses; expectation well-formed; quote verbatim from the brief | CQs (cq graph) |
+| RequirementsAgent | scope | `requirements.cqs` | every ORSD item, reuse candidate and CQ quotes the brief verbatim; glossary terms occur in the brief; reuse mode and IRI valid; SPARQL parses; expectation and priority well-formed | ORSD fields, reuse candidates (metadata graph); glossary, CQs (cq graph) |
 | ExtractionAgent | acquire | `extraction.candidates` | quote verbatim in the source (offsets recorded); names known; xsd ranges | classes, taxonomy, properties |
 | ModelingCopilot | model | `modeling.axioms` | Manchester parses; **classify before/after: no new inconsistency or unsatisfiable class**; quote verbatim | axioms |
 | VocabularyAgent | model | `vocabulary.labels` | language is missing *and* a project language; trimmed | labels |
 | AlignmentAgent | model | `alignment.adjudicate` (borderline cells only) | relation × role table (ST); nothing accepted → no proposal | mappings graph |
 | QualityAgent | validate | `quality.repair` | the axiom proposed for removal belongs to a justification | ICV fixes (per-fix capability), repairs |
+| SemanticCriticAgent | validate | `semantic.verify` | verdicts only for known (opaque) ids; seeded wrong axioms mixed in, so every run reports its own precision and recall; advisory, never blocks | nothing |
 | StewardAgent | review | `steward.summaries` | risk and recommendation are **computed**, not generated | nothing |
 | KnowledgeGraphBuilder | populate | `kg.mapping` | `TableMapping.validate` against the ontology; lexical validation of values | individuals, `owl:sameAs` |
 | AssistantAgent | consume | `assistant.sparql` | the answer is filled from query rows only (cited) | nothing |
@@ -317,9 +319,10 @@ Per project `p`, the graph IRI is `urn:sip:p:{p}:{role}`. The single source of t
 | `imports:{sha1}` | materialised imports | `replace_derived` | derived |
 | `inferred` | closure minus asserted | `replace_derived` after classification | derived |
 | `mappings` | accepted alignment cells | `alignment.apply` (commit) | content |
-| `cq` | competency questions + SPARQL tests | `quality.addCompetencyQuestion` (commit) | content |
+| `cq` | competency questions + SPARQL tests + priorities; the pre-glossary | `quality.addCompetencyQuestion`, `scope.addGlossaryTerms` (commit) | content |
+| `metadata` | the requirements specification (`urn:sip:p:{p}:orsd`), reuse candidates (`void:Dataset`) | `scope.setSpecification`, `scope.addReuseCandidate` (commit) | content |
 | `history` | `cl:Commit` records | in the **same `apply`** as content | system |
-| `shapes`, `metadata`, `evidence` | reserved (SHACL, DCAT/VoID, long evidence) | — | — |
+| `shapes`, `evidence` | reserved (SHACL, long evidence) | — | — |
 
 The TBox (`main`) and the ABox (`kg`) are separate content graphs. A KG population run
 cannot touch an axiom, and a reasoner can be pointed at either.
@@ -400,12 +403,13 @@ semantic_intelligence/
 ├─ skos/          L2  skos
 ├─ reasoning/     L2  reasoner · explanation
 ├─ quality/       L2  icv · metrics · cq
+├─ scope/         L2  orsd (requirements specification, reuse, glossary, exit criteria)
 ├─ search/ alignment/ io/ kg/   L2
-├─ platform.py    L3  operation registry (66 operations)
+├─ platform.py    L3  operation registry (77 operations)
 ├─ agents/        L4  llm · base · specialists · simulators · orchestrator
 ├─ api/           L5  FastAPI app
 ├─ demo.py        L5  the S1 scenario
-└─ tests/         L6  74 tests: core/governance · OWL · VocBench · platform/agents/API · architecture · FIBO corpus
+└─ tests/         L6  91 tests: core/governance · OWL · VocBench · platform/agents/API · scope · validate semantics · architecture · FIBO corpus
 ```
 
 * **Layering rule.** A module may import only modules of its own layer or a lower one,
@@ -517,7 +521,7 @@ strong, ◐ some, ○ little).
 data leaving to the LLM provider; audit.
 
 **Tactics and evidence:**
-* **Declarative authorization** (ST `@PreAuthorize` made data). All 66 operations carry
+* **Declarative authorization** (ST `@PreAuthorize` made data). All 77 operations carry
   a capability.
   - `quality.applyFix` additionally checks the fix's *own* capability, exactly as ST
     guards each fix separately.
@@ -665,8 +669,8 @@ about usefulness. The harness exists (`AgentRuntime.metrics`).
 | Read-view cache | every call materialises the project view | cache keyed by tracker revision; incremental index updates from events (Protégé's listener model) |
 | Live Fuseki run | only the in-memory store is exercised by tests; `FusekiStore` is unit-tested at the update-text level | run S1 against `infra/fuseki`; measure QR-PRF-01 |
 | Live-model evaluation | simulators prove mechanism, not quality | run S1 with `SIP_MODEL=claude-opus-5-5` on real documents; record acceptance and critic-rejection rates (this is billed, so it needs explicit approval) |
-| React workbench | QR-USA-01, QR-ACC-01 | generate the TS client from `/openapi.json`; perspectives by stage |
-| Not yet ported | OntoLex (46 ops), custom forms/PEARL (30), metadata registry (53), collaboration (15), SHACL shapes editing, OBO/OWL-XML formats | in that order of value; SHACL via pySHACL first |
+| React workbench | QR-USA-01, QR-ACC-01 | a static workbench page (`api/workbench.html`, served at `/ui`) covers the scope perspective today; next: the other stage perspectives, then a React client generated from `/openapi.json` |
+| Not yet ported | OntoLex (46 ops), custom forms/PEARL (30), metadata registry (53; reuse-candidate descriptions ported for scope), collaboration (15), SHACL shapes editing, OBO/OWL-XML formats | in that order of value; SHACL via pySHACL first |
 | DL reasoning | RL is incomplete for OWL 2 DL | HermiT backend activates with a JVM; differential testing per `capabilities/architecture/ontology_builder/spike_reasoners` |
 | Remaining FIBO 0.4% | Commons terms undeclared locally | load OMG Commons as an import graph |
 
@@ -675,9 +679,9 @@ about usefulness. The harness exists (`AgentRuntime.metrics`).
 ## 15. Traceability
 
 * **Requirements → elements → verification:**
-  [`generated/TRACEABILITY.md`](generated/TRACEABILITY.md). It has 52 requirements (33
+  [`generated/TRACEABILITY.md`](generated/TRACEABILITY.md). It has 56 requirements (37
   functional, 19 quality), each satisfied by a white-box element and verified by one of
-  18 verification cases; 17 of those name executable tests.
+  19 verification cases; 18 of those name executable tests.
 * **Java → Python:** [`REVERSE_ENGINEERING.md`](REVERSE_ENGINEERING.md) §3.
 * **Diagrams:** [`generated/diagrams/`](generated/diagrams/), 11 Mermaid diagrams
   regenerated from the models by `sysml_check.py --write`. The hand-drawn diagrams in

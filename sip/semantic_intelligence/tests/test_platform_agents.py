@@ -134,7 +134,7 @@ def test_enable_agents_requires_rbac(P):
     with pytest.raises(AuthorizationError):
         C.enable_agents("t", "ann")                                # ontologist lacks rbac C
     ids = C.enable_agents("t", "pat")
-    assert len(ids) == 9 and all(P.registry.principal(i).on_behalf_of == "pat" for i in ids)
+    assert len(ids) == 10 and all(P.registry.principal(i).on_behalf_of == "pat" for i in ids)
 
 
 def test_end_to_end_demo():
@@ -168,6 +168,29 @@ def test_api(P):
     assert client.post("/projects/t/ops/nope", json={}, headers=h).status_code == 404
     assert client.get("/operations").json()[0]["name"]
     assert client.post("/projects/t/agents/enable", headers={"X-SIP-Principal": "pat"}).status_code == 200
+
+
+def test_workbench_and_its_endpoints(P):
+    """The workbench page is served, and the endpoints it relies on enforce the PDP."""
+    client = TestClient(create_app(P))
+    r = client.get("/", follow_redirects=False)
+    assert r.status_code == 307 and r.headers["location"] == "/ui"
+    page = client.get("/ui")
+    assert page.status_code == 200 and "SIP Workbench" in page.text
+    admin, ann = {"X-SIP-Principal": "admin"}, {"X-SIP-Principal": "ann"}
+    assert client.post("/principals", json={"id": "kim"}, headers=ann).status_code == 403
+    assert client.post("/principals", json={"id": "kim"}, headers=admin).status_code == 200
+    assert client.post("/principals", json={"id": "kim"}, headers=admin).status_code == 422
+    assert "kim" in [p["id"] for p in client.get("/principals", headers=ann).json()]
+    members = client.get("/projects/t/members", headers=ann).json()
+    assert {"principal": "ann", "roles": ["ontologist"], "languages": []} in members
+    assert client.get("/projects/t/members", headers={"X-SIP-Principal": "kim"}).status_code == 403
+    client.post("/projects/t/agents/enable", headers={"X-SIP-Principal": "pat"})
+    assert {a["agent"] for a in client.get("/projects/t/agents", headers=ann).json()} >= {
+        "requirements", "steward"}
+    run = client.post("/projects/t/agents/requirements/run", headers={"X-SIP-Principal": "pat"},
+                      json={"brief": "Every vehicle has one or more wheels."}).json()
+    assert run["proposals"] and all("critic" in p for p in run["proposals"])
 
 
 def test_thesaurus_project_and_per_fix_capabilities():

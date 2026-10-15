@@ -1,0 +1,5 @@
+fastapi==0.125.0
+uvicorn==0.34.0
+pydantic>=2.7
+sqlglot==30.22.0
+rdflib==7.6.0

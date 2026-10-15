@@ -25,7 +25,8 @@ from .base import AgentRuntime
 from .llm import LanguageModel, default_model
 from .specialists import (AlignmentAgent, AssistantAgent, ExtractionAgent,
                           KnowledgeGraphBuilder, ModelingCopilot, QualityAgent,
-                          RequirementsAgent, StewardAgent, VocabularyAgent)
+                          RequirementsAgent, SemanticCriticAgent, StewardAgent,
+                          VocabularyAgent)
 
 GATES = {"review", "publish"}
 
@@ -52,7 +53,8 @@ class Conductor:
         self.platform.pdp.require(human, project, "rbac", "C")
         out = []
         for cls in (RequirementsAgent, ExtractionAgent, ModelingCopilot, VocabularyAgent,
-                    AlignmentAgent, QualityAgent, StewardAgent, KnowledgeGraphBuilder,
+                    AlignmentAgent, QualityAgent, SemanticCriticAgent, StewardAgent,
+                    KnowledgeGraphBuilder,
                     AssistantAgent):
             pid = f"{cls.name}@{project}"
             reg = self.platform.registry
@@ -97,6 +99,10 @@ class Conductor:
                 r = self.agent(project, "requirements").run(project, brief)
                 rep.runs.append(r.summary())
                 rep.output = r.output or {}
+            # the exit criteria are reported, not enforced: agents degrade, the stage
+            # stays completable by hand (QR-AVL-02), and the reviewer sees what is missing
+            rep.output["readiness"] = self.platform.call(human, project, "scope.readiness",
+                                                         staged=True)
 
         def acquire(rep):
             for sid, text in (documents or {}).items():
@@ -121,6 +127,13 @@ class Conductor:
             r = self.agent(project, "quality").run(project)
             rep.runs.append(r.summary())
             rep.output = r.output or {}
+            # advisory: the reviewer sees which CQs could not have failed and which axioms
+            # a calibrated critic doubts; neither blocks the stage (FR-QA-03, FR-QA-04)
+            rep.output["competency_questions"] = self.platform.call(
+                human, project, "quality.checkCompetencyQuestions", staged=True)
+            s = self.agent(project, "semantic-critic").run(project)
+            rep.runs.append(s.summary())
+            rep.output["semantic"] = s.output or {}
 
         def review(rep):
             r = self.agent(project, "steward").run(project)

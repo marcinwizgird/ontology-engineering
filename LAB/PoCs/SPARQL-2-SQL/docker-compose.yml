@@ -1,0 +1,41 @@
+# Compilation plane. Both services sit ONLY on `compile-net`, an internal network: no route
+# to the internet and no database on it. Nothing here has database credentials.
+#   docker compose up -d --build                    # compiler + offline Ontop sidecar
+#   docker compose --profile verify run --rm verifier   # DoD 1-4 from inside the isolated network
+# The stakeholder demo (UI + DuckDB) is an overlay: docker-compose.demo.yml.
+name: fibo-sparql2sql
+
+networks:
+  compile-net:
+    internal: true
+
+services:
+  ontop-sidecar:
+    build: ./ontop-sidecar
+    image: fibo-ontop-sidecar
+    volumes:
+      - ./vkg-artifacts:/opt/ontop/input:ro
+    networks: [compile-net]
+
+  sparql2sql-service:
+    build:
+      context: .
+      dockerfile: compiler-service/Dockerfile
+      target: runtime
+    image: fibo-sparql2sql-service
+    environment:
+      ONTOP_SIDECAR_URL: http://ontop-sidecar:8080
+    depends_on: [ontop-sidecar]
+    networks: [compile-net]
+
+  verifier:
+    profiles: [verify]
+    build:
+      context: .
+      dockerfile: compiler-service/Dockerfile
+      target: test
+    image: fibo-sparql2sql-verifier
+    environment:
+      COMPILER_URL: http://sparql2sql-service:8000
+    depends_on: [sparql2sql-service]
+    networks: [compile-net]

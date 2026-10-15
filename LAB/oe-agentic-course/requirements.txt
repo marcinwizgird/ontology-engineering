@@ -1,0 +1,12 @@
+# Ontology Engineering, agentic track. Tested with Python 3.13.
+rdflib>=7.1        # Chapter 1: ontologies as graphs, SPARQL
+owlrl>=7.1         # Chapter 1: OWL 2 RL reasoning (the integration notebook)
+pandas             # tables in the notebooks
+dspy>=3.0.4        # Claude programs (Ch 1) and GEPA (Ch 2); pulls in litellm and gepa
+nbformat           # tools/build_notebooks.py
+nbclient           # tools/build_notebooks.py --execute
+jupyter
+pytest
+langchain>=1.0     # Chapter 3: tool-calling agents (create_agent)
+langchain-anthropic
+langgraph

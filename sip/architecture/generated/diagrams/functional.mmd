@@ -15,6 +15,7 @@ flowchart TB
     vocabulary["VocabularyManager"]
     reasoning["ReasoningService"]
     quality["QualityService"]
+    scope["ScopeService"]
     search["SearchService"]
     alignment["AlignmentService"]
     io["IoPipeline"]
@@ -30,6 +31,7 @@ flowchart TB
     vocabularyAgent["VocabularyAgent"]
     alignmentAgent["AlignmentAgent"]
     qualityAgent["QualityAgent"]
+    semanticCritic["SemanticCriticAgent"]
     stewardAgent["StewardAgent"]
     kgBuilder["KnowledgeGraphBuilder"]
     assistant["AssistantAgent"]
@@ -43,6 +45,7 @@ flowchart TB
   vocabulary -->|read| store
   reasoning -->|read| store
   quality -->|read| store
+  scope -->|read| store
   search -->|read| store
   alignment -->|read| store
   requirementsAgent -->|calls| registry
@@ -51,6 +54,7 @@ flowchart TB
   vocabularyAgent -->|calls| registry
   alignmentAgent -->|calls| registry
   qualityAgent -->|calls| registry
+  semanticCritic -->|calls| registry
   stewardAgent -->|calls| registry
   kgBuilder -->|calls| registry
   assistant -->|calls| registry
@@ -61,6 +65,7 @@ flowchart TB
   vocabularyAgent -->|serve| gateway
   alignmentAgent -->|serve| gateway
   qualityAgent -->|serve| gateway
+  semanticCritic -->|serve| gateway
   stewardAgent -->|serve| gateway
   kgBuilder -->|serve| gateway
   assistant -->|serve| gateway

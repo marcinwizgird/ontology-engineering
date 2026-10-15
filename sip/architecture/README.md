@@ -14,7 +14,7 @@ perspectives).
 | [`reverse_engineering/`](reverse_engineering/) | About 4,200 lines of source-level notes (paths, pseudo-code, counts) behind the translation |
 | [`models/`](models/) | **SysML v2 textual models**, 10 packages, about 2,000 lines (listed below) |
 | [`tools/sysml_check.py`](tools/sysml_check.py) | Model checker and generator: checks references, completeness and the structural guarantees, and writes the traceability table and diagrams |
-| [`generated/TRACEABILITY.md`](generated/TRACEABILITY.md) | 52 requirements, each traced to the element that satisfies it and the case that verifies it (generated) |
+| [`generated/TRACEABILITY.md`](generated/TRACEABILITY.md) | 56 requirements, each traced to the element that satisfies it and the case that verifies it (generated) |
 | [`generated/diagrams/`](generated/diagrams/) | 11 Mermaid diagrams generated from the models |
 
 The SysML packages:
@@ -22,7 +22,7 @@ The SysML packages:
 | Package | Contents |
 |---|---|
 | `sip_viewpoints` | stakeholders, concerns, the 7 R&W viewpoints, perspective/tactic/provenance metadata |
-| `sip_requirements` | 33 functional + 19 quality requirements |
+| `sip_requirements` | 37 functional + 19 quality requirements |
 | `sip_context` | context viewpoint: system, external entities, ports, use cases |
 | `sip_functional` | functional viewpoint: elements, interfaces, white box, `satisfy` links |
 | `sip_information` | information viewpoint: graph layout, items, lifecycles |
@@ -30,7 +30,7 @@ The SysML packages:
 | `sip_deployment` | concurrency, deployment and operational viewpoints, allocations |
 | `sip_development` | development viewpoint: modules, layering |
 | `sip_perspectives` | 11 perspectives as requirement groups, 13 tactics, the 7 views |
-| `sip_verification` | 18 verification cases bound to named tests |
+| `sip_verification` | 19 verification cases bound to named tests |
 
 The implementation is in
 [`sip/`](../).

@@ -8,9 +8,9 @@ method, is in
 
 ```bash
 cd "sip"
-PYTHONPATH=. python -m pytest semantic_intelligence/tests -q     # 74 tests, offline
+PYTHONPATH=. python -m pytest semantic_intelligence/tests -q     # 91 tests, offline
 PYTHONPATH=. python -m semantic_intelligence                     # the E2E demo
-PYTHONPATH=. uvicorn semantic_intelligence.api.app:app           # REST API (X-SIP-Principal header)
+PYTHONPATH=. uvicorn semantic_intelligence.api.app:app           # REST API + workbench at /ui
 ```
 
 Requirements: `rdflib`, `owlrl`, `fastapi` (API), `anthropic` (live agents only), and
@@ -48,7 +48,7 @@ C.enable_agents("cars", by="pm")  # needs rbac C; creates <agent>@cars machine p
 C.run("cars", "pm", brief=..., documents={...}, tables={...})   # stops at the review gate
 ```
 
-Every operation (66, listed by `GET /operations` or `platform.describe_operations()`)
+Every operation (77, listed by `GET /operations` or `platform.describe_operations()`)
 declares the VocBench capability it needs. `Platform.call` is the only entry point.
 Writes become commits; when the caller is an agent, a commit is staged until a validator
 accepts it.
@@ -60,6 +60,7 @@ accepts it.
 | `owl/` | OWL API structural model over RDF, Manchester syntax, renderers, hierarchy providers, frames, ST resource view, refactorings |
 | `skos/` | ST SKOS and SKOS-XL services |
 | `reasoning/` | Protégé reasoner manager and status; owlexplanation justifications |
+| `scope/` | new: NeOn requirements specification, reuse candidates (ST metadata registry), pre-glossary, scope exit criteria |
 | `quality/` | ST ICV, Protégé metrics, competency-question tests, release gate |
 | `search/`, `alignment/`, `io/`, `kg/` | ST search, alignment, import/export transformers; Sheet2RDF-style lifting, entity resolution, LPG projection |
 | `agents/` | new: LLM gateway, agent runtime, 9 specialist agents, simulators, lifecycle conductor |

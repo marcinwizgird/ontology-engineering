@@ -33,7 +33,8 @@ from .core.layout import ProjectLayout
 from .core.principal import SYSTEM, Principal
 from .core.store import InMemoryStore, Store, materialise
 from .governance.registry import (AuthorizationError, Lexicalization, ModelType,
-                                  PolicyDecisionPoint, ProjectConfig, Registry)
+                                  PolicyDecisionPoint, ProjectConfig, ProjectTemplate,
+                                  Registry)
 from .governance.settings import SettingsStore
 from .governance.urigen import EntityCreationPreferences, TemplateURIGenerator
 from .owl import manchester, refactor
@@ -42,9 +43,10 @@ from .owl.hierarchy import ClassHierarchy, PropertyHierarchy
 from .owl.model import Axiom, axiom_triples, axioms
 from .owl.rendering import ShortFormProvider, entity_role
 from .quality import cq as cqmod
-from .quality import icv, metrics as metricsmod
+from .quality import icv, metrics as metricsmod, semantic
 from .reasoning.explanation import Entailment, explain
 from .reasoning.reasoner import ReasonerManager
+from .scope import orsd
 from .search.search import search_resource
 from .skos.skos import SkosService
 
@@ -234,20 +236,60 @@ def _lit(text: str, lang: str | None) -> Literal:
 
 @operation("governance.createProject", capability="admin", crudv="C", stage="govern",
            writes=True)
-def create_project(self: Platform, ctx, name: str, base_uri: str, model: str = "owl",
-                   lexicalization: str = "rdfs", languages: list[str] | None = None,
-                   validation: bool = False, description: str = "") -> dict:
-    """Create a project (Semantic Turkey ProjectManager.createProject)."""
-    cfg = ProjectConfig(name, base_uri, ModelType[model.upper()],
-                        Lexicalization[lexicalization.upper()],
-                        languages=tuple(languages or ["en"]), validation_enabled=validation,
-                        description=description)
+def create_project(self: Platform, ctx, name: str, base_uri: str, model: str | None = None,
+                   lexicalization: str | None = None, languages: list[str] | None = None,
+                   validation: bool | None = None, description: str | None = None,
+                   template: str | None = None) -> dict:
+    """Create a project (Semantic Turkey ProjectManager.createProject), optionally from a
+    template; arguments given explicitly override the template's."""
+    t = self.registry.templates.get(template) if template else ProjectTemplate("")
+    if t is None:
+        raise KeyError(f"unknown template {template!r}")
+    cfg = ProjectConfig(name, base_uri, ModelType[(model or t.model).upper()],
+                        Lexicalization[(lexicalization or t.lexicalization).upper()],
+                        languages=tuple(languages or t.languages),
+                        validation_enabled=t.validation if validation is None else validation,
+                        description=t.description if description is None else description)
     self.registry.add_project(cfg)
     c = self._open(cfg)
     c.tracker.commit(ChangeSet("governance.createProject", {"name": name}, c.layout.main)
                      .add(URIRef(base_uri), RDF.type, OWL.Ontology), SYSTEM)
+    if t.specification or t.reuse:
+        cs = ChangeSet("scope.applyTemplate", {"template": template}, c.layout.metadata)
+        if t.specification:
+            add, _ = orsd.spec_delta(c.tracker.view(c.layout.metadata), orsd.spec_node(name),
+                                     URIRef(base_uri), t.specification)
+            cs.add_all(add)
+        for r in t.reuse:
+            cs.add_all(orsd.ReuseCandidate(**r).triples())
+        c.tracker.commit(cs, SYSTEM)
     self.events.publish(ev.Event(ev.PROJECT_CREATED, name, {}))
-    return {"project": name, "graphs": {"main": str(c.layout.main), "kg": str(c.layout.kg)}}
+    return {"project": name, "template": template,
+            "graphs": {"main": str(c.layout.main), "kg": str(c.layout.kg)}}
+
+
+@operation("governance.saveTemplate", capability="admin", crudv="C", stage="govern",
+           writes=True)
+def save_template(self: Platform, ctx, name: str, model: str = "owl",
+                  lexicalization: str = "rdfs", languages: list[str] | None = None,
+                  validation: bool = False, description: str = "",
+                  specification: dict | None = None, reuse: list[dict] | None = None) -> dict:
+    """Save a project template (VocBench ProjectTemplates), with an optional scope skeleton."""
+    ModelType[model.upper()], Lexicalization[lexicalization.upper()]   # fail early
+    orsd.spec_delta(Graph(), orsd.spec_node("template"), URIRef("urn:x"), specification or {})
+    for r in reuse or []:
+        orsd.ReuseCandidate(**r)
+    t = ProjectTemplate(name, model, lexicalization, tuple(languages or ["en"]), validation,
+                        description, dict(specification or {}), list(reuse or []))
+    self.registry.templates[name] = t
+    return {"template": name}
+
+
+@operation("governance.listTemplates", capability="admin", crudv="R", stage="govern")
+def list_templates(self: Platform, ctx) -> list[dict]:
+    """The saved project templates."""
+    return [dict(t.__dict__, languages=list(t.languages))
+            for t in sorted(self.registry.templates.values(), key=lambda t: t.name)]
 
 
 @operation("governance.bind", capability="rbac", crudv="C", stage="govern", writes=True)
@@ -838,11 +880,31 @@ def apply_fix_op(self: Platform, ctx, check: str, caller: Principal) -> ChangeSe
            stage="scope",
            writes=True)
 def add_cq(self: Platform, ctx, id: str, question: str, sparql: str,
-           expectation: str = "non-empty") -> ChangeSet:
-    """Store a competency question with its executable SPARQL test."""
-    q = cqmod.CompetencyQuestion(id, question, sparql, expectation)
+           expectation: str = "non-empty", priority: str = "must",
+           source: str | None = None) -> ChangeSet:
+    """Store a competency question with its executable SPARQL test and its priority."""
+    q = cqmod.CompetencyQuestion(id, question, sparql, expectation, source=source,
+                                 priority=priority)
+    # A draft CQ whose SPARQL does not parse yet may be stored: it fails the scope exit
+    # criteria (SCP-06) and the release gate until it is fixed.
+    bad = [p for p in cqmod.problems(q, _namespaces(ctx)) if not p.startswith("SPARQL")]
+    if bad:
+        raise ValueError("; ".join(bad))
     return ChangeSet("quality.addCompetencyQuestion", {"id": id}, ctx.layout.cq).add_all(
         q.triples())
+
+
+@operation("quality.removeCompetencyQuestion", capability="rdf(resource, cq)", crudv="D",
+           stage="scope", writes=True)
+def remove_cq(self: Platform, ctx, id: str) -> ChangeSet:
+    """Remove a competency question."""
+    s = cqmod.CompetencyQuestion(id, "", "").iri
+    g = ctx.tracker.view(ctx.layout.cq, staged=True)
+    triples = list(g.triples((s, None, None)))
+    if not triples:
+        raise ValueError(f"no competency question {id!r}")
+    return ChangeSet("quality.removeCompetencyQuestion", {"id": id}, ctx.layout.cq
+                     ).remove_all(triples)
 
 
 @operation("quality.runCompetencyQuestions", capability="rdf", crudv="R", stage="validate")
@@ -853,8 +915,30 @@ def run_cqs(self: Platform, ctx) -> list[dict]:
         self.store.graph(ctx.layout.cq))]
 
 
-def _cq_graph(ctx):
-    g = ctx.ontology()
+@operation("quality.checkCompetencyQuestions", capability="rdf", crudv="R", stage="validate")
+def check_cqs(self: Platform, ctx, staged: bool = False) -> list[dict]:
+    """FR-QA-03: run every CQ and say whether it could have failed (vacuous/insensitive).
+    ``staged=True`` includes proposed CQs and axioms not yet validated."""
+    g = _cq_graph(ctx, staged)
+    cqg = ctx.tracker.view(ctx.layout.cq, staged=True) if staged \
+        else self.store.graph(ctx.layout.cq)
+    return [{"priority": q.priority, **cqmod.discrimination(q, g)}
+            for q in cqmod.CompetencyQuestion.from_graph(cqg)]
+
+
+@operation("quality.verbaliseAxioms", capability="rdf", crudv="R", stage="validate")
+def verbalise_axioms(self: Platform, ctx, mutants: bool = False, limit: int = 200,
+                     staged: bool = True) -> dict:
+    """FR-QA-04: the verifiable axioms as controlled English (+ seeded wrong ones)."""
+    g, sfp = ctx.ontology(staged=staged), ctx.sfp(staged=staged)
+    out = {"axioms": [s.as_dict() for s in semantic.statements(g, sfp, limit)]}
+    if mutants:
+        out["mutants"] = [s.as_dict() for s in semantic.mutants(g, sfp, limit)]
+    return out
+
+
+def _cq_graph(ctx, staged: bool = False):
+    g = ctx.ontology(staged=staged)
     for t in ctx.kg():
         g.add(t)
     if ctx.reasoner.last:
@@ -872,6 +956,125 @@ def release_gate_op(self: Platform, ctx) -> dict:
     findings = icv.run_checks(_icv_ctx(ctx, staged=False))
     cqs = cqmod.CompetencyQuestion.from_graph(self.store.graph(ctx.layout.cq))
     return cqmod.release_gate(findings, c, cqs, _cq_graph(ctx)).as_dict()
+
+# =========================================================================== #
+# Scope (NeOn ORSD; reuse candidates as in the Semantic Turkey metadata registry)
+# =========================================================================== #
+
+
+def _namespaces(ctx: ProjectContext) -> dict[str, str]:
+    return {"": ctx.config.default_namespace, "rdf": str(RDF), "rdfs": str(RDFS),
+            "owl": str(OWL), "skos": str(SKOS)}
+
+
+def _scope_state(ctx: ProjectContext, staged: bool):
+    meta = ctx.tracker.view(ctx.layout.metadata, staged=staged)
+    cqg = ctx.tracker.view(ctx.layout.cq, staged=staged)
+    spec = orsd.Specification.from_graph(meta, orsd.spec_node(ctx.name))
+    if not spec.implementation_language:
+        spec.implementation_language = {ModelType.OWL: "OWL 2", ModelType.SKOS: "SKOS",
+                                        ModelType.RDFS: "RDFS",
+                                        ModelType.ONTOLEX: "OntoLex-Lemon"}[ctx.config.model]
+    cqs = cqmod.CompetencyQuestion.from_graph(cqg)
+    glossary = orsd.GlossaryTerm.from_graph(cqg)
+    reuse = orsd.ReuseCandidate.from_graph(meta)
+    ns = _namespaces(ctx)
+    ready = orsd.readiness(spec, cqs, glossary, reuse, ctx.config.default_namespace,
+                           {q.id: cqmod.problems(q, ns) for q in cqs})
+    return spec, cqs, glossary, reuse, ready
+
+
+@operation("scope.setSpecification", capability="rdf(ontology, metadata)", crudv="U",
+           stage="scope", writes=True)
+def set_specification(self: Platform, ctx, purpose: str | None = None,
+                      scope: str | None = None, implementation_language: str | None = None,
+                      intended_users: list[str] | None = None,
+                      intended_uses: list[str] | None = None,
+                      non_functional: list[str] | None = None) -> ChangeSet:
+    """Set fields of the Ontology Requirements Specification (NeOn ORSD); omitted fields
+    are kept, given ones are replaced."""
+    values = {k: v for k, v in (("purpose", purpose), ("scope", scope),
+                                ("implementation_language", implementation_language),
+                                ("intended_users", intended_users),
+                                ("intended_uses", intended_uses),
+                                ("non_functional", non_functional)) if v is not None}
+    if not values:
+        raise ValueError("no specification field given")
+    add, rem = orsd.spec_delta(ctx.tracker.view(ctx.layout.metadata, staged=True),
+                               orsd.spec_node(ctx.name), URIRef(ctx.config.base_uri), values)
+    return ChangeSet("scope.setSpecification", {"fields": sorted(values)},
+                     ctx.layout.metadata).add_all(add).remove_all(rem)
+
+
+@operation("scope.addReuseCandidate", capability="rdf(ontology, metadata)", crudv="C",
+           stage="scope", writes=True)
+def add_reuse(self: Platform, ctx, iri: str, title: str, mode: str = "reference",
+              uri_space: str = "", rationale: str = "", sparql_endpoint: str = "") -> ChangeSet:
+    """Record an ontology or dataset considered for reuse (import | module | align |
+    reference), described as a void:Dataset."""
+    r = orsd.ReuseCandidate(iri, title, mode, uri_space, rationale, sparql_endpoint)
+    return ChangeSet("scope.addReuseCandidate", {"iri": iri, "mode": mode},
+                     ctx.layout.metadata).add_all(r.triples())
+
+
+@operation("scope.removeReuseCandidate", capability="rdf(ontology, metadata)", crudv="D",
+           stage="scope", writes=True)
+def remove_reuse(self: Platform, ctx, iri: str) -> ChangeSet:
+    """Withdraw a reuse candidate."""
+    g = ctx.tracker.view(ctx.layout.metadata, staged=True)
+    triples = list(g.triples((URIRef(iri), None, None)))
+    if not triples:
+        raise ValueError(f"no reuse candidate {iri!r}")
+    return ChangeSet("scope.removeReuseCandidate", {"iri": iri}, ctx.layout.metadata
+                     ).remove_all(triples)
+
+
+@operation("scope.addGlossaryTerms", capability="rdf(resource, cq)", crudv="C",
+           stage="scope", writes=True)
+def add_terms(self: Platform, ctx, terms: list) -> ChangeSet:
+    """Add pre-glossary terms: strings, or {label, definition, quote} objects."""
+    cs = ChangeSet("scope.addGlossaryTerms", {"terms": len(terms)}, ctx.layout.cq)
+    for t in terms:
+        term = orsd.GlossaryTerm(t) if isinstance(t, str) else orsd.GlossaryTerm(**t)
+        if not term.label.strip():
+            raise ValueError("a glossary term needs a label")
+        cs.add_all(term.triples())
+    return cs
+
+
+@operation("scope.removeGlossaryTerm", capability="rdf(resource, cq)", crudv="D",
+           stage="scope", writes=True)
+def remove_term(self: Platform, ctx, label: str) -> ChangeSet:
+    """Remove a pre-glossary term."""
+    s = orsd.GlossaryTerm(label).iri
+    triples = list(ctx.tracker.view(ctx.layout.cq, staged=True).triples((s, None, None)))
+    if not triples:
+        raise ValueError(f"no glossary term {label!r}")
+    return ChangeSet("scope.removeGlossaryTerm", {"label": label}, ctx.layout.cq
+                     ).remove_all(triples)
+
+
+@operation("scope.specification", capability="rdf", crudv="R", stage="scope")
+def specification_op(self: Platform, ctx, staged: bool = False) -> dict:
+    """The ORSD: specification, CQs, pre-glossary, reuse candidates and readiness.
+    ``staged=True`` includes proposals not yet validated."""
+    spec, cqs, glossary, reuse, ready = _scope_state(ctx, staged)
+    return {"specification": spec.as_dict(),
+            "competency_questions": [dict(q.__dict__) for q in cqs],
+            "glossary": [t.__dict__ for t in glossary],
+            "reuse": [r.__dict__ for r in reuse], "readiness": ready.as_dict()}
+
+
+@operation("scope.readiness", capability="rdf", crudv="R", stage="scope")
+def readiness_op(self: Platform, ctx, staged: bool = False) -> dict:
+    """The scope stage's exit criteria: required ones decide, advisory ones inform."""
+    return _scope_state(ctx, staged)[-1].as_dict()
+
+
+@operation("scope.exportSpecification", capability="rdf", crudv="R", stage="scope")
+def export_specification(self: Platform, ctx, staged: bool = False) -> str:
+    """The ORSD as a Markdown document in NeOn's template layout."""
+    return orsd.render_markdown(ctx.name, *_scope_state(ctx, staged))
 
 # =========================================================================== #
 # I/O, KG construction, alignment, publication

@@ -3,12 +3,15 @@
 ======================  ========  ===============================================
 agent                   stage     writes (always staged)
 ======================  ========  ===============================================
-RequirementsAgent       scope     competency questions (+ SPARQL tests)
+RequirementsAgent       scope     ORSD fields, reuse candidates, pre-glossary,
+                                  prioritised competency questions (+ SPARQL tests)
 ExtractionAgent         acquire   classes, subclass links, properties — grounded
 ModelingCopilot         model     Manchester axioms that survive the reasoner
 VocabularyAgent         model     missing labels in project languages
 AlignmentAgent          model     mapping triples (mappings graph)
 QualityAgent            validate  ICV fixes; repairs of unsatisfiable classes
+SemanticCriticAgent     validate  nothing - advisory "is this true?" verdicts on axioms,
+                                  calibrated on seeded wrong axioms
 StewardAgent            review    nothing — summaries and recommendations
 KnowledgeGraphBuilder   populate  lifted individuals; owl:sameAs proposals
 AssistantAgent          consume   nothing — grounded answers with cited rows
@@ -26,10 +29,12 @@ import re
 
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import OWL, RDF, RDFS
-from rdflib.plugins.sparql import prepareQuery
 
 from ..owl import manchester
 from ..owl.model import Axiom, axiom_triples
+from ..quality import cq as cqmod
+from ..quality import semantic
+from ..scope import orsd
 from ..owl.rendering import ShortFormProvider, local_name
 from ..reasoning.reasoner import ReasonerManager
 from .base import Agent, Proposal
@@ -77,20 +82,41 @@ def _vocabulary(ctx) -> dict:
 # =========================================================================== #
 
 
+_QUOTED = _obj({"text": _STR, "quote": _STR})
+_QUOTED_LIST = {"type": "array", "items": _QUOTED}
+
+
 class RequirementsAgent(Agent):
     name, stage, roles = "requirements", "scope", ("agent-ontology-copilot",)
-    description = "Turns a project brief into competency questions with SPARQL tests."
+    description = ("Turns a project brief into an Ontology Requirements Specification: "
+                   "purpose, scope, users, uses, non-functional requirements, reuse "
+                   "candidates, a pre-glossary and prioritised competency questions.")
     system_prompt = (
-        "You are an ontology requirements engineer. From a project brief, write competency "
-        "questions (CQs) the ontology must answer. For each CQ give an executable SPARQL 1.1 "
-        "SELECT or ASK query over the ontology's namespace (use the prefix ':' for the "
-        "project namespace; rdf:, rdfs:, owl:, skos: are predefined) and an expectation: "
-        "'non-empty', 'empty', 'count>=N' or 'ask:true'. Also list the key domain terms. "
-        "Only use terms the brief supports.")
-    SCHEMA = _obj({"terms": {"type": "array", "items": _STR},
+        "You are an ontology requirements engineer following NeOn's Ontology Requirements "
+        "Specification Document. From a project brief, extract: the purpose of the ontology, "
+        "its scope (the domain it covers), its intended end-users, its intended uses, and its "
+        "non-functional requirements (languages, standards, performance, licensing). Every "
+        "item has 'text' (your normalised statement) and 'quote' (the exact span of the brief "
+        "it rests on, copied verbatim); leave a field's text empty if the brief does not "
+        "support it. List existing ontologies the brief asks to reuse, with their namespace "
+        "IRI, a title, a mode ('import', 'module', 'align' or 'reference'), a rationale and a "
+        "verbatim quote. List the key domain terms. Write competency questions (CQs) the "
+        "ontology must answer. For each CQ give an executable SPARQL 1.1 SELECT or ASK query "
+        "over the ontology's namespace (use the prefix ':' for the project namespace; rdf:, "
+        "rdfs:, owl:, skos: are predefined), an expectation ('non-empty', 'empty', "
+        "'count>=N' or 'ask:true'), a priority ('must', 'should' or 'may', from the brief's "
+        "wording) and a verbatim quote. Only use what the brief supports.")
+    SCHEMA = _obj({"specification": _obj({"purpose": _QUOTED, "scope": _QUOTED,
+                                          "intended_users": _QUOTED_LIST,
+                                          "intended_uses": _QUOTED_LIST,
+                                          "non_functional": _QUOTED_LIST}),
+                   "reuse": {"type": "array", "items": _obj({
+                       "iri": _STR, "title": _STR, "mode": _STR, "rationale": _STR,
+                       "quote": _STR})},
+                   "terms": {"type": "array", "items": _STR},
                    "cqs": {"type": "array", "items": _obj({
                        "id": _STR, "question": _STR, "sparql": _STR, "expectation": _STR,
-                       "quote": _STR})}})
+                       "priority": _STR, "quote": _STR})}})
 
     def run(self, project: str, brief: str) -> "AgentRun":
         run = self.start(project)
@@ -100,28 +126,87 @@ class RequirementsAgent(Agent):
                        json.dumps({"brief": brief, "namespace": ns}), self.SCHEMA)
         if out is None:
             return self.finish(run)
+
+        def grounded(item) -> list[str]:
+            if not item.get("quote"):
+                return ["no quote from the brief"]
+            return [] if item["quote"] in brief else ["quote is not verbatim from the brief"]
+
+        # -- the specification: one proposal per field, ungrounded items dropped -- #
+        spec = out.get("specification") or {}
+        for name in ("purpose", "scope"):
+            item = spec.get(name) or {}
+            if item.get("text", "").strip():
+                self.submit(run, Proposal("scope.setSpecification", {name: item["text"]},
+                                          f"{name} of the ontology, as the brief states it",
+                                          {"quote": item.get("quote")}, 0.7, grounded(item)))
+        for name in ("intended_users", "intended_uses", "non_functional"):
+            items = [i for i in spec.get(name) or [] if i.get("text", "").strip()]
+            ok = []
+            for i in items:
+                critic = grounded(i)
+                if critic:              # recorded, never submitted: the critic rejected it
+                    run.proposals.append(Proposal("scope.setSpecification", {name: [i["text"]]},
+                                                  "", {"quote": i.get("quote")}, 0.7, critic))
+                else:
+                    ok.append(i)
+            if ok:
+                self.submit(run, Proposal("scope.setSpecification",
+                                          {name: [i["text"] for i in ok]},
+                                          f"{name.replace('_', ' ')} stated in the brief",
+                                          {"quote": ok[0]["quote"],
+                                           "quotes": [i["quote"] for i in ok]}, 0.7))
+
+        # -- reuse candidates ------------------------------------------------------ #
+        for r in out.get("reuse") or []:
+            critic = grounded(r)
+            if r.get("mode") not in orsd.REUSE_MODES:
+                critic.append(f"mode {r.get('mode')!r} is not one of {orsd.REUSE_MODES}")
+            if not re.match(r"^https?://\S+$", r.get("iri", "")):
+                critic.append(f"not an absolute http(s) IRI: {r.get('iri')!r}")
+            self.submit(run, Proposal("scope.addReuseCandidate",
+                                      {"iri": r.get("iri", ""), "title": r.get("title", ""),
+                                       "mode": r.get("mode", ""), "uri_space": r.get("iri", ""),
+                                       "rationale": r.get("rationale", "")},
+                                      r.get("rationale") or "the brief asks to reuse it",
+                                      {"quote": r.get("quote")}, 0.7, critic))
+
+        # -- pre-glossary: a term is kept only if the brief uses it ----------------- #
+        sentences = [s.strip() for s in
+                     re.findall(r"(?m)[^\n]+?(?:[.!?](?=\s|$)|$)", brief) if s.strip()]
+        terms = []
+        for t in dict.fromkeys(x.strip() for x in out.get("terms") or [] if x.strip()):
+            quote = next((s for s in sentences if re.search(re.escape(t), s, re.I)), None)
+            if quote is None:
+                run.proposals.append(Proposal("scope.addGlossaryTerms", {"terms": [t]}, "", {},
+                                              0.7, [f"term {t!r} does not occur in the brief"]))
+            else:
+                terms.append({"label": t, "quote": quote})
+        if terms:
+            self.submit(run, Proposal("scope.addGlossaryTerms", {"terms": terms},
+                                      "domain terms the brief uses",
+                                      {"quote": terms[0]["quote"]}, 0.7))
+
+        # -- competency questions -------------------------------------------------- #
         prefixes = (f"PREFIX : <{ns}>\nPREFIX rdf: <{RDF}>\nPREFIX rdfs: <{RDFS}>\n"
                     f"PREFIX owl: <{OWL}>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n")
         for cq in out["cqs"]:
             q = cq["sparql"] if cq["sparql"].lstrip().upper().startswith("PREFIX") \
                 else prefixes + cq["sparql"]
-            critic = []
-            try:
-                prepareQuery(q)
-            except Exception as exc:  # noqa: BLE001
-                critic.append(f"SPARQL does not parse: {exc}")
-            if not re.fullmatch(r"non-empty|empty|count>=\d+|ask:(true|false)|contains:.+",
-                                cq["expectation"]):
-                critic.append(f"bad expectation {cq['expectation']!r}")
+            priority = (cq.get("priority") or "must").lower()
+            critic = cqmod.problems(cqmod.CompetencyQuestion(
+                cq["id"], cq["question"], q, cq["expectation"], priority=priority))
             if cq.get("quote") and cq["quote"] not in brief:
                 critic.append("quote is not verbatim from the brief")
             self.submit(run, Proposal("quality.addCompetencyQuestion",
                                       {"id": re.sub(r"[^A-Za-z0-9_-]", "_", cq["id"]),
                                        "question": cq["question"], "sparql": q,
-                                       "expectation": cq["expectation"]},
+                                       "expectation": cq["expectation"], "priority": priority,
+                                       "source": cq.get("quote") or None},
                                       "derived from the brief",
                                       {"quote": cq.get("quote")}, 0.7, critic))
-        return self.finish(run, {"terms": out["terms"]})
+        readiness = self.read(run, "scope.readiness", staged=True)
+        return self.finish(run, {"terms": [t["label"] for t in terms], "readiness": readiness})
 
 # =========================================================================== #
 # Acquire
@@ -427,6 +512,86 @@ class QualityAgent(Agent):
                     0.6, critic))
         return self.finish(run, {"summary": checks["summary"], "consistent":
                                  cls_res["consistent"], "unsatisfiable": cls_res["unsatisfiable"]})
+
+
+class SemanticCriticAgent(Agent):
+    """Is each restriction *true in the domain*? (Tsaneva, Vasic & Sabou, ESWC 2024)
+
+    Every verifiable axiom is read as controlled English and judged against a domain
+    reference (the ORSD, the competency questions' sources, the registered documents)
+    by the model acting as a domain expert. Seeded wrong axioms are mixed in under
+    opaque ids, so the same call measures the critic: its findings ship with the
+    precision and recall it achieved on *this* ontology. Findings are advisory - they
+    never block the release gate, and the agent writes nothing (FR-QA-04).
+    """
+    name, stage, roles = "semantic-critic", "validate", ("agent-reader",)
+    description = "Judges whether each axiom is true in the domain; calibrated, advisory."
+    system_prompt = (
+        "You are a domain expert reviewing an ontology. Each statement is one axiom written "
+        "in controlled English. Using the domain reference and your knowledge of the domain, "
+        "answer 'holds' if the statement is true in the domain, 'false' if it is not, and "
+        "'unsure' if you cannot tell. Judge the domain, not the wording or style. Some "
+        "statements were deliberately altered; you are not told which. Give a one-sentence "
+        "reason, quoting the reference where it settles the question.")
+    SCHEMA = _obj({"verdicts": {"type": "array", "items": _obj({
+        "id": _STR, "verdict": {"type": "string", "enum": ["holds", "false", "unsure"]},
+        "reason": _STR})}})
+
+    def _reference(self, run) -> str:
+        spec = self.read(run, "scope.specification", staged=True)
+        parts: list[str] = []
+
+        def texts(x) -> None:
+            if isinstance(x, str):
+                if x.strip():
+                    parts.append(x.strip())
+            elif isinstance(x, dict):
+                for v in x.values():
+                    texts(v)
+            elif isinstance(x, list):
+                for v in x:
+                    texts(v)
+
+        texts(spec["specification"])
+        parts += [q["source"] for q in spec["competency_questions"] if q.get("source")]
+        ctx = self.platform.projects[run.project]
+        parts += [s["content"] for s in ctx.sources.values() if s["kind"] == "document"]
+        return "\n".join(dict.fromkeys(parts))
+
+    def run(self, project: str, reference: str | None = None, calibrate: bool = True,
+            limit: int = 60) -> "AgentRun":
+        run = self.start(project)
+        v = self.read(run, "quality.verbaliseAxioms", mutants=calibrate, limit=limit)
+        originals = [semantic.Statement(**d) for d in v["axioms"]]
+        seeded = [semantic.Statement(**d) for d in v.get("mutants", [])]
+        if not originals:
+            run.notes.append("no verifiable axioms")
+            return self.finish(run, {"findings": [], "calibration": None, "unsure": 0})
+        ref = self._reference(run) if reference is None else reference
+        # opaque, order-scrambled ids: the model cannot tell a mutant by its id or place
+        mixed = sorted(originals + seeded, key=lambda s: semantic._sid("o", s.id))
+        alias = {f"s{i + 1}": s for i, s in enumerate(mixed)}
+        out = self.ask(run, "semantic.verify", json.dumps(
+            {"reference": ref, "statements": [{"id": k, "statement": s.english}
+                                              for k, s in alias.items()]}), self.SCHEMA)
+        if out is None:
+            return self.finish(run, {"findings": [], "calibration": None, "unsure": 0})
+        verdicts, reasons = {}, {}
+        for item in out["verdicts"]:
+            s = alias.get(item["id"])
+            if s is None or s.id in verdicts:
+                run.notes.append(f"ignored verdict for unknown or repeated id {item['id']!r}")
+                continue
+            verdicts[s.id], reasons[s.id] = item["verdict"], item["reason"]
+        findings = [{"check": "semanticRestriction", "resource": s.subject,
+                     "axiom": s.manchester, "statement": s.english, "severity": "advisory",
+                     "message": reasons[s.id]}
+                    for s in originals if verdicts.get(s.id) == "false"]
+        cal = semantic.calibration(verdicts, originals, seeded) if seeded else None
+        return self.finish(run, {
+            "findings": findings, "calibration": cal,
+            "unsure": sum(1 for s in originals if verdicts.get(s.id, "unsure") == "unsure"),
+            "judged": {s.manchester: verdicts.get(s.id, "unsure") for s in originals}})
 
 # =========================================================================== #
 # Review

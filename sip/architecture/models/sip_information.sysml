@@ -27,9 +27,9 @@ package SipInformation {
         enum inferred;        // reasoner closure minus asserted (derived)
         enum mappings;        // accepted alignment cells
         enum shapes;          // SHACL shapes
-        enum metadata;        // DCAT / VoID description
+        enum metadata;        // DCAT / VoID description; the ORSD; reuse candidates
         enum history;         // cl:Commit records (CHANGELOG vocabulary)
-        enum cq;              // competency questions + SPARQL tests
+        enum cq;              // competency questions + SPARQL tests; the pre-glossary
         enum evidence;        // agent evidence beyond the commit record
     }
 
@@ -105,6 +105,29 @@ package SipInformation {
         attribute question : String;
         attribute sparql : String;
         attribute expectation : String;       // non-empty | empty | count>=N | ask:true | contains:IRI
+        attribute priority : String;          // must | should | may
+    }
+    item def OrsdDocument {
+        doc /* NeOn ORSD, urn:sip:p:{p}:orsd in the metadata graph (FR-SCP-01). */
+        attribute purpose : String;
+        attribute scope : String;
+        attribute implementationLanguage : String;
+        attribute intendedUsers : String[0..*];
+        attribute intendedUses : String[0..*];
+        attribute nonFunctional : String[0..*];
+    }
+    item def ReuseCandidate {
+        doc /* void:Dataset + sip:ReuseCandidate in the metadata graph (FR-SCP-02). */
+        attribute iri : String;
+        attribute title : String;
+        attribute mode : String;              // import | module | align | reference
+        attribute uriSpace : String[0..1];
+        attribute rationale : String[0..1];
+    }
+    item def GlossaryTerm {
+        attribute label : String;
+        attribute definition : String[0..1];
+        attribute quote : String[0..1];
     }
     item def AlignmentCell {
         attribute entity1 : String;

@@ -1,0 +1,100 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fibo-be-le-cb: <https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/> .
+@prefix fibo-fbc-fct-mkt: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/> .
+@prefix fibo-fbc-pas-caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix fibo-fbc-pas-fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fibo-sec-sec-iss: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/> .
+@prefix fibo-sec-sec-ast: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecurityAssets/> .
+@prefix fibo-sec-eq-eq: <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/> .
+@prefix fibo-sec-dbt-bnd: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/> .
+@prefix fro-sec: <http://finregont.com/fro/sec/SEC_Filings.ttl#> .
+@prefix ex-fibo: <https://example.org/fibo-vkg/voc#> .
+
+<#CompanyMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"COMPANY\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/company/{\"COMP_ID\"}" ; rr:class fibo-be-le-cb:Corporation ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:legalName ; rr:objectMap [ rr:column "\"COMP_NAME\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:cikCode ; rr:objectMap [ rr:column "\"CIK_CODE\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:sicCode ; rr:objectMap [ rr:column "\"SIC_CODE\"" ] ] .
+
+<#ExchangeMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"EXCHANGE\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/exchange/{\"EXCH_ID\"}" ; rr:class fibo-fbc-fct-mkt:Exchange ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:exchangeSymbol ; rr:objectMap [ rr:column "\"EXCH_SYMBOL\"" ] ] .
+
+<#SecurityMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"SECURITY\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/security/{\"SEC_ID\"}" ; rr:class fibo-sec-sec-iss:Security ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:tickerSymbol ; rr:objectMap [ rr:column "\"SYMBOL\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:securityName ; rr:objectMap [ rr:column "\"SEC_NAME\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:lastPrice ; rr:objectMap [ rr:column "\"LAST_PRICE\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:issuedBy ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/company/{\"ISSUER_COMP_ID\"}" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:listedOn ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/exchange/{\"EXCH_ID\"}" ] ] .
+
+<#StockMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"STOCK\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/security/{\"SEC_ID\"}" ; rr:class fibo-sec-eq-eq:ListedShare ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:peRatio ; rr:objectMap [ rr:column "\"PE_RATIO\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:dividendYield ; rr:objectMap [ rr:column "\"DIVIDEND_YIELD\"" ; rr:datatype xsd:decimal ] ] .
+
+<#BondMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"BOND\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/security/{\"SEC_ID\"}" ; rr:class fibo-sec-dbt-bnd:Bond ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:couponRate ; rr:objectMap [ rr:column "\"COUPON_RATE\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:creditRating ; rr:objectMap [ rr:column "\"CREDIT_RATING\"" ] ] .
+
+<#RetailCustomerMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT \"CUST_ID\", \"FULL_NAME\", \"DOMICILE\" FROM \"PUBLIC\".\"CUSTOMER\" WHERE \"CUST_TYPE\" = 'RETAIL'" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/customer/{\"CUST_ID\"}" ; rr:class ex-fibo:RetailCustomer ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:customerName ; rr:objectMap [ rr:column "\"FULL_NAME\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:domicileCountry ; rr:objectMap [ rr:column "\"DOMICILE\"" ] ] .
+
+<#CorporateCustomerMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT \"CUST_ID\", \"FULL_NAME\", \"DOMICILE\" FROM \"PUBLIC\".\"CUSTOMER\" WHERE \"CUST_TYPE\" = 'CORP'" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/customer/{\"CUST_ID\"}" ; rr:class ex-fibo:CorporateCustomer ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:customerName ; rr:objectMap [ rr:column "\"FULL_NAME\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:domicileCountry ; rr:objectMap [ rr:column "\"DOMICILE\"" ] ] .
+
+<#AccountMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"ACCOUNT\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/account/{\"ACC_ID\"}" ; rr:class fibo-fbc-pas-caa:InvestmentAccount ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:accountNumber ; rr:objectMap [ rr:column "\"ACC_NUMBER\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:cashBalance ; rr:objectMap [ rr:column "\"CASH_BALANCE\"" ; rr:datatype xsd:decimal ] ] .
+
+<#CustomerAccountLink> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"ACCOUNT\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/customer/{\"CUST_ID\"}" ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:hasAccount ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/account/{\"ACC_ID\"}" ] ] .
+
+<#HoldingMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"HOLDING\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/holding/{\"HOLDING_ID\"}" ; rr:class fibo-sec-sec-ast:PortfolioHolding ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:holdingQuantity ; rr:objectMap [ rr:column "\"QUANTITY\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:purchasePrice ; rr:objectMap [ rr:column "\"PURCHASE_PRICE\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:holdsSecurity ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/security/{\"SEC_ID\"}" ] ] .
+
+<#AccountHoldingLink> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"HOLDING\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/account/{\"ACC_ID\"}" ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:hasHolding ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/holding/{\"HOLDING_ID\"}" ] ] .
+
+<#TradeOrderMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"TRADE_ORDER\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/order/{\"ORDER_ID\"}" ; rr:class fibo-fbc-pas-fpas:TradeOrder ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:orderType ; rr:objectMap [ rr:column "\"ORDER_TYPE\"" ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:orderQuantity ; rr:objectMap [ rr:column "\"ORDER_QTY\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:ordersSecurity ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/security/{\"SEC_ID\"}" ] ] .
+
+<#AccountOrderLink> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"TRADE_ORDER\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/account/{\"ACC_ID\"}" ] ;
+    rr:predicateObjectMap [ rr:predicate ex-fibo:hasTradeOrder ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/order/{\"ORDER_ID\"}" ] ] .
+
+<#FinancialReportMapping> a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"PUBLIC\".\"FIN_REPORT\"" ] ;
+    rr:subjectMap [ rr:template "https://example.org/fibo-vkg/data/report/{\"REPORT_ID\"}" ; rr:class fro-sec:FinancialReport ] ;
+    rr:predicateObjectMap [ rr:predicate fro-sec:fiscalYear ; rr:objectMap [ rr:column "\"FISCAL_YEAR\"" ; rr:datatype xsd:integer ] ] ;
+    rr:predicateObjectMap [ rr:predicate fro-sec:revenueUSD ; rr:objectMap [ rr:column "\"REVENUE_USD\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate fro-sec:netIncomeUSD ; rr:objectMap [ rr:column "\"NET_INCOME_USD\"" ; rr:datatype xsd:decimal ] ] ;
+    rr:predicateObjectMap [ rr:predicate fro-sec:reportedBy ; rr:objectMap [ rr:template "https://example.org/fibo-vkg/data/company/{\"COMP_ID\"}" ] ] .

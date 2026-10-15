@@ -29,11 +29,39 @@ package SipRequirements {
         @Provenance { sourceTool = "new"; sourceArtefact = "NeOn/METHONTOLOGY lifecycle"; }
     }
     requirement def <'FR-LC-02'> CompetencyQuestionTests {
-        doc /* SIP shall store competency questions with an executable SPARQL formulation and an
-             * expected-answer predicate, and run them as a regression suite on every release
-             * candidate. */
+        doc /* SIP shall store competency questions with an executable SPARQL formulation, an
+             * expected-answer predicate and a priority (must, should, may), and run them as a
+             * regression suite on every release candidate. */
         subject sip : SemanticIntelligencePlatform;
         @Provenance { sourceTool = "new"; sourceArtefact = "Gruninger & Fox CQs; Keet ch.5"; }
+    }
+
+    // ================================================================== //
+    // Scope (stage 1)
+    // ================================================================== //
+
+    requirement def <'FR-SCP-01'> RequirementsSpecification {
+        doc /* SIP shall hold, per project, an Ontology Requirements Specification -- purpose,
+             * scope, implementation language, intended end-users, intended uses, non-functional
+             * requirements, prioritised competency questions and a pre-glossary of terms -- as
+             * RDF, edited through guarded operations and exportable as a document. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "new"; sourceArtefact = "NeOn ORSD (Suarez-Figueroa et al. 2009)"; }
+    }
+    requirement def <'FR-SCP-02'> ReuseCandidates {
+        doc /* SIP shall record the ontologies and datasets considered for reuse, each with its
+             * IRI, title, URI space, reuse mode (import, module, align, reference) and
+             * rationale, described as a void:Dataset. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "SemanticTurkey"; sourceArtefact = "MetadataRegistry DatasetMetadata; NeOn reuse scenarios"; }
+    }
+    requirement def <'FR-SCP-03'> ScopeExitCriteria {
+        doc /* SIP shall evaluate deterministic exit criteria for the scope stage -- required
+             * (purpose, scope, users, uses, a must CQ, every CQ executable) and advisory
+             * (glossary coverage, non-functional requirements, reuse, duplicates) -- on the
+             * stable or the staged view, and report them at the end of the stage. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "new"; sourceArtefact = "NeOn ORSD; Keet ch.5"; }
     }
     requirement def <'FR-AG-01'> StageAssistance {
         doc /* Every lifecycle stage shall have at least one assisting agent that proposes work
@@ -83,6 +111,13 @@ package SipRequirements {
              * roles exactly like users, with an on-behalf-of chain to a human. */
         subject sip : SemanticIntelligencePlatform;
         @Provenance { sourceTool = "VocBench3"; sourceArtefact = "Machines service"; }
+    }
+    requirement def <'FR-GOV-04'> ProjectTemplates {
+        doc /* Administrators save named project templates (model, lexicalization, languages,
+             * validation, and a scope skeleton of ORSD fields and reuse candidates); a project
+             * created from a template starts with them, explicit arguments overriding. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "VocBench3"; sourceArtefact = "ProjectTemplates service"; }
     }
 
     // ================================================================== //
@@ -209,9 +244,27 @@ package SipRequirements {
     }
     requirement def <'FR-QA-02'> ReleaseGate {
         doc /* A release candidate passes only if it is consistent, has no blocker ICV finding and
-             * its competency-question suite passes. */
+             * every must-priority competency question passes; failing should/may questions
+             * are reported as warnings. */
         subject sip : SemanticIntelligencePlatform;
         @Provenance { sourceTool = "new"; sourceArtefact = "quality gate"; }
+    }
+    requirement def <'FR-QA-03'> DiscriminatingCompetencyQuestions {
+        doc /* For every competency question SIP shall report whether it could have failed: a
+             * CQ that also passes on an empty graph is vacuous, and one that still passes with
+             * every triple naming its own terms removed is insensitive. A must CQ of either
+             * kind is a release-gate warning, not a failure. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "new"; sourceArtefact = "Li et al. SLR (SWJ 4001): CQ evaluation never asks whether a CQ discriminates; mutation testing"; }
+    }
+    requirement def <'FR-QA-04'> SemanticAxiomVerification {
+        doc /* SIP shall verbalise the verifiable axioms of an ontology as controlled English and
+             * let an agent judge, against the project's domain reference, whether each holds
+             * in the domain. Seeded wrong axioms shall be judged in the same call under opaque
+             * ids, so every run reports the verifier's precision and recall on that ontology.
+             * The verdicts are advisory: they never block a gate and the agent writes nothing. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "new"; sourceArtefact = "Tsaneva, Vasic & Sabou (ESWC 2024) restriction verification; Li et al. SLR (SWJ 4001)"; }
     }
 
     // ================================================================== //

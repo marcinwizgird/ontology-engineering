@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIP Workbench</title>
+<!--
+  The SIP workbench: one static page over the platform's REST API (api/app.py).
+  No build step, no external assets, so it runs offline like the rest of SIP.
+  Every action is a call to POST /projects/{p}/ops/{operation}; authorisation,
+  staging and history stay in Platform.call. Implemented perspective: scope (stage 1).
+-->
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1c2330; --muted: #5d6676; --line: #dde1e7;
+  --accent: #2f5bd3; --accent-ink: #ffffff; --accent-soft: #e8eefc;
+  --ok: #1d7a46; --ok-soft: #e3f4ea; --bad: #b42318; --bad-soft: #fdecea;
+  --warn: #9a6200; --warn-soft: #fff4dc; --prop: #6b3fbf; --prop-soft: #f1ebfc;
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
+  --mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151b; --panel: #1a1f27; --ink: #e6e9ef; --muted: #9aa3b2; --line: #2c333e;
+    --accent: #7c9cff; --accent-ink: #0f1420; --accent-soft: #1f2a44;
+    --ok: #5cc98a; --ok-soft: #173326; --bad: #ff8a80; --bad-soft: #3a1d1b;
+    --warn: #f0b85a; --warn-soft: #362a12; --prop: #b9a0ff; --prop-soft: #2a2140;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--accent); }
+
+header.top { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; padding: 10px 20px; background: var(--panel);
+  border-bottom: 1px solid var(--line); }
+.brand { font-weight: 700; letter-spacing: .2px; margin-right: auto; }
+.brand small { font-weight: 400; color: var(--muted); margin-left: 6px; }
+.field-inline { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+
+nav.stages { display: flex; gap: 6px; overflow-x: auto; padding: 12px 20px 0; }
+.stage { flex: 0 0 auto; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--panel); color: var(--muted); font-size: 13px; white-space: nowrap; }
+.stage.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft);
+  font-weight: 600; }
+.stage .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  margin-right: 6px; background: var(--line); vertical-align: 1px; }
+.stage.s-done .dot { background: var(--ok); }
+.stage.s-in-progress .dot { background: var(--accent); }
+.stage.s-awaiting-gate .dot { background: var(--warn); }
+.gate { color: var(--muted); align-self: center; }
+
+main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 16px; padding: 16px 20px 40px;
+  max-width: 1400px; margin: 0 auto; }
+@media (max-width: 1000px) { main { grid-template-columns: 1fr; } }
+.col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: var(--shadow); }
+.card > h2 { margin: 0; padding: 12px 16px; font-size: 15px; display: flex; align-items: center;
+  gap: 8px; border-bottom: 1px solid var(--line); }
+.card > h2 .hint { font-weight: 400; color: var(--muted); font-size: 12.5px; margin-left: auto; }
+.card .body { padding: 14px 16px; }
+
+label { display: block; font-weight: 600; font-size: 12.5px; margin: 10px 0 4px; }
+label:first-child { margin-top: 0; }
+input[type=text], select, textarea { width: 100%; padding: 7px 9px; border: 1px solid var(--line);
+  border-radius: 7px; background: var(--bg); }
+textarea { resize: vertical; min-height: 60px; }
+textarea.mono, .mono { font-family: var(--mono); font-size: 12.5px; }
+input:focus, select:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--accent);
+  outline-offset: 1px; }
+.row { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+
+button { cursor: pointer; border-radius: 7px; border: 1px solid var(--line); background: var(--panel);
+  padding: 6px 12px; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
+  font-weight: 600; }
+button.small { padding: 2px 8px; font-size: 12.5px; }
+button.ok { color: var(--ok); } button.bad { color: var(--bad); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px;
+  border: 1px solid transparent; white-space: nowrap; }
+.p-must { background: var(--bad-soft); color: var(--bad); }
+.p-should { background: var(--warn-soft); color: var(--warn); }
+.p-may { background: var(--accent-soft); color: var(--accent); }
+.p-proposed { background: var(--prop-soft); color: var(--prop); }
+.p-removal { background: var(--bad-soft); color: var(--bad); }
+.p-ok { background: var(--ok-soft); color: var(--ok); }
+.p-agent { background: var(--prop-soft); color: var(--prop); }
+.muted { color: var(--muted); }
+.pending-note { margin-top: 4px; font-size: 12.5px; color: var(--prop); }
+.pending-note s { color: var(--bad); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+tr.proposed td { background: var(--prop-soft); }
+tr.removal td { text-decoration: line-through; color: var(--muted); }
+details summary { cursor: pointer; color: var(--muted); font-size: 12.5px; }
+pre { white-space: pre-wrap; word-break: break-word; margin: 6px 0 0; padding: 8px;
+  background: var(--bg); border-radius: 6px; border: 1px solid var(--line); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 4px 3px 10px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+.chip.proposed { border-style: dashed; border-color: var(--prop); color: var(--prop); }
+.chip.removal { text-decoration: line-through; color: var(--muted); }
+.chip button { border: none; background: transparent; padding: 0 6px; color: var(--muted); }
+
+.ready { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px;
+  font-weight: 600; }
+.ready.yes { background: var(--ok-soft); color: var(--ok); }
+.ready.no { background: var(--bad-soft); color: var(--bad); }
+ul.crit { list-style: none; padding: 0; margin: 10px 0 0; }
+ul.crit li { display: grid; grid-template-columns: 22px 1fr; gap: 4px; padding: 6px 0;
+  border-bottom: 1px solid var(--line); }
+ul.crit .mark { font-weight: 700; }
+ul.crit .yes .mark { color: var(--ok); } ul.crit .no.req .mark { color: var(--bad); }
+ul.crit .no.adv .mark { color: var(--warn); }
+ul.crit .fix { color: var(--muted); font-size: 12.5px; }
+.toggle { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted);
+  margin-top: 10px; font-weight: 400; }
+
+.queue-item { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+.queue-item .op { font-family: var(--mono); font-size: 12.5px; }
+.queue-item blockquote { margin: 6px 0; padding: 4px 8px; border-left: 3px solid var(--prop);
+  color: var(--muted); font-style: italic; }
+.queue-item .actions { margin-top: 6px; }
+
+.empty { padding: 40px 20px; text-align: center; color: var(--muted); }
+.empty h1 { color: var(--ink); font-size: 20px; margin: 0 0 8px; }
+
+dialog { border: 1px solid var(--line); border-radius: 12px; padding: 0; width: min(560px, 94vw);
+  background: var(--panel); color: var(--ink); }
+dialog::backdrop { background: rgba(10,14,20,.45); }
+dialog h3 { margin: 0; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+dialog .body { padding: 14px 16px; max-height: 70vh; overflow: auto; }
+dialog.wide { width: min(900px, 96vw); }
+
+#toasts { position: fixed; right: 16px; bottom: 16px; display: flex; flex-direction: column;
+  gap: 8px; z-index: 20; max-width: min(420px, 92vw); }
+.toast { padding: 10px 12px; border-radius: 8px; box-shadow: var(--shadow); border: 1px solid var(--line);
+  background: var(--panel); }
+.toast.err { border-color: var(--bad); color: var(--bad); }
+.toast.ok { border-color: var(--ok); color: var(--ok); }
+.busy { opacity: .6; pointer-events: none; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">SIP Workbench <small>Semantic Intelligence Platform</small></div>
+  <div class="field-inline">
+    <label for="projectSel" style="margin:0">Project</label>
+    <select id="projectSel" style="width:auto"></select>
+    <button id="newProjectBtn">New project</button>
+  </div>
+  <div class="field-inline">
+    <label for="whoSel" style="margin:0">Acting as</label>
+    <select id="whoSel" style="width:auto"></select>
+    <button id="teamBtn">Team</button>
+  </div>
+</header>
+
+<nav class="stages" id="stages" aria-label="Lifecycle stages"></nav>
+
+<div id="app"></div>
+
+<dialog id="newProjectDlg">
+  <form method="dialog" id="newProjectForm">
+    <h3>New project</h3>
+    <div class="body">
+      <label for="np_name">Name</label>
+      <input type="text" id="np_name" required placeholder="fleet" pattern="[A-Za-z][A-Za-z0-9_.\-]{0,63}">
+      <label for="np_base">Base URI</label>
+      <input type="text" id="np_base" required placeholder="https://example.org/fleet">
+      <div class="row">
+        <div><label for="np_tpl">Template</label><select id="np_tpl"><option value="">(none)</option></select></div>
+        <div><label for="np_langs">Languages</label><input type="text" id="np_langs" value="en"></div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="np_validation"> Validation on (human edits are staged too)</label>
+      <label class="toggle"><input type="checkbox" id="np_team" checked> Add a demo team: pat (project manager), ann (ontologist), val (validator)</label>
+      <div class="actions"><button class="primary" value="ok">Create</button><button value="cancel" formnovalidate>Cancel</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="teamDlg">
+  <form method="dialog" id="teamForm">
+    <h3>Team</h3>
+    <div class="body">
+      <div id="teamList"></div>
+      <h4 style="margin:14px 0 4px">Add a member</h4>
+      <div class="row">
+        <div><label for="tm_id">User id</label><input type="text" id="tm_id" placeholder="kim"></div>
+        <div><label for="tm_role">Role</label><select id="tm_role"></select></div>
+      </div>
+      <p class="muted" style="font-size:12.5px">New users are registered first (administrators only); binding a role needs the <code>rbac</code> capability (project managers).</p>
+      <div class="actions"><button class="primary" value="add" id="tm_add">Add</button><button value="close" formnovalidate>Close</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="docDlg" class="wide">
+  <form method="dialog">
+    <h3>Ontology Requirements Specification</h3>
+    <div class="body"><pre id="docText" class="mono"></pre>
+      <div class="actions"><button type="button" id="docDownload" class="primary">Download .md</button><button value="close">Close</button></div>
+    </div>
+  </form>
+</dialog>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+"use strict";
+const STAGES = ["scope", "acquire", "model", "validate", "review", "populate", "reason", "publish", "consume"];
+const ROLES = ["projectmanager", "ontologist", "rdfgeek", "thesaurus-editor", "lexicographer",
+               "mapper", "validator", "lurker", "visitor"];
+const DEMO_TEAM = [["pat", "Pat (project manager)", "projectmanager"],
+                   ["ann", "Ann (ontologist)", "ontologist"], ["val", "Val (validator)", "validator"]];
+const DEMO_BRIEF = "The fleet team needs an ontology of vehicles and their parts. " +
+  "Every vehicle has one or more wheels. We need to know which manufacturers exist. " +
+  "Every manufacturer has a country. Labels must be available in English and French. " +
+  "Manufacturers should be aligned with schema.org.";
+
+// ---------------------------------------------------------------- state & storage
+function load(k, d) { try { return localStorage.getItem(k) ?? d; } catch { return d; } }
+function save(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode */ } }
+const S = { who: load("sip.who", "system"), project: load("sip.project", ""), staged: true,
+            stable: null, view: null, pending: [], lifecycle: {}, agents: [], lastRun: null };
+
+// ---------------------------------------------------------------- helpers
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g,
+  (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const lines = (t) => t.split("\n").map((x) => x.trim()).filter(Boolean);
+const enc = encodeURIComponent;
+
+function toast(msg, kind = "") {
+  const t = document.createElement("div");
+  t.className = "toast " + kind; t.textContent = msg; $("toasts").appendChild(t);
+  setTimeout(() => t.remove(), kind === "err" ? 8000 : 3500);
+}
+
+async function api(method, path, body) {
+  const r = await fetch(path, { method, headers: { "Content-Type": "application/json",
+    "X-SIP-Principal": S.who }, body: body === undefined ? undefined : JSON.stringify(body) });
+  const text = await r.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+  if (!r.ok) throw new Error((data && data.detail) || `${r.status} ${r.statusText}`);
+  return data;
+}
+const op = (name, body = {}) => api("POST", `/projects/${enc(S.project)}/ops/${name}`, body);
+
+async function act(el, fn, okMsg) {
+  el && el.classList.add("busy");
+  try { const r = await fn(); if (okMsg) toast(okMsg, "ok"); return r; }
+  catch (e) { toast(e.message, "err"); }
+  finally { el && el.classList.remove("busy"); }
+}
+
+// ---------------------------------------------------------------- header
+async function loadHeader() {
+  const health = await api("GET", "/health");
+  let people = [];
+  try { people = (await api("GET", "/principals")).filter((p) => !p.is_machine); }
+  catch { S.who = "system"; save("sip.who", "system");
+          people = (await api("GET", "/principals")).filter((p) => !p.is_machine); }
+  $("whoSel").innerHTML = people.map((p) => `<option value="${esc(p.id)}" ${p.id === S.who ? "selected" : ""}>` +
+    `${esc(p.display_name || p.id)}${p.is_admin ? " (admin)" : ""}</option>`).join("");
+  if (!health.projects.includes(S.project)) S.project = health.projects[0] || "";
+  $("projectSel").innerHTML = health.projects.length
+    ? health.projects.map((p) => `<option ${p === S.project ? "selected" : ""}>${esc(p)}</option>`).join("")
+    : `<option value="">(no projects)</option>`;
+  save("sip.project", S.project);
+}
+
+function renderStages() {
+  $("stages").innerHTML = STAGES.map((s, i) => {
+    const st = S.lifecycle[s] || "not-started";
+    const gate = (s === "review" || s === "publish") ? `<span class="gate" title="human gate">║</span>` : "";
+    return `<span class="stage s-${st} ${s === "scope" ? "active" : ""}" title="${esc(s)}: ${esc(st)}` +
+      `${s === "scope" ? "" : " (perspective not in the workbench yet)"}"><span class="dot"></span>` +
+      `${i + 1}. ${esc(s)}</span>${gate}`;
+  }).join("");
+}
+
+// ---------------------------------------------------------------- data
+async function loadProject() {
+  if (!S.project) { S.stable = null; renderEmpty(); renderStages(); return; }
+  try {
+    const [stable, staged, pending, life, agents] = await Promise.all([
+      op("scope.specification", { staged: false }), op("scope.specification", { staged: true }),
+      op("validation.pending"), op("lifecycle.status"),
+      api("GET", `/projects/${enc(S.project)}/agents`)]);
+    Object.assign(S, { stable, view: staged, pending, lifecycle: life, agents });
+    renderStages(); renderScope();
+  } catch (e) {
+    S.stable = null; renderStages();
+    $("app").innerHTML = `<div class="empty"><h1>No access to “${esc(S.project)}”</h1>` +
+      `<p>${esc(e.message)}</p><p>Pick another user under <b>Acting as</b>, or add this user in <b>Team</b>.</p></div>`;
+  }
+}
+
+function renderEmpty() {
+  $("app").innerHTML = `<div class="empty"><h1>No projects yet</h1>
+    <p>Create a project to start its scope stage. A fresh server knows one user, <b>system</b> (an administrator).</p>
+    <button class="primary" onclick="openNewProject()">New project</button></div>`;
+}
+
+// diff helpers: what is accepted (stable), proposed (staged only), or proposed for removal
+function diffBy(stableList, stagedList, key) {
+  const a = new Map(stableList.map((x) => [key(x), x])), b = new Map(stagedList.map((x) => [key(x), x]));
+  const out = [];
+  for (const [k, x] of b) out.push({ item: x, status: a.has(k) ? "accepted" : "proposed" });
+  for (const [k, x] of a) if (!b.has(k)) out.push({ item: x, status: "removal" });
+  return out;
+}
+const statusPill = (s) => s === "accepted" ? "" : s === "proposed"
+  ? `<span class="pill p-proposed">proposed</span>` : `<span class="pill p-removal">removal proposed</span>`;
+
+// ---------------------------------------------------------------- the scope perspective
+function renderScope() {
+  const st = S.stable, vw = S.view, spec = st.specification, vspec = vw.specification;
+  const shown = S.staged ? vw.readiness : st.readiness;
+  const brief = load(`sip.brief.${S.project}`, "");
+  const reqAgent = S.agents.find((a) => a.agent === "requirements");
+
+  const fieldNote = (name) => {
+    const a = spec[name], b = vspec[name];
+    if (Array.isArray(a)) {
+      const add = b.filter((x) => !a.includes(x)), rem = a.filter((x) => !b.includes(x));
+      if (!add.length && !rem.length) return "";
+      return `<div class="pending-note">Pending: ${add.map((x) => "+ " + esc(x)).join("; ")}` +
+        `${add.length && rem.length ? "; " : ""}${rem.map((x) => "<s>" + esc(x) + "</s>").join("; ")}</div>`;
+    }
+    return a === b ? "" : `<div class="pending-note">Pending: ${esc(b) || "<i>(cleared)</i>"}</div>`;
+  };
+
+  const cqs = diffBy(st.competency_questions, vw.competency_questions, (q) => q.id)
+    .sort((x, y) => x.item.id.localeCompare(y.item.id));
+  const terms = diffBy(st.glossary, vw.glossary, (t) => t.label.toLowerCase())
+    .sort((x, y) => x.item.label.localeCompare(y.item.label));
+  const reuse = diffBy(st.reuse, vw.reuse, (r) => r.iri);
+
+  $("app").innerHTML = `<main>
+  <div class="col">
+    <section class="card" id="briefCard">
+      <h2>Brief <span class="hint">RequirementsAgent drafts the specification from it</span></h2>
+      <div class="body">
+        <label for="brief">Project brief</label>
+        <textarea id="brief" rows="4" placeholder="Who needs the ontology, for what, which questions it must answer, constraints, ontologies to reuse…">${esc(brief)}</textarea>
+        <div class="actions">
+          <button class="primary" id="draftBtn">Draft with RequirementsAgent</button>
+          <button id="demoBriefBtn" type="button">Use example brief</button>
+          <span class="muted" style="font-size:12.5px">${reqAgent ? `agent acts for <b>${esc(reqAgent.on_behalf_of)}</b>` :
+            "agents are enabled on first use (needs a project manager)"} · proposals wait for a validator</span>
+        </div>
+        <div id="runOut">${renderRun()}</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Requirements specification <span class="hint">NeOn ORSD · edits are commits</span></h2>
+      <div class="body" id="specForm">
+        <label for="f_purpose">1. Purpose</label>
+        <textarea id="f_purpose" rows="2">${esc(spec.purpose)}</textarea>${fieldNote("purpose")}
+        <div class="row">
+          <div><label for="f_scope">2. Scope (domain covered)</label>
+            <input type="text" id="f_scope" value="${esc(spec.scope)}">${fieldNote("scope")}</div>
+          <div><label for="f_lang">3. Implementation language</label>
+            <input type="text" id="f_lang" value="${esc(spec.implementation_language)}">${fieldNote("implementation_language")}</div>
+        </div>
+        <div class="row">
+          <div><label for="f_users">4. Intended end-users <span class="muted">(one per line)</span></label>
+            <textarea id="f_users" rows="3">${esc(spec.intended_users.join("\n"))}</textarea>${fieldNote("intended_users")}</div>
+          <div><label for="f_uses">5. Intended uses <span class="muted">(one per line)</span></label>
+            <textarea id="f_uses" rows="3">${esc(spec.intended_uses.join("\n"))}</textarea>${fieldNote("intended_uses")}</div>
+        </div>
+        <label for="f_nfr">6a. Non-functional requirements <span class="muted">(one per line)</span></label>
+        <textarea id="f_nfr" rows="3">${esc(spec.non_functional.join("\n"))}</textarea>${fieldNote("non_functional")}
+        <div class="actions"><button class="primary" id="saveSpecBtn">Save specification</button>
+          <span class="muted" style="font-size:12.5px">Only changed fields are sent.</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>6b. Competency questions <span class="hint">must ones gate the release</span></h2>
+      <div class="body">
+        ${cqs.length ? `<table><thead><tr><th>id</th><th>priority</th><th>question</th><th>expectation</th><th></th></tr></thead><tbody>
+          ${cqs.map(({ item: q, status }) => `<tr class="${status === "accepted" ? "" : status}">
+            <td class="mono">${esc(q.id)} ${statusPill(status)}</td>
+            <td><span class="pill p-${esc(q.priority)}">${esc(q.priority)}</span></td>
+            <td>${esc(q.question)}<details><summary>SPARQL</summary><pre class="mono">${esc(q.sparql)}</pre></details></td>
+            <td class="mono">${esc(q.expectation)}</td>
+            <td>${status === "removal" ? "" : `<button class="small bad" data-rmcq="${esc(q.id)}" title="Remove">✕</button>`}</td></tr>`).join("")}
+          </tbody></table>` : `<p class="muted">No competency questions yet.</p>`}
+        <details style="margin-top:10px"><summary>Add a competency question</summary>
+          <div class="row" style="margin-top:8px">
+            <div><label for="cq_id">Id</label><input type="text" id="cq_id" placeholder="cq_Manufacturer"></div>
+            <div><label for="cq_pri">Priority</label><select id="cq_pri"><option>must</option><option>should</option><option>may</option></select></div>
+            <div><label for="cq_exp">Expectation</label><input type="text" id="cq_exp" value="non-empty"
+              title="non-empty | empty | count>=N | ask:true | ask:false | contains:IRI"></div>
+          </div>
+          <label for="cq_q">Question</label><input type="text" id="cq_q" placeholder="Which manufacturers are there?">
+          <label for="cq_sparql">SPARQL <span class="muted">(prefix : is the project namespace; rdf: rdfs: owl: skos: are predefined)</span></label>
+          <textarea id="cq_sparql" class="mono" rows="3" placeholder="SELECT ?x WHERE { ?x a/rdfs:subClassOf* :Manufacturer }"></textarea>
+          <div class="actions"><button class="primary" id="addCqBtn">Add question</button></div>
+        </details>
+      </div>
+    </section>
+
+    <div class="row" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px">
+      <section class="card">
+        <h2>7. Pre-glossary</h2>
+        <div class="body">
+          <div class="chips">${terms.length ? terms.map(({ item: t, status }) =>
+            `<span class="chip ${status === "accepted" ? "" : status}" title="${esc(t.quote || "")}">${esc(t.label)}` +
+            `${status === "removal" ? "" : `<button data-rmterm="${esc(t.label)}" aria-label="Remove ${esc(t.label)}">✕</button>`}</span>`).join("")
+            : `<span class="muted">No terms yet.</span>`}</div>
+          <div class="actions"><input type="text" id="termIn" placeholder="add terms, comma-separated" style="flex:1">
+            <button id="addTermBtn">Add</button></div>
+        </div>
+      </section>
+      <section class="card">
+        <h2>8. Reuse candidates</h2>
+        <div class="body">
+          ${reuse.length ? `<table><tbody>${reuse.map(({ item: r, status }) => `<tr class="${status === "accepted" ? "" : status}">
+            <td><b>${esc(r.title)}</b> ${statusPill(status)}<br><span class="mono muted">${esc(r.iri)}</span>
+              ${r.rationale ? `<br><span class="muted">${esc(r.rationale)}</span>` : ""}</td>
+            <td><span class="pill p-may">${esc(r.mode)}</span></td>
+            <td>${status === "removal" ? "" : `<button class="small bad" data-rmreuse="${esc(r.iri)}" title="Withdraw">✕</button>`}</td></tr>`).join("")}</tbody></table>`
+            : `<p class="muted">No reuse candidates yet.</p>`}
+          <details style="margin-top:8px"><summary>Add a reuse candidate</summary>
+            <label for="ru_iri">Namespace IRI</label><input type="text" id="ru_iri" placeholder="https://schema.org/">
+            <div class="row"><div><label for="ru_title">Title</label><input type="text" id="ru_title" placeholder="Schema.org"></div>
+              <div><label for="ru_mode">Mode</label><select id="ru_mode"><option>reference</option><option>align</option><option>import</option><option>module</option></select></div></div>
+            <label for="ru_why">Rationale</label><input type="text" id="ru_why">
+            <div class="actions"><button class="primary" id="addReuseBtn">Add candidate</button></div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <aside class="col">
+    <section class="card">
+      <h2>Exit criteria</h2>
+      <div class="body">
+        <div class="ready ${shown.ready ? "yes" : "no"}">${shown.ready ? "✓ Ready to close scope" : "✗ Not ready yet"}</div>
+        <label class="toggle"><input type="checkbox" id="stagedTgl" ${S.staged ? "checked" : ""}> include pending proposals</label>
+        <ul class="crit">${shown.criteria.map((c) => `<li class="${c.ok ? "yes" : "no"} ${c.required ? "req" : "adv"}">
+          <span class="mark">${c.ok ? "✓" : c.required ? "✗" : "!"}</span>
+          <span>${esc(c.text)} <span class="pill ${c.required ? "p-must" : "p-may"}">${c.required ? "required" : "advisory"}</span>
+          ${c.ok ? "" : `<div class="fix">${esc(c.fix)}</div>`}</span></li>`).join("")}</ul>
+        <div class="actions">
+          <button class="primary" id="closeScopeBtn" ${st.readiness.ready && S.lifecycle.scope !== "done" ? "" : "disabled"}
+            title="${st.readiness.ready ? "" : "accepted content must meet the required criteria"}">
+            ${S.lifecycle.scope === "done" ? "Scope closed" : "Close scope stage"}</button>
+          <span class="muted" style="font-size:12.5px">stage: ${esc(S.lifecycle.scope || "not-started")}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Review queue <span class="hint">${S.pending.length} pending</span></h2>
+      <div class="body" id="queue">
+        ${S.pending.length ? `<div class="actions" style="margin:0 0 10px"><button class="ok" id="acceptAllBtn">Accept all</button></div>` +
+          S.pending.map((c) => {
+            const ev = c.evidence || {};
+            return `<div class="queue-item"><div><span class="op">${esc(c.operation)}</span>
+              ${c.machine ? `<span class="pill p-agent">agent</span>` : ""} <span class="muted">by ${esc(c.principal)} · +${c.added}/−${c.removed}</span></div>
+              ${ev.quote ? `<blockquote>“${esc(ev.quote)}”</blockquote>` : ev.rationale ? `<div class="muted">${esc(ev.rationale)}</div>` : ""}
+              <details><summary>change</summary><pre class="mono">${esc(c.additions.map((q) => "+ " + q.join("  ")).concat(c.removals.map((q) => "− " + q.join("  "))).join("\n"))}</pre></details>
+              <div class="actions"><button class="small ok" data-accept="${esc(c.id)}">Accept</button>
+                <button class="small bad" data-reject="${esc(c.id)}">Reject</button></div></div>`;
+          }).join("")
+          : `<p class="muted">Nothing awaits validation.</p>`}
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ORSD document</h2>
+      <div class="body">
+        <p class="muted" style="margin-top:0">The specification in NeOn's template layout, as Markdown.</p>
+        <div class="actions" style="margin-top:0"><button id="viewDocBtn">Preview</button>
+          <label class="toggle" style="margin:0"><input type="checkbox" id="docStaged"> with pending proposals</label></div>
+      </div>
+    </section>
+  </aside>
+  </main>`;
+  wireScope();
+}
+
+function renderRun() {
+  const r = S.lastRun;
+  if (!r || r.project !== S.project) return "";
+  const s = r.data.summary, rejected = r.data.proposals.filter((p) => p.critic.length || p.error);
+  return `<div class="actions"><span class="pill p-ok">proposed ${s.proposed}</span>
+    <span class="pill p-proposed">submitted ${s.submitted}</span>
+    <span class="pill ${s.rejected_by_critic ? "p-removal" : "p-ok"}">critic-rejected ${s.rejected_by_critic}</span>
+    <span class="muted">run ${esc(s.run)} · ${esc(s.status)}</span></div>
+    ${s.notes.length ? `<p class="muted">${s.notes.map(esc).join("<br>")}</p>` : ""}
+    ${rejected.length ? `<details open><summary>Rejected by the critic (never written)</summary><ul>${rejected.map((p) =>
+      `<li><span class="mono">${esc(p.operation)}</span> ${esc(JSON.stringify(p.arguments).slice(0, 120))}<br>
+       <span style="color:var(--bad)">${esc((p.critic.length ? p.critic : [p.error]).join("; "))}</span></li>`).join("")}</ul></details>` : ""}`;
+}
+
+function wireScope() {
+  $("demoBriefBtn").onclick = () => { $("brief").value = DEMO_BRIEF; };
+  $("draftBtn").onclick = () => act($("briefCard"), async () => {
+    const brief = $("brief").value.trim();
+    if (!brief) throw new Error("write a brief first");
+    save(`sip.brief.${S.project}`, brief);
+    if (!S.agents.some((a) => a.agent === "requirements"))
+      await api("POST", `/projects/${enc(S.project)}/agents/enable`);
+    if ((S.lifecycle.scope || "not-started") === "not-started")
+      await op("lifecycle.setStage", { stage: "scope", state: "in-progress", note: "drafting" });
+    const data = await api("POST", `/projects/${enc(S.project)}/agents/requirements/run`, { brief });
+    S.lastRun = { project: S.project, data };
+    await loadProject();
+  }, "Draft submitted for review");
+
+  $("saveSpecBtn").onclick = () => act($("specForm"), async () => {
+    const spec = S.stable.specification, body = {};
+    const single = { purpose: "f_purpose", scope: "f_scope", implementation_language: "f_lang" };
+    const multi = { intended_users: "f_users", intended_uses: "f_uses", non_functional: "f_nfr" };
+    for (const [k, id] of Object.entries(single)) {
+      const v = $(id).value.trim(); if (v !== spec[k]) body[k] = v;
+    }
+    for (const [k, id] of Object.entries(multi)) {
+      const v = lines($(id).value); if (JSON.stringify(v) !== JSON.stringify(spec[k])) body[k] = v;
+    }
+    if (!Object.keys(body).length) throw new Error("no changes to save");
+    await op("scope.setSpecification", body);
+    await loadProject();
+  }, "Specification saved");
+
+  $("addCqBtn").onclick = () => act(null, async () => {
+    const body = { id: $("cq_id").value.trim(), question: $("cq_q").value.trim(),
+      sparql: $("cq_sparql").value.trim(), expectation: $("cq_exp").value.trim(), priority: $("cq_pri").value };
+    if (!body.id || !body.question || !body.sparql) throw new Error("id, question and SPARQL are required");
+    await op("quality.addCompetencyQuestion", body);
+    await loadProject();
+  }, "Question added");
+
+  $("addTermBtn").onclick = () => act(null, async () => {
+    const terms = $("termIn").value.split(",").map((x) => x.trim()).filter(Boolean);
+    if (!terms.length) throw new Error("type one or more terms");
+    await op("scope.addGlossaryTerms", { terms });
+    await loadProject();
+  }, "Terms added");
+  $("termIn").onkeydown = (e) => { if (e.key === "Enter") $("addTermBtn").click(); };
+
+  $("addReuseBtn").onclick = () => act(null, async () => {
+    const iri = $("ru_iri").value.trim();
+    await op("scope.addReuseCandidate", { iri, title: $("ru_title").value.trim() || iri,
+      mode: $("ru_mode").value, uri_space: iri, rationale: $("ru_why").value.trim() });
+    await loadProject();
+  }, "Reuse candidate added");
+
+  document.querySelectorAll("[data-rmcq]").forEach((b) => b.onclick = () => act(null, async () => {
+    await op("quality.removeCompetencyQuestion", { id: b.dataset.rmcq }); await loadProject(); }, "Question removed"));
+  document.querySelectorAll("[data-rmterm]").forEach((b) => b.onclick = () => act(null, async () => {
+    await op("scope.removeGlossaryTerm", { label: b.dataset.rmterm }); await loadProject(); }, "Term removed"));
+  document.querySelectorAll("[data-rmreuse]").forEach((b) => b.onclick = () => act(null, async () => {
+    await op("scope.removeReuseCandidate", { iri: b.dataset.rmreuse }); await loadProject(); }, "Candidate withdrawn"));
+  document.querySelectorAll("[data-accept]").forEach((b) => b.onclick = () => act($("queue"), async () => {
+    await op("validation.accept", { commit: b.dataset.accept }); await loadProject(); }, "Accepted"));
+  document.querySelectorAll("[data-reject]").forEach((b) => b.onclick = () => act($("queue"), async () => {
+    await op("validation.reject", { commit: b.dataset.reject }); await loadProject(); }, "Rejected"));
+  const all = $("acceptAllBtn");
+  if (all) all.onclick = () => act($("queue"), async () => {
+    for (const c of S.pending) await op("validation.accept", { commit: c.id });
+    await loadProject();
+  }, "All accepted");
+
+  $("stagedTgl").onchange = (e) => { S.staged = e.target.checked; renderScope(); };
+  $("closeScopeBtn").onclick = () => act(null, async () => {
+    await op("lifecycle.setStage", { stage: "scope", state: "done", note: "closed in the workbench" });
+    await loadProject();
+  }, "Scope stage closed");
+  $("viewDocBtn").onclick = () => act(null, async () => {
+    $("docText").textContent = await op("scope.exportSpecification", { staged: $("docStaged").checked });
+    $("docDlg").showModal();
+  });
+}
+
+// ---------------------------------------------------------------- dialogs
+async function openNewProject() {
+  const sel = $("np_tpl");
+  sel.innerHTML = `<option value="">(none)</option>`;
+  try { (await api("GET", "/templates")).forEach((t) => sel.insertAdjacentHTML("beforeend",
+    `<option value="${esc(t.name)}">${esc(t.name)}</option>`)); } catch { /* not an admin */ }
+  $("newProjectDlg").showModal();
+}
+
+$("newProjectForm").addEventListener("submit", (e) => {
+  if (e.submitter && e.submitter.value === "cancel") return;
+  e.preventDefault();
+  act($("newProjectDlg"), async () => {
+    const name = $("np_name").value.trim(), body = { name, base_uri: $("np_base").value.trim(),
+      languages: $("np_langs").value.split(",").map((x) => x.trim()).filter(Boolean) };
+    if ($("np_tpl").value) body.template = $("np_tpl").value;
+    if ($("np_validation").checked) body.validation = true;
+    await api("POST", "/projects", body);
+    S.project = name; save("sip.project", name);
+    if ($("np_team").checked) {
+      const known = new Set((await api("GET", "/principals")).map((p) => p.id));
+      for (const [id, display_name, role] of DEMO_TEAM) {
+        if (!known.has(id)) await api("POST", "/principals", { id, display_name });
+        await op("governance.bind", { principal: id, roles: [role] });
+      }
+    }
+    $("newProjectDlg").close();
+    await loadHeader(); await loadProject();
+  }, "Project created");
+});
+
+$("teamBtn").onclick = async () => {
+  if (!S.project) return toast("create a project first", "err");
+  $("tm_role").innerHTML = ROLES.map((r) => `<option>${r}</option>`).join("");
+  try {
+    const m = await api("GET", `/projects/${enc(S.project)}/members`);
+    $("teamList").innerHTML = `<table><thead><tr><th>member</th><th>roles</th></tr></thead><tbody>${m.map((b) =>
+      `<tr><td>${esc(b.principal)} ${b.principal.includes("@") ? `<span class="pill p-agent">agent</span>` : ""}</td>` +
+      `<td>${b.roles.map(esc).join(", ")}</td></tr>`).join("")}</tbody></table>`;
+  } catch (e) { $("teamList").innerHTML = `<p class="muted">${esc(e.message)}</p>`; }
+  $("teamDlg").showModal();
+};
+$("teamForm").addEventListener("submit", (e) => {
+  if (!e.submitter || e.submitter.value !== "add") return;
+  e.preventDefault();
+  act($("teamDlg"), async () => {
+    const id = $("tm_id").value.trim();
+    if (!id) throw new Error("enter a user id");
+    const known = new Set((await api("GET", "/principals")).map((p) => p.id));
+    if (!known.has(id)) await api("POST", "/principals", { id });
+    await op("governance.bind", { principal: id, roles: [$("tm_role").value] });
+    $("teamDlg").close(); await loadHeader(); $("teamBtn").click();
+  }, "Member added");
+});
+
+$("docDownload").onclick = () => {
+  const blob = new Blob([$("docText").textContent], { type: "text/markdown" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = `${S.project}-orsd.md`; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+$("newProjectBtn").onclick = openNewProject;
+$("projectSel").onchange = (e) => { S.project = e.target.value; save("sip.project", S.project); loadProject(); };
+$("whoSel").onchange = (e) => { S.who = e.target.value; save("sip.who", S.who); loadProject(); };
+
+(async () => {
+  try { await loadHeader(); await loadProject(); }
+  catch (e) { $("app").innerHTML = `<div class="empty"><h1>Cannot reach the SIP API</h1><p>${esc(e.message)}</p></div>`; }
+})();
+</script>
+</body>
+</html>

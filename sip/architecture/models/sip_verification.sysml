@@ -69,7 +69,7 @@ package SipVerification {
     }
     verification def <'V-08'> VerifyBrowsing {
         subject sip : SemanticIntelligencePlatform;
-        attribute test : String = "test_owl.py::test_class_hierarchy_uses_equivalent_conjuncts test_owl.py::test_class_frame_sections test_owl.py::test_resource_view_scopes test_owl.py::test_rendering_language_and_quoting";
+        attribute test : String = "test_owl.py::test_class_hierarchy_uses_equivalent_conjuncts test_owl.py::test_class_frame_sections test_owl.py::test_resource_view_scopes test_owl.py::test_rendering_language_and_quoting test_platform_agents.py::test_workbench_and_its_endpoints";
         objective {
             verify requirement : Hierarchies;
             verify requirement : DescriptionFrames;
@@ -156,6 +156,26 @@ package SipVerification {
         subject sip : SemanticIntelligencePlatform;
         attribute test : String = "test_architecture.py::test_layering test_architecture.py::test_single_write_path test_architecture.py::test_models_check";
         objective { verify requirement : EveryOperationGuarded; }
+    }
+    verification def <'V-19'> VerifyScope {
+        subject sip : SemanticIntelligencePlatform;
+        attribute test : String = "test_scope.py::test_specification_fields_replace_and_are_guarded test_scope.py::test_exit_criteria test_scope.py::test_reuse_candidates_are_void_datasets test_scope.py::test_cq_priority_and_release_gate test_scope.py::test_export_is_a_neon_orsd test_scope.py::test_project_templates_seed_the_scope_stage test_scope.py::test_requirements_agent_builds_a_grounded_orsd test_scope.py::test_requirements_critic_rejects_ungrounded_items";
+        objective {
+            verify requirement : RequirementsSpecification;
+            verify requirement : ReuseCandidates;
+            verify requirement : ScopeExitCriteria;
+            verify requirement : ProjectTemplates;
+            verify requirement : CompetencyQuestionTests;
+            verify requirement : ReleaseGate;
+        }
+    }
+    verification def <'V-20'> VerifyValidateSemantics {
+        subject sip : SemanticIntelligencePlatform;
+        attribute test : String = "test_validate_semantics.py::test_cq_discrimination_finds_tests_that_cannot_fail test_validate_semantics.py::test_release_gate_warns_about_a_must_cq_that_tests_nothing test_validate_semantics.py::test_verbalisation_and_seeded_mutants test_validate_semantics.py::test_calibration_scores_a_verifier test_validate_semantics.py::test_semantic_critic_flags_a_wrong_axiom_with_measured_precision test_validate_semantics.py::test_semantic_critic_hides_which_statements_are_mutants test_validate_semantics.py::test_semantic_critic_degrades_without_model_permission test_validate_semantics.py::test_validate_stage_reports_cq_checks_and_semantic_verdicts";
+        objective {
+            verify requirement : DiscriminatingCompetencyQuestions;
+            verify requirement : SemanticAxiomVerification;
+        }
     }
     verification def <'V-18'> VerifyDeploymentBench {
         doc /* Not executable in this repository: measured on the GKE environment. Recorded so

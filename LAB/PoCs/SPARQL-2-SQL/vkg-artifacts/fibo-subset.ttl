@@ -1,0 +1,67 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix fibo-be-le-lp: <https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/> .
+@prefix fibo-be-le-cb: <https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/> .
+@prefix fibo-fbc-fct-mkt: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/> .
+@prefix fibo-fbc-pas-caa: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/> .
+@prefix fibo-fbc-pas-fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fibo-sec-sec-iss: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/> .
+@prefix fibo-sec-sec-ast: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecurityAssets/> .
+@prefix fibo-sec-eq-eq: <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/> .
+@prefix fibo-sec-dbt-bnd: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/> .
+@prefix fro-sec: <http://finregont.com/fro/sec/SEC_Filings.ttl#> .
+@prefix ex-fibo: <https://example.org/fibo-vkg/voc#> .
+
+<https://example.org/fibo-vkg/ontology> a owl:Ontology .
+
+fibo-be-le-lp:LegalPerson a owl:Class .
+fibo-be-le-cb:Corporation a owl:Class ; rdfs:subClassOf fibo-be-le-lp:LegalPerson .
+
+fibo-fbc-pas-caa:Customer a owl:Class .
+ex-fibo:RetailCustomer a owl:Class ; rdfs:subClassOf fibo-fbc-pas-caa:Customer .
+ex-fibo:CorporateCustomer a owl:Class ; rdfs:subClassOf fibo-fbc-pas-caa:Customer .
+
+fibo-sec-sec-iss:Security a owl:Class .
+fibo-sec-eq-eq:ListedShare a owl:Class ; rdfs:subClassOf fibo-sec-sec-iss:Security .
+fibo-sec-dbt-bnd:Bond a owl:Class ; rdfs:subClassOf fibo-sec-sec-iss:Security .
+
+fibo-fbc-fct-mkt:Exchange a owl:Class .
+fibo-fbc-pas-caa:InvestmentAccount a owl:Class .
+fibo-sec-sec-ast:PortfolioHolding a owl:Class .
+fibo-fbc-pas-fpas:TradeOrder a owl:Class .
+fro-sec:FinancialReport a owl:Class .
+
+ex-fibo:issuedBy a owl:ObjectProperty ; rdfs:domain fibo-sec-sec-iss:Security ; rdfs:range fibo-be-le-cb:Corporation .
+ex-fibo:listedOn a owl:ObjectProperty ; rdfs:domain fibo-sec-sec-iss:Security ; rdfs:range fibo-fbc-fct-mkt:Exchange .
+ex-fibo:hasAccount a owl:ObjectProperty ; rdfs:domain fibo-fbc-pas-caa:Customer ; rdfs:range fibo-fbc-pas-caa:InvestmentAccount .
+ex-fibo:hasHolding a owl:ObjectProperty ; rdfs:domain fibo-fbc-pas-caa:InvestmentAccount ; rdfs:range fibo-sec-sec-ast:PortfolioHolding .
+ex-fibo:holdsSecurity a owl:ObjectProperty ; rdfs:domain fibo-sec-sec-ast:PortfolioHolding ; rdfs:range fibo-sec-sec-iss:Security .
+ex-fibo:hasTradeOrder a owl:ObjectProperty ; rdfs:domain fibo-fbc-pas-caa:InvestmentAccount ; rdfs:range fibo-fbc-pas-fpas:TradeOrder .
+ex-fibo:ordersSecurity a owl:ObjectProperty ; rdfs:domain fibo-fbc-pas-fpas:TradeOrder ; rdfs:range fibo-sec-sec-iss:Security .
+fro-sec:reportedBy a owl:ObjectProperty ; rdfs:domain fro-sec:FinancialReport ; rdfs:range fibo-be-le-cb:Corporation .
+
+ex-fibo:legalName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:cikCode a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:sicCode a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:exchangeSymbol a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:tickerSymbol a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:securityName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:lastPrice a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:peRatio a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:dividendYield a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:couponRate a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:creditRating a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:customerName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:domicileCountry a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:accountNumber a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:cashBalance a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:holdingQuantity a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:purchasePrice a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+ex-fibo:orderType a owl:DatatypeProperty ; rdfs:range xsd:string .
+ex-fibo:orderQuantity a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+fro-sec:fiscalYear a owl:DatatypeProperty ; rdfs:range xsd:integer .
+fro-sec:revenueUSD a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+fro-sec:netIncomeUSD a owl:DatatypeProperty ; rdfs:range xsd:decimal .

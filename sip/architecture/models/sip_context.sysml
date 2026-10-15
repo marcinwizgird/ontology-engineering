@@ -143,7 +143,7 @@ package SipContext {
         actor oe : OntologyEngineer;
     }
     use case def AssureQuality {
-        doc /* ICV, reasoning, explanations, CQ tests, repairs (QualityAgent). */
+        doc /* ICV, reasoning, explanations, CQ tests and their discrimination, repairs (QualityAgent), calibrated semantic verdicts (SemanticCriticAgent). */
         subject sip : SemanticIntelligencePlatform;
         actor oe : OntologyEngineer;
         actor val : Validator;

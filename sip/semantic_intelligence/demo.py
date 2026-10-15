@@ -22,7 +22,9 @@ BRIEF = (
     "The fleet team needs an ontology of vehicles and their parts. "
     "Every vehicle has one or more wheels. "
     "We need to know which manufacturers exist. "
-    "Every manufacturer has a country.")
+    "Every manufacturer has a country. "
+    "Labels must be available in English and French. "
+    "Manufacturers should be aligned with schema.org.")
 
 DOCUMENT = (
     "A car is a kind of vehicle. A truck is a kind of vehicle. "
@@ -65,6 +67,11 @@ def run(out=sys.stdout, verbose: bool = True) -> dict:
         for run_ in r.runs:
             say(f"   {run_['agent']:12} proposed={run_['proposed']} submitted={run_['submitted']}"
                 f" critic-rejected={run_['rejected_by_critic']} errors={run_['errors']}")
+        if r.stage == "scope":
+            rd = r.output["readiness"]
+            say(f"   scope ready (incl. proposals): {rd['ready']}"
+                + (f"; missing: {rd['missing']}" if rd["missing"] else "")
+                + (f"; advice: {rd['advice']}" if rd["advice"] else ""))
 
     # ---- the human review gate ------------------------------------------- #
     reviews = reports[-1].output["reviews"]
@@ -77,6 +84,8 @@ def run(out=sys.stdout, verbose: bool = True) -> dict:
             P.call(val, "fleet", "validation.reject", commit=rv["commit"])
             rejected += 1
     say(f"\nvalidator: accepted {accepted}, rejected {rejected} of {len(reviews)} proposals")
+    orsd_doc = P.call(pm, "fleet", "scope.exportSpecification")
+    say("ORSD after review: " + orsd_doc.splitlines()[2])
     P.call(pm, "fleet", "lifecycle.setStage", stage="review", state="done",
            note="review gate closed by project manager")
 
@@ -99,7 +108,7 @@ def run(out=sys.stdout, verbose: bool = True) -> dict:
     say("metrics: " + json.dumps(metrics["Metrics"]))
     say("agent metrics: " + json.dumps(conductor.runtime.metrics("fleet"), indent=1))
     return {"platform": P, "conductor": conductor, "reports": reports, "gate": gate,
-            "qa": qa, "accepted": accepted, "rejected": rejected}
+            "qa": qa, "accepted": accepted, "rejected": rejected, "orsd": orsd_doc}
 
 
 if __name__ == "__main__":

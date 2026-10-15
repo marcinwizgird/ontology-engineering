@@ -57,7 +57,7 @@ package SipBehaviour {
         action scope : AgentLoop { doc /* RequirementsAgent */ }
         action acquire : AgentLoop { doc /* ExtractionAgent per document */ }
         action model : AgentLoop { doc /* ModelingCopilot, VocabularyAgent, AlignmentAgent */ }
-        action validate : AgentLoop { doc /* QualityAgent on the staged preview */ }
+        action validate : AgentLoop { doc /* QualityAgent on the staged preview; CQ discrimination; SemanticCriticAgent (advisory) */ }
         action review { doc /* StewardAgent summarises; validators accept/reject */ }
         action reviewGate { doc /* human closes review */ }
         action populate : AgentLoop { doc /* KnowledgeGraphBuilder per table */ }

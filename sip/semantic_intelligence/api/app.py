@@ -10,6 +10,9 @@ Authentication here is a development stub: the principal is taken from the
 :func:`principal` with OIDC token validation; nothing else changes, because
 authorisation happens in ``Platform.call``, not here.
 
+The workbench (``/ui``, ``workbench.html``) is a single static page over this same
+API; it adds no server-side logic of its own.
+
 Run::
 
     PYTHONPATH="sip" uvicorn semantic_intelligence.api.app:app
@@ -17,11 +20,14 @@ Run::
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 from fastapi import Body, Depends, FastAPI, Header, HTTPException
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 from ..agents.orchestrator import Conductor
+from ..core.principal import Principal
 from ..governance.registry import AuthorizationError
 from ..platform import OPERATIONS, Platform, describe_operations
 
@@ -55,6 +61,16 @@ def create_app(platform: Platform | None = None, conductor: Conductor | None = N
                     "added": len(result.additions), "removed": len(result.removals)}
         return result
 
+    @app.get("/", include_in_schema=False)
+    def root():
+        return RedirectResponse("/ui")
+
+    @app.get("/ui", include_in_schema=False)
+    def workbench():
+        """The workbench: one static page that calls this API (no build step)."""
+        return HTMLResponse((Path(__file__).parent / "workbench.html").read_text(
+            encoding="utf-8"))
+
     @app.get("/health")
     def health():
         return {"status": "ok", "projects": sorted(P.projects), "operations": len(OPERATIONS)}
@@ -62,6 +78,49 @@ def create_app(platform: Platform | None = None, conductor: Conductor | None = N
     @app.get("/operations")
     def operations():
         return describe_operations()
+
+    # -- principals (VocBench UsersManager, development form) --------------- #
+    @app.get("/principals")
+    def principals(who=Depends(principal)):
+        return [{"id": p.id, "display_name": p.display_name, "is_admin": p.is_admin,
+                 "is_machine": p.is_machine, "on_behalf_of": p.on_behalf_of}
+                for p in sorted(P.registry.principals.values(), key=lambda p: p.id)]
+
+    @app.post("/principals")
+    def add_principal(body: dict = Body(...), who=Depends(principal)):
+        def go():
+            if not who.is_admin or who.is_machine:
+                raise AuthorizationError("registering users requires an administrator")
+            pid = str(body.get("id", "")).strip()
+            if not pid:
+                raise ValueError("a principal needs an id")
+            if pid in P.registry.principals:
+                raise ValueError(f"principal {pid!r} exists")
+            p = P.registry.add_principal(Principal(pid, body.get("display_name", "")))
+            return {"id": p.id}
+        return _run(go)
+
+    @app.get("/templates")
+    def templates(who=Depends(principal)):
+        return _run(lambda: P.call(who, None, "governance.listTemplates"))
+
+    @app.get("/projects/{project}/members")
+    def members(project: str, who=Depends(principal)):
+        def go():
+            P.pdp.require(who, project, "rdf", "R")
+            return [{"principal": b.principal, "roles": list(b.roles),
+                     "languages": list(b.languages)}
+                    for (pid, proj), b in sorted(P.registry.bindings.items()) if proj == project]
+        return _run(go)
+
+    @app.get("/projects/{project}/agents")
+    def agents(project: str, who=Depends(principal)):
+        def go():
+            P.pdp.require(who, project, "rdf", "R")
+            return [{"agent": a.name, "stage": a.stage, "principal": a.principal.id,
+                     "on_behalf_of": a.principal.on_behalf_of}
+                    for (proj, _), a in C.agents.items() if proj == project]
+        return _run(go)
 
     @app.post("/projects")
     def create_project(body: dict = Body(...), who=Depends(principal)):
@@ -85,7 +144,10 @@ def create_app(platform: Platform | None = None, conductor: Conductor | None = N
             if a.principal.on_behalf_of != who.id and not who.is_admin:
                 raise AuthorizationError("agents run only for the human that enabled them")
             r = a.run(project, **body)
-            return {"summary": r.summary(), "output": r.output}
+            return {"summary": r.summary(), "output": r.output,
+                    "proposals": [{"operation": p.operation, "arguments": p.arguments,
+                                   "critic": p.critic, "commit": p.commit, "error": p.error,
+                                   "quote": p.evidence.get("quote")} for p in r.proposals]}
         return _run(go)
 
     @app.post("/agents/runs/{run_id}/stop")

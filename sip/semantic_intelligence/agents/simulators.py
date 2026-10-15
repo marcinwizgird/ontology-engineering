@@ -29,22 +29,70 @@ def _sing(w: str) -> str:
     return w
 
 
+#: a sentence ends at . ! ? followed by whitespace, or at a line end ("schema.org" stays whole)
+SENTENCE = re.compile(r"(?m)[^\n]+?(?:[.!?](?=\s|$)|$)")
+
+
 def _sentences(text: str):
-    for m in re.finditer(r"[^.!?\n]+[.!?]?", text):
+    for m in SENTENCE.finditer(text):
         s = m.group().strip()
         if s:
             yield s
 
 
 # --------------------------------------------------------------------------- #
-# requirements.cqs — "Which X …?" questions from "X has/is/..." statements
+# requirements.cqs — the ORSD from a brief: purpose and scope from "needs an
+# ontology of …", uses from "we need to know …", non-functional requirements from
+# "must/should be available|published|…", reuse from a small registry of well-known
+# ontologies, and "Which X …?" questions from "X has/is/..." statements
 # --------------------------------------------------------------------------- #
+
+#: name in the brief → (namespace IRI, title, default reuse mode)
+KNOWN_ONTOLOGIES = {
+    "schema.org": ("https://schema.org/", "Schema.org", "align"),
+    "fibo": ("https://spec.edmcouncil.org/fibo/ontology/",
+             "Financial Industry Business Ontology", "align"),
+    "owl-time": ("http://www.w3.org/2006/time#", "OWL-Time", "import"),
+    "dublin core": ("http://purl.org/dc/terms/", "DCMI Metadata Terms", "reference"),
+    "qudt": ("http://qudt.org/schema/qudt/", "QUDT", "import"),
+    "geonames": ("https://www.geonames.org/ontology#", "GeoNames Ontology", "reference"),
+}
+_SOFT = re.compile(r"\b(?:should|ideally|nice to have|could|may)\b", re.I)
+
+
+def _quoted(text: str, quote: str) -> dict:
+    return {"text": text, "quote": quote}
+
 
 def sim_requirements(prompt: str, schema: dict) -> dict:
     data = json.loads(prompt)
     brief = data["brief"]
-    terms, cqs = [], []
+    terms, cqs, reuse = [], [], []
+    spec = {"purpose": _quoted("", ""), "scope": _quoted("", ""), "intended_users": [],
+            "intended_uses": [], "non_functional": []}
     for s in _sentences(brief):
+        m = re.search(r"^(?:the\s+)?(.+?)\s+(?:needs?|wants?|requires?)\s+an?\s+ontology\s+"
+                      r"(?:of|for|about|covering)\s+(.+?)[.!?]?$", s, re.I)
+        if m:
+            spec["purpose"] = _quoted(s, s)
+            spec["scope"] = _quoted(m.group(2), m.group(2))
+            spec["intended_users"].append(_quoted(m.group(1), m.group(1)))
+            continue
+        low = s.lower()
+        hits = [k for k in KNOWN_ONTOLOGIES if k in low]
+        if hits and re.search(r"\b(?:reuse|reused|align|aligned|import|imported|based on)\b",
+                              low):
+            for k in hits:
+                iri, title, mode = KNOWN_ONTOLOGIES[k]
+                mode = ("import" if "import" in low else "align" if "align" in low else mode)
+                reuse.append({"iri": iri, "title": title, "mode": mode,
+                              "rationale": f"the brief asks for {title}", "quote": s})
+            continue
+        if re.search(r"\b(?:must|should)\s+be\s+(?:available|published|provided|expressed|"
+                     r"compatible|licensed|documented)\b", s, re.I):
+            spec["non_functional"].append(_quoted(s, s))
+            continue
+        priority = "should" if _SOFT.search(s) else "must"
         m = re.search(r"\b(?:every|each|all)\s+(\w+)\s+(?:has|have|must have)\s+(?:" + _ART
                       + r")?(?:one or more\s+|at least one\s+)?(\w+)", s, re.I)
         if m:
@@ -56,17 +104,18 @@ def sim_requirements(prompt: str, schema: dict) -> dict:
             cqs.append({"id": f"cq_{A}_{B}", "question": f"Does every {a} have some {b}?",
                         "sparql": (f"ASK {{ :{A} rdfs:subClassOf ?r . ?r owl:onProperty ?p ; "
                                    f"owl:someValuesFrom :{B} }}"),
-                        "expectation": "ask:true", "quote": s})
+                        "expectation": "ask:true", "priority": priority, "quote": s})
             continue
         m = re.search(r"\b(?:we need to know|track|record)\s+(?:which|what)\s+(\w+)", s, re.I)
         if m:
             a = _sing(m.group(1))
             A = a[:1].upper() + a[1:]
             terms.append(a)
+            spec["intended_uses"].append(_quoted(s, s))
             cqs.append({"id": f"cq_{A}", "question": f"Which {a}s are there?",
                         "sparql": f"SELECT ?x WHERE {{ ?x a/rdfs:subClassOf* :{A} }}",
-                        "expectation": "non-empty", "quote": s})
-    return {"terms": sorted(set(terms)), "cqs": cqs}
+                        "expectation": "non-empty", "priority": priority, "quote": s})
+    return {"specification": spec, "reuse": reuse, "terms": sorted(set(terms)), "cqs": cqs}
 
 
 # --------------------------------------------------------------------------- #
@@ -284,6 +333,123 @@ def sim_assistant(prompt: str, schema: dict) -> dict:
             "answer_template": f"The {target} instances are: {{answer}}"}
 
 
+# --------------------------------------------------------------------------- #
+# semantic.verify — a domain expert with nothing but the reference text. Facts are
+# read from "every X has a Y", "every X is <verb> by a Y", "a X is a (kind of) Y",
+# "no X is a Y" and "Ys, such as A and B"; each controlled-English statement is
+# then judged against them. Anything the reference does not settle is "unsure":
+# the simulator never claims domain knowledge it was not given.
+# --------------------------------------------------------------------------- #
+
+_QTY = r"(?:a|an|one or more|several|some|many|at least one|exactly one)\s+"
+
+
+def _noun(s: str) -> str:
+    words = re.sub(r"[^a-z0-9 ]", " ", s.lower()).split()
+    return " ".join(words[:-1] + [_sing(words[-1])]) if words else ""
+
+
+def _reference_facts(text: str) -> dict:
+    isa, has, disjoint = set(), set(), set()       # has: (subject, object, verb phrase)
+    for sent in _sentences(text):
+        s = sent.rstrip(".!?").strip()
+        if m := re.fullmatch(r"(?:no)\s+(.+?)\s+is\s+an?\s+(.+)", s, re.I):
+            disjoint.add(frozenset((_noun(m.group(1)), _noun(m.group(2)))))
+        elif m := re.fullmatch(r"(?:an?|every|each)\s+(.+?)\s+is\s+(?:a\s+kind\s+of|a\s+type\s+of"
+                               r"|an?)\s+(.+)", s, re.I):
+            isa.add((_noun(m.group(1)), _noun(m.group(2))))
+        elif m := re.fullmatch(r"(?:an?|every|each)\s+(.+?)\s+is\s+(\w+\s+by)\s+an?\s+(.+)", s,
+                               re.I):
+            has.add((_noun(m.group(1)), _noun(m.group(3)), m.group(2).lower()))
+        elif m := re.fullmatch(r"(?:an?|every|each)\s+(.+?)\s+(?:has|have)\s+(?:" + _QTY
+                               + r")?(.+?)(?:\s+(?:recorded|stored|given|which|that)\b.*)?", s,
+                               re.I):
+            has.add((_noun(m.group(1)), _noun(m.group(2)), "has"))
+        if m := re.search(r"(\w+?)s?,\s+such\s+as\s+(.+?),", s, re.I):
+            y = _noun(m.group(1))
+            for item in re.split(r",|\band\b", m.group(2)):
+                item = _noun(item)
+                if item:
+                    isa.add((item, y))
+                    if item.endswith(" " + y):
+                        isa.add((item[: -len(y) - 1], y))
+    return {"isa": isa, "has": has, "disjoint": disjoint}
+
+
+def _above(isa: set, a: str) -> set:
+    seen, todo = {a}, [a]
+    while todo:
+        x = todo.pop()
+        for s, o in isa:
+            if s == x and o not in seen:
+                seen.add(o)
+                todo.append(o)
+    return seen
+
+
+def _uses(fact: tuple, prop: str) -> bool:
+    """Does the reference fact (s, o, verb) use the property called *prop*?"""
+    _, o, verb = fact
+    return prop == verb or (verb == "has" and o.split()[-1] in prop.split())
+
+
+def _judge(st: str, f: dict) -> tuple[str, str]:
+    isa, has, dis = f["isa"], f["has"], f["disjoint"]
+    st = st.rstrip(".")
+    if m := re.fullmatch(r"Every (.+?) is an? (.+)", st):
+        a, b = _noun(m.group(1)), _noun(m.group(2))
+        if b in _above(isa, a):
+            return "holds", f"the reference says every {a} is a {b}"
+        if a in _above(isa, b) and a != b:
+            return "false", f"the reference says it is the other way round: every {b} is a {a}"
+        if frozenset((a, b)) in dis:
+            return "false", f"the reference says no {a} is a {b}"
+    elif m := re.fullmatch(r"Nothing is both an? (.+?) and an? (.+)", st):
+        a, b = _noun(m.group(1)), _noun(m.group(2))
+        if frozenset((a, b)) in dis:
+            return "holds", f"the reference says no {a} is a {b}"
+        if b in _above(isa, a) or a in _above(isa, b):
+            return "false", f"the reference says one is a kind of the other"
+    elif m := re.fullmatch(r"Every (.+?) is related by '(.+?)' (to at least one|to no|only to) "
+                           r"(.+?)(?: things)?", st):
+        a, p, q, b = _noun(m.group(1)), m.group(2), m.group(3), _noun(m.group(4))
+        mine = [x for x in has if x[0] in _above(isa, a) and _uses(x, p)]
+        said = [x for x in mine if b in _above(isa, x[1])]
+        other = [x for x in mine if x not in said]
+        if q == "to no":
+            if said:
+                return "false", f"the reference says every {a} has a {b}"
+        elif said:
+            return "holds", f"the reference says every {a} has a {b}"
+        elif other:
+            return "false", f"the reference says '{p}' leads to a {other[0][1]}, not a {b}"
+    elif m := re.fullmatch(r"Anything related by '(.+?)' to something is an? (.+)", st):
+        p, d = m.group(1), _noun(m.group(2))
+        uses = [x for x in has if _uses(x, p)]
+        if any(x[0] == d for x in uses):
+            return "holds", f"the reference uses '{p}' for a {d}"
+        if uses:
+            return "false", f"the reference uses '{p}' for a {uses[0][0]}, not a {d}"
+    elif m := re.fullmatch(r"Anything that something is related to by '(.+?)' is an? (.+)", st):
+        p, r = m.group(1), _noun(m.group(2))
+        uses = [x for x in has if _uses(x, p)]
+        if any(x[1] == r for x in uses):
+            return "holds", f"the reference says '{p}' leads to a {r}"
+        if uses:
+            return "false", f"the reference says '{p}' leads to a {uses[0][1]}, not a {r}"
+    return "unsure", "the reference does not settle it"
+
+
+def sim_semantic(prompt: str, schema: dict) -> dict:
+    data = json.loads(prompt)
+    facts = _reference_facts(data["reference"])
+    out = []
+    for s in data["statements"]:
+        verdict, reason = _judge(s["statement"], facts)
+        out.append({"id": s["id"], "verdict": verdict, "reason": reason})
+    return {"verdicts": out}
+
+
 def simulated_model() -> SimulatedModel:
     m = SimulatedModel()
     for task, fn in {"requirements.cqs": sim_requirements,
@@ -291,6 +457,7 @@ def simulated_model() -> SimulatedModel:
                      "modeling.axioms": sim_modeling, "vocabulary.labels": sim_vocabulary,
                      "alignment.adjudicate": sim_alignment, "quality.repair": sim_quality,
                      "steward.summaries": sim_steward, "kg.mapping": sim_kg_mapping,
-                     "assistant.sparql": sim_assistant}.items():
+                     "assistant.sparql": sim_assistant,
+                     "semantic.verify": sim_semantic}.items():
         m.register(task, fn)
     return m
