@@ -287,6 +287,24 @@ package SipRequirements {
         subject sip : SemanticIntelligencePlatform;
         @Provenance { sourceTool = "new"; sourceArtefact = "entity resolution"; }
     }
+    requirement def <'FR-VKG-01'> R2rmlMappingAuthoring {
+        doc /* Register relational databases (read-only), introspect their schema, and create,
+             * edit, remove, import and export W3C R2RML triples maps between the ontology and
+             * the database as commits on the mappings graph; propose mappings from schema +
+             * ontology (never auto-applied); check maps statically against the staged ontology
+             * and the schema; keep maps consistent when an ontology entity is renamed and
+             * report the maps affected by a rename or deletion. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "Ontop / R2RML"; sourceArtefact = "W3C R2RML (2012); Ontop mapping editor; LAB/PoCs/SPARQL-2-SQL vkg-artifacts"; }
+    }
+    requirement def <'FR-VKG-02'> VirtualGraphQuery {
+        doc /* Answer SPARQL over the mapped relational data together with the project ontology
+             * in the staged view, with subclass/subproperty entailment, so that an ontology
+             * edit changes the answers without re-mapping; preview the triples one map or one
+             * term produces with their provenance; optionally delegate to an Ontop endpoint. */
+        subject sip : SemanticIntelligencePlatform;
+        @Provenance { sourceTool = "Ontop / R2RML"; sourceArtefact = "Ontop virtual KG query answering (T-mappings); R2RML processor"; }
+    }
     requirement def <'FR-ALN-01'> Alignment {
         doc /* Generate candidate correspondences, load/save Alignment API format, validate cells,
              * and apply accepted cells as mapping triples in the mappings graph. */

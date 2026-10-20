@@ -1,0 +1,1072 @@
+@prefix fiben: <https://example.org/fiben/voc#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://example.org/fiben/ontology> a owl:Ontology ;
+    rdfs:comment "Reconstructed from the FIBEN DDL (IBM, Apache-2.0); aligned to FIBO where labels match." .
+
+fiben:AccountsPayableAndAccruedLiabilities a owl:Class ;
+    rdfs:label "accounts payable and accrued liabilities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ACCOUNTSPAYABLEANDACCRUEDLIABILITIES" .
+
+fiben:AccountsPayableDetails a owl:Class ;
+    rdfs:label "accounts payable details"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ACCOUNTSPAYABLEDETAILS" .
+
+fiben:AccruedLiabilities a owl:Class ;
+    rdfs:label "accrued liabilities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ACCRUEDLIABILITIES" .
+
+fiben:AccumulatedOtherComprehensiveIncomeLoss a owl:Class ;
+    rdfs:label "accumulated other comprehensive income loss"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS" .
+
+fiben:Address a owl:Class ;
+    rdfs:label "address"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/Address> ;
+    skos:notation "ADDRESS" .
+
+fiben:AllowanceForCreditLosses a owl:Class ;
+    rdfs:label "allowance for credit losses"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ALLOWANCEFORCREDITLOSSES" .
+
+fiben:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare a owl:Class ;
+    rdfs:label "antidilutive securities excluded from computation of earnings per share"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE" .
+
+fiben:Asset a owl:Class ;
+    rdfs:label "asset"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Asset> ;
+    skos:notation "ASSET" .
+
+fiben:AssetImpairmentCharges a owl:Class ;
+    rdfs:label "asset impairment charges"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ASSETIMPAIRMENTCHARGES" .
+
+fiben:AssetRetirementObligationDisclosure a owl:Class ;
+    rdfs:label "asset retirement obligation disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ASSETRETIREMENTOBLIGATIONDISCLOSURE" .
+
+fiben:AvailableForSaleSecurities a owl:Class ;
+    rdfs:label "available for sale securities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "AVAILABLEFORSALESECURITIES" .
+
+fiben:BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts a owl:Class ;
+    rdfs:label "business acquisition integration restructuring and other related costs"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS" .
+
+fiben:BusinessAcquisitionProForMainFormation a owl:Class ;
+    rdfs:label "business acquisition pro for main formation"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "BUSINESSACQUISITIONPROFORMAINFORMATION" .
+
+fiben:BusinessCombinationDisclosure a owl:Class ;
+    rdfs:label "business combination disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "BUSINESSCOMBINATIONDISCLOSURE" .
+
+fiben:CapitalUnits a owl:Class ;
+    rdfs:label "capital units"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CAPITALUNITS" .
+
+fiben:CashAndCashEquivalents a owl:Class ;
+    rdfs:label "cash and cash equivalents"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CASHANDCASHEQUIVALENTS" .
+
+fiben:CashAndCashEquivalentsDisclosure a owl:Class ;
+    rdfs:label "cash and cash equivalents disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CASHANDCASHEQUIVALENTSDISCLOSURE" .
+
+fiben:CashCashEquivalentsAndShortTermInvestments a owl:Class ;
+    rdfs:label "cash cash equivalents and short term investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS" .
+
+fiben:ChangeInAccountingEstimate a owl:Class ;
+    rdfs:label "change in accounting estimate"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CHANGEINACCOUNTINGESTIMATE" .
+
+fiben:ChangesInFairValueOfPlanAssets a owl:Class ;
+    rdfs:label "changes in fair value of plan assets"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CHANGESINFAIRVALUEOFPLANASSETS" .
+
+fiben:CommitmentsContingenciesAndGuarantees a owl:Class ;
+    rdfs:label "commitments contingencies and guarantees"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "COMMITMENTSCONTINGENCIESANDGUARANTEES" .
+
+fiben:ComprehensiveIncome a owl:Class ;
+    rdfs:label "comprehensive income"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:notation "COMPREHENSIVEINCOME" .
+
+fiben:ComprehensiveIncomeLoss a owl:Class ;
+    rdfs:label "comprehensive income loss"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "COMPREHENSIVEINCOMELOSS" .
+
+fiben:Contract a owl:Class ;
+    rdfs:label "contract"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/Contract> ;
+    skos:notation "CONTRACT" .
+
+fiben:ContractParty a owl:Class ;
+    rdfs:label "contract party"@en ;
+    rdfs:subClassOf fiben:Person ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/ContractParty> ;
+    skos:notation "CONTRACTPARTY" .
+
+fiben:ConversionOfStock a owl:Class ;
+    rdfs:label "conversion of stock"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "CONVERSIONOFSTOCK" .
+
+fiben:Corporation a owl:Class ;
+    rdfs:label "corporation"@en ;
+    rdfs:subClassOf fiben:AutonomousAgent ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/Corporation> ;
+    skos:notation "CORPORATION" .
+
+fiben:CostMethodInvestments a owl:Class ;
+    rdfs:label "cost method investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "COSTMETHODINVESTMENTS" .
+
+fiben:CostsOfRetirementPlans a owl:Class ;
+    rdfs:label "costs of retirement plans"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "COSTSOFRETIREMENTPLANS" .
+
+fiben:Country a owl:Class ;
+    rdfs:label "country"@en ;
+    skos:notation "COUNTRY" .
+
+fiben:Currency a owl:Class ;
+    rdfs:label "currency"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/Currency> ;
+    skos:notation "CURRENCY" .
+
+fiben:Debt a owl:Class ;
+    rdfs:label "debt"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/Debt> ;
+    skos:notation "DEBT" .
+
+fiben:DebtConversion a owl:Class ;
+    rdfs:label "debt conversion"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "DEBTCONVERSION" .
+
+fiben:DeferredTaxAssetsAndLiabilities a owl:Class ;
+    rdfs:label "deferred tax assets and liabilities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "DEFERREDTAXASSETSANDLIABILITIES" .
+
+fiben:DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss a owl:Class ;
+    rdfs:label "defined benefit plan amounts recognized in other comprehensive income loss"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS" .
+
+fiben:Derivative a owl:Class ;
+    rdfs:label "derivative"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "DERIVATIVE" .
+
+fiben:DistributionToOwner a owl:Class ;
+    rdfs:label "distribution to owner"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:notation "DISTRIBUTIONTOOWNER" .
+
+fiben:DividendPaymentRestrictions a owl:Class ;
+    rdfs:label "dividend payment restrictions"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "DIVIDENDPAYMENTRESTRICTIONS" .
+
+fiben:DividendsPayable a owl:Class ;
+    rdfs:label "dividends payable"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "DIVIDENDSPAYABLE" .
+
+fiben:EffectiveIncomeTaxRateReconciliation a owl:Class ;
+    rdfs:label "effective income tax rate reconciliation"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "EFFECTIVEINCOMETAXRATERECONCILIATION" .
+
+fiben:EmailAddress a owl:Class ;
+    rdfs:label "email address"@en ;
+    rdfs:subClassOf fiben:VirtualAddress ;
+    skos:notation "EMAILADDRESS" .
+
+fiben:EntityLocation a owl:Class ;
+    rdfs:label "entity location"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ENTITYLOCATION" .
+
+fiben:Equity a owl:Class ;
+    rdfs:label "equity"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/OwnersEquity> ;
+    skos:notation "EQUITY" .
+
+fiben:EquityMethodInvestments a owl:Class ;
+    rdfs:label "equity method investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "EQUITYMETHODINVESTMENTS" .
+
+fiben:ErrorCorrectionsAndPriorPeriodAdjustments a owl:Class ;
+    rdfs:label "error corrections and prior period adjustments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS" .
+
+fiben:Expense a owl:Class ;
+    rdfs:label "expense"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:notation "EXPENSE" .
+
+fiben:ExtinguishmentOfDebt a owl:Class ;
+    rdfs:label "extinguishment of debt"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "EXTINGUISHMENTOFDEBT" .
+
+fiben:ExtraordinaryItems a owl:Class ;
+    rdfs:label "extraordinary items"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "EXTRAORDINARYITEMS" .
+
+fiben:FinancialInstrumentsSubjectToMandatoryRedemption a owl:Class ;
+    rdfs:label "financial instruments subject to mandatory redemption"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION" .
+
+fiben:FinancialMarket a owl:Class ;
+    rdfs:label "financial market"@en ;
+    skos:notation "FINANCIALMARKET" .
+
+fiben:FinancialMetrics a owl:Class ;
+    rdfs:label "financial metrics"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCIALMETRICS" .
+
+fiben:FinancialReport a owl:Class ;
+    rdfs:label "financial report"@en ;
+    skos:notation "FINANCIALREPORT" .
+
+fiben:FinancialServiceAccount a owl:Class ;
+    rdfs:label "financial service account"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/CustomerAccount> ;
+    skos:notation "FINANCIALSERVICEACCOUNT" .
+
+fiben:FinancingReceivableAllowanceForCreditLosses a owl:Class ;
+    rdfs:label "financing receivable allowance for credit losses"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES" .
+
+fiben:FinancingReceivableCreditQualityIndicators a owl:Class ;
+    rdfs:label "financing receivable credit quality indicators"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCINGRECEIVABLECREDITQUALITYINDICATORS" .
+
+fiben:FinancingReceivableTroubledDebtRestructurings a owl:Class ;
+    rdfs:label "financing receivable troubled debt restructurings"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS" .
+
+fiben:FinancingReceivables a owl:Class ;
+    rdfs:label "financing receivables"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCINGRECEIVABLES" .
+
+fiben:FinancingReceivablesPastDue a owl:Class ;
+    rdfs:label "financing receivables past due"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FINANCINGRECEIVABLESPASTDUE" .
+
+fiben:ForeignCurrencyTranslation a owl:Class ;
+    rdfs:label "foreign currency translation"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FOREIGNCURRENCYTRANSLATION" .
+
+fiben:ForwardContractIndexedToIssuersEquity a owl:Class ;
+    rdfs:label "forward contract indexed to issuers equity"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FORWARDCONTRACTINDEXEDTOISSUERSEQUITY" .
+
+fiben:FresHstArtAdjustments a owl:Class ;
+    rdfs:label "fres hst art adjustments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "FRESHSTARTADJUSTMENTS" .
+
+fiben:GainLossOnInvestments a owl:Class ;
+    rdfs:label "gain loss on investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "GAINLOSSONINVESTMENTS" .
+
+fiben:Goodwill a owl:Class ;
+    rdfs:label "goodwill"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "GOODWILL" .
+
+fiben:Guarantees a owl:Class ;
+    rdfs:label "guarantees"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "GUARANTEES" .
+
+fiben:GuarantorObligations a owl:Class ;
+    rdfs:label "guarantor obligations"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "GUARANTOROBLIGATIONS" .
+
+fiben:HeldToMaturitySecurities a owl:Class ;
+    rdfs:label "held to maturity securities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "HELDTOMATURITYSECURITIES" .
+
+fiben:Holding a owl:Class ;
+    rdfs:label "holding"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/Holding> ;
+    skos:notation "HOLDING" .
+
+fiben:ImpairedFinancingReceivables a owl:Class ;
+    rdfs:label "impaired financing receivables"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "IMPAIREDFINANCINGRECEIVABLES" .
+
+fiben:IncomeTaxContingency a owl:Class ;
+    rdfs:label "income tax contingency"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INCOMETAXCONTINGENCY" .
+
+fiben:IndefiniteLivedIntangibleAssets a owl:Class ;
+    rdfs:label "indefinite lived intangible assets"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INDEFINITELIVEDINTANGIBLEASSETS" .
+
+fiben:IndustrySectorClassificationScheme a owl:Class ;
+    rdfs:label "industry sector classification scheme"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/ClassificationSchemes/IndustrySectorClassificationScheme> ;
+    skos:notation "INDUSTRYSECTORCLASSIFICATIONSCHEME" .
+
+fiben:IndustrySectorClassifier a owl:Class ;
+    rdfs:label "industry sector classifier"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/ClassificationSchemes/IndustrySectorClassifier> ;
+    skos:notation "INDUSTRYSECTORCLASSIFIER" .
+
+fiben:IntangibleAssetsAndGoodwill a owl:Class ;
+    rdfs:label "intangible assets and goodwill"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INTANGIBLEASSETSANDGOODWILL" .
+
+fiben:InterestAndOtherIncome a owl:Class ;
+    rdfs:label "interest and other income"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INTERESTANDOTHERINCOME" .
+
+fiben:InterestCostsIncurred a owl:Class ;
+    rdfs:label "interest costs incurred"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INTERESTCOSTSINCURRED" .
+
+fiben:InventoryCurrent a owl:Class ;
+    rdfs:label "inventory current"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INVENTORYCURRENT" .
+
+fiben:InventoryNoncurrent a owl:Class ;
+    rdfs:label "inventory noncurrent"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INVENTORYNONCURRENT" .
+
+fiben:InvestmentIncome a owl:Class ;
+    rdfs:label "investment income"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INVESTMENTINCOME" .
+
+fiben:InvestmentsAndOtherNoncurrentAssets a owl:Class ;
+    rdfs:label "investments and other noncurrent assets"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "INVESTMENTSANDOTHERNONCURRENTASSETS" .
+
+fiben:Liability a owl:Class ;
+    rdfs:label "liability"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:notation "LIABILITY" .
+
+fiben:LineOfCreditFacility a owl:Class ;
+    rdfs:label "line of credit facility"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "LINEOFCREDITFACILITY" .
+
+fiben:ListedSecurity a owl:Class ;
+    rdfs:label "listed security"@en ;
+    rdfs:subClassOf fiben:Security ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/ListedSecurity> ;
+    skos:notation "LISTEDSECURITY" .
+
+fiben:LongLivedAssetsHeldForSale a owl:Class ;
+    rdfs:label "long lived assets held for sale"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "LONGLIVEDASSETSHELDFORSALE" .
+
+fiben:LongLivedAssetsToBeAbandoned a owl:Class ;
+    rdfs:label "long lived assets to be abandoned"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "LONGLIVEDASSETSTOBEABANDONED" .
+
+fiben:LongTermDebt a owl:Class ;
+    rdfs:label "long term debt"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "LONGTERMDEBT" .
+
+fiben:LongTermDebtMaturities a owl:Class ;
+    rdfs:label "long term debt maturities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "LONGTERMDEBTMATURITIES" .
+
+fiben:LongTermPurchaseCommitment a owl:Class ;
+    rdfs:label "long term purchase commitment"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "LONGTERMPURCHASECOMMITMENT" .
+
+fiben:Loss a owl:Class ;
+    rdfs:label "loss"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:notation "LOSS" .
+
+fiben:MarketableSecurities a owl:Class ;
+    rdfs:label "marketable securities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "MARKETABLESECURITIES" .
+
+fiben:MonetaryAmount a owl:Class ;
+    rdfs:label "monetary amount"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount> ;
+    skos:notation "MONETARYAMOUNT" .
+
+fiben:NetPeriodicBenefitCostNotYetRecognized a owl:Class ;
+    rdfs:label "net periodic benefit cost not yet recognized"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "NETPERIODICBENEFITCOSTNOTYETRECOGNIZED" .
+
+fiben:NewAccountingPronouncementEarlyAdoption a owl:Class ;
+    rdfs:label "new accounting pronouncement early adoption"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION" .
+
+fiben:NoncontrollingInterest a owl:Class ;
+    rdfs:label "noncontrolling interest"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "NONCONTROLLINGINTEREST" .
+
+fiben:OperatingLossCarryForwards a owl:Class ;
+    rdfs:label "operating loss carry forwards"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OPERATINGLOSSCARRYFORWARDS" .
+
+fiben:OtherAssets a owl:Class ;
+    rdfs:label "other assets"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERASSETS" .
+
+fiben:OtherAssetsAndOtherLiabilities a owl:Class ;
+    rdfs:label "other assets and other liabilities"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERASSETSANDOTHERLIABILITIES" .
+
+fiben:OtherAssetsDisclosure a owl:Class ;
+    rdfs:label "other assets disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERASSETSDISCLOSURE" .
+
+fiben:OtherAssetsNoncurrent a owl:Class ;
+    rdfs:label "other assets noncurrent"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERASSETSNONCURRENT" .
+
+fiben:OtherLiabilitiesDisclosure a owl:Class ;
+    rdfs:label "other liabilities disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERLIABILITIESDISCLOSURE" .
+
+fiben:OtherNonOperatingIncomeExpense a owl:Class ;
+    rdfs:label "other non operating income expense"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERNONOPERATINGINCOMEEXPENSE" .
+
+fiben:OtherOwnershipInterests a owl:Class ;
+    rdfs:label "other ownership interests"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHEROWNERSHIPINTERESTS" .
+
+fiben:OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings a owl:Class ;
+    rdfs:label "other than temporary impairment credit losses recognized in earnings"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS" .
+
+fiben:PhoneNumber a owl:Class ;
+    rdfs:label "phone number"@en ;
+    rdfs:subClassOf fiben:VirtualAddress ;
+    skos:notation "PHONENUMBER" .
+
+fiben:PostalAddress a owl:Class ;
+    rdfs:label "postal address"@en ;
+    skos:notation "POSTALADDRESS" .
+
+fiben:PreferredStock a owl:Class ;
+    rdfs:label "preferred stock"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PREFERREDSTOCK" .
+
+fiben:ProductWarrantyLiability a owl:Class ;
+    rdfs:label "product warranty liability"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PRODUCTWARRANTYLIABILITY" .
+
+fiben:PropertyManagementFee a owl:Class ;
+    rdfs:label "property management fee"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PROPERTYMANAGEMENTFEE" .
+
+fiben:PropertyPlantAndEquipment a owl:Class ;
+    rdfs:label "property plant and equipment"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PROPERTYPLANTANDEQUIPMENT" .
+
+fiben:PropertyPlantAndEquipmentIncomeStatementDisclosures a owl:Class ;
+    rdfs:label "property plant and equipment income statement disclosures"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES" .
+
+fiben:PropertyPlantAndEquipmentUseFullives a owl:Class ;
+    rdfs:label "property plant and equipment use fullives"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PROPERTYPLANTANDEQUIPMENTUSEFULLIVES" .
+
+fiben:PropertySubjectToOrAvailableForOperatingLease a owl:Class ;
+    rdfs:label "property subject to or available for operating lease"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE" .
+
+fiben:RealEstateProperties a owl:Class ;
+    rdfs:label "real estate properties"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "REALESTATEPROPERTIES" .
+
+fiben:RealizedGainLoss a owl:Class ;
+    rdfs:label "realized gain loss"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "REALIZEDGAINLOSS" .
+
+fiben:RealizedGainLossOnInvestments a owl:Class ;
+    rdfs:label "realized gain loss on investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "REALIZEDGAINLOSSONINVESTMENTS" .
+
+fiben:ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated a owl:Class ;
+    rdfs:label "reconciliation of operating profit loss from segments to consolidated"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED" .
+
+fiben:RecordedUnconditionalPurchaseObligation a owl:Class ;
+    rdfs:label "recorded unconditional purchase obligation"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "RECORDEDUNCONDITIONALPURCHASEOBLIGATION" .
+
+fiben:RedeemableNoncontrollingInterest a owl:Class ;
+    rdfs:label "redeemable noncontrolling interest"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "REDEEMABLENONCONTROLLINGINTEREST" .
+
+fiben:RelatedPartyTransactionsByRelatedParty a owl:Class ;
+    rdfs:label "related party transactions by related party"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "RELATEDPARTYTRANSACTIONSBYRELATEDPARTY" .
+
+fiben:RentExpense a owl:Class ;
+    rdfs:label "rent expense"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "RENTEXPENSE" .
+
+fiben:RestrictedCashAndCashEquivalents a owl:Class ;
+    rdfs:label "restricted cash and cash equivalents"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "RESTRICTEDCASHANDCASHEQUIVALENTS" .
+
+fiben:RestructuringAndRelatedCosts a owl:Class ;
+    rdfs:label "restructuring and related costs"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "RESTRUCTURINGANDRELATEDCOSTS" .
+
+fiben:Revenue a owl:Class ;
+    rdfs:label "revenue"@en ;
+    rdfs:subClassOf fiben:ElementOfFinancialStatement ;
+    skos:notation "REVENUE" .
+
+fiben:SaleLeaseBackTransaction a owl:Class ;
+    rdfs:label "sale lease back transaction"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SALELEASEBACKTRANSACTION" .
+
+fiben:SecuritiesTransaction a owl:Class ;
+    rdfs:label "securities transaction"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/SecuritiesTransaction> ;
+    skos:notation "SECURITIESTRANSACTION" .
+
+fiben:ShareBasedCompensationActivity a owl:Class ;
+    rdfs:label "share based compensation activity"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONACTIVITY" .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue a owl:Class ;
+    rdfs:label "share based compensation arrangement by share based payment award options grants in period grant date intrinsic value"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE" .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue a owl:Class ;
+    rdfs:label "share based compensation arrangement by share based payment award options grants in period weighted average grant date fair value"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE" .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable a owl:Class ;
+    rdfs:label "share based compensation arrangement by share based payment award options vested and expected to vest exercisable"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE" .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable a owl:Class ;
+    rdfs:label "share based compensation arrangement by share based payment award options vested and expected to vest outstanding and exercisable"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE" .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest a owl:Class ;
+    rdfs:label "share based compensation arrangement by share based payment award restricted stock units vested and expected to vest"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST" .
+
+fiben:ShareBasedCompensationRestrictedStockUnitsAwardActivity a owl:Class ;
+    rdfs:label "share based compensation restricted stock units award activity"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY" .
+
+fiben:ShortTermDebt a owl:Class ;
+    rdfs:label "short term debt"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SHORTTERMDEBT" .
+
+fiben:StockholdersEquity a owl:Class ;
+    rdfs:label "stockholders equity"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "STOCKHOLDERSEQUITY" .
+
+fiben:SubsequentEvents a owl:Class ;
+    rdfs:label "subsequent events"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "SUBSEQUENTEVENTS" .
+
+fiben:TaxCreditCarryForward a owl:Class ;
+    rdfs:label "tax credit carry forward"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "TAXCREDITCARRYFORWARD" .
+
+fiben:TradingSecuritiesAndOtherTradingAssets a owl:Class ;
+    rdfs:label "trading securities and other trading assets"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "TRADINGSECURITIESANDOTHERTRADINGASSETS" .
+
+fiben:TreasuryStock a owl:Class ;
+    rdfs:label "treasury stock"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "TREASURYSTOCK" .
+
+fiben:UnrealizedGainLossOnInvestments a owl:Class ;
+    rdfs:label "unrealized gain loss on investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "UNREALIZEDGAINLOSSONINVESTMENTS" .
+
+fiben:UnrealizedLossOnInvestments a owl:Class ;
+    rdfs:label "unrealized loss on investments"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "UNREALIZEDLOSSONINVESTMENTS" .
+
+fiben:UnrecordedUnconditionalPurchaseObligation a owl:Class ;
+    rdfs:label "unrecorded unconditional purchase obligation"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION" .
+
+fiben:UnrecordedUnconditionalPurchaseObligationsDisclosure a owl:Class ;
+    rdfs:label "unrecorded unconditional purchase obligations disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE" .
+
+fiben:ValuationAllowance a owl:Class ;
+    rdfs:label "valuation allowance"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "VALUATIONALLOWANCE" .
+
+fiben:ValuationAndQualifyingAccountsDisclosure a owl:Class ;
+    rdfs:label "valuation and qualifying accounts disclosure"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE" .
+
+fiben:WeightedAverageNumberOfShares a owl:Class ;
+    rdfs:label "weighted average number of shares"@en ;
+    rdfs:subClassOf fiben:Disclosure ;
+    skos:notation "WEIGHTEDAVERAGENUMBEROFSHARES" .
+
+fiben:applicablePeriod a owl:DatatypeProperty ;
+    rdfs:label "applicable period"@en ;
+    skos:notation "APPLICABLEPERIOD" .
+
+fiben:hasAccountNumber a owl:DatatypeProperty ;
+    rdfs:label "has account number"@en ;
+    skos:notation "HASACCOUNTNUMBER" .
+
+fiben:hasAddressLine1 a owl:DatatypeProperty ;
+    rdfs:label "has address line1"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/hasAddressLine1> ;
+    skos:notation "HASADDRESSLINE1" .
+
+fiben:hasAddressLine2 a owl:DatatypeProperty ;
+    rdfs:label "has address line2"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/hasAddressLine2> ;
+    skos:notation "HASADDRESSLINE2" .
+
+fiben:hasAmount a owl:DatatypeProperty ;
+    rdfs:label "has amount"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasAmount> ;
+    skos:notation "HASAMOUNT" .
+
+fiben:hasCitizenship a owl:ObjectProperty ;
+    rdfs:label "has citizenship"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasCitizenship> ;
+    skos:notation "HASCITIZENSHIP" .
+
+fiben:hasCity a owl:DatatypeProperty ;
+    rdfs:label "has city"@en ;
+    skos:notation "HASCITY" .
+
+fiben:hasContractParty a owl:ObjectProperty ;
+    rdfs:label "has contract party"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/hasContractParty> ;
+    skos:notation "HASCONTRACTPARTY" .
+
+fiben:hasCount a owl:DatatypeProperty ;
+    rdfs:label "has count"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/hasCount> ;
+    skos:notation "HASCOUNT" .
+
+fiben:hasCountry a owl:ObjectProperty ;
+    rdfs:label "has country"@en ;
+    skos:notation "HASCOUNTRY" .
+
+fiben:hasCurrency a owl:ObjectProperty ;
+    rdfs:label "has currency"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasCurrency> ;
+    skos:notation "HASCURRENCY" .
+
+fiben:hasCurrencyName a owl:DatatypeProperty ;
+    rdfs:label "has currency name"@en ;
+    skos:notation "HASCURRENCYNAME" .
+
+fiben:hasDateOfBirth a owl:DatatypeProperty ;
+    rdfs:label "has date of birth"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasDateOfBirth> ;
+    skos:notation "HASDATEOFBIRTH" .
+
+fiben:hasDescription a owl:DatatypeProperty ;
+    rdfs:label "has description"@en ;
+    skos:notation "HASDESCRIPTION" .
+
+fiben:hasDocumentType a owl:DatatypeProperty ;
+    rdfs:label "has document type"@en ;
+    skos:notation "HASDOCUMENTTYPE" .
+
+fiben:hasEffectiveDate a owl:DatatypeProperty ;
+    rdfs:label "has effective date"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/hasEffectiveDate> ;
+    skos:notation "HASEFFECTIVEDATE" .
+
+fiben:hasExpirationDate a owl:DatatypeProperty ;
+    rdfs:label "has expiration date"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Documents/hasExpirationDate> ;
+    skos:notation "HASEXPIRATIONDATE" .
+
+fiben:hasFirstName a owl:DatatypeProperty ;
+    rdfs:label "has first name"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasFirstName> ;
+    skos:notation "HASFIRSTNAME" .
+
+fiben:hasFormalName a owl:DatatypeProperty ;
+    rdfs:label "has formal name"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/hasFormalName> ;
+    skos:notation "HASFORMALNAME" .
+
+fiben:hasGender a owl:DatatypeProperty ;
+    rdfs:label "has gender"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasGender> ;
+    skos:notation "HASGENDER" .
+
+fiben:hasLastName a owl:DatatypeProperty ;
+    rdfs:label "has last name"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasLastName> ;
+    skos:notation "HASLASTNAME" .
+
+fiben:hasLastTradedValue a owl:ObjectProperty ;
+    rdfs:label "has last traded value"@en ;
+    skos:notation "HASLASTTRADEDVALUE" .
+
+fiben:hasLegalName a owl:DatatypeProperty ;
+    rdfs:label "has legal name"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/hasLegalName> ;
+    skos:notation "HASLEGALNAME" .
+
+fiben:hasListingDate a owl:DatatypeProperty ;
+    rdfs:label "has listing date"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/hasListingDate> ;
+    skos:notation "HASLISTINGDATE" .
+
+fiben:hasMetricContextDimensions a owl:DatatypeProperty ;
+    rdfs:label "has metric context dimensions"@en ;
+    skos:notation "HASMETRICCONTEXTDIMENSIONS" .
+
+fiben:hasMetricEndDate a owl:DatatypeProperty ;
+    rdfs:label "has metric end date"@en ;
+    skos:notation "HASMETRICENDDATE" .
+
+fiben:hasMetricEndQuarter a owl:DatatypeProperty ;
+    rdfs:label "has metric end quarter"@en ;
+    skos:notation "HASMETRICENDQUARTER" .
+
+fiben:hasMetricStartDate a owl:DatatypeProperty ;
+    rdfs:label "has metric start date"@en ;
+    skos:notation "HASMETRICSTARTDATE" .
+
+fiben:hasMetricStartQuarter a owl:DatatypeProperty ;
+    rdfs:label "has metric start quarter"@en ;
+    skos:notation "HASMETRICSTARTQUARTER" .
+
+fiben:hasMetricValue a owl:DatatypeProperty ;
+    rdfs:label "has metric value"@en ;
+    skos:notation "HASMETRICVALUE" .
+
+fiben:hasMetricYearCalendar a owl:DatatypeProperty ;
+    rdfs:label "has metric year calendar"@en ;
+    skos:notation "HASMETRICYEARCALENDAR" .
+
+fiben:hasMetricYearFiscal a owl:DatatypeProperty ;
+    rdfs:label "has metric year fiscal"@en ;
+    skos:notation "HASMETRICYEARFISCAL" .
+
+fiben:hasMiddleNameOrInitial a owl:DatatypeProperty ;
+    rdfs:label "has middle name or initial"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasMiddleNameOrInitial> ;
+    skos:notation "HASMIDDLENAMEORINITIAL" .
+
+fiben:hasMinorUnit a owl:DatatypeProperty ;
+    rdfs:label "has minor unit"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasMinorUnit> ;
+    skos:notation "HASMINORUNIT" .
+
+fiben:hasName a owl:DatatypeProperty ;
+    rdfs:label "has name"@en ;
+    skos:notation "HASNAME" .
+
+fiben:hasNumericCode a owl:DatatypeProperty ;
+    rdfs:label "has numeric code"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasNumericCode> ;
+    skos:notation "HASNUMERICCODE" .
+
+fiben:hasNumericCountryCode a owl:DatatypeProperty ;
+    rdfs:label "has numeric country code"@en ;
+    skos:notation "HASNUMERICCOUNTRYCODE" .
+
+fiben:hasPersonName a owl:DatatypeProperty ;
+    rdfs:label "has person name"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasPersonName> ;
+    skos:notation "HASPERSONNAME" .
+
+fiben:hasPlaceOfBirth a owl:ObjectProperty ;
+    rdfs:label "has place of birth"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasPlaceOfBirth> ;
+    skos:notation "HASPLACEOFBIRTH" .
+
+fiben:hasPosition a owl:DatatypeProperty ;
+    rdfs:label "has position"@en ;
+    skos:notation "HASPOSITION" .
+
+fiben:hasPostalCode a owl:DatatypeProperty ;
+    rdfs:label "has postal code"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/hasPostalCode> ;
+    skos:notation "HASPOSTALCODE" .
+
+fiben:hasPrice a owl:ObjectProperty ;
+    rdfs:label "has price"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasPrice> ;
+    skos:notation "HASPRICE" .
+
+fiben:hasSettlementDate a owl:DatatypeProperty ;
+    rdfs:label "has settlement date"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/hasSettlementDate> ;
+    skos:notation "HASSETTLEMENTDATE" .
+
+fiben:hasStartDate a owl:DatatypeProperty ;
+    rdfs:label "has start date"@en ;
+    skos:notation "HASSTARTDATE" .
+
+fiben:hasState a owl:DatatypeProperty ;
+    rdfs:label "has state"@en ;
+    skos:notation "HASSTATE" .
+
+fiben:hasTickerSymbol a owl:DatatypeProperty ;
+    rdfs:label "has ticker symbol"@en ;
+    skos:notation "HASTICKERSYMBOL" .
+
+fiben:hasTitle a owl:DatatypeProperty ;
+    rdfs:label "has title"@en ;
+    skos:notation "HASTITLE" .
+
+fiben:hasType a owl:DatatypeProperty ;
+    rdfs:label "has type"@en ;
+    skos:notation "HASTYPE" .
+
+fiben:hasUniqueIdentifier a owl:DatatypeProperty ;
+    rdfs:label "has unique identifier"@en ;
+    skos:notation "HASUNIQUEIDENTIFIER" .
+
+fiben:hasUnit a owl:DatatypeProperty ;
+    rdfs:label "has unit"@en ;
+    skos:notation "HASUNIT" .
+
+fiben:hasUrl a owl:DatatypeProperty ;
+    rdfs:label "has url"@en ;
+    skos:notation "HASURL" .
+
+fiben:hasValue a owl:DatatypeProperty ;
+    rdfs:label "has value"@en ;
+    skos:notation "HASVALUE" .
+
+fiben:isClassifiedBy a owl:ObjectProperty ;
+    rdfs:label "is classified by"@en ;
+    skos:notation "ISCLASSIFIEDBY" .
+
+fiben:isComputed a owl:DatatypeProperty ;
+    rdfs:label "is computed"@en ;
+    skos:notation "ISCOMPUTED" .
+
+fiben:isDefinedBy a owl:ObjectProperty ;
+    rdfs:label "is defined by"@en ;
+    skos:notation "ISDEFINEDBY" .
+
+fiben:isDomiciledIn a owl:ObjectProperty ;
+    rdfs:label "is domiciled in"@en ;
+    skos:notation "ISDOMICILEDIN" .
+
+fiben:isFacilitatedBy a owl:ObjectProperty ;
+    rdfs:label "is facilitated by"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/isFacilitatedBy> ;
+    skos:notation "ISFACILITATEDBY" .
+
+fiben:isHeldBy a owl:ObjectProperty ;
+    rdfs:label "is held by"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy> ;
+    skos:notation "ISHELDBY" .
+
+fiben:isIndexTo a owl:ObjectProperty ;
+    rdfs:label "is index to"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/isIndexTo> ;
+    skos:notation "ISINDEXTO" .
+
+fiben:isManagedBy a owl:ObjectProperty ;
+    rdfs:label "is managed by"@en ;
+    skos:notation "ISMANAGEDBY" .
+
+fiben:isMemberOf a owl:ObjectProperty ;
+    rdfs:label "is member of"@en ;
+    skos:notation "ISMEMBEROF" .
+
+fiben:isOwnedBy a owl:ObjectProperty ;
+    rdfs:label "is owned by"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/isOwnedBy> ;
+    skos:notation "ISOWNEDBY" .
+
+fiben:isProvidedBy a owl:ObjectProperty ;
+    rdfs:label "is provided by"@en ;
+    skos:notation "ISPROVIDEDBY" .
+
+fiben:isTradedOn a owl:ObjectProperty ;
+    rdfs:label "is traded on"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/isTradedOn> ;
+    skos:notation "ISTRADEDON" .
+
+fiben:isTransferable a owl:DatatypeProperty ;
+    rdfs:label "is transferable"@en ;
+    skos:notation "ISTRANSFERABLE" .
+
+fiben:postalAddress a owl:ObjectProperty ;
+    rdfs:label "postal address"@en ;
+    skos:notation "POSTALADDRESS" .
+
+fiben:refersTo a owl:ObjectProperty ;
+    rdfs:label "refers to"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/BP/SecuritiesIssuance/MuniIssuance/refersTo> ;
+    skos:notation "REFERSTO" .
+
+fiben:virtualAddress a owl:ObjectProperty ;
+    rdfs:label "virtual address"@en ;
+    skos:notation "VIRTUALADDRESS" .
+
+fiben:FinancialInstrument a owl:Class ;
+    rdfs:label "financial instrument"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument> ;
+    skos:notation "FINANCIALINSTRUMENT" .
+
+fiben:Person a owl:Class ;
+    rdfs:label "person"@en ;
+    rdfs:subClassOf fiben:AutonomousAgent ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/Person> ;
+    skos:notation "PERSON" .
+
+fiben:Security a owl:Class ;
+    rdfs:label "security"@en ;
+    rdfs:subClassOf fiben:FinancialInstrument ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/Security> ;
+    skos:notation "SECURITY" .
+
+fiben:AutonomousAgent a owl:Class ;
+    rdfs:label "autonomous agent"@en ;
+    skos:notation "AUTONOMOUSAGENT" .
+
+fiben:ElementsOfFinancialReport a owl:Class ;
+    rdfs:label "elements of financial report"@en ;
+    skos:notation "ELEMENTSOFFINANCIALREPORT" .
+
+fiben:VirtualAddress a owl:Class ;
+    rdfs:label "virtual address"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/VirtualAddress> ;
+    skos:notation "VIRTUALADDRESS" .
+
+fiben:ElementOfFinancialStatement a owl:Class ;
+    rdfs:label "element of financial statement"@en ;
+    rdfs:subClassOf fiben:ElementsOfFinancialReport ;
+    skos:notation "ELEMENTOFFINANCIALSTATEMENT" .
+
+fiben:Disclosure a owl:Class ;
+    rdfs:label "disclosure"@en ;
+    rdfs:subClassOf fiben:ElementsOfFinancialReport ;
+    skos:notation "DISCLOSURE" .
+

@@ -20,6 +20,7 @@ flowchart TB
     alignment["AlignmentService"]
     io["IoPipeline"]
     kg["KgConstruction"]
+    vkg["VirtualKnowledgeGraph"]
   end
   subgraph Agents
     gateway["LlmGateway"]
@@ -48,6 +49,7 @@ flowchart TB
   scope -->|read| store
   search -->|read| store
   alignment -->|read| store
+  vkg -->|read| store
   requirementsAgent -->|calls| registry
   extractionAgent -->|calls| registry
   modelingCopilot -->|calls| registry

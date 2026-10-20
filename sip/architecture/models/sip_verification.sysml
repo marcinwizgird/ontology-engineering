@@ -177,6 +177,16 @@ package SipVerification {
             verify requirement : SemanticAxiomVerification;
         }
     }
+    verification def <'V-21'> VerifyVirtualKnowledgeGraph {
+        subject sip : SemanticIntelligencePlatform;
+        attribute test : String = "test_vkg.py::test_register_and_introspect test_vkg.py::test_non_select_sql_is_rejected test_vkg.py::test_suggest_tables_fks_and_subclass_tables test_vkg.py::test_add_remove_commit_stage_and_undo test_vkg.py::test_only_mapping_capable_roles_edit_maps test_vkg.py::test_export_import_roundtrip test_vkg.py::test_validate_catches_mapping_errors test_vkg.py::test_impact_and_rename_keep_mappings_consistent test_vkg.py::test_r2rml_model_roundtrip_and_file_sources";
+        objective { verify requirement : R2rmlMappingAuthoring; }
+    }
+    verification def <'V-22'> VerifyVirtualGraphQuery {
+        subject sip : SemanticIntelligencePlatform;
+        attribute test : String = "test_vkg.py::test_query_data_follows_ontology_edits test_vkg.py::test_preview_with_provenance";
+        objective { verify requirement : VirtualGraphQuery; }
+    }
     verification def <'V-18'> VerifyDeploymentBench {
         doc /* Not executable in this repository: measured on the GKE environment. Recorded so
              * the gap is visible rather than implied away. */

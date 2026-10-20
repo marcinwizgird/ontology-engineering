@@ -1,0 +1,8255 @@
+{
+ "relations": [
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_pkey",
+     "determinants": [
+      "\"ACCOUNTSPAYABLEANDACCRUEDLIABILITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ACCOUNTSPAYABLEANDACCRUEDLIABILITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ACCOUNTSPAYABLEANDACCRUEDLIABILITIES\""
+      ],
+      "columns": [
+       "\"ACCOUNTSPAYABLEANDACCRUEDLIABILITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ACCOUNTSPAYABLEANDACCRUEDLIABILITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ACCOUNTSPAYABLEANDACCRUEDLIABILITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ACCOUNTSPAYABLEDETAILS_pkey",
+     "determinants": [
+      "\"ACCOUNTSPAYABLEDETAILSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ACCOUNTSPAYABLEDETAILS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ACCOUNTSPAYABLEDETAILS\""
+      ],
+      "columns": [
+       "\"ACCOUNTSPAYABLEDETAILSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ACCOUNTSPAYABLEDETAILSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ACCOUNTSPAYABLEDETAILS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ACCRUEDLIABILITIES_pkey",
+     "determinants": [
+      "\"ACCRUEDLIABILITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ACCRUEDLIABILITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ACCRUEDLIABILITIES\""
+      ],
+      "columns": [
+       "\"ACCRUEDLIABILITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ACCRUEDLIABILITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ACCRUEDLIABILITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_pkey",
+     "determinants": [
+      "\"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS\""
+      ],
+      "columns": [
+       "\"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ADDRESS_pkey",
+     "determinants": [
+      "\"ADDRESSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ADDRESS_ISINDEXTO_AUTONOMOUSAGENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ADDRESS\""
+      ],
+      "columns": [
+       "\"ISINDEXTO\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"AUTONOMOUSAGENT\""
+      ],
+      "columns": [
+       "\"AUTONOMOUSAGENTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_ADDRESS_POSTALADDRESS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ADDRESS\""
+      ],
+      "columns": [
+       "\"POSTALADDRESS\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"POSTALADDRESS\""
+      ],
+      "columns": [
+       "\"POSTALADDRESSID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_ADDRESS_VIRTUALADDRESS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ADDRESS\""
+      ],
+      "columns": [
+       "\"VIRTUALADDRESS\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"VIRTUALADDRESS\""
+      ],
+      "columns": [
+       "\"VIRTUALADDRESSID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ADDRESSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISINDEXTO\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"POSTALADDRESS\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"VIRTUALADDRESS\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ADDRESS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ALLOWANCEFORCREDITLOSSES_pkey",
+     "determinants": [
+      "\"ALLOWANCEFORCREDITLOSSESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ALLOWANCEFORCREDITLOSSES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ALLOWANCEFORCREDITLOSSES\""
+      ],
+      "columns": [
+       "\"ALLOWANCEFORCREDITLOSSESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ALLOWANCEFORCREDITLOSSESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ALLOWANCEFORCREDITLOSSES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_pkey",
+     "determinants": [
+      "\"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHAREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE\""
+      ],
+      "columns": [
+       "\"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHAREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHAREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ASSET_pkey",
+     "determinants": [
+      "\"ASSETID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_ASSET",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ASSET\""
+      ],
+      "columns": [
+       "\"ASSETID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ASSETID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ASSET\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ASSETIMPAIRMENTCHARGES_pkey",
+     "determinants": [
+      "\"ASSETIMPAIRMENTCHARGESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ASSETIMPAIRMENTCHARGES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ASSETIMPAIRMENTCHARGES\""
+      ],
+      "columns": [
+       "\"ASSETIMPAIRMENTCHARGESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ASSETIMPAIRMENTCHARGESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ASSETIMPAIRMENTCHARGES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ASSETRETIREMENTOBLIGATIONDISCLOSURE_pkey",
+     "determinants": [
+      "\"ASSETRETIREMENTOBLIGATIONDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ASSETRETIREMENTOBLIGATIONDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ASSETRETIREMENTOBLIGATIONDISCLOSURE\""
+      ],
+      "columns": [
+       "\"ASSETRETIREMENTOBLIGATIONDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ASSETRETIREMENTOBLIGATIONDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ASSETRETIREMENTOBLIGATIONDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "AUTONOMOUSAGENT_pkey",
+     "determinants": [
+      "\"AUTONOMOUSAGENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"AUTONOMOUSAGENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"AUTONOMOUSAGENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "AVAILABLEFORSALESECURITIES_pkey",
+     "determinants": [
+      "\"AVAILABLEFORSALESECURITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_AVAILABLEFORSALESECURITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"AVAILABLEFORSALESECURITIES\""
+      ],
+      "columns": [
+       "\"AVAILABLEFORSALESECURITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"AVAILABLEFORSALESECURITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"AVAILABLEFORSALESECURITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_pkey",
+     "determinants": [
+      "\"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS\""
+      ],
+      "columns": [
+       "\"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "BUSINESSACQUISITIONPROFORMAINFORMATION_pkey",
+     "determinants": [
+      "\"BUSINESSACQUISITIONPROFORMAINFORMATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_BUSINESSACQUISITIONPROFORMAINFORMATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"BUSINESSACQUISITIONPROFORMAINFORMATION\""
+      ],
+      "columns": [
+       "\"BUSINESSACQUISITIONPROFORMAINFORMATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"BUSINESSACQUISITIONPROFORMAINFORMATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"BUSINESSACQUISITIONPROFORMAINFORMATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "BUSINESSCOMBINATIONDISCLOSURE_pkey",
+     "determinants": [
+      "\"BUSINESSCOMBINATIONDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_BUSINESSCOMBINATIONDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"BUSINESSCOMBINATIONDISCLOSURE\""
+      ],
+      "columns": [
+       "\"BUSINESSCOMBINATIONDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"BUSINESSCOMBINATIONDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"BUSINESSCOMBINATIONDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CAPITALUNITS_pkey",
+     "determinants": [
+      "\"CAPITALUNITSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CAPITALUNITS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CAPITALUNITS\""
+      ],
+      "columns": [
+       "\"CAPITALUNITSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CAPITALUNITSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CAPITALUNITS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CASHANDCASHEQUIVALENTS_pkey",
+     "determinants": [
+      "\"CASHANDCASHEQUIVALENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CASHANDCASHEQUIVALENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CASHANDCASHEQUIVALENTS\""
+      ],
+      "columns": [
+       "\"CASHANDCASHEQUIVALENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CASHANDCASHEQUIVALENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CASHANDCASHEQUIVALENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CASHANDCASHEQUIVALENTSDISCLOSURE_pkey",
+     "determinants": [
+      "\"CASHANDCASHEQUIVALENTSDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CASHANDCASHEQUIVALENTSDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CASHANDCASHEQUIVALENTSDISCLOSURE\""
+      ],
+      "columns": [
+       "\"CASHANDCASHEQUIVALENTSDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CASHANDCASHEQUIVALENTSDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CASHANDCASHEQUIVALENTSDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_pkey",
+     "determinants": [
+      "\"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS\""
+      ],
+      "columns": [
+       "\"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CHANGEINACCOUNTINGESTIMATE_pkey",
+     "determinants": [
+      "\"CHANGEINACCOUNTINGESTIMATEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CHANGEINACCOUNTINGESTIMATE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CHANGEINACCOUNTINGESTIMATE\""
+      ],
+      "columns": [
+       "\"CHANGEINACCOUNTINGESTIMATEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CHANGEINACCOUNTINGESTIMATEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CHANGEINACCOUNTINGESTIMATE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CHANGESINFAIRVALUEOFPLANASSETS_pkey",
+     "determinants": [
+      "\"CHANGESINFAIRVALUEOFPLANASSETSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CHANGESINFAIRVALUEOFPLANASSETS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CHANGESINFAIRVALUEOFPLANASSETS\""
+      ],
+      "columns": [
+       "\"CHANGESINFAIRVALUEOFPLANASSETSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CHANGESINFAIRVALUEOFPLANASSETSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CHANGESINFAIRVALUEOFPLANASSETS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "COMMITMENTSCONTINGENCIESANDGUARANTEES_pkey",
+     "determinants": [
+      "\"COMMITMENTSCONTINGENCIESANDGUARANTEESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_COMMITMENTSCONTINGENCIESANDGUARANTEES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COMMITMENTSCONTINGENCIESANDGUARANTEES\""
+      ],
+      "columns": [
+       "\"COMMITMENTSCONTINGENCIESANDGUARANTEESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"COMMITMENTSCONTINGENCIESANDGUARANTEESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"COMMITMENTSCONTINGENCIESANDGUARANTEES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "COMPREHENSIVEINCOME_pkey",
+     "determinants": [
+      "\"COMPREHENSIVEINCOMEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_COMPREHENSIVEINCOME",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COMPREHENSIVEINCOME\""
+      ],
+      "columns": [
+       "\"COMPREHENSIVEINCOMEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"COMPREHENSIVEINCOMEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"COMPREHENSIVEINCOME\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "COMPREHENSIVEINCOMELOSS_pkey",
+     "determinants": [
+      "\"COMPREHENSIVEINCOMELOSSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_COMPREHENSIVEINCOMELOSS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COMPREHENSIVEINCOMELOSS\""
+      ],
+      "columns": [
+       "\"COMPREHENSIVEINCOMELOSSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"COMPREHENSIVEINCOMELOSSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"COMPREHENSIVEINCOMELOSS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CONTRACT_pkey",
+     "determinants": [
+      "\"CONTRACTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_CONTRACT_HASCONTRACTPARTY_CONTRACTPARTY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CONTRACT\""
+      ],
+      "columns": [
+       "\"HASCONTRACTPARTY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CONTRACTPARTY\""
+      ],
+      "columns": [
+       "\"CONTRACTPARTYID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_CONTRACT_ISMANAGEDBY_CORPORATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CONTRACT\""
+      ],
+      "columns": [
+       "\"ISMANAGEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CORPORATION\""
+      ],
+      "columns": [
+       "\"CORPORATIONID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CONTRACTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASCONTRACTPARTY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISMANAGEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASEFFECTIVEDATE\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"HASPOSITION\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASEXPIRATIONDATE\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"HASTITLE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CONTRACT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CONTRACTPARTY_pkey",
+     "determinants": [
+      "\"CONTRACTPARTYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_PERSON_CONTRACTPARTY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CONTRACTPARTY\""
+      ],
+      "columns": [
+       "\"CONTRACTPARTYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PERSON\""
+      ],
+      "columns": [
+       "\"PERSONID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CONTRACTPARTYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CONTRACTPARTY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CONVERSIONOFSTOCK_pkey",
+     "determinants": [
+      "\"CONVERSIONOFSTOCKID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_CONVERSIONOFSTOCK",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CONVERSIONOFSTOCK\""
+      ],
+      "columns": [
+       "\"CONVERSIONOFSTOCKID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CONVERSIONOFSTOCKID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CONVERSIONOFSTOCK\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CORPORATION_pkey",
+     "determinants": [
+      "\"CORPORATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_AUTONOMOUSAGENT_CORPORATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CORPORATION\""
+      ],
+      "columns": [
+       "\"CORPORATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"AUTONOMOUSAGENT\""
+      ],
+      "columns": [
+       "\"AUTONOMOUSAGENTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_CORPORATION_ISCLASSIFIEDBY_INDUSTRYSECTORCLASSIFIER",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CORPORATION\""
+      ],
+      "columns": [
+       "\"ISCLASSIFIEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INDUSTRYSECTORCLASSIFIER\""
+      ],
+      "columns": [
+       "\"INDUSTRYSECTORCLASSIFIERID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_CORPORATION_ISDOMICILEDIN_COUNTRY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CORPORATION\""
+      ],
+      "columns": [
+       "\"ISDOMICILEDIN\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COUNTRY\""
+      ],
+      "columns": [
+       "\"COUNTRYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"CORPORATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISCLASSIFIEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISDOMICILEDIN\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASTICKERSYMBOL\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASLEGALNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CORPORATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "COSTMETHODINVESTMENTS_pkey",
+     "determinants": [
+      "\"COSTMETHODINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_COSTMETHODINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COSTMETHODINVESTMENTS\""
+      ],
+      "columns": [
+       "\"COSTMETHODINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"COSTMETHODINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"COSTMETHODINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "COSTSOFRETIREMENTPLANS_pkey",
+     "determinants": [
+      "\"COSTSOFRETIREMENTPLANSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_COSTSOFRETIREMENTPLANS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COSTSOFRETIREMENTPLANS\""
+      ],
+      "columns": [
+       "\"COSTSOFRETIREMENTPLANSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"COSTSOFRETIREMENTPLANSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"COSTSOFRETIREMENTPLANS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "COUNTRY_pkey",
+     "determinants": [
+      "\"COUNTRYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"COUNTRYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASNUMERICCOUNTRYCODE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"COUNTRY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "CURRENCY_pkey",
+     "determinants": [
+      "\"CURRENCYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"CURRENCYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNUMERICCODE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASCURRENCYNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMINORUNIT\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"CURRENCY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DEBT_pkey",
+     "determinants": [
+      "\"DEBTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DEBT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DEBT\""
+      ],
+      "columns": [
+       "\"DEBTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DEBTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DEBT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DEBTCONVERSION_pkey",
+     "determinants": [
+      "\"DEBTCONVERSIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DEBTCONVERSION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DEBTCONVERSION\""
+      ],
+      "columns": [
+       "\"DEBTCONVERSIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DEBTCONVERSIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DEBTCONVERSION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DEFERREDTAXASSETSANDLIABILITIES_pkey",
+     "determinants": [
+      "\"DEFERREDTAXASSETSANDLIABILITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DEFERREDTAXASSETSANDLIABILITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DEFERREDTAXASSETSANDLIABILITIES\""
+      ],
+      "columns": [
+       "\"DEFERREDTAXASSETSANDLIABILITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DEFERREDTAXASSETSANDLIABILITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DEFERREDTAXASSETSANDLIABILITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_pkey",
+     "determinants": [
+      "\"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS\""
+      ],
+      "columns": [
+       "\"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DERIVATIVE_pkey",
+     "determinants": [
+      "\"DERIVATIVEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DERIVATIVE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DERIVATIVE\""
+      ],
+      "columns": [
+       "\"DERIVATIVEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DERIVATIVEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DERIVATIVE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DISCLOSURE_pkey",
+     "determinants": [
+      "\"DISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTSOFFINANCIALREPORT_DISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTSOFFINANCIALREPORT\""
+      ],
+      "columns": [
+       "\"ELEMENTSOFFINANCIALREPORTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASMETRICYEARCALENDAR\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASMETRICSTARTDATE\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"HASDOCUMENTTYPE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICENDQUARTER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASUNIT\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"APPLICABLEPERIOD\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASUNIQUEIDENTIFIER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICENDDATE\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"ISCOMPUTED\"",
+     "isNullable": true,
+     "datatype": "bpchar"
+    },
+    {
+     "name": "\"HASMETRICVALUE\"",
+     "isNullable": true,
+     "datatype": "float8"
+    },
+    {
+     "name": "\"HASMETRICYEARFISCAL\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASURL\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICCONTEXTDIMENSIONS\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICSTARTQUARTER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DISTRIBUTIONTOOWNER_pkey",
+     "determinants": [
+      "\"DISTRIBUTIONTOOWNERID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_DISTRIBUTIONTOOWNER",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISTRIBUTIONTOOWNER\""
+      ],
+      "columns": [
+       "\"DISTRIBUTIONTOOWNERID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DISTRIBUTIONTOOWNERID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DISTRIBUTIONTOOWNER\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DIVIDENDPAYMENTRESTRICTIONS_pkey",
+     "determinants": [
+      "\"DIVIDENDPAYMENTRESTRICTIONSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DIVIDENDPAYMENTRESTRICTIONS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DIVIDENDPAYMENTRESTRICTIONS\""
+      ],
+      "columns": [
+       "\"DIVIDENDPAYMENTRESTRICTIONSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DIVIDENDPAYMENTRESTRICTIONSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DIVIDENDPAYMENTRESTRICTIONS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "DIVIDENDSPAYABLE_pkey",
+     "determinants": [
+      "\"DIVIDENDSPAYABLEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_DIVIDENDSPAYABLE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DIVIDENDSPAYABLE\""
+      ],
+      "columns": [
+       "\"DIVIDENDSPAYABLEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"DIVIDENDSPAYABLEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"DIVIDENDSPAYABLE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EFFECTIVEINCOMETAXRATERECONCILIATION_pkey",
+     "determinants": [
+      "\"EFFECTIVEINCOMETAXRATERECONCILIATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_EFFECTIVEINCOMETAXRATERECONCILIATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EFFECTIVEINCOMETAXRATERECONCILIATION\""
+      ],
+      "columns": [
+       "\"EFFECTIVEINCOMETAXRATERECONCILIATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EFFECTIVEINCOMETAXRATERECONCILIATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EFFECTIVEINCOMETAXRATERECONCILIATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ELEMENTOFFINANCIALSTATEMENT_pkey",
+     "determinants": [
+      "\"ELEMENTOFFINANCIALSTATEMENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTSOFFINANCIALREPORT_ELEMENTOFFINANCIALSTATEMENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTSOFFINANCIALREPORT\""
+      ],
+      "columns": [
+       "\"ELEMENTSOFFINANCIALREPORTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ELEMENTOFFINANCIALSTATEMENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASMETRICYEARCALENDAR\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASMETRICSTARTDATE\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"HASDOCUMENTTYPE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICENDQUARTER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASUNIT\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"APPLICABLEPERIOD\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASUNIQUEIDENTIFIER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICENDDATE\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"ISCOMPUTED\"",
+     "isNullable": true,
+     "datatype": "bpchar"
+    },
+    {
+     "name": "\"HASMETRICVALUE\"",
+     "isNullable": true,
+     "datatype": "float8"
+    },
+    {
+     "name": "\"HASMETRICYEARFISCAL\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASURL\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICCONTEXTDIMENSIONS\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMETRICSTARTQUARTER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ELEMENTOFFINANCIALSTATEMENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ELEMENTSOFFINANCIALREPORT_pkey",
+     "determinants": [
+      "\"ELEMENTSOFFINANCIALREPORTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTSOFFINANCIALREPORT_ISMEMBEROF_FINANCIALREPORT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTSOFFINANCIALREPORT\""
+      ],
+      "columns": [
+       "\"ISMEMBEROF\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALREPORT\""
+      ],
+      "columns": [
+       "\"FINANCIALREPORTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ELEMENTSOFFINANCIALREPORTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISMEMBEROF\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ELEMENTSOFFINANCIALREPORT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EMAILADDRESS_pkey",
+     "determinants": [
+      "\"EMAILADDRESSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_VIRTUALADDRESS_EMAILADDRESS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EMAILADDRESS\""
+      ],
+      "columns": [
+       "\"EMAILADDRESSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"VIRTUALADDRESS\""
+      ],
+      "columns": [
+       "\"VIRTUALADDRESSID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EMAILADDRESSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASVALUE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EMAILADDRESS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ENTITYLOCATION_pkey",
+     "determinants": [
+      "\"ENTITYLOCATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ENTITYLOCATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ENTITYLOCATION\""
+      ],
+      "columns": [
+       "\"ENTITYLOCATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ENTITYLOCATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ENTITYLOCATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EQUITY_pkey",
+     "determinants": [
+      "\"EQUITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_EQUITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EQUITY\""
+      ],
+      "columns": [
+       "\"EQUITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EQUITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EQUITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EQUITYMETHODINVESTMENTS_pkey",
+     "determinants": [
+      "\"EQUITYMETHODINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_EQUITYMETHODINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EQUITYMETHODINVESTMENTS\""
+      ],
+      "columns": [
+       "\"EQUITYMETHODINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EQUITYMETHODINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EQUITYMETHODINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_pkey",
+     "determinants": [
+      "\"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS\""
+      ],
+      "columns": [
+       "\"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EXPENSE_pkey",
+     "determinants": [
+      "\"EXPENSEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_EXPENSE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EXPENSE\""
+      ],
+      "columns": [
+       "\"EXPENSEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EXPENSEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EXPENSE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EXTINGUISHMENTOFDEBT_pkey",
+     "determinants": [
+      "\"EXTINGUISHMENTOFDEBTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_EXTINGUISHMENTOFDEBT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EXTINGUISHMENTOFDEBT\""
+      ],
+      "columns": [
+       "\"EXTINGUISHMENTOFDEBTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EXTINGUISHMENTOFDEBTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EXTINGUISHMENTOFDEBT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "EXTRAORDINARYITEMS_pkey",
+     "determinants": [
+      "\"EXTRAORDINARYITEMSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_EXTRAORDINARYITEMS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"EXTRAORDINARYITEMS\""
+      ],
+      "columns": [
+       "\"EXTRAORDINARYITEMSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"EXTRAORDINARYITEMSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"EXTRAORDINARYITEMS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCIALINSTRUMENT_pkey",
+     "determinants": [
+      "\"FINANCIALINSTRUMENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"FINANCIALINSTRUMENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISTRANSFERABLE\"",
+     "isNullable": true,
+     "datatype": "bpchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCIALINSTRUMENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_pkey",
+     "determinants": [
+      "\"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION\""
+      ],
+      "columns": [
+       "\"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCIALMARKET_pkey",
+     "determinants": [
+      "\"FINANCIALMARKETID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"FINANCIALMARKETID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCIALMARKET\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCIALMETRICS_pkey",
+     "determinants": [
+      "\"FINANCIALMETRICSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCIALMETRICS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALMETRICS\""
+      ],
+      "columns": [
+       "\"FINANCIALMETRICSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCIALMETRICSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCIALMETRICS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCIALREPORT_pkey",
+     "determinants": [
+      "\"FINANCIALREPORTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_FINANCIALREPORT_ISPROVIDEDBY_CORPORATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALREPORT\""
+      ],
+      "columns": [
+       "\"ISPROVIDEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CORPORATION\""
+      ],
+      "columns": [
+       "\"CORPORATIONID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCIALREPORTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISPROVIDEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASUNIQUEIDENTIFIER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCIALREPORT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCIALSERVICEACCOUNT_pkey",
+     "determinants": [
+      "\"FINANCIALSERVICEACCOUNTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_FINANCIALSERVICEACCOUNT_ISMANAGEDBY_PERSON",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALSERVICEACCOUNT\""
+      ],
+      "columns": [
+       "\"ISMANAGEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PERSON\""
+      ],
+      "columns": [
+       "\"PERSONID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_FINANCIALSERVICEACCOUNT_ISOWNEDBY_PERSON",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALSERVICEACCOUNT\""
+      ],
+      "columns": [
+       "\"ISOWNEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PERSON\""
+      ],
+      "columns": [
+       "\"PERSONID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCIALSERVICEACCOUNTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISOWNEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISMANAGEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASACCOUNTNUMBER\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"HASSTARTDATE\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCIALSERVICEACCOUNT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_pkey",
+     "determinants": [
+      "\"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES\""
+      ],
+      "columns": [
+       "\"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCINGRECEIVABLECREDITQUALITYINDICATORS_pkey",
+     "determinants": [
+      "\"FINANCINGRECEIVABLECREDITQUALITYINDICATORSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCINGRECEIVABLECREDITQUALITYINDICATORS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCINGRECEIVABLECREDITQUALITYINDICATORS\""
+      ],
+      "columns": [
+       "\"FINANCINGRECEIVABLECREDITQUALITYINDICATORSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCINGRECEIVABLECREDITQUALITYINDICATORSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCINGRECEIVABLECREDITQUALITYINDICATORS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCINGRECEIVABLES_pkey",
+     "determinants": [
+      "\"FINANCINGRECEIVABLESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCINGRECEIVABLES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCINGRECEIVABLES\""
+      ],
+      "columns": [
+       "\"FINANCINGRECEIVABLESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCINGRECEIVABLESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCINGRECEIVABLES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCINGRECEIVABLESPASTDUE_pkey",
+     "determinants": [
+      "\"FINANCINGRECEIVABLESPASTDUEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCINGRECEIVABLESPASTDUE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCINGRECEIVABLESPASTDUE\""
+      ],
+      "columns": [
+       "\"FINANCINGRECEIVABLESPASTDUEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCINGRECEIVABLESPASTDUEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCINGRECEIVABLESPASTDUE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_pkey",
+     "determinants": [
+      "\"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS\""
+      ],
+      "columns": [
+       "\"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FOREIGNCURRENCYTRANSLATION_pkey",
+     "determinants": [
+      "\"FOREIGNCURRENCYTRANSLATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FOREIGNCURRENCYTRANSLATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FOREIGNCURRENCYTRANSLATION\""
+      ],
+      "columns": [
+       "\"FOREIGNCURRENCYTRANSLATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FOREIGNCURRENCYTRANSLATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FOREIGNCURRENCYTRANSLATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_pkey",
+     "determinants": [
+      "\"FORWARDCONTRACTINDEXEDTOISSUERSEQUITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FORWARDCONTRACTINDEXEDTOISSUERSEQUITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FORWARDCONTRACTINDEXEDTOISSUERSEQUITY\""
+      ],
+      "columns": [
+       "\"FORWARDCONTRACTINDEXEDTOISSUERSEQUITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FORWARDCONTRACTINDEXEDTOISSUERSEQUITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FORWARDCONTRACTINDEXEDTOISSUERSEQUITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "FRESHSTARTADJUSTMENTS_pkey",
+     "determinants": [
+      "\"FRESHSTARTADJUSTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_FRESHSTARTADJUSTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FRESHSTARTADJUSTMENTS\""
+      ],
+      "columns": [
+       "\"FRESHSTARTADJUSTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"FRESHSTARTADJUSTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"FRESHSTARTADJUSTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "GAINLOSSONINVESTMENTS_pkey",
+     "determinants": [
+      "\"GAINLOSSONINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_GAINLOSSONINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"GAINLOSSONINVESTMENTS\""
+      ],
+      "columns": [
+       "\"GAINLOSSONINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"GAINLOSSONINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"GAINLOSSONINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "GOODWILL_pkey",
+     "determinants": [
+      "\"GOODWILLID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_GOODWILL",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"GOODWILL\""
+      ],
+      "columns": [
+       "\"GOODWILLID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"GOODWILLID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"GOODWILL\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "GUARANTEES_pkey",
+     "determinants": [
+      "\"GUARANTEESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_GUARANTEES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"GUARANTEES\""
+      ],
+      "columns": [
+       "\"GUARANTEESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"GUARANTEESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"GUARANTEES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "GUARANTOROBLIGATIONS_pkey",
+     "determinants": [
+      "\"GUARANTOROBLIGATIONSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_GUARANTOROBLIGATIONS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"GUARANTOROBLIGATIONS\""
+      ],
+      "columns": [
+       "\"GUARANTOROBLIGATIONSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"GUARANTOROBLIGATIONSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"GUARANTOROBLIGATIONS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "HELDTOMATURITYSECURITIES_pkey",
+     "determinants": [
+      "\"HELDTOMATURITYSECURITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_HELDTOMATURITYSECURITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"HELDTOMATURITYSECURITIES\""
+      ],
+      "columns": [
+       "\"HELDTOMATURITYSECURITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"HELDTOMATURITYSECURITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"HELDTOMATURITYSECURITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "HOLDING_pkey",
+     "determinants": [
+      "\"HOLDINGID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_HOLDING_ISHELDBY_FINANCIALSERVICEACCOUNT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"HOLDING\""
+      ],
+      "columns": [
+       "\"ISHELDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALSERVICEACCOUNT\""
+      ],
+      "columns": [
+       "\"FINANCIALSERVICEACCOUNTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_HOLDING_REFERSTO_LISTEDSECURITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"HOLDING\""
+      ],
+      "columns": [
+       "\"REFERSTO\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LISTEDSECURITY\""
+      ],
+      "columns": [
+       "\"LISTEDSECURITYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"HOLDINGID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISHELDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"REFERSTO\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASDESCRIPTION\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASCOUNT\"",
+     "isNullable": true,
+     "datatype": "float8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"HOLDING\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "IMPAIREDFINANCINGRECEIVABLES_pkey",
+     "determinants": [
+      "\"IMPAIREDFINANCINGRECEIVABLESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_IMPAIREDFINANCINGRECEIVABLES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"IMPAIREDFINANCINGRECEIVABLES\""
+      ],
+      "columns": [
+       "\"IMPAIREDFINANCINGRECEIVABLESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"IMPAIREDFINANCINGRECEIVABLESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"IMPAIREDFINANCINGRECEIVABLES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INCOMETAXCONTINGENCY_pkey",
+     "determinants": [
+      "\"INCOMETAXCONTINGENCYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INCOMETAXCONTINGENCY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INCOMETAXCONTINGENCY\""
+      ],
+      "columns": [
+       "\"INCOMETAXCONTINGENCYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INCOMETAXCONTINGENCYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INCOMETAXCONTINGENCY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INDEFINITELIVEDINTANGIBLEASSETS_pkey",
+     "determinants": [
+      "\"INDEFINITELIVEDINTANGIBLEASSETSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INDEFINITELIVEDINTANGIBLEASSETS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INDEFINITELIVEDINTANGIBLEASSETS\""
+      ],
+      "columns": [
+       "\"INDEFINITELIVEDINTANGIBLEASSETSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INDEFINITELIVEDINTANGIBLEASSETSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INDEFINITELIVEDINTANGIBLEASSETS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INDUSTRYSECTORCLASSIFICATIONSCHEME_pkey",
+     "determinants": [
+      "\"INDUSTRYSECTORCLASSIFICATIONSCHEMEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"INDUSTRYSECTORCLASSIFICATIONSCHEMEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASDESCRIPTION\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INDUSTRYSECTORCLASSIFICATIONSCHEME\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INDUSTRYSECTORCLASSIFIER_pkey",
+     "determinants": [
+      "\"INDUSTRYSECTORCLASSIFIERID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_INDUSTRYSECTORCLASSIFIER_ISDEFINEDBY_INDUSTRYSECTORCLASSIFICATIONSCHEME",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INDUSTRYSECTORCLASSIFIER\""
+      ],
+      "columns": [
+       "\"ISDEFINEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INDUSTRYSECTORCLASSIFICATIONSCHEME\""
+      ],
+      "columns": [
+       "\"INDUSTRYSECTORCLASSIFICATIONSCHEMEID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INDUSTRYSECTORCLASSIFIERID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISDEFINEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASUNIQUEIDENTIFIER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASDESCRIPTION\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASNUMERICCODE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASFORMALNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INDUSTRYSECTORCLASSIFIER\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INTANGIBLEASSETSANDGOODWILL_pkey",
+     "determinants": [
+      "\"INTANGIBLEASSETSANDGOODWILLID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INTANGIBLEASSETSANDGOODWILL",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INTANGIBLEASSETSANDGOODWILL\""
+      ],
+      "columns": [
+       "\"INTANGIBLEASSETSANDGOODWILLID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INTANGIBLEASSETSANDGOODWILLID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INTANGIBLEASSETSANDGOODWILL\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INTERESTANDOTHERINCOME_pkey",
+     "determinants": [
+      "\"INTERESTANDOTHERINCOMEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INTERESTANDOTHERINCOME",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INTERESTANDOTHERINCOME\""
+      ],
+      "columns": [
+       "\"INTERESTANDOTHERINCOMEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INTERESTANDOTHERINCOMEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INTERESTANDOTHERINCOME\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INTERESTCOSTSINCURRED_pkey",
+     "determinants": [
+      "\"INTERESTCOSTSINCURREDID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INTERESTCOSTSINCURRED",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INTERESTCOSTSINCURRED\""
+      ],
+      "columns": [
+       "\"INTERESTCOSTSINCURREDID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INTERESTCOSTSINCURREDID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INTERESTCOSTSINCURRED\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INVENTORYCURRENT_pkey",
+     "determinants": [
+      "\"INVENTORYCURRENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INVENTORYCURRENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INVENTORYCURRENT\""
+      ],
+      "columns": [
+       "\"INVENTORYCURRENTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INVENTORYCURRENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INVENTORYCURRENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INVENTORYNONCURRENT_pkey",
+     "determinants": [
+      "\"INVENTORYNONCURRENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INVENTORYNONCURRENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INVENTORYNONCURRENT\""
+      ],
+      "columns": [
+       "\"INVENTORYNONCURRENTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INVENTORYNONCURRENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INVENTORYNONCURRENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INVESTMENTINCOME_pkey",
+     "determinants": [
+      "\"INVESTMENTINCOMEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INVESTMENTINCOME",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INVESTMENTINCOME\""
+      ],
+      "columns": [
+       "\"INVESTMENTINCOMEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INVESTMENTINCOMEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INVESTMENTINCOME\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "INVESTMENTSANDOTHERNONCURRENTASSETS_pkey",
+     "determinants": [
+      "\"INVESTMENTSANDOTHERNONCURRENTASSETSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_INVESTMENTSANDOTHERNONCURRENTASSETS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"INVESTMENTSANDOTHERNONCURRENTASSETS\""
+      ],
+      "columns": [
+       "\"INVESTMENTSANDOTHERNONCURRENTASSETSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"INVESTMENTSANDOTHERNONCURRENTASSETSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"INVESTMENTSANDOTHERNONCURRENTASSETS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LIABILITY_pkey",
+     "determinants": [
+      "\"LIABILITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_LIABILITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LIABILITY\""
+      ],
+      "columns": [
+       "\"LIABILITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LIABILITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LIABILITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LINEOFCREDITFACILITY_pkey",
+     "determinants": [
+      "\"LINEOFCREDITFACILITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_LINEOFCREDITFACILITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LINEOFCREDITFACILITY\""
+      ],
+      "columns": [
+       "\"LINEOFCREDITFACILITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LINEOFCREDITFACILITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LINEOFCREDITFACILITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LISTEDSECURITY_pkey",
+     "determinants": [
+      "\"LISTEDSECURITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_LISTEDSECURITY_HASLASTTRADEDVALUE_MONETARYAMOUNT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LISTEDSECURITY\""
+      ],
+      "columns": [
+       "\"HASLASTTRADEDVALUE\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"MONETARYAMOUNT\""
+      ],
+      "columns": [
+       "\"MONETARYAMOUNTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_SECURITY_LISTEDSECURITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LISTEDSECURITY\""
+      ],
+      "columns": [
+       "\"LISTEDSECURITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITY\""
+      ],
+      "columns": [
+       "\"SECURITYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LISTEDSECURITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASLASTTRADEDVALUE\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASLISTINGDATE\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"HASTICKERSYMBOL\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASLEGALNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LISTEDSECURITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LONGLIVEDASSETSHELDFORSALE_pkey",
+     "determinants": [
+      "\"LONGLIVEDASSETSHELDFORSALEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_LONGLIVEDASSETSHELDFORSALE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LONGLIVEDASSETSHELDFORSALE\""
+      ],
+      "columns": [
+       "\"LONGLIVEDASSETSHELDFORSALEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LONGLIVEDASSETSHELDFORSALEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LONGLIVEDASSETSHELDFORSALE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LONGLIVEDASSETSTOBEABANDONED_pkey",
+     "determinants": [
+      "\"LONGLIVEDASSETSTOBEABANDONEDID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_LONGLIVEDASSETSTOBEABANDONED",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LONGLIVEDASSETSTOBEABANDONED\""
+      ],
+      "columns": [
+       "\"LONGLIVEDASSETSTOBEABANDONEDID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LONGLIVEDASSETSTOBEABANDONEDID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LONGLIVEDASSETSTOBEABANDONED\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LONGTERMDEBT_pkey",
+     "determinants": [
+      "\"LONGTERMDEBTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_LONGTERMDEBT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LONGTERMDEBT\""
+      ],
+      "columns": [
+       "\"LONGTERMDEBTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LONGTERMDEBTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LONGTERMDEBT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LONGTERMDEBTMATURITIES_pkey",
+     "determinants": [
+      "\"LONGTERMDEBTMATURITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_LONGTERMDEBTMATURITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LONGTERMDEBTMATURITIES\""
+      ],
+      "columns": [
+       "\"LONGTERMDEBTMATURITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LONGTERMDEBTMATURITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LONGTERMDEBTMATURITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LONGTERMPURCHASECOMMITMENT_pkey",
+     "determinants": [
+      "\"LONGTERMPURCHASECOMMITMENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_LONGTERMPURCHASECOMMITMENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LONGTERMPURCHASECOMMITMENT\""
+      ],
+      "columns": [
+       "\"LONGTERMPURCHASECOMMITMENTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LONGTERMPURCHASECOMMITMENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LONGTERMPURCHASECOMMITMENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "LOSS_pkey",
+     "determinants": [
+      "\"LOSSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_LOSS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LOSS\""
+      ],
+      "columns": [
+       "\"LOSSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"LOSSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"LOSS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "MARKETABLESECURITIES_pkey",
+     "determinants": [
+      "\"MARKETABLESECURITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_MARKETABLESECURITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"MARKETABLESECURITIES\""
+      ],
+      "columns": [
+       "\"MARKETABLESECURITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"MARKETABLESECURITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"MARKETABLESECURITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "MONETARYAMOUNT_pkey",
+     "determinants": [
+      "\"MONETARYAMOUNTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_MONETARYAMOUNT_HASCURRENCY_CURRENCY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"MONETARYAMOUNT\""
+      ],
+      "columns": [
+       "\"HASCURRENCY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CURRENCY\""
+      ],
+      "columns": [
+       "\"CURRENCYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"MONETARYAMOUNTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASCURRENCY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASAMOUNT\"",
+     "isNullable": true,
+     "datatype": "float8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"MONETARYAMOUNT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_pkey",
+     "determinants": [
+      "\"NETPERIODICBENEFITCOSTNOTYETRECOGNIZEDID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_NETPERIODICBENEFITCOSTNOTYETRECOGNIZED",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"NETPERIODICBENEFITCOSTNOTYETRECOGNIZED\""
+      ],
+      "columns": [
+       "\"NETPERIODICBENEFITCOSTNOTYETRECOGNIZEDID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"NETPERIODICBENEFITCOSTNOTYETRECOGNIZEDID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"NETPERIODICBENEFITCOSTNOTYETRECOGNIZED\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_pkey",
+     "determinants": [
+      "\"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION\""
+      ],
+      "columns": [
+       "\"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "NONCONTROLLINGINTEREST_pkey",
+     "determinants": [
+      "\"NONCONTROLLINGINTERESTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_NONCONTROLLINGINTEREST",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"NONCONTROLLINGINTEREST\""
+      ],
+      "columns": [
+       "\"NONCONTROLLINGINTERESTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"NONCONTROLLINGINTERESTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"NONCONTROLLINGINTEREST\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OPERATINGLOSSCARRYFORWARDS_pkey",
+     "determinants": [
+      "\"OPERATINGLOSSCARRYFORWARDSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OPERATINGLOSSCARRYFORWARDS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OPERATINGLOSSCARRYFORWARDS\""
+      ],
+      "columns": [
+       "\"OPERATINGLOSSCARRYFORWARDSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OPERATINGLOSSCARRYFORWARDSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OPERATINGLOSSCARRYFORWARDS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERASSETS_pkey",
+     "determinants": [
+      "\"OTHERASSETSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERASSETS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERASSETS\""
+      ],
+      "columns": [
+       "\"OTHERASSETSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERASSETSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERASSETS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERASSETSANDOTHERLIABILITIES_pkey",
+     "determinants": [
+      "\"OTHERASSETSANDOTHERLIABILITIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERASSETSANDOTHERLIABILITIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERASSETSANDOTHERLIABILITIES\""
+      ],
+      "columns": [
+       "\"OTHERASSETSANDOTHERLIABILITIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERASSETSANDOTHERLIABILITIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERASSETSANDOTHERLIABILITIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERASSETSDISCLOSURE_pkey",
+     "determinants": [
+      "\"OTHERASSETSDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERASSETSDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERASSETSDISCLOSURE\""
+      ],
+      "columns": [
+       "\"OTHERASSETSDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERASSETSDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERASSETSDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERASSETSNONCURRENT_pkey",
+     "determinants": [
+      "\"OTHERASSETSNONCURRENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERASSETSNONCURRENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERASSETSNONCURRENT\""
+      ],
+      "columns": [
+       "\"OTHERASSETSNONCURRENTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERASSETSNONCURRENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERASSETSNONCURRENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERLIABILITIESDISCLOSURE_pkey",
+     "determinants": [
+      "\"OTHERLIABILITIESDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERLIABILITIESDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERLIABILITIESDISCLOSURE\""
+      ],
+      "columns": [
+       "\"OTHERLIABILITIESDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERLIABILITIESDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERLIABILITIESDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERNONOPERATINGINCOMEEXPENSE_pkey",
+     "determinants": [
+      "\"OTHERNONOPERATINGINCOMEEXPENSEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERNONOPERATINGINCOMEEXPENSE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERNONOPERATINGINCOMEEXPENSE\""
+      ],
+      "columns": [
+       "\"OTHERNONOPERATINGINCOMEEXPENSEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERNONOPERATINGINCOMEEXPENSEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERNONOPERATINGINCOMEEXPENSE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHEROWNERSHIPINTERESTS_pkey",
+     "determinants": [
+      "\"OTHEROWNERSHIPINTERESTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHEROWNERSHIPINTERESTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHEROWNERSHIPINTERESTS\""
+      ],
+      "columns": [
+       "\"OTHEROWNERSHIPINTERESTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHEROWNERSHIPINTERESTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHEROWNERSHIPINTERESTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_pkey",
+     "determinants": [
+      "\"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS\""
+      ],
+      "columns": [
+       "\"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PERSON_pkey",
+     "determinants": [
+      "\"PERSONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_AUTONOMOUSAGENT_PERSON",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PERSON\""
+      ],
+      "columns": [
+       "\"PERSONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"AUTONOMOUSAGENT\""
+      ],
+      "columns": [
+       "\"AUTONOMOUSAGENTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_PERSON_HASCITIZENSHIP_COUNTRY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PERSON\""
+      ],
+      "columns": [
+       "\"HASCITIZENSHIP\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COUNTRY\""
+      ],
+      "columns": [
+       "\"COUNTRYID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_PERSON_HASPLACEOFBIRTH_COUNTRY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PERSON\""
+      ],
+      "columns": [
+       "\"HASPLACEOFBIRTH\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COUNTRY\""
+      ],
+      "columns": [
+       "\"COUNTRYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PERSONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASPLACEOFBIRTH\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASCITIZENSHIP\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASGENDER\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASDATEOFBIRTH\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"HASPERSONNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASLASTNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASFIRSTNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASMIDDLENAMEORINITIAL\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PERSON\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PHONENUMBER_pkey",
+     "determinants": [
+      "\"PHONENUMBERID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_VIRTUALADDRESS_PHONENUMBER",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PHONENUMBER\""
+      ],
+      "columns": [
+       "\"PHONENUMBERID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"VIRTUALADDRESS\""
+      ],
+      "columns": [
+       "\"VIRTUALADDRESSID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PHONENUMBERID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASVALUE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PHONENUMBER\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "POSTALADDRESS_pkey",
+     "determinants": [
+      "\"POSTALADDRESSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_POSTALADDRESS_HASCOUNTRY_COUNTRY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"POSTALADDRESS\""
+      ],
+      "columns": [
+       "\"HASCOUNTRY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"COUNTRY\""
+      ],
+      "columns": [
+       "\"COUNTRYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"POSTALADDRESSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASCOUNTRY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASADDRESSLINE1\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASADDRESSLINE2\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASCITY\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASPOSTALCODE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASSTATE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"POSTALADDRESS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PREFERREDSTOCK_pkey",
+     "determinants": [
+      "\"PREFERREDSTOCKID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PREFERREDSTOCK",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PREFERREDSTOCK\""
+      ],
+      "columns": [
+       "\"PREFERREDSTOCKID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PREFERREDSTOCKID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PREFERREDSTOCK\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PRODUCTWARRANTYLIABILITY_pkey",
+     "determinants": [
+      "\"PRODUCTWARRANTYLIABILITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PRODUCTWARRANTYLIABILITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PRODUCTWARRANTYLIABILITY\""
+      ],
+      "columns": [
+       "\"PRODUCTWARRANTYLIABILITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PRODUCTWARRANTYLIABILITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PRODUCTWARRANTYLIABILITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PROPERTYMANAGEMENTFEE_pkey",
+     "determinants": [
+      "\"PROPERTYMANAGEMENTFEEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PROPERTYMANAGEMENTFEE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PROPERTYMANAGEMENTFEE\""
+      ],
+      "columns": [
+       "\"PROPERTYMANAGEMENTFEEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PROPERTYMANAGEMENTFEEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PROPERTYMANAGEMENTFEE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PROPERTYPLANTANDEQUIPMENT_pkey",
+     "determinants": [
+      "\"PROPERTYPLANTANDEQUIPMENTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PROPERTYPLANTANDEQUIPMENT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PROPERTYPLANTANDEQUIPMENT\""
+      ],
+      "columns": [
+       "\"PROPERTYPLANTANDEQUIPMENTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PROPERTYPLANTANDEQUIPMENTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PROPERTYPLANTANDEQUIPMENT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_pkey",
+     "determinants": [
+      "\"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES\""
+      ],
+      "columns": [
+       "\"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_pkey",
+     "determinants": [
+      "\"PROPERTYPLANTANDEQUIPMENTUSEFULLIVESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PROPERTYPLANTANDEQUIPMENTUSEFULLIVES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PROPERTYPLANTANDEQUIPMENTUSEFULLIVES\""
+      ],
+      "columns": [
+       "\"PROPERTYPLANTANDEQUIPMENTUSEFULLIVESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PROPERTYPLANTANDEQUIPMENTUSEFULLIVESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PROPERTYPLANTANDEQUIPMENTUSEFULLIVES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_pkey",
+     "determinants": [
+      "\"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE\""
+      ],
+      "columns": [
+       "\"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "REALESTATEPROPERTIES_pkey",
+     "determinants": [
+      "\"REALESTATEPROPERTIESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_REALESTATEPROPERTIES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"REALESTATEPROPERTIES\""
+      ],
+      "columns": [
+       "\"REALESTATEPROPERTIESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"REALESTATEPROPERTIESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"REALESTATEPROPERTIES\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "REALIZEDGAINLOSS_pkey",
+     "determinants": [
+      "\"REALIZEDGAINLOSSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_REALIZEDGAINLOSS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"REALIZEDGAINLOSS\""
+      ],
+      "columns": [
+       "\"REALIZEDGAINLOSSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"REALIZEDGAINLOSSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"REALIZEDGAINLOSS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "REALIZEDGAINLOSSONINVESTMENTS_pkey",
+     "determinants": [
+      "\"REALIZEDGAINLOSSONINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_REALIZEDGAINLOSSONINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"REALIZEDGAINLOSSONINVESTMENTS\""
+      ],
+      "columns": [
+       "\"REALIZEDGAINLOSSONINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"REALIZEDGAINLOSSONINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"REALIZEDGAINLOSSONINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_pkey",
+     "determinants": [
+      "\"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATEDID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED\""
+      ],
+      "columns": [
+       "\"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATEDID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATEDID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "RECORDEDUNCONDITIONALPURCHASEOBLIGATION_pkey",
+     "determinants": [
+      "\"RECORDEDUNCONDITIONALPURCHASEOBLIGATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_RECORDEDUNCONDITIONALPURCHASEOBLIGATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"RECORDEDUNCONDITIONALPURCHASEOBLIGATION\""
+      ],
+      "columns": [
+       "\"RECORDEDUNCONDITIONALPURCHASEOBLIGATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"RECORDEDUNCONDITIONALPURCHASEOBLIGATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"RECORDEDUNCONDITIONALPURCHASEOBLIGATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "REDEEMABLENONCONTROLLINGINTEREST_pkey",
+     "determinants": [
+      "\"REDEEMABLENONCONTROLLINGINTERESTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_REDEEMABLENONCONTROLLINGINTEREST",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"REDEEMABLENONCONTROLLINGINTEREST\""
+      ],
+      "columns": [
+       "\"REDEEMABLENONCONTROLLINGINTERESTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"REDEEMABLENONCONTROLLINGINTERESTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"REDEEMABLENONCONTROLLINGINTEREST\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_pkey",
+     "determinants": [
+      "\"RELATEDPARTYTRANSACTIONSBYRELATEDPARTYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_RELATEDPARTYTRANSACTIONSBYRELATEDPARTY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"RELATEDPARTYTRANSACTIONSBYRELATEDPARTY\""
+      ],
+      "columns": [
+       "\"RELATEDPARTYTRANSACTIONSBYRELATEDPARTYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"RELATEDPARTYTRANSACTIONSBYRELATEDPARTYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"RELATEDPARTYTRANSACTIONSBYRELATEDPARTY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "RENTEXPENSE_pkey",
+     "determinants": [
+      "\"RENTEXPENSEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_RENTEXPENSE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"RENTEXPENSE\""
+      ],
+      "columns": [
+       "\"RENTEXPENSEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"RENTEXPENSEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"RENTEXPENSE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "RESTRICTEDCASHANDCASHEQUIVALENTS_pkey",
+     "determinants": [
+      "\"RESTRICTEDCASHANDCASHEQUIVALENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_RESTRICTEDCASHANDCASHEQUIVALENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"RESTRICTEDCASHANDCASHEQUIVALENTS\""
+      ],
+      "columns": [
+       "\"RESTRICTEDCASHANDCASHEQUIVALENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"RESTRICTEDCASHANDCASHEQUIVALENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"RESTRICTEDCASHANDCASHEQUIVALENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "RESTRUCTURINGANDRELATEDCOSTS_pkey",
+     "determinants": [
+      "\"RESTRUCTURINGANDRELATEDCOSTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_RESTRUCTURINGANDRELATEDCOSTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"RESTRUCTURINGANDRELATEDCOSTS\""
+      ],
+      "columns": [
+       "\"RESTRUCTURINGANDRELATEDCOSTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"RESTRUCTURINGANDRELATEDCOSTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"RESTRUCTURINGANDRELATEDCOSTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "REVENUE_pkey",
+     "determinants": [
+      "\"REVENUEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_ELEMENTOFFINANCIALSTATEMENT_REVENUE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"REVENUE\""
+      ],
+      "columns": [
+       "\"REVENUEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"ELEMENTOFFINANCIALSTATEMENT\""
+      ],
+      "columns": [
+       "\"ELEMENTOFFINANCIALSTATEMENTID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"REVENUEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"REVENUE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SALELEASEBACKTRANSACTION_pkey",
+     "determinants": [
+      "\"SALELEASEBACKTRANSACTIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SALELEASEBACKTRANSACTION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SALELEASEBACKTRANSACTION\""
+      ],
+      "columns": [
+       "\"SALELEASEBACKTRANSACTIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SALELEASEBACKTRANSACTIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SALELEASEBACKTRANSACTION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SECURITIESTRANSACTION_pkey",
+     "determinants": [
+      "\"SECURITIESTRANSACTIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_SECURITIESTRANSACTION_HASPRICE_MONETARYAMOUNT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITIESTRANSACTION\""
+      ],
+      "columns": [
+       "\"HASPRICE\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"MONETARYAMOUNT\""
+      ],
+      "columns": [
+       "\"MONETARYAMOUNTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_SECURITIESTRANSACTION_ISFACILITATEDBY_FINANCIALSERVICEACCOUNT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITIESTRANSACTION\""
+      ],
+      "columns": [
+       "\"ISFACILITATEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALSERVICEACCOUNT\""
+      ],
+      "columns": [
+       "\"FINANCIALSERVICEACCOUNTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_SECURITIESTRANSACTION_REFERSTO_LISTEDSECURITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITIESTRANSACTION\""
+      ],
+      "columns": [
+       "\"REFERSTO\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"LISTEDSECURITY\""
+      ],
+      "columns": [
+       "\"LISTEDSECURITYID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SECURITIESTRANSACTIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISFACILITATEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASPRICE\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"REFERSTO\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASTYPE\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"HASSETTLEMENTDATE\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"HASCOUNT\"",
+     "isNullable": true,
+     "datatype": "float8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SECURITIESTRANSACTION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SECURITY_pkey",
+     "determinants": [
+      "\"SECURITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_FINANCIALINSTRUMENT_SECURITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITY\""
+      ],
+      "columns": [
+       "\"SECURITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALINSTRUMENT\""
+      ],
+      "columns": [
+       "\"FINANCIALINSTRUMENTID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_SECURITY_ISPROVIDEDBY_CORPORATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITY\""
+      ],
+      "columns": [
+       "\"ISPROVIDEDBY\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"CORPORATION\""
+      ],
+      "columns": [
+       "\"CORPORATIONID\""
+      ]
+     }
+    },
+    {
+     "name": "FK_SECURITY_ISTRADEDON_FINANCIALMARKET",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SECURITY\""
+      ],
+      "columns": [
+       "\"ISTRADEDON\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"FINANCIALMARKET\""
+      ],
+      "columns": [
+       "\"FINANCIALMARKETID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SECURITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISTRADEDON\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ISPROVIDEDBY\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SECURITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONACTIVITY_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONACTIVITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONACTIVITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONACTIVITY\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONACTIVITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONACTIVITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONACTIVITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVESTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVESTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVESTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_pkey",
+     "determinants": [
+      "\"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY\""
+      ],
+      "columns": [
+       "\"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SHORTTERMDEBT_pkey",
+     "determinants": [
+      "\"SHORTTERMDEBTID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SHORTTERMDEBT",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SHORTTERMDEBT\""
+      ],
+      "columns": [
+       "\"SHORTTERMDEBTID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SHORTTERMDEBTID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SHORTTERMDEBT\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "STOCKHOLDERSEQUITY_pkey",
+     "determinants": [
+      "\"STOCKHOLDERSEQUITYID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_STOCKHOLDERSEQUITY",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"STOCKHOLDERSEQUITY\""
+      ],
+      "columns": [
+       "\"STOCKHOLDERSEQUITYID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"STOCKHOLDERSEQUITYID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"STOCKHOLDERSEQUITY\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "SUBSEQUENTEVENTS_pkey",
+     "determinants": [
+      "\"SUBSEQUENTEVENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_SUBSEQUENTEVENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"SUBSEQUENTEVENTS\""
+      ],
+      "columns": [
+       "\"SUBSEQUENTEVENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"SUBSEQUENTEVENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"SUBSEQUENTEVENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TAXCREDITCARRYFORWARD_pkey",
+     "determinants": [
+      "\"TAXCREDITCARRYFORWARDID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_TAXCREDITCARRYFORWARD",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"TAXCREDITCARRYFORWARD\""
+      ],
+      "columns": [
+       "\"TAXCREDITCARRYFORWARDID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"TAXCREDITCARRYFORWARDID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"TAXCREDITCARRYFORWARD\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TRADINGSECURITIESANDOTHERTRADINGASSETS_pkey",
+     "determinants": [
+      "\"TRADINGSECURITIESANDOTHERTRADINGASSETSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_TRADINGSECURITIESANDOTHERTRADINGASSETS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"TRADINGSECURITIESANDOTHERTRADINGASSETS\""
+      ],
+      "columns": [
+       "\"TRADINGSECURITIESANDOTHERTRADINGASSETSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"TRADINGSECURITIESANDOTHERTRADINGASSETSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"TRADINGSECURITIESANDOTHERTRADINGASSETS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TREASURYSTOCK_pkey",
+     "determinants": [
+      "\"TREASURYSTOCKID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_TREASURYSTOCK",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"TREASURYSTOCK\""
+      ],
+      "columns": [
+       "\"TREASURYSTOCKID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"TREASURYSTOCKID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"TREASURYSTOCK\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "UNREALIZEDGAINLOSSONINVESTMENTS_pkey",
+     "determinants": [
+      "\"UNREALIZEDGAINLOSSONINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_UNREALIZEDGAINLOSSONINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"UNREALIZEDGAINLOSSONINVESTMENTS\""
+      ],
+      "columns": [
+       "\"UNREALIZEDGAINLOSSONINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"UNREALIZEDGAINLOSSONINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"UNREALIZEDGAINLOSSONINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "UNREALIZEDLOSSONINVESTMENTS_pkey",
+     "determinants": [
+      "\"UNREALIZEDLOSSONINVESTMENTSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_UNREALIZEDLOSSONINVESTMENTS",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"UNREALIZEDLOSSONINVESTMENTS\""
+      ],
+      "columns": [
+       "\"UNREALIZEDLOSSONINVESTMENTSID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"UNREALIZEDLOSSONINVESTMENTSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"UNREALIZEDLOSSONINVESTMENTS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_pkey",
+     "determinants": [
+      "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION\""
+      ],
+      "columns": [
+       "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_pkey",
+     "determinants": [
+      "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE\""
+      ],
+      "columns": [
+       "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "VALUATIONALLOWANCE_pkey",
+     "determinants": [
+      "\"VALUATIONALLOWANCEID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_VALUATIONALLOWANCE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"VALUATIONALLOWANCE\""
+      ],
+      "columns": [
+       "\"VALUATIONALLOWANCEID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"VALUATIONALLOWANCEID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"VALUATIONALLOWANCE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_pkey",
+     "determinants": [
+      "\"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSUREID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE\""
+      ],
+      "columns": [
+       "\"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSUREID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSUREID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "VIRTUALADDRESS_pkey",
+     "determinants": [
+      "\"VIRTUALADDRESSID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"VIRTUALADDRESSID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"VIRTUALADDRESS\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "WEIGHTEDAVERAGENUMBEROFSHARES_pkey",
+     "determinants": [
+      "\"WEIGHTEDAVERAGENUMBEROFSHARESID\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_DISCLOSURE_WEIGHTEDAVERAGENUMBEROFSHARES",
+     "from": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"WEIGHTEDAVERAGENUMBEROFSHARES\""
+      ],
+      "columns": [
+       "\"WEIGHTEDAVERAGENUMBEROFSHARESID\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN\"",
+       "\"DISCLOSURE\""
+      ],
+      "columns": [
+       "\"DISCLOSUREID\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"WEIGHTEDAVERAGENUMBEROFSHARESID\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"HASNAME\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN\"",
+    "\"WEIGHTEDAVERAGENUMBEROFSHARES\""
+   ]
+  }
+ ],
+ "metadata": {
+  "dbmsProductName": "PostgreSQL",
+  "dbmsVersion": "16.0",
+  "driverName": "PostgreSQL JDBC Driver",
+  "driverVersion": "42.7.4",
+  "quotationString": "\"",
+  "extractionTime": "generated-from-DDL",
+  "idFactoryType": "POSTGRESQL"
+ }
+}

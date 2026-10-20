@@ -105,6 +105,8 @@ class ProjectContext:
     #: classification of the *staged* view (what would hold if every proposal were
     #: accepted) — kept apart from ``reasoner.last`` so previews never pose as content.
     preview: Any = None
+    #: registered relational databases of the virtual knowledge graph (vkg.source)
+    databases: dict[str, Any] = field(default_factory=dict)
 
     @property
     def name(self) -> str:
@@ -636,7 +638,12 @@ def _g(ctx):
            writes=True, resource_param="old")
 def rename_iri_op(self: Platform, ctx, old: str, new: str) -> ChangeSet:
     """Change an entity IRI everywhere (ST changeResourceURI / Protégé rename)."""
-    return refactor.rename_iri(_g(ctx), _iri(ctx, old), _iri(ctx, new), ctx.layout.main)
+    from .vkg.validate import rename_in_mappings
+    o, n = _iri(ctx, old), _iri(ctx, new)
+    cs = refactor.rename_iri(_g(ctx), o, n, ctx.layout.main)
+    # FR-VKG-01: R2RML maps and alignment cells follow the rename in the same commit.
+    rem, add = rename_in_mappings(ctx.tracker.view(ctx.layout.mappings, staged=True), o, n)
+    return cs.remove_all(rem, graph=ctx.layout.mappings).add_all(add, graph=ctx.layout.mappings)
 
 
 @operation("refactor.mergeEntities", capability="rdf(%resource_role%)", crudv="UD",
@@ -1258,6 +1265,259 @@ def lifecycle_set(self: Platform, ctx, stage: str, state: str, caller: Principal
         raise ValueError("state is not-started | in-progress | awaiting-gate | done")
     ctx.lifecycle[stage] = state
     return {"stage": stage, "state": state, "note": note}
+
+# =========================================================================== #
+# Virtual knowledge graph: R2RML mappings (Ontop role) — FR-VKG-01, FR-VKG-02
+#
+# Mapping edits are change sets on the ``mappings`` graph, the graph alignment.apply
+# writes too, so they take the capability Semantic Turkey's *mapper* role holds,
+# rdf(resource, alignment) (ontologist, rdfgeek and project manager hold it as well).
+# Reads take rdf R; querying the mapped data takes sparql.query's capability.
+# =========================================================================== #
+
+_VKG_W = "rdf(resource, alignment)"
+
+
+def _map_iri(ctx: ProjectContext, map_id: str) -> str:
+    import re
+    if map_id.startswith(("http://", "https://", "urn:")):
+        return map_id
+    if not re.match(r"^[A-Za-z][A-Za-z0-9_.-]{0,99}$", map_id):
+        raise ValueError(f"triples map id {map_id!r}: letters, digits, '_', '.', '-'")
+    return f"urn:sip:p:{ctx.name}:r2rml#{map_id}"
+
+
+def _vkg_graph(ctx: ProjectContext, staged: bool = True) -> Graph:
+    return ctx.tracker.view(ctx.layout.mappings, staged=staged)
+
+
+def _vkg_maps(ctx: ProjectContext, staged: bool = True, warnings: list | None = None):
+    from .vkg.r2rml import parse_maps
+    return parse_maps(_vkg_graph(ctx, staged), warnings)
+
+
+def _vkg_build(ctx: ProjectContext, m: dict, source_id: str | None):
+    from .vkg.r2rml import TriplesMap
+    from .vkg.source import check_select, check_table_name
+    tm = TriplesMap.from_dict(m, mint=lambda i: _map_iri(ctx, i),
+                              resolve=lambda x: str(_iri(ctx, x)))
+    if source_id:
+        tm.source = source_id
+    if tm.sql_query is not None:
+        check_select(tm.sql_query)          # UnsafeSQL: non-SELECT logical tables refused
+    else:
+        check_table_name(tm.table_name)
+    return tm
+
+
+def _vkg_source(ctx: ProjectContext, source_id: str):
+    try:
+        return ctx.databases[source_id]
+    except KeyError:
+        raise KeyError(f"no registered database {source_id!r}") from None
+
+
+@operation("mapping.registerDatabase", capability=_VKG_W, crudv="C", stage="populate",
+           writes=True)
+def map_register_db(self: Platform, ctx, source_id: str, kind: str = "sqlite",
+                    path: str | None = None, script: str | None = None, title: str = "",
+                    ontop_endpoint: str | None = None) -> dict:
+    """Register a relational database (sqlite file or DDL+INSERT script; duckdb if installed)."""
+    from .vkg.source import RelationalSource
+    old = ctx.databases.get(source_id)
+    src = RelationalSource(source_id, kind, path, script, title, ontop_endpoint)
+    if old is not None:
+        old.close()
+    ctx.databases[source_id] = src
+    return src.describe()
+
+
+@operation("mapping.introspect", capability="rdf", crudv="R", stage="populate")
+def map_introspect(self: Platform, ctx, source_id: str | None = None) -> dict:
+    """Schema of a registered database (tables, columns, types, keys), or the database list."""
+    if source_id is None:
+        return {"databases": [s.describe() for _, s in sorted(ctx.databases.items())]}
+    src = _vkg_source(ctx, source_id)
+    return {"source": source_id, **src.schema(refresh=True).as_dict()}
+
+
+@operation("mapping.suggest", capability="rdf", crudv="R", stage="populate")
+def map_suggest(self: Platform, ctx, source_id: str, threshold: float = 0.75,
+                tables: list[str] | None = None, staged: bool = True) -> list[dict]:
+    """Scored R2RML proposals from schema + ontology (table/class, column/property, FK,
+    subclass tables, discriminators, IRI templates); writes nothing."""
+    from .vkg.suggest import suggest
+    base = ctx.config.base_uri.rstrip("/#") + "/data/"
+    return suggest(_vkg_source(ctx, source_id), ctx.ontology(staged=staged), data_base=base,
+                   threshold=threshold, tables=tables)
+
+
+@operation("mapping.addTriplesMap", capability=_VKG_W, crudv="C", stage="populate",
+           writes=True)
+def map_add(self: Platform, ctx, map: dict, source_id: str | None = None) -> ChangeSet:
+    """Add an R2RML triples map (dict form; see vkg.r2rml.TriplesMap.from_dict)."""
+    tm = _vkg_build(ctx, map, source_id)
+    if URIRef(tm.iri) in {URIRef(m.iri) for m in _vkg_maps(ctx)}:
+        raise ValueError(f"triples map {tm.id!r} exists; use mapping.updateTriplesMap")
+    return ChangeSet("mapping.addTriplesMap", {"map": tm.iri, "source": tm.source},
+                     ctx.layout.mappings).add_all(tm.triples())
+
+
+@operation("mapping.updateTriplesMap", capability=_VKG_W, crudv="U", stage="populate",
+           writes=True)
+def map_update(self: Platform, ctx, map: dict, source_id: str | None = None) -> ChangeSet:
+    """Replace a triples map; only the triples that differ are recorded."""
+    from .vkg.r2rml import map_nodes
+    tm = _vkg_build(ctx, map, source_id)
+    g = _vkg_graph(ctx)
+    old = map_nodes(g, URIRef(tm.iri))
+    if not old:
+        raise ValueError(f"no triples map {tm.id!r}")
+    if tm.source is None:
+        from .core.namespaces import SIP
+        tm.source = next((str(o) for s, p, o in old if p == SIP.source
+                          and s == URIRef(tm.iri)), None)
+    return ChangeSet("mapping.updateTriplesMap", {"map": tm.iri}, ctx.layout.mappings
+                     ).remove_all(old).add_all(tm.triples())
+
+
+@operation("mapping.removeTriplesMap", capability=_VKG_W, crudv="D", stage="populate",
+           writes=True)
+def map_remove(self: Platform, ctx, map_id: str, force: bool = False) -> ChangeSet:
+    """Remove a triples map (refused while another map uses it as parent, unless forced)."""
+    from .vkg.r2rml import map_nodes
+    iri = _map_iri(ctx, map_id)
+    triples = map_nodes(_vkg_graph(ctx), URIRef(iri))
+    if not triples:
+        raise ValueError(f"no triples map {map_id!r}")
+    users = [m.id for m in _vkg_maps(ctx) if any(p.ref and p.ref.parent == iri for p in m.poms)]
+    if users and not force:
+        raise ValueError(f"{map_id} is the parent map of {users}; remove those or force=True")
+    return ChangeSet("mapping.removeTriplesMap", {"map": iri}, ctx.layout.mappings
+                     ).remove_all(triples)
+
+
+@operation("mapping.list", capability="rdf", crudv="R", stage="populate")
+def map_list(self: Platform, ctx, staged: bool = True) -> dict:
+    """The project's triples maps (staged view by default) with their review status."""
+    warnings: list[str] = []
+    maps = _vkg_maps(ctx, staged, warnings)
+    committed = {m.iri for m in _vkg_maps(ctx, False)}
+    return {"maps": [dict(m.as_dict(), status="committed" if m.iri in committed else "staged")
+                     for m in maps], "warnings": warnings}
+
+
+@operation("mapping.export", capability="rdf", crudv="R", stage="publish")
+def map_export(self: Platform, ctx, staged: bool = False, format: str = "turtle") -> str:
+    """The mappings as an R2RML document (blank-node form, as Ontop expects)."""
+    from .vkg.r2rml import to_graph
+    prefixes = {"": ctx.config.default_namespace, "owl": str(OWL), "skos": str(SKOS)}
+    return to_graph(_vkg_maps(ctx, staged), prefixes=prefixes).serialize(format=format)
+
+
+@operation("mapping.import", capability=_VKG_W, crudv="C", stage="populate", writes=True)
+def map_import(self: Platform, ctx, data: str, format: str = "turtle",
+               source_id: str | None = None, replace: bool = False) -> ChangeSet:
+    """Load an R2RML document into the mappings graph as one change set (maps with the same
+    IRI are replaced; ``replace=True`` also drops every other map)."""
+    from .vkg.r2rml import map_nodes, parse_maps
+    from .vkg.source import check_select, check_table_name
+    warnings: list[str] = []
+    maps = parse_maps(Graph().parse(data=data, format=format,
+                                    publicID=f"urn:sip:p:{ctx.name}:r2rml"), warnings)
+    if not maps:
+        raise ValueError("no triples map in the document" + (f": {warnings}" if warnings else ""))
+    cs = ChangeSet("mapping.import", {"maps": [m.iri for m in maps], "warnings": warnings[:50]},
+                   ctx.layout.mappings)
+    g = _vkg_graph(ctx)
+    new = {m.iri for m in maps}
+    for m in _vkg_maps(ctx):
+        if replace or m.iri in new:
+            cs.remove_all(map_nodes(g, URIRef(m.iri)))
+    for m in maps:
+        if source_id and not m.source:
+            m.source = source_id
+        if m.sql_query is not None:
+            check_select(m.sql_query)
+        else:
+            check_table_name(m.table_name)
+        cs.add_all(m.triples())
+    return cs
+
+
+@operation("mapping.validate", capability="rdf", crudv="R", stage="validate")
+def map_validate(self: Platform, ctx, staged: bool = True,
+                 source_id: str | None = None) -> dict:
+    """Static checks of the maps against the (staged) ontology and the schemas + coverage."""
+    from .vkg.validate import coverage, validate
+    warnings: list[str] = []
+    maps = _vkg_maps(ctx, staged, warnings)
+    onto = ctx.ontology(staged=staged)
+    findings = validate(maps, onto, ctx.databases, default_source=source_id)
+    summary = {s: sum(f["severity"] == s for f in findings) for s in ("error", "warning", "info")}
+    return {"maps": len(maps), "summary": summary, "findings": findings,
+            "coverage": coverage(maps, onto, ctx.config.default_namespace),
+            "warnings": warnings}
+
+
+@operation("mapping.preview", capability="rdf", crudv="R", stage="populate")
+def map_preview(self: Platform, ctx, map_id: str | None = None, term: str | None = None,
+                limit: int = 20, staged: bool = True) -> dict:
+    """Sample triples (with the producing map) for one triples map or one ontology term."""
+    from .vkg.materialise import materialise
+    from .vkg.validate import impact
+    maps = _vkg_maps(ctx, staged)
+    if map_id:
+        only = {_map_iri(ctx, map_id)}
+    elif term:
+        only = {a["map"] for a in impact(maps, [str(_iri(ctx, term))])}
+    else:
+        only = None
+    if only is not None and not only & {m.iri for m in maps}:
+        raise ValueError(f"no triples map for {map_id or term!r}")
+    res = materialise(maps, ctx.databases, limit=limit, only=only)
+    triples = sorted(res.provenance.items(), key=lambda kv: tuple(map(str, kv[0])))
+    return {"triples": [{"s": str(s), "p": str(p), "o": str(o), "maps": sorted(tms)}
+                        for (s, p, o), tms in triples],
+            "rows": res.rows, "warnings": res.warnings}
+
+
+@operation("mapping.queryData", capability="rdf(sparql, core)", crudv="R", stage="consume")
+def map_query(self: Platform, ctx, query: str, staged: bool = True, entailment: str = "rdfs",
+              limit: int | None = None, row_limit: int | None = None,
+              include_kg: bool = False, engine: str = "local",
+              endpoint: str | None = None) -> dict:
+    """SPARQL over the virtual graph: mapped data + the (staged) ontology, with entailment,
+    so ontology edits change the answers without re-mapping. ``engine="ontop"`` sends the
+    query to an external Ontop endpoint instead (off by default)."""
+    from .vkg import query as vq
+    if engine == "ontop":
+        url = endpoint or next((s.ontop_endpoint for s in ctx.databases.values()
+                                if s.ontop_endpoint), None)
+        if not url:
+            raise ValueError("engine 'ontop' needs an endpoint (argument or registerDatabase)")
+        return vq.ontop_query(url, query)
+    if engine != "local":
+        raise ValueError("engine is local | ontop")
+    from .vkg.materialise import materialise
+    res = materialise(_vkg_maps(ctx, staged), ctx.databases, limit=row_limit)
+    data = res.graph
+    if include_kg:
+        for t in ctx.kg(staged=staged):
+            data.add(t)
+    g = vq.virtual_graph(ctx.ontology(staged=staged), data, entailment)
+    out = vq.run_sparql(g, query, limit)
+    out.update({"engine": "local", "staged": staged, "entailment": entailment,
+                "mapped_triples": len(res.graph), "warnings": res.warnings})
+    return out
+
+
+@operation("mapping.impact", capability="rdf", crudv="R", stage="model")
+def map_impact(self: Platform, ctx, entities: list[str], staged: bool = True) -> dict:
+    """Triples maps affected by renaming or deleting the given ontology entities."""
+    from .vkg.validate import impact
+    iris = [str(_iri(ctx, e)) for e in entities]
+    return {"entities": iris, "affected": impact(_vkg_maps(ctx, staged), iris)}
 
 
 def describe_operations() -> list[dict]:

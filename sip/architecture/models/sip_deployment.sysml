@@ -111,6 +111,7 @@ package SipDeployment {
         allocate system.alignment to cluster.agents;
         allocate system.io to cluster.agents;
         allocate system.kg to cluster.agents;
+        allocate system.vkg to cluster.agents;
         allocate system.runtime to cluster.agents;
         allocate system.conductor to cluster.agents;
         allocate system.gateway to cluster.agents;

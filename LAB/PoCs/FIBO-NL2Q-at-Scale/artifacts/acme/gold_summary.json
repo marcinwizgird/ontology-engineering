@@ -1,0 +1,7 @@
+{
+ "questions": 44,
+ "sql_executes": 44,
+ "sparql_compiles_and_runs_via_ontop": 26,
+ "sql_and_sparql_agree_strict": 26,
+ "sql_and_sparql_agree_lenient": 26
+}

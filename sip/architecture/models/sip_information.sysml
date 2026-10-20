@@ -25,7 +25,7 @@ package SipInformation {
         enum stagingDel;      // {content}:staging-del  -- proposed removals
         enum imports;         // imports:{sha1(iri)}     -- materialised imports (derived)
         enum inferred;        // reasoner closure minus asserted (derived)
-        enum mappings;        // accepted alignment cells
+        enum mappings;        // accepted alignment cells; R2RML triples maps (skolemised)
         enum shapes;          // SHACL shapes
         enum metadata;        // DCAT / VoID description; the ORSD; reuse candidates
         enum history;         // cl:Commit records (CHANGELOG vocabulary)

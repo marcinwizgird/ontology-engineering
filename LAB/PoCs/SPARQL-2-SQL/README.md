@@ -62,6 +62,7 @@ The spec refers to "Queries 1–4" but never defines them. They are defined in `
 ```
 SPARQL-2-SQL/
 ├── SPARQL-2-SQL PoC.md            the specification
+├── NL2SPARQL-ASSESSMENT.md        next layer: NL -> SPARQL, critical assessment, design, evaluation plan
 ├── docker-compose.yml             compilation plane: sidecar + compiler on an internal network (+ verifier)
 ├── docker-compose.demo.yml        overlay: Streamlit sandbox + DuckDB, compiler API on :8000
 ├── Makefile

@@ -30,6 +30,7 @@ package SipDevelopment {
     part def AlignmentModule :> Module { doc /* alignment */ }
     part def IoModule :> Module { doc /* io: pipeline */ }
     part def KgModule :> Module { doc /* kg: lifting */ }
+    part def VkgModule :> Module { doc /* vkg: R2RML mappings, relational sources, virtual-graph query */ }
     part def ScopeModule :> Module { doc /* scope: orsd (requirements specification, reuse, glossary, exit criteria) */ }
     part def PlatformModule :> Module { doc /* platform.py: operation registry */ }
     part def AgentsModule :> Module { doc /* agents: llm, base, specialists, simulators, orchestrator */ }
@@ -47,6 +48,7 @@ package SipDevelopment {
         part alignment : AlignmentModule { :>> path = "alignment"; :>> layer = 2; }
         part io : IoModule { :>> path = "io"; :>> layer = 2; }
         part kg : KgModule { :>> path = "kg"; :>> layer = 2; }
+        part vkg : VkgModule { :>> path = "vkg"; :>> layer = 2; }
         part scope : ScopeModule { :>> path = "scope"; :>> layer = 2; }
         part platform : PlatformModule { :>> path = "platform.py"; :>> layer = 3; }
         part agents : AgentsModule { :>> path = "agents"; :>> layer = 4; }
@@ -62,7 +64,8 @@ package SipDevelopment {
     dependency scopeOnCore from codebase.scope to codebase.core;
     dependency platformOnServices from codebase.platform to codebase.owl, codebase.skos,
         codebase.reasoning, codebase.quality, codebase.search, codebase.alignment,
-        codebase.io, codebase.kg, codebase.scope, codebase.governance, codebase.core;
+        codebase.io, codebase.kg, codebase.vkg, codebase.scope, codebase.governance,
+        codebase.core;
     dependency agentsOnPlatform from codebase.agents to codebase.platform;
     dependency apiOnPlatform from codebase.api to codebase.platform, codebase.agents;
 

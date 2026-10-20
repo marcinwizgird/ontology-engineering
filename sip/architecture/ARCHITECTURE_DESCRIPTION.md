@@ -144,7 +144,7 @@ Scenarios are what the views are evaluated against. S1 runs as the demo
 | S3 | *Align the org ontology to FIBO.* AlignmentAgent runs lexical matching. Cells ≥ 0.95 are auto-accepted; the model adjudicates borderline ones. Accepted cells become `skos:exactMatch` / `owl:equivalentClass` in the **mappings** graph, which needs `rdf(resource, alignment)`. | Alignment, project-scoped graphs |
 | S4 | *A modeller adds `Triffid ⊑ Plant` while `Animal ⊓ Plant ⊑ ⊥` holds.* The copilot's critic refuses that very proposal ("would make unsatisfiable: Triffid"). Made by a human, it lands. QualityAgent then explains it (one justification, 4 axioms) and proposes removing the class's own assertion. | Reasoner critic, explanation, repair |
 | S5 | *An agent goes wrong* (bad prompt, model drift). Every write it made is staged and attributed. The operator stops the run, rejects its commits by `evidence.run`, and disables the agent in the AI policy. **Nothing to roll back.** | Kill switch, staging, operational viewpoint |
-| S6 | *LLM provider outage.* Agents degrade (`status=degraded`, no proposals). All 77 operations remain usable by humans. | QR-AVL-02 |
+| S6 | *LLM provider outage.* Agents degrade (`status=degraded`, no proposals). All 92 operations remain usable by humans. | QR-AVL-02 |
 | S7 | *Restore after corruption.* The Fuseki backup is restored. History and content come back together because they are one dataset written in one transaction per commit. | QR-AVL-01, P1, P3 |
 | S8 | *Migrate a VocBench project.* Content and history graphs are imported unchanged (the CHANGELOG terms are identical) and roles map 1:1 (the same nine roles). | QR-EVO-02 |
 
@@ -190,9 +190,9 @@ Decisions visible in this view:
 
 ## 6. Functional view
 
-*Viewpoint:* `FunctionalViewpoint`. *Model:* `models/sip_functional.sysml`: 18
+*Viewpoint:* `FunctionalViewpoint`. *Model:* `models/sip_functional.sysml`: 20
 functional element defs, an abstract `SpecialistAgent` with 9 specialisations, 7 port
-defs, 6 interface defs, the `SipSystem` white box with 31 connections, and 56 `satisfy`
+defs, 6 interface defs, the `SipSystem` white box with 34 connections, and 60 `satisfy`
 relations.
 
 ### 6.1 Elements
@@ -200,7 +200,7 @@ relations.
 | Element | Responsibility | Python | Reverse-engineered from |
 |---|---|---|---|
 | ApiEdge | REST, discovery, agent endpoints | `api/app.py` | — |
-| **OperationRegistry** | 77 typed operations; `call()` authorises, executes, commits | `platform.py` | ST `@STServiceOperation` + `@PreAuthorize` |
+| **OperationRegistry** | 92 typed operations; `call()` authorises, executes, commits | `platform.py` | ST `@STServiceOperation` + `@PreAuthorize` |
 | **PolicyDecisionPoint** | CRUDV algebra + `isAuthorized` order of checks | `governance/capabilities.py`, `registry.py` | `STAuthorizationEvaluator`, `roles/*.pl`, `AuthorizationEvaluator.ts` |
 | GovernanceRegistry | principals, projects, ACL, bindings, groups, settings, URI generators, AI policy | `governance/` | `ProjectManager`, `STPropertiesManager`, `NativeTemplateBasedURIGenerator` |
 | **ChangeTracker** | the one write path; commits, staging, accept/reject, undo/redo | `core/changes.py` | `ChangeTrackerConnection`, `HistoryManagerImpl` |
@@ -211,6 +211,7 @@ relations.
 | QualityService | ICV, metrics, CQ tests, release gate | `quality/` | `SVC/ICV.java`, `MetricsPanel` |
 | ScopeService | requirements specification (NeOn ORSD), reuse candidates, pre-glossary, scope exit criteria, ORSD export | `scope/` | ST `MetadataRegistry` (`DatasetMetadata`) for reuse candidates; the rest is new |
 | Search / Alignment / IoPipeline / KgConstruction | as named | `search/`, `alignment/`, `io/`, `kg/` | ST Search, Alignment, InputOutput/Export, Sheet2RDF |
+| VirtualKnowledgeGraph | R2RML mappings to relational databases; suggestions, static checks, previews; SPARQL over mapped data + the staged ontology (§6.5) | `vkg/` | W3C R2RML; Ontop (mapping editor, virtual-KG query answering) |
 | LlmGateway | Claude or deterministic simulators, one JSON-schema contract | `agents/llm.py`, `simulators.py` | — |
 | AgentRuntime, LifecycleConductor, 9 SpecialistAgents | runs, budgets, kill switch, metrics; stage plan; per-stage assistance | `agents/` | — |
 
@@ -299,6 +300,73 @@ flowchart LR
 `lifecycle.setStage` refuses a machine principal that tries to close `review` or
 `publish`. The conductor's `resume` refuses to continue while the review gate is open.
 
+### 6.5 Virtual knowledge graph: R2RML mappings, queried while the ontology is edited
+
+*Requirements:* FR-VKG-01 (author R2RML mappings), FR-VKG-02 (query mapped data against
+the staged ontology). *Element:* `VirtualKnowledgeGraph` (`vkg/`, layer 2). *Verified
+by:* V-21, V-22 (`tests/test_vkg.py`).
+
+**Information.** A triples map is RDF in the project's `mappings` graph, next to the
+accepted alignment cells, in the W3C `rr:` vocabulary. Its nested nodes (logical table,
+subject map, predicate-object maps, join conditions) are stored as skolem IRIs under
+the map IRI (`urn:sip:p:{p}:r2rml#{id}/pom/0/objectMap`), not blank nodes. That lets a
+change set remove a map exactly, gives history stable terms, and lets Fuseki delete by
+value. `sip:source` names the registered database. `mapping.export` writes the
+idiomatic blank-node form that Ontop reads. The databases themselves are not RDF: they
+are registered per project (`ctx.databases`), sqlite3 by default and DuckDB if
+installed, and always opened read-only. Logical tables must be a single `SELECT`.
+
+**Functional.** Every mapping edit is an operation that returns a `ChangeSet` on
+`layout.mappings`, so the usual guarantees apply: one commit per edit, history and undo
+for humans, staging for machines (an agent's map waits in `mappings:staging-add` for a
+validator). The capability is `rdf(resource, alignment)`, Semantic Turkey's *mapper*
+grant (ontologist, rdfgeek and project manager hold it too). Reads need `rdf` R.
+`mapping.queryData` needs `sparql.query`'s `rdf(sparql, core)` R.
+
+| Operation | Stage | CRUDV | What it does |
+|---|---|---|---|
+| `mapping.registerDatabase`, `mapping.introspect` | populate | C, R | read-only source; tables, columns, types, PK/FK |
+| `mapping.suggest` | populate | R | scored proposals: table↔class, column↔datatype property, FK↔object property (domain/range aware, inverse links), subclass tables (PK = FK to parent PK; a missing `rdfs:subClassOf` is a *separate* proposal), discriminator columns → `rr:sqlQuery`, IRI templates; draft maps. Writes nothing |
+| `mapping.addTriplesMap` / `updateTriplesMap` / `removeTriplesMap` / `import` | populate | C / U / D / C | change sets on `mappings` |
+| `mapping.list`, `mapping.export` | populate, publish | R | staged or committed view; R2RML Turtle |
+| `mapping.validate` | validate | R | unknown class/property, object-vs-datatype property, deprecated terms, unknown table/column/placeholder, unsafe SQL, SQL type vs xsd datatype, missing join, IRI-space clashes; coverage of the ontology |
+| `mapping.preview` | populate | R | sample triples of one map or one term, each with the map that produced it |
+| `mapping.queryData` | consume | R | SPARQL over the virtual graph (below) |
+| `mapping.impact` | model | R | maps affected by renaming/deleting entities |
+
+**The query path.**
+
+```mermaid
+flowchart LR
+  db[("relational DB<br/>read-only")] -->|logical tables| proc["R2RML processor<br/>vkg/materialise.py"]
+  maps["mappings graph<br/>(staged view)"] --> proc
+  proc -->|"triples + provenance"| vg["virtual graph"]
+  onto["ontology<br/>(staged view)"] --> vg
+  vg -->|"RDFS closure or OWL 2 RL"| sparql["SPARQL"]
+  sparql -.->|"engine=ontop (optional)"| ontop["Ontop endpoint"]
+```
+
+The ontology joins the graph at query time, in the staged view by default, and
+entailment is applied there. So an ontology edit changes the answers immediately,
+without re-mapping. Adding `CorporateCustomer SubClassOf Customer` (even as an agent
+proposal not yet validated) makes the corporate rows answer `?x a :Customer`. This is
+the effect Ontop gets by saturating mappings with the TBox (T-mappings), obtained here
+by materialising and closing, which is enough for previews and small databases.
+
+**Refactoring.** `refactor.renameIRI` rewrites IRI-valued uses of the old IRI in the
+`mappings` graph in the same commit (templates and SQL are literals and are never
+touched), so one undo reverts both. `refactor.deleteEntity` leaves maps alone:
+`mapping.validate` reports the dangling reference and `mapping.impact` lists the maps.
+
+**Relation to the Ontop PoC.** `LAB/PoCs/SPARQL-2-SQL` runs Ontop as a sidecar over
+H2/Postgres with the FIBEN mapping in `vkg-artifacts/fiben-mappings.r2rml.ttl`; that
+document's style (relative map IRIs, blank nodes, quoted column names, `rr:sqlQuery`
+subclass filters) imports with `mapping.import`. SIP's engine is the in-process one: no
+JVM, and it reads the ontology being edited. `engine="ontop"` sends the same SPARQL to a
+configured Ontop endpoint for production-sized data, answered against Ontop's own copy
+of the ontology. It is off by default and no test needs it. SQL rewriting at scale
+remains Ontop's job (§14).
+
 ---
 
 ## 7. Information view
@@ -318,7 +386,7 @@ Per project `p`, the graph IRI is `urn:sip:p:{p}:{role}`. The single source of t
 | `{main\|kg}:staging-add` / `:staging-del` | proposals | `commit` (staged) | workflow |
 | `imports:{sha1}` | materialised imports | `replace_derived` | derived |
 | `inferred` | closure minus asserted | `replace_derived` after classification | derived |
-| `mappings` | accepted alignment cells | `alignment.apply` (commit) | content |
+| `mappings` | accepted alignment cells; R2RML triples maps (§6.5) | `alignment.apply`, `mapping.addTriplesMap` / `updateTriplesMap` / `removeTriplesMap` / `import`, and `refactor.renameIRI` (commit) | content |
 | `cq` | competency questions + SPARQL tests + priorities; the pre-glossary | `quality.addCompetencyQuestion`, `scope.addGlossaryTerms` (commit) | content |
 | `metadata` | the requirements specification (`urn:sip:p:{p}:orsd`), reuse candidates (`void:Dataset`) | `scope.setSpecification`, `scope.addReuseCandidate` (commit) | content |
 | `history` | `cl:Commit` records | in the **same `apply`** as content | system |
@@ -405,11 +473,12 @@ semantic_intelligence/
 ├─ quality/       L2  icv · metrics · cq
 ├─ scope/         L2  orsd (requirements specification, reuse, glossary, exit criteria)
 ├─ search/ alignment/ io/ kg/   L2
-├─ platform.py    L3  operation registry (77 operations)
+├─ vkg/           L2  source · r2rml · suggest · validate · materialise · query (R2RML / virtual KG)
+├─ platform.py    L3  operation registry (92 operations)
 ├─ agents/        L4  llm · base · specialists · simulators · orchestrator
 ├─ api/           L5  FastAPI app
 ├─ demo.py        L5  the S1 scenario
-└─ tests/         L6  91 tests: core/governance · OWL · VocBench · platform/agents/API · scope · validate semantics · architecture · FIBO corpus
+└─ tests/         L6  103 tests: core/governance · OWL · VocBench · platform/agents/API · scope · validate semantics · virtual KG · architecture · FIBO corpus
 ```
 
 * **Layering rule.** A module may import only modules of its own layer or a lower one,
@@ -521,7 +590,7 @@ strong, ◐ some, ○ little).
 data leaving to the LLM provider; audit.
 
 **Tactics and evidence:**
-* **Declarative authorization** (ST `@PreAuthorize` made data). All 77 operations carry
+* **Declarative authorization** (ST `@PreAuthorize` made data). All 92 operations carry
   a capability.
   - `quality.applyFix` additionally checks the fix's *own* capability, exactly as ST
     guards each fix separately.
@@ -673,15 +742,16 @@ about usefulness. The harness exists (`AgentRuntime.metrics`).
 | Not yet ported | OntoLex (46 ops), custom forms/PEARL (30), metadata registry (53; reuse-candidate descriptions ported for scope), collaboration (15), SHACL shapes editing, OBO/OWL-XML formats | in that order of value; SHACL via pySHACL first |
 | DL reasoning | RL is incomplete for OWL 2 DL | HermiT backend activates with a JVM; differential testing per `capabilities/architecture/ontology_builder/spike_reasoners` |
 | Remaining FIBO 0.4% | Commons terms undeclared locally | load OMG Commons as an import graph |
+| VKG at scale | `mapping.queryData` materialises the mapped rows per query: fine for previews and small databases, not for warehouse-sized sources | SPARQL-to-SQL rewriting through the optional Ontop engine, or cache materialisations keyed by mappings revision + source fingerprint |
 
 ---
 
 ## 15. Traceability
 
 * **Requirements → elements → verification:**
-  [`generated/TRACEABILITY.md`](generated/TRACEABILITY.md). It has 56 requirements (37
+  [`generated/TRACEABILITY.md`](generated/TRACEABILITY.md). It has 60 requirements (41
   functional, 19 quality), each satisfied by a white-box element and verified by one of
-  19 verification cases; 18 of those name executable tests.
+  22 verification cases; 21 of those name executable tests.
 * **Java → Python:** [`REVERSE_ENGINEERING.md`](REVERSE_ENGINEERING.md) §3.
 * **Diagrams:** [`generated/diagrams/`](generated/diagrams/), 11 Mermaid diagrams
   regenerated from the models by `sysml_check.py --write`. The hand-drawn diagrams in

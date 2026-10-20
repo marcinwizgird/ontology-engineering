@@ -1,0 +1,69 @@
+{
+ "bm25-K1": {
+  "n": 108,
+  "cand_recall": 0.473,
+  "tree_recall": 0.382,
+  "tree_precision": 0.535,
+  "connected": 1.0,
+  "context_terms": 15.6,
+  "sec": 11.6
+ },
+ "tfidf-K1": {
+  "n": 108,
+  "cand_recall": 0.496,
+  "tree_recall": 0.388,
+  "tree_precision": 0.466,
+  "connected": 1.0,
+  "context_terms": 18.5,
+  "sec": 62.6
+ },
+ "hybrid-K1": {
+  "n": 108,
+  "cand_recall": 0.484,
+  "tree_recall": 0.381,
+  "tree_precision": 0.472,
+  "connected": 1.0,
+  "context_terms": 17.9,
+  "sec": 709.3
+ },
+ "hybrid-K2": {
+  "n": 108,
+  "cand_recall": 0.481,
+  "tree_recall": 0.373,
+  "tree_precision": 0.468,
+  "connected": 1.0,
+  "context_terms": 17.9,
+  "sec": 50.5
+ },
+ "hybrid-K4": {
+  "n": 108,
+  "cand_recall": 0.641,
+  "tree_recall": 0.465,
+  "tree_precision": 0.592,
+  "connected": 1.0,
+  "context_terms": 17.3,
+  "sec": 41.8
+ },
+ "hybrid-K4-ppr": {
+  "n": 108,
+  "cand_recall": 0.59,
+  "tree_recall": 0.461,
+  "tree_precision": 0.515,
+  "connected": 0.981,
+  "context_terms": 14.6,
+  "sec": 0.6
+ },
+ "hybrid-K4-k5": {
+  "n": 108,
+  "cand_recall": 0.678,
+  "tree_recall": 0.458,
+  "tree_precision": 0.584,
+  "connected": 1.0,
+  "context_terms": 20.8,
+  "sec": 227.3
+ },
+ "in_context_baseline": {
+  "cand_recall": 1.0,
+  "context_terms": 220
+ }
+}

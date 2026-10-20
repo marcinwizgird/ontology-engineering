@@ -47,7 +47,7 @@ work goes or what to prioritise, ask what it contributes to SIP.
 ```bash
 # SIP: run from sip/
 cd sip
-PYTHONPATH=. python -m pytest semantic_intelligence/tests -q   # offline suite (91 tests)
+PYTHONPATH=. python -m pytest semantic_intelligence/tests -q   # offline suite (103 tests)
 PYTHONPATH=. python -m semantic_intelligence                   # end-to-end demo
 python architecture/tools/sysml_check.py                       # SysML v2 structural check
 

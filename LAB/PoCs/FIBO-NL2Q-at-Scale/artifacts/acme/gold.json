@@ -1,0 +1,1412 @@
+[
+ {
+  "id": "IQ_923f5d4ed19c42ea63c9e0b1c9209509",
+  "question": " What is the loss ratio, number of claims, total loss by policy number and premium where total loss is the sum of loss payment, loss reserve, expense payment, expense reserve amount and loss ratio is total loss divided by premium?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 5,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "349428440641658143",
+    "7703529013507611879",
+    "4931184196324517991",
+    "17518717879242786457"
+   ],
+   "row_digest": "17864572657321874162",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:20000",
+     "n:2",
+     "n:13600",
+     "n:0.68"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_f1b8ef62994d657eda300db1a4b71046",
+  "question": "How many claims do we have?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": true,
+  "sparql_rows": 1,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 1,
+   "count": 1,
+   "col_digests": [
+    "7703529013507611879"
+   ],
+   "row_digest": "7703529013507611879",
+   "sample": [
+    [
+     "n:2"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_419b164c362608054523707eaf5a57f3",
+  "question": "How many claims have been placed by policy number?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": true,
+  "sparql_rows": 1,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "7703529013507611879"
+   ],
+   "row_digest": "7493325777298799491",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:2"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_8f2344e8d1bba2cc39fcae99afd42e4a",
+  "question": "How many policies do we have?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": true,
+  "sparql_rows": 1,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 1,
+   "count": 1,
+   "col_digests": [
+    "7703529013507611879"
+   ],
+   "row_digest": "7703529013507611879",
+   "sample": [
+    [
+     "n:2"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_b2c56b1858b24690742a6b86af872858",
+  "question": "How many policies does each policy holder have by policy holder id?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "16432159379868077216",
+    "7703529013507611879"
+   ],
+   "row_digest": "14107370206658407187",
+   "sample": [
+    [
+     "n:1",
+     "n:2"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_a8f3cd24b58a0e3dc8a30c45d315b195",
+  "question": "How many policies have agents sold by agent id?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": true,
+  "sparql_rows": 1,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "7703529013507611879",
+    "7703529013507611879"
+   ],
+   "row_digest": "5163264427402611662",
+   "sample": [
+    [
+     "n:2",
+     "n:2"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_b4236934056faa683bbcded57fb3c8e7",
+  "question": "Return agents and the policies they have sold that have had a claim and the corresponding loss payment amount by agent id, policy number and claim number",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "16689821312919917760",
+    "17793620717679826235",
+    "1525816216245349223"
+   ],
+   "row_digest": "5129452697913691942",
+   "sample": [
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312701",
+     "n:1200"
+    ],
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312702",
+     "n:2300"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_b4454e71f05c688d787b89ad8d71e9b9",
+  "question": "Return agents and the policy they have sold that have had a claim and the corresponding catastrophe it had. ",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "16689821312919917760",
+    "17793620717679826235",
+    "6381375746644469432"
+   ],
+   "row_digest": "17896127924621746465",
+   "sample": [
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312701",
+     "s:Fire"
+    ],
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312702",
+     "s:Fire"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_205ac9d7d19a5142bec840952e9f6646",
+  "question": "Return agents and the policy they have sold that have had a claim and the corresponding expense payment amount by agent id, policy number and claim number\n",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "16689821312919917760",
+    "17793620717679826235",
+    "10735798159309018535"
+   ],
+   "row_digest": "7401224597618696281",
+   "sample": [
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312701",
+     "n:1300"
+    ],
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312702",
+     "n:2400"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_39301bf92f7e93608bff059c4a83a845",
+  "question": "Return agents and the policy they have sold that have had a claim and the corresponding expense reserve amount by agent id, policy number and claim number ",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "16689821312919917760",
+    "17793620717679826235",
+    "5401119765160394211"
+   ],
+   "row_digest": "10151725519506884507",
+   "sample": [
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312701",
+     "n:1100"
+    ],
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312702",
+     "n:2200"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_66ee72a9520811428711bf451d1d1de7",
+  "question": "Return agents and the policy they have sold that have had a claim and the corresponding loss reserve amount by agent id, policy number and claim number",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "16689821312919917760",
+    "17793620717679826235",
+    "5603577760746518361"
+   ],
+   "row_digest": "338484142037630368",
+   "sample": [
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312701",
+     "n:1000"
+    ],
+    [
+     "n:2",
+     "n:31003000336",
+     "n:12312702",
+     "n:2100"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_d51d706e4b7ef001706289b940f09b24",
+  "question": "Return all the claims by claim number that were closed in 2019",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 1,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235"
+   ],
+   "row_digest": "17793620717679826235",
+   "sample": [
+    [
+     "n:12312701"
+    ],
+    [
+     "n:12312702"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_aa04aad4b2ef9941a9ae456e5ac2efb9",
+  "question": "Return all the claims we have by claim number, open date and close date?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 3,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "5272912397332082119",
+    "5330990588429534455"
+   ],
+   "row_digest": "17218419095053503881",
+   "sample": [
+    [
+     "n:12312701",
+     "t:2019-01-15",
+     "t:2019-01-31"
+    ],
+    [
+     "n:12312702",
+     "t:2019-06-02",
+     "t:2019-06-27"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_6b6e06649d45445bcb0428c599bbbe49",
+  "question": "Return all the policies and the agents that sold them by policy number and agent id",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "9220080001678296233",
+    "15407058027015223758"
+   ],
+   "row_digest": "7085730489238351497",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:2"
+    ],
+    [
+     "n:31003000337",
+     "n:2"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_c340bd5670eec67f1c347fb39335cf5b",
+  "question": "Return all the policies and their policy holder by id",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "9220080001678296233",
+    "14417574686026602816"
+   ],
+   "row_digest": "16332211162868409374",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:1"
+    ],
+    [
+     "n:31003000337",
+     "n:1"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_0d87a2a016062bdeb9a6e4471acd00b2",
+  "question": "Return all the policies we have by policy number, effective date and expiration date?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 3,
+   "count": 2,
+   "col_digests": [
+    "9220080001678296233",
+    "14595343985371553053",
+    "7452688253641404682"
+   ],
+   "row_digest": "15672913601348621668",
+   "sample": [
+    [
+     "n:31003000336",
+     "t:2015-01-01",
+     "t:2019-12-31"
+    ],
+    [
+     "n:31003000337",
+     "t:2019-06-01",
+     "t:2020-05-31"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_8b9dc0d26e4b77f615fb74c234c602b4",
+  "question": "Return policy holders and the claims they have made and the correspoinding catastrophe",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "14417574686026602816",
+    "16689821312919917760",
+    "17793620717679826235",
+    "6381375746644469432"
+   ],
+   "row_digest": "8483267920327509569",
+   "sample": [
+    [
+     "n:1",
+     "n:31003000336",
+     "n:12312701",
+     "s:Fire"
+    ],
+    [
+     "n:1",
+     "n:31003000336",
+     "n:12312702",
+     "s:Fire"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_c4844d67ccc07dbdd134c45536592cb2",
+  "question": "What are all our policies that have a claim associated to them by policy and claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "16689821312919917760",
+    "17793620717679826235"
+   ],
+   "row_digest": "12602692038169225822",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:12312702"
+    ],
+    [
+     "n:31003000336",
+     "n:12312701"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_612b36a4405487ec34831e093e2494dc",
+  "question": "What are all the premiums that have been paid by policy holders?",
+  "sql_ok": true,
+  "sql_rows": 6,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 3,
+   "count": 6,
+   "col_digests": [
+    "5706234480099028521",
+    "6359235910660705216",
+    "14299738285751885970"
+   ],
+   "row_digest": "2265732098241899935",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:1",
+     "n:15000"
+    ],
+    [
+     "n:31003000336",
+     "n:1",
+     "n:16000"
+    ],
+    [
+     "n:31003000336",
+     "n:1",
+     "n:17000"
+    ],
+    [
+     "n:31003000336",
+     "n:1",
+     "n:18000"
+    ],
+    [
+     "n:31003000336",
+     "n:1",
+     "n:20000"
+    ],
+    [
+     "n:31003000337",
+     "n:1",
+     "n:12000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_c5c85d5a4433721ff008569dfea75f80",
+  "question": "What are the expense payment amount of all claims by claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "10735798159309018535"
+   ],
+   "row_digest": "7932863805826039005",
+   "sample": [
+    [
+     "n:12312701",
+     "n:1300"
+    ],
+    [
+     "n:12312702",
+     "n:2400"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_72d859973d85ae687c9bde924405b868",
+  "question": "What are the expense reserve amount of all claims by claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "5401119765160394211"
+   ],
+   "row_digest": "18134143555664751519",
+   "sample": [
+    [
+     "n:12312701",
+     "n:1100"
+    ],
+    [
+     "n:12312702",
+     "n:2200"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_fd57976dc7499200ec8d8f57f2b19ef6",
+  "question": "What are the loss payment amount of all claims by claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "1525816216245349223"
+   ],
+   "row_digest": "15988672200143115624",
+   "sample": [
+    [
+     "n:12312701",
+     "n:1200"
+    ],
+    [
+     "n:12312702",
+     "n:2300"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_c92fa9ee6450b79bd0a56e85b4379273",
+  "question": "What are the loss payment, loss reserve, expense payment, expense reserve amount by claim number and corresponding policy number, policy holder and premium amount paid?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 8,
+   "count": 2,
+   "col_digests": [
+    "14417574686026602816",
+    "16689821312919917760",
+    "698856881283316286",
+    "17793620717679826235",
+    "1525816216245349223",
+    "5603577760746518361",
+    "10735798159309018535",
+    "5401119765160394211"
+   ],
+   "row_digest": "4636913115353772983",
+   "sample": [
+    [
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "n:12312701",
+     "n:1200",
+     "n:1000",
+     "n:1300",
+     "n:1100"
+    ],
+    [
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "n:12312702",
+     "n:2300",
+     "n:2100",
+     "n:2400",
+     "n:2200"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_1e19282f42eaea84b5bce28c2386ead8",
+  "question": "What are the loss payment, loss reserve, expense payment, expense reserve amount by claim number and corresponding policy number, policy holder, premium amount paid and the agent who sold it?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 9,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "14417574686026602816",
+    "16689821312919917760",
+    "698856881283316286",
+    "17793620717679826235",
+    "1525816216245349223",
+    "5603577760746518361",
+    "10735798159309018535",
+    "5401119765160394211"
+   ],
+   "row_digest": "2777522268521578485",
+   "sample": [
+    [
+     "n:2",
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "n:12312701",
+     "n:1200",
+     "n:1000",
+     "n:1300",
+     "n:1100"
+    ],
+    [
+     "n:2",
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "n:12312702",
+     "n:2300",
+     "n:2100",
+     "n:2400",
+     "n:2200"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_38393fd93e7b54dde596453f6b663b95",
+  "question": "What are the loss payment, loss reserve, expense payment, expense reserve amount by claim number and corresponding policy number, policy holder, premium amount paid, the catastrophe it had, and the agent who sold it?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 10,
+   "count": 2,
+   "col_digests": [
+    "15407058027015223758",
+    "14417574686026602816",
+    "16689821312919917760",
+    "698856881283316286",
+    "6381375746644469432",
+    "17793620717679826235",
+    "1525816216245349223",
+    "5603577760746518361",
+    "10735798159309018535",
+    "5401119765160394211"
+   ],
+   "row_digest": "2516567395985225174",
+   "sample": [
+    [
+     "n:2",
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "s:Fire",
+     "n:12312701",
+     "n:1200",
+     "n:1000",
+     "n:1300",
+     "n:1100"
+    ],
+    [
+     "n:2",
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "s:Fire",
+     "n:12312702",
+     "n:2300",
+     "n:2100",
+     "n:2400",
+     "n:2200"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_61defb5ce4df26617289ad4cf7c386ab",
+  "question": "What are the loss payment, loss reserve, expense payment, expense reserve amount by claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 5,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "1525816216245349223",
+    "5603577760746518361",
+    "10735798159309018535",
+    "5401119765160394211"
+   ],
+   "row_digest": "1360147191862881397",
+   "sample": [
+    [
+     "n:12312701",
+     "n:1200",
+     "n:1000",
+     "n:1300",
+     "n:1100"
+    ],
+    [
+     "n:12312702",
+     "n:2300",
+     "n:2100",
+     "n:2400",
+     "n:2200"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_d4c4a23ff49b92884beb29163e65add0",
+  "question": "What are the loss reserve amount of all claims by claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "5603577760746518361"
+   ],
+   "row_digest": "4829577456628141777",
+   "sample": [
+    [
+     "n:12312701",
+     "n:1000"
+    ],
+    [
+     "n:12312702",
+     "n:2100"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_1e57233cbc8a71751572a4bf687a03c6",
+  "question": "What are the total loss, which is the sum of loss payment, loss reserve, expense payment, expense reserve amount by catastrophe and policy number?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": true,
+  "sparql_rows": 1,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 3,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "12414059910177010524",
+    "4931184196324517991"
+   ],
+   "row_digest": "9993510085048471924",
+   "sample": [
+    [
+     "n:31003000336",
+     "s:Fire",
+     "n:13600"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_317198ae3c0a79473a3b96aab0ce2dd7",
+  "question": "What are the total loss, which is the sum of loss payment, loss reserve, expense payment, expense reserve amount by claim number and corresponding policy number, policy holder and premium amount paid?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 5,
+   "count": 2,
+   "col_digests": [
+    "14417574686026602816",
+    "16689821312919917760",
+    "698856881283316286",
+    "17793620717679826235",
+    "17847187720858465398"
+   ],
+   "row_digest": "15727847035930650301",
+   "sample": [
+    [
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "n:12312701",
+     "n:4600"
+    ],
+    [
+     "n:1",
+     "n:31003000336",
+     "n:20000",
+     "n:12312702",
+     "n:9000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_ecee6bdd5000afd4300d0fff6df1fde6",
+  "question": "What are the total loss, which is the sum of loss payment, loss reserve, expense payment, expense reserve amount by claim number, catastrophe and corresponding policy number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 2,
+   "col_digests": [
+    "16689821312919917760",
+    "17793620717679826235",
+    "6381375746644469432",
+    "17847187720858465398"
+   ],
+   "row_digest": "6839438734114104818",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:12312701",
+     "s:Fire",
+     "n:4600"
+    ],
+    [
+     "n:31003000336",
+     "n:12312702",
+     "s:Fire",
+     "n:9000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_cea56ea8627729b96f12fb4714aa7547",
+  "question": "What is the average loss of each policy by policy number and number of claims where loss is the sum of loss payment, loss reserve, expense payment, expense reserve amounts?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "finish: unsupported term function 'COALESCE2' (DefaultDBCoalesceFunctionSymbol)",
+  "signature": {
+   "ncols": 3,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "7703529013507611879",
+    "12023647008636203212"
+   ],
+   "row_digest": "9611027726248389859",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:2",
+     "n:6800"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_7321ddad8d79429070bc9c116e2ef0f3",
+  "question": "What is the average loss of each policy by policy number where loss is the sum of loss payment, loss reserve, expense payment, expense reserve amounts?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "finish: unsupported term function 'COALESCE2' (DefaultDBCoalesceFunctionSymbol)",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "12023647008636203212"
+   ],
+   "row_digest": "10507690367147185365",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:6800"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_2b95bb37fe905f8c74b35d72e65f3d08",
+  "question": "What is the average policy size which is the the total amount of premium divided by the number of policies?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": true,
+  "sparql_rows": 1,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 1,
+   "count": 1,
+   "col_digests": [
+    "7850556826048708099"
+   ],
+   "row_digest": "7850556826048708099",
+   "sample": [
+    [
+     "n:49000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_6da3f7fcefcdd7453548c0956632a211",
+  "question": "What is the average time to settle a claim by policy number?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: OntopReformulationException: java.lang.RuntimeException: it.unibz.inf.ontop.exception.OntopUnsupportedKGQueryException: The expression FunctionCall (http://data.world/function/functions#date_diff)\n   ",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "46858293031439244"
+   ],
+   "row_digest": "5296000850329070100",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:-20.5"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_03fc5a5571db11254049e240e015fb80",
+  "question": "What is the loss ratio of each policy and agent who sold it by policy number and agent id?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 3,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "7703529013507611879",
+    "17518717879242786457"
+   ],
+   "row_digest": "11011105858954869727",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:2",
+     "n:0.68"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_7bbadc08fa7691095cd46a219e4a0ea2",
+  "question": "What is the premium amount of all policies by policy number, coverage effective date and coverage expiration date",
+  "sql_ok": true,
+  "sql_rows": 6,
+  "sparql_ok": true,
+  "sparql_rows": 6,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 4,
+   "count": 6,
+   "col_digests": [
+    "5706234480099028521",
+    "14502158677109975894",
+    "600360840048686015",
+    "14299738285751885970"
+   ],
+   "row_digest": "6304683109830741886",
+   "sample": [
+    [
+     "n:31003000336",
+     "t:2015-01-01",
+     "t:2015-12-31",
+     "n:15000"
+    ],
+    [
+     "n:31003000336",
+     "t:2016-01-01",
+     "t:2016-12-31",
+     "n:16000"
+    ],
+    [
+     "n:31003000336",
+     "t:2017-01-01",
+     "t:2017-12-31",
+     "n:17000"
+    ],
+    [
+     "n:31003000336",
+     "t:2018-01-01",
+     "t:2018-12-31",
+     "n:18000"
+    ],
+    [
+     "n:31003000336",
+     "t:2019-01-01",
+     "t:2019-12-31",
+     "n:20000"
+    ],
+    [
+     "n:31003000337",
+     "t:2019-06-01",
+     "t:2020-05-31",
+     "n:12000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_73a8fe1304f088d17a454126a17307b8",
+  "question": "What is the premium amount of all policies by policy number?",
+  "sql_ok": true,
+  "sql_rows": 6,
+  "sparql_ok": true,
+  "sparql_rows": 6,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 6,
+   "col_digests": [
+    "5706234480099028521",
+    "14299738285751885970"
+   ],
+   "row_digest": "2674182681018531686",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:15000"
+    ],
+    [
+     "n:31003000336",
+     "n:16000"
+    ],
+    [
+     "n:31003000336",
+     "n:17000"
+    ],
+    [
+     "n:31003000336",
+     "n:18000"
+    ],
+    [
+     "n:31003000336",
+     "n:20000"
+    ],
+    [
+     "n:31003000337",
+     "n:12000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_43461e701debb68f0f8ac1dceb945650",
+  "question": "What is the total amount of premiums paid by policy number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "9220080001678296233",
+    "7209169541719033068"
+   ],
+   "row_digest": "11614379958664201750",
+   "sample": [
+    [
+     "n:31003000337",
+     "n:12000"
+    ],
+    [
+     "n:31003000336",
+     "n:86000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_317ef7a6c42204b1933a510805c57e45",
+  "question": "What is the total amount of premiums that a policy holder has paid by policy number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 3,
+   "count": 2,
+   "col_digests": [
+    "14417574686026602816",
+    "9220080001678296233",
+    "7209169541719033068"
+   ],
+   "row_digest": "7273622915940109799",
+   "sample": [
+    [
+     "n:1",
+     "n:31003000336",
+     "n:86000"
+    ],
+    [
+     "n:1",
+     "n:31003000337",
+     "n:12000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_985f30d50b59256c4b01d42901b0f9fb",
+  "question": "What is the total amount of premiums that a policy holder has paid?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "reformulate: Ontop could not push this query into a single SQL statement (plan nodes outside SQL: ['EmptyNode'])",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "16432159379868077216",
+    "8455785042823652127"
+   ],
+   "row_digest": "17468002472060130038",
+   "sample": [
+    [
+     "n:1",
+     "n:98000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_5b813c2c3d7949916d33976f2da518a0",
+  "question": "What is the total loss amounts, which is the sum of loss payment, loss reserve amount by claim number?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "667994527359375526"
+   ],
+   "row_digest": "13852226554783220211",
+   "sample": [
+    [
+     "n:12312701",
+     "n:2200"
+    ],
+    [
+     "n:12312702",
+     "n:4400"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_adff0403ac3869fc65982c5efd682455",
+  "question": "What is the total loss of each claim by claim number where total loss is the sum of loss payment, loss reserve, expense payment, expense reserve amount?",
+  "sql_ok": true,
+  "sql_rows": 2,
+  "sparql_ok": true,
+  "sparql_rows": 2,
+  "agree_strict": true,
+  "agree_lenient": true,
+  "agree_note": "",
+  "signature": {
+   "ncols": 2,
+   "count": 2,
+   "col_digests": [
+    "17793620717679826235",
+    "17847187720858465398"
+   ],
+   "row_digest": "314041869145878791",
+   "sample": [
+    [
+     "n:12312701",
+     "n:4600"
+    ],
+    [
+     "n:12312702",
+     "n:9000"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_6f7ead3b85413d6fcba8b08522dbda69",
+  "question": "What is the total loss of each policy by policy number where total loss is the sum of loss payment, loss reserve, expense payment, expense reserve amounts?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "finish: unsupported term function 'COALESCE2' (DefaultDBCoalesceFunctionSymbol)",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "17568282693314734688",
+    "4931184196324517991"
+   ],
+   "row_digest": "5139783506786271789",
+   "sample": [
+    [
+     "n:31003000336",
+     "n:13600"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "IQ_d9925658820793094d118f94cc82c890",
+  "question": "What is the total loss of each policy that an agent has sold by agent id where total loss is the sum of loss payment, loss reserve, expense payment, expense reserve amounts?",
+  "sql_ok": true,
+  "sql_rows": 1,
+  "sparql_ok": false,
+  "sparql_error": "finish: unsupported term function 'COALESCE2' (DefaultDBCoalesceFunctionSymbol)",
+  "signature": {
+   "ncols": 2,
+   "count": 1,
+   "col_digests": [
+    "7703529013507611879",
+    "4931184196324517991"
+   ],
+   "row_digest": "1292655243289230084",
+   "sample": [
+    [
+     "n:2",
+     "n:13600"
+    ]
+   ]
+  }
+ }
+]

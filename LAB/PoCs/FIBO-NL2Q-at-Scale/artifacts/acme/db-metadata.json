@@ -1,0 +1,1642 @@
+{
+ "relations": [
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"agreement_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"agreement_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"agreement_original_inception_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"product_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"agreement_type_code_1\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"agreement\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"agreement_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"agreement_assessment\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "agreement_party_role_pkey",
+     "determinants": [
+      "\"agreement_identifier\"",
+      "\"party_identifier\"",
+      "\"party_role_code\"",
+      "\"effective_date\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"agreement_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"party_role_code\"",
+     "isNullable": false,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"effective_date\"",
+     "isNullable": false,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"expiration_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"agreement_party_role\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"party_role_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"begin_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"end_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"assesment_party_role\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"begin_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"end_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_reason_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"assessment\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"assessment_result_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_result_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"assessment_result\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "catastrophe_pkey",
+     "determinants": [
+      "\"catastrophe_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"catastrophe_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"catastrophe_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"catastrophe_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"industry_catastrophe_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"company_catastrophe_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"catastrophe\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "claim_pkey",
+     "determinants": [
+      "\"claim_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"catastrophe_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"claim_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"claims_made_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"company_claim_number\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"company_subclaim_number\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"insurable_object_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"occurrence_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"entry_into_claims_made_program_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"claim_open_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"claim_close_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"claim_reopen_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"claim_status_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"claim_reported_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"claim\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "claim_amount_pkey",
+     "determinants": [
+      "\"claim_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"claim_offer_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"amount_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"event_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"claim_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    },
+    {
+     "name": "\"insurance_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"claim_amount\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "claim_coverage_pkey",
+     "determinants": [
+      "\"claim_identifier\"",
+      "\"effective_date\"",
+      "\"policy_coverage_detail_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"effective_date\"",
+     "isNullable": false,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"policy_coverage_detail_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"claim_coverage\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "expense_payment_pkey",
+     "determinants": [
+      "\"claim_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"expense_payment\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "expense_reserve_pkey",
+     "determinants": [
+      "\"claim_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"expense_reserve\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policyno\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"claimnumber\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"premium\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"insuredlocation\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"loss ratio\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"nearest firestation miles\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"number of firefighters\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"fireplace\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"year built\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"fireclaim\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"parent_geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"geographic_location_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"location_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"location_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"location_number\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"state_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"location_address_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"physical_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"geographic_location\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"insurable_object_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"insurable_object_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"insurable_object\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"location_address_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"line_1_address\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"municipality_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"line_2_address\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"postal_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"country_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"state_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"begin_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"end_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"location_address\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "loss_payment_pkey",
+     "determinants": [
+      "\"claim_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"loss_payment\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "loss_reserve_pkey",
+     "determinants": [
+      "\"claim_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"loss_reserve\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"occurrence_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"catastrophic_event_indicator\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"occurrence_begin_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"occurrence_end_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"occurrence_begin_time\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"occurrence_end_time\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"occurrence_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"occurrence\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"organization_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"industry_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"organization_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"dun_and_bradstreet_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"organization_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"alternate_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"organization_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"acronym_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"industry_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"organization\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"party_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"begin_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"end_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"party_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"party\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"party_role_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"party_role_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"party_role_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"party_role\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"person_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"first_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"middle_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"last_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"full_legal_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"nickname\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"suffix_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"birth_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"birth_place_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"gender_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"prefix_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"person\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"physical_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"physical_location_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"latitude_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"longitude_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"altitude_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"altitude_mean_sea_level_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"horizontal_accuracy_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"vertical_accuracy_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"travel_direction_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"location_address_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"physical_location\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "policy_pkey",
+     "determinants": [
+      "\"policy_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"effective_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"expiration_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"policy_number\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"status_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"policy\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "policy_amount_pkey",
+     "determinants": [
+      "\"policy_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"policy_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"effective_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"amount_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"earning_begin_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"earning_end_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"policy_coverage_detail_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"policy_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    },
+    {
+     "name": "\"insurable_object_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"insurance_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"policy_amount\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "policy_coverage_detail_pkey",
+     "determinants": [
+      "\"effective_date\"",
+      "\"policy_coverage_detail_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"effective_date\"",
+     "isNullable": false,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"policy_coverage_detail_identifier\"",
+     "isNullable": false,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"coverage_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"insurable_object_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"policy_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"coverage_part_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"coverage_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"expiration_date\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"coverage_inclusion_exclusion_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"policy_coverage_detail\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "premium_pkey",
+     "determinants": [
+      "\"policy_amount_identifier\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_amount_identifier\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"premium\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"assessment_result_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"underwriting_assessment\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_1\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_amount_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"policy_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    },
+    {
+     "name": "\"policy_coverage_detail_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_10\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_description\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"begin_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"end_date\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"assessment_result_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_11\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_12\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"claim_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_13\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_14\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_15\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_2\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_3\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"geographic_location_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"line_1_address\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"line_2_address\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"municipality_name\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"state_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"postal_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"country_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"latitude_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"longitude_value\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_4\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"policy_amount_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"policy_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    },
+    {
+     "name": "\"amount_type_code\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"monthly_policy_amount\"",
+     "isNullable": true,
+     "datatype": "float8"
+    },
+    {
+     "name": "\"policy_coverage_detail_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_5\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"claim_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_6\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"claim_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_7\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"claim_identifier\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"claim_amount_identifier\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"claim_amount\"",
+     "isNullable": true,
+     "datatype": "numeric"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_8\""
+   ]
+  },
+  {
+   "uniqueConstraints": [],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"assessment_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"party_identifier\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"public\"",
+    "\"r2rml_view_9\""
+   ]
+  }
+ ],
+ "metadata": {
+  "dbmsProductName": "PostgreSQL",
+  "dbmsVersion": "16.0",
+  "driverName": "PostgreSQL JDBC Driver",
+  "driverVersion": "42.7.4",
+  "quotationString": "\"",
+  "extractionTime": "generated",
+  "idFactoryType": "POSTGRESQL"
+ }
+}

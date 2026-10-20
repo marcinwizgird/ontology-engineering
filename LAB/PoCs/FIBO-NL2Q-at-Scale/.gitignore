@@ -1,0 +1,7 @@
+data/raw/
+data/*.duckdb
+data/*.duckdb.wal
+runs/
+__pycache__/
+*.pyc
+.cache/

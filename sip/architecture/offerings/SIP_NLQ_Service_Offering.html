@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontology services for natural-language query: what SIP provides, what the NLQ team builds</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-0: #f4f3f0;
+    --surface-1: #fcfcfb;
+    --surface-2: #efeee9;
+    --line: #dddcd6;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #77756f;
+    /* roles */
+    --sip: #1c5cab;          /* SIP-owned (blue, step 550) */
+    --sip-soft: #cde2fb;     /* step 100 */
+    --nlq: #6250d6;          /* NLQ team-owned (violet slot) */
+    --nlq-soft: #e6e2fa;
+    --data: #77756f;
+    --data-soft: #e9e8e3;
+    --highlight: #2a78d6;    /* chart highlight (slot 1) */
+    --neutral-bar: #bebcb5;  /* de-emphasised bars */
+    --before: #86b6ef;       /* ordinal step 250 */
+    --after: #1c5cab;        /* ordinal step 550 */
+    --good: #0ca30c;
+    --warn: #fab219;
+    --critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface-0: #121211; --surface-1: #1a1a19; --surface-2: #242422; --line: #383835;
+      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #9a988f;
+      --sip: #5598e7; --sip-soft: #16304f; --nlq: #9085e9; --nlq-soft: #2b2650;
+      --data: #9a988f; --data-soft: #2c2c29;
+      --highlight: #3987e5; --neutral-bar: #5c5b56; --before: #184f95; --after: #6da7ec;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--surface-0); }
+  body {
+    margin: 0; color: var(--text-primary); background: var(--surface-0);
+    font: 16px/1.55 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  .page { max-width: 1120px; margin: 0 auto; padding: 40px 28px 80px; }
+  header.cover {
+    background: var(--surface-1); border: 1px solid var(--line); border-radius: 14px;
+    padding: 40px 44px; margin-bottom: 28px;
+  }
+  .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 10px; }
+  h1 { font-size: 34px; line-height: 1.2; margin: 0 0 14px; letter-spacing: -.01em; }
+  h2 { font-size: 24px; line-height: 1.25; margin: 0 0 6px; letter-spacing: -.005em; }
+  h3 { font-size: 17px; margin: 0 0 6px; }
+  p { margin: 0 0 12px; }
+  .lede { font-size: 19px; color: var(--text-secondary); max-width: 860px; }
+  .meta { font-size: 13px; color: var(--text-muted); margin-top: 18px; }
+  section { background: var(--surface-1); border: 1px solid var(--line); border-radius: 14px; padding: 32px 36px; margin-bottom: 24px; }
+  .sub { color: var(--text-secondary); margin-bottom: 22px; max-width: 880px; }
+  .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 860px) { .g2, .g3, .g4 { grid-template-columns: 1fr; } }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; background: var(--surface-1); }
+  .card.sip { border-top: 4px solid var(--sip); }
+  .card.nlq { border-top: 4px solid var(--nlq); }
+  .card.assure { border-top: 4px solid var(--data); }
+  .tile { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+  .tile .num { font-size: 34px; font-weight: 650; letter-spacing: -.02em; line-height: 1.1; }
+  .tile .lbl { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
+  .tile .fine { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+  .pill { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 999px; margin-right: 6px; border: 1px solid var(--line); color: var(--text-secondary); }
+  .pill.sip { background: var(--sip-soft); border-color: transparent; color: var(--text-primary); }
+  .pill.nlq { background: var(--nlq-soft); border-color: transparent; color: var(--text-primary); }
+  .pill.data { background: var(--data-soft); border-color: transparent; color: var(--text-primary); }
+  .key { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--text-secondary); margin: 6px 0 14px; }
+  .key span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .key .k-sip::before { background: var(--sip); }
+  .key .k-nlq::before { background: var(--nlq); }
+  .key .k-data::before { background: var(--data); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); font-weight: 600; }
+  td.c { text-align: center; }
+  .svc { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+  .svc .ix { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; color: #fff; background: var(--sip); font-size: 17px; }
+  .svc.assure .ix { background: var(--data); }
+  .svc .io { font-size: 13px; color: var(--text-secondary); margin-top: 6px; }
+  .svc .io b { color: var(--text-primary); font-weight: 600; }
+  .status { font-size: 12px; font-weight: 600; margin-top: 8px; display: inline-flex; gap: 6px; align-items: center; }
+  .status i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .st-ready i { background: var(--good); }
+  .st-build i { background: var(--warn); }
+  .st-later i { background: var(--neutral-bar); }
+  .callout { border-left: 4px solid var(--sip); background: var(--surface-2); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 14px 0; }
+  .callout.nlq { border-left-color: var(--nlq); }
+  .callout.warn { border-left-color: var(--warn); }
+  code, pre { font-family: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace; font-size: 13px; }
+  pre { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; margin: 8px 0 0; line-height: 1.45; }
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: var(--text-muted); margin-top: 10px; }
+  svg text { font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif; }
+  .svgwrap { width: 100%; overflow-x: auto; }
+  .toc { columns: 2; column-gap: 40px; font-size: 15px; margin: 18px 0 0; padding-left: 20px; color: var(--text-secondary); }
+  .toc a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--line); }
+  .muted { color: var(--text-muted); }
+  .small { font-size: 13px; }
+  details { margin-top: 10px; }
+  summary { cursor: pointer; color: var(--text-secondary); font-size: 14px; }
+  .bar:hover { opacity: .85; }
+  @media print {
+    html, body { background: #fff; }
+    .page { padding: 0; max-width: none; }
+    section, header.cover { break-inside: avoid; border-color: #ccc; }
+    details { display: block; }
+    details > summary { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ======================================================================= -->
+<header class="cover">
+  <p class="eyebrow">Semantic Intelligence Platform · Service offering · Draft for architecture review</p>
+  <h1>Ontology services for natural-language query</h1>
+  <p class="lede">The natural-language query (NLQ) team builds the experience. The Semantic Intelligence Platform (SIP)
+    supplies the parts a language model cannot guarantee on its own: what the business terms mean, which
+    data can answer a question, whether a query is valid, the exact SQL it compiles to, and evidence that
+    the answer is right.</p>
+  <p class="meta">Audience: IT executives, IT managers, enterprise and solution architects · Basis: SIP design and a measured
+    proof of concept on a public banking benchmark (October 2026) · Status: proposal, not a commitment</p>
+  <ol class="toc">
+    <li><a href="#summary">Executive summary</a></li>
+    <li><a href="#split">Who does what</a></li>
+    <li><a href="#arch">Reference architecture</a></li>
+    <li><a href="#flow">How one question is answered</a></li>
+    <li><a href="#catalog">Service catalogue</a></li>
+    <li><a href="#contract">The contract between the teams</a></li>
+    <li><a href="#evidence">What the evidence says</a></li>
+    <li><a href="#govern">Operating model and governance</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#risks">Risks, KPIs and decisions needed</a></li>
+  </ol>
+</header>
+
+<!-- ======================================================================= -->
+<section id="summary">
+  <h2>1 · Executive summary</h2>
+  <p class="sub">Translating a question into SQL is easy to demo and hard to trust. On real enterprise schemas, language
+    models produce queries that <b>run and return plausible numbers but are wrong</b>, with nothing to warn the user. The
+    remedy the evidence supports is not a cleverer prompt. It is curated business meaning, deterministic query
+    construction and checks, all of which SIP already owns.</p>
+
+  <div class="grid g3" style="margin-bottom:18px">
+    <div class="card sip">
+      <h3>Understand</h3>
+      <p class="small">SIP maps the user's words to governed business concepts, values and data paths, and says when a question
+        falls outside what the data covers.</p>
+      <span class="pill sip">Grounding · Vocabulary · Coverage</span>
+    </div>
+    <div class="card sip">
+      <h3>Guarantee</h3>
+      <p class="small">The language model never writes SQL. It proposes a plan in SIP's vocabulary. SIP checks the plan against the
+        ontology and compiles it into exact SQL for the target database.</p>
+      <span class="pill sip">Validation · Compilation · Safe execution</span>
+    </div>
+    <div class="card assure">
+      <h3>Prove</h3>
+      <p class="small">Every answer carries its lineage. Every release of the NLQ product is measured against gold
+        questions before it ships.</p>
+      <span class="pill data">Explanation · Evaluation · Release gate</span>
+    </div>
+  </div>
+
+  <div class="grid g4">
+    <div class="tile"><div class="num">46%</div><div class="lbl">confidently wrong answers with SIP in the loop, vs <b>63–79%</b> for direct generation</div><div class="fine">Proof of concept, 63 questions; see §7</div></div>
+    <div class="tile"><div class="num">24/24</div><div class="lbl">questions the data cannot answer were refused with a reason; the direct arms refused 0–1 of them</div><div class="fine">Hand-written out-of-scope set</div></div>
+    <div class="tile"><div class="num">92%</div><div class="lbl">of the benchmark's gold queries expressible through the ontology route and verified on six database instances</div><div class="fine">219 of 237</div></div>
+    <div class="tile"><div class="num">4.7×</div><div class="lbl">cheaper per question than text-to-SQL over the raw schema ($0.018 vs $0.085)</div><div class="fine">Same model, no prompt caching</div></div>
+  </div>
+
+  <div class="callout warn" style="margin-top:18px">
+    <b>Honest reading.</b> SIP's value so far is <b>safety, refusal and auditability, not raw accuracy</b>. On correctness alone,
+    no approach is yet clearly ahead, and absolute accuracy is still low on this demanding benchmark. That is why
+    this offering puts the <b>evaluation and release-gate service</b> on day one: the NLQ product should ship on measured
+    numbers, not demos.
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<section id="split">
+  <h2>2 · Who does what</h2>
+  <p class="sub">A clean split along the line each team is best at. The NLQ team owns everything the user sees and the language
+    model. SIP owns business meaning and every step that must be deterministic, governed and auditable.</p>
+
+  <div class="svgwrap">
+  <svg viewBox="0 0 1040 420" width="100%" role="img" aria-labelledby="splitT splitD">
+    <title id="splitT">Division of responsibilities between the NLQ team and SIP</title>
+    <desc id="splitD">Left column: the NLQ team owns user interface, conversation, language model and prompting, integration and telemetry. Right column: SIP owns vocabulary, mappings, grounding, validation, compilation, execution guard, explanation and evaluation. In the middle is the contract: a plan in SIP's vocabulary.</desc>
+    <rect x="10" y="10" width="420" height="400" rx="16" fill="var(--nlq-soft)"/>
+    <text x="34" y="48" font-size="20" font-weight="700" fill="var(--text-primary)">NLQ team: the product</text>
+    <text x="34" y="72" font-size="14" fill="var(--text-secondary)">what users see, and the language model</text>
+    <g font-size="15" fill="var(--text-primary)">
+      <rect x="34" y="92" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="52" y="120">Chat / search UI, channels (portal, Teams)</text>
+      <rect x="34" y="144" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="52" y="172">Conversation, clarification, follow-ups</text>
+      <rect x="34" y="196" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="52" y="224">LLM choice, prompting, agent loop</text>
+      <rect x="34" y="248" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="52" y="276">Results: tables, charts, export</text>
+      <rect x="34" y="300" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="52" y="328">Identity hand-off, session, telemetry</text>
+      <rect x="34" y="352" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="52" y="380">Front-end SLA, UX research</text>
+    </g>
+    <rect x="610" y="10" width="420" height="400" rx="16" fill="var(--sip-soft)"/>
+    <text x="634" y="48" font-size="20" font-weight="700" fill="var(--text-primary)">SIP: the semantic building blocks</text>
+    <text x="634" y="72" font-size="14" fill="var(--text-secondary)">meaning, guarantees, evidence</text>
+    <g font-size="15" fill="var(--text-primary)">
+      <rect x="634" y="92" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="652" y="120">Business vocabulary, metrics, codes</text>
+      <rect x="634" y="144" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="652" y="172">Ontology ↔ database mappings, coverage</text>
+      <rect x="634" y="196" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="652" y="224">Grounding and context for the LLM</text>
+      <rect x="634" y="248" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="652" y="276">Plan validation and SQL compilation</text>
+      <rect x="634" y="300" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="652" y="328">Governed execution, explanation</text>
+      <rect x="634" y="352" width="372" height="44" rx="10" fill="var(--surface-1)"/><text x="652" y="380">Evaluation, release gate, feedback loop</text>
+    </g>
+    <!-- contract -->
+    <rect x="452" y="150" width="136" height="120" rx="14" fill="var(--surface-1)" stroke="var(--text-muted)" stroke-dasharray="5 4"/>
+    <text x="520" y="186" font-size="14" font-weight="700" text-anchor="middle" fill="var(--text-primary)">The contract</text>
+    <text x="520" y="208" font-size="12.5" text-anchor="middle" fill="var(--text-secondary)">a query plan in</text>
+    <text x="520" y="226" font-size="12.5" text-anchor="middle" fill="var(--text-secondary)">SIP's vocabulary,</text>
+    <text x="520" y="244" font-size="12.5" text-anchor="middle" fill="var(--text-secondary)">never raw SQL</text>
+    <path d="M430 210 H448" stroke="var(--text-muted)" stroke-width="2" marker-end="url(#ah)"/>
+    <path d="M592 210 H606" stroke="var(--text-muted)" stroke-width="2" marker-end="url(#ah)"/>
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/></marker></defs>
+  </svg>
+  </div>
+
+  <table style="margin-top:22px">
+    <thead><tr><th>Capability</th><th class="c">NLQ team</th><th class="c">SIP</th><th>Why this side</th></tr></thead>
+    <tbody>
+      <tr><td>User interface, conversation, clarifying questions</td><td class="c"><b>Owns</b></td><td class="c">supplies signals</td><td>Product skills; SIP returns "ambiguous" or "not covered" signals the UI turns into dialogue</td></tr>
+      <tr><td>Language model, prompts, agent orchestration</td><td class="c"><b>Owns</b></td><td class="c">supplies context</td><td>Model choice changes fast; SIP's guarantees must not depend on it</td></tr>
+      <tr><td>Business vocabulary, metric and code definitions</td><td class="c">requests</td><td class="c"><b>Owns</b></td><td>Single governed source of meaning, reviewed through SIP's change workflow</td></tr>
+      <tr><td>Mapping ontology concepts to tables and columns</td><td class="c">—</td><td class="c"><b>Owns</b></td><td>Design-time, reviewed; mistakes here are systematic and silent</td></tr>
+      <tr><td>Checking a query plan and compiling it to SQL</td><td class="c">calls</td><td class="c"><b>Owns</b></td><td>Must be deterministic and auditable; the same plan always gives the same SQL</td></tr>
+      <tr><td>Running SQL against production data</td><td class="c">calls</td><td class="c"><b>Owns</b></td><td>Read-only, under the end user's database role, with timeouts and row limits</td></tr>
+      <tr><td>Answer explanation and lineage</td><td class="c">displays</td><td class="c"><b>Owns</b></td><td>Lineage is built from SIP artefacts: terms, path, versions</td></tr>
+      <tr><td>Quality measurement and release gating</td><td class="c">submits releases</td><td class="c"><b>Owns</b></td><td>An independent referee: the team building the product doesn't mark its own homework</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ======================================================================= -->
+<section id="arch">
+  <h2>3 · Reference architecture</h2>
+  <p class="sub">SIP's runtime services sit between the NLQ product and the data. They don't depend on the language model: they are
+    deterministic, stateless APIs backed by the governed knowledge that SIP curates at design time.</p>
+  <div class="key"><span class="k-nlq">NLQ team</span><span class="k-sip">SIP</span><span class="k-data">Existing data platforms</span></div>
+  <div class="svgwrap">
+  <svg viewBox="0 0 1040 600" width="100%" role="img" aria-labelledby="archT archD">
+    <title id="archT">Layered reference architecture</title>
+    <desc id="archD">Top: users and channels. Below: the NLQ product layer (UI, conversation service, LLM planner). Then the SIP runtime services row: grounding, context, validation, compilation, governed execution, explanation. Below: the SIP knowledge layer (vocabulary and glossary, ontology, mappings, value index) fed by curation with review gates. Bottom: enterprise databases. On the right: the assurance column with evaluation, release gate and feedback.</desc>
+    <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/></marker></defs>
+    <!-- users -->
+    <rect x="20" y="16" width="790" height="56" rx="12" fill="var(--surface-2)"/>
+    <text x="40" y="50" font-size="15" font-weight="600" fill="var(--text-primary)">Business users · analysts · relationship managers</text>
+    <text x="790" y="50" font-size="13" text-anchor="end" fill="var(--text-secondary)">portal · Teams · BI tools</text>
+    <!-- NLQ layer -->
+    <rect x="20" y="92" width="790" height="110" rx="12" fill="var(--nlq-soft)"/>
+    <text x="40" y="118" font-size="13" font-weight="700" fill="var(--nlq)" letter-spacing=".06em">NLQ PRODUCT LAYER</text>
+    <g font-size="14" fill="var(--text-primary)">
+      <rect x="40" y="130" width="230" height="56" rx="10" fill="var(--surface-1)"/><text x="58" y="155" font-weight="600">Chat &amp; results UI</text><text x="58" y="174" font-size="12.5" fill="var(--text-secondary)">tables, charts, explanations</text>
+      <rect x="290" y="130" width="230" height="56" rx="10" fill="var(--surface-1)"/><text x="308" y="155" font-weight="600">Conversation service</text><text x="308" y="174" font-size="12.5" fill="var(--text-secondary)">session, clarifications</text>
+      <rect x="540" y="130" width="250" height="56" rx="10" fill="var(--surface-1)"/><text x="558" y="155" font-weight="600">LLM planner</text><text x="558" y="174" font-size="12.5" fill="var(--text-secondary)">writes a plan, not SQL</text>
+    </g>
+    <!-- SIP runtime -->
+    <rect x="20" y="222" width="790" height="150" rx="12" fill="var(--sip-soft)"/>
+    <text x="40" y="248" font-size="13" font-weight="700" fill="var(--sip)" letter-spacing=".06em">SIP RUNTIME SERVICES · deterministic · stateless · no LLM inside</text>
+    <g font-size="13.5" fill="var(--text-primary)" font-weight="600">
+      <rect x="40" y="262" width="118" height="92" rx="10" fill="var(--surface-1)"/><text x="99" y="300" text-anchor="middle">Grounding</text><text x="99" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="var(--text-secondary)">words → concepts</text>
+      <rect x="166" y="262" width="118" height="92" rx="10" fill="var(--surface-1)"/><text x="225" y="300" text-anchor="middle">Context</text><text x="225" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="var(--text-secondary)">pack for the LLM</text>
+      <rect x="292" y="262" width="118" height="92" rx="10" fill="var(--surface-1)"/><text x="351" y="300" text-anchor="middle">Validation</text><text x="351" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="var(--text-secondary)">ontology checks</text>
+      <rect x="418" y="262" width="118" height="92" rx="10" fill="var(--surface-1)"/><text x="477" y="300" text-anchor="middle">Compilation</text><text x="477" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="var(--text-secondary)">plan → exact SQL</text>
+      <rect x="544" y="262" width="118" height="92" rx="10" fill="var(--surface-1)"/><text x="603" y="300" text-anchor="middle">Execution</text><text x="603" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="var(--text-secondary)">read-only, guarded</text>
+      <rect x="670" y="262" width="122" height="92" rx="10" fill="var(--surface-1)"/><text x="731" y="300" text-anchor="middle">Explanation</text><text x="731" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="var(--text-secondary)">lineage, versions</text>
+    </g>
+    <!-- knowledge -->
+    <rect x="20" y="392" width="790" height="110" rx="12" fill="var(--surface-2)" stroke="var(--sip)" stroke-width="1.5"/>
+    <text x="40" y="418" font-size="13" font-weight="700" fill="var(--sip)" letter-spacing=".06em">SIP KNOWLEDGE LAYER · curated at design time · versioned · reviewed</text>
+    <g font-size="13.5" fill="var(--text-primary)">
+      <rect x="40" y="430" width="180" height="56" rx="10" fill="var(--surface-1)"/><text x="56" y="454" font-weight="600">Ontology (e.g. FIBO)</text><text x="56" y="473" font-size="12" fill="var(--text-secondary)">concepts, relations</text>
+      <rect x="230" y="430" width="180" height="56" rx="10" fill="var(--surface-1)"/><text x="246" y="454" font-weight="600">Business glossary</text><text x="246" y="473" font-size="12" fill="var(--text-secondary)">synonyms, metrics, codes</text>
+      <rect x="420" y="430" width="180" height="56" rx="10" fill="var(--surface-1)"/><text x="436" y="454" font-weight="600">R2RML mappings</text><text x="436" y="473" font-size="12" fill="var(--text-secondary)">concepts ↔ tables</text>
+      <rect x="610" y="430" width="180" height="56" rx="10" fill="var(--surface-1)"/><text x="626" y="454" font-weight="600">Value index</text><text x="626" y="473" font-size="12" fill="var(--text-secondary)">names, codes (policy)</text>
+    </g>
+    <!-- data -->
+    <rect x="20" y="522" width="790" height="62" rx="12" fill="var(--data-soft)"/>
+    <text x="40" y="558" font-size="15" font-weight="600" fill="var(--text-primary)">Enterprise databases · data warehouse · lakehouse</text>
+    <text x="790" y="558" font-size="13" text-anchor="end" fill="var(--text-secondary)">unchanged, queried in place, no copies</text>
+    <!-- assurance column -->
+    <rect x="830" y="92" width="190" height="492" rx="12" fill="var(--surface-2)" stroke="var(--data)" stroke-width="1.5"/>
+    <text x="925" y="120" font-size="13" font-weight="700" text-anchor="middle" fill="var(--data)" letter-spacing=".06em">SIP ASSURANCE</text>
+    <g font-size="13.5" fill="var(--text-primary)" text-anchor="middle">
+      <rect x="848" y="140" width="154" height="96" rx="10" fill="var(--surface-1)"/><text x="925" y="178" font-weight="600">Evaluation</text><text x="925" y="198" font-size="12" fill="var(--text-secondary)">gold questions,</text><text x="925" y="214" font-size="12" fill="var(--text-secondary)">test databases</text>
+      <rect x="848" y="252" width="154" height="96" rx="10" fill="var(--surface-1)"/><text x="925" y="290" font-weight="600">Release gate</text><text x="925" y="310" font-size="12" fill="var(--text-secondary)">thresholds before</text><text x="925" y="326" font-size="12" fill="var(--text-secondary)">go-live</text>
+      <rect x="848" y="364" width="154" height="96" rx="10" fill="var(--surface-1)"/><text x="925" y="402" font-weight="600">Feedback loop</text><text x="925" y="422" font-size="12" fill="var(--text-secondary)">refusals → mapping</text><text x="925" y="438" font-size="12" fill="var(--text-secondary)">and glossary backlog</text>
+      <rect x="848" y="476" width="154" height="92" rx="10" fill="var(--surface-1)"/><text x="925" y="514" font-weight="600">Audit log</text><text x="925" y="534" font-size="12" fill="var(--text-secondary)">every answer,</text><text x="925" y="550" font-size="12" fill="var(--text-secondary)">reproducible</text>
+    </g>
+    <!-- arrows -->
+    <path d="M415 72 V88" stroke="var(--text-muted)" stroke-width="2" marker-end="url(#ah2)"/>
+    <path d="M415 202 V218" stroke="var(--text-muted)" stroke-width="2" marker-end="url(#ah2)"/>
+    <path d="M415 372 V388" stroke="var(--text-muted)" stroke-width="2" marker-end="url(#ah2)"/>
+    <path d="M603 354 C603 470, 560 500, 560 518" stroke="var(--text-muted)" stroke-width="2" fill="none" stroke-dasharray="4 4" marker-end="url(#ah2)"/>
+  </svg>
+  </div>
+  <figcaption>The dashed arrow is the only path to production data: SQL compiled by SIP, run read-only under the user's own
+    database permissions. The language model never reaches the data directly.</figcaption>
+</section>
+
+<!-- ======================================================================= -->
+<section id="flow">
+  <h2>4 · How one question is answered</h2>
+  <p class="sub">Example: <i>"What price did Luis Statz sell DFRG at?"</i> Each step names its owner. Steps 3–5 repeat
+    at most twice when SIP's checks reject a plan. If the question can't be answered, the user gets a reason, not a guess.</p>
+  <div class="svgwrap">
+  <svg viewBox="0 0 1040 330" width="100%" role="img" aria-labelledby="flowT flowD">
+    <title id="flowT">Question-to-answer sequence</title>
+    <desc id="flowD">Eight steps: 1 user asks in the NLQ UI; 2 SIP grounding finds concepts and values; 3 SIP context builds the prompt pack; 4 the NLQ LLM writes a plan; 5 SIP validates it, with a repair loop back to step 4; 6 SIP compiles it to SQL; 7 SIP executes it read-only; 8 SIP explains, and the NLQ UI shows the answer. A side branch from step 2 or 5: not covered leads to refuse with reason or ask a clarifying question.</desc>
+    <defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/></marker></defs>
+    <g font-size="13" fill="var(--text-primary)">
+      <!-- step boxes: x positions -->
+      <g><rect x="10" y="40" width="112" height="120" rx="12" fill="var(--nlq-soft)"/><circle cx="34" cy="64" r="14" fill="var(--nlq)"/><text x="34" y="69" text-anchor="middle" fill="#fff" font-weight="700">1</text><text x="22" y="100" font-weight="600">Ask</text><text x="22" y="120" font-size="12" fill="var(--text-secondary)">user types</text><text x="22" y="136" font-size="12" fill="var(--text-secondary)">a question</text></g>
+      <g><rect x="140" y="40" width="112" height="120" rx="12" fill="var(--sip-soft)"/><circle cx="164" cy="64" r="14" fill="var(--sip)"/><text x="164" y="69" text-anchor="middle" fill="#fff" font-weight="700">2</text><text x="152" y="100" font-weight="600">Ground</text><text x="152" y="120" font-size="12" fill="var(--text-secondary)">"sell" → trade</text><text x="152" y="136" font-size="12" fill="var(--text-secondary)">"DFRG" → ticker</text></g>
+      <g><rect x="270" y="40" width="112" height="120" rx="12" fill="var(--sip-soft)"/><circle cx="294" cy="64" r="14" fill="var(--sip)"/><text x="294" y="69" text-anchor="middle" fill="#fff" font-weight="700">3</text><text x="282" y="100" font-weight="600">Context</text><text x="282" y="120" font-size="12" fill="var(--text-secondary)">terms, paths,</text><text x="282" y="136" font-size="12" fill="var(--text-secondary)">glossary hits</text></g>
+      <g><rect x="400" y="40" width="112" height="120" rx="12" fill="var(--nlq-soft)"/><circle cx="424" cy="64" r="14" fill="var(--nlq)"/><text x="424" y="69" text-anchor="middle" fill="#fff" font-weight="700">4</text><text x="412" y="100" font-weight="600">Plan</text><text x="412" y="120" font-size="12" fill="var(--text-secondary)">LLM writes a</text><text x="412" y="136" font-size="12" fill="var(--text-secondary)">plan (JSON)</text></g>
+      <g><rect x="530" y="40" width="112" height="120" rx="12" fill="var(--sip-soft)"/><circle cx="554" cy="64" r="14" fill="var(--sip)"/><text x="554" y="69" text-anchor="middle" fill="#fff" font-weight="700">5</text><text x="542" y="100" font-weight="600">Validate</text><text x="542" y="120" font-size="12" fill="var(--text-secondary)">ontology</text><text x="542" y="136" font-size="12" fill="var(--text-secondary)">checks</text></g>
+      <g><rect x="660" y="40" width="112" height="120" rx="12" fill="var(--sip-soft)"/><circle cx="684" cy="64" r="14" fill="var(--sip)"/><text x="684" y="69" text-anchor="middle" fill="#fff" font-weight="700">6</text><text x="672" y="100" font-weight="600">Compile</text><text x="672" y="120" font-size="12" fill="var(--text-secondary)">plan → SPARQL</text><text x="672" y="136" font-size="12" fill="var(--text-secondary)">→ exact SQL</text></g>
+      <g><rect x="790" y="40" width="112" height="120" rx="12" fill="var(--sip-soft)"/><circle cx="814" cy="64" r="14" fill="var(--sip)"/><text x="814" y="69" text-anchor="middle" fill="#fff" font-weight="700">7</text><text x="802" y="100" font-weight="600">Execute</text><text x="802" y="120" font-size="12" fill="var(--text-secondary)">read-only,</text><text x="802" y="136" font-size="12" fill="var(--text-secondary)">user's role</text></g>
+      <g><rect x="920" y="40" width="112" height="120" rx="12" fill="var(--nlq-soft)" stroke="var(--sip)" stroke-width="2"/><circle cx="944" cy="64" r="14" fill="var(--sip)"/><text x="944" y="69" text-anchor="middle" fill="#fff" font-weight="700">8</text><text x="932" y="100" font-weight="600">Explain</text><text x="932" y="120" font-size="12" fill="var(--text-secondary)">SIP lineage,</text><text x="932" y="136" font-size="12" fill="var(--text-secondary)">NLQ displays</text></g>
+    </g>
+    <g stroke="var(--text-muted)" stroke-width="2">
+      <path d="M122 100 H136" marker-end="url(#ah3)"/><path d="M252 100 H266" marker-end="url(#ah3)"/><path d="M382 100 H396" marker-end="url(#ah3)"/>
+      <path d="M512 100 H526" marker-end="url(#ah3)"/><path d="M642 100 H656" marker-end="url(#ah3)"/><path d="M772 100 H786" marker-end="url(#ah3)"/><path d="M902 100 H916" marker-end="url(#ah3)"/>
+    </g>
+    <!-- repair loop -->
+    <path d="M586 40 C586 22, 456 22, 456 36" stroke="var(--warn)" stroke-width="2.5" fill="none" marker-end="url(#ah3)"/>
+    <text x="521" y="14" font-size="12" text-anchor="middle" fill="var(--text-secondary)">repair messages (≤ 2 rounds)</text>
+    <!-- refusal branch -->
+    <path d="M196 160 V230 H520" stroke="var(--text-muted)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+    <path d="M586 160 V230 H540" stroke="var(--text-muted)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+    <rect x="360" y="212" width="320" height="84" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+    <text x="520" y="240" font-size="14" font-weight="600" text-anchor="middle" fill="var(--text-primary)">Not covered or ambiguous?</text>
+    <text x="520" y="262" font-size="12.5" text-anchor="middle" fill="var(--text-secondary)">refuse with a reason ("no loan data is mapped")</text>
+    <text x="520" y="280" font-size="12.5" text-anchor="middle" fill="var(--text-secondary)">or the NLQ UI asks a clarifying question</text>
+    <text x="20" y="316" font-size="12.5" fill="var(--text-muted)">Typical latency in the proof of concept: 5 s median, 14 s at P95 (LLM calls dominate; SIP's own steps take milliseconds).</text>
+  </svg>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<section id="catalog">
+  <h2>5 · Service catalogue</h2>
+  <p class="sub">Ten services in three groups. The status reflects the proof of concept, not a production SLA:
+    <span class="status st-ready"><i></i>proven in PoC</span>&nbsp;
+    <span class="status st-build"><i></i>prototype, needs hardening</span>&nbsp;
+    <span class="status st-later"><i></i>designed, not built</span></p>
+
+  <h3 style="margin-top:6px">A · Knowledge services <span class="muted small">(design time · SIP curates · the NLQ team reads)</span></h3>
+  <div class="grid g2" style="margin:12px 0 22px">
+    <div class="card sip"><div class="svc"><div class="ix">1</div><div>
+      <h3>Business vocabulary</h3>
+      <p class="small">The governed meaning of business words: synonyms ("stock" = listed security), metric definitions
+        ("revenue" = which figure, at which grain), code meanings (transaction type "2" = sale).</p>
+      <div class="io"><b>In:</b> term or search text · <b>Out:</b> definitions, synonyms, linked concepts, version</div>
+      <div class="status st-ready"><i></i>proven: the glossary raised grounding recall from 48% to 64%</div>
+    </div></div></div>
+    <div class="card sip"><div class="svc"><div class="ix">2</div><div>
+      <h3>Semantic mapping and coverage</h3>
+      <p class="small">Mappings from ontology concepts to tables and columns (W3C R2RML), plus a coverage report: what
+        the data can answer today, and what the ontology knows but the data doesn't map.</p>
+      <div class="io"><b>In:</b> concept or area · <b>Out:</b> mapped / unmapped, source tables, owner</div>
+      <div class="status st-ready"><i></i>proven: 152 tables mapped automatically, reviewed alignment to FIBO</div>
+    </div></div></div>
+    <div class="card sip"><div class="svc"><div class="ix">3</div><div>
+      <h3>Value index</h3>
+      <p class="small">Looks up names, tickers, codes and places in the data, so "Alphabet" resolves to the exact stored
+        value. Personal data is included only where policy allows.</p>
+      <div class="io"><b>In:</b> phrase · <b>Out:</b> matching values with concept, attribute, confidence</div>
+      <div class="status st-ready"><i></i>proven: 81,681 values indexed</div>
+    </div></div></div>
+    <div class="card sip"><div class="svc"><div class="ix">4</div><div>
+      <h3>Grounding</h3>
+      <p class="small">Turns the words of a question into candidate concepts, values and the paths that connect them, using
+        graph algorithms over the ontology. It flags when the concepts <b>don't connect</b> in the data.</p>
+      <div class="io"><b>In:</b> question (+ phrases from the LLM) · <b>Out:</b> ranked candidates, paths, "not covered" hints</div>
+      <div class="status st-build"><i></i>prototype: works; ranking needs tuning on customer questions</div>
+    </div></div></div>
+  </div>
+
+  <h3>B · Runtime services <span class="muted small">(per question · deterministic · the NLQ product calls these)</span></h3>
+  <div class="grid g2" style="margin:12px 0 22px">
+    <div class="card sip"><div class="svc"><div class="ix">5</div><div>
+      <h3>Context pack</h3>
+      <p class="small">A compact, prompt-ready description of only the relevant part of the ontology (terms, links,
+        attributes, matching glossary entries) for the NLQ team's language model.</p>
+      <div class="io"><b>In:</b> grounding result · <b>Out:</b> structured context (JSON) + rendered text, size-bounded</div>
+      <div class="status st-build"><i></i>prototype: content choices are being measured (see §7)</div>
+    </div></div></div>
+    <div class="card sip"><div class="svc"><div class="ix">6</div><div>
+      <h3>Plan validation</h3>
+      <p class="small">Checks the LLM's query plan against the ontology: unknown terms, wrong relationship direction,
+        impossible combinations, accidental cross-joins. It returns precise repair messages the LLM can act on.</p>
+      <div class="io"><b>In:</b> plan (JSON) · <b>Out:</b> pass, or a list of problems in plain language</div>
+      <div class="status st-ready"><i></i>proven: zero false alarms on 226 verified queries</div>
+    </div></div></div>
+    <div class="card sip"><div class="svc"><div class="ix">7</div><div>
+      <h3>Query compilation</h3>
+      <p class="small">Turns a validated plan into exact SQL for the target database (PostgreSQL, Snowflake, BigQuery, DuckDB). Joins, class
+        hierarchies and dialect details are handled by the platform, never improvised by a model.</p>
+      <div class="io"><b>In:</b> plan · <b>Out:</b> SPARQL + SQL + tables used; same input → same output</div>
+      <div class="status st-ready"><i></i>proven: offline compiler, 4–6 ms; 92% of benchmark queries expressible</div>
+    </div></div></div>
+    <div class="card sip"><div class="svc"><div class="ix">8</div><div>
+      <h3>Governed execution and explanation</h3>
+      <p class="small">Runs the compiled SQL read-only under the user's own database role, with hard timeouts and row limits.
+        It returns rows plus lineage: concepts, path, SQL, glossary and mapping versions.</p>
+      <div class="io"><b>In:</b> compiled query + user identity · <b>Out:</b> rows, lineage, audit record</div>
+      <div class="status st-build"><i></i>prototype: timeouts proven; row-level security integration to build</div>
+    </div></div></div>
+  </div>
+
+  <h3>C · Assurance services <span class="muted small">(release time and continuous · SIP referees)</span></h3>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card assure"><div class="svc assure"><div class="ix">9</div><div>
+      <h3>Evaluation and release gate</h3>
+      <p class="small">Scores any NLQ build against gold questions on several test databases, built so that wrong queries
+        can't pass by coincidence. It reports accuracy, confidently-wrong rate, refusals, cost and latency, and blocks releases below
+        agreed thresholds.</p>
+      <div class="io"><b>In:</b> NLQ build endpoint · <b>Out:</b> scorecard, regressions, go / no-go</div>
+      <div class="status st-ready"><i></i>proven: harness, test databases and paired statistics in place</div>
+    </div></div></div>
+    <div class="card assure"><div class="svc assure"><div class="ix">10</div><div>
+      <h3>Feedback and coverage backlog</h3>
+      <p class="small">Refusals, corrections and thumbs-down become work items: a missing mapping, a missing synonym, a new gold
+        question. Each fix flows through SIP's review gate and the next release gate.</p>
+      <div class="io"><b>In:</b> question, outcome, user feedback · <b>Out:</b> triaged backlog item, new gold case</div>
+      <div class="status st-later"><i></i>designed: uses SIP's existing staged-change workflow</div>
+    </div></div></div>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<section id="contract">
+  <h2>6 · The contract between the teams</h2>
+  <p class="sub">One rule makes the split work: <b>the language model writes a plan in SIP's vocabulary, never SQL.</b> The plan is
+    small, typed JSON. It can be validated, explained and compiled deterministically. Here is an example for "What price did
+    Luis Statz sell DFRG at?"</p>
+  <div class="grid g2">
+    <div>
+      <h3 style="color:var(--nlq)">What the NLQ team's LLM produces</h3>
+<pre>{
+  "nodes": [ {"id":"t","cls":"SecuritiesTransaction"},
+             {"id":"a","cls":"FinancialServiceAccount"},
+             {"id":"p","cls":"Person"},
+             {"id":"s","cls":"ListedSecurity"},
+             {"id":"m","cls":"MonetaryAmount"} ],
+  "links": [ {"subj":"t","prop":"isFacilitatedBy","obj":"a"},
+             {"subj":"a","prop":"isOwnedBy","obj":"p"},
+             {"subj":"t","prop":"refersTo","obj":"s"},
+             {"subj":"t","prop":"hasPrice","obj":"m"} ],
+  "filters": [ {"target":"lastName","op":"=","value":"Statz"},
+               {"target":"ticker","op":"=","value":"DFRG"},
+               {"target":"type","op":"=","value":"2"} ],
+  "projections": [ {"target":"amount"} ]
+}</pre>
+    </div>
+    <div>
+      <h3 style="color:var(--sip)">What SIP returns</h3>
+<pre>validate → { "ok": true }
+           or { "ok": false, "problems": [
+             "Person isOwnedBy FinancialServiceAccount is the
+              reverse direction; isOwnedBy goes from the
+              account to the person" ] }
+
+compile  → { "sql": "SELECT ... FROM FIBEN.SECURITIESTRANSACTION
+              v1 JOIN ... WHERE v1.HASTYPE = '2' ...",
+             "dialect": "postgres", "tables": [...] }
+
+explain  → { "concepts": ["trade","account owner","stock"],
+             "path": "trade → account → owner; trade → stock",
+             "glossary": ["sold = transaction type 2"],
+             "versions": {"ontology":"1.4","mapping":"2026-10-19"} }</pre>
+    </div>
+  </div>
+  <details>
+    <summary>Proposed API surface (REST/JSON; the same operations are available to SIP's agents)</summary>
+    <table style="margin-top:10px">
+      <thead><tr><th>Endpoint</th><th>Service</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>GET /v1/vocabulary?q=</code></td><td>1</td><td>Search terms, synonyms, metrics, codes</td></tr>
+        <tr><td><code>GET /v1/coverage</code></td><td>2</td><td>What can be asked: mapped and unmapped concepts</td></tr>
+        <tr><td><code>POST /v1/values:lookup</code></td><td>3</td><td>Resolve names and codes to stored values</td></tr>
+        <tr><td><code>POST /v1/ground</code></td><td>4</td><td>Candidates, paths, not-covered hints for a question</td></tr>
+        <tr><td><code>POST /v1/context</code></td><td>5</td><td>Prompt-ready context pack (JSON + text)</td></tr>
+        <tr><td><code>POST /v1/plans:validate</code></td><td>6</td><td>Ontology checks with repair messages</td></tr>
+        <tr><td><code>POST /v1/plans:compile</code></td><td>7</td><td>Plan → SPARQL → SQL for a dialect</td></tr>
+        <tr><td><code>POST /v1/queries:execute</code></td><td>8</td><td>Read-only execution under the caller's role; returns rows + lineage</td></tr>
+        <tr><td><code>POST /v1/evaluations</code></td><td>9</td><td>Score an NLQ build; returns scorecard and gate decision</td></tr>
+        <tr><td><code>POST /v1/feedback</code></td><td>10</td><td>Record outcome and user feedback; creates backlog items</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin-top:8px">All operations go through SIP's single entry point with role-based
+      authorisation. Every response carries the versions of the ontology, glossary and mappings it used, so any answer can be reproduced.</p>
+  </details>
+</section>
+
+<!-- ======================================================================= -->
+<section id="evidence">
+  <h2>7 · What the evidence says</h2>
+  <p class="sub">A proof of concept on the public FIBEN banking benchmark: 152 tables and 11.7 million rows, aligned to the
+    FIBO financial ontology. Five approaches were run with the same language model (Claude Sonnet 5.5) on 63 held-out
+    development questions. An answer counts as correct only if it is right on the real data <b>and</b> on five test
+    databases built so that wrong queries can't match by coincidence.</p>
+
+  <div class="grid g2">
+    <figure>
+      <h3>Confidently wrong answers <span class="muted small">(lower is better)</span></h3>
+      <svg viewBox="0 0 500 250" width="100%" role="img" aria-labelledby="c1t c1d">
+        <title id="c1t">Share of questions answered confidently but wrongly, by approach</title>
+        <desc id="c1d">SIP-mediated 46 percent; direct SPARQL 63 percent; text-to-SQL 71 percent; rules only 76 percent; direct SPARQL with repair 79 percent.</desc>
+        <g font-size="13" fill="var(--text-primary)">
+          <line x1="190" y1="12" x2="190" y2="222" stroke="var(--line)"/>
+          <g><title>SIP-mediated (grounding, plan, checks): 46%</title>
+            <text x="180" y="38" text-anchor="end" font-weight="700">SIP-mediated</text>
+            <rect class="bar" x="190" y="22" width="133" height="24" rx="4" fill="var(--highlight)"/><text x="331" y="39" font-weight="700">46%</text></g>
+          <g><title>Direct SPARQL from the ontology: 63%</title>
+            <text x="180" y="80" text-anchor="end">Direct SPARQL</text>
+            <rect class="bar" x="190" y="64" width="183" height="24" rx="4" fill="var(--neutral-bar)"/><text x="381" y="81" fill="var(--text-secondary)">63%</text></g>
+          <g><title>Text-to-SQL over the raw schema (59 questions): 71%</title>
+            <text x="180" y="122" text-anchor="end">Text-to-SQL</text>
+            <rect class="bar" x="190" y="106" width="206" height="24" rx="4" fill="var(--neutral-bar)"/><text x="404" y="123" fill="var(--text-secondary)">71%</text></g>
+          <g><title>Rules only, no language model: 76%</title>
+            <text x="180" y="164" text-anchor="end">Rules, no LLM</text>
+            <rect class="bar" x="190" y="148" width="220" height="24" rx="4" fill="var(--neutral-bar)"/><text x="418" y="165" fill="var(--text-secondary)">76%</text></g>
+          <g><title>Direct SPARQL plus ontology check and repair: 79%</title>
+            <text x="180" y="206" text-anchor="end">SPARQL + repair</text>
+            <rect class="bar" x="190" y="190" width="229" height="24" rx="4" fill="var(--neutral-bar)"/><text x="427" y="207" fill="var(--text-secondary)">79%</text></g>
+        </g>
+        <text x="190" y="244" font-size="11.5" fill="var(--text-muted)">0%</text>
+        <text x="480" y="244" font-size="11.5" text-anchor="end" fill="var(--text-muted)">100%</text>
+      </svg>
+      <figcaption>SIP-mediated = SIP grounding, context, validation and compilation around the LLM. The others let the
+        LLM write the query directly.</figcaption>
+    </figure>
+    <figure>
+      <h3>Correct answers <span class="muted small">(higher is better)</span></h3>
+      <svg viewBox="0 0 500 250" width="100%" role="img" aria-labelledby="c2t c2d">
+        <title id="c2t">Share of questions answered correctly on all test databases, by approach</title>
+        <desc id="c2d">Text-to-SQL 29 percent; SIP-mediated 25 percent; direct SPARQL with repair 21 percent; direct SPARQL 19 percent; rules only 10 percent. Differences between the first four are not statistically significant.</desc>
+        <g font-size="13" fill="var(--text-primary)">
+          <line x1="190" y1="12" x2="190" y2="222" stroke="var(--line)"/>
+          <g><title>Text-to-SQL (59 questions): 29%</title>
+            <text x="180" y="38" text-anchor="end">Text-to-SQL</text>
+            <rect class="bar" x="190" y="22" width="84" height="24" rx="4" fill="var(--neutral-bar)"/><text x="282" y="39" fill="var(--text-secondary)">29%</text></g>
+          <g><title>SIP-mediated: 25%</title>
+            <text x="180" y="80" text-anchor="end" font-weight="700">SIP-mediated</text>
+            <rect class="bar" x="190" y="64" width="74" height="24" rx="4" fill="var(--highlight)"/><text x="272" y="81" font-weight="700">25%</text></g>
+          <g><title>Direct SPARQL + repair: 21%</title>
+            <text x="180" y="122" text-anchor="end">SPARQL + repair</text>
+            <rect class="bar" x="190" y="106" width="60" height="24" rx="4" fill="var(--neutral-bar)"/><text x="258" y="123" fill="var(--text-secondary)">21%</text></g>
+          <g><title>Direct SPARQL: 19%</title>
+            <text x="180" y="164" text-anchor="end">Direct SPARQL</text>
+            <rect class="bar" x="190" y="148" width="55" height="24" rx="4" fill="var(--neutral-bar)"/><text x="253" y="165" fill="var(--text-secondary)">19%</text></g>
+          <g><title>Rules only: 10%</title>
+            <text x="180" y="206" text-anchor="end">Rules, no LLM</text>
+            <rect class="bar" x="190" y="190" width="28" height="24" rx="4" fill="var(--neutral-bar)"/><text x="226" y="207" fill="var(--text-secondary)">10%</text></g>
+        </g>
+        <text x="190" y="244" font-size="11.5" fill="var(--text-muted)">0%</text>
+        <text x="480" y="244" font-size="11.5" text-anchor="end" fill="var(--text-muted)">100%</text>
+      </svg>
+      <figcaption>The top four are within noise of each other on 63 questions (paired tests, p &gt; 0.2). Absolute accuracy is
+        low because this benchmark is deliberately hard and its test databases are strict.</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <figure>
+      <h3>Curated knowledge is the lever, not the algorithm</h3>
+      <svg viewBox="0 0 500 200" width="100%" role="img" aria-labelledby="c3t c3d">
+        <title id="c3t">Grounding recall with and without the curated glossary, and the effect of the retrieval algorithm</title>
+        <desc id="c3d">Changing the retrieval algorithm moves recall between 47 and 50 percent. Adding the curated business glossary raises it to 64 percent.</desc>
+        <g font-size="13" fill="var(--text-primary)">
+          <line x1="200" y1="10" x2="200" y2="170" stroke="var(--line)"/>
+          <g><title>Keyword retrieval: 47%</title><text x="190" y="34" text-anchor="end">Keyword search</text><rect class="bar" x="200" y="20" width="132" height="22" rx="4" fill="var(--before)"/><text x="340" y="36" fill="var(--text-secondary)">47%</text></g>
+          <g><title>Fuzzy character retrieval: 50%</title><text x="190" y="72" text-anchor="end">Fuzzy search</text><rect class="bar" x="200" y="58" width="139" height="22" rx="4" fill="var(--before)"/><text x="347" y="74" fill="var(--text-secondary)">50%</text></g>
+          <g><title>Hybrid retrieval: 48%</title><text x="190" y="110" text-anchor="end">Hybrid search</text><rect class="bar" x="200" y="96" width="135" height="22" rx="4" fill="var(--before)"/><text x="343" y="112" fill="var(--text-secondary)">48%</text></g>
+          <g><title>Hybrid retrieval plus curated glossary: 64%</title><text x="190" y="148" text-anchor="end" font-weight="700">+ curated glossary</text><rect class="bar" x="200" y="134" width="180" height="22" rx="4" fill="var(--after)"/><text x="388" y="150" font-weight="700">64%</text></g>
+        </g>
+        <text x="200" y="192" font-size="11.5" fill="var(--text-muted)">share of the correct concepts found for the question</text>
+      </svg>
+      <figcaption>41 glossary entries written by a domain expert did more than any search algorithm. That is why
+        vocabulary curation (service 1) is the core of the offering.</figcaption>
+    </figure>
+    <figure>
+      <h3>Making the scorecard trustworthy</h3>
+      <svg viewBox="0 0 500 200" width="100%" role="img" aria-labelledby="c4t c4d">
+        <title id="c4t">Share of deliberately broken queries the evaluation catches, before and after strengthening</title>
+        <desc id="c4d">Before: 41 percent of broken queries caught; after adding synthesised test data: 58 percent overall and 84 percent excluding broken queries that are equivalent on this data.</desc>
+        <g font-size="13" fill="var(--text-primary)">
+          <line x1="200" y1="10" x2="200" y2="150" stroke="var(--line)"/>
+          <g><title>All broken queries, before: 41%</title><text x="190" y="34" text-anchor="end">All, before</text><rect class="bar" x="200" y="20" width="113" height="22" rx="4" fill="var(--before)"/><text x="321" y="36" fill="var(--text-secondary)">41%</text></g>
+          <g><title>All broken queries, after: 58%</title><text x="190" y="62" text-anchor="end" font-weight="700">All, after</text><rect class="bar" x="200" y="48" width="160" height="22" rx="4" fill="var(--after)"/><text x="368" y="64" font-weight="700">58%</text></g>
+          <g><title>Excluding equivalent mutants, before: 75%</title><text x="190" y="104" text-anchor="end">Non-trivial, before</text><rect class="bar" x="200" y="90" width="207" height="22" rx="4" fill="var(--before)"/><text x="415" y="106" fill="var(--text-secondary)">75%</text></g>
+          <g><title>Excluding equivalent mutants, after: 84%</title><text x="190" y="132" text-anchor="end" font-weight="700">Non-trivial, after</text><rect class="bar" x="200" y="118" width="232" height="22" rx="4" fill="var(--after)"/><text x="440" y="134" font-weight="700">84%</text></g>
+        </g>
+        <g font-size="12" fill="var(--text-secondary)">
+          <rect x="200" y="166" width="12" height="12" rx="3" fill="var(--before)"/><text x="218" y="177">before</text>
+          <rect x="280" y="166" width="12" height="12" rx="3" fill="var(--after)"/><text x="298" y="177">after synthesised test data</text>
+        </g>
+      </svg>
+      <figcaption>A scorecard that misses broken queries would certify the wrong product. Synthesised test data closed most of
+        that gap, and the same technique becomes service 9.</figcaption>
+    </figure>
+  </div>
+
+  <details>
+    <summary>Context from published research (vendor-run, small benchmarks; read with care)</summary>
+    <ul class="small" style="margin-top:8px">
+      <li>On an insurance benchmark, GPT-4 answered 16% correctly from raw SQL and 54% over a knowledge graph. Adding ontology checks and
+        repair reached 72%, with 8% honest "I don't know" (Sequeda et al. 2023; Allemang &amp; Sequeda 2024).</li>
+      <li>A 2026 study that lets the language model only <i>choose</i> among governed options, and builds the SQL in code, reports
+        97% vs 55% for direct generation, with zero confidently-wrong answers (semantic path compilation). That is the same design
+        principle as SIP's plan contract.</li>
+      <li>dbt Labs (2026): a governed semantic layer reached 98–100% on modelled questions, but 0% on multi-hop questions
+        outside its model. Multi-hop questions are where an ontology's relationships help.</li>
+    </ul>
+  </details>
+</section>
+
+<!-- ======================================================================= -->
+<section id="govern">
+  <h2>8 · Operating model and governance</h2>
+  <p class="sub">Answers get better through governed change, never through silent edits to prompts or mappings. Every
+    improvement follows the same loop, and every step leaves an audit trail.</p>
+  <div class="grid g2" style="align-items:center">
+    <div class="svgwrap">
+    <svg viewBox="0 0 460 400" width="100%" role="img" aria-labelledby="loopT loopD">
+      <title id="loopT">Continuous improvement loop</title>
+      <desc id="loopD">A cycle of six steps: users ask; the NLQ product answers, refuses or asks; feedback and refusals are captured; SIP curates mappings, glossary and gold questions; changes pass the SIP review gate; the next release passes the evaluation gate, then back to users.</desc>
+      <defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/></marker></defs>
+      <circle cx="230" cy="200" r="138" fill="none" stroke="var(--line)" stroke-width="2"/>
+      <g font-size="13" text-anchor="middle">
+        <rect x="160" y="26" width="140" height="48" rx="10" fill="var(--nlq-soft)"/><text x="230" y="47" font-weight="600" fill="var(--text-primary)">Users ask</text><text x="230" y="64" font-size="11.5" fill="var(--text-secondary)">NLQ product</text>
+        <rect x="300" y="108" width="150" height="48" rx="10" fill="var(--nlq-soft)"/><text x="375" y="129" font-weight="600" fill="var(--text-primary)">Answer · refuse · ask</text><text x="375" y="146" font-size="11.5" fill="var(--text-secondary)">with lineage</text>
+        <rect x="300" y="244" width="150" height="48" rx="10" fill="var(--surface-2)"/><text x="375" y="265" font-weight="600" fill="var(--text-primary)">Feedback captured</text><text x="375" y="282" font-size="11.5" fill="var(--text-secondary)">refusals, corrections</text>
+        <rect x="160" y="326" width="140" height="48" rx="10" fill="var(--sip-soft)"/><text x="230" y="347" font-weight="600" fill="var(--text-primary)">SIP curates</text><text x="230" y="364" font-size="11.5" fill="var(--text-secondary)">mapping · glossary · gold</text>
+        <rect x="10" y="244" width="150" height="48" rx="10" fill="var(--sip-soft)"/><text x="85" y="265" font-weight="600" fill="var(--text-primary)">Review gate</text><text x="85" y="282" font-size="11.5" fill="var(--text-secondary)">human approval</text>
+        <rect x="10" y="108" width="150" height="48" rx="10" fill="var(--surface-2)"/><text x="85" y="129" font-weight="600" fill="var(--text-primary)">Release gate</text><text x="85" y="146" font-size="11.5" fill="var(--text-secondary)">scorecard thresholds</text>
+      </g>
+      <g stroke="var(--text-muted)" stroke-width="2" fill="none">
+        <path d="M300 60 C340 70, 360 90, 368 104" marker-end="url(#ah4)"/>
+        <path d="M375 158 V240" marker-end="url(#ah4)"/>
+        <path d="M368 294 C360 316, 330 336, 304 344" marker-end="url(#ah4)"/>
+        <path d="M160 344 C130 336, 100 316, 92 296" marker-end="url(#ah4)"/>
+        <path d="M85 242 V160" marker-end="url(#ah4)"/>
+        <path d="M92 106 C100 90, 120 70, 156 58" marker-end="url(#ah4)"/>
+      </g>
+    </svg>
+    </div>
+    <div>
+      <div class="callout"><b>Mappings are the main ongoing cost, and the main lever for coverage.</b> Every refusal of the
+        form "this concept isn't mapped" is a backlog item with a business owner. Coverage grows where users actually ask.</div>
+      <div class="callout nlq"><b>The NLQ team can change prompts and models freely</b>, because every release is scored by
+        service 9 against the same gold questions. A regression is caught before users see it.</div>
+      <div class="callout"><b>Any self-optimisation of prompts is a governed release</b>, not online learning. An optimiser such as GEPA may
+        propose improved prompts. Nothing ships without the scorecard and a human sign-off.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<section id="roadmap">
+  <h2>9 · Roadmap</h2>
+  <p class="sub">Start with the deterministic services that carry the least risk and give the NLQ team an immediate safety
+    net. Add grounding and context once real customer questions exist to tune them on.</p>
+  <div class="svgwrap">
+  <svg viewBox="0 0 1040 260" width="100%" role="img" aria-labelledby="rmT rmD">
+    <title id="rmT">Three-phase roadmap</title>
+    <desc id="rmD">Phase 1, weeks 0 to 8: safety net, with vocabulary, coverage, validation, compilation, governed execution, and evaluation with a baseline scorecard. Phase 2, weeks 8 to 16: understanding, with value index, grounding, context pack, explanation, and a pilot with one business area. Phase 3, weeks 16 to 28: scale, with the feedback loop, governed prompt optimisation, more domains and dialects, and the production SLA.</desc>
+    <line x1="20" y1="50" x2="1020" y2="50" stroke="var(--line)" stroke-width="3"/>
+    <g font-size="13" fill="var(--text-muted)"><text x="20" y="30">week 0</text><text x="352" y="30">week 8</text><text x="684" y="30">week 16</text><text x="1020" y="30" text-anchor="end">week 28</text></g>
+    <circle cx="20" cy="50" r="7" fill="var(--sip)"/><circle cx="352" cy="50" r="7" fill="var(--sip)"/><circle cx="684" cy="50" r="7" fill="var(--sip)"/><circle cx="1020" cy="50" r="7" fill="var(--sip)"/>
+    <g font-size="13.5" fill="var(--text-primary)">
+      <rect x="20" y="72" width="320" height="176" rx="12" fill="var(--sip-soft)"/>
+      <text x="38" y="100" font-size="15" font-weight="700">Phase 1 · Safety net</text>
+      <text x="38" y="126">• Vocabulary + coverage (1, 2)</text>
+      <text x="38" y="148">• Validation + compilation (6, 7)</text>
+      <text x="38" y="170">• Governed execution (8)</text>
+      <text x="38" y="192">• Evaluation, baseline scorecard (9)</text>
+      <text x="38" y="226" font-size="12.5" fill="var(--text-secondary)">Exit: NLQ product sends plans, not SQL</text>
+      <rect x="352" y="72" width="320" height="176" rx="12" fill="var(--sip-soft)"/>
+      <text x="370" y="100" font-size="15" font-weight="700">Phase 2 · Understanding</text>
+      <text x="370" y="126">• Value index, grounding (3, 4)</text>
+      <text x="370" y="148">• Context pack (5)</text>
+      <text x="370" y="170">• Explanation in the UI (8)</text>
+      <text x="370" y="192">• Pilot with one business area</text>
+      <text x="370" y="226" font-size="12.5" fill="var(--text-secondary)">Exit: pilot passes the agreed release gate</text>
+      <rect x="684" y="72" width="336" height="176" rx="12" fill="var(--sip-soft)"/>
+      <text x="702" y="100" font-size="15" font-weight="700">Phase 3 · Scale</text>
+      <text x="702" y="126">• Feedback and coverage backlog (10)</text>
+      <text x="702" y="148">• Governed prompt optimisation</text>
+      <text x="702" y="170">• More domains, more SQL dialects</text>
+      <text x="702" y="192">• Production SLA, on-call</text>
+      <text x="702" y="226" font-size="12.5" fill="var(--text-secondary)">Exit: go / no-go for wider roll-out</text>
+    </g>
+  </svg>
+  </div>
+  <p class="small muted" style="margin-top:6px">Durations are indicative and assume one SIP engineer plus a part-time domain curator; they will be re-planned
+    after Phase 1. The NLQ team builds its UI and LLM planner in parallel against the Phase 1 APIs.</p>
+</section>
+
+<!-- ======================================================================= -->
+<section id="risks">
+  <h2>10 · Risks, KPIs and decisions needed</h2>
+  <div class="grid g2">
+    <div>
+      <h3>Main risks</h3>
+      <table>
+        <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Accuracy stays too low for business use</td><td>Release gate with agreed thresholds; scope to the domains where curation is done; honest refusals instead of guesses</td></tr>
+          <tr><td>Mapping and curation effort is underestimated</td><td>Coverage-driven backlog: map what users ask; tool-assisted mapping suggestions with human review</td></tr>
+          <tr><td>The two teams diverge on the contract</td><td>Versioned plan schema, contract tests in both pipelines, a shared gold set</td></tr>
+          <tr><td>Data access and privacy</td><td>Execution under the user's own role; personal data excluded from the value index by default; full audit log</td></tr>
+          <tr><td>Model or vendor changes</td><td>SIP services are model-independent; the NLQ team can swap models, and the scorecard shows the effect</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>KPIs on the shared scorecard</h3>
+      <table>
+        <thead><tr><th>KPI</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><b>Confidently-wrong rate</b></td><td>The costly failure: a plausible wrong number in a decision</td></tr>
+          <tr><td>Correct-answer rate (on test databases)</td><td>Usefulness, measured so that coincidences don't count</td></tr>
+          <tr><td>Refusal precision / recall</td><td>Says "I don't know" when it should, and only then</td></tr>
+          <tr><td>Coverage of asked questions</td><td>Share of real questions whose concepts are mapped</td></tr>
+          <tr><td>Cost and latency per question</td><td>Run cost and user experience</td></tr>
+          <tr><td>Time from refusal to fix</td><td>Health of the governance loop</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <h3 style="margin-top:22px">Decisions needed from leadership</h3>
+  <div class="grid g3">
+    <div class="card"><h3>1 · Adopt the contract</h3><p class="small">The NLQ product sends query plans in SIP's vocabulary to SIP for checking and compilation, and does not
+      generate SQL directly against production.</p></div>
+    <div class="card"><h3>2 · Fund curation</h3><p class="small">A part-time domain curator per business area, for vocabulary and mapping review. The
+      evidence says this is the highest-value investment.</p></div>
+    <div class="card"><h3>3 · Agree the release gate</h3><p class="small">Thresholds for the confidently-wrong rate, correct-answer rate and refusals that a release
+      must meet before users see it, set from the Phase 1 baseline.</p></div>
+  </div>
+  <p class="small muted" style="margin-top:22px">Evidence basis: SIP proof of concept "FIBO NL2Q at scale" (FIBEN benchmark, IBM, Apache-2.0;
+    FIBO, EDM Council). Figures are from one development split of 63 questions with one model, intended to guide design, not as
+    production guarantees. Details and method: the proof-of-concept results report.</p>
+</section>
+
+</div>
+</body>
+</html>

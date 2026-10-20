@@ -1,0 +1,2294 @@
+{
+"ACCOUNTSPAYABLEANDACCRUEDLIABILITIES": [
+"accounts",
+"payable",
+"and",
+"accrued",
+"liabilities"
+],
+"ACCOUNTSPAYABLEANDACCRUEDLIABILITIESID": [
+"accounts",
+"payable",
+"and",
+"accrued",
+"liabilities",
+"id"
+],
+"ACCOUNTSPAYABLEDETAILS": [
+"accounts",
+"payable",
+"details"
+],
+"ACCOUNTSPAYABLEDETAILSID": [
+"accounts",
+"payable",
+"details",
+"id"
+],
+"ACCRUEDLIABILITIES": [
+"accrued",
+"liabilities"
+],
+"ACCRUEDLIABILITIESID": [
+"accrued",
+"liabilities",
+"id"
+],
+"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS": [
+"accumulated",
+"other",
+"comprehensive",
+"income",
+"loss"
+],
+"ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSSID": [
+"accumulated",
+"other",
+"comprehensive",
+"income",
+"loss",
+"id"
+],
+"ADDRESS": [
+"address"
+],
+"ADDRESSID": [
+"address",
+"id"
+],
+"ALLOWANCEFORCREDITLOSSES": [
+"allowance",
+"for",
+"credit",
+"losses"
+],
+"ALLOWANCEFORCREDITLOSSESID": [
+"allowance",
+"for",
+"credit",
+"losses",
+"id"
+],
+"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE": [
+"antidilutive",
+"securities",
+"excluded",
+"from",
+"computation",
+"of",
+"earnings",
+"per",
+"share"
+],
+"ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHAREID": [
+"antidilutive",
+"securities",
+"excluded",
+"from",
+"computation",
+"of",
+"earnings",
+"per",
+"share",
+"id"
+],
+"APPLICABLEPERIOD": [
+"applicable",
+"period"
+],
+"ASSET": [
+"asset"
+],
+"ASSETID": [
+"asset",
+"id"
+],
+"ASSETIMPAIRMENTCHARGES": [
+"asset",
+"impairment",
+"charges"
+],
+"ASSETIMPAIRMENTCHARGESID": [
+"asset",
+"impairment",
+"charges",
+"id"
+],
+"ASSETRETIREMENTOBLIGATIONDISCLOSURE": [
+"asset",
+"retirement",
+"obligation",
+"disclosure"
+],
+"ASSETRETIREMENTOBLIGATIONDISCLOSUREID": [
+"asset",
+"retirement",
+"obligation",
+"disclosure",
+"id"
+],
+"AUTONOMOUSAGENT": [
+"autonomous",
+"agent"
+],
+"AUTONOMOUSAGENTID": [
+"autonomous",
+"agent",
+"id"
+],
+"AVAILABLEFORSALESECURITIES": [
+"available",
+"for",
+"sale",
+"securities"
+],
+"AVAILABLEFORSALESECURITIESID": [
+"available",
+"for",
+"sale",
+"securities",
+"id"
+],
+"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS": [
+"business",
+"acquisition",
+"integration",
+"restructuring",
+"and",
+"other",
+"related",
+"costs"
+],
+"BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTSID": [
+"business",
+"acquisition",
+"integration",
+"restructuring",
+"and",
+"other",
+"related",
+"costs",
+"id"
+],
+"BUSINESSACQUISITIONPROFORMAINFORMATION": [
+"business",
+"acquisition",
+"pro",
+"for",
+"main",
+"formation"
+],
+"BUSINESSACQUISITIONPROFORMAINFORMATIONID": [
+"business",
+"acquisition",
+"pro",
+"for",
+"main",
+"formation",
+"id"
+],
+"BUSINESSCOMBINATIONDISCLOSURE": [
+"business",
+"combination",
+"disclosure"
+],
+"BUSINESSCOMBINATIONDISCLOSUREID": [
+"business",
+"combination",
+"disclosure",
+"id"
+],
+"CAPITALUNITS": [
+"capital",
+"units"
+],
+"CAPITALUNITSID": [
+"capital",
+"units",
+"id"
+],
+"CASHANDCASHEQUIVALENTS": [
+"cash",
+"and",
+"cash",
+"equivalents"
+],
+"CASHANDCASHEQUIVALENTSDISCLOSURE": [
+"cash",
+"and",
+"cash",
+"equivalents",
+"disclosure"
+],
+"CASHANDCASHEQUIVALENTSDISCLOSUREID": [
+"cash",
+"and",
+"cash",
+"equivalents",
+"disclosure",
+"id"
+],
+"CASHANDCASHEQUIVALENTSID": [
+"cash",
+"and",
+"cash",
+"equivalents",
+"id"
+],
+"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS": [
+"cash",
+"cash",
+"equivalents",
+"and",
+"short",
+"term",
+"investments"
+],
+"CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTSID": [
+"cash",
+"cash",
+"equivalents",
+"and",
+"short",
+"term",
+"investments",
+"id"
+],
+"CHANGEINACCOUNTINGESTIMATE": [
+"change",
+"in",
+"accounting",
+"estimate"
+],
+"CHANGEINACCOUNTINGESTIMATEID": [
+"change",
+"in",
+"accounting",
+"estimate",
+"id"
+],
+"CHANGESINFAIRVALUEOFPLANASSETS": [
+"changes",
+"in",
+"fair",
+"value",
+"of",
+"plan",
+"assets"
+],
+"CHANGESINFAIRVALUEOFPLANASSETSID": [
+"changes",
+"in",
+"fair",
+"value",
+"of",
+"plan",
+"assets",
+"id"
+],
+"COMMITMENTSCONTINGENCIESANDGUARANTEES": [
+"commitments",
+"contingencies",
+"and",
+"guarantees"
+],
+"COMMITMENTSCONTINGENCIESANDGUARANTEESID": [
+"commitments",
+"contingencies",
+"and",
+"guarantees",
+"id"
+],
+"COMPREHENSIVEINCOME": [
+"comprehensive",
+"income"
+],
+"COMPREHENSIVEINCOMEID": [
+"comprehensive",
+"income",
+"id"
+],
+"COMPREHENSIVEINCOMELOSS": [
+"comprehensive",
+"income",
+"loss"
+],
+"COMPREHENSIVEINCOMELOSSID": [
+"comprehensive",
+"income",
+"loss",
+"id"
+],
+"CONTRACT": [
+"contract"
+],
+"CONTRACTID": [
+"contract",
+"id"
+],
+"CONTRACTPARTY": [
+"contract",
+"party"
+],
+"CONTRACTPARTYID": [
+"contract",
+"party",
+"id"
+],
+"CONVERSIONOFSTOCK": [
+"conversion",
+"of",
+"stock"
+],
+"CONVERSIONOFSTOCKID": [
+"conversion",
+"of",
+"stock",
+"id"
+],
+"CORPORATION": [
+"corporation"
+],
+"CORPORATIONID": [
+"corporation",
+"id"
+],
+"COSTMETHODINVESTMENTS": [
+"cost",
+"method",
+"investments"
+],
+"COSTMETHODINVESTMENTSID": [
+"cost",
+"method",
+"investments",
+"id"
+],
+"COSTSOFRETIREMENTPLANS": [
+"costs",
+"of",
+"retirement",
+"plans"
+],
+"COSTSOFRETIREMENTPLANSID": [
+"costs",
+"of",
+"retirement",
+"plans",
+"id"
+],
+"COUNTRY": [
+"country"
+],
+"COUNTRYID": [
+"country",
+"id"
+],
+"CURRENCY": [
+"currency"
+],
+"CURRENCYID": [
+"currency",
+"id"
+],
+"DEBT": [
+"debt"
+],
+"DEBTCONVERSION": [
+"debt",
+"conversion"
+],
+"DEBTCONVERSIONID": [
+"debt",
+"conversion",
+"id"
+],
+"DEBTID": [
+"debt",
+"id"
+],
+"DEFERREDTAXASSETSANDLIABILITIES": [
+"deferred",
+"tax",
+"assets",
+"and",
+"liabilities"
+],
+"DEFERREDTAXASSETSANDLIABILITIESID": [
+"deferred",
+"tax",
+"assets",
+"and",
+"liabilities",
+"id"
+],
+"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS": [
+"defined",
+"benefit",
+"plan",
+"amounts",
+"recognized",
+"in",
+"other",
+"comprehensive",
+"income",
+"loss"
+],
+"DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSSID": [
+"defined",
+"benefit",
+"plan",
+"amounts",
+"recognized",
+"in",
+"other",
+"comprehensive",
+"income",
+"loss",
+"id"
+],
+"DERIVATIVE": [
+"derivative"
+],
+"DERIVATIVEID": [
+"derivative",
+"id"
+],
+"DISCLOSURE": [
+"disclosure"
+],
+"DISCLOSUREID": [
+"disclosure",
+"id"
+],
+"DISTRIBUTIONTOOWNER": [
+"distribution",
+"to",
+"owner"
+],
+"DISTRIBUTIONTOOWNERID": [
+"distribution",
+"to",
+"owner",
+"id"
+],
+"DIVIDENDPAYMENTRESTRICTIONS": [
+"dividend",
+"payment",
+"restrictions"
+],
+"DIVIDENDPAYMENTRESTRICTIONSID": [
+"dividend",
+"payment",
+"restrictions",
+"id"
+],
+"DIVIDENDSPAYABLE": [
+"dividends",
+"payable"
+],
+"DIVIDENDSPAYABLEID": [
+"dividends",
+"payable",
+"id"
+],
+"EFFECTIVEINCOMETAXRATERECONCILIATION": [
+"effective",
+"income",
+"tax",
+"rate",
+"reconciliation"
+],
+"EFFECTIVEINCOMETAXRATERECONCILIATIONID": [
+"effective",
+"income",
+"tax",
+"rate",
+"reconciliation",
+"id"
+],
+"ELEMENTOFFINANCIALSTATEMENT": [
+"element",
+"of",
+"financial",
+"statement"
+],
+"ELEMENTOFFINANCIALSTATEMENTID": [
+"element",
+"of",
+"financial",
+"statement",
+"id"
+],
+"ELEMENTSOFFINANCIALREPORT": [
+"elements",
+"of",
+"financial",
+"report"
+],
+"ELEMENTSOFFINANCIALREPORTID": [
+"elements",
+"of",
+"financial",
+"report",
+"id"
+],
+"EMAILADDRESS": [
+"email",
+"address"
+],
+"EMAILADDRESSID": [
+"email",
+"address",
+"id"
+],
+"ENTITYLOCATION": [
+"entity",
+"location"
+],
+"ENTITYLOCATIONID": [
+"entity",
+"location",
+"id"
+],
+"EQUITY": [
+"equity"
+],
+"EQUITYID": [
+"equity",
+"id"
+],
+"EQUITYMETHODINVESTMENTS": [
+"equity",
+"method",
+"investments"
+],
+"EQUITYMETHODINVESTMENTSID": [
+"equity",
+"method",
+"investments",
+"id"
+],
+"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS": [
+"error",
+"corrections",
+"and",
+"prior",
+"period",
+"adjustments"
+],
+"ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTSID": [
+"error",
+"corrections",
+"and",
+"prior",
+"period",
+"adjustments",
+"id"
+],
+"EXPENSE": [
+"expense"
+],
+"EXPENSEID": [
+"expense",
+"id"
+],
+"EXTINGUISHMENTOFDEBT": [
+"extinguishment",
+"of",
+"debt"
+],
+"EXTINGUISHMENTOFDEBTID": [
+"extinguishment",
+"of",
+"debt",
+"id"
+],
+"EXTRAORDINARYITEMS": [
+"extraordinary",
+"items"
+],
+"EXTRAORDINARYITEMSID": [
+"extraordinary",
+"items",
+"id"
+],
+"FINANCIALINSTRUMENT": [
+"financial",
+"instrument"
+],
+"FINANCIALINSTRUMENTID": [
+"financial",
+"instrument",
+"id"
+],
+"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION": [
+"financial",
+"instruments",
+"subject",
+"to",
+"mandatory",
+"redemption"
+],
+"FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTIONID": [
+"financial",
+"instruments",
+"subject",
+"to",
+"mandatory",
+"redemption",
+"id"
+],
+"FINANCIALMARKET": [
+"financial",
+"market"
+],
+"FINANCIALMARKETID": [
+"financial",
+"market",
+"id"
+],
+"FINANCIALMETRICS": [
+"financial",
+"metrics"
+],
+"FINANCIALMETRICSID": [
+"financial",
+"metrics",
+"id"
+],
+"FINANCIALREPORT": [
+"financial",
+"report"
+],
+"FINANCIALREPORTID": [
+"financial",
+"report",
+"id"
+],
+"FINANCIALSERVICEACCOUNT": [
+"financial",
+"service",
+"account"
+],
+"FINANCIALSERVICEACCOUNTID": [
+"financial",
+"service",
+"account",
+"id"
+],
+"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES": [
+"financing",
+"receivable",
+"allowance",
+"for",
+"credit",
+"losses"
+],
+"FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSESID": [
+"financing",
+"receivable",
+"allowance",
+"for",
+"credit",
+"losses",
+"id"
+],
+"FINANCINGRECEIVABLECREDITQUALITYINDICATORS": [
+"financing",
+"receivable",
+"credit",
+"quality",
+"indicators"
+],
+"FINANCINGRECEIVABLECREDITQUALITYINDICATORSID": [
+"financing",
+"receivable",
+"credit",
+"quality",
+"indicators",
+"id"
+],
+"FINANCINGRECEIVABLES": [
+"financing",
+"receivables"
+],
+"FINANCINGRECEIVABLESID": [
+"financing",
+"receivables",
+"id"
+],
+"FINANCINGRECEIVABLESPASTDUE": [
+"financing",
+"receivables",
+"past",
+"due"
+],
+"FINANCINGRECEIVABLESPASTDUEID": [
+"financing",
+"receivables",
+"past",
+"due",
+"id"
+],
+"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS": [
+"financing",
+"receivable",
+"troubled",
+"debt",
+"restructurings"
+],
+"FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGSID": [
+"financing",
+"receivable",
+"troubled",
+"debt",
+"restructurings",
+"id"
+],
+"FOREIGNCURRENCYTRANSLATION": [
+"foreign",
+"currency",
+"translation"
+],
+"FOREIGNCURRENCYTRANSLATIONID": [
+"foreign",
+"currency",
+"translation",
+"id"
+],
+"FORWARDCONTRACTINDEXEDTOISSUERSEQUITY": [
+"forward",
+"contract",
+"indexed",
+"to",
+"issuers",
+"equity"
+],
+"FORWARDCONTRACTINDEXEDTOISSUERSEQUITYID": [
+"forward",
+"contract",
+"indexed",
+"to",
+"issuers",
+"equity",
+"id"
+],
+"FRESHSTARTADJUSTMENTS": [
+"fres",
+"hst",
+"art",
+"adjustments"
+],
+"FRESHSTARTADJUSTMENTSID": [
+"fres",
+"hst",
+"art",
+"adjustments",
+"id"
+],
+"GAINLOSSONINVESTMENTS": [
+"gain",
+"loss",
+"on",
+"investments"
+],
+"GAINLOSSONINVESTMENTSID": [
+"gain",
+"loss",
+"on",
+"investments",
+"id"
+],
+"GOODWILL": [
+"goodwill"
+],
+"GOODWILLID": [
+"goodwill",
+"id"
+],
+"GUARANTEES": [
+"guarantees"
+],
+"GUARANTEESID": [
+"guarantees",
+"id"
+],
+"GUARANTOROBLIGATIONS": [
+"guarantor",
+"obligations"
+],
+"GUARANTOROBLIGATIONSID": [
+"guarantor",
+"obligations",
+"id"
+],
+"HASACCOUNTNUMBER": [
+"has",
+"account",
+"number"
+],
+"HASADDRESSLINE1": [
+"has",
+"address",
+"line1"
+],
+"HASADDRESSLINE2": [
+"has",
+"address",
+"line2"
+],
+"HASAMOUNT": [
+"has",
+"amount"
+],
+"HASCITIZENSHIP": [
+"has",
+"citizenship"
+],
+"HASCITY": [
+"has",
+"city"
+],
+"HASCONTRACTPARTY": [
+"has",
+"contract",
+"party"
+],
+"HASCOUNT": [
+"has",
+"count"
+],
+"HASCOUNTRY": [
+"has",
+"country"
+],
+"HASCURRENCY": [
+"has",
+"currency"
+],
+"HASCURRENCYNAME": [
+"has",
+"currency",
+"name"
+],
+"HASDATEOFBIRTH": [
+"has",
+"date",
+"of",
+"birth"
+],
+"HASDESCRIPTION": [
+"has",
+"description"
+],
+"HASDOCUMENTTYPE": [
+"has",
+"document",
+"type"
+],
+"HASEFFECTIVEDATE": [
+"has",
+"effective",
+"date"
+],
+"HASEXPIRATIONDATE": [
+"has",
+"expiration",
+"date"
+],
+"HASFIRSTNAME": [
+"has",
+"first",
+"name"
+],
+"HASFORMALNAME": [
+"has",
+"formal",
+"name"
+],
+"HASGENDER": [
+"has",
+"gender"
+],
+"HASLASTNAME": [
+"has",
+"last",
+"name"
+],
+"HASLASTTRADEDVALUE": [
+"has",
+"last",
+"traded",
+"value"
+],
+"HASLEGALNAME": [
+"has",
+"legal",
+"name"
+],
+"HASLISTINGDATE": [
+"has",
+"listing",
+"date"
+],
+"HASMETRICCONTEXTDIMENSIONS": [
+"has",
+"metric",
+"context",
+"dimensions"
+],
+"HASMETRICENDDATE": [
+"has",
+"metric",
+"end",
+"date"
+],
+"HASMETRICENDQUARTER": [
+"has",
+"metric",
+"end",
+"quarter"
+],
+"HASMETRICSTARTDATE": [
+"has",
+"metric",
+"start",
+"date"
+],
+"HASMETRICSTARTQUARTER": [
+"has",
+"metric",
+"start",
+"quarter"
+],
+"HASMETRICVALUE": [
+"has",
+"metric",
+"value"
+],
+"HASMETRICYEARCALENDAR": [
+"has",
+"metric",
+"year",
+"calendar"
+],
+"HASMETRICYEARFISCAL": [
+"has",
+"metric",
+"year",
+"fiscal"
+],
+"HASMIDDLENAMEORINITIAL": [
+"has",
+"middle",
+"name",
+"or",
+"initial"
+],
+"HASMINORUNIT": [
+"has",
+"minor",
+"unit"
+],
+"HASNAME": [
+"has",
+"name"
+],
+"HASNUMERICCODE": [
+"has",
+"numeric",
+"code"
+],
+"HASNUMERICCOUNTRYCODE": [
+"has",
+"numeric",
+"country",
+"code"
+],
+"HASPERSONNAME": [
+"has",
+"person",
+"name"
+],
+"HASPLACEOFBIRTH": [
+"has",
+"place",
+"of",
+"birth"
+],
+"HASPOSITION": [
+"has",
+"position"
+],
+"HASPOSTALCODE": [
+"has",
+"postal",
+"code"
+],
+"HASPRICE": [
+"has",
+"price"
+],
+"HASSETTLEMENTDATE": [
+"has",
+"settlement",
+"date"
+],
+"HASSTARTDATE": [
+"has",
+"start",
+"date"
+],
+"HASSTATE": [
+"has",
+"state"
+],
+"HASTICKERSYMBOL": [
+"has",
+"ticker",
+"symbol"
+],
+"HASTITLE": [
+"has",
+"title"
+],
+"HASTYPE": [
+"has",
+"type"
+],
+"HASUNIQUEIDENTIFIER": [
+"has",
+"unique",
+"identifier"
+],
+"HASUNIT": [
+"has",
+"unit"
+],
+"HASURL": [
+"has",
+"url"
+],
+"HASVALUE": [
+"has",
+"value"
+],
+"HELDTOMATURITYSECURITIES": [
+"held",
+"to",
+"maturity",
+"securities"
+],
+"HELDTOMATURITYSECURITIESID": [
+"held",
+"to",
+"maturity",
+"securities",
+"id"
+],
+"HOLDING": [
+"holding"
+],
+"HOLDINGID": [
+"holding",
+"id"
+],
+"IMPAIREDFINANCINGRECEIVABLES": [
+"impaired",
+"financing",
+"receivables"
+],
+"IMPAIREDFINANCINGRECEIVABLESID": [
+"impaired",
+"financing",
+"receivables",
+"id"
+],
+"INCOMETAXCONTINGENCY": [
+"income",
+"tax",
+"contingency"
+],
+"INCOMETAXCONTINGENCYID": [
+"income",
+"tax",
+"contingency",
+"id"
+],
+"INDEFINITELIVEDINTANGIBLEASSETS": [
+"indefinite",
+"lived",
+"intangible",
+"assets"
+],
+"INDEFINITELIVEDINTANGIBLEASSETSID": [
+"indefinite",
+"lived",
+"intangible",
+"assets",
+"id"
+],
+"INDUSTRYSECTORCLASSIFICATIONSCHEME": [
+"industry",
+"sector",
+"classification",
+"scheme"
+],
+"INDUSTRYSECTORCLASSIFICATIONSCHEMEID": [
+"industry",
+"sector",
+"classification",
+"scheme",
+"id"
+],
+"INDUSTRYSECTORCLASSIFIER": [
+"industry",
+"sector",
+"classifier"
+],
+"INDUSTRYSECTORCLASSIFIERID": [
+"industry",
+"sector",
+"classifier",
+"id"
+],
+"INTANGIBLEASSETSANDGOODWILL": [
+"intangible",
+"assets",
+"and",
+"goodwill"
+],
+"INTANGIBLEASSETSANDGOODWILLID": [
+"intangible",
+"assets",
+"and",
+"goodwill",
+"id"
+],
+"INTERESTANDOTHERINCOME": [
+"interest",
+"and",
+"other",
+"income"
+],
+"INTERESTANDOTHERINCOMEID": [
+"interest",
+"and",
+"other",
+"income",
+"id"
+],
+"INTERESTCOSTSINCURRED": [
+"interest",
+"costs",
+"incurred"
+],
+"INTERESTCOSTSINCURREDID": [
+"interest",
+"costs",
+"incurred",
+"id"
+],
+"INVENTORYCURRENT": [
+"inventory",
+"current"
+],
+"INVENTORYCURRENTID": [
+"inventory",
+"current",
+"id"
+],
+"INVENTORYNONCURRENT": [
+"inventory",
+"noncurrent"
+],
+"INVENTORYNONCURRENTID": [
+"inventory",
+"noncurrent",
+"id"
+],
+"INVESTMENTINCOME": [
+"investment",
+"income"
+],
+"INVESTMENTINCOMEID": [
+"investment",
+"income",
+"id"
+],
+"INVESTMENTSANDOTHERNONCURRENTASSETS": [
+"investments",
+"and",
+"other",
+"noncurrent",
+"assets"
+],
+"INVESTMENTSANDOTHERNONCURRENTASSETSID": [
+"investments",
+"and",
+"other",
+"noncurrent",
+"assets",
+"id"
+],
+"ISCLASSIFIEDBY": [
+"is",
+"classified",
+"by"
+],
+"ISCOMPUTED": [
+"is",
+"computed"
+],
+"ISDEFINEDBY": [
+"is",
+"defined",
+"by"
+],
+"ISDOMICILEDIN": [
+"is",
+"domiciled",
+"in"
+],
+"ISFACILITATEDBY": [
+"is",
+"facilitated",
+"by"
+],
+"ISHELDBY": [
+"is",
+"held",
+"by"
+],
+"ISINDEXTO": [
+"is",
+"index",
+"to"
+],
+"ISMANAGEDBY": [
+"is",
+"managed",
+"by"
+],
+"ISMEMBEROF": [
+"is",
+"member",
+"of"
+],
+"ISOWNEDBY": [
+"is",
+"owned",
+"by"
+],
+"ISPROVIDEDBY": [
+"is",
+"provided",
+"by"
+],
+"ISTRADEDON": [
+"is",
+"traded",
+"on"
+],
+"ISTRANSFERABLE": [
+"is",
+"transferable"
+],
+"LIABILITY": [
+"liability"
+],
+"LIABILITYID": [
+"liability",
+"id"
+],
+"LINEOFCREDITFACILITY": [
+"line",
+"of",
+"credit",
+"facility"
+],
+"LINEOFCREDITFACILITYID": [
+"line",
+"of",
+"credit",
+"facility",
+"id"
+],
+"LISTEDSECURITY": [
+"listed",
+"security"
+],
+"LISTEDSECURITYID": [
+"listed",
+"security",
+"id"
+],
+"LONGLIVEDASSETSHELDFORSALE": [
+"long",
+"lived",
+"assets",
+"held",
+"for",
+"sale"
+],
+"LONGLIVEDASSETSHELDFORSALEID": [
+"long",
+"lived",
+"assets",
+"held",
+"for",
+"sale",
+"id"
+],
+"LONGLIVEDASSETSTOBEABANDONED": [
+"long",
+"lived",
+"assets",
+"to",
+"be",
+"abandoned"
+],
+"LONGLIVEDASSETSTOBEABANDONEDID": [
+"long",
+"lived",
+"assets",
+"to",
+"be",
+"abandoned",
+"id"
+],
+"LONGTERMDEBT": [
+"long",
+"term",
+"debt"
+],
+"LONGTERMDEBTID": [
+"long",
+"term",
+"debt",
+"id"
+],
+"LONGTERMDEBTMATURITIES": [
+"long",
+"term",
+"debt",
+"maturities"
+],
+"LONGTERMDEBTMATURITIESID": [
+"long",
+"term",
+"debt",
+"maturities",
+"id"
+],
+"LONGTERMPURCHASECOMMITMENT": [
+"long",
+"term",
+"purchase",
+"commitment"
+],
+"LONGTERMPURCHASECOMMITMENTID": [
+"long",
+"term",
+"purchase",
+"commitment",
+"id"
+],
+"LOSS": [
+"loss"
+],
+"LOSSID": [
+"loss",
+"id"
+],
+"MARKETABLESECURITIES": [
+"marketable",
+"securities"
+],
+"MARKETABLESECURITIESID": [
+"marketable",
+"securities",
+"id"
+],
+"MONETARYAMOUNT": [
+"monetary",
+"amount"
+],
+"MONETARYAMOUNTID": [
+"monetary",
+"amount",
+"id"
+],
+"NETPERIODICBENEFITCOSTNOTYETRECOGNIZED": [
+"net",
+"periodic",
+"benefit",
+"cost",
+"not",
+"yet",
+"recognized"
+],
+"NETPERIODICBENEFITCOSTNOTYETRECOGNIZEDID": [
+"net",
+"periodic",
+"benefit",
+"cost",
+"not",
+"yet",
+"recognized",
+"id"
+],
+"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION": [
+"new",
+"accounting",
+"pronouncement",
+"early",
+"adoption"
+],
+"NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTIONID": [
+"new",
+"accounting",
+"pronouncement",
+"early",
+"adoption",
+"id"
+],
+"NONCONTROLLINGINTEREST": [
+"noncontrolling",
+"interest"
+],
+"NONCONTROLLINGINTERESTID": [
+"noncontrolling",
+"interest",
+"id"
+],
+"OPERATINGLOSSCARRYFORWARDS": [
+"operating",
+"loss",
+"carry",
+"forwards"
+],
+"OPERATINGLOSSCARRYFORWARDSID": [
+"operating",
+"loss",
+"carry",
+"forwards",
+"id"
+],
+"OTHERASSETS": [
+"other",
+"assets"
+],
+"OTHERASSETSANDOTHERLIABILITIES": [
+"other",
+"assets",
+"and",
+"other",
+"liabilities"
+],
+"OTHERASSETSANDOTHERLIABILITIESID": [
+"other",
+"assets",
+"and",
+"other",
+"liabilities",
+"id"
+],
+"OTHERASSETSDISCLOSURE": [
+"other",
+"assets",
+"disclosure"
+],
+"OTHERASSETSDISCLOSUREID": [
+"other",
+"assets",
+"disclosure",
+"id"
+],
+"OTHERASSETSID": [
+"other",
+"assets",
+"id"
+],
+"OTHERASSETSNONCURRENT": [
+"other",
+"assets",
+"noncurrent"
+],
+"OTHERASSETSNONCURRENTID": [
+"other",
+"assets",
+"noncurrent",
+"id"
+],
+"OTHERLIABILITIESDISCLOSURE": [
+"other",
+"liabilities",
+"disclosure"
+],
+"OTHERLIABILITIESDISCLOSUREID": [
+"other",
+"liabilities",
+"disclosure",
+"id"
+],
+"OTHERNONOPERATINGINCOMEEXPENSE": [
+"other",
+"non",
+"operating",
+"income",
+"expense"
+],
+"OTHERNONOPERATINGINCOMEEXPENSEID": [
+"other",
+"non",
+"operating",
+"income",
+"expense",
+"id"
+],
+"OTHEROWNERSHIPINTERESTS": [
+"other",
+"ownership",
+"interests"
+],
+"OTHEROWNERSHIPINTERESTSID": [
+"other",
+"ownership",
+"interests",
+"id"
+],
+"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS": [
+"other",
+"than",
+"temporary",
+"impairment",
+"credit",
+"losses",
+"recognized",
+"in",
+"earnings"
+],
+"OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGSID": [
+"other",
+"than",
+"temporary",
+"impairment",
+"credit",
+"losses",
+"recognized",
+"in",
+"earnings",
+"id"
+],
+"PERSON": [
+"person"
+],
+"PERSONID": [
+"person",
+"id"
+],
+"PHONENUMBER": [
+"phone",
+"number"
+],
+"PHONENUMBERID": [
+"phone",
+"number",
+"id"
+],
+"POSTALADDRESS": [
+"postal",
+"address"
+],
+"POSTALADDRESSID": [
+"postal",
+"address",
+"id"
+],
+"PREFERREDSTOCK": [
+"preferred",
+"stock"
+],
+"PREFERREDSTOCKID": [
+"preferred",
+"stock",
+"id"
+],
+"PRODUCTWARRANTYLIABILITY": [
+"product",
+"warranty",
+"liability"
+],
+"PRODUCTWARRANTYLIABILITYID": [
+"product",
+"warranty",
+"liability",
+"id"
+],
+"PROPERTYMANAGEMENTFEE": [
+"property",
+"management",
+"fee"
+],
+"PROPERTYMANAGEMENTFEEID": [
+"property",
+"management",
+"fee",
+"id"
+],
+"PROPERTYPLANTANDEQUIPMENT": [
+"property",
+"plant",
+"and",
+"equipment"
+],
+"PROPERTYPLANTANDEQUIPMENTID": [
+"property",
+"plant",
+"and",
+"equipment",
+"id"
+],
+"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES": [
+"property",
+"plant",
+"and",
+"equipment",
+"income",
+"statement",
+"disclosures"
+],
+"PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURESID": [
+"property",
+"plant",
+"and",
+"equipment",
+"income",
+"statement",
+"disclosures",
+"id"
+],
+"PROPERTYPLANTANDEQUIPMENTUSEFULLIVES": [
+"property",
+"plant",
+"and",
+"equipment",
+"use",
+"fullives"
+],
+"PROPERTYPLANTANDEQUIPMENTUSEFULLIVESID": [
+"property",
+"plant",
+"and",
+"equipment",
+"use",
+"fullives",
+"id"
+],
+"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE": [
+"property",
+"subject",
+"to",
+"or",
+"available",
+"for",
+"operating",
+"lease"
+],
+"PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASEID": [
+"property",
+"subject",
+"to",
+"or",
+"available",
+"for",
+"operating",
+"lease",
+"id"
+],
+"REALESTATEPROPERTIES": [
+"real",
+"estate",
+"properties"
+],
+"REALESTATEPROPERTIESID": [
+"real",
+"estate",
+"properties",
+"id"
+],
+"REALIZEDGAINLOSS": [
+"realized",
+"gain",
+"loss"
+],
+"REALIZEDGAINLOSSID": [
+"realized",
+"gain",
+"loss",
+"id"
+],
+"REALIZEDGAINLOSSONINVESTMENTS": [
+"realized",
+"gain",
+"loss",
+"on",
+"investments"
+],
+"REALIZEDGAINLOSSONINVESTMENTSID": [
+"realized",
+"gain",
+"loss",
+"on",
+"investments",
+"id"
+],
+"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED": [
+"reconciliation",
+"of",
+"operating",
+"profit",
+"loss",
+"from",
+"segments",
+"to",
+"consolidated"
+],
+"RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATEDID": [
+"reconciliation",
+"of",
+"operating",
+"profit",
+"loss",
+"from",
+"segments",
+"to",
+"consolidated",
+"id"
+],
+"RECORDEDUNCONDITIONALPURCHASEOBLIGATION": [
+"recorded",
+"unconditional",
+"purchase",
+"obligation"
+],
+"RECORDEDUNCONDITIONALPURCHASEOBLIGATIONID": [
+"recorded",
+"unconditional",
+"purchase",
+"obligation",
+"id"
+],
+"REDEEMABLENONCONTROLLINGINTEREST": [
+"redeemable",
+"noncontrolling",
+"interest"
+],
+"REDEEMABLENONCONTROLLINGINTERESTID": [
+"redeemable",
+"noncontrolling",
+"interest",
+"id"
+],
+"REFERSTO": [
+"refers",
+"to"
+],
+"RELATEDPARTYTRANSACTIONSBYRELATEDPARTY": [
+"related",
+"party",
+"transactions",
+"by",
+"related",
+"party"
+],
+"RELATEDPARTYTRANSACTIONSBYRELATEDPARTYID": [
+"related",
+"party",
+"transactions",
+"by",
+"related",
+"party",
+"id"
+],
+"RENTEXPENSE": [
+"rent",
+"expense"
+],
+"RENTEXPENSEID": [
+"rent",
+"expense",
+"id"
+],
+"RESTRICTEDCASHANDCASHEQUIVALENTS": [
+"restricted",
+"cash",
+"and",
+"cash",
+"equivalents"
+],
+"RESTRICTEDCASHANDCASHEQUIVALENTSID": [
+"restricted",
+"cash",
+"and",
+"cash",
+"equivalents",
+"id"
+],
+"RESTRUCTURINGANDRELATEDCOSTS": [
+"restructuring",
+"and",
+"related",
+"costs"
+],
+"RESTRUCTURINGANDRELATEDCOSTSID": [
+"restructuring",
+"and",
+"related",
+"costs",
+"id"
+],
+"REVENUE": [
+"revenue"
+],
+"REVENUEID": [
+"revenue",
+"id"
+],
+"SALELEASEBACKTRANSACTION": [
+"sale",
+"lease",
+"back",
+"transaction"
+],
+"SALELEASEBACKTRANSACTIONID": [
+"sale",
+"lease",
+"back",
+"transaction",
+"id"
+],
+"SECURITIESTRANSACTION": [
+"securities",
+"transaction"
+],
+"SECURITIESTRANSACTIONID": [
+"securities",
+"transaction",
+"id"
+],
+"SECURITY": [
+"security"
+],
+"SECURITYID": [
+"security",
+"id"
+],
+"SHAREBASEDCOMPENSATIONACTIVITY": [
+"share",
+"based",
+"compensation",
+"activity"
+],
+"SHAREBASEDCOMPENSATIONACTIVITYID": [
+"share",
+"based",
+"compensation",
+"activity",
+"id"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"grants",
+"in",
+"period",
+"grant",
+"date",
+"intrinsic",
+"value"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUEID": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"grants",
+"in",
+"period",
+"grant",
+"date",
+"intrinsic",
+"value",
+"id"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"grants",
+"in",
+"period",
+"weighted",
+"average",
+"grant",
+"date",
+"fair",
+"value"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUEID": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"grants",
+"in",
+"period",
+"weighted",
+"average",
+"grant",
+"date",
+"fair",
+"value",
+"id"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"vested",
+"and",
+"expected",
+"to",
+"vest",
+"exercisable"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLEID": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"vested",
+"and",
+"expected",
+"to",
+"vest",
+"exercisable",
+"id"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"vested",
+"and",
+"expected",
+"to",
+"vest",
+"outstanding",
+"and",
+"exercisable"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLEID": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"options",
+"vested",
+"and",
+"expected",
+"to",
+"vest",
+"outstanding",
+"and",
+"exercisable",
+"id"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"restricted",
+"stock",
+"units",
+"vested",
+"and",
+"expected",
+"to",
+"vest"
+],
+"SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVESTID": [
+"share",
+"based",
+"compensation",
+"arrangement",
+"by",
+"share",
+"based",
+"payment",
+"award",
+"restricted",
+"stock",
+"units",
+"vested",
+"and",
+"expected",
+"to",
+"vest",
+"id"
+],
+"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY": [
+"share",
+"based",
+"compensation",
+"restricted",
+"stock",
+"units",
+"award",
+"activity"
+],
+"SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITYID": [
+"share",
+"based",
+"compensation",
+"restricted",
+"stock",
+"units",
+"award",
+"activity",
+"id"
+],
+"SHORTTERMDEBT": [
+"short",
+"term",
+"debt"
+],
+"SHORTTERMDEBTID": [
+"short",
+"term",
+"debt",
+"id"
+],
+"STOCKHOLDERSEQUITY": [
+"stockholders",
+"equity"
+],
+"STOCKHOLDERSEQUITYID": [
+"stockholders",
+"equity",
+"id"
+],
+"SUBSEQUENTEVENTS": [
+"subsequent",
+"events"
+],
+"SUBSEQUENTEVENTSID": [
+"subsequent",
+"events",
+"id"
+],
+"TAXCREDITCARRYFORWARD": [
+"tax",
+"credit",
+"carry",
+"forward"
+],
+"TAXCREDITCARRYFORWARDID": [
+"tax",
+"credit",
+"carry",
+"forward",
+"id"
+],
+"TRADINGSECURITIESANDOTHERTRADINGASSETS": [
+"trading",
+"securities",
+"and",
+"other",
+"trading",
+"assets"
+],
+"TRADINGSECURITIESANDOTHERTRADINGASSETSID": [
+"trading",
+"securities",
+"and",
+"other",
+"trading",
+"assets",
+"id"
+],
+"TREASURYSTOCK": [
+"treasury",
+"stock"
+],
+"TREASURYSTOCKID": [
+"treasury",
+"stock",
+"id"
+],
+"UNREALIZEDGAINLOSSONINVESTMENTS": [
+"unrealized",
+"gain",
+"loss",
+"on",
+"investments"
+],
+"UNREALIZEDGAINLOSSONINVESTMENTSID": [
+"unrealized",
+"gain",
+"loss",
+"on",
+"investments",
+"id"
+],
+"UNREALIZEDLOSSONINVESTMENTS": [
+"unrealized",
+"loss",
+"on",
+"investments"
+],
+"UNREALIZEDLOSSONINVESTMENTSID": [
+"unrealized",
+"loss",
+"on",
+"investments",
+"id"
+],
+"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION": [
+"unrecorded",
+"unconditional",
+"purchase",
+"obligation"
+],
+"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONID": [
+"unrecorded",
+"unconditional",
+"purchase",
+"obligation",
+"id"
+],
+"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE": [
+"unrecorded",
+"unconditional",
+"purchase",
+"obligations",
+"disclosure"
+],
+"UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSUREID": [
+"unrecorded",
+"unconditional",
+"purchase",
+"obligations",
+"disclosure",
+"id"
+],
+"VALUATIONALLOWANCE": [
+"valuation",
+"allowance"
+],
+"VALUATIONALLOWANCEID": [
+"valuation",
+"allowance",
+"id"
+],
+"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE": [
+"valuation",
+"and",
+"qualifying",
+"accounts",
+"disclosure"
+],
+"VALUATIONANDQUALIFYINGACCOUNTSDISCLOSUREID": [
+"valuation",
+"and",
+"qualifying",
+"accounts",
+"disclosure",
+"id"
+],
+"VIRTUALADDRESS": [
+"virtual",
+"address"
+],
+"VIRTUALADDRESSID": [
+"virtual",
+"address",
+"id"
+],
+"WEIGHTEDAVERAGENUMBEROFSHARES": [
+"weighted",
+"average",
+"number",
+"of",
+"shares"
+],
+"WEIGHTEDAVERAGENUMBEROFSHARESID": [
+"weighted",
+"average",
+"number",
+"of",
+"shares",
+"id"
+]
+}

@@ -18,6 +18,7 @@ The SysML files are read with the repo's own subset reader
 
 from __future__ import annotations
 
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -300,11 +301,106 @@ def render_catalogue() -> str:
     return "\n".join(out) + "\n"
 
 
+_HTML_CSS = """
+:root {
+  --bg: #fbfbf9; --surface: #ffffff; --text: #1d1d1b; --muted: #5f5f5a;
+  --rule: #e4e3de; --accent: #2f6fbd; --accent-soft: #e8f0fa;
+  --blocker: #b3261e; --blocker-bg: #fbe9e5; --major: #9a4a12; --major-bg: #fcefe3;
+  --minor: #7a5c00; --minor-bg: #faf2dc; --info: #5f5f5a; --info-bg: #efeee9;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171716; --surface: #1f1f1d; --text: #ecebe6; --muted: #a8a7a0;
+    --rule: #34332f; --accent: #7fb0ee; --accent-soft: #1e2c3d;
+    --blocker: #f0a094; --blocker-bg: #3d211c; --major: #f3b98a; --major-bg: #3b2a1b;
+    --minor: #e2c46e; --minor-bg: #3a3118; --info: #a8a7a0; --info-bg: #2a2a27;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; }
+main { max-width: 1200px; margin: 0 auto; padding: 40px 20px 96px; }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
+h2 { font-size: 1.35rem; margin: 44px 0 10px; padding-top: 14px; border-top: 1px solid var(--rule); scroll-margin-top: 12px; }
+h3 { font-size: 1.05rem; margin: 26px 0 8px; scroll-margin-top: 12px; }
+p, li { max-width: 92ch; }
+blockquote { margin: 0 0 24px; padding: 8px 14px; border-left: 3px solid var(--accent);
+  background: var(--accent-soft); color: var(--muted); font-size: 0.88rem; border-radius: 0 6px 6px 0; }
+blockquote p { margin: 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: "Cascadia Code", Consolas, Menlo, monospace; font-size: 0.86em;
+  background: var(--accent-soft); padding: 1px 4px; border-radius: 4px; }
+.table-wrap { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--surface); max-height: 80vh; }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; background: var(--bg); position: sticky; top: 0; z-index: 1; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--accent-soft); }
+td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sev { display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.sev-blocker { color: var(--blocker); background: var(--blocker-bg); }
+.sev-major { color: var(--major); background: var(--major-bg); }
+.sev-minor { color: var(--minor); background: var(--minor-bg); }
+.sev-info { color: var(--info); background: var(--info-bg); }
+ul { padding-left: 20px; }
+li { margin: 5px 0; }
+nav.families { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+nav.families a { border: 1px solid var(--rule); background: var(--surface); padding: 2px 10px; border-radius: 999px; font-size: 0.85rem; }
+footer { margin-top: 56px; color: var(--muted); font-size: 0.82rem; }
+@media print {
+  body { background: #fff; color: #000; } main { padding: 0; max-width: none; }
+  .table-wrap { max-height: none; overflow: visible; } h2 { break-after: avoid; }
+}
+"""
+
+
+def render_html(md_text: str) -> str:
+    """CHECK_CATALOGUE.md -> a self-contained HTML page (same content, readable in a browser,
+    printable, linkable). Anchors match the Markdown links (#syn, #maturity-ladder, ...)."""
+    import html as _html
+    import markdown  # optional dependency, only needed for the HTML output
+
+    title_m = re.match(r"# (.+)\n", md_text)
+    title = title_m.group(1).strip() if title_m else "Check Catalogue"
+    body_md = md_text[title_m.end():] if title_m else md_text
+    body = markdown.markdown(body_md, extensions=["tables", "sane_lists", "toc"], output_format="html")
+    body = body.replace("<table>", '<div class="table-wrap"><table>').replace("</table>", "</table></div>")
+    body = re.sub(r"<td>(blocker|major|minor|info)</td>",
+                  lambda m: f'<td><span class="sev sev-{m.group(1)}">{m.group(1)}</span></td>', body)
+    chips = " ".join(f'<a href="#{f.code.lower()}">{f.code}</a>' for f in cat.FAMILIES)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{_html.escape(title)} -- Ontology Validation Agent</title>
+<meta name="description" content="All {len(cat.CHECKS)} checks of the Ontology Validation Agent in {len(cat.FAMILIES)} families, by maturity level and SIP lifecycle stage.">
+<style>{_HTML_CSS}</style>
+</head>
+<body>
+<main>
+<h1>{_html.escape(title)}</h1>
+<nav class="families" aria-label="Families">{chips}</nav>
+{body}
+<footer>Generated by spec/build_docs.py from spec/check_catalogue.py, together with CHECK_CATALOGUE.md -- do not edit by hand.</footer>
+</main>
+</body>
+</html>
+"""
+
+
 def main() -> int:
     errors = validate_catalogue()
     model_errors, stats = validate_models()
     errors += model_errors
-    (AGENT / "CHECK_CATALOGUE.md").write_text(render_catalogue(), encoding="utf-8")
+    md = render_catalogue()
+    (AGENT / "CHECK_CATALOGUE.md").write_text(md, encoding="utf-8")
+    try:
+        (AGENT / "CHECK_CATALOGUE.html").write_text(render_html(md), encoding="utf-8")
+    except ImportError:
+        print("note: install 'markdown' to also write CHECK_CATALOGUE.html")
     print(f"catalogue: {len(cat.CHECKS)} checks, {len(cat.FAMILIES)} families")
     for name, counts in stats.items():
         print(f"  {name}: {dict(counts)}")

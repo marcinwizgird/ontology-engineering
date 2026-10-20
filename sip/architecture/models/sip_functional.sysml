@@ -150,6 +150,14 @@ package SipFunctional {
         @Provenance { sourceTool = "SemanticTurkey+new"; sourceArtefact = "Sheet2RDF/CODA"; }
         port lpg : ~PropertyGraphPort;
     }
+    part def VirtualKnowledgeGraph {
+        doc /* vkg/: relational sources (sqlite3; DuckDB optional), the R2RML model over the
+             * mappings graph, mapping suggestions, static mapping checks + coverage + rename
+             * impact, an R2RML processor with provenance, and SPARQL over mapped data + the
+             * staged ontology (light RDFS closure or OWL 2 RL); an Ontop endpoint optional. */
+        @Provenance { sourceTool = "Ontop / R2RML"; sourceArtefact = "W3C R2RML; Ontop mapping editor and query answering"; }
+        port reads : ~QuadReadPort;
+    }
     part def EventBus {
         @Provenance { sourceTool = "Protege"; sourceArtefact = "OWLModelManagerListener; EventType"; }
         port bus : ~EventPort;
@@ -210,6 +218,7 @@ package SipFunctional {
         part alignment : AlignmentService;
         part io : IoPipeline;
         part kg : KgConstruction;
+        part vkg : VirtualKnowledgeGraph;
         part events : EventBus;
         part gateway : LlmGateway;
         part runtime : AgentRuntime;
@@ -238,6 +247,7 @@ package SipFunctional {
         interface scopeReads : QuadRead connect scope.reads to store.read;
         interface searchReads : QuadRead connect search.reads to store.read;
         interface alignmentReads : QuadRead connect alignment.reads to store.read;
+        interface vkgReads : QuadRead connect vkg.reads to store.read;
         // guarantee 2: agents reach the platform only through guarded operations
         interface requirementsTools : OperationCall connect requirementsAgent.tools to registry.calls;
         interface extractionTools : OperationCall connect extractionAgent.tools to registry.calls;
@@ -300,6 +310,8 @@ package SipFunctional {
         satisfy requirement : SourceIngestion by sip.io;
         satisfy requirement : TabularLifting by sip.kg;
         satisfy requirement : EntityResolution by sip.kg;
+        satisfy requirement : R2rmlMappingAuthoring by sip.vkg;
+        satisfy requirement : VirtualGraphQuery by sip.vkg;
         satisfy requirement : Alignment by sip.alignment;
         satisfy requirement : Search by sip.search;
         satisfy requirement : Publication by sip.io;

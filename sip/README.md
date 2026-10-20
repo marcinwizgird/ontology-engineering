@@ -8,7 +8,7 @@ method, is in
 
 ```bash
 cd "sip"
-PYTHONPATH=. python -m pytest semantic_intelligence/tests -q     # 91 tests, offline
+PYTHONPATH=. python -m pytest semantic_intelligence/tests -q     # 103 tests, offline
 PYTHONPATH=. python -m semantic_intelligence                     # the E2E demo
 PYTHONPATH=. uvicorn semantic_intelligence.api.app:app           # REST API + workbench at /ui
 ```
@@ -39,6 +39,26 @@ P.call("ann", "cars", "quality.runChecks")               # Semantic Turkey ICV +
 P.call("ann", "cars", "history.undo")                    # Protégé undo, kept as a commit
 ```
 
+Virtual knowledge graph (R2RML, Ontop's role). Map a relational database onto the
+ontology, then query the data while you edit the ontology:
+
+```python
+P.call("ann", "cars", "mapping.registerDatabase", source_id="fleet", path="fleet.sqlite")
+P.call("ann", "cars", "mapping.suggest", source_id="fleet")       # scored proposals, no writes
+P.call("ann", "cars", "mapping.addTriplesMap", source_id="fleet", map={
+    "id": "CarMap", "table": "cars",
+    "subject": {"template": "https://ex.org/cars/data/car/{id}", "classes": ["Car"]},
+    "predicateObjects": [{"predicate": "hasPart", "template": "https://ex.org/cars/data/wheel/{wheel_id}"}]})
+P.call("ann", "cars", "mapping.validate")                         # vs the staged ontology + schema
+P.call("ann", "cars", "mapping.queryData", query="SELECT ?c WHERE { ?c a <https://ex.org/cars#Car> }")
+```
+
+Maps are commits on the `mappings` graph: history and undo apply, and an agent's maps
+are staged. `refactor.renameIRI` updates them in the same commit. `mapping.queryData`
+reads the staged ontology with RDFS entailment, so a new `rdfs:subClassOf` changes the
+answers without re-mapping. `mapping.export` / `mapping.import` exchange R2RML Turtle
+with Ontop (`LAB/PoCs/SPARQL-2-SQL`).
+
 Agents:
 
 ```python
@@ -48,7 +68,7 @@ C.enable_agents("cars", by="pm")  # needs rbac C; creates <agent>@cars machine p
 C.run("cars", "pm", brief=..., documents={...}, tables={...})   # stops at the review gate
 ```
 
-Every operation (77, listed by `GET /operations` or `platform.describe_operations()`)
+Every operation (92, listed by `GET /operations` or `platform.describe_operations()`)
 declares the VocBench capability it needs. `Platform.call` is the only entry point.
 Writes become commits; when the caller is an agent, a commit is staged until a validator
 accepts it.
@@ -63,5 +83,6 @@ accepts it.
 | `scope/` | new: NeOn requirements specification, reuse candidates (ST metadata registry), pre-glossary, scope exit criteria |
 | `quality/` | ST ICV, Protégé metrics, competency-question tests, release gate |
 | `search/`, `alignment/`, `io/`, `kg/` | ST search, alignment, import/export transformers; Sheet2RDF-style lifting, entity resolution, LPG projection |
+| `vkg/` | Ontop / W3C R2RML: read-only relational sources (sqlite3; DuckDB optional), R2RML maps in the `mappings` graph, suggestions, static checks, previews, SPARQL over mapped data + the staged ontology |
 | `agents/` | new: LLM gateway, agent runtime, 9 specialist agents, simulators, lifecycle conductor |
 | `api/` | FastAPI edge over the operation registry |

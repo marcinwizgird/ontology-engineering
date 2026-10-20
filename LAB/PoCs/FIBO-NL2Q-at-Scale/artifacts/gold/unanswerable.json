@@ -1,0 +1,29 @@
+{
+  "note": "Hand-written questions this FIBEN mapping cannot answer: concepts FIBO defines (or the banking domain has) but the data does not map, and out-of-domain requests. Gold outcome: refuse. Written for the PoC, not part of FIBEN.",
+  "questions": [
+    {"id": "U01", "question": "What is the credit rating of IBM's bonds?", "why": "no bonds or ratings mapped"},
+    {"id": "U02", "question": "Which loans are more than 90 days overdue?", "why": "no loans mapped"},
+    {"id": "U03", "question": "What is the maturity date of Microsoft's debt securities?", "why": "no debt instruments or maturity dates mapped"},
+    {"id": "U04", "question": "Show the credit card balance of each customer", "why": "no cards mapped"},
+    {"id": "U05", "question": "What is the Legal Entity Identifier (LEI) of Alphabet?", "why": "no LEI mapped"},
+    {"id": "U06", "question": "Which mortgages were originated in 2016?", "why": "no mortgages mapped"},
+    {"id": "U07", "question": "What is the coupon rate of the bonds held by Luis Statz?", "why": "no bonds mapped"},
+    {"id": "U08", "question": "List the derivatives contracts with a notional above 1 million", "why": "no derivative contracts with notional mapped"},
+    {"id": "U09", "question": "What interest rate does each savings account pay?", "why": "no savings accounts or interest rates mapped"},
+    {"id": "U10", "question": "Which customers have a risk score above 700?", "why": "no risk or credit scores mapped"},
+    {"id": "U11", "question": "What is the dividend yield of Apple stock?", "why": "no dividends or yields mapped"},
+    {"id": "U12", "question": "Which syndicated loans was Goldman Sachs the lead arranger for?", "why": "no syndication mapped"},
+    {"id": "U13", "question": "Show all wire transfers above 10000 dollars last month", "why": "no payments or transfers mapped"},
+    {"id": "U14", "question": "What is the beta of NASDAQ-listed technology stocks?", "why": "no risk measures mapped"},
+    {"id": "U15", "question": "Which customers are flagged for anti-money-laundering review?", "why": "no AML flags mapped"},
+    {"id": "U16", "question": "What is the collateral pledged for each repo agreement?", "why": "no repos or collateral mapped"},
+    {"id": "U17", "question": "What will IBM's revenue be next year?", "why": "forecast, not data"},
+    {"id": "U18", "question": "Should I buy Microsoft stock?", "why": "advice, not a query"},
+    {"id": "U19", "question": "What is the weather in New York?", "why": "out of domain"},
+    {"id": "U20", "question": "Which insurance policies cover flood damage?", "why": "no insurance mapped"},
+    {"id": "U21", "question": "What is the strike price of the options granted to IBM's CEO?", "why": "no option terms mapped"},
+    {"id": "U22", "question": "List the branches of the bank in Texas", "why": "no bank branches mapped"},
+    {"id": "U23", "question": "What exchange rate was used for the CAD amounts?", "why": "no exchange rates mapped"},
+    {"id": "U24", "question": "Which customers closed their accounts in 2016?", "why": "no account status or closing dates mapped"}
+  ]
+}

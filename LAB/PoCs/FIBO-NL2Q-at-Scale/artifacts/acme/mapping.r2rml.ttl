@@ -1,0 +1,403 @@
+@prefix dwo: <https://ontology.data.world/v0#> .
+@prefix map: <http://capsenta.com/mappings#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+
+map:TripleMap_AddressLine1_0 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "line_1_address" ] ;
+            rr:predicate <http://data.world/schema/insurance/addressLine1> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_AddressLine2_16 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "line_2_address" ] ;
+            rr:predicate <http://data.world/schema/insurance/addressLine2> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_AgentID_2 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_1\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "party_identifier" ] ;
+            rr:predicate <http://data.world/schema/insurance/agentId> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Agent-{party_identifier}" ] .
+
+map:TripleMap_Agent_0 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_1\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Agent> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Agent-{party_identifier}" ] .
+
+map:TripleMap_CatastropheName_18 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"catastrophe\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "catastrophe_name" ] ;
+            rr:predicate <http://data.world/schema/insurance/catastropheName> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Catastrophe-{catastrophe_identifier}" ] .
+
+map:TripleMap_Catastrophe_0 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"catastrophe\"" ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Catastrophe> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Catastrophe-{catastrophe_identifier}" ] .
+
+map:TripleMap_City_18 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "municipality_name" ] ;
+            rr:predicate <http://data.world/schema/insurance/city> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_ClaimCloseDate_8 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "claim_close_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/claimCloseDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{Claim_Identifier}" ] .
+
+map:TripleMap_ClaimNumber_1 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "company_claim_number" ] ;
+            rr:predicate <http://data.world/schema/insurance/claimNumber> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{Claim_Identifier}" ] .
+
+map:TripleMap_ClaimOpenDate_10 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "claim_open_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/claimOpenDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{Claim_Identifier}" ] .
+
+map:TripleMap_Claim_16 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim\"" ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Claim> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{Claim_Identifier}" ] .
+
+map:TripleMap_Country_14 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "country_code" ] ;
+            rr:predicate <http://data.world/schema/insurance/country> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_ExpensePaymentAmount_7 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_6\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "claim_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/expensePaymentAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] .
+
+map:TripleMap_ExpenseReserveAmount_9 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_8\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "claim_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/expenseReserveAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] .
+
+map:TripleMap_InsurableObjects_8 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"insurable_object\"" ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/InsurableObject> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/InsurableObject-{insurable_object_identifier}" ] .
+
+map:TripleMap_Latitude_6 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "latitude_value" ] ;
+            rr:predicate <http://data.world/schema/insurance/latitude> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_Location_17 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Location> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_Longitud_8 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "longitude_value" ] ;
+            rr:predicate <http://data.world/schema/insurance/longitud> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_LossPaymentAmount_15 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_13\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "claim_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/lossPaymentAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] .
+
+map:TripleMap_LossReserveAmount_17 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_7\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "claim_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/lossReserveAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] .
+
+map:TripleMap_PolicyAmount_10 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_10\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "policy_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyAmount-{policy_amount_identifier}" ] .
+
+map:TripleMap_PolicyAmount_6 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_10\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/PolicyAmount> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyAmount-{policy_amount_identifier}" ] .
+
+map:TripleMap_PolicyCoverageDetailID_3 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "policy_coverage_detail_identifier" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyCoverageDetailId> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_PolicyCoverageDetail_17 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/PolicyCoverageDetail> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_PolicyCoverageEffectiveDate_19 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "effective_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyCoverageEffectiveDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_PolicyCoverageExpirationDate_0 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "expiration_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyCoverageExpirationDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_PolicyEffectiveDate_15 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "effective_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyEffectiveDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_PolicyExpirationDate_15 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "expiration_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyExpirationDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_PolicyHolderID_12 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_3\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "party_identifier" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyHolderId> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-Holder-{party_identifier}" ] .
+
+map:TripleMap_PolicyHolder_12 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_3\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/PolicyHolder> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-Holder-{party_identifier}" ] .
+
+map:TripleMap_PolicyNumber_11 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "policy_number" ] ;
+            rr:predicate <http://data.world/schema/insurance/policyNumber> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_Policy_13 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy\"" ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Policy> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_PremiumAmountMonthly_17 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_5\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "monthly_policy_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/premiumAmountMonthly> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Premium-{policy_amount_identifier}" ] .
+
+map:TripleMap_PremiumAmount_14 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_5\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "policy_amount" ] ;
+            rr:predicate <http://data.world/schema/insurance/premiumAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Premium-{policy_amount_identifier}" ] .
+
+map:TripleMap_PremiumPeriod_3 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_5\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "amount_type_code" ] ;
+            rr:predicate <http://data.world/schema/insurance/premiumPeriod> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Premium-{policy_amount_identifier}" ] .
+
+map:TripleMap_Premium_6 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_5\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Premium> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Premium-{policy_amount_identifier}" ] .
+
+map:TripleMap_State_11 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "state_code" ] ;
+            rr:predicate <http://data.world/schema/insurance/state> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_UnderwriterID_9 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_12\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "party_identifier" ] ;
+            rr:predicate <http://data.world/schema/insurance/underwriterId> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Underwriter-{party_identifier}" ] .
+
+map:TripleMap_Underwriter_4 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_12\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/Underwriter> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Underwriter-{party_identifier}" ] .
+
+map:TripleMap_UnderwritingAssessment_16 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_11\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:subjectMap [ rr:class <http://data.world/schema/insurance/UnderwritingAssessment> ;
+            rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/UnderwritingAssessment-{assessment_identifier}" ] .
+
+map:TripleMap_UnderwritingBeginDate_1 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_11\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "begin_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/underwritingBeginDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/UnderwritingAssessment-{assessment_identifier}" ] .
+
+map:TripleMap_UnderwritingEndDate_9 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_11\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "end_date" ] ;
+            rr:predicate <http://data.world/schema/insurance/underwritingEndDate> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/UnderwritingAssessment-{assessment_identifier}" ] .
+
+map:TripleMap_ZipCode_10 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_4\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:column "postal_code" ] ;
+            rr:predicate <http://data.world/schema/insurance/zipCode> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] .
+
+map:TripleMap_against_14 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim_coverage\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/against> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_hasUnderwriter_15 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_9\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Underwriter-{party_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasUnderwriter> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/UnderwritingAssessment-{assessment_identifier}" ] .
+
+map:TripleMap_hasUnderwritingAssessment_3 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_2\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/UnderwritingAssessment-{assessment_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasUnderwritingAssessment> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_hascatastrophe_19 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Catastrophe-{catastrophe_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasCatastrophe> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_hasclaim_8 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim_coverage\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasClaim> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_hasexpensepayment_2 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_6\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasExpensePayment> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_hasexpensereserve_16 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_8\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasExpenseReserve> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_hasinsurableobject_7 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/InsurableObject-{insurable_object_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasInsurableObject> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_haslocation_1 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"insurable_object\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Location-{geographic_location_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasLocation> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/InsurableObject-{insurable_object_identifier}" ] .
+
+map:TripleMap_haslosspayment_13 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_13\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasLossPayment> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_haslossreserve_0 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_7\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/ClaimAmount-{claim_amount_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasLossReserve> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_haspolicy_1 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasPolicy> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_haspolicyamount_8 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_10\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyAmount-{policy_amount_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasPolicyAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_haspolicycoveragedetail_15 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"policy_coverage_detail\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasPolicyCoverageDetail> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_haspolicyholder_18 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_14\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyHolder-{party_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasPolicyHolder> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_haspremium_0 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_5\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Premium-{policy_amount_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/hasPremiumAmount> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/PolicyCoverageDetail-{policy_coverage_detail_identifier}" ] .
+
+map:TripleMap_involvesinsurableobject_13 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"claim\"" ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/InsurableObject-{insurable_object_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/involvesInsurableObject> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Claim-{claim_identifier}" ] .
+
+map:TripleMap_soldbyagent_14 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_15\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Agent-{party_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/soldByAgent> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] .
+
+map:TripleMap_underwritespolicy_16 a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "\"public\".\"r2rml_view_2\"" ;
+            dwo:queryBase <https://myinsurancecompany.linked.data.world/d/omg-pc-database/> ] ;
+    rr:predicateObjectMap [ rr:objectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Policy-{policy_identifier}" ] ;
+            rr:predicate <http://data.world/schema/insurance/underwritesPolicy> ] ;
+    rr:subjectMap [ rr:template "https://myinsurancecompany.linked.data.world/d/omg-pc-database/Underwriting-Assessment-{assessment_identifier}" ] .
+

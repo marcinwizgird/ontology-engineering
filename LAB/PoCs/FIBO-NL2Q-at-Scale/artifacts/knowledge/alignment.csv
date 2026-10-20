@@ -1,0 +1,221 @@
+fiben,iri,kind,status,fibo,fibo_label
+ACCOUNTSPAYABLEANDACCRUEDLIABILITIES,https://example.org/fiben/voc#AccountsPayableAndAccruedLiabilities,class,none,,
+ACCOUNTSPAYABLEDETAILS,https://example.org/fiben/voc#AccountsPayableDetails,class,none,,
+ACCRUEDLIABILITIES,https://example.org/fiben/voc#AccruedLiabilities,class,none,,
+ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS,https://example.org/fiben/voc#AccumulatedOtherComprehensiveIncomeLoss,class,none,,
+ADDRESS,https://example.org/fiben/voc#Address,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/Address,address
+ALLOWANCEFORCREDITLOSSES,https://example.org/fiben/voc#AllowanceForCreditLosses,class,none,,
+ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE,https://example.org/fiben/voc#AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare,class,none,,
+ASSET,https://example.org/fiben/voc#Asset,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Asset,asset
+ASSETIMPAIRMENTCHARGES,https://example.org/fiben/voc#AssetImpairmentCharges,class,none,,
+ASSETRETIREMENTOBLIGATIONDISCLOSURE,https://example.org/fiben/voc#AssetRetirementObligationDisclosure,class,none,,
+AUTONOMOUSAGENT,https://example.org/fiben/voc#AutonomousAgent,class,none,,
+AVAILABLEFORSALESECURITIES,https://example.org/fiben/voc#AvailableForSaleSecurities,class,none,,
+BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS,https://example.org/fiben/voc#BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts,class,none,,
+BUSINESSACQUISITIONPROFORMAINFORMATION,https://example.org/fiben/voc#BusinessAcquisitionProForMainFormation,class,none,,
+BUSINESSCOMBINATIONDISCLOSURE,https://example.org/fiben/voc#BusinessCombinationDisclosure,class,none,,
+CAPITALUNITS,https://example.org/fiben/voc#CapitalUnits,class,none,,
+CASHANDCASHEQUIVALENTS,https://example.org/fiben/voc#CashAndCashEquivalents,class,none,,
+CASHANDCASHEQUIVALENTSDISCLOSURE,https://example.org/fiben/voc#CashAndCashEquivalentsDisclosure,class,none,,
+CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS,https://example.org/fiben/voc#CashCashEquivalentsAndShortTermInvestments,class,none,,
+CHANGEINACCOUNTINGESTIMATE,https://example.org/fiben/voc#ChangeInAccountingEstimate,class,none,,
+CHANGESINFAIRVALUEOFPLANASSETS,https://example.org/fiben/voc#ChangesInFairValueOfPlanAssets,class,none,,
+COMMITMENTSCONTINGENCIESANDGUARANTEES,https://example.org/fiben/voc#CommitmentsContingenciesAndGuarantees,class,none,,
+COMPREHENSIVEINCOME,https://example.org/fiben/voc#ComprehensiveIncome,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/Income,income
+COMPREHENSIVEINCOMELOSS,https://example.org/fiben/voc#ComprehensiveIncomeLoss,class,none,,
+CONTRACT,https://example.org/fiben/voc#Contract,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/Contract,contract
+CONTRACTPARTY,https://example.org/fiben/voc#ContractParty,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/ContractParty,contract party
+CONVERSIONOFSTOCK,https://example.org/fiben/voc#ConversionOfStock,class,none,,
+CORPORATION,https://example.org/fiben/voc#Corporation,class,exact,https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/Corporation,corporation
+COSTMETHODINVESTMENTS,https://example.org/fiben/voc#CostMethodInvestments,class,none,,
+COSTSOFRETIREMENTPLANS,https://example.org/fiben/voc#CostsOfRetirementPlans,class,none,,
+COUNTRY,https://example.org/fiben/voc#Country,class,none,,
+CURRENCY,https://example.org/fiben/voc#Currency,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/Currency,currency
+DEBT,https://example.org/fiben/voc#Debt,class,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/Debt,debt
+DEBTCONVERSION,https://example.org/fiben/voc#DebtConversion,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/Debt,debt
+DEFERREDTAXASSETSANDLIABILITIES,https://example.org/fiben/voc#DeferredTaxAssetsAndLiabilities,class,none,,
+DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS,https://example.org/fiben/voc#DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss,class,none,,
+DERIVATIVE,https://example.org/fiben/voc#Derivative,class,suggested,https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/CommoditiesContracts/CommodityDerivative,commodity derivative
+DISCLOSURE,https://example.org/fiben/voc#Disclosure,class,suggested,https://spec.edmcouncil.org/fibo/ontology/CAE/CorporateEvents/CorporateActions/DisclosureAction,disclosure action
+DISTRIBUTIONTOOWNER,https://example.org/fiben/voc#DistributionToOwner,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Owner,owner
+DIVIDENDPAYMENTRESTRICTIONS,https://example.org/fiben/voc#DividendPaymentRestrictions,class,none,,
+DIVIDENDSPAYABLE,https://example.org/fiben/voc#DividendsPayable,class,none,,
+EFFECTIVEINCOMETAXRATERECONCILIATION,https://example.org/fiben/voc#EffectiveIncomeTaxRateReconciliation,class,none,,
+ELEMENTOFFINANCIALSTATEMENT,https://example.org/fiben/voc#ElementOfFinancialStatement,class,none,,
+ELEMENTSOFFINANCIALREPORT,https://example.org/fiben/voc#ElementsOfFinancialReport,class,none,,
+EMAILADDRESS,https://example.org/fiben/voc#EmailAddress,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/Address,address
+ENTITYLOCATION,https://example.org/fiben/voc#EntityLocation,class,none,,
+EQUITY,https://example.org/fiben/voc#Equity,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/OwnersEquity,owners' equity
+EQUITYMETHODINVESTMENTS,https://example.org/fiben/voc#EquityMethodInvestments,class,none,,
+ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS,https://example.org/fiben/voc#ErrorCorrectionsAndPriorPeriodAdjustments,class,none,,
+EXPENSE,https://example.org/fiben/voc#Expense,class,none,,
+EXTINGUISHMENTOFDEBT,https://example.org/fiben/voc#ExtinguishmentOfDebt,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/Debt,debt
+EXTRAORDINARYITEMS,https://example.org/fiben/voc#ExtraordinaryItems,class,none,,
+FINANCIALINSTRUMENT,https://example.org/fiben/voc#FinancialInstrument,class,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/FinancialInstrument,financial instrument
+FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION,https://example.org/fiben/voc#FinancialInstrumentsSubjectToMandatoryRedemption,class,none,,
+FINANCIALMARKET,https://example.org/fiben/voc#FinancialMarket,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/TransactionsExt/SecuritiesTransactions/FinancialPrimaryMarketTransaction,financial primary market transaction
+FINANCIALMETRICS,https://example.org/fiben/voc#FinancialMetrics,class,none,,
+FINANCIALREPORT,https://example.org/fiben/voc#FinancialReport,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Reporting/Report,report
+FINANCIALSERVICEACCOUNT,https://example.org/fiben/voc#FinancialServiceAccount,class,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/CustomerAccount,customer account
+FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES,https://example.org/fiben/voc#FinancingReceivableAllowanceForCreditLosses,class,none,,
+FINANCINGRECEIVABLECREDITQUALITYINDICATORS,https://example.org/fiben/voc#FinancingReceivableCreditQualityIndicators,class,none,,
+FINANCINGRECEIVABLES,https://example.org/fiben/voc#FinancingReceivables,class,none,,
+FINANCINGRECEIVABLESPASTDUE,https://example.org/fiben/voc#FinancingReceivablesPastDue,class,none,,
+FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS,https://example.org/fiben/voc#FinancingReceivableTroubledDebtRestructurings,class,none,,
+FOREIGNCURRENCYTRANSLATION,https://example.org/fiben/voc#ForeignCurrencyTranslation,class,none,,
+FORWARDCONTRACTINDEXEDTOISSUERSEQUITY,https://example.org/fiben/voc#ForwardContractIndexedToIssuersEquity,class,none,,
+FRESHSTARTADJUSTMENTS,https://example.org/fiben/voc#FresHstArtAdjustments,class,none,,
+GAINLOSSONINVESTMENTS,https://example.org/fiben/voc#GainLossOnInvestments,class,none,,
+GOODWILL,https://example.org/fiben/voc#Goodwill,class,none,,
+GUARANTEES,https://example.org/fiben/voc#Guarantees,class,none,,
+GUARANTOROBLIGATIONS,https://example.org/fiben/voc#GuarantorObligations,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Guaranty/Guarantor,guarantor
+HELDTOMATURITYSECURITIES,https://example.org/fiben/voc#HeldToMaturitySecurities,class,none,,
+HOLDING,https://example.org/fiben/voc#Holding,class,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/Holding,holding
+IMPAIREDFINANCINGRECEIVABLES,https://example.org/fiben/voc#ImpairedFinancingReceivables,class,none,,
+INCOMETAXCONTINGENCY,https://example.org/fiben/voc#IncomeTaxContingency,class,none,,
+INDEFINITELIVEDINTANGIBLEASSETS,https://example.org/fiben/voc#IndefiniteLivedIntangibleAssets,class,none,,
+INDUSTRYSECTORCLASSIFICATIONSCHEME,https://example.org/fiben/voc#IndustrySectorClassificationScheme,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/ClassificationSchemes/IndustrySectorClassificationScheme,industry sector classification scheme
+INDUSTRYSECTORCLASSIFIER,https://example.org/fiben/voc#IndustrySectorClassifier,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/ClassificationSchemes/IndustrySectorClassifier,industry sector classifier
+INTANGIBLEASSETSANDGOODWILL,https://example.org/fiben/voc#IntangibleAssetsAndGoodwill,class,none,,
+INTERESTANDOTHERINCOME,https://example.org/fiben/voc#InterestAndOtherIncome,class,none,,
+INTERESTCOSTSINCURRED,https://example.org/fiben/voc#InterestCostsIncurred,class,none,,
+INVENTORYCURRENT,https://example.org/fiben/voc#InventoryCurrent,class,none,,
+INVENTORYNONCURRENT,https://example.org/fiben/voc#InventoryNoncurrent,class,none,,
+INVESTMENTINCOME,https://example.org/fiben/voc#InvestmentIncome,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/Income,income
+INVESTMENTSANDOTHERNONCURRENTASSETS,https://example.org/fiben/voc#InvestmentsAndOtherNoncurrentAssets,class,none,,
+LIABILITY,https://example.org/fiben/voc#Liability,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Law/LegalCapacity/LiabilityCapacity,liability capacity
+LINEOFCREDITFACILITY,https://example.org/fiben/voc#LineOfCreditFacility,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/CreditFacility,credit facility
+LISTEDSECURITY,https://example.org/fiben/voc#ListedSecurity,class,exact,https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/ListedSecurity,listed security
+LONGLIVEDASSETSHELDFORSALE,https://example.org/fiben/voc#LongLivedAssetsHeldForSale,class,none,,
+LONGLIVEDASSETSTOBEABANDONED,https://example.org/fiben/voc#LongLivedAssetsToBeAbandoned,class,none,,
+LONGTERMDEBT,https://example.org/fiben/voc#LongTermDebt,class,none,,
+LONGTERMDEBTMATURITIES,https://example.org/fiben/voc#LongTermDebtMaturities,class,none,,
+LONGTERMPURCHASECOMMITMENT,https://example.org/fiben/voc#LongTermPurchaseCommitment,class,none,,
+LOSS,https://example.org/fiben/voc#Loss,class,none,,
+MARKETABLESECURITIES,https://example.org/fiben/voc#MarketableSecurities,class,none,,
+MONETARYAMOUNT,https://example.org/fiben/voc#MonetaryAmount,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount,monetary amount
+NETPERIODICBENEFITCOSTNOTYETRECOGNIZED,https://example.org/fiben/voc#NetPeriodicBenefitCostNotYetRecognized,class,none,,
+NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION,https://example.org/fiben/voc#NewAccountingPronouncementEarlyAdoption,class,none,,
+NONCONTROLLINGINTEREST,https://example.org/fiben/voc#NoncontrollingInterest,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/Interest,interest
+OPERATINGLOSSCARRYFORWARDS,https://example.org/fiben/voc#OperatingLossCarryForwards,class,none,,
+OTHERASSETS,https://example.org/fiben/voc#OtherAssets,class,none,,
+OTHERASSETSANDOTHERLIABILITIES,https://example.org/fiben/voc#OtherAssetsAndOtherLiabilities,class,none,,
+OTHERASSETSDISCLOSURE,https://example.org/fiben/voc#OtherAssetsDisclosure,class,none,,
+OTHERASSETSNONCURRENT,https://example.org/fiben/voc#OtherAssetsNoncurrent,class,none,,
+OTHERLIABILITIESDISCLOSURE,https://example.org/fiben/voc#OtherLiabilitiesDisclosure,class,none,,
+OTHERNONOPERATINGINCOMEEXPENSE,https://example.org/fiben/voc#OtherNonOperatingIncomeExpense,class,none,,
+OTHEROWNERSHIPINTERESTS,https://example.org/fiben/voc#OtherOwnershipInterests,class,none,,
+OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS,https://example.org/fiben/voc#OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings,class,none,,
+PERSON,https://example.org/fiben/voc#Person,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/Person,person
+PHONENUMBER,https://example.org/fiben/voc#PhoneNumber,class,none,,
+POSTALADDRESS,https://example.org/fiben/voc#PostalAddress,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/Address,address
+PREFERREDSTOCK,https://example.org/fiben/voc#PreferredStock,class,none,,
+PRODUCTWARRANTYLIABILITY,https://example.org/fiben/voc#ProductWarrantyLiability,class,none,,
+PROPERTYMANAGEMENTFEE,https://example.org/fiben/voc#PropertyManagementFee,class,none,,
+PROPERTYPLANTANDEQUIPMENT,https://example.org/fiben/voc#PropertyPlantAndEquipment,class,none,,
+PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES,https://example.org/fiben/voc#PropertyPlantAndEquipmentIncomeStatementDisclosures,class,none,,
+PROPERTYPLANTANDEQUIPMENTUSEFULLIVES,https://example.org/fiben/voc#PropertyPlantAndEquipmentUseFullives,class,none,,
+PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE,https://example.org/fiben/voc#PropertySubjectToOrAvailableForOperatingLease,class,none,,
+REALESTATEPROPERTIES,https://example.org/fiben/voc#RealEstateProperties,class,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Places/RealProperty/RealEstate,real estate
+REALIZEDGAINLOSS,https://example.org/fiben/voc#RealizedGainLoss,class,none,,
+REALIZEDGAINLOSSONINVESTMENTS,https://example.org/fiben/voc#RealizedGainLossOnInvestments,class,none,,
+RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED,https://example.org/fiben/voc#ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated,class,none,,
+RECORDEDUNCONDITIONALPURCHASEOBLIGATION,https://example.org/fiben/voc#RecordedUnconditionalPurchaseObligation,class,none,,
+REDEEMABLENONCONTROLLINGINTEREST,https://example.org/fiben/voc#RedeemableNoncontrollingInterest,class,none,,
+RELATEDPARTYTRANSACTIONSBYRELATEDPARTY,https://example.org/fiben/voc#RelatedPartyTransactionsByRelatedParty,class,none,,
+RENTEXPENSE,https://example.org/fiben/voc#RentExpense,class,none,,
+RESTRICTEDCASHANDCASHEQUIVALENTS,https://example.org/fiben/voc#RestrictedCashAndCashEquivalents,class,none,,
+RESTRUCTURINGANDRELATEDCOSTS,https://example.org/fiben/voc#RestructuringAndRelatedCosts,class,none,,
+REVENUE,https://example.org/fiben/voc#Revenue,class,suggested,https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/RevenueBond,revenue bond
+SALELEASEBACKTRANSACTION,https://example.org/fiben/voc#SaleLeaseBackTransaction,class,none,,
+SECURITIESTRANSACTION,https://example.org/fiben/voc#SecuritiesTransaction,class,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/SecuritiesTransaction,securities transaction
+SECURITY,https://example.org/fiben/voc#Security,class,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/Security,security
+SHAREBASEDCOMPENSATIONACTIVITY,https://example.org/fiben/voc#ShareBasedCompensationActivity,class,none,,
+SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE,https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue,class,none,,
+SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE,https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue,class,none,,
+SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE,https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable,class,none,,
+SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE,https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable,class,none,,
+SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST,https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest,class,none,,
+SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY,https://example.org/fiben/voc#ShareBasedCompensationRestrictedStockUnitsAwardActivity,class,none,,
+SHORTTERMDEBT,https://example.org/fiben/voc#ShortTermDebt,class,none,,
+STOCKHOLDERSEQUITY,https://example.org/fiben/voc#StockholdersEquity,class,none,,
+SUBSEQUENTEVENTS,https://example.org/fiben/voc#SubsequentEvents,class,none,,
+TAXCREDITCARRYFORWARD,https://example.org/fiben/voc#TaxCreditCarryForward,class,none,,
+TRADINGSECURITIESANDOTHERTRADINGASSETS,https://example.org/fiben/voc#TradingSecuritiesAndOtherTradingAssets,class,none,,
+TREASURYSTOCK,https://example.org/fiben/voc#TreasuryStock,class,none,,
+UNREALIZEDGAINLOSSONINVESTMENTS,https://example.org/fiben/voc#UnrealizedGainLossOnInvestments,class,none,,
+UNREALIZEDLOSSONINVESTMENTS,https://example.org/fiben/voc#UnrealizedLossOnInvestments,class,none,,
+UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION,https://example.org/fiben/voc#UnrecordedUnconditionalPurchaseObligation,class,none,,
+UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE,https://example.org/fiben/voc#UnrecordedUnconditionalPurchaseObligationsDisclosure,class,none,,
+VALUATIONALLOWANCE,https://example.org/fiben/voc#ValuationAllowance,class,none,,
+VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE,https://example.org/fiben/voc#ValuationAndQualifyingAccountsDisclosure,class,none,,
+VIRTUALADDRESS,https://example.org/fiben/voc#VirtualAddress,class,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/VirtualAddress,virtual address
+WEIGHTEDAVERAGENUMBEROFSHARES,https://example.org/fiben/voc#WeightedAverageNumberOfShares,class,none,,
+HASNAME,https://example.org/fiben/voc#hasName,datatype,suggested,https://spec.edmcouncil.org/fibo/ontology/SEC/Funds/CollectiveInvestmentVehicles/name,name
+ISINDEXTO,https://example.org/fiben/voc#isIndexTo,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/isIndexTo,is index to
+POSTALADDRESS,https://example.org/fiben/voc#postalAddress,object,none,,
+VIRTUALADDRESS,https://example.org/fiben/voc#virtualAddress,object,none,,
+HASCONTRACTPARTY,https://example.org/fiben/voc#hasContractParty,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/hasContractParty,has contract party
+ISMANAGEDBY,https://example.org/fiben/voc#isManagedBy,object,none,,
+HASEFFECTIVEDATE,https://example.org/fiben/voc#hasEffectiveDate,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/hasEffectiveDate,has effective date
+HASPOSITION,https://example.org/fiben/voc#hasPosition,datatype,none,,
+HASEXPIRATIONDATE,https://example.org/fiben/voc#hasExpirationDate,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Documents/hasExpirationDate,has expiration date
+HASTITLE,https://example.org/fiben/voc#hasTitle,datatype,none,,
+ISCLASSIFIEDBY,https://example.org/fiben/voc#isClassifiedBy,object,none,,
+ISDOMICILEDIN,https://example.org/fiben/voc#isDomiciledIn,object,none,,
+HASTICKERSYMBOL,https://example.org/fiben/voc#hasTickerSymbol,datatype,none,,
+HASLEGALNAME,https://example.org/fiben/voc#hasLegalName,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/hasLegalName,has legal name
+HASNUMERICCOUNTRYCODE,https://example.org/fiben/voc#hasNumericCountryCode,datatype,suggested,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasNumericCode,has numeric code
+HASNUMERICCODE,https://example.org/fiben/voc#hasNumericCode,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasNumericCode,has numeric code
+HASCURRENCYNAME,https://example.org/fiben/voc#hasCurrencyName,datatype,suggested,https://spec.edmcouncil.org/fibo/ontology/SEC/Funds/CollectiveInvestmentVehicles/name,name
+HASMINORUNIT,https://example.org/fiben/voc#hasMinorUnit,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasMinorUnit,has minor unit
+HASMETRICYEARCALENDAR,https://example.org/fiben/voc#hasMetricYearCalendar,datatype,none,,
+HASMETRICSTARTDATE,https://example.org/fiben/voc#hasMetricStartDate,datatype,none,,
+HASDOCUMENTTYPE,https://example.org/fiben/voc#hasDocumentType,datatype,none,,
+HASMETRICENDQUARTER,https://example.org/fiben/voc#hasMetricEndQuarter,datatype,none,,
+HASUNIT,https://example.org/fiben/voc#hasUnit,datatype,none,,
+APPLICABLEPERIOD,https://example.org/fiben/voc#applicablePeriod,datatype,none,,
+HASUNIQUEIDENTIFIER,https://example.org/fiben/voc#hasUniqueIdentifier,datatype,none,,
+HASMETRICENDDATE,https://example.org/fiben/voc#hasMetricEndDate,datatype,none,,
+ISCOMPUTED,https://example.org/fiben/voc#isComputed,datatype,none,,
+HASMETRICVALUE,https://example.org/fiben/voc#hasMetricValue,datatype,none,,
+HASMETRICYEARFISCAL,https://example.org/fiben/voc#hasMetricYearFiscal,datatype,none,,
+HASURL,https://example.org/fiben/voc#hasUrl,datatype,none,,
+HASMETRICCONTEXTDIMENSIONS,https://example.org/fiben/voc#hasMetricContextDimensions,datatype,none,,
+HASMETRICSTARTQUARTER,https://example.org/fiben/voc#hasMetricStartQuarter,datatype,none,,
+ISMEMBEROF,https://example.org/fiben/voc#isMemberOf,object,suggested,https://spec.edmcouncil.org/fibo/ontology/BP/SecuritiesIssuance/EquitiesIPOIssuance/syndicateMember,syndicate member
+HASVALUE,https://example.org/fiben/voc#hasValue,datatype,none,,
+ISTRANSFERABLE,https://example.org/fiben/voc#isTransferable,datatype,suggested,https://spec.edmcouncil.org/fibo/ontology/SEC/Funds/CollectiveInvestmentVehicles/holdingTransferable,holding transferable
+ISPROVIDEDBY,https://example.org/fiben/voc#isProvidedBy,object,none,,
+ISOWNEDBY,https://example.org/fiben/voc#isOwnedBy,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/isOwnedBy,is owned by
+HASACCOUNTNUMBER,https://example.org/fiben/voc#hasAccountNumber,datatype,suggested,https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansSpecific/CardAccounts/hasPrimaryAccountNumber,has primary account number
+HASSTARTDATE,https://example.org/fiben/voc#hasStartDate,datatype,none,,
+ISHELDBY,https://example.org/fiben/voc#isHeldBy,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/isHeldBy,is held by
+REFERSTO,https://example.org/fiben/voc#refersTo,object,exact,https://spec.edmcouncil.org/fibo/ontology/BP/SecuritiesIssuance/MuniIssuance/refersTo,refers to
+HASDESCRIPTION,https://example.org/fiben/voc#hasDescription,datatype,none,,
+HASCOUNT,https://example.org/fiben/voc#hasCount,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/hasCount,has count
+ISDEFINEDBY,https://example.org/fiben/voc#isDefinedBy,object,none,,
+HASFORMALNAME,https://example.org/fiben/voc#hasFormalName,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/hasFormalName,has formal name
+HASLASTTRADEDVALUE,https://example.org/fiben/voc#hasLastTradedValue,object,none,,
+HASLISTINGDATE,https://example.org/fiben/voc#hasListingDate,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/hasListingDate,has listing date
+HASCURRENCY,https://example.org/fiben/voc#hasCurrency,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasCurrency,has currency
+HASAMOUNT,https://example.org/fiben/voc#hasAmount,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasAmount,has amount
+HASCITIZENSHIP,https://example.org/fiben/voc#hasCitizenship,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasCitizenship,has citizenship
+HASPLACEOFBIRTH,https://example.org/fiben/voc#hasPlaceOfBirth,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasPlaceOfBirth,has place of birth
+HASGENDER,https://example.org/fiben/voc#hasGender,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasGender,has gender
+HASDATEOFBIRTH,https://example.org/fiben/voc#hasDateOfBirth,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasDateOfBirth,has date of birth
+HASPERSONNAME,https://example.org/fiben/voc#hasPersonName,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasPersonName,has person name
+HASLASTNAME,https://example.org/fiben/voc#hasLastName,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasLastName,has last name
+HASFIRSTNAME,https://example.org/fiben/voc#hasFirstName,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasFirstName,has first name
+HASMIDDLENAMEORINITIAL,https://example.org/fiben/voc#hasMiddleNameOrInitial,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/hasMiddleNameOrInitial,has middle name or initial
+HASCOUNTRY,https://example.org/fiben/voc#hasCountry,object,suggested,https://spec.edmcouncil.org/fibo/ontology/SEC/Funds/CollectiveInvestmentVehicles/authorizedCountry,authorized country
+HASADDRESSLINE1,https://example.org/fiben/voc#hasAddressLine1,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/hasAddressLine1,has address line 1
+HASADDRESSLINE2,https://example.org/fiben/voc#hasAddressLine2,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/hasAddressLine2,has address line 2
+HASCITY,https://example.org/fiben/voc#hasCity,datatype,none,,
+HASPOSTALCODE,https://example.org/fiben/voc#hasPostalCode,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/hasPostalCode,has postal code
+HASSTATE,https://example.org/fiben/voc#hasState,datatype,none,,
+HASPRICE,https://example.org/fiben/voc#hasPrice,object,exact,https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasPrice,has price
+ISFACILITATEDBY,https://example.org/fiben/voc#isFacilitatedBy,object,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/isFacilitatedBy,is facilitated by
+HASTYPE,https://example.org/fiben/voc#hasType,datatype,suggested,https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/SyntheticCDOs/trancheType,tranche type
+HASSETTLEMENTDATE,https://example.org/fiben/voc#hasSettlementDate,datatype,exact,https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/hasSettlementDate,has settlement date
+ISTRADEDON,https://example.org/fiben/voc#isTradedOn,object,exact,https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/isTradedOn,is traded on

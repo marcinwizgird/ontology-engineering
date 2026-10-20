@@ -1,0 +1,703 @@
+<title>NL2SQL Baseline 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="State of the art and realistic expectations for natural-language-to-SQL, with and without ontologies, and the business case for ontology and knowledge-graph building blocks from SIP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~1040px) of numbered findings; each finding = claim, chart, source line. */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --surface-2:#eef1f4;
+  --ink:#121820; --ink-2:#465061; --muted:#6a7483; --line:#dbe0e6;
+  --accent:#0d6b5e; --accent-soft:#e3f1ee;
+  --s-with:#2a78d6; --s-alt:#eb6834; --s-base:#a3abb5; --s-neg:#e34948;
+  --ramp-1:#86b6ef; --ramp-2:#5598e7; --ramp-3:#2a78d6; --ramp-4:#1c5cab;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  --tip-bg:#121820; --tip-ink:#f5f7f9;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1216; --surface:#171b21; --surface-2:#1e232b;
+  --ink:#e9edf2; --ink-2:#b5bdc9; --muted:#8c96a4; --line:#2b313a;
+  --accent:#4fc1a9; --accent-soft:#16302b;
+  --s-with:#3987e5; --s-alt:#d95926; --s-base:#5b636e; --s-neg:#e66767;
+  --ramp-1:#184f95; --ramp-2:#256abf; --ramp-3:#3987e5; --ramp-4:#6da7ec;
+  --tip-bg:#e9edf2; --tip-ink:#121820; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1216; --surface:#171b21; --surface-2:#1e232b;
+  --ink:#e9edf2; --ink-2:#b5bdc9; --muted:#8c96a4; --line:#2b313a;
+  --accent:#4fc1a9; --accent-soft:#16302b;
+  --s-with:#3987e5; --s-alt:#d95926; --s-base:#5b636e; --s-neg:#e66767;
+  --ramp-1:#184f95; --ramp-2:#256abf; --ramp-3:#3987e5; --ramp-4:#6da7ec;
+  --tip-bg:#e9edf2; --tip-ink:#121820; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;padding-block:40px 80px;display:grid;gap:56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.08;font-weight:700}
+h2{font-size:clamp(1.45rem,2.6vw,1.9rem);line-height:1.2;font-weight:700}
+h3{font-size:1.08rem;line-height:1.3;font-weight:700}
+p{margin:0;max-width:68ch}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font:500 .74rem/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--accent)}
+.lede{font-size:1.14rem;color:var(--ink-2);max-width:62ch}
+.stack{display:grid;gap:14px}
+.mono{font-family:var(--f-mono)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+
+/* header */
+header.top{display:grid;gap:18px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;font:.82rem/1.4 var(--f-mono);color:var(--muted)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px}
+nav.toc a{font:500 .8rem/1 var(--f-body);text-decoration:none;color:var(--ink-2);border:1px solid var(--line);padding:7px 11px;border-radius:999px;background:var(--surface)}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* key messages */
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.key{background:var(--surface);padding:20px 20px 22px;display:grid;gap:8px;align-content:start;min-width:0}
+.key .num{font:700 2.1rem/1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.key .num small{font-size:.95rem;font-weight:500;color:var(--muted)}
+.key p{font-size:.95rem;color:var(--ink-2)}
+.key b{color:var(--ink)}
+
+section{display:grid;gap:18px;scroll-margin-top:20px}
+.sec-head{display:grid;gap:8px}
+.figure{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 20px 14px;display:grid;gap:12px;min-width:0}
+.fig-title{font:700 .98rem/1.3 var(--f-body)}
+.fig-sub{font-size:.85rem;color:var(--muted)}
+.chart{position:relative;overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto;min-width:600px}
+.chart svg text{font-family:var(--f-body);fill:var(--ink-2)}
+.chart svg .t-strong{fill:var(--ink);font-weight:600}
+.chart svg .t-mono{font-family:var(--f-mono);fill:var(--ink)}
+.chart svg .t-muted{fill:var(--muted)}
+.chart svg .grid{stroke:var(--line);stroke-width:1}
+.chart svg .axis{stroke:var(--muted);stroke-width:1}
+.chart svg [data-tip]{cursor:default}
+.chart svg [data-tip]:hover{opacity:.82}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.84rem;color:var(--ink-2)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.src{font-size:.8rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+details.data summary{font-size:.8rem;color:var(--accent);cursor:pointer;width:max-content}
+details.data .tbl{margin-top:8px}
+.tip{position:absolute;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);font-size:.8rem;line-height:1.4;padding:8px 10px;border-radius:6px;max-width:300px;z-index:5;box-shadow:0 4px 18px rgb(0 0 0/.18)}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:600 .74rem/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font:500 .7rem/1 var(--f-mono);padding:4px 7px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.pill.vendor{border-color:var(--s-alt);color:var(--s-alt)}
+.pill.ours{border-color:var(--accent);color:var(--accent)}
+.pill.peer{border-color:var(--s-with);color:var(--s-with)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+
+/* two-column say/don't say */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:10px;align-content:start;min-width:0}
+.panel ul{margin:0;padding-left:1.1em;display:grid;gap:8px}
+.panel li{font-size:.94rem;color:var(--ink-2)}
+.panel li b{color:var(--ink)}
+.panel h3 .mark{font-family:var(--f-mono);margin-right:6px}
+.panel.yes h3{color:var(--good)}
+.panel.no h3{color:var(--crit)}
+
+/* fruit list */
+.fruit{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.fruit > div{display:grid;grid-template-columns:2.2rem 1fr minmax(0,15rem);gap:4px 16px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.fruit > div:last-child{border-bottom:0}
+.fruit .k{font:700 1rem/1.4 var(--f-mono);color:var(--accent)}
+.fruit .w{font-size:.82rem;color:var(--muted);font-family:var(--f-mono)}
+.fruit h3{font-size:1rem}
+.fruit p{font-size:.92rem;color:var(--ink-2)}
+@media (max-width:640px){.fruit > div{grid-template-columns:2rem 1fr}.fruit .w{grid-column:2}}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.phase{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.phase .when{font:500 .78rem/1 var(--f-mono);color:var(--muted)}
+.phase ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.9rem;color:var(--ink-2)}
+.gate{font-size:.85rem;background:var(--accent-soft);border-radius:6px;padding:8px 10px;color:var(--ink)}
+.gate b{font-family:var(--f-mono);font-weight:500;color:var(--accent)}
+
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 8px 8px 0;max-width:none}
+.callout p{max-width:80ch}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:4px}
+.kpi b{font:600 .95rem/1.3 var(--f-body)}
+.kpi span{font-size:.86rem;color:var(--ink-2)}
+ol.refs{margin:0;padding-left:1.4em;display:grid;gap:5px;font-size:.84rem;color:var(--ink-2);columns:1}
+footer{font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
+@media (prefers-reduced-motion:no-preference){.chart svg [data-tip]{transition:opacity .12s}}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Executive briefing · Semantic Intelligence Platform</div>
+  <h1>Natural language to SQL: what works in 2026, and where ontologies earn their keep</h1>
+  <p class="lede">A baseline for IT architecture and IT leadership. It sets out what the research and benchmarks actually show, which gains are cheap and proven, what accuracy to plan for, and how SIP's ontology and knowledge-graph building blocks fit in.</p>
+  <div class="meta"><span>Evidence as of 20 Oct 2026</span><span>Sources: 30+ papers, leaderboards and vendor reports, plus our own FIBO measurements</span><span>Every figure is cited at the foot of its chart</span></div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#summary">Summary</a><a href="#benchmarks">Benchmarks</a><a href="#levers">What moves accuracy</a><a href="#semantics">With vs without semantics</a><a href="#failure">Silent errors</a><a href="#approaches">Approaches</a><a href="#expect">Expectations</a><a href="#fruit">Low-hanging fruit</a><a href="#sip">SIP's role</a><a href="#ours">Our evidence</a><a href="#roadmap">Roadmap</a><a href="#sources">Sources</a>
+  </nav>
+</header>
+
+<section id="summary">
+  <div class="sec-head"><div class="eyebrow">Six points to take away</div><h2>Context beats models</h2>
+  <p>Natural-language querying works well wherever the business meaning of the data is already written down, and poorly wherever it is not. The model matters less than the semantics you give it.</p></div>
+  <div class="keys">
+    <div class="key"><div class="num">83% <small>vs 15–50%</small></div><h3>Leaderboards are not your data</h3><p>The best public score on BIRD is 82.95% (humans: 92.96%). On realistic enterprise benchmarks the best systems reach <b>15–50%</b>, and close to 0% on real warehouses (BEAVER).</p></div>
+    <div class="key"><div class="num">+17–40 <small>points</small></div><h3>Curated semantics are the biggest lever</h3><p>Adding written-down business meaning (a glossary, a semantic layer, an ontology with mappings) lifts accuracy by 17–40 points. Within the frontier tier, the choice of model was <b>not statistically significant</b>.</p></div>
+    <div class="key"><div class="num">0 <small>silent errors</small></div><h3>Formal semantics change how systems fail</h3><p>Checkable semantics turn plausible wrong numbers into explained refusals. One 2026 study reported 97.4% correct with <b>zero wrong-but-executed answers</b>, against 55.3% for direct SQL generation.</p></div>
+    <div class="key"><div class="num">53% <small>correct or close</small></div><h3>Production today is a copilot</h3><p>LinkedIn's SQL Bot is rated 53% correct-or-close by experts; Uber cut query authoring from about 10 to 3 minutes. Successful deployments help <b>SQL-literate users</b> and do not yet replace them.</p></div>
+    <div class="key"><div class="num">0% <small>vs 70–100%</small></div><h3>Ontologies win on multi-hop questions</h3><p>A metric-style semantic layer scored 0% on questions that need several entity hops, where it could not express the path. Graph-shaped semantics target exactly these <b>role- and path-sensitive questions</b>.</p></div>
+    <div class="key"><div class="num">11–43 <small>questions</small></div><h3>The ontology evidence is thin</h3><p>Every head-to-head number for ontology or semantic-layer approaches comes from one small, mostly vendor-run insurance benchmark. <b>Measuring on our own data</b> is the most valuable thing we can do.</p></div>
+  </div>
+</section>
+
+<section id="benchmarks">
+  <div class="sec-head"><div class="eyebrow">01 · The state of the art</div><h2>Public benchmarks are near their ceiling; enterprise tasks are not</h2>
+  <p>Clean academic benchmarks have plateaued, gaining 1–2 points a year at the top since late 2024. Benchmarks built from real enterprise conditions (large schemas, company-specific terms, dialects, ambiguous questions) score far lower. The failures there are about knowledge and context, not SQL syntax.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">Best published accuracy by benchmark (%)</div><div class="fig-sub">Execution accuracy or task success rate; hover a bar for detail</div></div>
+    <div class="chart" id="c-bench"></div>
+    <div class="legend"><span><i style="background:var(--s-with)"></i>Best score with independent or third-party support</span><span><i style="background:var(--ramp-1)"></i>Self-reported, undated extension</span><span><i style="background:transparent;border:1.5px dashed var(--ink-2)"></i>Human performance</span></div>
+    <details class="data"><summary>Show data as a table</summary><div class="tbl" id="t-bench"></div></details>
+    <div class="src">Sources: BIRD leaderboard (read 19 Oct 2026); Spider 2.0 leaderboard and arXiv 2411.07763; BenchLM snapshot (Jun 2026); LiveSQLBench; BIRD-Interact arXiv 2510.05318 (ICLR 2026); Falcon arXiv 2510.24762; EntSQL arXiv 2606.03363; BEAVER arXiv 2409.02038. Spider 2.0-Snow scores above 90% are excluded: its gold answers are public and an audit found most of them wrong.</div>
+  </div>
+  <div class="callout"><p><b>The yardsticks themselves are noisy.</b> A 2026 expert audit (CIDR 2026 / PVLDB 19) found wrong gold answers in <b>52.8% of BIRD Mini-Dev</b> and <b>62.8% of auditable Spider 2.0-Snow</b> examples. Re-scoring on corrected labels moved systems by up to 9 ranks. Differences under about 3 points at the top of a leaderboard mean nothing, so leaderboard rank should not drive vendor or model selection.</p></div>
+</section>
+
+<section id="levers">
+  <div class="sec-head"><div class="eyebrow">02 · What actually moves accuracy</div><h2>Grounding and checking beat clever generation</h2>
+  <p>Single-paper ablations give a consistent ranking. The large gains come from giving the model business meaning and real examples. Repair, voting and selection add a few points each. Several popular techniques show no gain with frontier models, and pruning the schema tightly makes results worse.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">Measured change in accuracy from adding each technique (percentage points)</div><div class="fig-sub">Bars show the range reported; deltas come from different papers and models and do not add up</div></div>
+    <div class="chart" id="c-levers"></div>
+    <div class="legend"><span><i style="background:var(--s-with)"></i>Gain</span><span><i style="background:var(--s-neg)"></i>Loss</span><span><i style="background:transparent;border:1.5px solid var(--ink-2);border-radius:2px;transform:rotate(45deg) scale(.8)"></i>No measured effect</span></div>
+    <details class="data"><summary>Show data as a table</summary><div class="tbl" id="t-levers"></div></details>
+    <div class="src">Sources: Cube / Rumiantsau &amp; Fokeev arXiv 2604.25149; data.world arXiv 2311.07509; Google arXiv 2501.12372; CHASE-SQL arXiv 2410.01943; Arctic-Text2SQL-R1 arXiv 2505.20315; DAIL-SQL arXiv 2308.15363; "Death of Schema Linking" arXiv 2408.07702; dbt Labs 2026 benchmark; PICARD arXiv 2109.05093.</div>
+  </div>
+</section>
+
+<section id="semantics">
+  <div class="sec-head"><div class="eyebrow">03 · With and without ontologies</div><h2>Every study shows a large gain from curated semantics</h2>
+  <p>The same pattern repeats across ontologies, semantic layers and even a plain markdown description: once the business meaning is supplied, accuracy jumps. What no study shows yet is an ontology beating a well-built semantic layer, or the reverse, on accuracy alone. The gain comes from having curated semantics at all. The formalism decides what else you get: checkability, reasoning, multi-hop paths and reuse.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">Accuracy without and with curated semantics, same questions (%)</div><div class="fig-sub">Each row is one published comparison; question counts are small, so treat differences under ~10 points as noise</div></div>
+    <div class="chart" id="c-dumb"></div>
+    <div class="legend"><span><i style="background:var(--s-base);border-radius:50%"></i>Raw schema / direct SQL</span><span><i style="background:var(--s-with);border-radius:50%"></i>With curated semantics</span><span><i style="background:transparent;border:2px solid var(--s-with);border-radius:50%"></i>Further step (validation, examples, rules)</span></div>
+    <details class="data"><summary>Show data as a table</summary><div class="tbl" id="t-dumb"></div></details>
+    <div class="src">Sources: data.world (Sequeda, Allemang, Jacob) arXiv 2311.07509 and arXiv 2405.11706; Semantic Path Compilation arXiv 2608.16663; dbt Labs "Semantic layer vs text-to-SQL" (Apr 2026); Cube arXiv 2604.25149; Databricks Genie walkthrough (Feb 2026). All are vendor-run or vendor-adjacent.</div>
+  </div>
+</section>
+
+<section id="failure">
+  <div class="sec-head"><div class="eyebrow">04 · The risk that matters</div><h2>The real cost is the confident wrong number</h2>
+  <p>A query that runs and returns a plausible but wrong figure is worse than no answer, because nobody notices. Accuracy alone hides this. What separates systems for regulated use is how they fail: a validator that checks queries against the ontology converts many silent errors into explained refusals.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">How answers break down: correct, refused, or wrong (%)</div><div class="fig-sub">"Wrong" includes answers that executed and returned the wrong rows</div></div>
+    <div class="chart" id="c-fail"></div>
+    <div class="legend"><span><i style="background:var(--good)"></i>Correct</span><span><i style="background:var(--warn)"></i>Refused / "I don't know"</span><span><i style="background:var(--crit)"></i>Wrong or failed</span></div>
+    <details class="data"><summary>Show data as a table</summary><div class="tbl" id="t-fail"></div></details>
+    <div class="src">Sources: TrustSQL arXiv 2403.15879 (no published method consistently beat abstaining on everything under penalty scoring); data.world arXiv 2311.07509 and 2405.11706; SPC arXiv 2608.16663; our FIBO PoC, no-LLM baseline arm R, validation split (63 questions), measured 19 Oct 2026.</div>
+  </div>
+</section>
+
+<section id="approaches">
+  <div class="sec-head"><div class="eyebrow">05 · The option space</div><h2>Five ways to build it, and what each buys you</h2>
+  <p>These approaches stack rather than compete. Every successful deployment uses a curated context store; the question is how formal, reusable and checkable that store is.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Approach</th><th>Best evidence</th><th>How it fails</th><th>Multi-hop paths</th><th>Reuse beyond BI</th><th>Build &amp; run cost</th></tr></thead>
+    <tbody>
+      <tr><td><b>Raw text-to-SQL</b><br><span class="muted small">Frontier model or generic coding agent over the database schema</span></td><td class="n">64–90% small schemas<br>15–50% enterprise</td><td>Silent wrong numbers; hallucinated tables and columns</td><td>Good when schema is clean</td><td>None</td><td>Lowest start; quality cost grows with schema size</td></tr>
+      <tr><td><b>Context store / metadata RAG</b><br><span class="muted small">Uber QueryGPT, LinkedIn SQL Bot, Pinterest</span></td><td class="n">53% correct or close (LinkedIn)<br>10 → 3 min authoring (Uber)</td><td>Mostly silent; user confirms tables</td><td>As good as the examples</td><td>Low: retrieval index only</td><td>Curation is the main ongoing cost</td></tr>
+      <tr><td><b>Metric semantic layer</b><br><span class="muted small">dbt MetricFlow, Snowflake Cortex, Databricks Genie, LookML</span></td><td class="n">72.7–100% on ACME (dbt)<br>"90%+" vendor claim</td><td>Errors instead of wrong data</td><td><b>0%</b> where the path is not modelled</td><td>Metrics for BI and APIs</td><td>Medium; tied to one vendor's model format</td></tr>
+      <tr><td><b>Ontology + mappings (VKG)</b><br><span class="muted small">OWL + R2RML, Ontop, ontology query check</span></td><td class="n">16.7 → 54.2 → 72% (+8% refusals), GPT-4 era</td><td>Explained refusals when a check fails</td><td>Designed for paths, roles, inheritance</td><td>High: GraphRAG, data products, APIs, regulatory reporting</td><td>Highest start; open standards, no lock-in</td></tr>
+      <tr><td><b>Governed compilation</b><br><span class="muted small">LLM picks governed terms; code builds paths, grain and SQL (SPC)</span></td><td class="n">97.4% vs 55.3% direct SQL (38 questions)</td><td>Zero wrong-but-executed runs</td><td>Graph traversal by construction</td><td>Same as the ontology it compiles from</td><td>Needs the ontology first</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Sources as in sections 03 and 04, plus Uber engineering blog (Sep 2024) and LinkedIn arXiv 2507.14372. The ontology row's best numbers predate current models; nobody has re-run them with 2026 models, which is a gap our PoC is built to close.</p>
+</section>
+
+<section id="expect">
+  <div class="sec-head"><div class="eyebrow">06 · Realistic expectations</div><h2>What accuracy to plan for, by level of semantic investment</h2>
+  <p>These are planning ranges for one well-scoped business domain, derived from the studies above. They are not guarantees, and each organisation should confirm its own numbers on its own questions before promising anything to users.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">Planning range for correct answers on in-scope questions (%)</div><div class="fig-sub">Our synthesis of the published evidence; the dot marks the most likely outcome</div></div>
+    <div class="chart" id="c-tiers"></div>
+    <details class="data"><summary>Show data as a table</summary><div class="tbl" id="t-tiers"></div></details>
+    <div class="src">Anchors: Level 0 from EntSQL, Falcon and LiveSQLBench; level 1 from Cube (+17–23 pp) and dbt raw schema (64.5%); level 2 from Databricks Genie (77% after examples), LinkedIn (53% correct-or-close) and Genie promotion gates (60/70/80%); level 3 from SPC (97.4%), dbt semantic layer (98–100%) and ontology query check (72% + 8% refusals with a 2023 model).</div>
+  </div>
+  <div class="cols">
+    <div class="panel yes"><h3><span class="mark">✓</span>Realistic to promise</h3><ul>
+      <li><b>A copilot</b> that drafts SQL for analysts and shows its interpretation, cutting authoring time by half or more.</li>
+      <li><b>80–95% correct</b> on a scoped domain once its semantics are curated and examples verified, measured on our own questions.</li>
+      <li><b>Explained refusals</b> instead of wrong numbers when a question falls outside the governed vocabulary.</li>
+      <li>Semantics written once and <b>reused</b> by NL querying, BI, GraphRAG and APIs.</li>
+      <li>Low run cost: about <b>US$0.01 and 3 seconds</b> per question for the best 2026 SPARQL system.</li>
+    </ul></div>
+    <div class="panel no"><h3><span class="mark">✗</span>Not realistic yet</h3><ul>
+      <li><b>Unattended, enterprise-wide Q&amp;A</b> for business users with no human review at above 90%.</li>
+      <li>Resolving ambiguous questions on its own: agents ask once where tasks hide four ambiguities (<b>17%</b> on BIRD-Interact).</li>
+      <li>Leaderboard scores carrying over to our schemas, or a newer model fixing missing semantics.</li>
+      <li>An ontology that pays off on <b>simple lookups</b>: frontier text-to-SQL already handles those.</li>
+      <li>Security enforced in the prompt: prompt-to-SQL injection is only stopped by database permissions.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="fruit">
+  <div class="sec-head"><div class="eyebrow">07 · Low-hanging fruit</div><h2>Six proven moves for the first 90 days</h2>
+  <p>Each of these has measured evidence behind it, needs no new platform, and also produces the assets that an ontology later builds on. None of the effort is wasted if we go further.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">Effort against evidence-backed impact</div><div class="fig-sub">Placement is our judgement, informed by the measured deltas in section 02; hover a point for the evidence</div></div>
+    <div class="chart" id="c-matrix"></div>
+    <div class="legend"><span><i style="background:var(--s-with);border-radius:50%"></i>Do now</span><span><i style="background:var(--s-alt);border-radius:50%"></i>Build strategically (SIP)</span><span><i style="background:var(--s-base);border-radius:50%"></i>Skip for now</span></div>
+  </div>
+  <div class="fruit">
+    <div><span class="k">1</span><div class="stack" style="gap:4px"><h3>Describe tables, columns and metrics in plain language</h3><p>A 4 KB markdown description lifted three frontier models by 17–23 points. Start with the 20 metrics people ask about most.</p></div><span class="w">Weeks · data owners + 1 analyst</span></div>
+    <div><span class="k">2</span><div class="stack" style="gap:4px"><h3>Mine query logs for verified examples</h3><p>Uber and LinkedIn found real queries the highest-signal context. One relevant verified example beats a hundred generic ones (+9.3 points for instance-aware examples).</p></div><span class="w">Weeks · analytics engineering</span></div>
+    <div><span class="k">3</span><div class="stack" style="gap:4px"><h3>Build a value and entity index</h3><p>Wrong filter values are a top failure (successful but empty runs). Index names, codes and tickers; removing value retrieval cost 2.9 points.</p></div><span class="w">Days · data engineering</span></div>
+    <div><span class="k">4</span><div class="stack" style="gap:4px"><h3>Create our own evaluation set and promotion gates</h3><p>150–300 real questions with checked answers, scored over several runs and perturbed data. Gate at 60% dev, 70% staging, 80% production, as Genie partners do.</p></div><span class="w">4–6 weeks · business SMEs</span></div>
+    <div><span class="k">5</span><div class="stack" style="gap:4px"><h3>Run every query under the user's own identity</h3><p>Prompt-level restrictions are bypassed by prompt-to-SQL injection (ICSE 2025). Read-only roles, row-level security and query guards in the database are the only reliable control.</p></div><span class="w">Days · platform + security</span></div>
+    <div><span class="k">6</span><div class="stack" style="gap:4px"><h3>Show the interpretation and the SQL</h3><p>Every successful deployment is a copilot. Showing "here is how we read your question" lets users catch metric and time-window mistakes.</p></div><span class="w">Days · product</span></div>
+  </div>
+  <p class="small muted">Skip for now: many-agent pipelines, constrained decoding, aggressive schema pruning, maximum reasoning effort and chasing leaderboard rank. None showed measured value with frontier models; schema pruning cost 2.7–11.6 points, and maximum reasoning effort took 20 s instead of 8 s per question with no gain.</p>
+</section>
+
+<section id="sip">
+  <div class="sec-head"><div class="eyebrow">08 · The business case</div><h2>Where ontologies and knowledge graphs earn their keep, and what SIP provides</h2>
+  <p>The honest case for ontologies is not "higher accuracy on simple questions". It is five things a glossary or a vendor semantic layer does not give you together: checkability, multi-hop paths, reasoning, reuse across consumers, and governance on open standards. SIP is the platform that builds, validates and governs these assets, and the NL query path consumes them.</p></div>
+  <div class="figure">
+    <div><div class="fig-title">An ontology-grounded NL query path, and the SIP lifecycle that feeds it</div><div class="fig-sub">Shaded boxes are SIP building blocks; the others are existing enterprise assets or a hosted model</div></div>
+    <div class="chart" id="c-arch">
+<svg viewBox="0 0 1000 520" role="img" aria-label="Architecture: a business question goes to a semantic context pack, an LLM planner, an ontology query check, then a SPARQL-to-SQL compiler, the enterprise databases and an answer with evidence. Failed checks loop back for repair or end in an explained refusal. Below, the SIP lifecycle from scope to consume produces the semantic assets.">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink-2)"/></marker>
+    <marker id="ahr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--crit)"/></marker>
+  </defs>
+  <style>
+    .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+    .bx.sip{fill:var(--accent-soft);stroke:var(--accent)}
+    .ln{stroke:var(--ink-2);stroke-width:1.6;fill:none}
+    .ln.r{stroke:var(--crit);stroke-dasharray:5 4}
+    .ln.rep{stroke:var(--s-alt);stroke-dasharray:4 3}
+    .bt{font-size:15px;font-weight:700;fill:var(--ink)}
+    .bs{font-size:12.5px;fill:var(--ink-2)}
+    .lab{font-size:12px;fill:var(--muted);font-family:var(--f-mono)}
+    .chip{fill:var(--surface);stroke:var(--line)}
+    .chip.g{fill:var(--accent-soft);stroke:var(--accent)}
+    .ct{font-size:13px;font-weight:700;fill:var(--ink)}
+    .co{font-size:11px;fill:var(--ink-2)}
+    .gt{stroke:var(--crit);stroke-width:2.5}
+  </style>
+  <!-- row 1 -->
+  <rect class="bx" x="20" y="40" width="200" height="96" rx="8"/>
+  <text class="bt" x="36" y="70">Business question</text>
+  <text class="bs" x="36" y="92">plain language, from a</text><text class="bs" x="36" y="109">copilot, BI tool or chat</text>
+
+  <rect class="bx sip" x="270" y="40" width="200" height="96" rx="8"/>
+  <text class="bt" x="286" y="70">Semantic context pack</text>
+  <text class="bs" x="286" y="92">ontology card, glossary,</text><text class="bs" x="286" y="109">value index, verified</text><text class="bs" x="286" y="126">examples</text>
+
+  <rect class="bx" x="520" y="40" width="200" height="96" rx="8"/>
+  <text class="bt" x="536" y="70">LLM planner</text>
+  <text class="bs" x="536" y="92">frontier model chooses</text><text class="bs" x="536" y="109">only governed terms</text>
+
+  <rect class="bx sip" x="770" y="40" width="210" height="96" rx="8"/>
+  <text class="bt" x="786" y="70">Ontology query check</text>
+  <text class="bs" x="786" y="92">domain and range, paths,</text><text class="bs" x="786" y="109">grain, unknown terms</text>
+
+  <line class="ln" x1="220" y1="88" x2="266" y2="88" marker-end="url(#ah)"/>
+  <line class="ln" x1="470" y1="88" x2="516" y2="88" marker-end="url(#ah)"/>
+  <line class="ln" x1="720" y1="88" x2="766" y2="88" marker-end="url(#ah)"/>
+  <path class="ln rep" d="M860,40 C860,8 640,8 640,36" marker-end="url(#ah)"/>
+  <text class="lab" x="700" y="18">repair, at most 2 tries</text>
+
+  <!-- row 2 -->
+  <rect class="bx sip" x="770" y="210" width="210" height="96" rx="8"/>
+  <text class="bt" x="786" y="240">SPARQL → SQL compiler</text>
+  <text class="bs" x="786" y="262">Ontop virtual graph,</text><text class="bs" x="786" y="279">4 SQL dialects, ~5 ms</text>
+
+  <rect class="bx" x="520" y="210" width="200" height="96" rx="8"/>
+  <text class="bt" x="536" y="240">Enterprise databases</text>
+  <text class="bs" x="536" y="262">queried in place, under</text><text class="bs" x="536" y="279">the user's own identity</text>
+
+  <rect class="bx" x="270" y="210" width="200" height="96" rx="8"/>
+  <text class="bt" x="286" y="240">Answer with evidence</text>
+  <text class="bs" x="286" y="262">result, SQL, terms used,</text><text class="bs" x="286" y="279">lineage to source tables</text>
+
+  <rect class="bx" x="20" y="210" width="200" height="96" rx="8" style="stroke:var(--crit)"/>
+  <text class="bt" x="36" y="240">Explained refusal</text>
+  <text class="bs" x="36" y="262">unmapped term or failed</text><text class="bs" x="36" y="279">check: no silent number</text>
+
+  <line class="ln" x1="900" y1="136" x2="900" y2="206" marker-end="url(#ah)"/>
+  <text class="lab" x="908" y="178">passes</text>
+  <line class="ln" x1="770" y1="258" x2="724" y2="258" marker-end="url(#ah)"/>
+  <line class="ln" x1="520" y1="258" x2="474" y2="258" marker-end="url(#ah)"/>
+  <path class="ln r" d="M800,136 V172 H120 V206" marker-end="url(#ahr)"/>
+  <text class="lab" x="470" y="166" style="fill:var(--crit)">fails after repair</text>
+
+  <!-- lifecycle -->
+  <line x1="20" y1="340" x2="980" y2="340" class="grid" style="stroke:var(--line)"/>
+  <text class="lab" x="20" y="368">SIP LIFECYCLE: BUILDS, VALIDATES AND GOVERNS THE SEMANTIC ASSETS ABOVE</text>
+  <g>
+    <rect class="chip" x="20"  y="386" width="94" height="40" rx="6"/><text class="ct" x="67"  y="411" text-anchor="middle">scope</text>
+    <rect class="chip" x="122" y="386" width="94" height="40" rx="6"/><text class="ct" x="169" y="411" text-anchor="middle">acquire</text>
+    <rect class="chip g" x="224" y="386" width="94" height="40" rx="6"/><text class="ct" x="271" y="411" text-anchor="middle">model</text>
+    <rect class="chip g" x="326" y="386" width="94" height="40" rx="6"/><text class="ct" x="373" y="411" text-anchor="middle">validate</text>
+    <rect class="chip" x="428" y="386" width="94" height="40" rx="6"/><text class="ct" x="475" y="411" text-anchor="middle">review</text>
+    <line class="gt" x1="537" y1="378" x2="537" y2="434"/>
+    <rect class="chip g" x="552" y="386" width="94" height="40" rx="6"/><text class="ct" x="599" y="411" text-anchor="middle">populate</text>
+    <rect class="chip" x="654" y="386" width="94" height="40" rx="6"/><text class="ct" x="701" y="411" text-anchor="middle">reason</text>
+    <rect class="chip" x="756" y="386" width="94" height="40" rx="6"/><text class="ct" x="803" y="411" text-anchor="middle">publish</text>
+    <line class="gt" x1="865" y1="378" x2="865" y2="434"/>
+    <rect class="chip g" x="880" y="386" width="100" height="40" rx="6"/><text class="ct" x="930" y="411" text-anchor="middle">consume</text>
+  </g>
+  <g class="co">
+    <text class="co" x="67" y="446" text-anchor="middle">competency</text><text class="co" x="67" y="460" text-anchor="middle">questions</text>
+    <text class="co" x="169" y="446" text-anchor="middle">schemas, logs,</text><text class="co" x="169" y="460" text-anchor="middle">documents</text>
+    <text class="co" x="271" y="446" text-anchor="middle">OWL classes,</text><text class="co" x="271" y="460" text-anchor="middle">SKOS glossary</text>
+    <text class="co" x="373" y="446" text-anchor="middle">131 automated</text><text class="co" x="373" y="460" text-anchor="middle">quality checks</text>
+    <text class="co" x="475" y="446" text-anchor="middle">human</text><text class="co" x="475" y="460" text-anchor="middle">sign-off</text>
+    <text class="co" x="599" y="446" text-anchor="middle">R2RML maps</text><text class="co" x="599" y="460" text-anchor="middle">to databases</text>
+    <text class="co" x="701" y="446" text-anchor="middle">inheritance,</text><text class="co" x="701" y="460" text-anchor="middle">inference</text>
+    <text class="co" x="803" y="446" text-anchor="middle">versioned release,</text><text class="co" x="803" y="460" text-anchor="middle">graph projection</text>
+    <text class="co" x="930" y="446" text-anchor="middle">NL query,</text><text class="co" x="930" y="460" text-anchor="middle">GraphRAG, APIs</text>
+  </g>
+  <text class="lab" x="537" y="490" text-anchor="middle" style="fill:var(--crit)">review gate</text>
+  <text class="lab" x="865" y="490" text-anchor="middle" style="fill:var(--crit)">release gate</text>
+  <text class="lab" x="20" y="510">Agents draft at every stage; their changes stay staged until a validator accepts them and a person approves at each gate.</text>
+</svg>
+    </div>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>What NL querying needs</th><th>Why it matters (evidence)</th><th>SIP building block</th></tr></thead>
+    <tbody>
+      <tr><td><b>Curated, governed business meaning</b></td><td>+17–40 points; the largest measured lever</td><td>OWL and SKOS authoring, competency questions, nine governance roles, change history and undo</td></tr>
+      <tr><td><b>Mappings from meaning to real tables</b></td><td>Lets the model reason in business terms while queries run in place, without copying data</td><td>R2RML mapping with suggestions and validation; export to Ontop</td></tr>
+      <tr><td><b>Query checking and explained refusals</b></td><td>72% correct + 8% refusals vs 16.7% raw; zero silent errors with governed compilation</td><td>Ontology query check (no false positives on 226 gold queries); Ontology Validation Agent with 131 checks</td></tr>
+      <tr><td><b>Deterministic, dialect-safe SQL</b></td><td>Joins, subclass expansion and dialect quirks leave the model's hands</td><td>SPARQL-to-SQL compiler on Ontop, P95 4.5–5.5 ms, four dialects, numeric-precision checks</td></tr>
+      <tr><td><b>Multi-hop and inherited concepts</b></td><td>Metric layers scored 0% on unmodelled paths</td><td>OWL reasoning (e.g. Customer = Retail ∪ Corporate) applied at query time without re-mapping</td></tr>
+      <tr><td><b>Reuse beyond one tool</b></td><td>Curation is the dominant ongoing cost, so it must pay off more than once</td><td>Versioned releases to Fuseki; property-graph projection to FalkorDB for GraphRAG and assistants</td></tr>
+      <tr><td><b>Measurement</b></td><td>Leaderboards mislead; own paired, repeated-run evaluation is the strong evidence</td><td>FIBO NL2Q harness: gold SPARQL, perturbed data instances, wrong-but-executed metric, abstain-everything floor</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p><b>Where the ontology does not pay off.</b> On simple lookups over a clean schema, frontier text-to-SQL reached 64–90% in 2026 and a raw-SQL arm is a serious competitor. The ontology's defensible ground is multi-hop, role- and path-sensitive questions, refusal quality and silent-error rate, and reuse across consumers. We should position and measure it there, and not claim more.</p></div>
+</section>
+
+<section id="ours">
+  <div class="sec-head"><div class="eyebrow">09 · What we have measured ourselves</div><h2>Our FIBO proof of concept: the infrastructure works; the language-model runs are next</h2>
+  <p>Everything that can be measured without a language model has been measured on IBM's FIBEN banking benchmark (152 tables, 11.7 million rows, FIBO-grounded). The billed language-model comparisons are implemented and tested offline, awaiting approval.</p></div>
+  <div class="kpis">
+    <div class="kpi"><span class="pill ours">measured</span><b>95% of gold SQL expressible</b><span>226 of 237 FIBEN gold queries round-trip through SPARQL and Ontop with identical rows.</span></div>
+    <div class="kpi"><span class="pill ours">measured</span><b>4.5–5.5 ms P95 compile</b><span>SPARQL to SQL offline, against a 20 ms target; SQL runs unmodified on DuckDB.</span></div>
+    <div class="kpi"><span class="pill ours">measured</span><b>+16 points from the glossary</b><span>Curated glossary raised term recall from 0.48 to 0.64; the retriever choice moved it by at most 2 points.</span></div>
+    <div class="kpi"><span class="pill ours">measured</span><b>No false alarms from the query check</b><span>Zero flags on 226 accepted gold queries; it reports wrong directions, unknown terms and cross products.</span></div>
+    <div class="kpi"><span class="pill ours">measured</span><b>26 of 26 exact matches on ACME</b><span>The literature's insurance benchmark, rebuilt on our stack, for comparability with published results.</span></div>
+    <div class="kpi"><span class="pill ours">measured</span><b>77.8% wrong-but-executed floor</b><span>A no-LLM heuristic answers confidently and is mostly wrong. Every real arm must beat it on accuracy and on silent errors.</span></div>
+  </div>
+  <p class="small muted">Next: five language-model arms (ontology-grounded, raw text-to-SQL, generic tool-using agent and two variants) over three runs each, with paired statistics. Estimated cost US$160–255 in total for all live runs. Source: <span class="mono">LAB/PoCs/FIBO-NL2Q-at-Scale/RESULTS.md</span> and <span class="mono">LAB/PoCs/SPARQL-2-SQL/README.md</span>, measured 14–19 Oct 2026.</p>
+</section>
+
+<section id="roadmap">
+  <div class="sec-head"><div class="eyebrow">10 · Recommendation</div><h2>Measure first, then build semantics where the measurement says they pay</h2>
+  <p>A staged plan with go/no-go gates keeps the investment tied to evidence. Each phase is useful on its own if we stop there.</p></div>
+  <div class="road">
+    <div class="phase"><span class="when">Phase 0 · weeks 0–6</span><h3>Baseline on our data</h3><ul>
+      <li>Pick one high-value domain and 150–300 real questions from query logs</li>
+      <li>Score raw text-to-SQL, a generic tool-using agent and the abstain-everything floor</li>
+      <li>Ship low-hanging fruit 1, 3, 5 and 6</li></ul>
+      <div class="gate"><b>Gate:</b> baseline accuracy and silent-error rate known, with confidence intervals</div></div>
+    <div class="phase"><span class="when">Phase 1 · weeks 6–16</span><h3>Governed semantics for one domain</h3><ul>
+      <li>Model the domain ontology and glossary in SIP, reusing FIBO where it fits</li>
+      <li>Map it to the source tables; turn on the query check and refusals</li>
+      <li>Compare against phase 0 arms, paired, three runs each</li></ul>
+      <div class="gate"><b>Gate:</b> ≥ 70% in-scope, ≤ 5% wrong-but-executed, a clear win on multi-hop questions</div></div>
+    <div class="phase"><span class="when">Phase 2 · months 4–9</span><h3>Scale and reuse</h3><ul>
+      <li>Extend to two or three adjacent domains on the same ontology</li>
+      <li>Publish to the knowledge graph; reuse in GraphRAG and data-product APIs</li>
+      <li>Monitor accuracy drift on the evaluation set every release</li></ul>
+      <div class="gate"><b>Gate:</b> ≥ 80% in-scope for production, explained refusals out of scope</div></div>
+  </div>
+  <div class="sec-head" style="margin-top:8px"><h3>How we will measure success</h3></div>
+  <div class="kpis">
+    <div class="kpi"><b>Accuracy on our own questions</b><span>Over several runs and perturbed data copies, with paired confidence intervals; never leaderboard rank.</span></div>
+    <div class="kpi"><b>Wrong-but-executed rate</b><span>The headline risk metric: plausible answers that are wrong.</span></div>
+    <div class="kpi"><b>Refusal quality</b><span>Scored against the trivial "abstain on everything" floor, which most published systems fail to beat.</span></div>
+    <div class="kpi"><b>Multi-hop accuracy</b><span>Measured separately, because this is where ontologies should differ from raw SQL.</span></div>
+    <div class="kpi"><b>Time to answer and adoption</b><span>Authoring time saved and weekly active users, as Uber and LinkedIn report.</span></div>
+    <div class="kpi"><b>Cost per question</b><span>Recorded per call; the 2026 benchmark winner ran at about US$0.01.</span></div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="sec-head"><div class="eyebrow">Evidence quality</div><h2>Sources and how far to trust them</h2>
+  <p>Labels: <span class="pill peer">peer-reviewed</span> <span class="pill">leaderboard / preprint</span> <span class="pill vendor">vendor</span> <span class="pill ours">our measurement</span>. Vendor claims such as "100% hallucination-free" (Stardog), "90%+" (Snowflake Cortex Analyst, internal benchmark) and "100%" (AtScale, reusing data.world baselines) carry no independent weight and are not used above.</p></div>
+  <ol class="refs">
+    <li><span class="pill">leaderboard</span> BIRD leaderboard, read 19 Oct 2026 — <a href="https://bird-bench.github.io/">bird-bench.github.io</a></li>
+    <li><span class="pill">leaderboard</span> Spider 2.0 leaderboard and paper — <a href="https://spider2-sql.github.io/">spider2-sql.github.io</a>, <a href="https://arxiv.org/abs/2411.07763">arXiv 2411.07763</a></li>
+    <li><span class="pill peer">peer-reviewed</span> BIRD-Interact, ICLR 2026 — <a href="https://arxiv.org/abs/2510.05318">arXiv 2510.05318</a></li>
+    <li><span class="pill">preprint</span> Falcon — <a href="https://arxiv.org/abs/2510.24762">arXiv 2510.24762</a>; EntSQL — <a href="https://arxiv.org/abs/2606.03363">arXiv 2606.03363</a>; BEAVER — <a href="https://arxiv.org/abs/2409.02038">arXiv 2409.02038</a></li>
+    <li><span class="pill peer">peer-reviewed</span> Annotation-error audit, CIDR 2026 / PVLDB 19 — <a href="https://arxiv.org/abs/2601.08778">arXiv 2601.08778</a></li>
+    <li><span class="pill">preprint</span> CHASE-SQL — <a href="https://arxiv.org/abs/2410.01943">arXiv 2410.01943</a>; long-context study — <a href="https://arxiv.org/abs/2501.12372">arXiv 2501.12372</a>; "Death of Schema Linking" — <a href="https://arxiv.org/abs/2408.07702">arXiv 2408.07702</a></li>
+    <li><span class="pill peer">peer-reviewed</span> Arctic-Text2SQL-R1, ACL Findings 2026 — <a href="https://arxiv.org/abs/2505.20315">arXiv 2505.20315</a>; TrustSQL — <a href="https://arxiv.org/abs/2403.15879">arXiv 2403.15879</a>; P2SQL injection, ICSE 2025 — <a href="https://arxiv.org/abs/2308.01990">arXiv 2308.01990</a></li>
+    <li><span class="pill vendor">vendor</span> data.world KG benchmark — <a href="https://arxiv.org/abs/2311.07509">arXiv 2311.07509</a>; ontology query check — <a href="https://arxiv.org/abs/2405.11706">arXiv 2405.11706</a></li>
+    <li><span class="pill vendor">vendor-adjacent</span> Semantic Path Compilation — <a href="https://arxiv.org/abs/2608.16663">arXiv 2608.16663</a>; Cube paired benchmark — <a href="https://arxiv.org/abs/2604.25149">arXiv 2604.25149</a></li>
+    <li><span class="pill vendor">vendor</span> dbt Labs, semantic layer vs text-to-SQL 2026 — <a href="https://docs.getdbt.com/blog/semantic-layer-vs-text-to-sql-2026">docs.getdbt.com</a>; Databricks Genie walkthrough — <a href="https://www.databricks.com/blog/how-build-production-ready-genie-spaces-and-build-trust-along-way">databricks.com</a></li>
+    <li><span class="pill">practitioner</span> Uber QueryGPT — <a href="https://www.uber.com/en-us/blog/query-gpt/">uber.com</a>; LinkedIn SQL Bot — <a href="https://arxiv.org/abs/2507.14372">arXiv 2507.14372</a></li>
+    <li><span class="pill">preprint</span> SPARQL-LLM, TEXT2SPARQL 2026 winner — <a href="https://arxiv.org/abs/2512.14277">arXiv 2512.14277</a>; ATHENA++ on FIBEN, PVLDB 13 — <a href="https://www.vldb.org/pvldb/vol13/p2747-sen.pdf">vldb.org</a></li>
+    <li><span class="pill ours">ours</span> NL2Query state of the art 2026 (full evidence review); FIBO NL2Q at scale results; SPARQL-2-SQL PoC report — in this repository</li>
+  </ol>
+</section>
+
+<footer>Prepared for IT architecture and IT leadership, 20 October 2026. Figures are reproduced from the cited sources; planning ranges in section 06 and the placement in section 07 are our synthesis and are labelled as such.</footer>
+</div>
+
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const tip=document.getElementById('tip');
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function svg(w,h,inner,label){return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">${inner}</svg>`}
+function T(x,y,s,cls,anchor,extra){return `<text x="${x}" y="${y}"${cls?` class="${cls}"`:''}${anchor?` text-anchor="${anchor}"`:''} ${extra||''}>${esc(s)}</text>`}
+function table(id,head,rows){
+  const el=document.getElementById(id); if(!el) return;
+  el.innerHTML='<table><thead><tr>'+head.map(h=>`<th>${esc(h)}</th>`).join('')+'</tr></thead><tbody>'+
+    rows.map(r=>'<tr>'+r.map((c,i)=>`<td${i>0&&/^[\-−≈+0-9]/.test(String(c))?' class="n"':''}>${esc(c)}</td>`).join('')+'</tr>').join('')+'</tbody></table>';
+}
+function bindTips(container){
+  container.addEventListener('mousemove',e=>{
+    const t=e.target.closest('[data-tip]');
+    if(!t){tip.hidden=true;return}
+    tip.innerHTML=t.getAttribute('data-tip');
+    tip.hidden=false;
+    const pad=14, r=tip.getBoundingClientRect();
+    let x=e.pageX+pad, y=e.pageY+pad;
+    if(x+r.width>window.scrollX+document.documentElement.clientWidth-8) x=e.pageX-r.width-pad;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  });
+  container.addEventListener('mouseleave',()=>{tip.hidden=true});
+}
+document.body.style.position='relative';
+
+/* 1. Benchmarks */
+(function(){
+  const rows=[
+    {g:'Clean public benchmarks'},
+    {l:'Spider 1.0',v:91.2,d:'≈91',n:'Saturated since 2023–24 (MiniSeek 91.2; one list records 91.6)'},
+    {l:'BIRD (test)',v:82.95,d:'82.95',human:92.96,n:'GrainSQL, 26 Sep 2026, leaderboard only. Best with a paper: Agentar-Scale-SQL 81.67. Humans 92.96.'},
+    {g:'Enterprise-realistic benchmarks'},
+    {l:'Spider 2.0-Lite',v:52.9,hi:76.23,d:'52.9 – 76.2',n:'52.9 third-party snapshot (Jun 2026). 76.23 self-reported on the leaderboard, undated (read 19 Oct 2026). Published research best in 2025: 36.6.'},
+    {l:'Falcon (enterprise dialect)',v:50,d:'≤ 50',n:'Ant Group, MaxCompute dialect: state-of-the-art models capped at about 50%; errors in schema linking and colloquial-to-aggregate mapping.'},
+    {l:'LiveSQLBench',v:48.0,d:'48.0',n:'Top entry (C3 AI DIA, May 2026). Frontier models cluster at 36–41%. Contamination-resistant.'},
+    {l:'BIRD-Interact (agentic)',v:17.0,d:'17.0',n:'GPT-5, ICLR 2026. Over 80% of failures came from unresolved ambiguity.'},
+    {l:'EntSQL (English)',v:15.9,d:'15.9',n:'Enterprise-knowledge benchmark, June 2026.'},
+    {l:'BEAVER (real warehouses)',v:0.6,d:'≈ 0',n:'Off-the-shelf LLMs on real enterprise data warehouses.'}
+  ];
+  const W=760,L=210,R=700,rowH=34,gH=30;
+  const x=v=>L+(R-L)*v/100;
+  let y=28,inner='',marks='';
+  [0,25,50,75,100].forEach(t=>{inner+=`<line class="grid" x1="${x(t)}" x2="${x(t)}" y1="14" y2="__H"/>`+T(x(t),12,t+'%','t-muted','middle','font-size="11"')});
+  rows.forEach(r=>{
+    if(r.g){y+=8;inner+=T(0,y+12,r.g.toUpperCase(),'t-muted','', 'font-size="11" letter-spacing=".08em" style="font-family:var(--f-mono)"');y+=gH-8;return}
+    const cy=y+rowH/2, bh=16, tipTxt=`<b>${esc(r.l)}</b><br>${esc(r.n)}`;
+    inner+=T(L-12,cy+5,r.l,'t-strong','end','font-size="13"');
+    if(r.hi) marks+=`<rect data-tip="${esc(tipTxt)}" x="${x(r.v)+2}" y="${cy-bh/2}" width="${x(r.hi)-x(r.v)-2}" height="${bh}" rx="4" style="fill:var(--ramp-1)"/>`;
+    marks+=`<rect data-tip="${esc(tipTxt)}" x="${L}" y="${cy-bh/2}" width="${Math.max(3,x(r.v)-L)}" height="${bh}" rx="4" style="fill:var(--s-with)"/>`;
+    if(r.human){marks+=`<line x1="${x(r.human)}" x2="${x(r.human)}" y1="${cy-15}" y2="${cy+15}" style="stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:3 2"/>`+T(x(r.human)+5,cy-6,'human 93','t-muted','','font-size="11"');}
+    marks+=T(x(r.hi||r.v)+8,cy+4.5,r.d,'t-mono','','font-size="12"');
+    y+=rowH;
+  });
+  const H=y+10;
+  document.getElementById('c-bench').innerHTML=svg(W,H,inner.replace(/__H/g,H-6)+marks,'Bar chart of best accuracy: Spider 1.0 about 91, BIRD 82.95 with humans at 93; enterprise benchmarks Spider 2.0-Lite 52.9 to 76.2, Falcon at most 50, LiveSQLBench 48, BIRD-Interact 17, EntSQL 15.9, BEAVER about 0.');
+  table('t-bench',['Benchmark','Best (%)','Note'],rows.filter(r=>!r.g).map(r=>[r.l,r.d,r.n]));
+  bindTips(document.getElementById('c-bench'));
+})();
+
+/* 2. Levers */
+(function(){
+  const rows=[
+    {l:'Ontology + mappings instead of raw tables',lo:37.5,hi:37.5,s:'data.world 2023, GPT-4 zero-shot: 16.7 → 54.2 (43 questions)'},
+    {l:'Curated semantics document in context',lo:17,hi:23,s:'Cube 2026: 4 KB markdown, Opus 4.7 / Sonnet 4.6 / GPT-5.4, 100 questions'},
+    {l:'External knowledge and hints',lo:16.4,hi:16.4,s:'Google 2025: 43.87 → 60.23, Gemini 1.5 Pro, BIRD dev. Largest single gain.'},
+    {l:'Instance-aware synthetic examples',lo:9.3,hi:9.3,s:'CHASE-SQL, as a single generator, BIRD dev'},
+    {l:'RL with execution reward (open models)',lo:5,hi:6,s:'Arctic-Text2SQL-R1: over synthetic fine-tuning at matched size'},
+    {l:'Trained candidate selector',lo:4.2,hi:4.2,s:'CHASE-SQL vs self-consistency; best-candidate ceiling is ~10 points higher still'},
+    {l:'Execution-guided fixer',lo:0.9,hi:3.8,s:'CHASE-SQL; Maamari et al.'},
+    {l:'Value retrieval (literal grounding)',lo:0.4,hi:2.9,s:'−2.92 when removed (CHASE-SQL); only +0.4 on RL-trained models'},
+    {l:'Majority voting',lo:0.4,hi:2.5,s:'DAIL-SQL, OmniSQL, Arctic; under 1 point on RL models'},
+    {l:'100 generic retrieved examples',lo:0.9,hi:0.9,s:'Google 2025: 0 → 100 generic examples. One relevant example lifts to ~78%.'},
+    {l:'Automatic disambiguation',lo:0.7,hi:0.7,s:'Google 2025, non-interactive'},
+    {l:'Maximum reasoning effort',lo:0,hi:0,z:1,s:'dbt 2026: no gain, >20 s per query instead of 8 s'},
+    {l:'Constrained decoding (frontier models)',lo:0,hi:0,z:1,s:'Decisive for small T5 models (PICARD); no evidence of gain with frontier models'},
+    {l:'Tight schema pruning',lo:-11.6,hi:-2.7,s:'"Death of Schema Linking": every variant lowered accuracy for GPT-4o-ft, Gemini and Llama-405B'}
+  ];
+  const W=760,L=290,R=710,lo=-15,hi=40,rowH=28;
+  const x=v=>L+(R-L)*(v-lo)/(hi-lo);
+  let inner='',marks='',y=24;
+  [-10,0,10,20,30,40].forEach(t=>{inner+=`<line class="${t===0?'axis':'grid'}" x1="${x(t)}" x2="${x(t)}" y1="16" y2="__H"/>`+T(x(t),12,(t>0?'+':'')+t,'t-muted','middle','font-size="11"')});
+  rows.forEach(r=>{
+    const cy=y+rowH/2,tipTxt=`<b>${esc(r.l)}</b><br>${esc(r.s)}`;
+    inner+=T(L-12,cy+4.5,r.l,'','end','font-size="12.5"');
+    const lab=r.z?'≈ 0':(r.lo===r.hi?(r.lo>0?'+':'')+r.lo:(r.lo>0?'+':'')+r.lo+' to '+(r.hi>0?'+':'')+r.hi);
+    if(r.z){marks+=`<rect data-tip="${esc(tipTxt)}" x="${x(0)-5}" y="${cy-5}" width="10" height="10" transform="rotate(45 ${x(0)} ${cy})" style="fill:var(--surface);stroke:var(--ink-2);stroke-width:1.5"/>`;marks+=T(x(0)+12,cy+4.5,lab,'t-mono','','font-size="11.5"');}
+    else if(r.hi<0){const a=x(r.lo),b=x(r.hi);marks+=`<rect data-tip="${esc(tipTxt)}" x="${a}" y="${cy-7}" width="${b-a}" height="14" rx="4" style="fill:var(--s-neg)"/>`;marks+=T(x(0)+8,cy+4.5,lab,'t-mono','','font-size="11.5"');}
+    else{const a=r.lo===r.hi?x(0):x(r.lo),b=x(r.hi);
+      if(r.lo!==r.hi) marks+=`<rect x="${x(0)}" y="${cy-1}" width="${a-x(0)}" height="2" style="fill:var(--s-with);opacity:.45"/>`;
+      marks+=`<rect data-tip="${esc(tipTxt)}" x="${a}" y="${cy-7}" width="${Math.max(4,b-a)}" height="14" rx="4" style="fill:var(--s-with)"/>`;marks+=T(b+8,cy+4.5,lab,'t-mono','','font-size="11.5"');}
+    y+=rowH;
+  });
+  const H=y+8;
+  document.getElementById('c-levers').innerHTML=svg(W,H,inner.replace(/__H/g,H-4)+marks,'Range chart of accuracy deltas by technique; curated semantics and knowledge add 16 to 37 points, examples about 9, selection and repair 1 to 4, several techniques about zero, and tight schema pruning minus 3 to minus 12.');
+  table('t-levers',['Technique','Change (pp)','Setting and source'],rows.map(r=>[r.l,r.z?'≈0':(r.lo===r.hi?String(r.lo):r.lo+' to '+r.hi),r.s]));
+  bindTips(document.getElementById('c-levers'));
+})();
+
+/* 3. Dumbbell */
+(function(){
+  const rows=[
+    {l:'data.world KG, GPT-4 (2023–24)',n:'43 questions',base:16.7,with:54.2,extra:[{v:72,lab:'72 + query check'}],s:'Raw SQL 16.7%; ontology + R2RML knowledge graph 54.2%; adding the ontology query check and repair: 72% correct, 8% "I don\'t know".'},
+    {l:'Semantic Path Compilation (2026)',n:'38 questions × 3 runs',base:55.3,with:97.4,s:'Direct DDL → SQL correct on all runs for 21/38; SPC 37/38 with zero wrong-but-executed runs. McNemar p ≈ 3×10⁻⁵.'},
+    {l:'dbt semantic layer, original schema (2026)',n:'11 questions × 20 runs',base:64.5,with:72.7,s:'Frontier text-to-SQL 64.5% vs semantic layer 72.7%. The layer scored 0% on many-hop questions it could not express.'},
+    {l:'dbt, after 3 extra modelled tables (2026)',n:'11 questions × 20 runs',base:90.0,with:98.2,s:'Text-to-SQL 90.0% (Sonnet) vs semantic layer 98.2%; GPT-5.3 Codex 84.1% vs 100%.'},
+    {l:'Cube, markdown description (2026)',n:'100 questions',base:48.0,with:68.2,s:'45.5–50.5% → 67.7–68.7% across three frontier models; model choice not significant once semantics supplied. Midpoints shown.'},
+    {l:'Databricks Genie walkthrough (2026)',n:'13 questions, illustrative',base:0,with:54,extra:[{v:77,lab:'+ example SQL'},{v:100,lab:'+ rules'}],s:'0% with cryptic names → 54% with metadata and keys → 77% with example SQL → 100% with text instructions.'}
+  ];
+  const W=760,L=300,R=730,rowH=52;
+  const x=v=>L+(R-L)*v/100;
+  let inner='',marks='',y=26;
+  [0,25,50,75,100].forEach(t=>{inner+=`<line class="grid" x1="${x(t)}" x2="${x(t)}" y1="16" y2="__H"/>`+T(x(t),12,t+'%','t-muted','middle','font-size="11"')});
+  rows.forEach(r=>{
+    const cy=y+rowH/2,tipTxt=`<b>${esc(r.l)}</b><br>${esc(r.s)}`;
+    inner+=T(L-14,cy-2,r.l,'t-strong','end','font-size="12.5"')+T(L-14,cy+13,r.n,'t-muted','end','font-size="11"');
+    const top=Math.max(r.with,...(r.extra||[]).map(e=>e.v));
+    marks+=`<line x1="${x(r.base)}" x2="${x(r.with)}" y1="${cy}" y2="${cy}" style="stroke:var(--s-with);stroke-width:2"/>`;
+    if(r.extra) marks+=`<line x1="${x(r.with)}" x2="${x(top)}" y1="${cy}" y2="${cy}" style="stroke:var(--s-with);stroke-width:2;stroke-dasharray:3 3"/>`;
+    marks+=`<g data-tip="${esc(tipTxt)}"><rect x="${x(r.base)-8}" y="${cy-12}" width="${x(top)-x(r.base)+16}" height="24" style="fill:transparent"/>`;
+    marks+=`<circle cx="${x(r.base)}" cy="${cy}" r="6.5" style="fill:var(--s-base);stroke:var(--surface);stroke-width:2"/>`;
+    marks+=`<circle cx="${x(r.with)}" cy="${cy}" r="6.5" style="fill:var(--s-with);stroke:var(--surface);stroke-width:2"/>`;
+    (r.extra||[]).forEach(e=>{marks+=`<circle cx="${x(e.v)}" cy="${cy}" r="5.5" style="fill:var(--surface);stroke:var(--s-with);stroke-width:2"/>`});
+    marks+='</g>';
+    marks+=T(x(r.base),cy-11,r.base,'t-mono','middle','font-size="11"');
+    marks+=T(x(r.with),cy-11,r.with,'t-mono','middle','font-size="11"');
+    (r.extra||[]).forEach(e=>{marks+=T(x(e.v),cy+21,e.lab,'t-muted',e.v>=95?'end':'middle','font-size="10.5"')});
+    y+=rowH;
+  });
+  const H=y+8;
+  document.getElementById('c-dumb').innerHTML=svg(W,H,inner.replace(/__H/g,H-4)+marks,'Dumbbell chart: in every study accuracy rises when curated semantics are added, e.g. 16.7 to 54.2 to 72, 55.3 to 97.4, 64.5 to 72.7, 90 to 98.2, 48 to 68, and 0 to 100 in an illustrative walkthrough.');
+  table('t-dumb',['Study','Questions','Without (%)','With (%)','Further steps'],rows.map(r=>[r.l,r.n,String(r.base),String(r.with),(r.extra||[]).map(e=>e.v+' ('+e.lab+')').join('; ')||'—']));
+  bindTips(document.getElementById('c-dumb'));
+})();
+
+/* 4. Failure modes */
+(function(){
+  const rows=[
+    {l:'Abstain on everything',n:'trivial reference',c:0,a:100,w:0,s:'Never wrong, never useful. Under TrustSQL penalty scoring no published method consistently beat it.'},
+    {l:'No-LLM heuristic (our PoC floor)',n:'FIBEN, 63 questions',c:7.9,a:14.3,w:77.8,s:'Our arm R: 7.9% correct, 12.7% refused + 1.6% failed, 77.8% wrong-but-executed.'},
+    {l:'GPT-4 writing SQL on raw tables',n:'ACME, 2023',c:16.7,a:0,w:83.3,s:'data.world zero-shot baseline; the remainder is wrong or failed queries.'},
+    {l:'GPT-4 + ontology, query check, repair',n:'ACME, 2024',c:72,a:8,w:20,s:'Ontology-based query check flags inconsistent SPARQL; the LLM repairs or says "I don\'t know".'},
+    {l:'Governed path compilation',n:'ACME, 2026, 38 questions',c:97.4,a:2.6,w:0,s:'37/38 correct on all three runs, one refusal, zero wrong-but-executed runs.'}
+  ];
+  const W=760,L=270,R=730,rowH=46,bh=22;
+  const x=v=>L+(R-L)*v/100;
+  let inner='',marks='',y=8;
+  rows.forEach(r=>{
+    const cy=y+rowH/2;
+    inner+=T(L-14,cy-2,r.l,'t-strong','end','font-size="12.5"')+T(L-14,cy+13,r.n,'t-muted','end','font-size="11"');
+    let acc=0;
+    [['c','var(--good)','Correct'],['a','var(--warn)','Refused'],['w','var(--crit)','Wrong or failed']].forEach(([k,col,name])=>{
+      const v=r[k]; if(v<=0) return;
+      const x0=x(acc)+(acc>0?1:0), x1=x(acc+v)-(acc+v<100?1:0);
+      marks+=`<rect data-tip="${esc('<b>'+r.l+'</b><br>'+name+': '+v+'%<br>'+r.s)}" x="${x0}" y="${cy-bh/2}" width="${Math.max(2,x1-x0)}" height="${bh}" rx="3" style="fill:${col}"/>`;
+      if(x1-x0>40) marks+=`<text x="${(x0+x1)/2}" y="${cy+4.5}" text-anchor="middle" style="font-family:var(--f-mono);font-size:11.5px;fill:${k==='a'?'#121820':'#ffffff'}">${v}%</text>`;
+      acc+=v;
+    });
+    y+=rowH;
+  });
+  [0,50,100].forEach(t=>{inner+=T(x(t),y+12,t+'%','t-muted','middle','font-size="11"')});
+  const H=y+20;
+  document.getElementById('c-fail').innerHTML=svg(W,H,inner+marks,'Stacked bars of correct, refused and wrong answers: raw SQL and heuristics are mostly wrong; ontology query check gives 72 correct, 8 refused, 20 wrong; governed compilation 97.4 correct, 2.6 refused, 0 wrong.');
+  table('t-fail',['System','Setting','Correct %','Refused %','Wrong or failed %'],rows.map(r=>[r.l,r.n,String(r.c),String(r.a),String(r.w)]));
+  bindTips(document.getElementById('c-fail'));
+})();
+
+/* 5. Tiers */
+(function(){
+  const rows=[
+    {l:'Level 0 · Raw schema',d:'Frontier model or agent on undocumented tables',lo:15,hi:50,m:35,col:'var(--ramp-1)'},
+    {l:'Level 1 · Documented',d:'+ descriptions, business glossary, metric definitions',lo:45,hi:70,m:60,col:'var(--ramp-2)'},
+    {l:'Level 2 · Curated context',d:'+ verified examples, value index, evaluation gates',lo:60,hi:85,m:75,col:'var(--ramp-3)'},
+    {l:'Level 3 · Governed semantics',d:'+ ontology, mappings, query check, compiled SQL',lo:80,hi:98,m:90,col:'var(--ramp-4)',note:'and explained refusals out of scope'}
+  ];
+  const W=760,L=300,R=730,rowH=50;
+  const x=v=>L+(R-L)*v/100;
+  let inner='',marks='',y=26;
+  [0,25,50,75,100].forEach(t=>{inner+=`<line class="grid" x1="${x(t)}" x2="${x(t)}" y1="16" y2="__H"/>`+T(x(t),12,t+'%','t-muted','middle','font-size="11"')});
+  rows.forEach(r=>{
+    const cy=y+rowH/2,tipTxt=`<b>${esc(r.l)}</b><br>${esc(r.d)}<br>Planning range ${r.lo}–${r.hi}%`;
+    inner+=T(L-14,cy-2,r.l,'t-strong','end','font-size="12.5"')+T(L-14,cy+13,r.d,'t-muted','end','font-size="10.5"');
+    marks+=`<rect data-tip="${esc(tipTxt)}" x="${x(r.lo)}" y="${cy-9}" width="${x(r.hi)-x(r.lo)}" height="18" rx="4" style="fill:${r.col}"/>`;
+    marks+=`<circle cx="${x(r.m)}" cy="${cy}" r="5" style="fill:var(--surface);stroke:var(--ink);stroke-width:2;pointer-events:none"/>`;
+    marks+=T(x(r.lo)-6,cy+4,r.lo+'','t-mono','end','font-size="11"')+T(x(r.hi)+6,cy+4,r.hi+'','t-mono','','font-size="11"');
+    y+=rowH;
+  });
+  const H=y+8;
+  document.getElementById('c-tiers').innerHTML=svg(W,H,inner.replace(/__H/g,H-4)+marks,'Planning ranges: level 0 raw schema 15 to 50 percent; level 1 documented 45 to 70; level 2 curated context 60 to 85; level 3 governed semantics 80 to 98 with explained refusals.');
+  table('t-tiers',['Level','What is added','Range (%)','Likely (%)'],rows.map(r=>[r.l,r.d,r.lo+'–'+r.hi,String(r.m)]));
+  bindTips(document.getElementById('c-tiers'));
+})();
+
+/* 6. Effort / impact matrix */
+(function(){
+  const pts=[
+    {e:1.2,i:8.8,k:'now',l:['Describe tables, columns and metrics'],s:'+17–23 pp from a 4 KB description (Cube 2026)'},
+    {e:2.6,i:7.9,k:'now',l:['Mine query logs for verified examples'],s:'Highest-signal context at Uber and LinkedIn; +9.3 pp for instance-aware examples'},
+    {e:3.0,i:6.6,k:'now',l:['Own evaluation set','and promotion gates'],s:'Gates at 60/70/80%; the only reliable way to choose between options'},
+    {e:1.8,i:5.9,k:'now',l:['Value and entity index'],s:'−2.9 pp when removed (CHASE-SQL); wrong filter values are a top failure at Uber'},
+    {e:1.4,i:4.8,k:'now',l:["Run SQL under the user's","identity, add query guards"],s:'Only database permissions stop prompt-to-SQL injection (ICSE 2025)'},
+    {e:2.2,i:3.8,k:'now',l:['Show interpretation and SQL to the user'],s:'Every successful deployment is a copilot; users catch metric and time-window errors'},
+    {e:7.4,i:8.6,k:'sip',l:['Governed ontology','+ mappings (VKG)'],s:'+37.5 pp over raw SQL (2023); paths, inheritance and reuse across consumers'},
+    {e:6.0,i:7.2,k:'sip',l:['Ontology query check','and explained refusals'],s:'72% correct + 8% refusals; zero silent errors with governed compilation'},
+    {e:5.4,i:6.0,k:'sip',l:['Synthetic examples','from the ontology'],s:'Deciding lever of the TEXT2SPARQL 2026 winner; +9.3 pp in CHASE-SQL'},
+    {e:8.2,i:4.6,k:'skip',l:['Fine-tune or RL our own model'],s:'+5–6 pp for open models; does not transfer to enterprise SQL (10–16% on Spider 2.0)',a:'end'},
+    {e:7.0,i:2.2,k:'skip',l:['Many-agent pipelines'],s:'No measured value with frontier models; format details mattered more'},
+    {e:4.6,i:1.2,k:'skip',l:['Constrained decoding'],s:'No evidence of gain with frontier models'},
+    {e:3.8,i:0.6,k:'skip',l:['Tight schema pruning (hurts)'],s:'−2.7 to −11.6 pp'},
+    {e:1.0,i:1.4,k:'skip',l:['Maximum reasoning effort'],s:'No gain; 20 s instead of 8 s per query (dbt 2026)'}
+  ];
+  const W=760,H=460,X0=70,X1=730,Y0=30,Y1=410;
+  const x=v=>X0+(X1-X0)*v/10, y=v=>Y1-(Y1-Y0)*v/10;
+  const col={now:'var(--s-with)',sip:'var(--s-alt)',skip:'var(--s-base)'};
+  const kname={now:'Do now',sip:'Build strategically (SIP)',skip:'Skip for now'};
+  let g=`<rect x="${X0}" y="${Y0}" width="${X1-X0}" height="${Y1-Y0}" style="fill:none;stroke:var(--line)"/>`;
+  g+=`<line class="grid" x1="${x(5)}" x2="${x(5)}" y1="${Y0}" y2="${Y1}" style="stroke-dasharray:4 4"/><line class="grid" x1="${X0}" x2="${X1}" y1="${y(5)}" y2="${y(5)}" style="stroke-dasharray:4 4"/>`;
+  g+=T(X0+8,Y0+16,'QUICK WINS','t-muted','','font-size="11" letter-spacing=".08em"')+T(X1-8,Y0+16,'STRATEGIC BUILDS','t-muted','end','font-size="11" letter-spacing=".08em"');
+  g+=T(X0+8,Y1-8,'HYGIENE','t-muted','','font-size="11" letter-spacing=".08em"')+T(X1-8,Y1-8,'AVOID FOR NOW','t-muted','end','font-size="11" letter-spacing=".08em"');
+  g+=T((X0+X1)/2,H-14,'Effort to build and maintain →','t-muted','middle','font-size="12"');
+  g+=`<text x="18" y="${(Y0+Y1)/2}" transform="rotate(-90 18 ${(Y0+Y1)/2})" text-anchor="middle" class="t-muted" font-size="12">Evidence-backed impact →</text>`;
+  pts.forEach(p=>{
+    const cx=x(p.e),cy=y(p.i),tipTxt=`<b>${esc(p.l.join(' '))}</b><br>${esc(kname[p.k])}<br>${esc(p.s)}`;
+    g+=`<g data-tip="${esc(tipTxt)}"><circle cx="${cx}" cy="${cy}" r="14" style="fill:transparent"/><circle cx="${cx}" cy="${cy}" r="6.5" style="fill:${col[p.k]};stroke:var(--surface);stroke-width:2"/></g>`;
+    const end=p.a==='end', tx=end?cx-11:cx+11;
+    p.l.forEach((ln,j)=>{g+=T(tx,cy+4+j*14,ln,p.k==='skip'?'t-muted':'t-strong',end?'end':'','font-size="12" style="pointer-events:none"')});
+  });
+  document.getElementById('c-matrix').innerHTML=svg(W,H,g,'Effort versus impact matrix: quick wins are documenting the schema, mining query logs, an evaluation set, a value index, identity-based execution and showing SQL; strategic builds are the governed ontology with mappings, the query check and synthetic examples; skip fine-tuning, many-agent pipelines, constrained decoding, schema pruning and maximum reasoning effort.');
+  bindTips(document.getElementById('c-matrix'));
+})();
+})();
+</script>
