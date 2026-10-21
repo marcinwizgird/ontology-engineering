@@ -1,0 +1,114 @@
+<!doctype html>
+<!--
+  Algorithm-level rendering benchmark (Munzner's nested model, inner level).
+  For each scene: data-to-first-paint, dagre layout time, frame rate during a scripted
+  pan/zoom (median and 5th percentile), selection latency (p50/p95), JS heap.
+  Scenes: FIBO ego views fetched through viz.neighbourhood at stepped caps, then synthetic
+  ontology-like graphs (tree + ~0.5 cross edges per node) rendered with preset positions.
+  Results are POSTed to /viz/bench-result; ontoviz.bench drives this page headlessly.
+-->
+<html lang="en"><head><meta charset="utf-8"><title>ontoviz bench</title>
+<style>body{font:12px Segoe UI,Arial;margin:0}#cy{width:1400px;height:850px}pre{margin:4px}</style>
+</head><body><div id="cy"></div><pre id="out">running…</pre>
+<script src="/viz/static/vendor/cytoscape.min.js"></script>
+<script src="/viz/static/vendor/cytoscape-dagre.js"></script>
+<script>
+"use strict";
+cytoscape.use(cytoscapeDagre);
+const q = new URLSearchParams(location.search);
+const PROJECT = q.get("project") || "fibo";
+const SEED = q.get("seed");
+const CAPS = (q.get("caps") || "50,100,300,1000").split(",").map(Number);
+const SYNTH = (q.get("synth") || "2000,5000,10000").split(",").filter(Boolean).map(Number);
+const LABELS = q.get("labels") !== "0";
+const raf = () => new Promise((r) => requestAnimationFrame(r));
+const post = (b) => fetch("/viz/bench-result", { method: "POST",
+  headers: { "Content-Type": "application/json" }, body: JSON.stringify(b) });
+const pct = (a, p) => { const s = [...a].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.floor(p * s.length))]; };
+const STYLE = [
+  { selector: "node", style: { shape: "round-rectangle", width: 120, height: 28, "font-size": 11,
+      "background-color": "#e8eaf6", "border-width": 1, "border-color": "#8a94a6",
+      label: LABELS ? "data(label)" : "", "text-valign": "center", "min-zoomed-font-size": 6 } },
+  { selector: "edge", style: { width: 1.3, "line-color": "#5c6b80", "curve-style": "bezier",
+      "target-arrow-shape": "triangle", "target-arrow-color": "#5c6b80" } },
+  { selector: "node:selected", style: { "border-width": 4, "border-color": "#3949ab" } }];
+
+async function scene(name, elements, useLayout, report = true) {
+  const box = document.getElementById("cy");
+  const t0 = performance.now();
+  const cy = cytoscape({ container: box, elements, style: STYLE, layout: { name: "preset" } });
+  let layoutMs = null;
+  if (useLayout) {
+    const tl = performance.now();
+    cy.layout({ name: "dagre", rankDir: "BT", nodeSep: 14, rankSep: 60, animate: false, fit: true }).run();
+    layoutMs = performance.now() - tl;
+  } else cy.fit();
+  await raf(); await raf();
+  const firstPaint = performance.now() - t0;
+  // scripted pan/zoom for 2 s; frame intervals -> fps
+  const frames = []; let last = performance.now(); const end = last + 2000; let k = 0;
+  const z0 = cy.zoom();
+  while (performance.now() < end) {
+    k++;
+    cy.viewport({ zoom: z0 * (1 + 0.6 * Math.sin(k / 12)), pan: { x: 200 * Math.sin(k / 20), y: 120 * Math.cos(k / 25) } });
+    await raf();
+    const now = performance.now(); frames.push(now - last); last = now;
+  }
+  const fps = frames.map((d) => 1000 / d);
+  // selection latency: select a node, wait for the next frame
+  const lat = []; const ns = cy.nodes();
+  for (let i = 0; i < 20 && ns.length; i++) {
+    const n = ns[(i * 7919) % ns.length];
+    const ts = performance.now(); cy.nodes().unselect(); n.select(); await raf();
+    lat.push(performance.now() - ts);
+  }
+  const r = { scene: name, nodes: cy.nodes().length, edges: cy.edges().length, labels: LABELS,
+    layout: useLayout ? "dagre" : "preset", layoutMs: layoutMs && +layoutMs.toFixed(1),
+    firstPaintMs: +firstPaint.toFixed(1), fpsMedian: +pct(fps, 0.5).toFixed(1),
+    fpsP5: +pct(fps, 0.05).toFixed(1), frames: frames.length,
+    fpsMean: +(1000 * frames.length / frames.reduce((a, b) => a + b, 0)).toFixed(1),
+    selectP50: +pct(lat, 0.5).toFixed(1), selectP95: +pct(lat, 0.95).toFixed(1),
+    heapMB: performance.memory ? +(performance.memory.usedJSHeapSize / 1048576).toFixed(1) : null };
+  cy.destroy();
+  if (!report) return r;
+  document.getElementById("out").textContent += "\n" + JSON.stringify(r);
+  await post(r);
+  return r;
+}
+
+function synthetic(n) {
+  // ontology-like: a taxonomy (each node under one of the earlier nodes, branching ~6)
+  // plus 0.5 cross edges per node (restrictions), preset on a grid by depth
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const els = [], depth = [0], row = {};
+  for (let i = 0; i < n; i++) {
+    let d = 0;
+    if (i) { const p = Math.floor(rnd() * Math.min(i, Math.max(1, i / 3)));
+             d = depth[p] + 1; depth[i] = d; els.push({ data: { id: "e" + i, source: "n" + i, target: "n" + p } }); }
+    row[d] = (row[d] || 0) + 1;
+    els.push({ data: { id: "n" + i, label: "class " + i }, position: { x: row[d] * 140, y: d * 90 } });
+  }
+  for (let j = 0; j < n / 2; j++) {
+    const a = Math.floor(rnd() * n), b = Math.floor(rnd() * n);
+    if (a !== b) els.push({ data: { id: "x" + j, source: "n" + a, target: "n" + b } });
+  }
+  return els;
+}
+
+(async () => {
+  const results = [];
+  try {
+    await scene("warm-up", synthetic(200), true, false);   // JIT, fonts: not reported
+    for (const cap of CAPS) {
+      const v = await (await fetch(`/projects/${PROJECT}/ops/viz.neighbourhood`, { method: "POST",
+        headers: { "Content-Type": "application/json", "X-SIP-Principal": "val" },
+        body: JSON.stringify({ seed: SEED, hops: 8, cap, hub_limit: 100000, overlays: [] }) })).json();
+      const els = v.entityTypes.map((e) => ({ data: { id: e.id, label: e.name } }))
+        .concat(v.relationships.map((r) => ({ data: { id: r.id, source: r.from, target: r.to } })));
+      results.push(await scene(`${PROJECT} ego cap ${cap}`, els, true));
+    }
+    for (const n of SYNTH) results.push(await scene(`synthetic ${n}`, synthetic(n), false));
+  } catch (e) { await post({ error: String(e) }); }
+  await post({ done: true, userAgent: navigator.userAgent, count: results.length });
+})();
+</script></body></html>

@@ -105,6 +105,19 @@ class AiPolicy:
         return "*" in self.enabled_agents or agent in self.enabled_agents
 
 
+#: Catalog visibility. ``private``: members only. ``listed``: every authenticated
+#: principal sees the catalog entry, content stays members-only. ``open``: every
+#: authenticated principal may also read and query (an implicit ``visitor`` binding).
+VISIBILITY = ("private", "listed", "open")
+KINDS = ("managed", "reference")
+
+
+def check_visibility(v: str) -> str:
+    if v not in VISIBILITY:
+        raise ValueError(f"visibility must be one of {VISIBILITY}")
+    return v
+
+
 @dataclass
 class ProjectConfig:
     name: str
@@ -119,8 +132,15 @@ class ProjectConfig:
     acl: ProjectACL = field(default_factory=ProjectACL)
     ai_policy: AiPolicy = field(default_factory=AiPolicy)
     description: str = ""
+    #: Ontology Repository: who sees the catalog entry and the content (VISIBILITY)
+    visibility: str = "private"
+    #: ``managed`` (built in SIP) or ``reference`` (an external ontology, e.g. FIBO)
+    kind: str = "managed"
 
     def __post_init__(self) -> None:
+        check_visibility(self.visibility)
+        if self.kind not in KINDS:
+            raise ValueError(f"kind must be one of {KINDS}")
         if not self.default_namespace:
             b = self.base_uri
             self.default_namespace = b if b.endswith(("#", "/")) else b + "#"
@@ -147,6 +167,8 @@ class ProjectTemplate:
     description: str = ""
     specification: dict = field(default_factory=dict)
     reuse: list[dict] = field(default_factory=list)
+    #: catalog visibility; None = the platform default (``repository`` settings)
+    visibility: str | None = None
 
 
 @dataclass
@@ -232,6 +254,9 @@ class Registry:
     def grants(self, principal: str, project: str) -> CapabilitySet:
         b = self.binding(principal, project)
         if b is None:
+            cfg = self.projects.get(project)
+            if cfg is not None and cfg.visibility == "open":
+                return role_grants("visitor")   # implicit visitor of an open project
             return CapabilitySet()
         exprs: list[str] = []
         std = [r for r in b.roles if r not in self.custom_roles]

@@ -1,0 +1,92 @@
+{
+  "setup": {
+    "ntriples_read_s": 0.08,
+    "load_s": 15.4,
+    "index_build_s": 2.46,
+    "index": {
+      "nodes": 3081,
+      "edges": 7374,
+      "edges_by_kind": {
+        "disjointWith": 176,
+        "equivalentClass": 33,
+        "objectProperty": 539,
+        "optional": 400,
+        "restriction": 2008,
+        "subClassOf": 4218
+      },
+      "badged_nodes": 317,
+      "max_degree": 226,
+      "stagedDifferences": false
+    },
+    "warmup_first_call_s": 3.46
+  },
+  "rows": [
+    {
+      "config": "default (hops 2, hub 25)",
+      "cap": 40,
+      "seeds": 30,
+      "ms_median": 1.5,
+      "ms_p95": 2.0,
+      "nodes_median": 16.5,
+      "nodes_max": 40,
+      "edges_median": 19.0,
+      "payload_kb_median": 29.3
+    },
+    {
+      "config": "default (hops 2, hub 25)",
+      "cap": 100,
+      "seeds": 30,
+      "ms_median": 1.5,
+      "ms_p95": 2.0,
+      "nodes_median": 16.5,
+      "nodes_max": 89,
+      "edges_median": 19.0,
+      "payload_kb_median": 29.3
+    },
+    {
+      "config": "reach (hops 8, no hub guard)",
+      "cap": 50,
+      "seeds": 30,
+      "ms_median": 2.2,
+      "ms_p95": 3.3,
+      "nodes_median": 50.0,
+      "nodes_max": 50,
+      "edges_median": 71.0,
+      "payload_kb_median": 99.2
+    },
+    {
+      "config": "reach (hops 8, no hub guard)",
+      "cap": 100,
+      "seeds": 30,
+      "ms_median": 3.0,
+      "ms_p95": 5.1,
+      "nodes_median": 100.0,
+      "nodes_max": 100,
+      "edges_median": 157.0,
+      "payload_kb_median": 207.7
+    },
+    {
+      "config": "reach (hops 8, no hub guard)",
+      "cap": 300,
+      "seeds": 30,
+      "ms_median": 7.1,
+      "ms_p95": 9.8,
+      "nodes_median": 300.0,
+      "nodes_max": 300,
+      "edges_median": 557.0,
+      "payload_kb_median": 683.8
+    },
+    {
+      "config": "reach (hops 8, no hub guard)",
+      "cap": 1000,
+      "seeds": 30,
+      "ms_median": 23.0,
+      "ms_p95": 25.2,
+      "nodes_median": 1000.0,
+      "nodes_max": 1000,
+      "edges_median": 2209.5,
+      "payload_kb_median": 2514.2
+    }
+  ],
+  "note": "the first viz call per revision runs the ICV checks once (cached); it is timed separately as warmup_first_call_s and excluded from the rows"
+}

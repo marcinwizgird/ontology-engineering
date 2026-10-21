@@ -11,6 +11,7 @@ perspectives).
 |---|---|
 | [ARCHITECTURE_DESCRIPTION.md](ARCHITECTURE_DESCRIPTION.md) | **The architecture description.** It covers stakeholders and concerns, principles, scenarios, the seven views (Context, Functional, Information, Concurrency, Development, Deployment, Operational), eleven perspectives (including a custom *AI Trustworthiness* perspective), ADRs and open issues |
 | [REVERSE_ENGINEERING.md](REVERSE_ENGINEERING.md) | What was read and how. It explains how each tool is built, gives the **Java → Python translation map** with a fidelity rating per mechanism, lists the defects found and not copied, and reports measurements on FIBO |
+| [`agents/ONTOLOGY_REQUIREMENTS_AGENT.md`](agents/ONTOLOGY_REQUIREMENTS_AGENT.md) | **Ontology Requirements Agent specification.** Covers design (NeOn ORSD, critic rules RQ-C01..C20, exit criteria), the as-built implementation with known defects, the R1–R3 roadmap, and the test specification RQ-T01..T42 with traceability |
 | [`reverse_engineering/`](reverse_engineering/) | About 4,200 lines of source-level notes (paths, pseudo-code, counts) behind the translation |
 | [`models/`](models/) | **SysML v2 textual models**, 10 packages, about 2,000 lines (listed below) |
 | [`tools/sysml_check.py`](tools/sysml_check.py) | Model checker and generator: checks references, completeness and the structural guarantees, and writes the traceability table and diagrams |

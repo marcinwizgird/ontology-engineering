@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+  SIP ontology viewer (PoC). One static page over SIP's API: every call is
+  POST /projects/{p}/ops/{op} with the X-SIP-Principal header, like workbench.html.
+  No build step, no external assets: Cytoscape.js and cytoscape-dagre are vendored
+  under ./static/vendor (MIT; versions and SHA-256 in the PoC README).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIP ontology viewer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/viz/static/style.css">
+</head>
+<body>
+<header>
+  <strong class="brand">SIP <span>ontology viewer</span></strong>
+  <label>Project <select id="project"></select></label>
+  <label>As <select id="principal"></select></label>
+  <div class="search">
+    <input id="q" type="search" placeholder="Search a class or concept…" autocomplete="off"
+           aria-label="Search a class or concept">
+    <ul id="hits" role="listbox" hidden></ul>
+  </div>
+  <label>Hops <input id="hops" type="number" min="0" max="4" value="2"></label>
+  <label>Cap <input id="cap" type="number" min="5" max="2000" value="40"></label>
+  <label>Hub limit <input id="hub" type="number" min="2" max="500" value="25"></label>
+</header>
+
+<nav class="toolbar">
+  <fieldset><legend>Edges</legend>
+    <label><input type="checkbox" name="kind" value="subClassOf" checked> subclass</label>
+    <label><input type="checkbox" name="kind" value="equivalentClass" checked> equivalent</label>
+    <label><input type="checkbox" name="kind" value="restriction" checked> restriction</label>
+    <label title="min 0 restrictions: documentation only, no logical constraint"><input type="checkbox" name="kind" value="optional"> optional (min 0)</label>
+    <label><input type="checkbox" name="kind" value="objectProperty" checked> domain→range</label>
+    <label><input type="checkbox" name="kind" value="disjointWith"> disjoint</label>
+    <label><input type="checkbox" name="kind" value="broader" checked> broader</label>
+  </fieldset>
+  <fieldset><legend>Overlays</legend>
+    <label><input type="checkbox" name="overlay" value="staged" checked> staged changes</label>
+    <label><input type="checkbox" name="overlay" value="inferred" checked> inferred</label>
+    <label><input type="checkbox" name="overlay" value="findings" checked> findings</label>
+    <label><input type="checkbox" name="overlay" value="cq" checked> CQ coverage</label>
+  </fieldset>
+  <div class="actions">
+    <button id="fit" type="button">Fit</button>
+    <button id="relayout" type="button">Re-layout</button>
+    <button id="svg" type="button">Export SVG</button>
+    <button id="tableBtn" type="button" aria-pressed="false">Table view</button>
+  </div>
+</nav>
+
+<div id="summary" class="summary" aria-live="polite"></div>
+
+<main>
+  <section id="graphWrap">
+    <div id="cy" aria-label="Ontology graph"></div>
+    <div id="table" hidden></div>
+    <div id="empty" class="empty">Search for a class to start. The view shows its
+      neighbourhood up to the cap; double-click a node to expand it.</div>
+    <div id="tip" class="tip" hidden></div>
+  </section>
+  <aside id="panel" aria-label="Details"><p class="muted">Select a node.</p></aside>
+</main>
+
+<footer class="legend" aria-label="Legend">
+  <span><i class="sw asserted"></i>asserted</span>
+  <span><i class="sw add"></i>+ staged add</span>
+  <span><i class="sw del"></i>&minus; staged delete</span>
+  <span><i class="sw mod"></i>~ modified</span>
+  <span><i class="ln sub"></i>subclass</span>
+  <span><i class="ln res"></i>restriction (tag)</span>
+  <span><i class="ln obj"></i>domain&rarr;range</span>
+  <span><i class="ln inf"></i>inferred</span>
+  <span>&#9888; finding (B/M/m/i)</span>
+  <span>CQ &#10003; pass &#10007; fail</span>
+  <span>&#8869; unsatisfiable</span>
+  <span>+N more: double-click to expand</span>
+</footer>
+
+<script src="/viz/static/vendor/cytoscape.min.js"></script>
+<script src="/viz/static/vendor/cytoscape-dagre.js"></script>
+<script src="/viz/static/app.js"></script>
+</body>
+</html>
