@@ -1,7 +1,7 @@
 # Evaluation Specification & Methodology: Neuro-Symbolic NL2Q (With vs. Without Ontologies)
 
-* **Document ID:** EVAL-SPEC-NL2Q-2026-V3 (supersedes V2; changes in §9)
-* **Date:** 2026-10-26
+* **Document ID:** EVAL-SPEC-NL2Q-2026-V3.1 (supersedes V2; changes in §9)
+* **Date:** 2026-10-27
 * **Scope:** Standardized Evaluation Protocol for FIBO/FIBEN NL2Q PoC v2.0 and Cross-Benchmark PoCs (ACME Insurance, BIRD `financial`, FIBEN-Obfuscated)
 * **Core Engine Anchor:** Verified `SPARQL-2-SQL` Compiler (Ontop 5.5.0 sidecar + sqlglot transpiler + DuckDB 1.5.6 execution worker)
 * **Implementation:** `nl2q/evalkit/` (stages and status in §8)
@@ -135,9 +135,18 @@ Evaluating on base FIBEN data alone is invalid (`RESULTS.md` §1, §7, §9). 96 
   * correlated nested rows.
 
   It converts 78 of 96 empty queries to non-empty.
+
+  **Repaired in V3.1.** The v1 witness rows broke 4 subclass foreign keys: 1,570 subclass rows had no parent row. The builder now adds the parent chain (2,255 rows). The repair left the compiler ceiling unchanged (219/237) and moved executable-mutant detection from 58.3% to 58.5%.
 * **`V6 (Taxonomic Counterfactual Witness Instance, nl2q/evalkit/v6.py)`:** remedies v1's superclass-mutation blind spot. Superclass swaps were caught only 9 of 218 times, because every `Security` is a `ListedSecurity`.
   * For every subclass relationship $C_{\text{sub}} \sqsubseteq C_{\text{super}}$ used by a gold query, V6 inserts rows into $C_{\text{super}}$ (and its parent chain) that are **absent from $C_{\text{sub}}$** and unreferenced by child-only FKs.
   * The witness rows of $C_{\text{sub}}$ are mirrored onto the new superclass-only individual, so replacing $C_{\text{sub}}$ with $C_{\text{super}}$ in a query changes the returned row signature.
+  * References to the clone are mirrored only through foreign keys that target $C_{\text{super}}$ or an ancestor; keys that target $C_{\text{sub}}$ are never mirrored, because that would make the instance invalid.
+
+  **Measured (V3.1):**
+  * V6 is valid (zero dangling keys) and changes the gold answer of 63 queries.
+  * All 219 accepted gold SPARQL queries also agree on V6.
+  * **199 of the 218 v1 superclass mutants are *equivalent under the declared keys*.** The swapped variable is reached through a key that targets the subclass (e.g. `HOLDING.REFERSTO → LISTEDSECURITY`), so no valid instance can tell the two queries apart. v1's "9/218 detected" was measuring the schema, not the test suite.
+  * On the 19 remaining swaps, V6 adds no detection beyond Base.
 
 ### 4.3 Stratified Unanswerable & Abstention Benchmark (`U1`–`U3`)
 Each split includes an **Unanswerable & Clarification Suite**. Every stratum is labelled **by construction** from the ontology and the data, never from the gold:
@@ -189,7 +198,7 @@ Evaluation proceeds through four gates. A higher gate runs only after the **must
 | **1.1 Structural & Logical Pitfall Scan** | OOPS! or fallback | Count of `Critical`, `Important`, `Minor` findings | **Reported** | Critical findings documented with a disposition |
 | **1.2 Annotation Completeness** | `knowledge.py` / `enrich.py` | Share of mapped terms (152 classes, 68 properties) with `rdfs:label` and a definition, **per enrichment level** | **Reported** | Recorded: E0 48/220, E1 216/220. The 4 E1 gaps (`AutonomousAgent`, `Country`, `FinancialReport`, `ElementsOfFinancialReport`) need OMG Commons / LCC. |
 | **1.3 Competency & Closed-World Conformance** | CQ `ASK` tests & pySHACL | CQ pass rate; SHACL conformance per instance `Base + V1–V6` | **Must-pass** | 100% CQ; zero SHACL violations on every instance |
-| **1.4 Compiler Ceiling & Metric Mutation Power** | `ceiling.py`, `mutate.py` on `Base + V1–V6` | Suite compiler ceiling; mutant detection rate (all / non-empty gold / superclass swaps) | **Must-pass** (no regression) | Ceiling ≥ the recorded value (FIBEN 219/237, ACME 26/44); detection ≥ the recorded value. **Goals** (reported, not gating): non-empty detection ≥ 90%, superclass-swap detection ≥ 75% (v1: 9/218 = 4.1%) |
+| **1.4 Compiler Ceiling & Metric Mutation Power** | `ceiling.py`, `mutate.py` on `Base + V1–V6` | Suite compiler ceiling; mutant detection rate (all / non-empty gold / superclass swaps **excluding swaps equivalent under the declared keys**) | **Must-pass** (no regression) | Ceiling ≥ the recorded value (FIBEN 219/237, ACME 26/44); detection ≥ the recorded value. **Goals** (reported, not gating): non-empty detection ≥ 90%, superclass detection ≥ 75% on non-equivalent swaps. **Recorded (V3.1):** 58.4% / 61.9% / 44.4% (8 of 18 executable, non-empty); 199 of 218 swaps equivalent. |
 
 ---
 
@@ -370,7 +379,7 @@ In line with `PLAN.md` §4.4, §7 and §8, no prompt or architecture reaches rel
 |---|---|---|---|
 | **S1** | This specification (V3) | — | done |
 | **S2** | Scoring core: cluster bootstrap, run aggregation, McNemar on majorities, MDE, Holm, utility with floor and components, refusal metrics at prevalence, stability, $/correct, ceiling-normalized EX, slice tags; scorecard Table C from existing runs | $0 | **done**: `evalkit/statistics.py`, `slices.py`, `scoring.py`, `scorecard.py`; `tests/test_evalkit.py` (14). The v1 scorecard (`artifacts/eval/campaigns/fiben_v1_val.scorecard.md`) reproduces `RESULTS.md` §9 exactly. |
-| **S3** | Gate 1: V6 instance, SHACL shapes + pySHACL on Base + V1–V6, VoID partitions, CQ ASK tests, annotation coverage, ceiling + mutation on Base + V1–V6, SIP validation-agent scan; Table A | $0 | **in progress**: `evalkit/v6.py` built a first V6. Its key-integrity check found that **V5 violates 4 subclass foreign keys (1,570 witness rows without parent rows)**; Base and V1–V4 are clean. V5 must be repaired (and the ceiling, mutation and v1 suite numbers re-verified) before V6 is final. V6's builder also needs batching (first build: ~6 h). |
+| **S3** | Gate 1: V6 instance, SHACL shapes + pySHACL on Base + V1–V6, VoID partitions, CQ ASK tests, annotation coverage, ceiling + mutation on Base + V1–V6, SIP validation-agent scan; Table A | $0 | **done; Gate 1 must-pass: PASS**. Files: `evalkit/gate1.py`, `v6.py`, `shacl.py`, `void.py`, `artifacts/eval/cq/` (17 CQs).<br>• Key integrity: 0 dangling keys on all 7 instances, after the V5 repair.<br>• SHACL: 0 violations on all 7 instances; pySHACL agrees with the SQL compilation on injected defects.<br>• CQs: 17/17.<br>• Ceiling: 219/237, and 219/219 on V6.<br>• OVA (reported): E0 1 major / 415 minor, E1 1 / 157; covers 33 of 41 OOPS! pitfalls.<br>• VoID: 111 of 152 classes are empty.<br>• Rescoring of the v1 live runs on the repaired V5 is in progress. |
 | **S4** | Gate 2: gold intermediates from gold SPARQL, recall@k / MRR, value-linking F1, equivalence-aware grounding ceiling, edge precision | $0 | planned |
 | **S5** | Ports C1–C6 with OracleAdapters (refactor of `program.py`), per-port latency/tokens/cost; Gate 3 matrix runnable offline with the simulator | $0 (live run ≈ US$9–13) | planned |
 | **S6** | Datasets: U1–U3 by construction, FIBEN-Obfuscated, `Gtrain` glossary, L1.5 hierarchy views | $0 | planned |
@@ -391,3 +400,9 @@ In line with `PLAN.md` §4.4, §7 and §8, no prompt or architecture reaches rel
 * **Gate 4:** utility floor computed per split with components shown, refusal precision at a stated prevalence, ceiling-normalized EX on a common subset, reproducibility pins, curation cost.
 * **ACME literature figures** attributed to their separate studies.
 * **U3** defined by construction; grain ambiguity moved to an annotated `U3b`.
+
+**V3.1 (2026-10-27).** Stage S3 findings folded in:
+* V5 repaired (parent rows for subclass witness rows);
+* V6 built and validated;
+* superclass mutation detection re-based on swaps that are not equivalent under the declared keys;
+* Gate 1 passes.

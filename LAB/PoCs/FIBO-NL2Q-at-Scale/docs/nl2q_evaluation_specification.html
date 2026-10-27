@@ -1,0 +1,448 @@
+<title>NL2Q Evaluation Specification</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@600;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: technical reference; sticky contents rail beside one reading column, tables and specs in bordered panels */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --surface-2:#edf1f5; --line:#d5dde5;
+  --ink:#14202b; --ink-2:#3f4d5c; --muted:#66727f;
+  --accent:#1d5c8f; --accent-soft:#e3edf6;
+  --pass:#1b7f46; --pass-soft:#e1f2e8; --warn:#93600a; --warn-soft:#faefd8; --fail:#b3342f; --fail-soft:#f8e2e1;
+  --plan:#5a6573; --plan-soft:#eceff3;
+  --f-display:"Schibsted Grotesk","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151c; --surface:#161e27; --surface-2:#1c2631; --line:#2a3644;
+  --ink:#e6edf4; --ink-2:#b2bfcc; --muted:#8794a2;
+  --accent:#79b3e6; --accent-soft:#1a2c3e;
+  --pass:#5fce8d; --pass-soft:#153024; --warn:#e7b250; --warn-soft:#33280f; --fail:#f08782; --fail-soft:#3a1b1c;
+  --plan:#a3adb9; --plan-soft:#222b36; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151c; --surface:#161e27; --surface-2:#1c2631; --line:#2a3644;
+  --ink:#e6edf4; --ink-2:#b2bfcc; --muted:#8794a2;
+  --accent:#79b3e6; --accent-soft:#1a2c3e;
+  --pass:#5fce8d; --pass-soft:#153024; --warn:#e7b250; --warn-soft:#33280f; --fail:#f08782; --fail-soft:#3a1b1c;
+  --plan:#a3adb9; --plan-soft:#222b36; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.62 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.page{max-width:1240px;margin:0 auto;padding-block:36px 80px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:44px}
+@media (max-width:1060px){.page{grid-template-columns:minmax(0,1fr)}}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:.86rem;display:grid;gap:2px;max-height:calc(100vh - 40px);overflow:auto}
+nav.toc a{color:var(--ink-2);text-decoration:none;padding:4px 8px;border-radius:5px;display:block}
+nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+nav.toc a.sub{padding-left:20px;font-size:.82rem;color:var(--muted)}
+nav.toc .lbl{font:500 .7rem/1 var(--f-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--muted);padding:0 8px 8px}
+details.toc-m{display:none}
+@media (max-width:1060px){nav.toc{display:none} details.toc-m{display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+  details.toc-m summary{cursor:pointer;font-weight:600} details.toc-m nav{display:grid;gap:2px;margin-top:8px;font-size:.9rem} details.toc-m a{color:var(--accent)}}
+main{display:grid;gap:56px;min-width:0}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em;color:var(--ink)}
+h1{font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.1;font-weight:800}
+h2{font-size:1.55rem;line-height:1.2;font-weight:800}
+h3{font-size:1.12rem;line-height:1.3;font-weight:600}
+h4{font-size:.98rem;font-weight:600}
+p,li{max-width:74ch}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.25em;display:grid;gap:6px}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code,.mono{font-family:var(--f-mono);font-size:.86em}
+code{background:var(--surface-2);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+section{display:grid;gap:18px;scroll-margin-top:24px}
+.sec-num{font:500 .74rem/1 var(--f-mono);letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.head{display:grid;gap:8px}
+header.doc{display:grid;gap:16px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.meta{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;font-size:.88rem}
+.meta dt{color:var(--muted);font-family:var(--f-mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.meta dd{margin:0;color:var(--ink-2)}
+.lede{font-size:1.08rem;color:var(--ink-2)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:620px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font:500 .72rem/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td b{color:var(--ink)}
+.pill{display:inline-block;font:500 .7rem/1 var(--f-mono);padding:4px 8px;border-radius:999px;white-space:nowrap;letter-spacing:.02em}
+.pill.pass{background:var(--pass-soft);color:var(--pass)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.fail{background:var(--fail-soft);color:var(--fail)}
+.pill.plan{background:var(--plan-soft);color:var(--plan)}
+.pill.must{background:var(--accent-soft);color:var(--accent)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 6px 6px 0;font-size:.94rem}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)}
+.note p+p{margin-top:6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.formula{font-family:var(--f-mono);font-size:.88rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;white-space:nowrap;color:var(--ink)}
+/* gate strip */
+.gates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.gates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gate{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:6px;align-content:start}
+.gate .g{font:500 .72rem/1 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.gate h4{font-size:.95rem}
+.gate p{font-size:.84rem;color:var(--ink-2)}
+/* ports flow */
+.flow{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;overflow-x:auto}
+.row{display:flex;gap:10px;align-items:stretch;min-width:640px}
+.box{flex:1;border:1px solid var(--line);border-radius:7px;padding:10px 12px;background:var(--surface-2);display:grid;gap:3px;align-content:start}
+.box b{font-family:var(--f-mono);font-size:.78rem;color:var(--accent)}
+.box span{font-size:.84rem}
+.box small{font-size:.76rem;color:var(--muted)}
+.box.sym{background:var(--accent-soft);border-color:var(--accent)}
+.arrow{align-self:center;color:var(--muted);font-family:var(--f-mono)}
+.down{text-align:center;color:var(--muted);font-family:var(--f-mono);min-width:640px;font-size:.85rem}
+footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:var(--muted);display:grid;gap:4px}
+</style>
+
+<div class="page">
+<nav class="toc" aria-label="Contents">
+  <div class="lbl">Contents</div>
+  <a href="#status">Status at a glance</a>
+  <a href="#philosophy">1 · Philosophy</a>
+  <a href="#ladder">2 · Semantic ladder</a>
+  <a href="#ports">3 · Ports C1–C6</a>
+  <a href="#data">4 · Datasets &amp; instances</a>
+  <a class="sub" href="#instances">4.2 Base + V1–V6</a>
+  <a class="sub" href="#unanswerable">4.3 Unanswerables</a>
+  <a class="sub" href="#slices">4.4 Slices</a>
+  <a class="sub" href="#contamination">4.5 Contamination</a>
+  <a href="#gates">5 · Gates 1–4</a>
+  <a class="sub" href="#gate1">Gate 1 Build health</a>
+  <a class="sub" href="#gate2">Gate 2 Components</a>
+  <a class="sub" href="#gate3">Gate 3 Oracle ceilings</a>
+  <a class="sub" href="#gate4">Gate 4 End to end</a>
+  <a class="sub" href="#sap">5.5 Analysis plan</a>
+  <a href="#scorecard">6 · Scorecard</a>
+  <a href="#gonogo">7 · Go / no-go</a>
+  <a href="#stages">8 · Implementation</a>
+  <a href="#revisions">9 · Revisions</a>
+</nav>
+
+<main>
+<header class="doc">
+  <div class="sec-num">EVAL-SPEC-NL2Q-2026 · V3.1 · technical specification</div>
+  <h1>Evaluating neuro-symbolic NL2Q with and without ontologies</h1>
+  <p class="lede">How the FIBO/FIBEN NL2Q proof of concept is measured, from build-time ontology health to end-to-end safety. Each layer of semantics is isolated, the runtime is split into six testable ports, and every comparison follows a pre-registered statistical plan.</p>
+  <dl class="meta">
+    <dt>Date</dt><dd>27 October 2026 (supersedes V2 of 26 October)</dd>
+    <dt>Scope</dt><dd>FIBEN-Standard (primary), FIBEN-Obfuscated, ACME Insurance, BIRD <code>financial</code></dd>
+    <dt>Engine</dt><dd>Ontop 5.5.0 offline sidecar, SPARQL-2-SQL compiler (sqlglot), DuckDB 1.5.6 execution worker</dd>
+    <dt>Source</dt><dd><code>LAB/PoCs/FIBO-NL2Q-at-Scale/docs/nl2q_evaluation_specification.md</code>; implementation in <code>nl2q/evalkit/</code></dd>
+  </dl>
+  <details class="toc-m"><summary>Contents</summary><nav>
+    <a href="#status">Status</a><a href="#philosophy">1 Philosophy</a><a href="#ladder">2 Ladder</a><a href="#ports">3 Ports</a><a href="#data">4 Datasets</a><a href="#gates">5 Gates</a><a href="#sap">5.5 Analysis plan</a><a href="#scorecard">6 Scorecard</a><a href="#gonogo">7 Go / no-go</a><a href="#stages">8 Implementation</a><a href="#revisions">9 Revisions</a>
+  </nav></details>
+</header>
+
+<section id="status">
+  <div class="head"><div class="sec-num">Status at a glance</div><h2>Gate 1 passes; Gates 2–4 are specified and partly built</h2></div>
+  <div class="gates">
+    <div class="gate"><span class="g">Gate 1 · $0</span><h4>Build &amp; data health</h4><span class="pill pass">PASS</span><p>Keys, SHACL and CQs clean on all 7 instances after the V5 repair.</p></div>
+    <div class="gate"><span class="g">Gate 2 · $0</span><h4>Component metrics</h4><span class="pill plan">stage S4</span><p>Concept recall exists (H1); gold intermediates and grounding ceiling to build.</p></div>
+    <div class="gate"><span class="g">Gate 3 · ≈ US$9–13</span><h4>Oracle ceilings</h4><span class="pill plan">stage S5</span><p>Needs the C1–C6 ports and oracle adapters.</p></div>
+    <div class="gate"><span class="g">Gate 4 · billed</span><h4>End to end</h4><span class="pill warn">scoring ready</span><p>Scoring core done; v1 arms scored; new ladder arms not built.</p></div>
+  </div>
+</section>
+
+<section id="philosophy">
+  <div class="head"><div class="sec-num">1 · Executive summary &amp; philosophy</div><h2>Locate the gain before crediting the ontology</h2></div>
+  <p>A "with ontology versus without" comparison treated as a black box cannot tell whether a gain came from <b>better prose definitions</b>, which a SQL comment or data catalog could also carry, or from <b>semantic graph capabilities</b>: subclass reasoning, encapsulated join paths, closed-world validation and empirical partition metadata.</p>
+  <p>The opposite mistake is as costly. v1's weak grounding recall was first attributed to missing definitions (172 of 220 mapped terms had none). Enriching them to 216 of 220 moved recall by less than one point. The real loss was the vocabulary gap between business phrasing ("company name", "bought") and formal labels (<code>RESULTS.md</code> §5.1).</p>
+  <div class="grid2">
+    <div class="panel"><h4>The framework sets out to</h4><ol>
+      <li>Isolate each semantic layer with a <b>ladder of arms</b> that changes one factor per rung.</li>
+      <li>Split the runtime into <b>six ports</b> with oracle adapters that bound the loss at each stage.</li>
+      <li>Check the ontology and data <b>at build time</b>: must-pass checks gate LLM spend; reported checks never block.</li>
+      <li>Score SQL and SPARQL arms on <b>one execution and safety yardstick</b> across seven database instances.</li>
+    </ol></div>
+    <div class="panel"><h4>Its conclusions are protected by</h4><ul>
+      <li>a <b>pre-registered analysis plan</b>: primary hypothesis, gold-query cluster bootstrap, minimum detectable effects, Holm correction (§5.5);</li>
+      <li><b>contamination controls</b>: glossary quarantine, blind transfer mapping, obfuscated schema, fresh paraphrases (§4.5);</li>
+      <li><b>reproducibility pins</b> on every run: model snapshot, program, pack and data hashes.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="ladder">
+  <div class="head"><div class="sec-num">2 · The semantic ladder</div><h2>Six arms, one changed factor per rung</h2>
+  <p>Every arm uses the same model snapshot and decoding settings, the same splits by gold query, the same 81,681-value index, the same optimisation budget, and either an equal context-token budget or tokens reported as a covariate.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Rung</th><th>Arm</th><th>Context given to the agent</th><th>Route</th><th>What it isolates</th></tr></thead>
+    <tbody>
+      <tr><td class="n">L0</td><td><b>T-Raw</b></td><td>Physical DDL with keys, plus top-k value matches. No prose.</td><td><code>NL → SQL</code></td><td>Baseline from table and column names alone.</td></tr>
+      <tr><td class="n">L1</td><td><b>T-Catalog</b></td><td>DDL plus the same definitions, synonyms and column statistics the ontology arms receive, as a Markdown data dictionary.</td><td><code>NL → SQL</code></td><td>The lift of prose documentation (L1 − L0). The crucial control.</td></tr>
+      <tr><td class="n">L1.5</td><td><b>T-Views</b></td><td>L1 plus SQL views that flatten each class hierarchy (<code>ElementOfFinancialStatement</code> over 8 tables, <code>Disclosure</code> over 118).</td><td><code>NL → SQL over views</code></td><td>Taxonomic reasoning (L1.5 − L1) apart from the change of query language (L2 − L1.5).</td></tr>
+      <tr><td class="n">L2</td><td><b>B-TBox</b></td><td>OWL TBox, R2RML mapping, restriction-aware ontology query check (OBQC), ≤ 2 repairs.</td><td><code>NL → SPARQL → Ontop → SQL</code></td><td>Join encapsulation and static domain/range checking.</td></tr>
+      <tr><td class="n">L3</td><td><b>S-v2</b></td><td>TBox, VoID partition metadata, SHACL shapes, dedicated refusal gate C4, bounded JSON plan.</td><td><code>NL → IR → SPARQL → Ontop → SQL</code></td><td>Closed-world data awareness, decoupled abstention, syntax-safe compilation.</td></tr>
+      <tr><td class="n">L4</td><td><b>S-Agentic</b></td><td>L3 plus multi-candidate generation, ontology-ReAct exploration and an execution critic C6.</td><td><code>NL → multi-IR + critic → …</code></td><td>Upper bound of multi-path agents against the SQL tool agent (arm G).</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Factor crossed with the ladder</th><th>Levels</th><th>Why it is a factor, not a rung</th></tr></thead>
+    <tbody>
+      <tr><td><b>Enrichment</b></td><td><code>E0</code> FIBO-exact (48/220 defined) · <code>E1</code> + reviewed FIBO, US GAAP, derived (216/220)</td><td>Measured at +0.6 pp candidate recall without the glossary and −2.7 pp with it. It must be measured, not assumed.</td></tr>
+      <tr><td><b>Glossary</b></td><td><code>G0</code> none · <code>Gtrain</code> from train-split gold only · <code>Gv1</code> reproduction only</td><td>The v1 glossary was written after seeing all gold SQL; results using it are labelled possibly contaminated.</td></tr>
+      <tr><td><b>Optimisation</b></td><td><code>fixed</code> · <code>GEPA</code></td><td>A GEPA row is reported only when every compared arm received the same budget.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="ports">
+  <div class="head"><div class="sec-num">3 · Componentised runtime</div><h2>Six ports, each with an oracle adapter</h2>
+  <p>Each port has a typed contract and an <code>OracleAdapter</code> that injects ground truth, so later stages can be measured with perfect upstream input. Every port records its own latency, tokens and cost.</p></div>
+  <div class="flow" role="img" aria-label="Pipeline: C1 mention extractor, C2 concept and value linker, C3 subgraph pruner; then C4 refusal gate in parallel with C5 query synthesizer, deterministic renderer, OBQC and Ontop compiler, and C6 critic with the DuckDB worker.">
+    <div class="row">
+      <div class="box"><b>C1</b><span>Decomposer &amp; mention extractor</span><small>MentionSet: concept and value spans, sub-questions, skeleton</small></div>
+      <span class="arrow">→</span>
+      <div class="box"><b>C2</b><span>Concept &amp; value linker</span><small>TBox: BM25 + dense · ABox: n-gram + edit distance over 81,681 values</small></div>
+      <span class="arrow">→</span>
+      <div class="box"><b>C3</b><span>Data-aware subgraph pruner</span><small>Steiner / PPR tree, VoID counts and N:1 / 1:N tags, SHACL shapes</small></div>
+    </div>
+    <div class="down">↓ grounded subgraph</div>
+    <div class="row">
+      <div class="box"><b>C4</b><span>Refusal &amp; clarification gate</span><small>Decoupled from the planner, so unmapped links end in an explained refusal</small></div>
+      <div class="box"><b>C5</b><span>Symbolic query synthesizer</span><small>Bounded IR, compositional, or multi-path</small></div>
+      <span class="arrow">→</span>
+      <div class="box sym"><b>Symbolic</b><span>Renderer → OBQC → Ontop → SQL</span><small>Deterministic; no model in this step</small></div>
+      <span class="arrow">→</span>
+      <div class="box"><b>C6</b><span>Static &amp; execution critic</span><small>DuckDB worker; refines on 0 rows, all-NULL, fan-out</small></div>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Port</th><th>v1 baseline adapter</th><th>Adapters to benchmark</th><th>Gate 2 metrics</th></tr></thead>
+    <tbody>
+      <tr><td class="n">C1</td><td>Rule-based phrase extractor</td><td>LLM mention extractor (M1); sub-question decomposer; entity-masked skeleton extractor</td><td>Mention span recall (needs annotated spans); skeleton match</td></tr>
+      <tr><td class="n">C2</td><td>BM25 / char TF-IDF / hybrid RRF over the mapped tier</td><td>Enriched index (E1); dual engine for TBox and ABox; LLM cross-encoder reranker</td><td>Concept recall@5/10/20 and MRR; value-linking F1</td></tr>
+      <tr><td class="n">C3</td><td>Steiner tree (S) or 1-hop neighbourhood (S2)</td><td>VoID-weighted Steiner / PPR; hierarchy-compressed serialiser; bounded ontology-ReAct explorer</td><td>Equivalence-aware grounding ceiling; edge precision and tokens</td></tr>
+      <tr><td class="n">C4</td><td>Inside the planner</td><td>Dedicated abstention classifier over tier matches, missing linksets and empty partitions</td><td>Recall per U1–U3; false-refusal rate; precision at stated prevalence</td></tr>
+      <tr><td class="n">C5</td><td>Single-pass IR (S) or free SPARQL (A)</td><td>Grain-explicit IR; divide-and-conquer IR for nesting; 3–5 candidate pool</td><td>IR validity; first-pass OBQC and Ontop compile rate</td></tr>
+      <tr><td class="n">C6</td><td>OBQC repair, ≤ 2 retries</td><td>Execution-metadata critic; execution-cluster selection judge</td><td>Repair recovery rate; critic false-rejection rate</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="data">
+  <div class="head"><div class="sec-num">4 · Benchmarks &amp; instances</div><h2>Four datasets, seven database instances</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Dataset</th><th>Role</th><th>Size and recorded state</th></tr></thead>
+    <tbody>
+      <tr><td><b>FIBEN-Standard</b></td><td>Primary scale benchmark</td><td>152 tables (135 subclass, 24 relation keys), 11.7M rows; 237 gold queries; 300 questions split 120 / 63 / 117. Recorded compiler ceiling: <b>219/237 (92%)</b> on Base + V1–V5, and on V6.</td></tr>
+      <tr><td><b>FIBEN-Obfuscated</b></td><td>Contamination and legacy-bank probe</td><td>Same data and ontology; table and column names replaced by opaque identifiers; mapping and metadata regenerated. Separates grounding from memorisation of the public schema.</td></tr>
+      <tr><td><b>ACME Insurance</b></td><td>Literature comparability</td><td>29 tables, 44 gold queries. Recorded: 44/44 gold SQL execute; 26/44 gold SPARQL compile, all 26 match. Published reference points come from separate studies and models (data.world 2023: 16.7% → 54.2%; ontology query check 72.55%; Semantic Path Compilation 2026: 97.4% on its own 38 questions).</td></tr>
+      <tr><td><b>BIRD <code>financial</code></b></td><td>Zero-shot transfer</td><td>8 tables; FIBO mapping authored blind before the questions are read; test-only; target transfer drop ≤ 15 pp.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="instances">4.2 The discriminative instance suite: Base + V1–V6</h3>
+  <p>Scoring on Base alone is invalid: 96 of 237 gold queries return empty sets there, and base relaxed EX (48–62%) more than doubles suite accuracy through empty-versus-empty matches. Every query is scored on seven instances, each with its gold answer recomputed by running the gold SQL on it. Every instance must have zero dangling keys, because Ontop trusts declared keys for join elimination.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Instance</th><th>Construction</th><th>What it catches</th><th>Integrity</th></tr></thead>
+    <tbody>
+      <tr><td class="n">Base</td><td>Original FIBEN data, 11.7M rows</td><td>—</td><td><span class="pill pass">0 dangling</span></td></tr>
+      <tr><td class="n">V1</td><td>~25% of unreferenced rows dropped</td><td>Wrong counts, sums, averages</td><td><span class="pill pass">0</span></td></tr>
+      <tr><td class="n">V2</td><td>~30% of relation keys re-pointed</td><td>Missing or wrong join predicates</td><td><span class="pill pass">0</span></td></tr>
+      <tr><td class="n">V3</td><td>Holding and transaction rows duplicated</td><td>Fan traps and grain errors</td><td><span class="pill pass">0</span></td></tr>
+      <tr><td class="n">V4</td><td>~20% of statement and disclosure rows reclassified</td><td>Wrong-class queries</td><td><span class="pill pass">0</span></td></tr>
+      <tr><td class="n">V5</td><td>Witness rows per gold query: filters satisfied, measure spread, near misses, nested rows (78 of 96 empty answers become non-empty)</td><td>Empty-answer blind spot; dropped or flipped filters</td><td><span class="pill pass">0 after repair</span></td></tr>
+      <tr><td class="n">V6</td><td>Counterfactual superclass-only clones of subclass individuals, with references mirrored only through keys that allow them</td><td>Superclass swaps, where any valid instance can show them</td><td><span class="pill pass">0</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note warn"><p><b>V5 repair (V3.1).</b> The v1 witness builder left 1,570 subclass rows without their parent rows, breaking 4 subclass keys (e.g. 685 <code>ListedSecurity</code> rows with no <code>Security</code> row). The builder now adds the parent chain (2,255 rows). The repair left the ceiling unchanged at 219/237 and moved executable-mutant detection from 58.3% to 58.5%. Rescoring the v1 live runs on the repaired V5 is in progress.</p></div>
+  <div class="note"><p><b>What V6 showed.</b> V6 changes the gold answer of 63 queries, and all 219 accepted gold queries still agree on it. But <b>199 of the 218 v1 superclass mutants are equivalent under the declared keys</b>: the swapped variable is reached through a key that targets the subclass (<code>HOLDING.REFERSTO → LISTEDSECURITY</code>), so no valid instance can tell the two queries apart. v1's "9 of 218 caught" measured the schema, not the test suite. Superclass detection is now reported on the 19 non-equivalent swaps (8 of 18 executable with non-empty gold).</p></div>
+
+  <h3 id="unanswerable">4.3 Unanswerable suite, labelled by construction</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Stratum</th><th>Meaning</th><th>Construction (never from the gold)</th></tr></thead>
+    <tbody>
+      <tr><td class="n">U1</td><td>FIBO knows the concept; the data does not map it</td><td>The target term's IRI is in the FIBO tier (4,079 terms), not the mapped tier</td></tr>
+      <tr><td class="n">U2</td><td>Both classes are mapped; the requested link is not</td><td>No path between them in the allowed-edge graph, inheritance included. Regression test for the S2 trap.</td></tr>
+      <tr><td class="n">U3</td><td>The filter lies outside the data</td><td>Value absent from the value index, or outside the VoID min/max bounds. 111 of 152 classes are empty partitions.</td></tr>
+      <tr><td class="n">U3b</td><td>Ambiguous grain (optional)</td><td>Two annotators; Cohen's κ ≥ 0.7 required</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="slices">4.4 Slice tags, derived from gold SPARQL and schema</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Dimension</th><th>Rule</th><th>Counts over 237 gold queries</th></tr></thead>
+    <tbody>
+      <tr><td><b>Hierarchy</b></td><td>A variable's most specific class has subclasses (redundant ancestor types ignored)</td><td class="n">union 98 · leaf 121 · unknown 18</td></tr>
+      <tr><td><b>Nesting</b></td><td>FIBEN query type</td><td class="n">non-nested 106 · a 45 · j 27 · ja 31 · n 28</td></tr>
+      <tr><td><b>Hops</b></td><td>Object-property triples</td><td class="n">0–1: 48 · 2: 48 · 3+: 123</td></tr>
+      <tr><td><b>Fan-trap risk</b></td><td>SUM, AVG or non-distinct COUNT over a value owned by the one side of a join (MIN, MAX, COUNT DISTINCT are immune)</td><td class="n">risk 20 · functional 199</td></tr>
+    </tbody>
+  </table></div>
+  <p>Slice results are descriptive. A slice difference counts as a finding only when it is a pre-registered secondary hypothesis that survives the Holm correction.</p>
+
+  <h3 id="contamination">4.5 Contamination and leakage controls</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Risk</th><th>Control</th><th>Verified by</th></tr></thead>
+    <tbody>
+      <tr><td>Curated knowledge written after seeing the gold</td><td><code>Gv1</code> for reproduction only; <code>Gtrain</code> from train gold, with access logged</td><td>Entries list the train query IDs they came from</td></tr>
+      <tr><td>Enrichment reading benchmark answers</td><td><code>enrich.py</code> may not import or read gold, splits or questions</td><td>Unit test</td></tr>
+      <tr><td>Transfer mapping tuned to its questions</td><td>BIRD mapping committed before the questions file is opened</td><td>Git history</td></tr>
+      <tr><td>Schema memorisation</td><td>FIBEN-Obfuscated</td><td>§4.1</td></tr>
+      <tr><td>Question memorisation</td><td>30 test questions re-phrased by a person new to FIBEN; accuracy drop reported</td><td>Scorecard column "Δ paraphrase"</td></tr>
+      <tr><td>Test-set reuse</td><td>Test split scored only for a frozen release candidate; every scoring logged</td><td>Run registry</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="gates">
+  <div class="head"><div class="sec-num">5 · The four gates</div><h2>Cheap checks first, billed runs last</h2>
+  <p>A higher gate runs only after the lower gates' must-pass checks pass. Reported checks never block.</p></div>
+
+  <h3 id="gate1">Gate 1 · Build-time ontology, mapping and metric health <span class="pill pass">PASS</span></h3>
+  <p>OOPS!, FOOPS! and Themis need Java or their public services. Offline stand-ins are used; sending the ontology to a public service is an explicit per-campaign decision.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Check</th><th>Tool</th><th>Kind</th><th>Recorded result</th></tr></thead>
+    <tbody>
+      <tr><td>1.1 Pitfall scan</td><td>SIP Ontology Validation Agent (131 checks) in place of OOPS!</td><td><span class="pill plan">reported</span></td><td>Verdict <i>revise</i>. E0: 1 major, 415 minor. E1: 1 major, 157 minor. Covers 33 of 41 OOPS! pitfalls. The major finding: declared formal but measured as a thesaurus (no domain/range axioms or restrictions).</td></tr>
+      <tr><td>1.2 Annotation coverage</td><td><code>knowledge.py</code>, <code>enrich.py</code></td><td><span class="pill plan">reported</span></td><td>E0 48/220 · E1 216/220. Missing: <code>AutonomousAgent</code>, <code>Country</code>, <code>FinancialReport</code>, <code>ElementsOfFinancialReport</code> (their FIBO counterparts live in OMG Commons / LCC).</td></tr>
+      <tr><td>1.3 Competency questions</td><td>SPARQL ASK over the TBox plus allowed edges, in place of Themis</td><td><span class="pill must">must-pass</span></td><td class="n">17 / 17</td></tr>
+      <tr><td>1.3 Key integrity</td><td><code>gate1.key_integrity</code></td><td><span class="pill must">must-pass</span></td><td class="n">0 dangling on Base, V1–V6</td></tr>
+      <tr><td>1.3 SHACL conformance</td><td>Shapes from the DDL, compiled to SQL; pySHACL cross-check</td><td><span class="pill must">must-pass</span></td><td>0 violations on all 7 instances; pySHACL agrees on 9 of 9 injected dangling references</td></tr>
+      <tr><td>1.4 Compiler ceiling</td><td><code>ceiling.py</code></td><td><span class="pill must">must-pass</span></td><td class="n">219 / 237; 219 / 219 on V6</td></tr>
+      <tr><td>1.4 Mutation power</td><td><code>mutate.py</code>, 820 mutants</td><td><span class="pill plan">reported</span></td><td>Executable 58.4% · non-empty gold 61.9% · non-empty excluding superclass 84.4% · superclass on non-equivalent swaps 44.4%. Goals ≥ 90% and ≥ 75%.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><p><b>Known limits.</b> The pySHACL cross-check could not inject a NULL in a required attribute: the sampled tables declare no NOT NULL attributes. The CQs run over allowed edges rendered as <code>rdfs:domain</code>/<code>rdfs:range</code>, so a CQ pairing one edge's domain with another edge's range of the same property would pass.</p></div>
+
+  <h3 id="gate2">Gate 2 · Component metrics <span class="pill plan">stage S4</span></h3>
+  <ul>
+    <li><b>Oracle sources.</b> Gold terms, edges and filter values are extracted automatically from accepted gold SPARQL. Gold <b>mention spans</b> need human annotation (annotator, date, agreement on a 20% double-annotated sample). Until then the C1 oracle uses verbatim value spans and is labelled <i>partial</i>.</li>
+    <li><b>Retrieval (C1 + C2):</b> concept recall@k for k = 5, 10, 20 and MRR; value-linking F1 on (value, owning property) pairs.</li>
+    <li><b>Pruning (C3):</b> an <b>equivalence-aware grounding ceiling</b>. A term set counts if it covers the gold terms up to equivalences this data makes true, or if a query built from it passes the suite. Edge precision is reported with the subgraph's token count.</li>
+    <li><b>Refusal gate (C4):</b> recall per U stratum; false-refusal rate on answerable questions; precision at the split's mix and at a fixed 20% prevalence (target ≥ 0.90).</li>
+  </ul>
+
+  <h3 id="gate3">Gate 3 · Oracle-injected matrix <span class="pill plan">stage S5</span></h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Run</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5 + C6</th><th>Measures</th></tr></thead>
+    <tbody>
+      <tr><td><b>O-1</b> planner ceiling</td><td>oracle</td><td>oracle</td><td>oracle subgraph</td><td>oracle</td><td>learned</td><td>Synthesis with perfect context</td></tr>
+      <tr><td><b>O-2</b> pruning ceiling</td><td>oracle</td><td>oracle candidates</td><td>learned</td><td>oracle</td><td>learned</td><td>Pruning learned</td></tr>
+      <tr><td><b>O-3</b> retrieval ceiling</td><td>oracle mentions</td><td>learned</td><td>learned</td><td>oracle</td><td>learned</td><td>Linking and pruning learned</td></tr>
+      <tr><td><b>O-4</b> mention loss</td><td>learned</td><td>learned</td><td>learned</td><td>oracle</td><td>learned</td><td>All grounding learned</td></tr>
+      <tr><td><b>E2E</b></td><td>learned</td><td>learned</td><td>learned</td><td>learned</td><td>learned</td><td>Accuracy and refusal trade-off</td></tr>
+    </tbody>
+  </table></div>
+  <p>Validation split, single run: 5 runs × 87–123 questions × ~US$0.02 ≈ <b>US$9–13</b>. Differences between consecutive runs are <b>ceilings along one path</b>, not an additive decomposition: a component's loss depends on what upstream hands it. The largest drop says where to look first. GEPA is applied to that module, and comparison arms receive the same optimisation budget.</p>
+
+  <h3 id="gate4">Gate 4 · End-to-end execution, safety and economics <span class="pill warn">scoring ready</span></h3>
+  <div class="grid2">
+    <div class="panel"><h4>Accuracy</h4><ul>
+      <li><b>Strict</b> and <b>relaxed</b> base EX (relaxed allows omitting the gold's extra context columns)</li>
+      <li><b>Suite relaxed EX</b>: correct on every instance (headline)</li>
+      <li><b>Ceiling-normalised suite EX</b> on the questions inside the compiler ceiling; SQL arms on the same subset</li>
+    </ul></div>
+    <div class="panel"><h4>Safety and economics</h4><ul>
+      <li>Four exclusive outcomes: correct, wrong-but-executed, refused, failed</li>
+      <li><b>Wrong-but-executed rate</b> (headline safety metric; target ≤ 2%)</li>
+      <li>Run-to-run stability over 3 runs (≥ 90%); P50/P95 latency per port; $/question, $/correct, tokens/question; curation hours</li>
+    </ul></div>
+  </div>
+  <div class="formula">Utility(c) = (1/N) Σ [ +1·SuiteCorrect − c·WrongExecuted + 0.3·CorrectRefusal − 0.3·FalseRefusal ],  c ∈ {1, 2, 5}</div>
+  <p>The abstain-on-everything floor is <code>0.3·(|U| − |A|)/N</code>, which is negative on a mostly answerable split. It is printed per split, and the four components are always shown next to the total.</p>
+
+  <h3 id="sap">5.5 Statistical analysis plan (pre-registered)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Element</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td><b>Primary hypothesis H1</b></td><td>On the FIBEN test split, L3 has a lower wrong-but-executed rate than L1.</td></tr>
+      <tr><td><b>Secondary, Holm-corrected in order</b></td><td>H2: L3 suite EX non-inferior to L1 (margin 5 pp) · H3: L1.5 − L1 &gt; 0 on the hierarchy slice · H4: L3 refusal recall on U2 &gt; L2. Everything else is exploratory.</td></tr>
+      <tr><td><b>Unit of analysis</b></td><td>Gold query. Confidence intervals resample gold queries (10,000 resamples) and carry all their paraphrases. Question-level bootstraps are not reported.</td></tr>
+      <tr><td><b>Repeated runs</b></td><td>3 runs per arm. McNemar on per-question majority outcomes; the bootstrap resamples runs within each question. Runs are never pooled as independent questions.</td></tr>
+      <tr><td><b>Power</b></td><td>Minimum detectable difference reported with every comparison. At ~30% discordance: ≈ 19 pp on val (n = 63), ≈ 14 pp on test (n = 117). Reaching 5 pp needs ≈ 800 questions. Below the MDE, a non-significant result reads "not detected", never "no difference".</td></tr>
+      <tr><td><b>Equal optimisation</b></td><td>Fixed prompts for ladder comparisons; optimised rows only with equal GEPA budgets.</td></tr>
+      <tr><td><b>Pins</b></td><td>Model snapshot and decoding; DSPy, LiteLLM, Ontop, sqlglot, DuckDB versions; prompt, pack, ontology, mapping and gold hashes; split and seed. Without pins a result is not reportable.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="scorecard">
+  <div class="head"><div class="sec-num">6 · Scorecard</div><h2>What the framework reports, with the v1 results it reproduces</h2>
+  <p><code>python -m nl2q.evalkit.scorecard</code> writes Tables A–D as JSON and Markdown per campaign. Table C below re-analyses the v1 live check under the new plan: one run per arm on 63 validation questions, with the v1 glossary for the K4 arms (possibly contaminated).</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>v1 arm</th><th>Nearest rung</th><th>Suite EX [95% CI]</th><th>Wrong-but-executed ↓</th><th>Refused (answerable)</th><th>Δ wrong vs T [CI], Holm p</th><th>$/question</th></tr></thead>
+    <tbody>
+      <tr><td>R: rules, no LLM</td><td>floor</td><td class="n">9.5% [2–19]</td><td class="n">76.2%</td><td class="n">12.7%</td><td class="n">+3.4 [−14, +20], 1.00</td><td class="n">0</td></tr>
+      <tr><td>T: text-to-SQL over DDL</td><td>L0</td><td class="n">28.8% [16–42]</td><td class="n">71.2%</td><td class="n">0%</td><td>baseline</td><td class="n">0.085</td></tr>
+      <tr><td>A: direct SPARQL</td><td>L2 without OBQC</td><td class="n">19.1% [10–30]</td><td class="n">63.5%</td><td class="n">0%</td><td class="n">−5.1 [−17, +7], 1.00</td><td class="n">0.012</td></tr>
+      <tr><td>B: SPARQL + OBQC + repair</td><td>L2</td><td class="n">20.6% [10–33]</td><td class="n">79.4%</td><td class="n">0%</td><td class="n">+8.5 [+2, +16], 0.44</td><td class="n">0.015</td></tr>
+      <tr><td><b>S: grounding + IR + checks</b></td><td>L3 precursor</td><td class="n">25.4% [15–38]</td><td class="n"><b>46.0%</b></td><td class="n">28.6%</td><td class="n"><b>−25.4 [−39, −12], &lt; 0.01</b></td><td class="n">0.018</td></tr>
+      <tr><td>S2: S + link neighbourhood</td><td>v1 S2</td><td class="n">20.6% [11–32]</td><td class="n">63.5%</td><td class="n">15.9%</td><td class="n">−6.8 [−18, +3], 1.00</td><td class="n">0.020</td></tr>
+      <tr><td>G: tool agent</td><td>arm G</td><td class="n">8.8% [2–18]</td><td class="n">8.8%</td><td class="n">73.7%*</td><td class="n">−61.4 [−75, −47], &lt; 0.01</td><td class="n">0.134</td></tr>
+    </tbody>
+  </table></div>
+  <p>* Mostly step exhaustion, not principled refusal. T and G stopped at their budget caps (59 and 57 questions). No accuracy difference is significant; minimum detectable differences are 11–29 pp. S's lower wrong-but-executed rate survives clustering and Holm correction, but part of it comes from refusing 29% of answerable questions. These figures predate the V5 repair; their re-check is in progress.</p>
+</section>
+
+<section id="gonogo">
+  <div class="head"><div class="sec-num">7 · Governance</div><h2>Go / no-go on the frozen test split</h2></div>
+  <div class="grid2">
+    <div class="panel"><h4>Value of the ontology proven</h4><ul>
+      <li>H1 holds with Holm-corrected p &lt; 0.05, and L3 also beats L0 on wrong-but-executed.</li>
+      <li>H2 holds (accuracy non-inferior).</li>
+      <li>Hierarchy and obfuscated-schema slices point the expected way.</li>
+      <li>Contamination controls passed: <code>Gtrain</code> only, paraphrase drop reported, BIRD mapping committed first.</li>
+    </ul></div>
+    <div class="panel"><h4>Productisation thresholds</h4><ul>
+      <li>Ceiling-normalised suite accuracy ≥ 85%</li>
+      <li>Wrong-but-executed ≤ 2%</li>
+      <li>Refusal recall ≥ 0.80 per stratum; precision ≥ 0.90 at 20% prevalence</li>
+      <li>BIRD transfer drop ≤ 15 pp; stability ≥ 90%</li>
+      <li>P95 ≤ 10 s; ≤ US$0.05 per question</li>
+      <li>Full provenance logged; no database rows sent to the model</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="stages">
+  <div class="head"><div class="sec-num">8 · Implementation</div><h2>Stages and status</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Stage</th><th>Content</th><th>Cost</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="n">S1</td><td>Specification V3 / V3.1</td><td>—</td><td><span class="pill pass">done</span></td></tr>
+      <tr><td class="n">S2</td><td>Scoring core: cluster bootstrap, nested runs, McNemar on majorities, MDE, Holm, utility with floor, refusal at prevalence, stability, $/correct, slices, scorecard. 19 tests; reproduces <code>RESULTS.md</code> §9 exactly.</td><td>$0</td><td><span class="pill pass">done</span></td></tr>
+      <tr><td class="n">S3</td><td>Gate 1: V5 repair, V6, key integrity, SHACL + pySHACL, VoID, 17 CQs, OVA scan, coverage, ceiling and mutation on Base + V1–V6, Table A</td><td>$0</td><td><span class="pill pass">done · PASS</span> <span class="pill warn">v1 rescore running</span></td></tr>
+      <tr><td class="n">S4</td><td>Gate 2: gold intermediates, recall@k / MRR, value-linking F1, grounding ceiling, edge precision</td><td>$0</td><td><span class="pill plan">next</span></td></tr>
+      <tr><td class="n">S5</td><td>Ports C1–C6 with oracle adapters; per-port latency, tokens and cost; Gate 3 runnable offline</td><td>$0 (live ≈ US$9–13)</td><td><span class="pill plan">planned</span></td></tr>
+      <tr><td class="n">S6</td><td>Datasets: U1–U3 by construction, FIBEN-Obfuscated, <code>Gtrain</code>, L1.5 views</td><td>$0</td><td><span class="pill plan">planned</span></td></tr>
+      <tr><td class="n">S7</td><td>Arms L1, L1.5, L3, L4</td><td>live runs billed</td><td><span class="pill plan">planned</span></td></tr>
+      <tr><td class="n">S8</td><td>BIRD <code>financial</code> (blind mapping), fresh-paraphrase probe (needs a person), curation log</td><td>$0 to build</td><td><span class="pill plan">planned</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="revisions">
+  <div class="head"><div class="sec-num">9 · Revision log</div><h2>From V2 to V3.1</h2></div>
+  <div class="grid2">
+    <div class="panel"><h4>V3 · 26 October</h4><ul>
+      <li>Enrichment became a measured factor; coverage corrected to 216/220; v1 diagnosis corrected to a vocabulary gap.</li>
+      <li>New L1.5 arm; equal optimisation budget; context tokens as a covariate.</li>
+      <li>Pre-registered analysis plan and contamination controls.</li>
+      <li>Gate 1 split into must-pass and reported, with offline tool stand-ins and recorded thresholds.</li>
+      <li>Equivalence-aware grounding ceiling; oracle provenance; Gate 3 read as path ceilings.</li>
+      <li>Utility floor per split; refusal precision at stated prevalence; ACME figures attributed per study; U3 by construction.</li>
+    </ul></div>
+    <div class="panel"><h4>V3.1 · 27 October</h4><ul>
+      <li>V5 repaired: 2,255 parent rows; 0 dangling keys on all instances.</li>
+      <li>V6 built and validated; 219/219 accepted queries agree on it.</li>
+      <li>Superclass mutation detection re-based: 199 of 218 swaps are equivalent under the declared keys.</li>
+      <li>Gate 1 passes.</li>
+    </ul></div>
+  </div>
+</section>
+
+<footer>
+  <span>Generated from <code>docs/nl2q_evaluation_specification.md</code> (V3.1) and the Gate 1 artifacts in <code>artifacts/eval/</code>.</span>
+  <span>Companion: the executive overview of the same specification.</span>
+</footer>
+</main>
+</div>

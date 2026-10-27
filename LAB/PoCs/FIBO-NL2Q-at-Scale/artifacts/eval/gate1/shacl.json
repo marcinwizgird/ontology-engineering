@@ -1,0 +1,73 @@
+{
+ "instances": {
+  "FIBEN": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  },
+  "FIBEN_V1": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  },
+  "FIBEN_V2": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  },
+  "FIBEN_V3": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  },
+  "FIBEN_V4": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  },
+  "FIBEN_V5": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  },
+  "FIBEN_V6": {
+   "violations": 0,
+   "minCount": [],
+   "maxCount": [],
+   "class": [],
+   "subclass": [],
+   "datatype": "guaranteed by the column types"
+  }
+ },
+ "cross_check": {
+  "conforms": false,
+  "injected": {
+   "minCount": 0,
+   "class": 9
+  },
+  "pyshacl_found": {
+   "minCount": 0,
+   "class": 9,
+   "other": 0
+  },
+  "agree": true
+ }
+}

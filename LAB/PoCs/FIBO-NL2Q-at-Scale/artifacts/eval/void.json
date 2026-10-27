@@ -1,0 +1,478 @@
+{
+ "classes": {
+  "AccountsPayableAndAccruedLiabilities": 32183,
+  "AccountsPayableDetails": 0,
+  "AccruedLiabilities": 0,
+  "AccumulatedOtherComprehensiveIncomeLoss": 0,
+  "Address": 210062,
+  "AllowanceForCreditLosses": 0,
+  "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare": 0,
+  "Asset": 48016,
+  "AssetImpairmentCharges": 0,
+  "AssetRetirementObligationDisclosure": 0,
+  "AutonomousAgent": 52424,
+  "AvailableForSaleSecurities": 0,
+  "BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts": 0,
+  "BusinessAcquisitionProForMainFormation": 0,
+  "BusinessCombinationDisclosure": 0,
+  "CapitalUnits": 0,
+  "CashAndCashEquivalents": 45671,
+  "CashAndCashEquivalentsDisclosure": 0,
+  "CashCashEquivalentsAndShortTermInvestments": 0,
+  "ChangeInAccountingEstimate": 0,
+  "ChangesInFairValueOfPlanAssets": 0,
+  "CommitmentsContingenciesAndGuarantees": 0,
+  "ComprehensiveIncome": 52512,
+  "ComprehensiveIncomeLoss": 0,
+  "Contract": 2998,
+  "ContractParty": 2094,
+  "ConversionOfStock": 0,
+  "Corporation": 2324,
+  "CostMethodInvestments": 0,
+  "CostsOfRetirementPlans": 0,
+  "Country": 249,
+  "Currency": 1,
+  "Debt": 5325,
+  "DebtConversion": 0,
+  "DeferredTaxAssetsAndLiabilities": 0,
+  "DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss": 0,
+  "Derivative": 0,
+  "Disclosure": 208158,
+  "DistributionToOwner": 48325,
+  "DividendPaymentRestrictions": 0,
+  "DividendsPayable": 0,
+  "EffectiveIncomeTaxRateReconciliation": 0,
+  "ElementOfFinancialStatement": 443794,
+  "ElementsOfFinancialReport": 8120084,
+  "EmailAddress": 50000,
+  "EntityLocation": 0,
+  "Equity": 43780,
+  "EquityMethodInvestments": 0,
+  "ErrorCorrectionsAndPriorPeriodAdjustments": 0,
+  "Expense": 38757,
+  "ExtinguishmentOfDebt": 0,
+  "ExtraordinaryItems": 0,
+  "FinancialInstrument": 2745,
+  "FinancialInstrumentsSubjectToMandatoryRedemption": 0,
+  "FinancialMarket": 3,
+  "FinancialMetrics": 0,
+  "FinancialReport": 48301,
+  "FinancialServiceAccount": 97270,
+  "FinancingReceivableAllowanceForCreditLosses": 0,
+  "FinancingReceivableCreditQualityIndicators": 0,
+  "FinancingReceivables": 0,
+  "FinancingReceivablesPastDue": 0,
+  "FinancingReceivableTroubledDebtRestructurings": 0,
+  "ForeignCurrencyTranslation": 0,
+  "ForwardContractIndexedToIssuersEquity": 0,
+  "FresHstArtAdjustments": 0,
+  "GainLossOnInvestments": 0,
+  "Goodwill": 34290,
+  "Guarantees": 0,
+  "GuarantorObligations": 0,
+  "HeldToMaturitySecurities": 0,
+  "Holding": 534473,
+  "ImpairedFinancingReceivables": 0,
+  "IncomeTaxContingency": 0,
+  "IndefiniteLivedIntangibleAssets": 0,
+  "IndustrySectorClassificationScheme": 1,
+  "IndustrySectorClassifier": 452,
+  "IntangibleAssetsAndGoodwill": 0,
+  "InterestAndOtherIncome": 0,
+  "InterestCostsIncurred": 0,
+  "InventoryCurrent": 26594,
+  "InventoryNoncurrent": 0,
+  "InvestmentIncome": 0,
+  "InvestmentsAndOtherNoncurrentAssets": 0,
+  "Liability": 48002,
+  "LineOfCreditFacility": 0,
+  "ListedSecurity": 2745,
+  "LongLivedAssetsHeldForSale": 0,
+  "LongLivedAssetsToBeAbandoned": 0,
+  "LongTermDebt": 20315,
+  "LongTermDebtMaturities": 0,
+  "LongTermPurchaseCommitment": 0,
+  "Loss": 14198,
+  "MarketableSecurities": 0,
+  "MonetaryAmount": 502745,
+  "NetPeriodicBenefitCostNotYetRecognized": 0,
+  "NewAccountingPronouncementEarlyAdoption": 0,
+  "NoncontrollingInterest": 0,
+  "OperatingLossCarryForwards": 0,
+  "OtherAssets": 0,
+  "OtherAssetsAndOtherLiabilities": 0,
+  "OtherAssetsDisclosure": 0,
+  "OtherAssetsNoncurrent": 0,
+  "OtherLiabilitiesDisclosure": 0,
+  "OtherNonOperatingIncomeExpense": 0,
+  "OtherOwnershipInterests": 0,
+  "OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings": 0,
+  "Person": 50100,
+  "PhoneNumber": 80073,
+  "PostalAddress": 79989,
+  "PreferredStock": 0,
+  "ProductWarrantyLiability": 0,
+  "PropertyManagementFee": 0,
+  "PropertyPlantAndEquipment": 0,
+  "PropertyPlantAndEquipmentIncomeStatementDisclosures": 0,
+  "PropertyPlantAndEquipmentUseFullives": 0,
+  "PropertySubjectToOrAvailableForOperatingLease": 0,
+  "RealEstateProperties": 0,
+  "RealizedGainLoss": 0,
+  "RealizedGainLossOnInvestments": 0,
+  "ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated": 0,
+  "RecordedUnconditionalPurchaseObligation": 0,
+  "RedeemableNoncontrollingInterest": 0,
+  "RelatedPartyTransactionsByRelatedParty": 0,
+  "RentExpense": 0,
+  "RestrictedCashAndCashEquivalents": 0,
+  "RestructuringAndRelatedCosts": 0,
+  "Revenue": 42474,
+  "SaleLeaseBackTransaction": 0,
+  "SecuritiesTransaction": 500000,
+  "Security": 2745,
+  "ShareBasedCompensationActivity": 0,
+  "ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue": 0,
+  "ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue": 0,
+  "ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable": 0,
+  "ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable": 0,
+  "ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest": 0,
+  "ShareBasedCompensationRestrictedStockUnitsAwardActivity": 0,
+  "ShortTermDebt": 0,
+  "StockholdersEquity": 43780,
+  "SubsequentEvents": 0,
+  "TaxCreditCarryForward": 0,
+  "TradingSecuritiesAndOtherTradingAssets": 0,
+  "TreasuryStock": 0,
+  "UnrealizedGainLossOnInvestments": 0,
+  "UnrealizedLossOnInvestments": 0,
+  "UnrecordedUnconditionalPurchaseObligation": 0,
+  "UnrecordedUnconditionalPurchaseObligationsDisclosure": 0,
+  "ValuationAllowance": 0,
+  "ValuationAndQualifyingAccountsDisclosure": 0,
+  "VirtualAddress": 130073,
+  "WeightedAverageNumberOfShares": 0
+ },
+ "properties": {
+  "hasName": 544475,
+  "isIndexTo": 210062,
+  "postalAddress": 79989,
+  "virtualAddress": 130073,
+  "hasEffectiveDate": 2998,
+  "hasPosition": 2998,
+  "hasExpirationDate": 2998,
+  "hasTitle": 2998,
+  "hasContractParty": 2998,
+  "isManagedBy": 100268,
+  "hasTickerSymbol": 5069,
+  "hasLegalName": 5069,
+  "isClassifiedBy": 2324,
+  "isDomiciledIn": 2324,
+  "hasNumericCountryCode": 249,
+  "hasNumericCode": 453,
+  "hasCurrencyName": 1,
+  "hasMinorUnit": 1,
+  "hasMetricYearCalendar": 651952,
+  "hasMetricStartDate": 651952,
+  "hasDocumentType": 651952,
+  "hasMetricEndQuarter": 651952,
+  "hasUnit": 651952,
+  "applicablePeriod": 651952,
+  "hasUniqueIdentifier": 700705,
+  "hasMetricEndDate": 651952,
+  "isComputed": 651952,
+  "hasMetricValue": 651952,
+  "hasMetricYearFiscal": 651952,
+  "hasUrl": 651952,
+  "hasMetricContextDimensions": 651952,
+  "hasMetricStartQuarter": 651952,
+  "isMemberOf": 8120084,
+  "hasValue": 125636,
+  "isTransferable": 2745,
+  "isProvidedBy": 51046,
+  "hasAccountNumber": 97270,
+  "hasStartDate": 97270,
+  "isOwnedBy": 97270,
+  "hasDescription": 534926,
+  "hasCount": 1034473,
+  "isHeldBy": 534473,
+  "refersTo": 1034473,
+  "hasFormalName": 452,
+  "isDefinedBy": 452,
+  "hasListingDate": 2745,
+  "hasLastTradedValue": 2745,
+  "hasAmount": 2745,
+  "hasCurrency": 502745,
+  "hasGender": 50000,
+  "hasDateOfBirth": 50000,
+  "hasPersonName": 50100,
+  "hasLastName": 50100,
+  "hasFirstName": 50100,
+  "hasMiddleNameOrInitial": 32663,
+  "hasCitizenship": 50100,
+  "hasPlaceOfBirth": 50000,
+  "hasAddressLine1": 79989,
+  "hasAddressLine2": 844,
+  "hasCity": 79989,
+  "hasPostalCode": 79989,
+  "hasState": 79989,
+  "hasCountry": 79989,
+  "hasType": 500000,
+  "hasSettlementDate": 500000,
+  "hasPrice": 500000,
+  "isFacilitatedBy": 500000,
+  "isTradedOn": 2745
+ },
+ "linksets": [
+  {
+   "subject": "Address",
+   "property": "isIndexTo",
+   "object": "AutonomousAgent",
+   "triples": 210062,
+   "max_subjects_per_object": 9
+  },
+  {
+   "subject": "Address",
+   "property": "postalAddress",
+   "object": "PostalAddress",
+   "triples": 79989,
+   "max_subjects_per_object": 1
+  },
+  {
+   "subject": "Address",
+   "property": "virtualAddress",
+   "object": "VirtualAddress",
+   "triples": 130073,
+   "max_subjects_per_object": 1
+  },
+  {
+   "subject": "Contract",
+   "property": "hasContractParty",
+   "object": "ContractParty",
+   "triples": 2998,
+   "max_subjects_per_object": 2
+  },
+  {
+   "subject": "Contract",
+   "property": "isManagedBy",
+   "object": "Corporation",
+   "triples": 2998,
+   "max_subjects_per_object": 2
+  },
+  {
+   "subject": "Corporation",
+   "property": "isClassifiedBy",
+   "object": "IndustrySectorClassifier",
+   "triples": 2324,
+   "max_subjects_per_object": 155
+  },
+  {
+   "subject": "Corporation",
+   "property": "isDomiciledIn",
+   "object": "Country",
+   "triples": 2324,
+   "max_subjects_per_object": 2224
+  },
+  {
+   "subject": "ElementsOfFinancialReport",
+   "property": "isMemberOf",
+   "object": "FinancialReport",
+   "triples": 8120084,
+   "max_subjects_per_object": 822
+  },
+  {
+   "subject": "FinancialReport",
+   "property": "isProvidedBy",
+   "object": "Corporation",
+   "triples": 48301,
+   "max_subjects_per_object": 28
+  },
+  {
+   "subject": "FinancialServiceAccount",
+   "property": "isManagedBy",
+   "object": "Person",
+   "triples": 97270,
+   "max_subjects_per_object": 2496
+  },
+  {
+   "subject": "FinancialServiceAccount",
+   "property": "isOwnedBy",
+   "object": "Person",
+   "triples": 97270,
+   "max_subjects_per_object": 7
+  },
+  {
+   "subject": "Holding",
+   "property": "isHeldBy",
+   "object": "FinancialServiceAccount",
+   "triples": 534473,
+   "max_subjects_per_object": 10
+  },
+  {
+   "subject": "Holding",
+   "property": "refersTo",
+   "object": "ListedSecurity",
+   "triples": 534473,
+   "max_subjects_per_object": 241
+  },
+  {
+   "subject": "IndustrySectorClassifier",
+   "property": "isDefinedBy",
+   "object": "IndustrySectorClassificationScheme",
+   "triples": 452,
+   "max_subjects_per_object": 452
+  },
+  {
+   "subject": "ListedSecurity",
+   "property": "hasLastTradedValue",
+   "object": "MonetaryAmount",
+   "triples": 2745,
+   "max_subjects_per_object": 1
+  },
+  {
+   "subject": "MonetaryAmount",
+   "property": "hasCurrency",
+   "object": "Currency",
+   "triples": 502745,
+   "max_subjects_per_object": 502745
+  },
+  {
+   "subject": "Person",
+   "property": "hasCitizenship",
+   "object": "Country",
+   "triples": 50100,
+   "max_subjects_per_object": 304
+  },
+  {
+   "subject": "Person",
+   "property": "hasPlaceOfBirth",
+   "object": "Country",
+   "triples": 50000,
+   "max_subjects_per_object": 240
+  },
+  {
+   "subject": "PostalAddress",
+   "property": "hasCountry",
+   "object": "Country",
+   "triples": 79989,
+   "max_subjects_per_object": 2532
+  },
+  {
+   "subject": "SecuritiesTransaction",
+   "property": "hasPrice",
+   "object": "MonetaryAmount",
+   "triples": 500000,
+   "max_subjects_per_object": 1
+  },
+  {
+   "subject": "SecuritiesTransaction",
+   "property": "isFacilitatedBy",
+   "object": "FinancialServiceAccount",
+   "triples": 500000,
+   "max_subjects_per_object": 16
+  },
+  {
+   "subject": "SecuritiesTransaction",
+   "property": "refersTo",
+   "object": "ListedSecurity",
+   "triples": 500000,
+   "max_subjects_per_object": 229
+  },
+  {
+   "subject": "Security",
+   "property": "isProvidedBy",
+   "object": "Corporation",
+   "triples": 2745,
+   "max_subjects_per_object": 13
+  },
+  {
+   "subject": "Security",
+   "property": "isTradedOn",
+   "object": "FinancialMarket",
+   "triples": 2745,
+   "max_subjects_per_object": 1914
+  }
+ ],
+ "bounds": {
+  "Contract.hasEffectiveDate": [
+   "1975-12-31 00:00:00",
+   "2017-01-06 00:00:00"
+  ],
+  "Contract.hasExpirationDate": [
+   "1991-01-01 00:00:00",
+   "2017-01-13 00:00:00"
+  ],
+  "Disclosure.hasMetricYearCalendar": [
+   "2012",
+   "2019"
+  ],
+  "Disclosure.hasMetricStartDate": [
+   "2012-04-30",
+   "2019-11-30"
+  ],
+  "Disclosure.hasMetricEndDate": [
+   "2012-04-30",
+   "2019-11-30"
+  ],
+  "Disclosure.hasMetricValue": [
+   "-13616000000.0",
+   "419097000000.0"
+  ],
+  "Disclosure.hasMetricYearFiscal": [
+   "2012",
+   "2020"
+  ],
+  "ElementOfFinancialStatement.hasMetricYearCalendar": [
+   "2012",
+   "2019"
+  ],
+  "ElementOfFinancialStatement.hasMetricStartDate": [
+   "2012-01-01",
+   "2019-11-30"
+  ],
+  "ElementOfFinancialStatement.hasMetricEndDate": [
+   "2012-04-30",
+   "2019-11-30"
+  ],
+  "ElementOfFinancialStatement.hasMetricValue": [
+   "-25392000000.0",
+   "2764661000000.0"
+  ],
+  "ElementOfFinancialStatement.hasMetricYearFiscal": [
+   "2012",
+   "2020"
+  ],
+  "FinancialServiceAccount.hasAccountNumber": [
+   "104130876",
+   "104228145"
+  ],
+  "FinancialServiceAccount.hasStartDate": [
+   "2000-01-01 00:00:00",
+   "2014-12-31 00:00:00"
+  ],
+  "Holding.hasCount": [
+   "20.004",
+   "3000.984"
+  ],
+  "ListedSecurity.hasListingDate": [
+   "1970-06-24 00:00:00",
+   "2018-06-02 00:00:00"
+  ],
+  "MonetaryAmount.hasAmount": [
+   "1.04",
+   "199.84"
+  ],
+  "Person.hasDateOfBirth": [
+   "1940-10-23 00:00:00",
+   "1979-08-21 00:00:00"
+  ],
+  "SecuritiesTransaction.hasSettlementDate": [
+   "2015-06-15 00:01:14",
+   "2016-06-15 23:59:37"
+  ],
+  "SecuritiesTransaction.hasCount": [
+   "100.0",
+   "5000.0"
+  ]
+ }
+}

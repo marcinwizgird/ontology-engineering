@@ -1,0 +1,639 @@
+@prefix fiben: <https://example.org/fiben/voc#> .
+@prefix ns1: <https://example.org/fiben/eval#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/fiben/dataset> a void:Dataset ;
+    void:classPartition [ void:class fiben:Goodwill ;
+            void:entities 34290 ],
+        [ void:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest ;
+            void:entities 0 ],
+        [ void:class fiben:RealizedGainLoss ;
+            void:entities 0 ],
+        [ void:class fiben:ErrorCorrectionsAndPriorPeriodAdjustments ;
+            void:entities 0 ],
+        [ void:class fiben:ValuationAllowance ;
+            void:entities 0 ],
+        [ void:class fiben:PropertyPlantAndEquipmentIncomeStatementDisclosures ;
+            void:entities 0 ],
+        [ void:class fiben:AutonomousAgent ;
+            void:entities 52424 ],
+        [ void:class fiben:Security ;
+            void:entities 2745 ],
+        [ void:class fiben:UnrecordedUnconditionalPurchaseObligationsDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:RedeemableNoncontrollingInterest ;
+            void:entities 0 ],
+        [ void:class fiben:Country ;
+            void:entities 249 ],
+        [ void:class fiben:PropertyPlantAndEquipment ;
+            void:entities 0 ],
+        [ void:class fiben:SaleLeaseBackTransaction ;
+            void:entities 0 ],
+        [ void:class fiben:FresHstArtAdjustments ;
+            void:entities 0 ],
+        [ void:class fiben:AccruedLiabilities ;
+            void:entities 0 ],
+        [ void:class fiben:CashAndCashEquivalentsDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:NoncontrollingInterest ;
+            void:entities 0 ],
+        [ void:class fiben:Loss ;
+            void:entities 14198 ],
+        [ void:class fiben:FinancingReceivables ;
+            void:entities 0 ],
+        [ void:class fiben:PropertyPlantAndEquipmentUseFullives ;
+            void:entities 0 ],
+        [ void:class fiben:DividendsPayable ;
+            void:entities 0 ],
+        [ void:class fiben:OtherAssetsNoncurrent ;
+            void:entities 0 ],
+        [ void:class fiben:IncomeTaxContingency ;
+            void:entities 0 ],
+        [ void:class fiben:EmailAddress ;
+            void:entities 50000 ],
+        [ void:class fiben:Person ;
+            void:entities 50100 ],
+        [ void:class fiben:ContractParty ;
+            void:entities 2094 ],
+        [ void:class fiben:Guarantees ;
+            void:entities 0 ],
+        [ void:class fiben:Currency ;
+            void:entities 1 ],
+        [ void:class fiben:Debt ;
+            void:entities 5325 ],
+        [ void:class fiben:RecordedUnconditionalPurchaseObligation ;
+            void:entities 0 ],
+        [ void:class fiben:InvestmentIncome ;
+            void:entities 0 ],
+        [ void:class fiben:ShareBasedCompensationActivity ;
+            void:entities 0 ],
+        [ void:class fiben:DividendPaymentRestrictions ;
+            void:entities 0 ],
+        [ void:class fiben:NetPeriodicBenefitCostNotYetRecognized ;
+            void:entities 0 ],
+        [ void:class fiben:MarketableSecurities ;
+            void:entities 0 ],
+        [ void:class fiben:DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss ;
+            void:entities 0 ],
+        [ void:class fiben:EquityMethodInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:RestrictedCashAndCashEquivalents ;
+            void:entities 0 ],
+        [ void:class fiben:CommitmentsContingenciesAndGuarantees ;
+            void:entities 0 ],
+        [ void:class fiben:ComprehensiveIncome ;
+            void:entities 52512 ],
+        [ void:class fiben:AccountsPayableAndAccruedLiabilities ;
+            void:entities 32183 ],
+        [ void:class fiben:UnrealizedGainLossOnInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:OtherAssets ;
+            void:entities 0 ],
+        [ void:class fiben:Expense ;
+            void:entities 38757 ],
+        [ void:class fiben:PreferredStock ;
+            void:entities 0 ],
+        [ void:class fiben:ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated ;
+            void:entities 0 ],
+        [ void:class fiben:FinancingReceivableCreditQualityIndicators ;
+            void:entities 0 ],
+        [ void:class fiben:RestructuringAndRelatedCosts ;
+            void:entities 0 ],
+        [ void:class fiben:ElementOfFinancialStatement ;
+            void:entities 443794 ],
+        [ void:class fiben:Contract ;
+            void:entities 2998 ],
+        [ void:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue ;
+            void:entities 0 ],
+        [ void:class fiben:ExtinguishmentOfDebt ;
+            void:entities 0 ],
+        [ void:class fiben:IndustrySectorClassifier ;
+            void:entities 452 ],
+        [ void:class fiben:AllowanceForCreditLosses ;
+            void:entities 0 ],
+        [ void:class fiben:WeightedAverageNumberOfShares ;
+            void:entities 0 ],
+        [ void:class fiben:LongLivedAssetsToBeAbandoned ;
+            void:entities 0 ],
+        [ void:class fiben:Address ;
+            void:entities 210062 ],
+        [ void:class fiben:ProductWarrantyLiability ;
+            void:entities 0 ],
+        [ void:class fiben:SubsequentEvents ;
+            void:entities 0 ],
+        [ void:class fiben:BusinessAcquisitionProForMainFormation ;
+            void:entities 0 ],
+        [ void:class fiben:EffectiveIncomeTaxRateReconciliation ;
+            void:entities 0 ],
+        [ void:class fiben:InventoryCurrent ;
+            void:entities 26594 ],
+        [ void:class fiben:LongTermDebtMaturities ;
+            void:entities 0 ],
+        [ void:class fiben:InterestCostsIncurred ;
+            void:entities 0 ],
+        [ void:class fiben:OtherNonOperatingIncomeExpense ;
+            void:entities 0 ],
+        [ void:class fiben:RentExpense ;
+            void:entities 0 ],
+        [ void:class fiben:FinancingReceivableTroubledDebtRestructurings ;
+            void:entities 0 ],
+        [ void:class fiben:RealizedGainLossOnInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:AccountsPayableDetails ;
+            void:entities 0 ],
+        [ void:class fiben:IndustrySectorClassificationScheme ;
+            void:entities 1 ],
+        [ void:class fiben:FinancialServiceAccount ;
+            void:entities 97270 ],
+        [ void:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable ;
+            void:entities 0 ],
+        [ void:class fiben:StockholdersEquity ;
+            void:entities 43780 ],
+        [ void:class fiben:OtherAssetsDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:DebtConversion ;
+            void:entities 0 ],
+        [ void:class fiben:LineOfCreditFacility ;
+            void:entities 0 ],
+        [ void:class fiben:IntangibleAssetsAndGoodwill ;
+            void:entities 0 ],
+        [ void:class fiben:ConversionOfStock ;
+            void:entities 0 ],
+        [ void:class fiben:ListedSecurity ;
+            void:entities 2745 ],
+        [ void:class fiben:ShortTermDebt ;
+            void:entities 0 ],
+        [ void:class fiben:LongTermDebt ;
+            void:entities 20315 ],
+        [ void:class fiben:Liability ;
+            void:entities 48002 ],
+        [ void:class fiben:OperatingLossCarryForwards ;
+            void:entities 0 ],
+        [ void:class fiben:RelatedPartyTransactionsByRelatedParty ;
+            void:entities 0 ],
+        [ void:class fiben:TreasuryStock ;
+            void:entities 0 ],
+        [ void:class fiben:PhoneNumber ;
+            void:entities 80073 ],
+        [ void:class fiben:ChangesInFairValueOfPlanAssets ;
+            void:entities 0 ],
+        [ void:class fiben:FinancingReceivableAllowanceForCreditLosses ;
+            void:entities 0 ],
+        [ void:class fiben:BusinessCombinationDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:OtherOwnershipInterests ;
+            void:entities 0 ],
+        [ void:class fiben:PropertyManagementFee ;
+            void:entities 0 ],
+        [ void:class fiben:RealEstateProperties ;
+            void:entities 0 ],
+        [ void:class fiben:TradingSecuritiesAndOtherTradingAssets ;
+            void:entities 0 ],
+        [ void:class fiben:PropertySubjectToOrAvailableForOperatingLease ;
+            void:entities 0 ],
+        [ void:class fiben:LongTermPurchaseCommitment ;
+            void:entities 0 ],
+        [ void:class fiben:NewAccountingPronouncementEarlyAdoption ;
+            void:entities 0 ],
+        [ void:class fiben:FinancialMarket ;
+            void:entities 3 ],
+        [ void:class fiben:GuarantorObligations ;
+            void:entities 0 ],
+        [ void:class fiben:DeferredTaxAssetsAndLiabilities ;
+            void:entities 0 ],
+        [ void:class fiben:Holding ;
+            void:entities 534473 ],
+        [ void:class fiben:CashCashEquivalentsAndShortTermInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts ;
+            void:entities 0 ],
+        [ void:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue ;
+            void:entities 0 ],
+        [ void:class fiben:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare ;
+            void:entities 0 ],
+        [ void:class fiben:Revenue ;
+            void:entities 42474 ],
+        [ void:class fiben:PostalAddress ;
+            void:entities 79989 ],
+        [ void:class fiben:OtherAssetsAndOtherLiabilities ;
+            void:entities 0 ],
+        [ void:class fiben:CapitalUnits ;
+            void:entities 0 ],
+        [ void:class fiben:GainLossOnInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:IndefiniteLivedIntangibleAssets ;
+            void:entities 0 ],
+        [ void:class fiben:CostMethodInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:ComprehensiveIncomeLoss ;
+            void:entities 0 ],
+        [ void:class fiben:ElementsOfFinancialReport ;
+            void:entities 8120084 ],
+        [ void:class fiben:FinancingReceivablesPastDue ;
+            void:entities 0 ],
+        [ void:class fiben:InventoryNoncurrent ;
+            void:entities 0 ],
+        [ void:class fiben:ForeignCurrencyTranslation ;
+            void:entities 0 ],
+        [ void:class fiben:FinancialInstrumentsSubjectToMandatoryRedemption ;
+            void:entities 0 ],
+        [ void:class fiben:OtherLiabilitiesDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:DistributionToOwner ;
+            void:entities 48325 ],
+        [ void:class fiben:AccumulatedOtherComprehensiveIncomeLoss ;
+            void:entities 0 ],
+        [ void:class fiben:ForwardContractIndexedToIssuersEquity ;
+            void:entities 0 ],
+        [ void:class fiben:InterestAndOtherIncome ;
+            void:entities 0 ],
+        [ void:class fiben:ChangeInAccountingEstimate ;
+            void:entities 0 ],
+        [ void:class fiben:UnrealizedLossOnInvestments ;
+            void:entities 0 ],
+        [ void:class fiben:LongLivedAssetsHeldForSale ;
+            void:entities 0 ],
+        [ void:class fiben:UnrecordedUnconditionalPurchaseObligation ;
+            void:entities 0 ],
+        [ void:class fiben:Asset ;
+            void:entities 48016 ],
+        [ void:class fiben:FinancialMetrics ;
+            void:entities 0 ],
+        [ void:class fiben:VirtualAddress ;
+            void:entities 130073 ],
+        [ void:class fiben:ShareBasedCompensationRestrictedStockUnitsAwardActivity ;
+            void:entities 0 ],
+        [ void:class fiben:ImpairedFinancingReceivables ;
+            void:entities 0 ],
+        [ void:class fiben:Derivative ;
+            void:entities 0 ],
+        [ void:class fiben:OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings ;
+            void:entities 0 ],
+        [ void:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable ;
+            void:entities 0 ],
+        [ void:class fiben:Equity ;
+            void:entities 43780 ],
+        [ void:class fiben:InvestmentsAndOtherNoncurrentAssets ;
+            void:entities 0 ],
+        [ void:class fiben:AvailableForSaleSecurities ;
+            void:entities 0 ],
+        [ void:class fiben:FinancialInstrument ;
+            void:entities 2745 ],
+        [ void:class fiben:Corporation ;
+            void:entities 2324 ],
+        [ void:class fiben:ValuationAndQualifyingAccountsDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:CashAndCashEquivalents ;
+            void:entities 45671 ],
+        [ void:class fiben:CostsOfRetirementPlans ;
+            void:entities 0 ],
+        [ void:class fiben:ExtraordinaryItems ;
+            void:entities 0 ],
+        [ void:class fiben:AssetImpairmentCharges ;
+            void:entities 0 ],
+        [ void:class fiben:HeldToMaturitySecurities ;
+            void:entities 0 ],
+        [ void:class fiben:FinancialReport ;
+            void:entities 48301 ],
+        [ void:class fiben:AssetRetirementObligationDisclosure ;
+            void:entities 0 ],
+        [ void:class fiben:MonetaryAmount ;
+            void:entities 502745 ],
+        [ void:class fiben:Disclosure ;
+            void:entities 208158 ],
+        [ void:class fiben:SecuritiesTransaction ;
+            void:entities 500000 ],
+        [ void:class fiben:EntityLocation ;
+            void:entities 0 ],
+        [ void:class fiben:TaxCreditCarryForward ;
+            void:entities 0 ] ;
+    void:propertyPartition [ void:property fiben:hasFirstName ;
+            void:triples 50100 ],
+        [ void:property fiben:hasLastTradedValue ;
+            void:triples 2745 ],
+        [ void:property fiben:hasMetricYearCalendar ;
+            void:triples 651952 ],
+        [ void:property fiben:hasExpirationDate ;
+            void:triples 2998 ],
+        [ void:property fiben:hasCountry ;
+            void:triples 79989 ],
+        [ void:property fiben:isOwnedBy ;
+            void:triples 97270 ],
+        [ void:property fiben:isManagedBy ;
+            void:triples 100268 ],
+        [ void:property fiben:hasCount ;
+            void:triples 1034473 ],
+        [ void:property fiben:hasPlaceOfBirth ;
+            void:triples 50000 ],
+        [ void:property fiben:hasLegalName ;
+            void:triples 5069 ],
+        [ void:property fiben:hasState ;
+            void:triples 79989 ],
+        [ void:property fiben:hasTickerSymbol ;
+            void:triples 5069 ],
+        [ void:property fiben:hasCity ;
+            void:triples 79989 ],
+        [ void:property fiben:hasListingDate ;
+            void:triples 2745 ],
+        [ void:property fiben:refersTo ;
+            void:triples 1034473 ],
+        [ void:property fiben:hasLastName ;
+            void:triples 50100 ],
+        [ void:property fiben:hasStartDate ;
+            void:triples 97270 ],
+        [ void:property fiben:isMemberOf ;
+            void:triples 8120084 ],
+        [ void:property fiben:hasEffectiveDate ;
+            void:triples 2998 ],
+        [ void:property fiben:hasType ;
+            void:triples 500000 ],
+        [ void:property fiben:isProvidedBy ;
+            void:triples 51046 ],
+        [ void:property fiben:hasFormalName ;
+            void:triples 452 ],
+        [ void:property fiben:hasGender ;
+            void:triples 50000 ],
+        [ void:property fiben:hasNumericCode ;
+            void:triples 453 ],
+        [ void:property fiben:hasPostalCode ;
+            void:triples 79989 ],
+        [ void:property fiben:hasNumericCountryCode ;
+            void:triples 249 ],
+        [ void:property fiben:hasDateOfBirth ;
+            void:triples 50000 ],
+        [ void:property fiben:hasMetricYearFiscal ;
+            void:triples 651952 ],
+        [ void:property fiben:isClassifiedBy ;
+            void:triples 2324 ],
+        [ void:property fiben:isComputed ;
+            void:triples 651952 ],
+        [ void:property fiben:isHeldBy ;
+            void:triples 534473 ],
+        [ void:property fiben:hasContractParty ;
+            void:triples 2998 ],
+        [ void:property fiben:applicablePeriod ;
+            void:triples 651952 ],
+        [ void:property fiben:hasName ;
+            void:triples 544475 ],
+        [ void:property fiben:hasMetricEndDate ;
+            void:triples 651952 ],
+        [ void:property fiben:isDomiciledIn ;
+            void:triples 2324 ],
+        [ void:property fiben:hasDescription ;
+            void:triples 534926 ],
+        [ void:property fiben:hasPosition ;
+            void:triples 2998 ],
+        [ void:property fiben:hasMetricStartDate ;
+            void:triples 651952 ],
+        [ void:property fiben:hasPersonName ;
+            void:triples 50100 ],
+        [ void:property fiben:hasUnit ;
+            void:triples 651952 ],
+        [ void:property fiben:hasCurrencyName ;
+            void:triples 1 ],
+        [ void:property fiben:hasAmount ;
+            void:triples 2745 ],
+        [ void:property fiben:hasMetricEndQuarter ;
+            void:triples 651952 ],
+        [ void:property fiben:hasAddressLine2 ;
+            void:triples 844 ],
+        [ void:property fiben:isTradedOn ;
+            void:triples 2745 ],
+        [ void:property fiben:hasUrl ;
+            void:triples 651952 ],
+        [ void:property fiben:postalAddress ;
+            void:triples 79989 ],
+        [ void:property fiben:hasUniqueIdentifier ;
+            void:triples 700705 ],
+        [ void:property fiben:hasAddressLine1 ;
+            void:triples 79989 ],
+        [ void:property fiben:hasMetricValue ;
+            void:triples 651952 ],
+        [ void:property fiben:hasTitle ;
+            void:triples 2998 ],
+        [ void:property fiben:hasMetricStartQuarter ;
+            void:triples 651952 ],
+        [ void:property fiben:hasMetricContextDimensions ;
+            void:triples 651952 ],
+        [ void:property fiben:isFacilitatedBy ;
+            void:triples 500000 ],
+        [ void:property fiben:hasMiddleNameOrInitial ;
+            void:triples 32663 ],
+        [ void:property fiben:hasValue ;
+            void:triples 125636 ],
+        [ void:property fiben:isIndexTo ;
+            void:triples 210062 ],
+        [ void:property fiben:hasCurrency ;
+            void:triples 502745 ],
+        [ void:property fiben:isDefinedBy ;
+            void:triples 452 ],
+        [ void:property fiben:hasAccountNumber ;
+            void:triples 97270 ],
+        [ void:property fiben:virtualAddress ;
+            void:triples 130073 ],
+        [ void:property fiben:isTransferable ;
+            void:triples 2745 ],
+        [ void:property fiben:hasDocumentType ;
+            void:triples 651952 ],
+        [ void:property fiben:hasPrice ;
+            void:triples 500000 ],
+        [ void:property fiben:hasSettlementDate ;
+            void:triples 500000 ],
+        [ void:property fiben:hasCitizenship ;
+            void:triples 50100 ],
+        [ void:property fiben:hasMinorUnit ;
+            void:triples 1 ] .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:refersTo ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 500000 ;
+    ns1:maxSubjectsPerObject 229 ;
+    ns1:objectClass fiben:ListedSecurity ;
+    ns1:subjectClass fiben:SecuritiesTransaction .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasCurrency ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 502745 ;
+    ns1:maxSubjectsPerObject 502745 ;
+    ns1:objectClass fiben:Currency ;
+    ns1:subjectClass fiben:MonetaryAmount .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isOwnedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 97270 ;
+    ns1:maxSubjectsPerObject 7 ;
+    ns1:objectClass fiben:Person ;
+    ns1:subjectClass fiben:FinancialServiceAccount .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isDomiciledIn ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2324 ;
+    ns1:maxSubjectsPerObject 2224 ;
+    ns1:objectClass fiben:Country ;
+    ns1:subjectClass fiben:Corporation .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isDefinedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 452 ;
+    ns1:maxSubjectsPerObject 452 ;
+    ns1:objectClass fiben:IndustrySectorClassificationScheme ;
+    ns1:subjectClass fiben:IndustrySectorClassifier .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasPlaceOfBirth ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 50000 ;
+    ns1:maxSubjectsPerObject 240 ;
+    ns1:objectClass fiben:Country ;
+    ns1:subjectClass fiben:Person .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isManagedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 97270 ;
+    ns1:maxSubjectsPerObject 2496 ;
+    ns1:objectClass fiben:Person ;
+    ns1:subjectClass fiben:FinancialServiceAccount .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isHeldBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 534473 ;
+    ns1:maxSubjectsPerObject 10 ;
+    ns1:objectClass fiben:FinancialServiceAccount ;
+    ns1:subjectClass fiben:Holding .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:postalAddress ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 79989 ;
+    ns1:maxSubjectsPerObject 1 ;
+    ns1:objectClass fiben:PostalAddress ;
+    ns1:subjectClass fiben:Address .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasPrice ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 500000 ;
+    ns1:maxSubjectsPerObject 1 ;
+    ns1:objectClass fiben:MonetaryAmount ;
+    ns1:subjectClass fiben:SecuritiesTransaction .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isProvidedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 48301 ;
+    ns1:maxSubjectsPerObject 28 ;
+    ns1:objectClass fiben:Corporation ;
+    ns1:subjectClass fiben:FinancialReport .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isMemberOf ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 8120084 ;
+    ns1:maxSubjectsPerObject 822 ;
+    ns1:objectClass fiben:FinancialReport ;
+    ns1:subjectClass fiben:ElementsOfFinancialReport .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:refersTo ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 534473 ;
+    ns1:maxSubjectsPerObject 241 ;
+    ns1:objectClass fiben:ListedSecurity ;
+    ns1:subjectClass fiben:Holding .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasContractParty ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2998 ;
+    ns1:maxSubjectsPerObject 2 ;
+    ns1:objectClass fiben:ContractParty ;
+    ns1:subjectClass fiben:Contract .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isTradedOn ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2745 ;
+    ns1:maxSubjectsPerObject 1914 ;
+    ns1:objectClass fiben:FinancialMarket ;
+    ns1:subjectClass fiben:Security .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasCountry ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 79989 ;
+    ns1:maxSubjectsPerObject 2532 ;
+    ns1:objectClass fiben:Country ;
+    ns1:subjectClass fiben:PostalAddress .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isClassifiedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2324 ;
+    ns1:maxSubjectsPerObject 155 ;
+    ns1:objectClass fiben:IndustrySectorClassifier ;
+    ns1:subjectClass fiben:Corporation .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isManagedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2998 ;
+    ns1:maxSubjectsPerObject 2 ;
+    ns1:objectClass fiben:Corporation ;
+    ns1:subjectClass fiben:Contract .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:virtualAddress ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 130073 ;
+    ns1:maxSubjectsPerObject 1 ;
+    ns1:objectClass fiben:VirtualAddress ;
+    ns1:subjectClass fiben:Address .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasCitizenship ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 50100 ;
+    ns1:maxSubjectsPerObject 304 ;
+    ns1:objectClass fiben:Country ;
+    ns1:subjectClass fiben:Person .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isFacilitatedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 500000 ;
+    ns1:maxSubjectsPerObject 16 ;
+    ns1:objectClass fiben:FinancialServiceAccount ;
+    ns1:subjectClass fiben:SecuritiesTransaction .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isProvidedBy ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2745 ;
+    ns1:maxSubjectsPerObject 13 ;
+    ns1:objectClass fiben:Corporation ;
+    ns1:subjectClass fiben:Security .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:isIndexTo ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 210062 ;
+    ns1:maxSubjectsPerObject 9 ;
+    ns1:objectClass fiben:AutonomousAgent ;
+    ns1:subjectClass fiben:Address .
+
+[] a void:Linkset ;
+    void:linkPredicate fiben:hasLastTradedValue ;
+    void:subset <https://example.org/fiben/dataset> ;
+    void:triples 2745 ;
+    ns1:maxSubjectsPerObject 1 ;
+    ns1:objectClass fiben:MonetaryAmount ;
+    ns1:subjectClass fiben:ListedSecurity .
+

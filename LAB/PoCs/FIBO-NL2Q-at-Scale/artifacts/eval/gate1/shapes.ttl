@@ -1,0 +1,1126 @@
+@prefix fiben: <https://example.org/fiben/voc#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/fiben/shapes#AccountsPayableAndAccruedLiabilities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AccountsPayableAndAccruedLiabilities .
+
+<https://example.org/fiben/shapes#AccountsPayableDetails> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AccountsPayableDetails .
+
+<https://example.org/fiben/shapes#AccruedLiabilities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AccruedLiabilities .
+
+<https://example.org/fiben/shapes#AccumulatedOtherComprehensiveIncomeLoss> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AccumulatedOtherComprehensiveIncomeLoss .
+
+<https://example.org/fiben/shapes#Address> a sh:NodeShape ;
+    sh:property [ sh:class fiben:AutonomousAgent ;
+            sh:maxCount 1 ;
+            sh:path fiben:isIndexTo ],
+        [ sh:class fiben:PostalAddress ;
+            sh:maxCount 1 ;
+            sh:path fiben:postalAddress ],
+        [ sh:class fiben:VirtualAddress ;
+            sh:maxCount 1 ;
+            sh:path fiben:virtualAddress ] ;
+    sh:targetClass fiben:Address .
+
+<https://example.org/fiben/shapes#AllowanceForCreditLosses> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AllowanceForCreditLosses .
+
+<https://example.org/fiben/shapes#AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare .
+
+<https://example.org/fiben/shapes#Asset> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Asset .
+
+<https://example.org/fiben/shapes#AssetImpairmentCharges> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AssetImpairmentCharges .
+
+<https://example.org/fiben/shapes#AssetRetirementObligationDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AssetRetirementObligationDisclosure .
+
+<https://example.org/fiben/shapes#AutonomousAgent> a sh:NodeShape ;
+    sh:targetClass fiben:AutonomousAgent .
+
+<https://example.org/fiben/shapes#AvailableForSaleSecurities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:AvailableForSaleSecurities .
+
+<https://example.org/fiben/shapes#BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts .
+
+<https://example.org/fiben/shapes#BusinessAcquisitionProForMainFormation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:BusinessAcquisitionProForMainFormation .
+
+<https://example.org/fiben/shapes#BusinessCombinationDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:BusinessCombinationDisclosure .
+
+<https://example.org/fiben/shapes#CapitalUnits> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CapitalUnits .
+
+<https://example.org/fiben/shapes#CashAndCashEquivalents> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CashAndCashEquivalents .
+
+<https://example.org/fiben/shapes#CashAndCashEquivalentsDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CashAndCashEquivalentsDisclosure .
+
+<https://example.org/fiben/shapes#CashCashEquivalentsAndShortTermInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CashCashEquivalentsAndShortTermInvestments .
+
+<https://example.org/fiben/shapes#ChangeInAccountingEstimate> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ChangeInAccountingEstimate .
+
+<https://example.org/fiben/shapes#ChangesInFairValueOfPlanAssets> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ChangesInFairValueOfPlanAssets .
+
+<https://example.org/fiben/shapes#CommitmentsContingenciesAndGuarantees> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CommitmentsContingenciesAndGuarantees .
+
+<https://example.org/fiben/shapes#ComprehensiveIncome> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ComprehensiveIncome .
+
+<https://example.org/fiben/shapes#ComprehensiveIncomeLoss> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ComprehensiveIncomeLoss .
+
+<https://example.org/fiben/shapes#Contract> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasEffectiveDate ],
+        [ sh:class fiben:Corporation ;
+            sh:maxCount 1 ;
+            sh:path fiben:isManagedBy ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasExpirationDate ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasPosition ],
+        [ sh:class fiben:ContractParty ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasContractParty ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasTitle ] ;
+    sh:targetClass fiben:Contract .
+
+<https://example.org/fiben/shapes#ContractParty> a sh:NodeShape ;
+    sh:targetClass fiben:ContractParty .
+
+<https://example.org/fiben/shapes#ConversionOfStock> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ConversionOfStock .
+
+<https://example.org/fiben/shapes#Corporation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasLegalName ],
+        [ sh:class fiben:Country ;
+            sh:maxCount 1 ;
+            sh:path fiben:isDomiciledIn ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasTickerSymbol ],
+        [ sh:class fiben:IndustrySectorClassifier ;
+            sh:maxCount 1 ;
+            sh:path fiben:isClassifiedBy ] ;
+    sh:targetClass fiben:Corporation .
+
+<https://example.org/fiben/shapes#CostMethodInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CostMethodInvestments .
+
+<https://example.org/fiben/shapes#CostsOfRetirementPlans> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:CostsOfRetirementPlans .
+
+<https://example.org/fiben/shapes#Country> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasNumericCountryCode ] ;
+    sh:targetClass fiben:Country .
+
+<https://example.org/fiben/shapes#Currency> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCurrencyName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasNumericCode ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMinorUnit ] ;
+    sh:targetClass fiben:Currency .
+
+<https://example.org/fiben/shapes#Debt> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Debt .
+
+<https://example.org/fiben/shapes#DebtConversion> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:DebtConversion .
+
+<https://example.org/fiben/shapes#DeferredTaxAssetsAndLiabilities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:DeferredTaxAssetsAndLiabilities .
+
+<https://example.org/fiben/shapes#DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss .
+
+<https://example.org/fiben/shapes#Derivative> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Derivative .
+
+<https://example.org/fiben/shapes#Disclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasDocumentType ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricStartQuarter ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricYearCalendar ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:applicablePeriod ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUnit ],
+        [ sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricValue ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricEndQuarter ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUniqueIdentifier ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:isComputed ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricStartDate ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricEndDate ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricYearFiscal ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricContextDimensions ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUrl ] ;
+    sh:targetClass fiben:Disclosure .
+
+<https://example.org/fiben/shapes#DistributionToOwner> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:DistributionToOwner .
+
+<https://example.org/fiben/shapes#DividendPaymentRestrictions> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:DividendPaymentRestrictions .
+
+<https://example.org/fiben/shapes#DividendsPayable> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:DividendsPayable .
+
+<https://example.org/fiben/shapes#EffectiveIncomeTaxRateReconciliation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:EffectiveIncomeTaxRateReconciliation .
+
+<https://example.org/fiben/shapes#ElementOfFinancialStatement> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:applicablePeriod ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricYearCalendar ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:isComputed ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricContextDimensions ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricYearFiscal ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricEndQuarter ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricEndDate ],
+        [ sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricValue ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUrl ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasDocumentType ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricStartQuarter ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUniqueIdentifier ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUnit ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMetricStartDate ] ;
+    sh:targetClass fiben:ElementOfFinancialStatement .
+
+<https://example.org/fiben/shapes#ElementsOfFinancialReport> a sh:NodeShape ;
+    sh:property [ sh:class fiben:FinancialReport ;
+            sh:maxCount 1 ;
+            sh:path fiben:isMemberOf ] ;
+    sh:targetClass fiben:ElementsOfFinancialReport .
+
+<https://example.org/fiben/shapes#EmailAddress> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasValue ] ;
+    sh:targetClass fiben:EmailAddress .
+
+<https://example.org/fiben/shapes#EntityLocation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:EntityLocation .
+
+<https://example.org/fiben/shapes#Equity> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Equity .
+
+<https://example.org/fiben/shapes#EquityMethodInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:EquityMethodInvestments .
+
+<https://example.org/fiben/shapes#ErrorCorrectionsAndPriorPeriodAdjustments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ErrorCorrectionsAndPriorPeriodAdjustments .
+
+<https://example.org/fiben/shapes#Expense> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Expense .
+
+<https://example.org/fiben/shapes#ExtinguishmentOfDebt> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ExtinguishmentOfDebt .
+
+<https://example.org/fiben/shapes#ExtraordinaryItems> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ExtraordinaryItems .
+
+<https://example.org/fiben/shapes#FinancialInstrument> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:isTransferable ] ;
+    sh:targetClass fiben:FinancialInstrument .
+
+<https://example.org/fiben/shapes#FinancialInstrumentsSubjectToMandatoryRedemption> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancialInstrumentsSubjectToMandatoryRedemption .
+
+<https://example.org/fiben/shapes#FinancialMarket> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancialMarket .
+
+<https://example.org/fiben/shapes#FinancialMetrics> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancialMetrics .
+
+<https://example.org/fiben/shapes#FinancialReport> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUniqueIdentifier ],
+        [ sh:class fiben:Corporation ;
+            sh:maxCount 1 ;
+            sh:path fiben:isProvidedBy ] ;
+    sh:targetClass fiben:FinancialReport .
+
+<https://example.org/fiben/shapes#FinancialServiceAccount> a sh:NodeShape ;
+    sh:property [ sh:class fiben:Person ;
+            sh:maxCount 1 ;
+            sh:path fiben:isOwnedBy ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasStartDate ],
+        [ sh:class fiben:Person ;
+            sh:maxCount 1 ;
+            sh:path fiben:isManagedBy ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasAccountNumber ] ;
+    sh:targetClass fiben:FinancialServiceAccount .
+
+<https://example.org/fiben/shapes#FinancingReceivableAllowanceForCreditLosses> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancingReceivableAllowanceForCreditLosses .
+
+<https://example.org/fiben/shapes#FinancingReceivableCreditQualityIndicators> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancingReceivableCreditQualityIndicators .
+
+<https://example.org/fiben/shapes#FinancingReceivableTroubledDebtRestructurings> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancingReceivableTroubledDebtRestructurings .
+
+<https://example.org/fiben/shapes#FinancingReceivables> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancingReceivables .
+
+<https://example.org/fiben/shapes#FinancingReceivablesPastDue> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FinancingReceivablesPastDue .
+
+<https://example.org/fiben/shapes#ForeignCurrencyTranslation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ForeignCurrencyTranslation .
+
+<https://example.org/fiben/shapes#ForwardContractIndexedToIssuersEquity> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ForwardContractIndexedToIssuersEquity .
+
+<https://example.org/fiben/shapes#FresHstArtAdjustments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:FresHstArtAdjustments .
+
+<https://example.org/fiben/shapes#GainLossOnInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:GainLossOnInvestments .
+
+<https://example.org/fiben/shapes#Goodwill> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Goodwill .
+
+<https://example.org/fiben/shapes#Guarantees> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Guarantees .
+
+<https://example.org/fiben/shapes#GuarantorObligations> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:GuarantorObligations .
+
+<https://example.org/fiben/shapes#HeldToMaturitySecurities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:HeldToMaturitySecurities .
+
+<https://example.org/fiben/shapes#Holding> a sh:NodeShape ;
+    sh:property [ sh:class fiben:ListedSecurity ;
+            sh:maxCount 1 ;
+            sh:path fiben:refersTo ],
+        [ sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCount ],
+        [ sh:class fiben:FinancialServiceAccount ;
+            sh:maxCount 1 ;
+            sh:path fiben:isHeldBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasDescription ] ;
+    sh:targetClass fiben:Holding .
+
+<https://example.org/fiben/shapes#ImpairedFinancingReceivables> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ImpairedFinancingReceivables .
+
+<https://example.org/fiben/shapes#IncomeTaxContingency> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:IncomeTaxContingency .
+
+<https://example.org/fiben/shapes#IndefiniteLivedIntangibleAssets> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:IndefiniteLivedIntangibleAssets .
+
+<https://example.org/fiben/shapes#IndustrySectorClassificationScheme> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasDescription ] ;
+    sh:targetClass fiben:IndustrySectorClassificationScheme .
+
+<https://example.org/fiben/shapes#IndustrySectorClassifier> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasDescription ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasUniqueIdentifier ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasFormalName ],
+        [ sh:class fiben:IndustrySectorClassificationScheme ;
+            sh:maxCount 1 ;
+            sh:path fiben:isDefinedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasNumericCode ] ;
+    sh:targetClass fiben:IndustrySectorClassifier .
+
+<https://example.org/fiben/shapes#IntangibleAssetsAndGoodwill> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:IntangibleAssetsAndGoodwill .
+
+<https://example.org/fiben/shapes#InterestAndOtherIncome> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:InterestAndOtherIncome .
+
+<https://example.org/fiben/shapes#InterestCostsIncurred> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:InterestCostsIncurred .
+
+<https://example.org/fiben/shapes#InventoryCurrent> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:InventoryCurrent .
+
+<https://example.org/fiben/shapes#InventoryNoncurrent> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:InventoryNoncurrent .
+
+<https://example.org/fiben/shapes#InvestmentIncome> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:InvestmentIncome .
+
+<https://example.org/fiben/shapes#InvestmentsAndOtherNoncurrentAssets> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:InvestmentsAndOtherNoncurrentAssets .
+
+<https://example.org/fiben/shapes#Liability> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Liability .
+
+<https://example.org/fiben/shapes#LineOfCreditFacility> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:LineOfCreditFacility .
+
+<https://example.org/fiben/shapes#ListedSecurity> a sh:NodeShape ;
+    sh:property [ sh:class fiben:MonetaryAmount ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasLastTradedValue ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasTickerSymbol ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasLegalName ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasListingDate ] ;
+    sh:targetClass fiben:ListedSecurity .
+
+<https://example.org/fiben/shapes#LongLivedAssetsHeldForSale> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:LongLivedAssetsHeldForSale .
+
+<https://example.org/fiben/shapes#LongLivedAssetsToBeAbandoned> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:LongLivedAssetsToBeAbandoned .
+
+<https://example.org/fiben/shapes#LongTermDebt> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:LongTermDebt .
+
+<https://example.org/fiben/shapes#LongTermDebtMaturities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:LongTermDebtMaturities .
+
+<https://example.org/fiben/shapes#LongTermPurchaseCommitment> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:LongTermPurchaseCommitment .
+
+<https://example.org/fiben/shapes#Loss> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Loss .
+
+<https://example.org/fiben/shapes#MarketableSecurities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:MarketableSecurities .
+
+<https://example.org/fiben/shapes#MonetaryAmount> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasAmount ],
+        [ sh:class fiben:Currency ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCurrency ] ;
+    sh:targetClass fiben:MonetaryAmount .
+
+<https://example.org/fiben/shapes#NetPeriodicBenefitCostNotYetRecognized> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:NetPeriodicBenefitCostNotYetRecognized .
+
+<https://example.org/fiben/shapes#NewAccountingPronouncementEarlyAdoption> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:NewAccountingPronouncementEarlyAdoption .
+
+<https://example.org/fiben/shapes#NoncontrollingInterest> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:NoncontrollingInterest .
+
+<https://example.org/fiben/shapes#OperatingLossCarryForwards> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OperatingLossCarryForwards .
+
+<https://example.org/fiben/shapes#OtherAssets> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherAssets .
+
+<https://example.org/fiben/shapes#OtherAssetsAndOtherLiabilities> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherAssetsAndOtherLiabilities .
+
+<https://example.org/fiben/shapes#OtherAssetsDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherAssetsDisclosure .
+
+<https://example.org/fiben/shapes#OtherAssetsNoncurrent> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherAssetsNoncurrent .
+
+<https://example.org/fiben/shapes#OtherLiabilitiesDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherLiabilitiesDisclosure .
+
+<https://example.org/fiben/shapes#OtherNonOperatingIncomeExpense> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherNonOperatingIncomeExpense .
+
+<https://example.org/fiben/shapes#OtherOwnershipInterests> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherOwnershipInterests .
+
+<https://example.org/fiben/shapes#OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings .
+
+<https://example.org/fiben/shapes#Person> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasMiddleNameOrInitial ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasGender ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasPersonName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasLastName ],
+        [ sh:class fiben:Country ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasPlaceOfBirth ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasFirstName ],
+        [ sh:class fiben:Country ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCitizenship ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasDateOfBirth ] ;
+    sh:targetClass fiben:Person .
+
+<https://example.org/fiben/shapes#PhoneNumber> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasValue ] ;
+    sh:targetClass fiben:PhoneNumber .
+
+<https://example.org/fiben/shapes#PostalAddress> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasAddressLine1 ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasAddressLine2 ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCity ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasPostalCode ],
+        [ sh:class fiben:Country ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCountry ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasState ] ;
+    sh:targetClass fiben:PostalAddress .
+
+<https://example.org/fiben/shapes#PreferredStock> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:PreferredStock .
+
+<https://example.org/fiben/shapes#ProductWarrantyLiability> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ProductWarrantyLiability .
+
+<https://example.org/fiben/shapes#PropertyManagementFee> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:PropertyManagementFee .
+
+<https://example.org/fiben/shapes#PropertyPlantAndEquipment> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:PropertyPlantAndEquipment .
+
+<https://example.org/fiben/shapes#PropertyPlantAndEquipmentIncomeStatementDisclosures> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:PropertyPlantAndEquipmentIncomeStatementDisclosures .
+
+<https://example.org/fiben/shapes#PropertyPlantAndEquipmentUseFullives> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:PropertyPlantAndEquipmentUseFullives .
+
+<https://example.org/fiben/shapes#PropertySubjectToOrAvailableForOperatingLease> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:PropertySubjectToOrAvailableForOperatingLease .
+
+<https://example.org/fiben/shapes#RealEstateProperties> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RealEstateProperties .
+
+<https://example.org/fiben/shapes#RealizedGainLoss> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RealizedGainLoss .
+
+<https://example.org/fiben/shapes#RealizedGainLossOnInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RealizedGainLossOnInvestments .
+
+<https://example.org/fiben/shapes#ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated .
+
+<https://example.org/fiben/shapes#RecordedUnconditionalPurchaseObligation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RecordedUnconditionalPurchaseObligation .
+
+<https://example.org/fiben/shapes#RedeemableNoncontrollingInterest> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RedeemableNoncontrollingInterest .
+
+<https://example.org/fiben/shapes#RelatedPartyTransactionsByRelatedParty> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RelatedPartyTransactionsByRelatedParty .
+
+<https://example.org/fiben/shapes#RentExpense> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RentExpense .
+
+<https://example.org/fiben/shapes#RestrictedCashAndCashEquivalents> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RestrictedCashAndCashEquivalents .
+
+<https://example.org/fiben/shapes#RestructuringAndRelatedCosts> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:RestructuringAndRelatedCosts .
+
+<https://example.org/fiben/shapes#Revenue> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:Revenue .
+
+<https://example.org/fiben/shapes#SaleLeaseBackTransaction> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:SaleLeaseBackTransaction .
+
+<https://example.org/fiben/shapes#SecuritiesTransaction> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasCount ],
+        [ sh:class fiben:MonetaryAmount ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasPrice ],
+        [ sh:class fiben:FinancialServiceAccount ;
+            sh:maxCount 1 ;
+            sh:path fiben:isFacilitatedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasType ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasSettlementDate ],
+        [ sh:class fiben:ListedSecurity ;
+            sh:maxCount 1 ;
+            sh:path fiben:refersTo ] ;
+    sh:targetClass fiben:SecuritiesTransaction .
+
+<https://example.org/fiben/shapes#Security> a sh:NodeShape ;
+    sh:property [ sh:class fiben:Corporation ;
+            sh:maxCount 1 ;
+            sh:path fiben:isProvidedBy ],
+        [ sh:class fiben:FinancialMarket ;
+            sh:maxCount 1 ;
+            sh:path fiben:isTradedOn ] ;
+    sh:targetClass fiben:Security .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationActivity> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationActivity .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest .
+
+<https://example.org/fiben/shapes#ShareBasedCompensationRestrictedStockUnitsAwardActivity> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShareBasedCompensationRestrictedStockUnitsAwardActivity .
+
+<https://example.org/fiben/shapes#ShortTermDebt> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ShortTermDebt .
+
+<https://example.org/fiben/shapes#StockholdersEquity> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:StockholdersEquity .
+
+<https://example.org/fiben/shapes#SubsequentEvents> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:SubsequentEvents .
+
+<https://example.org/fiben/shapes#TaxCreditCarryForward> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:TaxCreditCarryForward .
+
+<https://example.org/fiben/shapes#TradingSecuritiesAndOtherTradingAssets> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:TradingSecuritiesAndOtherTradingAssets .
+
+<https://example.org/fiben/shapes#TreasuryStock> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:TreasuryStock .
+
+<https://example.org/fiben/shapes#UnrealizedGainLossOnInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:UnrealizedGainLossOnInvestments .
+
+<https://example.org/fiben/shapes#UnrealizedLossOnInvestments> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:UnrealizedLossOnInvestments .
+
+<https://example.org/fiben/shapes#UnrecordedUnconditionalPurchaseObligation> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:UnrecordedUnconditionalPurchaseObligation .
+
+<https://example.org/fiben/shapes#UnrecordedUnconditionalPurchaseObligationsDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:UnrecordedUnconditionalPurchaseObligationsDisclosure .
+
+<https://example.org/fiben/shapes#ValuationAllowance> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ValuationAllowance .
+
+<https://example.org/fiben/shapes#ValuationAndQualifyingAccountsDisclosure> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:ValuationAndQualifyingAccountsDisclosure .
+
+<https://example.org/fiben/shapes#VirtualAddress> a sh:NodeShape ;
+    sh:targetClass fiben:VirtualAddress .
+
+<https://example.org/fiben/shapes#WeightedAverageNumberOfShares> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path fiben:hasName ] ;
+    sh:targetClass fiben:WeightedAverageNumberOfShares .
+

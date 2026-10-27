@@ -1,0 +1,183 @@
+<title>NL2Q Evaluation Overview</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@600;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: executive memo; the question, then what we know, how we measure, and the decisions needed */
+:root{
+  --bg:#f5f7f9; --surface:#ffffff; --surface-2:#edf1f5; --line:#d5dde5;
+  --ink:#14202b; --ink-2:#3f4d5c; --muted:#66727f;
+  --accent:#1d5c8f; --accent-soft:#e3edf6;
+  --pass:#1b7f46; --pass-soft:#e1f2e8; --warn:#93600a; --warn-soft:#faefd8; --plan:#5a6573; --plan-soft:#eceff3;
+  --f-display:"Schibsted Grotesk","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151c; --surface:#161e27; --surface-2:#1c2631; --line:#2a3644;
+  --ink:#e6edf4; --ink-2:#b2bfcc; --muted:#8794a2;
+  --accent:#79b3e6; --accent-soft:#1a2c3e;
+  --pass:#5fce8d; --pass-soft:#153024; --warn:#e7b250; --warn-soft:#33280f; --plan:#a3adb9; --plan-soft:#222b36; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151c; --surface:#161e27; --surface-2:#1c2631; --line:#2a3644;
+  --ink:#e6edf4; --ink-2:#b2bfcc; --muted:#8794a2;
+  --accent:#79b3e6; --accent-soft:#1a2c3e;
+  --pass:#5fce8d; --pass-soft:#153024; --warn:#e7b250; --warn-soft:#33280f; --plan:#a3adb9; --plan-soft:#222b36; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:900px;margin:0 auto;padding-block:40px 72px;display:grid;gap:52px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4.4vw,2.7rem);line-height:1.1;font-weight:800}
+h2{font-size:1.45rem;line-height:1.25;font-weight:800}
+h3{font-size:1.04rem;line-height:1.3;font-weight:600}
+p{margin:0;max-width:68ch}
+ul,ol{margin:0;padding-left:1.2em;display:grid;gap:7px;max-width:70ch}
+li{color:var(--ink-2)} li b{color:var(--ink)}
+a{color:var(--accent)}
+.eyebrow{font:500 .74rem/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--accent)}
+.muted{color:var(--muted)} .small{font-size:.88rem}
+section{display:grid;gap:16px}
+header{display:grid;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 20px;font:.8rem/1.4 var(--f-mono);color:var(--muted)}
+.question{font-size:1.18rem;color:var(--ink-2);max-width:62ch}
+.verdict{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px;display:grid;gap:12px}
+.verdict p{color:var(--ink-2)} .verdict b{color:var(--ink)}
+.pill{justify-self:start;display:inline-block;font:500 .72rem/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.pill.pass{background:var(--pass-soft);color:var(--pass)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.plan{background:var(--plan-soft);color:var(--plan)}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:grid;gap:6px;align-content:start;min-width:0}
+.fig .n{font:800 1.8rem/1 var(--f-display);font-variant-numeric:tabular-nums;color:var(--accent)}
+.fig .n small{font-size:.85rem;font-weight:600;color:var(--muted)}
+.fig p{font-size:.9rem;color:var(--ink-2)}
+.ladder{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.rung{display:grid;grid-template-columns:3.6rem minmax(0,1fr);gap:4px 16px;padding:13px 18px;border-bottom:1px solid var(--line)}
+.rung:last-child{border-bottom:0}
+.rung .k{font:500 .92rem/1.5 var(--f-mono);color:var(--accent)}
+.rung p{font-size:.93rem;color:var(--ink-2)}
+.rung h3{font-size:.98rem}
+.gates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:720px){.gates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gate{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:7px;align-content:start}
+.gate .g{font:500 .72rem/1 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.gate p{font-size:.86rem;color:var(--ink-2)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:600px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:500 .72rem/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hi td{background:var(--accent-soft)}
+ol.asks{list-style:none;margin:0;padding:0;display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;max-width:none}
+ol.asks li{display:grid;grid-template-columns:2rem minmax(0,1fr) minmax(0,11rem);gap:4px 16px;padding:15px 18px;border-bottom:1px solid var(--line);color:var(--ink)}
+ol.asks li:last-child{border-bottom:0}
+ol.asks .k{font:700 1rem/1.4 var(--f-mono);color:var(--accent)}
+ol.asks p{font-size:.92rem;color:var(--ink-2)}
+ol.asks .w{font:.8rem/1.45 var(--f-mono);color:var(--muted)} ol.asks .w b{display:block;color:var(--ink);font-weight:500}
+@media (max-width:640px){ol.asks li{grid-template-columns:2rem minmax(0,1fr)} ol.asks .w{grid-column:2}}
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 8px 8px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft)}
+footer{font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:6px}
+code{font-family:var(--f-mono);font-size:.85em}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Executive overview · NL2Q evaluation specification V3.1 · Semantic Intelligence Platform</div>
+  <h1>How we will know whether ontologies make bank-data questions safer</h1>
+  <p class="question">The proof of concept lets people ask questions about banking data in plain English. The evaluation answers two questions: does putting a business ontology (FIBO) between the question and the database give fewer wrong answers, and which part of it earns its keep?</p>
+  <div class="meta"><span>27 October 2026</span><span>Benchmark: IBM FIBEN, 152 tables, 11.7M rows</span><span>Companion: technical specification</span></div>
+</header>
+
+<section>
+  <div class="verdict">
+    <span class="pill pass">Measurement foundation: ready</span>
+    <p><b>The test bench is sound and its first gate passes.</b> Every database instance, data shape and ontology check that guards the measurements is clean.</p>
+    <p><b>It found and fixed a defect in our own test data.</b> One of the test databases had rows that broke its own key rules, which can make a correct query look wrong. We repaired it. The published results barely moved, and a final re-check of the live runs is under way.</p>
+    <p><b>What we know so far is limited but real.</b> In the first small trial, the ontology approach gave significantly fewer confident wrong answers than plain text-to-SQL. No approach was clearly more accurate, and the sample is too small to detect differences under about 19 points.</p>
+    <p><b>Next:</b> finish the free, offline stages, then run the paid comparisons on a larger question set.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">What we know today</div>
+  <div class="figs">
+    <div class="fig"><div class="n">−25 <small>pts</small></div><h3>Fewer confident wrong answers</h3><p>The ontology approach versus text-to-SQL (46% vs 71%), significant after correcting for multiple comparisons. Part of the gap comes from refusing more questions.</p></div>
+    <div class="fig"><div class="n">25–29%</div><h3>Best accuracy so far</h3><p>Correct on the real data and on every altered test copy. No approach is significantly more accurate than another.</p></div>
+    <div class="fig"><div class="n">≈ 19 <small>pts</small></div><h3>Smallest detectable gap</h3><p>With 63 trial questions. Finding a 5-point difference needs about 800 questions, so the next runs must be larger.</p></div>
+    <div class="fig"><div class="n">92%</div><h3>Of bank queries expressible</h3><p>219 of 237 benchmark queries go through the ontology to the right SQL, unchanged by the data repair.</p></div>
+  </div>
+  <p class="small muted">From a single trial run per approach on 63 validation questions (19–20 October), re-analysed with the new statistics. These figures predate the test-data repair, whose re-check is still running.</p>
+</section>
+
+<section>
+  <div class="eyebrow">How we measure</div>
+  <h2>A ladder of six approaches, each adding one thing</h2>
+  <p>If the ontology wins, we need to know why. Each step up the ladder adds exactly one capability, so each difference has one explanation.</p>
+  <div class="ladder">
+    <div class="rung"><span class="k">L0</span><div><h3>The database schema only</h3><p>The AI writes SQL from table and column names. The baseline.</p></div></div>
+    <div class="rung"><span class="k">L1</span><div><h3>Plus a written data dictionary</h3><p>The same definitions the ontology holds, as plain documentation. Shows how much is gained by writing meaning down at all.</p></div></div>
+    <div class="rung"><span class="k">L1.5</span><div><h3>Plus pre-built category views</h3><p>"All financial figures" as one view instead of eight tables. Shows the value of the ontology's categories alone.</p></div></div>
+    <div class="rung"><span class="k">L2</span><div><h3>The ontology, with query checks</h3><p>The AI asks in business terms, the system translates to SQL and rejects invalid combinations.</p></div></div>
+    <div class="rung"><span class="k">L3</span><div><h3>Plus knowledge of what the data holds, and a refusal gate</h3><p>The system knows which categories are empty and refuses questions the data cannot answer, with an explanation.</p></div></div>
+    <div class="rung"><span class="k">L4</span><div><h3>Plus several attempts and a self-check</h3><p>Generates alternatives and checks the results before answering. The upper bound.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Four gates: cheap checks before paid runs</h2>
+  <div class="gates">
+    <div class="gate"><span class="g">Gate 1 · free</span><span class="pill pass">passed</span><h3>Is the test bench sound?</h3><p>Data integrity, ontology quality, and whether the test copies catch wrong queries.</p></div>
+    <div class="gate"><span class="g">Gate 2 · free</span><span class="pill plan">next</span><h3>Does each part work?</h3><p>Finding the right terms, the right values, and refusing correctly.</p></div>
+    <div class="gate"><span class="g">Gate 3 · ≈ US$10</span><span class="pill plan">planned</span><h3>Where are answers lost?</h3><p>Hands each step the perfect input in turn, to see which step loses most.</p></div>
+    <div class="gate"><span class="g">Gate 4 · paid</span><span class="pill warn">scoring ready</span><h3>Which approach wins?</h3><p>All six approaches, three runs each, scored on accuracy, safety, speed and cost.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Why the results will be trustworthy</div>
+  <h2>Five safeguards</h2>
+  <ul>
+    <li><b>The headline is safety.</b> The main measure is the rate of confident wrong answers, which is the real business risk. A refusal is never counted as a success.</li>
+    <li><b>The test databases catch lucky answers.</b> Every answer is checked on the real data and on six deliberately altered copies. An answer that is right only by coincidence fails.</li>
+    <li><b>The statistics are fixed in advance.</b> The main hypothesis, the tests and the corrections are written down before the final test, so the results can't be shopped for. Re-worded versions of one question count once, not several times.</li>
+    <li><b>Benchmark leakage is controlled.</b> Hand-written knowledge may use training questions only. The transfer test on a second bank dataset is set up before anyone reads its questions. A version with disguised table names checks that the AI isn't relying on memory of the public benchmark.</li>
+    <li><b>Every run is reproducible.</b> Model version, prompts, knowledge and data are fingerprinted for every result.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">Go / no-go for a bank product</div>
+  <div class="tbl"><table>
+    <thead><tr><th>Criterion</th><th>Target</th><th>Where we are</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Confident wrong answers</td><td class="n">≤ 2%, and below the SQL approaches</td><td>46% at best; lower than SQL (significant)</td></tr>
+      <tr><td>Accuracy on answerable questions</td><td class="n">≥ 85%</td><td>25–29% at best</td></tr>
+      <tr><td>Refusing what the data cannot answer</td><td class="n">≥ 80% caught, ≥ 90% precise</td><td>100% caught on a small set; precision not yet measured</td></tr>
+      <tr><td>Transfer to a second bank dataset</td><td class="n">≤ 15-point drop</td><td>not measured</td></tr>
+      <tr><td>Consistency across runs</td><td class="n">≥ 90%</td><td>not measured (one run so far)</td></tr>
+      <tr><td>Speed and cost</td><td class="n">≤ 10 s, ≤ US$0.05 per question</td><td>US$0.02 per question; speed under review</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="eyebrow">Decisions and people needed</div>
+  <h2>What it takes to reach a verdict</h2>
+  <ol class="asks">
+    <li><span class="k">1</span><div><h3>Continue the free stages</h3><p>Component tests, the refusal question set, the disguised-schema version and the new approaches. Engineering time only.</p></div><span class="w"><b>No spend</b>Starting now</span></li>
+    <li><span class="k">2</span><div><h3>Approve the diagnostic run (Gate 3)</h3><p>One run that shows which step loses the most answers, so improvement effort goes to the right place.</p></div><span class="w"><b>≈ US$9–13</b>After the ports are built</span></li>
+    <li><span class="k">3</span><div><h3>Approve the full comparison (Gate 4)</h3><p>Six approaches, three runs each, on validation and then the held-out test set.</p></div><span class="w"><b>Estimate on request</b>v1 estimate for its remaining runs: US$160–255</span></li>
+    <li><span class="k">4</span><div><h3>Assign three small human tasks</h3><p>Mark the key phrases in a sample of questions; re-word 30 test questions without having seen the benchmark; write the second bank dataset's mapping before reading its questions.</p></div><span class="w"><b>People, not budget</b>Person-days, logged</span></li>
+  </ol>
+  <div class="callout"><p><b>What not to conclude yet.</b> The first trial shows the ontology approach is <b>safer</b>, not that it is more accurate. Its accuracy is far below a product bar, and the trial was too small to tell the approaches apart on accuracy. The framework exists to settle this with enough questions and fair comparisons.</p></div>
+</section>
+
+<footer>
+  <span>Source: EVAL-SPEC-NL2Q-2026 V3.1 (<code>docs/nl2q_evaluation_specification.md</code>), Gate 1 artifacts and the v1 scorecard (<code>artifacts/eval/</code>).</span>
+  <span>Figures from one trial run per approach on 63 validation questions; treat percentages as indicative until repeated runs are done.</span>
+</footer>
+
+</div>
