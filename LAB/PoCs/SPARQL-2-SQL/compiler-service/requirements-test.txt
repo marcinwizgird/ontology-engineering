@@ -1,3 +1,4 @@
 pytest
+pyyaml
 httpx
 duckdb==1.5.6

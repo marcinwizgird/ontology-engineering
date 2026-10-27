@@ -16,7 +16,13 @@ rows on the base database or on any perturbed instance. Mutants identical in mea
 (e.g. SUM->AVG over single rows) exist, so detection < 100% is expected; the target is
 >= 95% on mutants that execute.
 
-    python -m nl2q.mutate
+A superclass mutant that the declared foreign keys make equivalent (the variable is
+reached through a key that targets the subclass, so every valid instance agrees) is
+counted as ``equivalent_under_constraints``, not as a detection failure
+(``nl2q.evalkit.v6.equivalent_under_constraints``).
+
+    python -m nl2q.mutate                        # Base + V1-V5 (v1 protocol)
+    python -m nl2q.mutate --variants V1,V2,V3,V4,V5,V6
 """
 
 from __future__ import annotations
@@ -83,13 +89,13 @@ def mutants(q: str, rng: random.Random) -> list[tuple[str, str]]:
     return [(k, m) for k, m in out if m != q]
 
 
-def detected(m: str, sid: int, base: compare.Signature, gv) -> tuple[bool, str]:
+def detected(m: str, sid: int, base: compare.Signature, gv, variants=VARIANTS) -> tuple[bool, str]:
     ex = vkg.run_guarded(m, row_cap=5_000_000, timeout_s=30)
     if not ex.ok:
         return True, "does not execute"
     if not compare.compare(base, ex.rows, len(ex.columns)).strict:
         return True, "base"
-    for v in VARIANTS:
+    for v in variants:
         sig = gv.get(v, {}).get(sid)
         if sig is None:
             continue
@@ -106,7 +112,16 @@ def _rate(xs: list[dict], base_only: bool = False) -> float | None:
     return round(hit / len(xs), 4)
 
 
-def main(limit: int | None = None) -> dict:
+def _swapped_class(q: str, m: str) -> str | None:
+    """The class a superclass mutant replaced."""
+    before = re.findall(r"a fiben:(\w+) ", q)
+    after = re.findall(r"a fiben:(\w+) ", m)
+    return next((b for b, a in zip(before, after) if a != b), None)
+
+
+def main(limit: int | None = None, variants=VARIANTS, out_name: str = "mutation.json") -> dict:
+    from .evalkit import v6
+    hier = v6.Hierarchy(v6.schema.load())
     rng = random.Random(42)
     rows = json.loads((paths.GOLD_DIR / "gold_sparql.json").read_text(encoding="utf-8"))
     base = gold.load_results()
@@ -119,14 +134,19 @@ def main(limit: int | None = None) -> dict:
     for r in acc:
         sid = r["sql_id"]
         for op, m in mutants(r["sparql"], rng):
-            d, where = detected(m, sid, base[sid].sig, gv)
+            d, where = detected(m, sid, base[sid].sig, gv, variants)
+            equiv = False
+            if op == "superclass" and not d:
+                c = _swapped_class(r["sparql"], m)
+                equiv = bool(c) and v6.equivalent_under_constraints(r["sparql"], c, hier)
             records.append({"sql_id": sid, "op": op, "detected": d, "where": where,
-                            "empty_gold": base[sid].row_count == 0})
+                            "empty_gold": base[sid].row_count == 0, "equivalent_under_constraints": equiv})
             c = by_op.setdefault(op, Counter())
             c["n"] += 1
             c["detected"] += d
             c["by_base"] += where == "base"
-            c["only_by_variants"] += where in VARIANTS
+            c["only_by_variants"] += where in variants
+            c["equivalent_under_constraints"] += records[-1]["equivalent_under_constraints"]
             c["not_executable"] += where == "does not execute"
             if not d:
                 undetected.append({"sql_id": sid, "op": op, "empty_gold": base[sid].row_count == 0})
@@ -148,11 +168,21 @@ def main(limit: int | None = None) -> dict:
                 and x["op"] != "superclass"]),
            "base_only_rate_executable_nonempty_gold": _rate(
                [x for x in records if not x["empty_gold"] and x["where"] != "does not execute"], base_only=True),
+           "superclass_detection_rate_executable_nonempty_excl_equivalent": _rate(
+               [x for x in records if not x["empty_gold"] and x["where"] != "does not execute"
+                and x["op"] == "superclass" and not x["equivalent_under_constraints"]]),
+           "superclass_equivalent_under_constraints": sum(x["equivalent_under_constraints"] for x in records),
+           "variants": list(variants),
            "by_op": {k: dict(v) for k, v in by_op.items()}}
-    (paths.GOLD_DIR / "mutation.json").write_text(json.dumps({**res, "undetected": undetected}, indent=1),
+    (paths.GOLD_DIR / out_name).write_text(json.dumps({**res, "undetected": undetected}, indent=1),
                                                   encoding="utf-8")
     return res
 
 
 if __name__ == "__main__":
-    print(json.dumps(main(), indent=1))
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--variants", default=",".join(VARIANTS))
+    ap.add_argument("--out", default="mutation.json")
+    a = ap.parse_args()
+    print(json.dumps(main(variants=tuple(a.variants.split(",")), out_name=a.out), indent=1))

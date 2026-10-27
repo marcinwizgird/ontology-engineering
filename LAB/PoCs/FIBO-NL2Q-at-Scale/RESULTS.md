@@ -115,6 +115,49 @@ Findings:
   recall. LLM mention extraction (module M1) is the next lever and is measured in the live
   runs.
 
+### 5.1 Semantic enrichment without the glossary (2026-10-26)
+
+**The gap.** Only 48 of the 220 mapped terms had a definition:
+* the 116 FRO / US GAAP classes have no FIBO counterpart;
+* the 25 suggested FIBO matches were never reviewed;
+* most properties match nothing in FIBO.
+
+**What was built** (`nl2q/enrich.py`, `nl2q/usgaap.py`). Three switchable layers, with each definition's source recorded:
+
+| layer | source | terms defined |
+|---|---|---|
+| review | `artifacts/knowledge/alignment_review.csv`: the 25 suggestions decided, plus one match found during review | 4 (2 exact, 2 close); 4 broad and 7 related add a synonym only; 11 rejected |
+| usgaap | FASB US GAAP 2015 taxonomy: documentation and labels of the elements a class links to | 69 (6 by the elements its rows carry, 39 by name or name variant, 24 by disclosure text block) |
+| derived | schema: what a property belongs to, its type, and its values for code columns | 95 |
+
+**Result.** 216 of 220 mapped terms now have a definition, up from 48. The 4 left are root classes (`AutonomousAgent`, `Country`, `FinancialReport`, `ElementsOfFinancialReport`). Their FIBO counterparts now live in OMG Commons and LCC, which the local FIBO copy doesn't include.
+
+**The review rejected 11 of the 25 suggestions as wrong senses**, for example `Revenue` → *revenue bond*, `Liability` → *liability capacity* and `NoncontrollingInterest` → *interest* (the cost of credit). Before the review they were display-only, so no wrong definitions had been imported. Every decision carries a rationale and is marked *proposed*: the `approved` column is for the data owner.
+
+**H1 with enrichment** (train, 104 questions whose gold SPARQL passes the stricter ceiling of §7.1, so the baselines differ slightly from §5's 108):
+
+| configuration | cand. recall | tree recall | tree precision |
+|---|---|---|---|
+| hybrid K1, no enrichment | 0.491 | 0.390 | 0.472 |
+| hybrid K1 + review | 0.493 | 0.401 | 0.482 |
+| hybrid K1 + review + US GAAP | 0.493 | 0.388 | 0.485 |
+| hybrid K1 + all three layers | 0.497 | 0.388 | 0.486 |
+| BM25 K1 → + all layers | 0.481 → 0.490 | 0.384 → 0.383 | 0.538 → 0.524 |
+| TF-IDF K1 → + all layers | 0.505 → 0.508 | 0.401 → 0.396 | 0.474 → 0.484 |
+| hybrid K4 (glossary) → + all layers | **0.651 → 0.624** | 0.466 → 0.455 | 0.583 → 0.572 |
+
+Findings:
+* **The missing definitions did not cap recall; the gap is vocabulary.** Enrichment adds at most 0.9 points of candidate recall, against the glossary's 16. Two reasons:
+  * The 116 FRO classes hardly occur in FIBEN's questions: the terms enrichment newly defines are mostly properties (`hasTickerSymbol`, `refersTo`, `hasType`).
+  * Most missed gold terms already had a FIBO definition: at least 344 of the 574 missed occurrences (`hasLegalName`, `hasAmount`, `isOwnedBy` ...). A question says "company name" or "bought"; a formal definition doesn't contain those words. That is what the glossary's business synonyms and codes supply.
+* **Enrichment dilutes the glossary.** With K4, the extra definition and label text competes with the glossary phrases and costs 2.7 points. Enrichment is therefore **off by default** (`NL2Q_ENRICH=none`), so every arm keeps the pack its published results used.
+* **Where the enrichment still pays:**
+  * it removes the glossary's benchmark-leakage risk for definitions, since no layer reads gold or questions;
+  * it gives the planner real definitions to read, which retrieval recall cannot measure and needs a live arm-S ablation (billed);
+  * it improves refusal explanations and documentation;
+  * it supplies SKOS mappings to FIBO and US GAAP (`artifacts/knowledge/enrichment.ttl`) for SIP.
+* **The next lever stays the one §5 named:** LLM mention extraction (M1), plus synonym mining from sources that don't see the gold, e.g. US GAAP labels for the business words of financial questions.
+
 ## 6. Arm R: the no-LLM baseline (val, 63 questions)
 
 | metric | value |

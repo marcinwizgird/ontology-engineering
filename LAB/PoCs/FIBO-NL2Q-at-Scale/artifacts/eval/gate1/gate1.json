@@ -1,0 +1,209 @@
+{
+ "annotation_coverage": {
+  "terms": 220,
+  "E0": 48,
+  "E1": 216,
+  "E1_missing": [
+   "AutonomousAgent",
+   "Country",
+   "ElementsOfFinancialReport",
+   "FinancialReport"
+  ]
+ },
+ "cq": {
+  "passed": 17,
+  "total": 17,
+  "rate": 1.0,
+  "results": {
+   "cq01_listed_security_is_security": {
+    "question": "Is every listed security a security (and a financial instrument)?",
+    "pass": true
+   },
+   "cq02_agents": {
+    "question": "Are persons and corporations both autonomous agents?",
+    "pass": true
+   },
+   "cq03_revenue_is_statement_element": {
+    "question": "Is revenue reported as an element of a financial statement?",
+    "pass": true
+   },
+   "cq04_statement_measures": {
+    "question": "Do expense, liability, asset and equity figures all roll up to financial-statement elements?",
+    "pass": true
+   },
+   "cq05_account_owner": {
+    "question": "Who owns an account? (an account is related to the person who owns it)",
+    "pass": true
+   },
+   "cq06_account_manager": {
+    "question": "Who manages an account?",
+    "pass": true
+   },
+   "cq07_holding_security": {
+    "question": "Which security does a holding refer to?",
+    "pass": true
+   },
+   "cq08_holding_account": {
+    "question": "In which account is a holding held?",
+    "pass": true
+   },
+   "cq09_trade_account": {
+    "question": "Through which account was a securities transaction made?",
+    "pass": true
+   },
+   "cq10_issuer": {
+    "question": "Which corporation issued a security?",
+    "pass": true
+   },
+   "cq11_market": {
+    "question": "On which market is a security traded?",
+    "pass": true
+   },
+   "cq12_report_provider": {
+    "question": "Which corporation provided a financial report?",
+    "pass": true
+   },
+   "cq13_report_member": {
+    "question": "Which report does a financial-statement element belong to?",
+    "pass": true
+   },
+   "cq14_citizenship": {
+    "question": "What is a person's citizenship?",
+    "pass": true
+   },
+   "cq15_price": {
+    "question": "What is the last traded price of a listed security, as an amount?",
+    "pass": true
+   },
+   "cq16_industry": {
+    "question": "In which industry sector is a corporation classified?",
+    "pass": true
+   },
+   "cq17_figure_value_year": {
+    "question": "Does a financial-statement figure carry a value and a fiscal year?",
+    "pass": true
+   }
+  }
+ },
+ "ova": {
+  "E0": {
+   "verdict": "revise",
+   "by_severity": {
+    "blocker": 0,
+    "major": 1,
+    "minor": 415,
+    "info": 2
+   },
+   "waived": 5,
+   "by_check": {
+    "DL-08": {
+     "info": 1
+    },
+    "LEX-02": {
+     "minor": 152
+    },
+    "META-01": {
+     "minor": 1
+    },
+    "METRIC-01": {
+     "major": 1
+    },
+    "METRIC-02": {
+     "info": 1
+    },
+    "PROP-01": {
+     "minor": 68
+    },
+    "SHC-08": {
+     "minor": 194
+    }
+   },
+   "level": "thesaurus",
+   "report": "ova_e0.md"
+  },
+  "E1": {
+   "verdict": "revise",
+   "by_severity": {
+    "blocker": 0,
+    "major": 1,
+    "minor": 157,
+    "info": 2
+   },
+   "waived": 5,
+   "by_check": {
+    "DL-08": {
+     "info": 1
+    },
+    "LEX-02": {
+     "minor": 23
+    },
+    "META-01": {
+     "minor": 1
+    },
+    "METRIC-01": {
+     "major": 1
+    },
+    "METRIC-02": {
+     "info": 1
+    },
+    "PROP-01": {
+     "minor": 68
+    },
+    "SHC-08": {
+     "minor": 65
+    }
+   },
+   "level": "thesaurus",
+   "report": "ova_e1.md"
+  },
+  "catalogue": {
+   "checks": 131,
+   "oops_pitfalls_referenced": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P10",
+    "P11",
+    "P13",
+    "P17",
+    "P19",
+    "P20",
+    "P21",
+    "P22",
+    "P24",
+    "P25",
+    "P26",
+    "P27",
+    "P28",
+    "P29",
+    "P30",
+    "P31",
+    "P32",
+    "P33",
+    "P34",
+    "P35",
+    "P36",
+    "P38",
+    "P39",
+    "P40",
+    "P41"
+   ],
+   "families_with_oops_oracle": 4,
+   "families_with_foops_oracle": 1
+  }
+ },
+ "key_integrity": {
+  "FIBEN": [],
+  "FIBEN_V1": [],
+  "FIBEN_V2": [],
+  "FIBEN_V3": [],
+  "FIBEN_V4": [],
+  "FIBEN_V5": [],
+  "FIBEN_V6": []
+ }
+}

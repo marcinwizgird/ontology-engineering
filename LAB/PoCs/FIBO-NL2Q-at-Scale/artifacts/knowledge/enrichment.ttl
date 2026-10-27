@@ -1,0 +1,727 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fiben: <https://example.org/fiben/voc#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+fiben:AccountsPayableAndAccruedLiabilities dct:source "us-gaap" ;
+    skos:altLabel "Accounts Payable and Accrued Liabilities Disclosure"@en,
+        "Accounts Payable and Accrued Liabilities, Current"@en ;
+    skos:definition "Sum of the carrying values as of the balance sheet date of obligations incurred through that date and due within one year (or the operating cycle, if longer), including liabilities incurred (and for which invoices have typically been received) and payable to vendors for goods and services received, taxes, interest, rent and utilities, accrued salaries and bonuses, payroll taxes and fringe benefits."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AccountsPayableAndAccruedLiabilitiesCurrent>,
+        <http://fasb.org/us-gaap/2015#AccountsPayableAndAccruedLiabilitiesDisclosureTextBlock> .
+
+fiben:AccountsPayableDetails dct:source "derived" ;
+    skos:definition "accounts payable details: a kind of disclosure"@en .
+
+fiben:AccruedLiabilities dct:source "us-gaap" ;
+    skos:altLabel "Accrued Liabilities, Current"@en ;
+    skos:definition "Carrying value as of the balance sheet date of obligations incurred and payable, pertaining to costs that are statutory in nature, are incurred on contractual obligations, or accumulate over time and for which invoices have not yet been received or will not be rendered. Examples include taxes, interest, rent and utilities. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AccruedLiabilitiesCurrent> .
+
+fiben:AccumulatedOtherComprehensiveIncomeLoss dct:source "us-gaap" ;
+    skos:altLabel "Accumulated Other Comprehensive Income (Loss), Net of Tax"@en ;
+    skos:definition "Accumulated change in equity from transactions and other events and circumstances from non-owner sources, net of tax effect, at period end. Excludes Net Income (Loss), and accumulated changes in equity from transactions resulting from investments by owners and distributions to owners. Includes foreign currency translation items, certain pension adjustments, unrealized gains and losses on certain investments in debt and equity securities, other than temporary impairment (OTTI) losses related to factors other than credit losses on available-for-sale and held-to-maturity debt securities that an entity does not intend to sell and it is not more likely than not that the entity will be required to sell before recovery of the amortized cost basis, as well as changes in the fair value of derivatives related to the effective portion of a designated cash flow hedge."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AccumulatedOtherComprehensiveIncomeLossNetOfTax> .
+
+fiben:AllowanceForCreditLosses dct:source "us-gaap" ;
+    skos:altLabel "Allowance for Credit Losses"@en ;
+    skos:definition "The entire disclosure for allowance for credit losses."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AllowanceForCreditLossesTextBlock> .
+
+fiben:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare dct:source "derived" ;
+    skos:definition "antidilutive securities excluded from computation of earnings per share: a kind of disclosure"@en .
+
+fiben:AssetImpairmentCharges dct:source "us-gaap" ;
+    skos:altLabel "Asset Impairment Charges"@en ;
+    skos:definition "Amount of write-down of assets recognized in the income statement. Includes, but is not limited to, losses from tangible assets, intangible assets and goodwill."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AssetImpairmentCharges>,
+        <http://fasb.org/us-gaap/2015#AssetImpairmentChargesTextBlock> .
+
+fiben:AssetRetirementObligationDisclosure dct:source "us-gaap" ;
+    skos:altLabel "Asset Retirement Obligation"@en,
+        "Asset Retirement Obligation Disclosure"@en ;
+    skos:definition "The carrying amount of a liability for an asset retirement obligation. An asset retirement obligation is a legal obligation associated with the disposal or retirement of a tangible long-lived asset that results from the acquisition, construction or development, or the normal operations of a long-lived asset, except for certain obligations of lessees."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AssetRetirementObligation>,
+        <http://fasb.org/us-gaap/2015#AssetRetirementObligationDisclosureTextBlock> .
+
+fiben:AvailableForSaleSecurities dct:source "us-gaap" ;
+    skos:altLabel "Available-for-sale Securities"@en ;
+    skos:definition "Amount of investment in debt and equity securities categorized neither as held-to-maturity nor trading."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#AvailableForSaleSecurities>,
+        <http://fasb.org/us-gaap/2015#AvailableForSaleSecuritiesTextBlock> .
+
+fiben:BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts dct:source "us-gaap" ;
+    skos:altLabel "Business Acquisition, Integration, Restructuring and Other Related Costs"@en ;
+    skos:definition "The entire description for costs incurred to effect a business combination that have been expensed during the period. Such costs could include business integration costs, systems integration and conversion costs, and severance and other employee-related costs."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCostsTextBlock> .
+
+fiben:BusinessAcquisitionProForMainFormation dct:source "us-gaap" ;
+    skos:altLabel "Business Acquisition, Pro Forma Information"@en ;
+    skos:definition "Tabular disclosure of pro forma results of operations for a material business acquisition or series of individually immaterial business acquisitions that are material in the aggregate."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#BusinessAcquisitionProFormaInformationTextBlock> .
+
+fiben:BusinessCombinationDisclosure dct:source "us-gaap" ;
+    skos:altLabel "Business Combination Disclosure"@en ;
+    skos:definition "The entire disclosure for a business combination (or series of individually immaterial business combinations) completed during the period, including background, timing, and recognized assets and liabilities. The disclosure may include leverage buyout transactions (as applicable)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#BusinessCombinationDisclosureTextBlock> .
+
+fiben:CapitalUnits dct:source "us-gaap" ;
+    skos:altLabel "Capital Units, Value"@en ;
+    skos:definition "Value of capital units or capital shares. This element is relevant to issuers of face-amount certificates and registered investment companies."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CapitalUnits> .
+
+fiben:CashAndCashEquivalents dct:source "us-gaap" ;
+    skos:altLabel "Cash and Cash Equivalents Disclosure"@en ;
+    skos:definition "The entire disclosure for cash and cash equivalent footnotes, which may include the types of deposits and money market instruments, applicable carrying amounts, restricted amounts and compensating balance arrangements. Cash and equivalents include: (1) currency on hand (2) demand deposits with banks or financial institutions (3) other kinds of accounts that have the general characteristics of demand deposits (4) short-term, highly liquid investments that are both readily convertible to known amounts of cash and so near their maturity that they present insignificant risk of changes in value because of changes in interest rates. Generally, only investments maturing within three months from the date of acquisition qualify."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CashAndCashEquivalentsDisclosureTextBlock> .
+
+fiben:CashAndCashEquivalentsDisclosure dct:source "us-gaap" ;
+    skos:altLabel "Cash and Cash Equivalents Disclosure"@en ;
+    skos:definition "The entire disclosure for cash and cash equivalent footnotes, which may include the types of deposits and money market instruments, applicable carrying amounts, restricted amounts and compensating balance arrangements. Cash and equivalents include: (1) currency on hand (2) demand deposits with banks or financial institutions (3) other kinds of accounts that have the general characteristics of demand deposits (4) short-term, highly liquid investments that are both readily convertible to known amounts of cash and so near their maturity that they present insignificant risk of changes in value because of changes in interest rates. Generally, only investments maturing within three months from the date of acquisition qualify."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CashAndCashEquivalentsDisclosureTextBlock> .
+
+fiben:CashCashEquivalentsAndShortTermInvestments dct:source "us-gaap" ;
+    skos:altLabel "Cash, Cash Equivalents, and Short-term Investments"@en ;
+    skos:definition "Cash includes currency on hand as well as demand deposits with banks or financial institutions. It also includes other kinds of accounts that have the general characteristics of demand deposits in that the customer may deposit additional funds at any time and effectively may withdraw funds at any time without prior notice or penalty. Cash equivalents, excluding items classified as marketable securities, include short-term, highly liquid Investments that are both readily convertible to known amounts of cash, and so near their maturity that they present minimal risk of changes in value because of changes in interest rates. Generally, only investments with original maturities of three months or less qualify under that definition. Original maturity means original maturity to the entity holding the investment. For example, both a three-month US Treasury bill and a three-year Treasury note purchased three months from maturity qualify as cash equivalents. However, a Treasury note purchased three years ago does not become a cash equivalent when its remaining maturity is three months. Short-term investments, exclusive of cash equivalents, generally consist of marketable securities intended to be sold within one year (or the normal operating cycle if longer) and may include trading securities, available-for-sale securities, or held-to-maturity securities (if maturing within one year), as applicable."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CashCashEquivalentsAndShortTermInvestments>,
+        <http://fasb.org/us-gaap/2015#CashCashEquivalentsAndShortTermInvestmentsTextBlock> .
+
+fiben:ChangeInAccountingEstimate dct:source "derived" ;
+    skos:definition "change in accounting estimate: a kind of disclosure"@en .
+
+fiben:ChangesInFairValueOfPlanAssets dct:source "derived" ;
+    skos:definition "changes in fair value of plan assets: a kind of disclosure"@en .
+
+fiben:CommitmentsContingenciesAndGuarantees dct:source "us-gaap" ;
+    skos:altLabel "Commitments Contingencies and Guarantees"@en ;
+    skos:definition "The entire disclosure for commitments, contingencies, and guarantees."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CommitmentsContingenciesAndGuaranteesTextBlock> .
+
+fiben:ComprehensiveIncome dct:source "us-gaap" ;
+    skos:altLabel "Net Income (Loss) Attributable to Parent"@en,
+        "income"@en ;
+    skos:broadMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/Income> ;
+    skos:definition "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#NetIncomeLoss> .
+
+fiben:ComprehensiveIncomeLoss dct:source "derived" ;
+    skos:definition "comprehensive income loss: a kind of disclosure"@en .
+
+fiben:ConversionOfStock dct:source "derived" ;
+    skos:definition "conversion of stock: a kind of disclosure"@en .
+
+fiben:CostMethodInvestments dct:source "us-gaap" ;
+    skos:altLabel "Cost Method Investments"@en ;
+    skos:definition "Amount, after adjustment, of cost-method investment. Adjustments include, but are not limited to, dividends received in excess of earnings after date of investment that are considered a return of investment and other than temporary impairments."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CostMethodInvestments> .
+
+fiben:CostsOfRetirementPlans dct:source "derived" ;
+    skos:definition "costs of retirement plans: a kind of disclosure"@en .
+
+fiben:DebtConversion dct:source "derived" ;
+    skos:altLabel "conversion action"@en ;
+    skos:definition "debt conversion: a kind of disclosure"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/CAE/CorporateEvents/SecurityRelatedCorporateActions/ConversionAction> .
+
+fiben:DeferredTaxAssetsAndLiabilities dct:source "derived" ;
+    skos:definition "deferred tax assets and liabilities: a kind of disclosure"@en .
+
+fiben:DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss dct:source "derived" ;
+    skos:definition "defined benefit plan amounts recognized in other comprehensive income loss: a kind of disclosure"@en .
+
+fiben:Derivative dct:source "derived" ;
+    skos:altLabel "derivative instrument"@en ;
+    skos:definition "derivative: a kind of disclosure"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/DerivativeInstrument> .
+
+fiben:Disclosure dct:source "derived" ;
+    skos:altLabel "Table Text Block"@en ;
+    skos:definition "disclosure: a kind of elements of financial report"@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#TableTextBlock> .
+
+fiben:DistributionToOwner dct:source "us-gaap" ;
+    skos:altLabel "Earnings Per Share, Basic"@en ;
+    skos:definition "The amount of net income (loss) for the period per each share of common stock or unit outstanding during the reporting period."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#EarningsPerShareBasic> .
+
+fiben:DividendPaymentRestrictions dct:source "derived" ;
+    skos:definition "dividend payment restrictions: a kind of disclosure"@en .
+
+fiben:DividendsPayable dct:source "us-gaap" ;
+    skos:altLabel "Dividends Payable, Current"@en ;
+    skos:definition "Carrying value as of the balance sheet date of dividends declared but unpaid on equity securities issued by the entity and outstanding. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#DividendsPayableCurrent> .
+
+fiben:EffectiveIncomeTaxRateReconciliation dct:source "derived" ;
+    skos:definition "effective income tax rate reconciliation: a kind of disclosure"@en .
+
+fiben:ElementOfFinancialStatement dct:source "derived" ;
+    skos:definition "element of financial statement: a kind of elements of financial report"@en .
+
+fiben:EmailAddress dct:source "fibo-reviewed" ;
+    skos:altLabel "e-mail address"@en,
+        "electronic mail address"@en,
+        "email address"@en ;
+    skos:definition "virtual address that defines an electronic messaging endpoint to which email messages can be delivered, typically via an Simple Mail Transfer Protocol (SMTP) based communications system"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/VirtualPlaces/ElectronicMailAddress> .
+
+fiben:EntityLocation dct:source "derived" ;
+    skos:definition "entity location: a kind of disclosure"@en .
+
+fiben:EquityMethodInvestments dct:source "us-gaap" ;
+    skos:altLabel "Equity Method Investments"@en,
+        "Equity Method Investments and Joint Ventures Disclosure"@en ;
+    skos:definition "This item represents the carrying amount on the entity's balance sheet of its investment in common stock of an equity method investee. This is not an indicator of the fair value of the investment, rather it is the initial cost adjusted for the entity's share of earnings and losses of the investee, adjusted for any distributions (dividends) and other than temporary impairment (OTTI) losses recognized."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#EquityMethodInvestments>,
+        <http://fasb.org/us-gaap/2015#EquityMethodInvestmentsDisclosureTextBlock> .
+
+fiben:ErrorCorrectionsAndPriorPeriodAdjustments dct:source "derived" ;
+    skos:definition "error corrections and prior period adjustments: a kind of disclosure"@en .
+
+fiben:Expense dct:source "us-gaap" ;
+    skos:altLabel "Cost of Revenue"@en,
+        "Costs and Expenses"@en,
+        "Operating Expenses"@en ;
+    skos:definition "Total costs of sales and operating expenses for the period."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#CostOfRevenue>,
+        <http://fasb.org/us-gaap/2015#CostsAndExpenses>,
+        <http://fasb.org/us-gaap/2015#OperatingExpenses> .
+
+fiben:ExtinguishmentOfDebt dct:source "derived" ;
+    skos:altLabel "debt"@en ;
+    skos:definition "extinguishment of debt: a kind of disclosure"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/Debt> .
+
+fiben:ExtraordinaryItems dct:source "us-gaap" ;
+    skos:altLabel "Extraordinary Item, Gain (Loss), Gross"@en,
+        "Extraordinary Items Disclosure"@en ;
+    skos:definition "This element represents the gains or losses whether arising from extinguishment of debt, prior period adjustments, or from other events or transactions, that are both unusual in nature and infrequent in occurrence thereby meeting the criteria for an event or transaction to be classified as an extraordinary item. This element is gross of the related tax effect."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ExtraordinaryItemsDisclosureTextBlock>,
+        <http://fasb.org/us-gaap/2015#ExtraordinaryItemsGross> .
+
+fiben:FinancialInstrumentsSubjectToMandatoryRedemption dct:source "derived" ;
+    skos:definition "financial instruments subject to mandatory redemption: a kind of disclosure"@en .
+
+fiben:FinancialMarket dct:source "fibo-reviewed" ;
+    skos:altLabel "exchange"@en,
+        "market"@en ;
+    skos:closeMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/Exchange> ;
+    skos:definition "any organization, association, or group of persons, whether incorporated or unincorporated, which constitutes, maintains, or provides a facility for bringing together purchasers and sellers of financial instruments, commodities, or other products, services, or goods, and includes the market place and facilities maintained by such exchange"@en .
+
+fiben:FinancialMetrics dct:source "derived" ;
+    skos:definition "financial metrics: a kind of disclosure"@en .
+
+fiben:FinancialReport skos:altLabel "report"@en ;
+    skos:broadMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Reporting/Report> .
+
+fiben:FinancingReceivableAllowanceForCreditLosses dct:source "us-gaap" ;
+    skos:altLabel "Financing Receivable, Allowance for Credit Losses"@en ;
+    skos:definition "A valuation allowance for financing receivables that are expected to be uncollectible."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#FinancingReceivableAllowanceForCreditLosses> .
+
+fiben:FinancingReceivableCreditQualityIndicators dct:source "us-gaap" ;
+    skos:altLabel "Financing Receivable Credit Quality Indicators"@en ;
+    skos:definition "Tabular disclosure of financing receivables by credit quality indicator. The credit quality indicator is a statistic about the credit quality of financing receivables. Examples include, but not limited to, consumer credit risk scores, credit-rating-agency ratings, an entity's internal credit risk grades, loan-to-value ratios, collateral, collection experience and other internal metrics."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#FinancingReceivableCreditQualityIndicatorsTableTextBlock> .
+
+fiben:FinancingReceivableTroubledDebtRestructurings dct:source "derived" ;
+    skos:definition "financing receivable troubled debt restructurings: a kind of disclosure"@en .
+
+fiben:FinancingReceivables dct:source "us-gaap" ;
+    skos:altLabel "Financing Receivables"@en ;
+    skos:definition "The entire disclosure for financing receivables. Examples of financing receivables include, but are not limited to, loans, trade accounts receivables, notes receivable, credit cards, and receivables relating to a lessor's right(s) to payment(s) from a lease other than an operating lease that is recognized as assets."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#FinancingReceivablesTextBlock> .
+
+fiben:FinancingReceivablesPastDue dct:source "derived" ;
+    skos:definition "financing receivables past due: a kind of disclosure"@en .
+
+fiben:ForeignCurrencyTranslation dct:source "derived" ;
+    skos:definition "foreign currency translation: a kind of disclosure"@en .
+
+fiben:ForwardContractIndexedToIssuersEquity dct:source "derived" ;
+    skos:definition "forward contract indexed to issuers equity: a kind of disclosure"@en .
+
+fiben:FresHstArtAdjustments dct:source "derived" ;
+    skos:definition "fres hst art adjustments: a kind of disclosure"@en .
+
+fiben:GainLossOnInvestments dct:source "us-gaap" ;
+    skos:altLabel "Gain (Loss) on Investments"@en ;
+    skos:definition "This item represents the net total realized and unrealized gain (loss) included in earnings for the period as a result of selling or holding marketable securities categorized as trading, available-for-sale, or held-to-maturity, including the unrealized holding gain (loss) of held-to-maturity securities transferred to the trading security category and the cumulative unrealized gain (loss) which was included in other comprehensive income (a separate component of shareholders' equity) for available-for-sale securities transferred to trading securities during the period. Additionally, this item would include any gains (losses) realized during the period from the sale of investments accounted for under the cost method of accounting and losses recognized for other than temporary impairments (OTTI) of the subject investments."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#GainLossOnInvestments>,
+        <http://fasb.org/us-gaap/2015#GainLossOnInvestmentsTextBlock> .
+
+fiben:Goodwill dct:source "us-gaap" ;
+    skos:altLabel "Goodwill"@en,
+        "Goodwill Disclosure"@en ;
+    skos:definition "Amount after accumulated impairment loss of an asset representing future economic benefits arising from other assets acquired in a business combination that are not individually identified and separately recognized."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#Goodwill>,
+        <http://fasb.org/us-gaap/2015#GoodwillDisclosureTextBlock> .
+
+fiben:Guarantees dct:source "us-gaap" ;
+    skos:altLabel "Guarantees"@en ;
+    skos:definition "The entire disclosure for each guarantee obligation, or each group of similar guarantee obligations, including (a) the nature of the guarantee, including its term, how it arose, and the events or circumstances that would require the guarantor to perform under the guarantee; (b) the maximum potential amount of future payments (undiscounted) the guarantor could be required to make under the guarantee; (c) the current carrying amount of the liability, if any, for the guarantor's obligations under the guarantee; and (d) the nature of any recourse provisions under the guarantee, and any assets held either as collateral or by third parties, and any relevant related party disclosure. Excludes disclosures about product warranties."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#GuaranteesTextBlock> .
+
+fiben:GuarantorObligations dct:source "derived" ;
+    skos:altLabel "guaranty"@en ;
+    skos:definition "guarantor obligations: a kind of disclosure"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Guaranty/Guaranty> .
+
+fiben:HeldToMaturitySecurities dct:source "us-gaap" ;
+    skos:altLabel "Held-to-maturity Securities"@en ;
+    skos:definition "Amount after other than temporary impairment (OTTI) accretion, of investments in debt securities classified as held-to-maturity."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#HeldToMaturitySecurities>,
+        <http://fasb.org/us-gaap/2015#HeldToMaturitySecuritiesTextBlock> .
+
+fiben:ImpairedFinancingReceivables dct:source "us-gaap" ;
+    skos:altLabel "Impaired Financing Receivables"@en ;
+    skos:definition "Tabular disclosure of impaired financing receivables."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ImpairedFinancingReceivablesTableTextBlock> .
+
+fiben:IncomeTaxContingency dct:source "derived" ;
+    skos:definition "income tax contingency: a kind of disclosure"@en .
+
+fiben:IndefiniteLivedIntangibleAssets dct:source "derived" ;
+    skos:definition "indefinite lived intangible assets: a kind of disclosure"@en .
+
+fiben:IntangibleAssetsAndGoodwill dct:source "derived" ;
+    skos:definition "intangible assets and goodwill: a kind of disclosure"@en .
+
+fiben:InterestAndOtherIncome dct:source "us-gaap" ;
+    skos:altLabel "Interest and Other Income"@en ;
+    skos:definition "The amount of interest income and other income recognized during the period. Included in this element is interest derived from investments in debt securities, cash and cash equivalents, and other investments which reflect the time value of money or transactions in which the payments are for the use or forbearance of money and other income from ancillary business-related activities (that is, excluding major activities considered part of the normal operations of the business)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#InterestAndOtherIncome>,
+        <http://fasb.org/us-gaap/2015#InterestAndOtherIncomeTextBlock> .
+
+fiben:InterestCostsIncurred dct:source "us-gaap" ;
+    skos:altLabel "Interest Costs Incurred"@en ;
+    skos:definition "Total interest costs incurred during the period and either capitalized or charged against earnings."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#InterestCostsIncurred> .
+
+fiben:InventoryCurrent dct:source "derived" ;
+    skos:definition "inventory current: a kind of disclosure"@en .
+
+fiben:InventoryNoncurrent dct:source "us-gaap" ;
+    skos:altLabel "Inventory, Noncurrent"@en ;
+    skos:definition "Inventories not expected to be converted to cash, sold or exchanged within the normal operating cycle."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#InventoryNoncurrent> .
+
+fiben:InvestmentIncome dct:source "us-gaap" ;
+    skos:altLabel "Investment Income"@en,
+        "Investment Income, Net"@en,
+        "income"@en ;
+    skos:broadMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/Income> ;
+    skos:definition "Amount after accretion (amortization) of discount (premium), and investment expense, of interest income and dividend income on nonoperating securities."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#InvestmentIncomeNet>,
+        <http://fasb.org/us-gaap/2015#InvestmentIncomeTextBlock> .
+
+fiben:InvestmentsAndOtherNoncurrentAssets dct:source "us-gaap" ;
+    skos:altLabel "Investments and Other Noncurrent Assets"@en ;
+    skos:definition "Aggregate carrying amount, as of the balance sheet date, of investments and other noncurrent assets not separately disclosed in the balance sheet due to materiality considerations. Noncurrent assets are expected to be realized or consumed after one year (or the normal operating cycle, if longer)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#InvestmentsAndOtherNoncurrentAssets>,
+        <http://fasb.org/us-gaap/2015#InvestmentsAndOtherNoncurrentAssetsTextBlock> .
+
+fiben:Liability dct:source "us-gaap" ;
+    skos:altLabel "Liabilities"@en,
+        "Liabilities and Equity"@en,
+        "Liabilities, Current"@en ;
+    skos:definition "Sum of the carrying amounts as of the balance sheet date of all liabilities that are recognized. Liabilities are probable future sacrifices of economic benefits arising from present obligations of an entity to transfer assets or provide services to other entities in the future."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#Liabilities>,
+        <http://fasb.org/us-gaap/2015#LiabilitiesAndStockholdersEquity>,
+        <http://fasb.org/us-gaap/2015#LiabilitiesCurrent> .
+
+fiben:LineOfCreditFacility dct:source "derived" ;
+    skos:altLabel "credit facility"@en ;
+    skos:definition "line of credit facility: a kind of disclosure"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/CreditFacility> .
+
+fiben:LongLivedAssetsHeldForSale dct:source "derived" ;
+    skos:definition "long lived assets held for sale: a kind of disclosure"@en .
+
+fiben:LongLivedAssetsToBeAbandoned dct:source "derived" ;
+    skos:definition "long lived assets to be abandoned: a kind of disclosure"@en .
+
+fiben:LongTermDebt dct:source "us-gaap" ;
+    skos:altLabel "Long-term Debt"@en ;
+    skos:definition "Carrying amount of long-term debt, net of unamortized discount or premium, including current and noncurrent amounts. Includes, but not limited to, notes payable, bonds payable, debentures, mortgage loans and commercial paper. Excludes capital lease obligations."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#LongTermDebt>,
+        <http://fasb.org/us-gaap/2015#LongTermDebtTextBlock> .
+
+fiben:LongTermDebtMaturities dct:source "derived" ;
+    skos:definition "long term debt maturities: a kind of disclosure"@en .
+
+fiben:LongTermPurchaseCommitment dct:source "us-gaap" ;
+    skos:altLabel "Long-term Purchase Commitment"@en ;
+    skos:definition "Tabular disclosure of key provisions of an arrangement under which the entity has agreed to purchase goods or services over a period of time greater than one year or the normal operating cycle, if longer, including the item for which expenditures will be made, minimum quantities, milestones, time period and committed amount."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#LongTermPurchaseCommitmentTextBlock> .
+
+fiben:Loss dct:source "us-gaap" ;
+    skos:altLabel "Net Income (Loss) Attributable to Parent"@en ;
+    skos:definition "The portion of profit or loss for the period, net of income taxes, which is attributable to the parent."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#NetIncomeLoss> .
+
+fiben:MarketableSecurities dct:source "us-gaap" ;
+    skos:altLabel "Marketable Securities"@en ;
+    skos:definition "Total debt and equity financial instruments including: (1) securities held-to-maturity, (2) trading securities, and (3) securities available-for-sale."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#MarketableSecurities>,
+        <http://fasb.org/us-gaap/2015#MarketableSecuritiesTextBlock> .
+
+fiben:NetPeriodicBenefitCostNotYetRecognized dct:source "derived" ;
+    skos:definition "net periodic benefit cost not yet recognized: a kind of disclosure"@en .
+
+fiben:NewAccountingPronouncementEarlyAdoption dct:source "us-gaap" ;
+    skos:altLabel "New Accounting Pronouncement, Early Adoption"@en ;
+    skos:definition "Tabular disclosure of financial statement line items and the effect of the guidance on the financial statement line items if the entity elects early adoption of accounting guidance."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#NewAccountingPronouncementEarlyAdoptionTableTextBlock> .
+
+fiben:NoncontrollingInterest dct:source "derived" ;
+    skos:definition "noncontrolling interest: a kind of disclosure"@en .
+
+fiben:OperatingLossCarryForwards dct:source "us-gaap" ;
+    skos:altLabel "Operating Loss Carryforwards"@en ;
+    skos:definition "Amount of operating loss carryforward, before tax effects, available to reduce future taxable income under enacted tax laws."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OperatingLossCarryforwards> .
+
+fiben:OtherAssets dct:source "us-gaap" ;
+    skos:altLabel "Other Assets"@en,
+        "Other Assets Disclosure"@en ;
+    skos:definition "The aggregate carrying amounts, as of the balance sheet date, of assets not separately disclosed in the balance sheet."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OtherAssets>,
+        <http://fasb.org/us-gaap/2015#OtherAssetsDisclosureTextBlock> .
+
+fiben:OtherAssetsAndOtherLiabilities dct:source "derived" ;
+    skos:definition "other assets and other liabilities: a kind of disclosure"@en .
+
+fiben:OtherAssetsDisclosure dct:source "us-gaap" ;
+    skos:altLabel "Other Assets"@en,
+        "Other Assets Disclosure"@en ;
+    skos:definition "The aggregate carrying amounts, as of the balance sheet date, of assets not separately disclosed in the balance sheet."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OtherAssets>,
+        <http://fasb.org/us-gaap/2015#OtherAssetsDisclosureTextBlock> .
+
+fiben:OtherAssetsNoncurrent dct:source "us-gaap" ;
+    skos:altLabel "Other Assets, Noncurrent"@en ;
+    skos:definition "Aggregate carrying amount, as of the balance sheet date, of noncurrent assets not separately disclosed in the balance sheet. Noncurrent assets are expected to be realized or consumed after one year (or the normal operating cycle, if longer)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OtherAssetsNoncurrent> .
+
+fiben:OtherLiabilitiesDisclosure dct:source "us-gaap" ;
+    skos:altLabel "Other Liabilities"@en,
+        "Other Liabilities Disclosure"@en ;
+    skos:definition "The aggregate carrying amount, as of the balance sheet date, of liabilities not separately disclosed in the balance sheet."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OtherLiabilities>,
+        <http://fasb.org/us-gaap/2015#OtherLiabilitiesDisclosureTextBlock> .
+
+fiben:OtherNonOperatingIncomeExpense dct:source "us-gaap" ;
+    skos:altLabel "Other Nonoperating Income (Expense)"@en ;
+    skos:definition "The net amount of other income and expense amounts, the components of which are not separately disclosed on the income statement, resulting from ancillary business-related activities (that is, excluding major activities considered part of the normal operations of the business) also known as other nonoperating income (expense) recognized for the period. Such amounts may include: (a) dividends, (b) interest on securities, (c) net gains or losses on securities, (d) unusual costs, (e) gains or losses on foreign exchange transactions, and (f) miscellaneous other income and expense items."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OtherNonoperatingIncomeExpense> .
+
+fiben:OtherOwnershipInterests dct:source "derived" ;
+    skos:definition "other ownership interests: a kind of disclosure"@en .
+
+fiben:OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings dct:source "us-gaap" ;
+    skos:altLabel "Other than Temporary Impairment, Credit Losses Recognized in Earnings"@en ;
+    skos:definition "Tabular disclosure of the amount of other than temporary impairment (OTTI) related to credit losses recognized in earnings including: (a) the beginning balance of the amount related to credit losses on debt securities held by the investor at the beginning of the period for which a portion of an OTTI was recognized in other comprehensive income; (b) additions for the amount related to the credit loss for which an OTTI was not previously recognized; (c) reductions for securities sold during the period (realized); (d) reductions for securities for which the amount previously recognized in other comprehensive income was recognized in earnings because the investor intends to sell the security or more likely than not will be required to sell the security before recovery of its amortized cost basis; (e) additional increases to the amount related to the credit loss for which an OTTI was previously recognized when the investor does not intend to sell the security and it is not more likely than not that the investor will be required to sell the security before recovery of its amortized cost basis; (f) reductions for increases in cash flows expected to be collected that are recognized over the remaining life of the security; and (g) the ending balance of the amount related to credit losses on debt securities held by the entity at the end of the period for which a portion of an OTTI was recognized in other comprehensive income."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#OtherThanTemporaryImpairmentCreditLossesRecognizedInEarningsTableTextBlock> .
+
+fiben:PhoneNumber dct:source "fibo-reviewed" ;
+    skos:altLabel "phone number"@en,
+        "telephone number"@en ;
+    skos:definition "virtual address that may be assigned to a fixed-line telephone subscriber station connected to a telephone line or to a wireless electronic telephony device, such as a radio telephone or a mobile telephone, or to other devices or services for data transmission via the public switched telephone network (PSTN) or other public and private networks"@en ;
+    skos:exactMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/VirtualPlaces/TelephoneNumber> .
+
+fiben:PostalAddress dct:source "fibo-reviewed" ;
+    skos:altLabel "physical address"@en ;
+    skos:closeMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Addresses/PhysicalAddress> ;
+    skos:definition "physical address where communications can be addressed, papers served or representatives located for any kind of organization or person"@en .
+
+fiben:PreferredStock dct:source "us-gaap" ;
+    skos:altLabel "Preferred Stock"@en ;
+    skos:definition "The entire disclosure for terms, amounts, nature of changes, rights and privileges, dividends, and other matters related to preferred stock."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#PreferredStockTextBlock> .
+
+fiben:ProductWarrantyLiability dct:source "derived" ;
+    skos:definition "product warranty liability: a kind of disclosure"@en .
+
+fiben:PropertyManagementFee dct:source "derived" ;
+    skos:definition "property management fee: a kind of disclosure"@en .
+
+fiben:PropertyPlantAndEquipment dct:source "us-gaap" ;
+    skos:altLabel "Property, Plant and Equipment Disclosure"@en,
+        "Property, Plant and Equipment, Net"@en ;
+    skos:definition "Amount after accumulated depreciation, depletion and amortization of physical assets used in the normal conduct of business to produce goods and services and not intended for resale. Examples include, but are not limited to, land, buildings, machinery and equipment, office equipment, and furniture and fixtures."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#PropertyPlantAndEquipmentDisclosureTextBlock>,
+        <http://fasb.org/us-gaap/2015#PropertyPlantAndEquipmentNet> .
+
+fiben:PropertyPlantAndEquipmentIncomeStatementDisclosures dct:source "us-gaap" ;
+    skos:altLabel "Property, Plant and Equipment Income Statement Disclosures"@en ;
+    skos:definition "Disclosure of property, plant and equipment income statement elements which may include depreciation, depletion and amortization expense and gains and losses on disposition of long lived assets used in the production of revenue."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#PropertyPlantAndEquipmentIncomeStatementDisclosures> .
+
+fiben:PropertyPlantAndEquipmentUseFullives dct:source "derived" ;
+    skos:definition "property plant and equipment use fullives: a kind of disclosure"@en .
+
+fiben:PropertySubjectToOrAvailableForOperatingLease dct:source "us-gaap" ;
+    skos:altLabel "Property Subject to or Available for Operating Lease, Net"@en ;
+    skos:definition "The amount of property, by major property class, net of accumulated depreciation, subject to or available for lease as of the balance sheet date."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#PropertySubjectToOrAvailableForOperatingLeaseNet> .
+
+fiben:RealEstateProperties dct:source "derived" ;
+    skos:altLabel "real estate"@en ;
+    skos:definition "real estate properties: a kind of disclosure"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Places/RealProperty/RealEstate> .
+
+fiben:RealizedGainLoss dct:source "derived" ;
+    skos:definition "realized gain loss: a kind of disclosure"@en .
+
+fiben:RealizedGainLossOnInvestments dct:source "us-gaap" ;
+    skos:altLabel "Realized Gain (Loss) on Investments"@en ;
+    skos:definition "Tabular disclosure of realized gains and losses on investments reported in the statement of income."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#RealizedGainLossOnInvestmentsTableTextBlock> .
+
+fiben:ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated dct:source "us-gaap" ;
+    skos:altLabel "Reconciliation of Operating Profit (Loss) from Segments to Consolidated"@en ;
+    skos:definition "Reconciliation of the total of the reportable segments' measures of profit or loss to the entity's consolidated income or loss from operations. However, if an entity allocates items such as income taxes and extraordinary items to segments, it may choose to reconcile the total of the segments' measures of profit or loss to consolidated income after those items."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated>,
+        <http://fasb.org/us-gaap/2015#ReconciliationOfOperatingProfitLossFromSegmentsToConsolidatedTextBlock> .
+
+fiben:RecordedUnconditionalPurchaseObligation dct:source "us-gaap" ;
+    skos:altLabel "Recorded Unconditional Purchase Obligation"@en ;
+    skos:definition "Amount of the recorded obligation to transfer funds in the future for fixed or minimum amounts or quantities of goods or services at fixed or minimum prices (for example, as in take-or-pay contracts or throughput contracts)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#RecordedUnconditionalPurchaseObligation> .
+
+fiben:RedeemableNoncontrollingInterest dct:source "us-gaap" ;
+    skos:altLabel "Redeemable Noncontrolling Interest"@en ;
+    skos:definition "Tabular disclosure of redeemable noncontrolling interest (as defined) included in the statement of financial position as either a liability or temporary equity. As of the date of the statement of financial position, such redeemable noncontrolling interest is currently redeemable, as defined, for cash or other assets of the entity at (1) at a fixed or determinable price on a fixed or determinable date, (2) at the option of the holder of the noncontrolling interest, or (3) upon occurrence of an event that is not solely within the control of the entity."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#RedeemableNoncontrollingInterestTableTextBlock> .
+
+fiben:RelatedPartyTransactionsByRelatedParty dct:source "derived" ;
+    skos:definition "related party transactions by related party: a kind of disclosure"@en .
+
+fiben:RentExpense dct:source "derived" ;
+    skos:definition "rent expense: a kind of disclosure"@en .
+
+fiben:RestrictedCashAndCashEquivalents dct:source "us-gaap" ;
+    skos:altLabel "Restricted Cash and Cash Equivalents"@en ;
+    skos:definition "The carrying amounts of cash and cash equivalent items which are restricted as to withdrawal or usage. Restrictions may include legally restricted deposits held as compensating balances against borrowing arrangements, contracts entered into with others, or entity statements of intention with regard to particular deposits; however, time deposits and short-term certificates of deposit are not generally included in legally restricted deposits. Excludes compensating balance arrangements that are not agreements which legally restrict the use of cash amounts shown on the balance sheet. This element is for unclassified presentations; for classified presentations there is a separate and distinct element."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#RestrictedCashAndCashEquivalents> .
+
+fiben:RestructuringAndRelatedCosts dct:source "derived" ;
+    skos:definition "restructuring and related costs: a kind of disclosure"@en .
+
+fiben:Revenue dct:source "us-gaap" ;
+    skos:altLabel "Revenue, Net"@en,
+        "Revenues"@en ;
+    skos:definition "Amount of revenue recognized from goods sold, services rendered, insurance premiums, or other activities that constitute an earning process. Includes, but is not limited to, investment and interest income before deduction of interest expense when recognized as a component of revenue, and sales and trading gain (loss)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#Revenues>,
+        <http://fasb.org/us-gaap/2015#SalesRevenueNet> .
+
+fiben:SaleLeaseBackTransaction dct:source "us-gaap" ;
+    skos:altLabel "Sale Leaseback Transaction Disclosure"@en ;
+    skos:definition "The entire disclosure for sale leaseback transactions. Includes the elements of a transaction involving the sale of property to another party and the lease of the property back to the seller."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#SaleLeasebackTransactionDisclosureTextBlock> .
+
+fiben:ShareBasedCompensationActivity dct:source "derived" ;
+    skos:definition "share based compensation activity: a kind of disclosure"@en .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue dct:source "us-gaap" ;
+    skos:altLabel "Share-based Compensation Arrangement by Share-based Payment Award, Options, Grants in Period, Grant Date Intrinsic Value"@en ;
+    skos:definition "The grant-date intrinsic value of options granted during the reporting period as calculated by applying the disclosed option pricing methodology."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue> .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue dct:source "us-gaap" ;
+    skos:altLabel "Share-based Compensation Arrangement by Share-based Payment Award, Options, Grants in Period, Weighted Average Grant Date Fair Value"@en ;
+    skos:definition "The weighted average grant-date fair value of options granted during the reporting period as calculated by applying the disclosed option pricing methodology."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue>,
+        <http://fasb.org/us-gaap/2015#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValueTableTextBlock> .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable dct:source "us-gaap" ;
+    skos:altLabel "Share-based Compensation Arrangement by Share-based Payment Award, Options, Vested and Expected to Vest, Exercisable"@en ;
+    skos:definition "Tabular disclosure of the following for fully vested share options (or share units) and share options expected to vest at the date of the latest statement of financial position: the number, weighted-average exercise price (or conversion ratio), aggregate intrinsic value (except for nonpublic entities), and weighted-average remaining contractual term of options (or share units) currently exercisable (or convertible)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisableTableTextBlock> .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable dct:source "us-gaap" ;
+    skos:altLabel "Share-based Compensation Arrangement by Share-based Payment Award, Options, Vested and Expected to Vest, Outstanding and Exercisable"@en ;
+    skos:definition "Tabular disclosure of the number of fully vested share options (or share units) and share options expected to vest at the date of the latest statement of financial position, weighted-average exercise price (or conversion ratio), aggregate intrinsic value (except for nonpublic entities), and weighted-average remaining contractual term for both options (or share units) currently outstanding and options (or share units) exercisable (or convertible)."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisableTableTextBlock> .
+
+fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest dct:source "derived" ;
+    skos:definition "share based compensation arrangement by share based payment award restricted stock units vested and expected to vest: a kind of disclosure"@en .
+
+fiben:ShareBasedCompensationRestrictedStockUnitsAwardActivity dct:source "derived" ;
+    skos:definition "share based compensation restricted stock units award activity: a kind of disclosure"@en .
+
+fiben:ShortTermDebt dct:source "us-gaap" ;
+    skos:altLabel "Short-term Debt"@en ;
+    skos:definition "The entire disclosure for short-term debt."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#ShortTermDebtTextBlock> .
+
+fiben:StockholdersEquity dct:source "us-gaap" ;
+    skos:altLabel "Stockholders' Equity Attributable to Parent"@en,
+        "Stockholders' Equity, Policy"@en ;
+    skos:definition "Total of all stockholders' equity (deficit) items, net of receivables from officers, directors, owners, and affiliates of the entity which are attributable to the parent. The amount of the economic entity's stockholders' equity attributable to the parent excludes the amount of stockholders' equity which is allocable to that ownership interest in subsidiary equity which is not attributable to the parent (noncontrolling interest, minority interest). This excludes temporary equity and is sometimes called permanent equity."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#StockholdersEquity>,
+        <http://fasb.org/us-gaap/2015#StockholdersEquityPolicyTextBlock> .
+
+fiben:SubsequentEvents dct:source "us-gaap" ;
+    skos:altLabel "Subsequent Events"@en ;
+    skos:definition "The entire disclosure for significant events or transactions that occurred after the balance sheet date through the date the financial statements were issued or the date the financial statements were available to be issued. Examples include: the sale of a capital stock issue, purchase of a business, settlement of litigation, catastrophic loss, significant foreign exchange rate changes, loans to insiders or affiliates, and transactions not in the ordinary course of business."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#SubsequentEventsTextBlock> .
+
+fiben:TaxCreditCarryForward dct:source "derived" ;
+    skos:definition "tax credit carry forward: a kind of disclosure"@en .
+
+fiben:TradingSecuritiesAndOtherTradingAssets dct:source "derived" ;
+    skos:definition "trading securities and other trading assets: a kind of disclosure"@en .
+
+fiben:TreasuryStock dct:source "us-gaap" ;
+    skos:altLabel "Treasury Stock"@en ;
+    skos:definition "The entire disclosure for treasury stock, including, but not limited to, average cost per share, description of share repurchase program, shares repurchased, shares held for each class of treasury stock."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#TreasuryStockTextBlock> .
+
+fiben:UnrealizedGainLossOnInvestments dct:source "us-gaap" ;
+    skos:altLabel "Unrealized Gain (Loss) on Investments"@en ;
+    skos:definition "The net change in the difference between the fair value and the carrying value, or in the comparative fair values, of investments, not including unrealized gains or losses on securities separately or otherwise categorized as trading, available-for-sale, or held-to-maturity, held at each balance sheet date and included in earnings for the period."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#UnrealizedGainLossOnInvestments>,
+        <http://fasb.org/us-gaap/2015#UnrealizedGainLossOnInvestmentsTableTextBlock> .
+
+fiben:UnrealizedLossOnInvestments dct:source "derived" ;
+    skos:definition "unrealized loss on investments: a kind of disclosure"@en .
+
+fiben:UnrecordedUnconditionalPurchaseObligation dct:source "derived" ;
+    skos:definition "unrecorded unconditional purchase obligation: a kind of disclosure"@en .
+
+fiben:UnrecordedUnconditionalPurchaseObligationsDisclosure dct:source "us-gaap" ;
+    skos:altLabel "Unrecorded Unconditional Purchase Obligations Disclosure"@en ;
+    skos:definition "Tabular disclosure of unconditional purchase obligations that are not recognized as a liability on the balance sheet, including the nature and significant terms of an unconditional purchase obligation; the amount of the fixed and determinable portion of the obligation as of the date of the latest balance sheet presented in the aggregate and, if determinable, for each of the five succeeding fiscal years; the nature of any variable components of the obligation; the amount purchased under the obligation (for example, the take-or-pay or throughput contract) for the reporting period; and may include the amount of imputed interest necessary to reduce the obligation to present value."@en ;
+    skos:relatedMatch <http://fasb.org/us-gaap/2015#UnrecordedUnconditionalPurchaseObligationsDisclosureTextBlock> .
+
+fiben:ValuationAllowance dct:source "derived" ;
+    skos:definition "valuation allowance: a kind of disclosure"@en .
+
+fiben:ValuationAndQualifyingAccountsDisclosure dct:source "derived" ;
+    skos:definition "valuation and qualifying accounts disclosure: a kind of disclosure"@en .
+
+fiben:WeightedAverageNumberOfShares dct:source "derived" ;
+    skos:definition "weighted average number of shares: a kind of disclosure"@en .
+
+fiben:applicablePeriod dct:source "derived" ;
+    skos:definition "applicable period: string attribute of disclosure, element of financial statement; values instant, quarterly, yearly"@en .
+
+fiben:hasAccountNumber dct:source "derived" ;
+    skos:definition "has account number: integer attribute of financial service account"@en .
+
+fiben:hasCity dct:source "derived" ;
+    skos:definition "has city: string attribute of postal address"@en .
+
+fiben:hasCountry dct:source "derived" ;
+    skos:definition "has country: relation of postal address, linking to country"@en .
+
+fiben:hasCurrencyName dct:source "derived" ;
+    skos:definition "has currency name: string attribute of currency; values United States dollar"@en .
+
+fiben:hasDescription dct:source "derived" ;
+    skos:definition "has description: string attribute of holding, industry sector classification scheme, industry sector classifier"@en .
+
+fiben:hasDocumentType dct:source "derived" ;
+    skos:definition "has document type: string attribute of disclosure, element of financial statement; values 10-K, 10-Q"@en .
+
+fiben:hasLastTradedValue dct:source "derived" ;
+    skos:definition "has last traded value: relation of listed security, linking to monetary amount"@en .
+
+fiben:hasMetricContextDimensions dct:source "derived" ;
+    skos:definition "has metric context dimensions: string attribute of disclosure, element of financial statement"@en .
+
+fiben:hasMetricEndDate dct:source "derived" ;
+    skos:definition "has metric end date: date attribute of disclosure, element of financial statement"@en .
+
+fiben:hasMetricEndQuarter dct:source "derived" ;
+    skos:definition "has metric end quarter: string attribute of disclosure, element of financial statement; values Q1, Q2, Q3, Q4"@en .
+
+fiben:hasMetricStartDate dct:source "derived" ;
+    skos:definition "has metric start date: date attribute of disclosure, element of financial statement"@en .
+
+fiben:hasMetricStartQuarter dct:source "derived" ;
+    skos:definition "has metric start quarter: string attribute of disclosure, element of financial statement; values Q1, Q2, Q3, Q4"@en .
+
+fiben:hasMetricValue dct:source "derived" ;
+    skos:definition "has metric value: double attribute of disclosure, element of financial statement"@en .
+
+fiben:hasMetricYearCalendar dct:source "derived" ;
+    skos:definition "has metric year calendar: integer attribute of disclosure, element of financial statement"@en .
+
+fiben:hasMetricYearFiscal dct:source "derived" ;
+    skos:definition "has metric year fiscal: integer attribute of disclosure, element of financial statement"@en .
+
+fiben:hasName dct:source "derived" ;
+    skos:definition "has name: string attribute of disclosure, element of financial statement, country"@en .
+
+fiben:hasNumericCountryCode dct:source "derived" ;
+    skos:altLabel "has numeric code"@en ;
+    skos:broadMatch <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/hasNumericCode> ;
+    skos:definition "has numeric country code: string attribute of country"@en .
+
+fiben:hasPosition dct:source "derived" ;
+    skos:definition "has position: string attribute of contract; values Director, Officer"@en .
+
+fiben:hasStartDate dct:source "derived" ;
+    skos:definition "has start date: dateTime attribute of financial service account"@en .
+
+fiben:hasState dct:source "derived" ;
+    skos:definition "has state: string attribute of postal address"@en .
+
+fiben:hasTickerSymbol dct:source "derived" ;
+    skos:definition "has ticker symbol: string attribute of corporation, listed security"@en .
+
+fiben:hasTitle dct:source "derived" ;
+    skos:definition "has title: string attribute of contract"@en .
+
+fiben:hasType dct:source "derived" ;
+    skos:definition "has type: string attribute of securities transaction; values 1, 2"@en .
+
+fiben:hasUniqueIdentifier dct:source "derived" ;
+    skos:definition "has unique identifier: string attribute of elements of financial report, financial report, industry sector classifier"@en .
+
+fiben:hasUnit dct:source "derived" ;
+    skos:definition "has unit: string attribute of disclosure, element of financial statement; values AUD, CAD, EUR, USD"@en .
+
+fiben:hasUrl dct:source "derived" ;
+    skos:definition "has url: string attribute of disclosure, element of financial statement"@en .
+
+fiben:hasValue dct:source "derived" ;
+    skos:definition "has value: string attribute of email address, phone number"@en .
+
+fiben:isClassifiedBy dct:source "derived" ;
+    skos:definition "is classified by: relation of corporation, linking to industry sector classifier"@en .
+
+fiben:isComputed dct:source "derived" ;
+    skos:definition "is computed: string attribute of disclosure, element of financial statement; values false, true"@en .
+
+fiben:isDefinedBy dct:source "derived" ;
+    skos:definition "is defined by: relation of industry sector classifier, linking to industry sector classification scheme"@en .
+
+fiben:isDomiciledIn dct:source "derived" ;
+    skos:definition "is domiciled in: relation of corporation, linking to country"@en .
+
+fiben:isManagedBy dct:source "derived" ;
+    skos:definition "is managed by: relation of contract, financial service account, linking to corporation, person"@en .
+
+fiben:isMemberOf dct:source "derived" ;
+    skos:definition "is member of: relation of elements of financial report, linking to financial report"@en .
+
+fiben:isProvidedBy dct:source "derived" ;
+    skos:definition "is provided by: relation of financial report, security, linking to corporation"@en .
+
+fiben:isTransferable dct:source "derived" ;
+    skos:altLabel "holding transferable"@en ;
+    skos:definition "is transferable: string attribute of financial instrument; values YES"@en ;
+    skos:relatedMatch <https://spec.edmcouncil.org/fibo/ontology/SEC/Funds/CollectiveInvestmentVehicles/holdingTransferable> .
+
+fiben:postalAddress dct:source "derived" ;
+    skos:definition "postal address: relation of address, linking to postal address"@en .
+
+fiben:refersTo dct:source "derived" ;
+    skos:definition "refers to: relation of holding, securities transaction, linking to listed security"@en .
+
+fiben:virtualAddress dct:source "derived" ;
+    skos:definition "virtual address: relation of address, linking to virtual address"@en .
+

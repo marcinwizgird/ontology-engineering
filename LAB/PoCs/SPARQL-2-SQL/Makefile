@@ -1,8 +1,15 @@
 # FIBO VKG SPARQL-to-SQL PoC. Needs Docker (Ontop runs in containers; no local Java).
-.PHONY: metadata sidecar-dev seed test up verify demo down
+.PHONY: metadata mappings check-mappings sidecar-dev seed test up verify demo down
 
 metadata:      ## regenerate vkg-artifacts/db-metadata.json (throwaway PostgreSQL, build time only)
 	bash tools/extract_db_metadata.sh
+
+mappings:      ## regenerate the R2RML from vkg-artifacts/mapping-spec.yaml
+	python tools/build_mappings.py
+
+check-mappings: ## R2RML is current and conforms to db-metadata.json and the TBox
+	python tools/build_mappings.py --check
+	python tools/check_mappings.py --coverage
 
 sidecar-dev:   ## offline sidecar on a published port, for local development and tests
 	docker build -q -t fibo-ontop-sidecar ontop-sidecar

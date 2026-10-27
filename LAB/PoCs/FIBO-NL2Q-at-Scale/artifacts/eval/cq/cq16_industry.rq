@@ -1,0 +1,6 @@
+# CQ: In which industry sector is a corporation classified?
+# Authored from the banking scope (PLAN.md), not from FIBEN's gold questions.
+PREFIX fiben: <https://example.org/fiben/voc#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ASK { fiben:isClassifiedBy rdfs:domain fiben:Corporation ; rdfs:range fiben:IndustrySectorClassifier }

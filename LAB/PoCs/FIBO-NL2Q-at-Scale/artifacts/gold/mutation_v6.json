@@ -1,0 +1,1651 @@
+{
+ "mutants": 820,
+ "detected": 508,
+ "detection_rate": 0.6195,
+ "executable_mutants": 750,
+ "detection_rate_executable": 0.584,
+ "caught_only_by_variants": 172,
+ "base_only_detection_rate_executable": 0.3547,
+ "undetected_on_empty_gold": 143,
+ "detection_rate_executable_nonempty_gold": 0.6185,
+ "detection_rate_executable_nonempty_excl_superclass": 0.8444,
+ "base_only_rate_executable_nonempty_gold": 0.5147,
+ "superclass_detection_rate_executable_nonempty_excl_equivalent": 0.4444,
+ "superclass_equivalent_under_constraints": 199,
+ "variants": [
+  "V1",
+  "V2",
+  "V3",
+  "V4",
+  "V5",
+  "V6"
+ ],
+ "by_op": {
+  "drop_filter": {
+   "n": 197,
+   "detected": 159,
+   "by_base": 103,
+   "only_by_variants": 55,
+   "equivalent_under_constraints": 0,
+   "not_executable": 1
+  },
+  "superclass": {
+   "n": 218,
+   "detected": 8,
+   "by_base": 8,
+   "only_by_variants": 0,
+   "equivalent_under_constraints": 199,
+   "not_executable": 0
+  },
+  "flip_cmp": {
+   "n": 121,
+   "detected": 109,
+   "by_base": 64,
+   "only_by_variants": 45,
+   "equivalent_under_constraints": 0,
+   "not_executable": 0
+  },
+  "shift_number": {
+   "n": 131,
+   "detected": 114,
+   "by_base": 32,
+   "only_by_variants": 13,
+   "equivalent_under_constraints": 0,
+   "not_executable": 69
+  },
+  "swap_agg": {
+   "n": 122,
+   "detected": 103,
+   "by_base": 48,
+   "only_by_variants": 55,
+   "equivalent_under_constraints": 0,
+   "not_executable": 0
+  },
+  "drop_limit": {
+   "n": 10,
+   "detected": 3,
+   "by_base": 2,
+   "only_by_variants": 1,
+   "equivalent_under_constraints": 0,
+   "not_executable": 0
+  },
+  "drop_negation": {
+   "n": 3,
+   "detected": 3,
+   "by_base": 2,
+   "only_by_variants": 1,
+   "equivalent_under_constraints": 0,
+   "not_executable": 0
+  },
+  "drop_distinct": {
+   "n": 18,
+   "detected": 9,
+   "by_base": 7,
+   "only_by_variants": 2,
+   "equivalent_under_constraints": 0,
+   "not_executable": 0
+  }
+ },
+ "undetected": [
+  {
+   "sql_id": 1,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 3,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 4,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 5,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 6,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 7,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 8,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 9,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 9,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 10,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 11,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 11,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 12,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 12,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 13,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 14,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 16,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 16,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 17,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 18,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 19,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 20,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 21,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 23,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 24,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 25,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 25,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 26,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 27,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 28,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 29,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 30,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 32,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 33,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 34,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 35,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 36,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 37,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 38,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 39,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 40,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 40,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 42,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 43,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 44,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 45,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 46,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 47,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 48,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 49,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 49,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 49,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 49,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 50,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 51,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 52,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 53,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 54,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 55,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 56,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 57,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 58,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 58,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 59,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 60,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 61,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 62,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 63,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 64,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 65,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 66,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 67,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 67,
+   "op": "shift_number",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 67,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 68,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 69,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 70,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 71,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 71,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 71,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 72,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 73,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 74,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 75,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 76,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 77,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 78,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 79,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 80,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 81,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 82,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 82,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 83,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 84,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 85,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 85,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 85,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 86,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 86,
+   "op": "drop_limit",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 87,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 88,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 89,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 90,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 91,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 92,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 93,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 94,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 94,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 94,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 95,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 96,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 97,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 100,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 101,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 102,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 103,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 104,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 105,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 106,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 107,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 108,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 109,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 110,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 111,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 112,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 113,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 114,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 115,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 116,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 117,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 118,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 119,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 120,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 121,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 121,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 122,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 122,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 123,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 124,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 126,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 127,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 128,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 128,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 129,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 131,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 132,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 133,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 134,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 134,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 135,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 135,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 135,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 136,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 136,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 137,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 137,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 137,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 138,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 138,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 138,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 139,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 139,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 139,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 140,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 140,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 141,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 141,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 142,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 142,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 143,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 143,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 144,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 145,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 145,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 146,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 146,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 147,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 148,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 149,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 150,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 150,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 151,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 151,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 152,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 152,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 153,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 153,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 153,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 154,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 154,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 155,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 155,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 155,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 156,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 157,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 158,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 159,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 159,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 160,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 161,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 162,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 162,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 162,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 163,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 164,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 164,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 165,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 165,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 166,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 166,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 166,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 167,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 167,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 168,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 168,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 170,
+   "op": "shift_number",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 170,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 170,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 171,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 172,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 172,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 172,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 173,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 173,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 174,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 175,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 175,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 176,
+   "op": "swap_agg",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 176,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 176,
+   "op": "drop_distinct",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 177,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 180,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 181,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 181,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 182,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 183,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 184,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 185,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 186,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 187,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 187,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 188,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 188,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 189,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 189,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 190,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 190,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 190,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 191,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 191,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 192,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 192,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 192,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 193,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 194,
+   "op": "shift_number",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 194,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 195,
+   "op": "shift_number",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 195,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 196,
+   "op": "shift_number",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 196,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 198,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 198,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 199,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 200,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 201,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 202,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 204,
+   "op": "drop_filter",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 204,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 204,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 206,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 207,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 208,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 209,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 210,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 210,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 211,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 212,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 213,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 214,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 215,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 216,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 217,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 217,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 217,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 217,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 218,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 219,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 220,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 220,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 221,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 221,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 221,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 222,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 223,
+   "op": "shift_number",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 223,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 223,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 224,
+   "op": "shift_number",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 224,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 225,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 225,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 226,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 226,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 226,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 226,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 227,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 227,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 231,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 233,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 234,
+   "op": "drop_filter",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 234,
+   "op": "flip_cmp",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 234,
+   "op": "swap_agg",
+   "empty_gold": true
+  },
+  {
+   "sql_id": 234,
+   "op": "superclass",
+   "empty_gold": true
+  }
+ ]
+}

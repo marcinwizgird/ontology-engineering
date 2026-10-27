@@ -1,49 +1,63 @@
 {
  "mutants": 820,
- "detected": 507,
- "detection_rate": 0.6183,
- "executable_mutants": 750,
- "detection_rate_executable": 0.5827,
- "caught_only_by_variants": 170,
- "base_only_detection_rate_executable": 0.356,
- "undetected_on_empty_gold": 145,
- "detection_rate_executable_nonempty_gold": 0.6208,
- "detection_rate_executable_nonempty_excl_superclass": 0.8444,
- "base_only_rate_executable_nonempty_gold": 0.5169,
+ "detected": 508,
+ "detection_rate": 0.6195,
+ "executable_mutants": 751,
+ "detection_rate_executable": 0.5846,
+ "caught_only_by_variants": 172,
+ "base_only_detection_rate_executable": 0.3555,
+ "undetected_on_empty_gold": 143,
+ "detection_rate_executable_nonempty_gold": 0.6194,
+ "detection_rate_executable_nonempty_excl_superclass": 0.8449,
+ "base_only_rate_executable_nonempty_gold": 0.5158,
+ "superclass_detection_rate_executable_nonempty_excl_equivalent": 0.4444,
+ "superclass_equivalent_under_constraints": 199,
+ "variants": [
+  "V1",
+  "V2",
+  "V3",
+  "V4",
+  "V5"
+ ],
  "by_op": {
   "drop_filter": {
    "n": 197,
-   "detected": 158,
-   "by_base": 103,
-   "only_by_variants": 54,
-   "not_executable": 1
+   "detected": 159,
+   "by_base": 104,
+   "only_by_variants": 55,
+   "equivalent_under_constraints": 0,
+   "not_executable": 0
   },
   "superclass": {
    "n": 218,
-   "detected": 9,
+   "detected": 8,
    "by_base": 8,
-   "only_by_variants": 1,
+   "only_by_variants": 0,
+   "equivalent_under_constraints": 199,
    "not_executable": 0
   },
   "flip_cmp": {
    "n": 121,
-   "detected": 108,
+   "detected": 109,
    "by_base": 64,
-   "only_by_variants": 44,
+   "only_by_variants": 45,
+   "equivalent_under_constraints": 0,
    "not_executable": 0
   },
   "shift_number": {
    "n": 131,
-   "detected": 115,
-   "by_base": 33,
+   "detected": 114,
+   "by_base": 32,
    "only_by_variants": 13,
+   "equivalent_under_constraints": 0,
    "not_executable": 69
   },
   "swap_agg": {
    "n": 122,
-   "detected": 102,
+   "detected": 103,
    "by_base": 48,
-   "only_by_variants": 54,
+   "only_by_variants": 55,
+   "equivalent_under_constraints": 0,
    "not_executable": 0
   },
   "drop_limit": {
@@ -51,6 +65,7 @@
    "detected": 3,
    "by_base": 2,
    "only_by_variants": 1,
+   "equivalent_under_constraints": 0,
    "not_executable": 0
   },
   "drop_negation": {
@@ -58,6 +73,7 @@
    "detected": 3,
    "by_base": 2,
    "only_by_variants": 1,
+   "equivalent_under_constraints": 0,
    "not_executable": 0
   },
   "drop_distinct": {
@@ -65,6 +81,7 @@
    "detected": 9,
    "by_base": 7,
    "only_by_variants": 2,
+   "equivalent_under_constraints": 0,
    "not_executable": 0
   }
  },
@@ -358,11 +375,6 @@
    "sql_id": 54,
    "op": "superclass",
    "empty_gold": true
-  },
-  {
-   "sql_id": 55,
-   "op": "swap_agg",
-   "empty_gold": false
   },
   {
    "sql_id": 55,
@@ -766,6 +778,11 @@
   },
   {
    "sql_id": 124,
+   "op": "superclass",
+   "empty_gold": false
+  },
+  {
+   "sql_id": 126,
    "op": "superclass",
    "empty_gold": false
   },
@@ -1505,13 +1522,18 @@
    "empty_gold": true
   },
   {
-   "sql_id": 221,
+   "sql_id": 220,
    "op": "drop_filter",
    "empty_gold": true
   },
   {
+   "sql_id": 220,
+   "op": "superclass",
+   "empty_gold": true
+  },
+  {
    "sql_id": 221,
-   "op": "flip_cmp",
+   "op": "drop_filter",
    "empty_gold": true
   },
   {
@@ -1531,11 +1553,6 @@
   },
   {
    "sql_id": 223,
-   "op": "drop_filter",
-   "empty_gold": true
-  },
-  {
-   "sql_id": 223,
    "op": "shift_number",
    "empty_gold": true
   },
@@ -1548,6 +1565,11 @@
    "sql_id": 223,
    "op": "superclass",
    "empty_gold": true
+  },
+  {
+   "sql_id": 224,
+   "op": "shift_number",
+   "empty_gold": false
   },
   {
    "sql_id": 224,
@@ -1591,16 +1613,6 @@
   },
   {
    "sql_id": 227,
-   "op": "superclass",
-   "empty_gold": true
-  },
-  {
-   "sql_id": 230,
-   "op": "drop_filter",
-   "empty_gold": true
-  },
-  {
-   "sql_id": 230,
    "op": "superclass",
    "empty_gold": true
   },

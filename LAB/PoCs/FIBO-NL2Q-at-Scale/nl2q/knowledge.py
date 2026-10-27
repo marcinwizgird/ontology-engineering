@@ -15,20 +15,38 @@
 Knowledge levels used by the ablation (cumulative):
   K0 bare local names · K1 + labels/definitions · K2 + synonyms/abbreviations/values ·
   K3 + allowed paths (query graph) · K4 + glossary · K5 + example bank.
+
+Semantic enrichment (``nl2q.enrich``) is orthogonal to the levels: it adds definitions
+(read at K1+) and synonyms (K2+) to mapped terms FIBO leaves undefined, from the reviewed
+FIBO suggestions, the US GAAP taxonomy and the schema. ``NL2Q_ENRICH`` selects its layers
+(comma-separated, e.g. ``review,usgaap,derived``). The default is ``none``: on the FIBEN
+train split enrichment adds under one point of candidate recall and costs 2.7 points at
+K4 (RESULTS.md §5.1), so the arms keep the pack their published results used.
 """
 
 from __future__ import annotations
 
 import csv
 import json
+import os
 import pickle
 import re
+from collections import Counter
 from dataclasses import asdict, dataclass, field
 from functools import lru_cache
 
 from . import fibo, paths, schema, vkg_build
 
 VOC = str(vkg_build.VOC)
+
+
+def _layers(spec: str) -> tuple[str, ...]:
+    from .enrich import LAYERS
+    return () if spec.strip() in ("", "none") else tuple(x for x in LAYERS if x in spec.split(","))
+
+
+#: the enrichment layers used when a caller does not choose (``nl2q.h1`` sets this per config)
+ENRICH: tuple[str, ...] = _layers(os.environ.get("NL2Q_ENRICH", "none"))
 
 
 @dataclass
@@ -42,6 +60,7 @@ class TermDoc:
     synonyms: list[str] = field(default_factory=list)
     notation: str = ""              # FIBEN table / column
     fibo_iri: str = ""
+    source: str = ""                # where the definition comes from: fibo | fibo-reviewed | us-gaap | derived
 
     def text(self, level: int = 4) -> str:
         parts = [self.local if level == 0 else self.label or self.local]
@@ -52,8 +71,10 @@ class TermDoc:
         return " . ".join(parts)
 
 
-def build_terms() -> list[TermDoc]:
+def build_terms(enrich: tuple[str, ...] = ()) -> list[TermDoc]:
     f = fibo.load()
+    from . import enrich as _enrich
+    enr = _enrich.load(enrich) if enrich else {}
     docs: list[TermDoc] = []
     aligned: set[str] = set()
     with (paths.KNOWLEDGE_DIR / "alignment.csv").open(encoding="utf-8") as fh:
@@ -66,7 +87,12 @@ def build_terms() -> list[TermDoc]:
                 d.definition = t.definition
                 d.synonyms = sorted(set(t.synonyms) | set(t.abbreviations))
                 d.fibo_iri = t.iri
+                d.source = "fibo" if t.definition else ""
                 aligned.add(t.iri)
+            if (e := enr.get(local)) is not None:
+                if not d.definition and e.definition:
+                    d.definition, d.source = e.definition, e.source
+                d.synonyms = sorted(set(d.synonyms) | set(e.synonyms) - {d.label})
             docs.append(d)
     for t in f.terms.values():
         if t.iri in aligned or not t.label:
@@ -146,22 +172,27 @@ def _local(iri: str) -> str:
     return re.split(r"[#/]", iri)[-1]
 
 
-def build(include_personal: bool = True) -> Pack:
+def build(include_personal: bool = True, enrich: tuple[str, ...] = ()) -> Pack:
     s = schema.load()
     edges = [tuple(_local(x) for x in e) for e in
              json.loads((paths.KNOWLEDGE_DIR / "edges.json").read_text(encoding="utf-8"))]
     from .glossary import GLOSSARY
     sub = {vkg_build.class_name(a): vkg_build.class_name(b) for a, b in s.subclass_edges}
-    return Pack(build_terms(), build_values(include_personal), GLOSSARY, edges, sub)
+    return Pack(build_terms(enrich), build_values(include_personal), GLOSSARY, edges, sub)
 
 
-@lru_cache(maxsize=2)
-def load(include_personal: bool = True) -> Pack:
-    cache = paths.CACHE / f"pack_{int(include_personal)}.pkl"
+def load(include_personal: bool = True, enrich: tuple[str, ...] | None = None) -> Pack:
+    return _load(include_personal, ENRICH if enrich is None else tuple(enrich))
+
+
+@lru_cache(maxsize=8)
+def _load(include_personal: bool, enrich: tuple[str, ...]) -> Pack:
+    tag = "-".join(enrich) or "none"
+    cache = paths.CACHE / f"pack_{int(include_personal)}_{tag}.pkl"
     if cache.exists():
         with cache.open("rb") as fh:
             return pickle.load(fh)
-    p = build(include_personal)
+    p = build(include_personal, enrich)
     paths.CACHE.mkdir(parents=True, exist_ok=True)
     with cache.open("wb") as fh:
         pickle.dump(p, fh)
@@ -172,7 +203,10 @@ def write_summary() -> dict:
     p = load()
     summary = {
         "mapped_terms": len(p.mapped()),
-        "mapped_with_fibo_definition": sum(bool(t.definition) for t in p.mapped()),
+        "mapped_with_fibo_definition": sum(t.source == "fibo" for t in p.mapped()),
+        "mapped_with_definition": sum(bool(t.definition) for t in p.mapped()),
+        "definition_sources": dict(sorted(Counter(t.source or "none" for t in p.mapped()).items())),
+        "enrichment_layers": list(ENRICH),
         "fibo_tier_terms": sum(t.tier == "fibo" for t in p.terms),
         "values": len(p.values),
         "glossary_entries": len(p.glossary),

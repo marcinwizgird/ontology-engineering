@@ -1,6 +1,12 @@
 {
  "mapped_terms": 220,
  "mapped_with_fibo_definition": 48,
+ "mapped_with_definition": 48,
+ "definition_sources": {
+  "fibo": 48,
+  "none": 172
+ },
+ "enrichment_layers": [],
  "fibo_tier_terms": 4079,
  "values": 81681,
  "glossary_entries": 41,

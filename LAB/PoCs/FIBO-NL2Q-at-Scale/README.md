@@ -21,6 +21,7 @@ are billed and need approval. Results are in [`RESULTS.md`](RESULTS.md).
 | `nl2q/vkg.py` | SPARQL → SQL (Ontop sidecar on :18081, the SPARQL-2-SQL compiler) → DuckDB rows, with a timeout |
 | `nl2q/sql2sparql.py`, `ceiling.py` | Deterministic gold SQL → SPARQL translation; the compiler ceiling |
 | `nl2q/knowledge.py`, `glossary.py` | The knowledge pack: two-tier concept index (mapped / FIBO-known), value index (81,681 values), curated glossary (K4) |
+| `nl2q/enrich.py`, `usgaap.py` | Semantic enrichment of the mapped terms without the glossary: the reviewed FIBO suggestions (`artifacts/knowledge/alignment_review.csv`), US GAAP 2015 definitions and labels, schema-derived definitions. Off by default (`NL2Q_ENRICH`); see RESULTS §5.1 |
 | `nl2q/retrieval.py` | BM25, character n-gram TF-IDF, hybrid (RRF); value linking |
 | `nl2q/querygraph.py`, `rerank.py`, `grounding.py` | Query graph with inherited edges; Steiner / k-shortest-path and Personalized-PageRank re-ranking; mentions → candidates → trees |
 | `nl2q/ir.py`, `render.py`, `obqc.py` | Non-recursive plan IR, deterministic SPARQL rendering, restriction-aware ontology query checks (IR and free SPARQL) |
@@ -46,8 +47,11 @@ docker run -d --name fiben-ontop-sidecar -p 18081:8080 \
 python -m nl2q.gold                # gold rows (signatures)
 python -m nl2q.ceiling             # gold SPARQL + compiler ceiling
 python -m nl2q.knowledge           # knowledge pack
+# optional: US GAAP 2015 label linkbases (free, ~29 MB) for the enrichment, then
+#   curl -O https://xbrl.fasb.org/us-gaap/2015/elts/us-gaap-{doc,lab}-2015-01-31.xml  (into data/raw/us-gaap-2015)
+python -m nl2q.enrich              # enrichment.csv / .ttl / _summary.json; use with NL2Q_ENRICH=review,usgaap,derived
 python -m nl2q.perturb             # perturbed instances (views + one materialised)
-python -m pytest tests -q          # 17 offline tests
+python -m pytest tests -q          # 32 offline tests
 
 python -m nl2q.evaluate --arm R --split val     # offline baseline
 python -m nl2q.h1 --split train                 # grounding experiment

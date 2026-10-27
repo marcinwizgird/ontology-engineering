@@ -1,0 +1,4685 @@
+{
+  "schema": "ova-report/0.1",
+  "run": {
+    "id": "run-7cdaeaad0008",
+    "tenant": "local",
+    "stage": "S1a",
+    "millis": 4765
+  },
+  "ontology": {
+    "iri": "https://example.org/fiben/ontology",
+    "version_iri": null,
+    "hash": "sha256:a20482ef620d5421da429e8d919928c67a6750c442353b9c878dd5c42ea8dea5",
+    "source": "fiben-ontology-e1.ttl",
+    "triples": 1400
+  },
+  "profile": {
+    "spectrum_level": "thesaurus",
+    "spectrum_evidence": [
+      "152 classes, 0 SKOS concepts, 220 labels: named terms exist",
+      "135 subClassOf and 0 broader/narrower links: a hierarchy exists",
+      "162 associative/mapping SKOS relations"
+    ],
+    "declared_level": "formal-ontology",
+    "applies": [
+      "all",
+      "rdfs",
+      "owl",
+      "dl",
+      "skos"
+    ],
+    "owl_profiles": {
+      "EL": {
+        "in_profile": true,
+        "first_violation": null,
+        "violations": 0
+      },
+      "QL": {
+        "in_profile": true,
+        "first_violation": null,
+        "violations": 0
+      },
+      "RL": {
+        "in_profile": true,
+        "first_violation": null,
+        "violations": 0
+      }
+    },
+    "expressivity": "AL(D)",
+    "counts": {
+      "triples": 1400,
+      "classes": 152,
+      "object_properties": 21,
+      "datatype_properties": 47,
+      "annotation_properties": 0,
+      "individuals": 0,
+      "skos_concepts": 0,
+      "subclass_axioms": 135,
+      "equivalence_axioms": 0,
+      "disjointness_axioms": 0,
+      "restrictions": 0,
+      "domain_axioms": 0,
+      "range_axioms": 0,
+      "property_characteristics": 0,
+      "skos_relations": 162,
+      "labels": 220,
+      "logical_axioms": 135,
+      "axiom_richness": 0.888
+    },
+    "notes": []
+  },
+  "plan": {
+    "SYN-01": {
+      "check_id": "SYN-01",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "SYN-02": {
+      "check_id": "SYN-02",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 5
+    },
+    "SYN-03": {
+      "check_id": "SYN-03",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 5
+    },
+    "SYN-06": {
+      "check_id": "SYN-06",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "DECL-01": {
+      "check_id": "DECL-01",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 2
+    },
+    "DECL-02": {
+      "check_id": "DECL-02",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 3
+    },
+    "DECL-03": {
+      "check_id": "DECL-03",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "DECL-04": {
+      "check_id": "DECL-04",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 5
+    },
+    "DL-02": {
+      "check_id": "DL-02",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 8
+    },
+    "DL-08": {
+      "check_id": "DL-08",
+      "status": "info",
+      "reason": "",
+      "findings": 1,
+      "millis": 0
+    },
+    "RSN-01": {
+      "check_id": "RSN-01",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 3044
+    },
+    "RSN-02": {
+      "check_id": "RSN-02",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "RSN-08": {
+      "check_id": "RSN-08",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "SHC-02": {
+      "check_id": "SHC-02",
+      "status": "not-applicable",
+      "reason": "applies to shacl; measured profile is all, rdfs, owl, dl, skos",
+      "findings": 0,
+      "millis": 0
+    },
+    "SHC-08": {
+      "check_id": "SHC-08",
+      "status": "failed",
+      "reason": "",
+      "findings": 65,
+      "millis": 768
+    },
+    "HIER-01": {
+      "check_id": "HIER-01",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 1
+    },
+    "HIER-02": {
+      "check_id": "HIER-02",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 1
+    },
+    "HIER-05": {
+      "check_id": "HIER-05",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "HIER-08": {
+      "check_id": "HIER-08",
+      "status": "failed",
+      "reason": "",
+      "findings": 5,
+      "millis": 1
+    },
+    "PROP-01": {
+      "check_id": "PROP-01",
+      "status": "failed",
+      "reason": "",
+      "findings": 68,
+      "millis": 0
+    },
+    "LEX-01": {
+      "check_id": "LEX-01",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 1
+    },
+    "LEX-02": {
+      "check_id": "LEX-02",
+      "status": "failed",
+      "reason": "",
+      "findings": 23,
+      "millis": 2
+    },
+    "SKOS-05": {
+      "check_id": "SKOS-05",
+      "status": "passed",
+      "reason": "",
+      "findings": 0,
+      "millis": 0
+    },
+    "META-01": {
+      "check_id": "META-01",
+      "status": "failed",
+      "reason": "",
+      "findings": 1,
+      "millis": 0
+    },
+    "METRIC-01": {
+      "check_id": "METRIC-01",
+      "status": "failed",
+      "reason": "",
+      "findings": 1,
+      "millis": 0
+    },
+    "METRIC-02": {
+      "check_id": "METRIC-02",
+      "status": "info",
+      "reason": "",
+      "findings": 1,
+      "millis": 0
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "f-0001",
+      "check_id": "DL-08",
+      "severity": "info",
+      "focus": "https://example.org/fiben/ontology",
+      "message": "Profile report. OWL 2 EL: yes; OWL 2 QL: yes; OWL 2 RL: yes.",
+      "related": [],
+      "evidence": {
+        "profiles": {
+          "EL": {
+            "in_profile": true,
+            "first_violation": null,
+            "violations": 0
+          },
+          "QL": {
+            "in_profile": true,
+            "first_violation": null,
+            "violations": 0
+          },
+          "RL": {
+            "in_profile": true,
+            "first_violation": null,
+            "violations": 0
+          }
+        },
+        "expressivity": "AL(D)"
+      },
+      "fix_hint": "Information only. Outside OWL 2 RL, the built-in RL reasoner is incomplete (see RSN-08).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "graph",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0002",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Address",
+      "message": "Address on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0003",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Asset",
+      "message": "Asset on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0004",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#AutonomousAgent",
+      "message": "AutonomousAgent on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0005",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Contract",
+      "message": "Contract on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0006",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ContractParty",
+      "message": "ContractParty on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0007",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Corporation",
+      "message": "Corporation on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0008",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Country",
+      "message": "Country on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0009",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Currency",
+      "message": "Currency on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0010",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Debt",
+      "message": "Debt on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0011",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ElementsOfFinancialReport",
+      "message": "ElementsOfFinancialReport on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0012",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Equity",
+      "message": "Equity on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0013",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#FinancialInstrument",
+      "message": "FinancialInstrument on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0014",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#FinancialReport",
+      "message": "FinancialReport on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0015",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#FinancialServiceAccount",
+      "message": "FinancialServiceAccount on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0016",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Holding",
+      "message": "Holding on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0017",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#IndustrySectorClassificationScheme",
+      "message": "IndustrySectorClassificationScheme on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0018",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#IndustrySectorClassifier",
+      "message": "IndustrySectorClassifier on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0019",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ListedSecurity",
+      "message": "ListedSecurity on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0020",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#MonetaryAmount",
+      "message": "MonetaryAmount on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0021",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Person",
+      "message": "Person on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0022",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#SecuritiesTransaction",
+      "message": "SecuritiesTransaction on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0023",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Security",
+      "message": "Security on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0024",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#VirtualAddress",
+      "message": "VirtualAddress on definition: House rule HR-2: every named class has a skos:definition.",
+      "related": [
+        "http://www.w3.org/2004/02/skos/core#definition"
+      ],
+      "evidence": {
+        "shape": "Every named class has a skos:definition / property definition",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2004/02/skos/core#definition",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0025",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCitizenship",
+      "message": "hasCitizenship on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0026",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCitizenship",
+      "message": "hasCitizenship on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0027",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasContractParty",
+      "message": "hasContractParty on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0028",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasContractParty",
+      "message": "hasContractParty on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0029",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCountry",
+      "message": "hasCountry on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0030",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCountry",
+      "message": "hasCountry on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0031",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCurrency",
+      "message": "hasCurrency on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0032",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCurrency",
+      "message": "hasCurrency on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0033",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasLastTradedValue",
+      "message": "hasLastTradedValue on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0034",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasLastTradedValue",
+      "message": "hasLastTradedValue on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0035",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPlaceOfBirth",
+      "message": "hasPlaceOfBirth on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0036",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPlaceOfBirth",
+      "message": "hasPlaceOfBirth on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0037",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPrice",
+      "message": "hasPrice on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0038",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPrice",
+      "message": "hasPrice on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0039",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isClassifiedBy",
+      "message": "isClassifiedBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0040",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isClassifiedBy",
+      "message": "isClassifiedBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0041",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isDefinedBy",
+      "message": "isDefinedBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0042",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isDefinedBy",
+      "message": "isDefinedBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0043",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isDomiciledIn",
+      "message": "isDomiciledIn on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0044",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isDomiciledIn",
+      "message": "isDomiciledIn on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0045",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isFacilitatedBy",
+      "message": "isFacilitatedBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0046",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isFacilitatedBy",
+      "message": "isFacilitatedBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0047",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isHeldBy",
+      "message": "isHeldBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0048",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isHeldBy",
+      "message": "isHeldBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0049",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isIndexTo",
+      "message": "isIndexTo on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0050",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isIndexTo",
+      "message": "isIndexTo on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0051",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isManagedBy",
+      "message": "isManagedBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0052",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isManagedBy",
+      "message": "isManagedBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0053",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isMemberOf",
+      "message": "isMemberOf on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0054",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isMemberOf",
+      "message": "isMemberOf on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0055",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isOwnedBy",
+      "message": "isOwnedBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0056",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isOwnedBy",
+      "message": "isOwnedBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0057",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isProvidedBy",
+      "message": "isProvidedBy on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0058",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isProvidedBy",
+      "message": "isProvidedBy on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0059",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isTradedOn",
+      "message": "isTradedOn on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0060",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isTradedOn",
+      "message": "isTradedOn on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0061",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#postalAddress",
+      "message": "postalAddress on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0062",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#postalAddress",
+      "message": "postalAddress on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0063",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#refersTo",
+      "message": "refersTo on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0064",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#refersTo",
+      "message": "refersTo on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0065",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#virtualAddress",
+      "message": "virtualAddress on domain: House rule HR-3: every object property has an rdfs:domain.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#domain"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property domain",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#domain",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0066",
+      "check_id": "SHC-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#virtualAddress",
+      "message": "virtualAddress on range: House rule HR-3: every object property has an rdfs:range.",
+      "related": [
+        "http://www.w3.org/2000/01/rdf-schema#range"
+      ],
+      "evidence": {
+        "shape": "Every object property has a domain and a range / property range",
+        "component": "MinCountConstraintComponent",
+        "path": "http://www.w3.org/2000/01/rdf-schema#range",
+        "value": null,
+        "sh_severity": "Warning"
+      },
+      "fix_hint": "Bring the entity in line with the organisation's modelling policy (the house-rule pack named by the policy).",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "shacl",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0067",
+      "check_id": "HIER-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#AutonomousAgent",
+      "message": "The 2 subclasses of AutonomousAgent have no disjointness axiom among them.",
+      "related": [
+        "https://example.org/fiben/voc#Corporation",
+        "https://example.org/fiben/voc#Person"
+      ],
+      "evidence": {
+        "children": [
+          "https://example.org/fiben/voc#Corporation",
+          "https://example.org/fiben/voc#Person"
+        ],
+        "waiver": "W1",
+        "waiver_reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      "fix_hint": "If the subclasses cannot share members, state owl:AllDisjointClasses (or owl:disjointUnionOf) for them; otherwise a reasoner cannot detect an individual classified into two of them.",
+      "status": "waived",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0068",
+      "check_id": "HIER-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Disclosure",
+      "message": "The 118 subclasses of Disclosure have no disjointness axiom among them.",
+      "related": [
+        "https://example.org/fiben/voc#AccountsPayableAndAccruedLiabilities",
+        "https://example.org/fiben/voc#AccountsPayableDetails",
+        "https://example.org/fiben/voc#AccruedLiabilities",
+        "https://example.org/fiben/voc#AccumulatedOtherComprehensiveIncomeLoss",
+        "https://example.org/fiben/voc#AllowanceForCreditLosses",
+        "https://example.org/fiben/voc#AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare",
+        "https://example.org/fiben/voc#AssetImpairmentCharges",
+        "https://example.org/fiben/voc#AssetRetirementObligationDisclosure",
+        "https://example.org/fiben/voc#AvailableForSaleSecurities",
+        "https://example.org/fiben/voc#BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts",
+        "https://example.org/fiben/voc#BusinessAcquisitionProForMainFormation",
+        "https://example.org/fiben/voc#BusinessCombinationDisclosure",
+        "https://example.org/fiben/voc#CapitalUnits",
+        "https://example.org/fiben/voc#CashAndCashEquivalents",
+        "https://example.org/fiben/voc#CashAndCashEquivalentsDisclosure",
+        "https://example.org/fiben/voc#CashCashEquivalentsAndShortTermInvestments",
+        "https://example.org/fiben/voc#ChangeInAccountingEstimate",
+        "https://example.org/fiben/voc#ChangesInFairValueOfPlanAssets",
+        "https://example.org/fiben/voc#CommitmentsContingenciesAndGuarantees",
+        "https://example.org/fiben/voc#ComprehensiveIncomeLoss",
+        "https://example.org/fiben/voc#ConversionOfStock",
+        "https://example.org/fiben/voc#CostMethodInvestments",
+        "https://example.org/fiben/voc#CostsOfRetirementPlans",
+        "https://example.org/fiben/voc#Debt",
+        "https://example.org/fiben/voc#DebtConversion",
+        "https://example.org/fiben/voc#DeferredTaxAssetsAndLiabilities",
+        "https://example.org/fiben/voc#DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss",
+        "https://example.org/fiben/voc#Derivative",
+        "https://example.org/fiben/voc#DividendPaymentRestrictions",
+        "https://example.org/fiben/voc#DividendsPayable",
+        "https://example.org/fiben/voc#EffectiveIncomeTaxRateReconciliation",
+        "https://example.org/fiben/voc#EntityLocation",
+        "https://example.org/fiben/voc#EquityMethodInvestments",
+        "https://example.org/fiben/voc#ErrorCorrectionsAndPriorPeriodAdjustments",
+        "https://example.org/fiben/voc#ExtinguishmentOfDebt",
+        "https://example.org/fiben/voc#ExtraordinaryItems",
+        "https://example.org/fiben/voc#FinancialInstrumentsSubjectToMandatoryRedemption",
+        "https://example.org/fiben/voc#FinancialMetrics",
+        "https://example.org/fiben/voc#FinancingReceivableAllowanceForCreditLosses",
+        "https://example.org/fiben/voc#FinancingReceivableCreditQualityIndicators",
+        "https://example.org/fiben/voc#FinancingReceivableTroubledDebtRestructurings",
+        "https://example.org/fiben/voc#FinancingReceivables",
+        "https://example.org/fiben/voc#FinancingReceivablesPastDue",
+        "https://example.org/fiben/voc#ForeignCurrencyTranslation",
+        "https://example.org/fiben/voc#ForwardContractIndexedToIssuersEquity",
+        "https://example.org/fiben/voc#FresHstArtAdjustments",
+        "https://example.org/fiben/voc#GainLossOnInvestments",
+        "https://example.org/fiben/voc#Goodwill",
+        "https://example.org/fiben/voc#Guarantees",
+        "https://example.org/fiben/voc#GuarantorObligations",
+        "https://example.org/fiben/voc#HeldToMaturitySecurities",
+        "https://example.org/fiben/voc#ImpairedFinancingReceivables",
+        "https://example.org/fiben/voc#IncomeTaxContingency",
+        "https://example.org/fiben/voc#IndefiniteLivedIntangibleAssets",
+        "https://example.org/fiben/voc#IntangibleAssetsAndGoodwill",
+        "https://example.org/fiben/voc#InterestAndOtherIncome",
+        "https://example.org/fiben/voc#InterestCostsIncurred",
+        "https://example.org/fiben/voc#InventoryCurrent",
+        "https://example.org/fiben/voc#InventoryNoncurrent",
+        "https://example.org/fiben/voc#InvestmentIncome",
+        "https://example.org/fiben/voc#InvestmentsAndOtherNoncurrentAssets",
+        "https://example.org/fiben/voc#LineOfCreditFacility",
+        "https://example.org/fiben/voc#LongLivedAssetsHeldForSale",
+        "https://example.org/fiben/voc#LongLivedAssetsToBeAbandoned",
+        "https://example.org/fiben/voc#LongTermDebt",
+        "https://example.org/fiben/voc#LongTermDebtMaturities",
+        "https://example.org/fiben/voc#LongTermPurchaseCommitment",
+        "https://example.org/fiben/voc#MarketableSecurities",
+        "https://example.org/fiben/voc#NetPeriodicBenefitCostNotYetRecognized",
+        "https://example.org/fiben/voc#NewAccountingPronouncementEarlyAdoption",
+        "https://example.org/fiben/voc#NoncontrollingInterest",
+        "https://example.org/fiben/voc#OperatingLossCarryForwards",
+        "https://example.org/fiben/voc#OtherAssets",
+        "https://example.org/fiben/voc#OtherAssetsAndOtherLiabilities",
+        "https://example.org/fiben/voc#OtherAssetsDisclosure",
+        "https://example.org/fiben/voc#OtherAssetsNoncurrent",
+        "https://example.org/fiben/voc#OtherLiabilitiesDisclosure",
+        "https://example.org/fiben/voc#OtherNonOperatingIncomeExpense",
+        "https://example.org/fiben/voc#OtherOwnershipInterests",
+        "https://example.org/fiben/voc#OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings",
+        "https://example.org/fiben/voc#PreferredStock",
+        "https://example.org/fiben/voc#ProductWarrantyLiability",
+        "https://example.org/fiben/voc#PropertyManagementFee",
+        "https://example.org/fiben/voc#PropertyPlantAndEquipment",
+        "https://example.org/fiben/voc#PropertyPlantAndEquipmentIncomeStatementDisclosures",
+        "https://example.org/fiben/voc#PropertyPlantAndEquipmentUseFullives",
+        "https://example.org/fiben/voc#PropertySubjectToOrAvailableForOperatingLease",
+        "https://example.org/fiben/voc#RealEstateProperties",
+        "https://example.org/fiben/voc#RealizedGainLoss",
+        "https://example.org/fiben/voc#RealizedGainLossOnInvestments",
+        "https://example.org/fiben/voc#ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated",
+        "https://example.org/fiben/voc#RecordedUnconditionalPurchaseObligation",
+        "https://example.org/fiben/voc#RedeemableNoncontrollingInterest",
+        "https://example.org/fiben/voc#RelatedPartyTransactionsByRelatedParty",
+        "https://example.org/fiben/voc#RentExpense",
+        "https://example.org/fiben/voc#RestrictedCashAndCashEquivalents",
+        "https://example.org/fiben/voc#RestructuringAndRelatedCosts",
+        "https://example.org/fiben/voc#SaleLeaseBackTransaction",
+        "https://example.org/fiben/voc#ShareBasedCompensationActivity",
+        "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue",
+        "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue",
+        "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable",
+        "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable",
+        "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest",
+        "https://example.org/fiben/voc#ShareBasedCompensationRestrictedStockUnitsAwardActivity",
+        "https://example.org/fiben/voc#ShortTermDebt",
+        "https://example.org/fiben/voc#StockholdersEquity",
+        "https://example.org/fiben/voc#SubsequentEvents",
+        "https://example.org/fiben/voc#TaxCreditCarryForward",
+        "https://example.org/fiben/voc#TradingSecuritiesAndOtherTradingAssets",
+        "https://example.org/fiben/voc#TreasuryStock",
+        "https://example.org/fiben/voc#UnrealizedGainLossOnInvestments",
+        "https://example.org/fiben/voc#UnrealizedLossOnInvestments",
+        "https://example.org/fiben/voc#UnrecordedUnconditionalPurchaseObligation",
+        "https://example.org/fiben/voc#UnrecordedUnconditionalPurchaseObligationsDisclosure",
+        "https://example.org/fiben/voc#ValuationAllowance",
+        "https://example.org/fiben/voc#ValuationAndQualifyingAccountsDisclosure",
+        "https://example.org/fiben/voc#WeightedAverageNumberOfShares"
+      ],
+      "evidence": {
+        "children": [
+          "https://example.org/fiben/voc#AccountsPayableAndAccruedLiabilities",
+          "https://example.org/fiben/voc#AccountsPayableDetails",
+          "https://example.org/fiben/voc#AccruedLiabilities",
+          "https://example.org/fiben/voc#AccumulatedOtherComprehensiveIncomeLoss",
+          "https://example.org/fiben/voc#AllowanceForCreditLosses",
+          "https://example.org/fiben/voc#AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare",
+          "https://example.org/fiben/voc#AssetImpairmentCharges",
+          "https://example.org/fiben/voc#AssetRetirementObligationDisclosure",
+          "https://example.org/fiben/voc#AvailableForSaleSecurities",
+          "https://example.org/fiben/voc#BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts",
+          "https://example.org/fiben/voc#BusinessAcquisitionProForMainFormation",
+          "https://example.org/fiben/voc#BusinessCombinationDisclosure",
+          "https://example.org/fiben/voc#CapitalUnits",
+          "https://example.org/fiben/voc#CashAndCashEquivalents",
+          "https://example.org/fiben/voc#CashAndCashEquivalentsDisclosure",
+          "https://example.org/fiben/voc#CashCashEquivalentsAndShortTermInvestments",
+          "https://example.org/fiben/voc#ChangeInAccountingEstimate",
+          "https://example.org/fiben/voc#ChangesInFairValueOfPlanAssets",
+          "https://example.org/fiben/voc#CommitmentsContingenciesAndGuarantees",
+          "https://example.org/fiben/voc#ComprehensiveIncomeLoss",
+          "https://example.org/fiben/voc#ConversionOfStock",
+          "https://example.org/fiben/voc#CostMethodInvestments",
+          "https://example.org/fiben/voc#CostsOfRetirementPlans",
+          "https://example.org/fiben/voc#Debt",
+          "https://example.org/fiben/voc#DebtConversion",
+          "https://example.org/fiben/voc#DeferredTaxAssetsAndLiabilities",
+          "https://example.org/fiben/voc#DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss",
+          "https://example.org/fiben/voc#Derivative",
+          "https://example.org/fiben/voc#DividendPaymentRestrictions",
+          "https://example.org/fiben/voc#DividendsPayable",
+          "https://example.org/fiben/voc#EffectiveIncomeTaxRateReconciliation",
+          "https://example.org/fiben/voc#EntityLocation",
+          "https://example.org/fiben/voc#EquityMethodInvestments",
+          "https://example.org/fiben/voc#ErrorCorrectionsAndPriorPeriodAdjustments",
+          "https://example.org/fiben/voc#ExtinguishmentOfDebt",
+          "https://example.org/fiben/voc#ExtraordinaryItems",
+          "https://example.org/fiben/voc#FinancialInstrumentsSubjectToMandatoryRedemption",
+          "https://example.org/fiben/voc#FinancialMetrics",
+          "https://example.org/fiben/voc#FinancingReceivableAllowanceForCreditLosses",
+          "https://example.org/fiben/voc#FinancingReceivableCreditQualityIndicators",
+          "https://example.org/fiben/voc#FinancingReceivableTroubledDebtRestructurings",
+          "https://example.org/fiben/voc#FinancingReceivables",
+          "https://example.org/fiben/voc#FinancingReceivablesPastDue",
+          "https://example.org/fiben/voc#ForeignCurrencyTranslation",
+          "https://example.org/fiben/voc#ForwardContractIndexedToIssuersEquity",
+          "https://example.org/fiben/voc#FresHstArtAdjustments",
+          "https://example.org/fiben/voc#GainLossOnInvestments",
+          "https://example.org/fiben/voc#Goodwill",
+          "https://example.org/fiben/voc#Guarantees",
+          "https://example.org/fiben/voc#GuarantorObligations",
+          "https://example.org/fiben/voc#HeldToMaturitySecurities",
+          "https://example.org/fiben/voc#ImpairedFinancingReceivables",
+          "https://example.org/fiben/voc#IncomeTaxContingency",
+          "https://example.org/fiben/voc#IndefiniteLivedIntangibleAssets",
+          "https://example.org/fiben/voc#IntangibleAssetsAndGoodwill",
+          "https://example.org/fiben/voc#InterestAndOtherIncome",
+          "https://example.org/fiben/voc#InterestCostsIncurred",
+          "https://example.org/fiben/voc#InventoryCurrent",
+          "https://example.org/fiben/voc#InventoryNoncurrent",
+          "https://example.org/fiben/voc#InvestmentIncome",
+          "https://example.org/fiben/voc#InvestmentsAndOtherNoncurrentAssets",
+          "https://example.org/fiben/voc#LineOfCreditFacility",
+          "https://example.org/fiben/voc#LongLivedAssetsHeldForSale",
+          "https://example.org/fiben/voc#LongLivedAssetsToBeAbandoned",
+          "https://example.org/fiben/voc#LongTermDebt",
+          "https://example.org/fiben/voc#LongTermDebtMaturities",
+          "https://example.org/fiben/voc#LongTermPurchaseCommitment",
+          "https://example.org/fiben/voc#MarketableSecurities",
+          "https://example.org/fiben/voc#NetPeriodicBenefitCostNotYetRecognized",
+          "https://example.org/fiben/voc#NewAccountingPronouncementEarlyAdoption",
+          "https://example.org/fiben/voc#NoncontrollingInterest",
+          "https://example.org/fiben/voc#OperatingLossCarryForwards",
+          "https://example.org/fiben/voc#OtherAssets",
+          "https://example.org/fiben/voc#OtherAssetsAndOtherLiabilities",
+          "https://example.org/fiben/voc#OtherAssetsDisclosure",
+          "https://example.org/fiben/voc#OtherAssetsNoncurrent",
+          "https://example.org/fiben/voc#OtherLiabilitiesDisclosure",
+          "https://example.org/fiben/voc#OtherNonOperatingIncomeExpense",
+          "https://example.org/fiben/voc#OtherOwnershipInterests",
+          "https://example.org/fiben/voc#OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings",
+          "https://example.org/fiben/voc#PreferredStock",
+          "https://example.org/fiben/voc#ProductWarrantyLiability",
+          "https://example.org/fiben/voc#PropertyManagementFee",
+          "https://example.org/fiben/voc#PropertyPlantAndEquipment",
+          "https://example.org/fiben/voc#PropertyPlantAndEquipmentIncomeStatementDisclosures",
+          "https://example.org/fiben/voc#PropertyPlantAndEquipmentUseFullives",
+          "https://example.org/fiben/voc#PropertySubjectToOrAvailableForOperatingLease",
+          "https://example.org/fiben/voc#RealEstateProperties",
+          "https://example.org/fiben/voc#RealizedGainLoss",
+          "https://example.org/fiben/voc#RealizedGainLossOnInvestments",
+          "https://example.org/fiben/voc#ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated",
+          "https://example.org/fiben/voc#RecordedUnconditionalPurchaseObligation",
+          "https://example.org/fiben/voc#RedeemableNoncontrollingInterest",
+          "https://example.org/fiben/voc#RelatedPartyTransactionsByRelatedParty",
+          "https://example.org/fiben/voc#RentExpense",
+          "https://example.org/fiben/voc#RestrictedCashAndCashEquivalents",
+          "https://example.org/fiben/voc#RestructuringAndRelatedCosts",
+          "https://example.org/fiben/voc#SaleLeaseBackTransaction",
+          "https://example.org/fiben/voc#ShareBasedCompensationActivity",
+          "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue",
+          "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue",
+          "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable",
+          "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable",
+          "https://example.org/fiben/voc#ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest",
+          "https://example.org/fiben/voc#ShareBasedCompensationRestrictedStockUnitsAwardActivity",
+          "https://example.org/fiben/voc#ShortTermDebt",
+          "https://example.org/fiben/voc#StockholdersEquity",
+          "https://example.org/fiben/voc#SubsequentEvents",
+          "https://example.org/fiben/voc#TaxCreditCarryForward",
+          "https://example.org/fiben/voc#TradingSecuritiesAndOtherTradingAssets",
+          "https://example.org/fiben/voc#TreasuryStock",
+          "https://example.org/fiben/voc#UnrealizedGainLossOnInvestments",
+          "https://example.org/fiben/voc#UnrealizedLossOnInvestments",
+          "https://example.org/fiben/voc#UnrecordedUnconditionalPurchaseObligation",
+          "https://example.org/fiben/voc#UnrecordedUnconditionalPurchaseObligationsDisclosure",
+          "https://example.org/fiben/voc#ValuationAllowance",
+          "https://example.org/fiben/voc#ValuationAndQualifyingAccountsDisclosure",
+          "https://example.org/fiben/voc#WeightedAverageNumberOfShares"
+        ],
+        "waiver": "W1",
+        "waiver_reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      "fix_hint": "If the subclasses cannot share members, state owl:AllDisjointClasses (or owl:disjointUnionOf) for them; otherwise a reasoner cannot detect an individual classified into two of them.",
+      "status": "waived",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0069",
+      "check_id": "HIER-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ElementOfFinancialStatement",
+      "message": "The 8 subclasses of ElementOfFinancialStatement have no disjointness axiom among them.",
+      "related": [
+        "https://example.org/fiben/voc#Asset",
+        "https://example.org/fiben/voc#ComprehensiveIncome",
+        "https://example.org/fiben/voc#DistributionToOwner",
+        "https://example.org/fiben/voc#Equity",
+        "https://example.org/fiben/voc#Expense",
+        "https://example.org/fiben/voc#Liability",
+        "https://example.org/fiben/voc#Loss",
+        "https://example.org/fiben/voc#Revenue"
+      ],
+      "evidence": {
+        "children": [
+          "https://example.org/fiben/voc#Asset",
+          "https://example.org/fiben/voc#ComprehensiveIncome",
+          "https://example.org/fiben/voc#DistributionToOwner",
+          "https://example.org/fiben/voc#Equity",
+          "https://example.org/fiben/voc#Expense",
+          "https://example.org/fiben/voc#Liability",
+          "https://example.org/fiben/voc#Loss",
+          "https://example.org/fiben/voc#Revenue"
+        ],
+        "waiver": "W1",
+        "waiver_reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      "fix_hint": "If the subclasses cannot share members, state owl:AllDisjointClasses (or owl:disjointUnionOf) for them; otherwise a reasoner cannot detect an individual classified into two of them.",
+      "status": "waived",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0070",
+      "check_id": "HIER-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ElementsOfFinancialReport",
+      "message": "The 2 subclasses of ElementsOfFinancialReport have no disjointness axiom among them.",
+      "related": [
+        "https://example.org/fiben/voc#Disclosure",
+        "https://example.org/fiben/voc#ElementOfFinancialStatement"
+      ],
+      "evidence": {
+        "children": [
+          "https://example.org/fiben/voc#Disclosure",
+          "https://example.org/fiben/voc#ElementOfFinancialStatement"
+        ],
+        "waiver": "W1",
+        "waiver_reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      "fix_hint": "If the subclasses cannot share members, state owl:AllDisjointClasses (or owl:disjointUnionOf) for them; otherwise a reasoner cannot detect an individual classified into two of them.",
+      "status": "waived",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0071",
+      "check_id": "HIER-08",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#VirtualAddress",
+      "message": "The 2 subclasses of VirtualAddress have no disjointness axiom among them.",
+      "related": [
+        "https://example.org/fiben/voc#EmailAddress",
+        "https://example.org/fiben/voc#PhoneNumber"
+      ],
+      "evidence": {
+        "children": [
+          "https://example.org/fiben/voc#EmailAddress",
+          "https://example.org/fiben/voc#PhoneNumber"
+        ],
+        "waiver": "W1",
+        "waiver_reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      "fix_hint": "If the subclasses cannot share members, state owl:AllDisjointClasses (or owl:disjointUnionOf) for them; otherwise a reasoner cannot detect an individual classified into two of them.",
+      "status": "waived",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0072",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#applicablePeriod",
+      "message": "Property applicablePeriod has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0073",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasAccountNumber",
+      "message": "Property hasAccountNumber has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0074",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasAddressLine1",
+      "message": "Property hasAddressLine1 has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0075",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasAddressLine2",
+      "message": "Property hasAddressLine2 has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0076",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasAmount",
+      "message": "Property hasAmount has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0077",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCitizenship",
+      "message": "Property hasCitizenship has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0078",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCity",
+      "message": "Property hasCity has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0079",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasContractParty",
+      "message": "Property hasContractParty has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0080",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCount",
+      "message": "Property hasCount has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0081",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCountry",
+      "message": "Property hasCountry has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0082",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCurrency",
+      "message": "Property hasCurrency has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0083",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasCurrencyName",
+      "message": "Property hasCurrencyName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0084",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasDateOfBirth",
+      "message": "Property hasDateOfBirth has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0085",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasDescription",
+      "message": "Property hasDescription has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0086",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasDocumentType",
+      "message": "Property hasDocumentType has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0087",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasEffectiveDate",
+      "message": "Property hasEffectiveDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0088",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasExpirationDate",
+      "message": "Property hasExpirationDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0089",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasFirstName",
+      "message": "Property hasFirstName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0090",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasFormalName",
+      "message": "Property hasFormalName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0091",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasGender",
+      "message": "Property hasGender has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0092",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasLastName",
+      "message": "Property hasLastName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0093",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasLastTradedValue",
+      "message": "Property hasLastTradedValue has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0094",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasLegalName",
+      "message": "Property hasLegalName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0095",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasListingDate",
+      "message": "Property hasListingDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0096",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricContextDimensions",
+      "message": "Property hasMetricContextDimensions has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0097",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricEndDate",
+      "message": "Property hasMetricEndDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0098",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricEndQuarter",
+      "message": "Property hasMetricEndQuarter has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0099",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricStartDate",
+      "message": "Property hasMetricStartDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0100",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricStartQuarter",
+      "message": "Property hasMetricStartQuarter has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0101",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricValue",
+      "message": "Property hasMetricValue has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0102",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricYearCalendar",
+      "message": "Property hasMetricYearCalendar has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0103",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMetricYearFiscal",
+      "message": "Property hasMetricYearFiscal has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0104",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMiddleNameOrInitial",
+      "message": "Property hasMiddleNameOrInitial has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0105",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasMinorUnit",
+      "message": "Property hasMinorUnit has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0106",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasName",
+      "message": "Property hasName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0107",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasNumericCode",
+      "message": "Property hasNumericCode has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0108",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasNumericCountryCode",
+      "message": "Property hasNumericCountryCode has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0109",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPersonName",
+      "message": "Property hasPersonName has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0110",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPlaceOfBirth",
+      "message": "Property hasPlaceOfBirth has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0111",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPosition",
+      "message": "Property hasPosition has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0112",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPostalCode",
+      "message": "Property hasPostalCode has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0113",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasPrice",
+      "message": "Property hasPrice has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0114",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasSettlementDate",
+      "message": "Property hasSettlementDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0115",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasStartDate",
+      "message": "Property hasStartDate has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0116",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasState",
+      "message": "Property hasState has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0117",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasTickerSymbol",
+      "message": "Property hasTickerSymbol has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0118",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasTitle",
+      "message": "Property hasTitle has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0119",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasType",
+      "message": "Property hasType has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0120",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasUniqueIdentifier",
+      "message": "Property hasUniqueIdentifier has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0121",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasUnit",
+      "message": "Property hasUnit has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0122",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasUrl",
+      "message": "Property hasUrl has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0123",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#hasValue",
+      "message": "Property hasValue has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0124",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isClassifiedBy",
+      "message": "Property isClassifiedBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0125",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isComputed",
+      "message": "Property isComputed has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0126",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isDefinedBy",
+      "message": "Property isDefinedBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0127",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isDomiciledIn",
+      "message": "Property isDomiciledIn has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0128",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isFacilitatedBy",
+      "message": "Property isFacilitatedBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0129",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isHeldBy",
+      "message": "Property isHeldBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0130",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isIndexTo",
+      "message": "Property isIndexTo has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0131",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isManagedBy",
+      "message": "Property isManagedBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0132",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isMemberOf",
+      "message": "Property isMemberOf has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0133",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isOwnedBy",
+      "message": "Property isOwnedBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0134",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isProvidedBy",
+      "message": "Property isProvidedBy has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0135",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isTradedOn",
+      "message": "Property isTradedOn has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0136",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#isTransferable",
+      "message": "Property isTransferable has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0137",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#postalAddress",
+      "message": "Property postalAddress has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0138",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#refersTo",
+      "message": "Property refersTo has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0139",
+      "check_id": "PROP-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#virtualAddress",
+      "message": "Property virtualAddress has no domain and no range.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "domain",
+          "range"
+        ]
+      },
+      "fix_hint": "State the most specific domain and range that hold for every use; without them, readers and tools cannot tell what the property links.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0140",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Address",
+      "message": "Class Address has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0141",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Asset",
+      "message": "Class Asset has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0142",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#AutonomousAgent",
+      "message": "Class AutonomousAgent has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0143",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Contract",
+      "message": "Class Contract has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0144",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ContractParty",
+      "message": "Class ContractParty has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0145",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Corporation",
+      "message": "Class Corporation has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0146",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Country",
+      "message": "Class Country has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0147",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Currency",
+      "message": "Class Currency has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0148",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Debt",
+      "message": "Class Debt has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0149",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ElementsOfFinancialReport",
+      "message": "Class ElementsOfFinancialReport has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0150",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Equity",
+      "message": "Class Equity has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0151",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#FinancialInstrument",
+      "message": "Class FinancialInstrument has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0152",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#FinancialReport",
+      "message": "Class FinancialReport has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0153",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#FinancialServiceAccount",
+      "message": "Class FinancialServiceAccount has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0154",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Holding",
+      "message": "Class Holding has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0155",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#IndustrySectorClassificationScheme",
+      "message": "Class IndustrySectorClassificationScheme has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0156",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#IndustrySectorClassifier",
+      "message": "Class IndustrySectorClassifier has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0157",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#ListedSecurity",
+      "message": "Class ListedSecurity has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0158",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#MonetaryAmount",
+      "message": "Class MonetaryAmount has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0159",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Person",
+      "message": "Class Person has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0160",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#SecuritiesTransaction",
+      "message": "Class SecuritiesTransaction has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0161",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#Security",
+      "message": "Class Security has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0162",
+      "check_id": "LEX-02",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/voc#VirtualAddress",
+      "message": "Class VirtualAddress has no definition (skos:definition, IAO:0000115 or rdfs:comment).",
+      "related": [],
+      "evidence": {},
+      "fix_hint": "Add a genus-differentia definition: 'A <parent> that <distinguishing feature>'.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0163",
+      "check_id": "META-01",
+      "severity": "minor",
+      "focus": "https://example.org/fiben/ontology",
+      "message": "The ontology header lacks dcterms:title, dcterms:license, owl:versionIRI.",
+      "related": [],
+      "evidence": {
+        "missing": [
+          "dcterms:title",
+          "dcterms:license",
+          "owl:versionIRI"
+        ],
+        "required": [
+          "dcterms:title",
+          "dcterms:license",
+          "owl:versionIRI"
+        ]
+      },
+      "fix_hint": "Add the missing header annotations; a licence is what lets others legally reuse the ontology.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0164",
+      "check_id": "METRIC-01",
+      "severity": "major",
+      "focus": "https://example.org/fiben/ontology",
+      "message": "Declared as a formal-ontology, but measured as a thesaurus.",
+      "related": [],
+      "evidence": {
+        "declared": "formal-ontology",
+        "measured": "thesaurus",
+        "evidence": [
+          "152 classes, 0 SKOS concepts, 220 labels: named terms exist",
+          "135 subClassOf and 0 broader/narrower links: a hierarchy exists",
+          "162 associative/mapping SKOS relations"
+        ]
+      },
+      "fix_hint": "Either add the structure the declared level promises (e.g. restrictions, disjointness for a formal ontology) or declare the level the artefact actually has.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "sparql",
+        "version": "0.1.0-s1a"
+      }
+    },
+    {
+      "finding_id": "f-0165",
+      "check_id": "METRIC-02",
+      "severity": "info",
+      "focus": "https://example.org/fiben/ontology",
+      "message": "152 classes, 21 object and 47 datatype properties, 0 individuals, 135 logical axioms; expressivity AL(D); measured level thesaurus.",
+      "related": [],
+      "evidence": {
+        "counts": {
+          "triples": 1400,
+          "classes": 152,
+          "object_properties": 21,
+          "datatype_properties": 47,
+          "annotation_properties": 0,
+          "individuals": 0,
+          "skos_concepts": 0,
+          "subclass_axioms": 135,
+          "equivalence_axioms": 0,
+          "disjointness_axioms": 0,
+          "restrictions": 0,
+          "domain_axioms": 0,
+          "range_axioms": 0,
+          "property_characteristics": 0,
+          "skos_relations": 162,
+          "labels": 220,
+          "logical_axioms": 135,
+          "axiom_richness": 0.888
+        },
+        "expressivity": "AL(D)"
+      },
+      "fix_hint": "Information only.",
+      "status": "confirmed",
+      "justification": [],
+      "root_cause": null,
+      "adjudication": null,
+      "engine": {
+        "method": "graph",
+        "version": "0.1.0-s1a"
+      }
+    }
+  ],
+  "root_causes": [],
+  "repairs": [],
+  "verdict": {
+    "verdict": "revise",
+    "reasons": [
+      "1 major and 157 minor finding(s): LEX-02, META-01, METRIC-01, PROP-01, SHC-08",
+      "measured level thesaurus is below the declared formal-ontology",
+      "5 finding(s) waived by policy registry-default-v1"
+    ],
+    "reportable": [
+      "f-0001",
+      "f-0002",
+      "f-0003",
+      "f-0004",
+      "f-0005",
+      "f-0006",
+      "f-0007",
+      "f-0008",
+      "f-0009",
+      "f-0010",
+      "f-0011",
+      "f-0012",
+      "f-0013",
+      "f-0014",
+      "f-0015",
+      "f-0016",
+      "f-0017",
+      "f-0018",
+      "f-0019",
+      "f-0020",
+      "f-0021",
+      "f-0022",
+      "f-0023",
+      "f-0024",
+      "f-0025",
+      "f-0026",
+      "f-0027",
+      "f-0028",
+      "f-0029",
+      "f-0030",
+      "f-0031",
+      "f-0032",
+      "f-0033",
+      "f-0034",
+      "f-0035",
+      "f-0036",
+      "f-0037",
+      "f-0038",
+      "f-0039",
+      "f-0040",
+      "f-0041",
+      "f-0042",
+      "f-0043",
+      "f-0044",
+      "f-0045",
+      "f-0046",
+      "f-0047",
+      "f-0048",
+      "f-0049",
+      "f-0050",
+      "f-0051",
+      "f-0052",
+      "f-0053",
+      "f-0054",
+      "f-0055",
+      "f-0056",
+      "f-0057",
+      "f-0058",
+      "f-0059",
+      "f-0060",
+      "f-0061",
+      "f-0062",
+      "f-0063",
+      "f-0064",
+      "f-0065",
+      "f-0066",
+      "f-0072",
+      "f-0073",
+      "f-0074",
+      "f-0075",
+      "f-0076",
+      "f-0077",
+      "f-0078",
+      "f-0079",
+      "f-0080",
+      "f-0081",
+      "f-0082",
+      "f-0083",
+      "f-0084",
+      "f-0085",
+      "f-0086",
+      "f-0087",
+      "f-0088",
+      "f-0089",
+      "f-0090",
+      "f-0091",
+      "f-0092",
+      "f-0093",
+      "f-0094",
+      "f-0095",
+      "f-0096",
+      "f-0097",
+      "f-0098",
+      "f-0099",
+      "f-0100",
+      "f-0101",
+      "f-0102",
+      "f-0103",
+      "f-0104",
+      "f-0105",
+      "f-0106",
+      "f-0107",
+      "f-0108",
+      "f-0109",
+      "f-0110",
+      "f-0111",
+      "f-0112",
+      "f-0113",
+      "f-0114",
+      "f-0115",
+      "f-0116",
+      "f-0117",
+      "f-0118",
+      "f-0119",
+      "f-0120",
+      "f-0121",
+      "f-0122",
+      "f-0123",
+      "f-0124",
+      "f-0125",
+      "f-0126",
+      "f-0127",
+      "f-0128",
+      "f-0129",
+      "f-0130",
+      "f-0131",
+      "f-0132",
+      "f-0133",
+      "f-0134",
+      "f-0135",
+      "f-0136",
+      "f-0137",
+      "f-0138",
+      "f-0139",
+      "f-0140",
+      "f-0141",
+      "f-0142",
+      "f-0143",
+      "f-0144",
+      "f-0145",
+      "f-0146",
+      "f-0147",
+      "f-0148",
+      "f-0149",
+      "f-0150",
+      "f-0151",
+      "f-0152",
+      "f-0153",
+      "f-0154",
+      "f-0155",
+      "f-0156",
+      "f-0157",
+      "f-0158",
+      "f-0159",
+      "f-0160",
+      "f-0161",
+      "f-0162",
+      "f-0163",
+      "f-0164",
+      "f-0165"
+    ],
+    "waived": [
+      {
+        "finding_id": "f-0067",
+        "check_id": "HIER-08",
+        "waiver": "W1",
+        "reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      {
+        "finding_id": "f-0068",
+        "check_id": "HIER-08",
+        "waiver": "W1",
+        "reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      {
+        "finding_id": "f-0069",
+        "check_id": "HIER-08",
+        "waiver": "W1",
+        "reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      {
+        "finding_id": "f-0070",
+        "check_id": "HIER-08",
+        "waiver": "W1",
+        "reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      },
+      {
+        "finding_id": "f-0071",
+        "check_id": "HIER-08",
+        "waiver": "W1",
+        "reason": "Vocabularies and thesauri do not commit to disjoint categories."
+      }
+    ],
+    "counts": {
+      "blocker": 0,
+      "major": 1,
+      "minor": 157,
+      "info": 2
+    },
+    "policy": "registry-default-v1"
+  },
+  "metrics": {
+    "triples": 1400,
+    "classes": 152,
+    "object_properties": 21,
+    "datatype_properties": 47,
+    "annotation_properties": 0,
+    "individuals": 0,
+    "skos_concepts": 0,
+    "subclass_axioms": 135,
+    "equivalence_axioms": 0,
+    "disjointness_axioms": 0,
+    "restrictions": 0,
+    "domain_axioms": 0,
+    "range_axioms": 0,
+    "property_characteristics": 0,
+    "skos_relations": 162,
+    "labels": 220,
+    "logical_axioms": 135,
+    "axiom_richness": 0.888
+  },
+  "versions": {
+    "engine": "0.1.0-s1a",
+    "catalogue": "2026-10-04",
+    "policy": "registry-default-v1",
+    "stage": "S1a",
+    "skills": {}
+  },
+  "cost": {
+    "calls": 0,
+    "usd": 0.0
+  },
+  "tool_log": [],
+  "review": null
+}

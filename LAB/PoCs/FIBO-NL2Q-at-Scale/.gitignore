@@ -1,6 +1,4 @@
-data/raw/
-data/*.duckdb
-data/*.duckdb.wal
+data/
 runs/
 __pycache__/
 *.pyc

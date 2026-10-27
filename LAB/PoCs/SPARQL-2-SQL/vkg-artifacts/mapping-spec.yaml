@@ -1,0 +1,176 @@
+# R2RML mapping specification: the single source of truth for fiben-mappings.r2rml.ttl.
+#
+#   python tools/build_mappings.py           # regenerate the R2RML from this file
+#   python tools/check_mappings.py           # conformance against db-metadata.json and the TBox
+#
+# Conventions (enforced by the generator and the checker):
+# * IRI policy. Every entity has exactly one subject template, <base_iri><path>/{"<key>"}, keyed
+#   by its table's primary key. Any map that mentions the entity (as subject or as object)
+#   reuses that template, so a join in SPARQL is an equality on the key in SQL.
+# * Identifiers are always double-quoted ("PUBLIC"."COMPANY", {"COMP_ID"}): the schema uses
+#   upper-case names, and PostgreSQL folds unquoted names to lower case.
+# * Literals carry an explicit rr:datatype whenever the TBox range is not xsd:string, and the
+#   datatype must equal that range.
+# * Subclass-by-filter: a `filter` turns the map's logical table into an rr:sqlQuery view
+#   (SELECT the columns the map uses FROM the table WHERE column = value), so one table can
+#   populate several disjoint subclasses (RetailCustomer / CorporateCustomer).
+# * Link maps: a relationship stored as a foreign key on the *other* side (ACCOUNT.CUST_ID for
+#   Customer hasAccount Account) is a separate map on that table with no class, whose subject
+#   is the referenced entity.
+#
+# Map fields:
+#   id          TriplesMap local name (<#id>)
+#   table       table name inside `schema`
+#   subject     entity name; `subject_column` overrides the key column (link maps)
+#   class       rr:class of the subject (omit for link maps)
+#   filter      {column: value} -> rr:sqlQuery view
+#   properties  {predicate, column, datatype?} for literals, {predicate, ref, column?} for
+#               links to another entity (column defaults to that entity's key)
+
+base_iri: https://example.org/fibo-vkg/data/
+schema: PUBLIC
+
+prefixes:
+  rr: http://www.w3.org/ns/r2rml#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  fibo-be-le-cb: https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/CorporateBodies/
+  fibo-fbc-fct-mkt: https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/
+  fibo-fbc-pas-caa: https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/
+  fibo-fbc-pas-fpas: https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/
+  fibo-sec-sec-iss: https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/
+  fibo-sec-sec-ast: https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecurityAssets/
+  fibo-sec-eq-eq: https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/
+  fibo-sec-dbt-bnd: https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/
+  fro-sec: http://finregont.com/fro/sec/SEC_Filings.ttl#
+  ex-fibo: https://example.org/fibo-vkg/voc#
+
+# entity -> IRI path segment and key. Subclass tables (STOCK, BOND) share their parent's
+# entity, so a ListedShare and its Security are the same IRI.
+entities:
+  company:  {path: company,  table: COMPANY,     key: COMP_ID}
+  exchange: {path: exchange, table: EXCHANGE,    key: EXCH_ID}
+  security: {path: security, table: SECURITY,    key: SEC_ID}
+  customer: {path: customer, table: CUSTOMER,    key: CUST_ID}
+  account:  {path: account,  table: ACCOUNT,     key: ACC_ID}
+  holding:  {path: holding,  table: HOLDING,     key: HOLDING_ID}
+  order:    {path: order,    table: TRADE_ORDER, key: ORDER_ID}
+  report:   {path: report,   table: FIN_REPORT,  key: REPORT_ID}
+
+maps:
+  - id: CompanyMapping
+    table: COMPANY
+    subject: company
+    class: fibo-be-le-cb:Corporation
+    properties:
+      - {predicate: ex-fibo:legalName, column: COMP_NAME}
+      - {predicate: ex-fibo:cikCode, column: CIK_CODE}
+      - {predicate: ex-fibo:sicCode, column: SIC_CODE}
+
+  - id: ExchangeMapping
+    table: EXCHANGE
+    subject: exchange
+    class: fibo-fbc-fct-mkt:Exchange
+    properties:
+      - {predicate: ex-fibo:exchangeSymbol, column: EXCH_SYMBOL}
+
+  - id: SecurityMapping
+    table: SECURITY
+    subject: security
+    class: fibo-sec-sec-iss:Security
+    properties:
+      - {predicate: ex-fibo:tickerSymbol, column: SYMBOL}
+      - {predicate: ex-fibo:securityName, column: SEC_NAME}
+      - {predicate: ex-fibo:lastPrice, column: LAST_PRICE, datatype: xsd:decimal}
+      - {predicate: ex-fibo:issuedBy, ref: company, column: ISSUER_COMP_ID}
+      - {predicate: ex-fibo:listedOn, ref: exchange}
+
+  - id: StockMapping
+    table: STOCK
+    subject: security
+    class: fibo-sec-eq-eq:ListedShare
+    properties:
+      - {predicate: ex-fibo:peRatio, column: PE_RATIO, datatype: xsd:decimal}
+      - {predicate: ex-fibo:dividendYield, column: DIVIDEND_YIELD, datatype: xsd:decimal}
+
+  - id: BondMapping
+    table: BOND
+    subject: security
+    class: fibo-sec-dbt-bnd:Bond
+    properties:
+      - {predicate: ex-fibo:couponRate, column: COUPON_RATE, datatype: xsd:decimal}
+      - {predicate: ex-fibo:creditRating, column: CREDIT_RATING}
+
+  - id: RetailCustomerMapping
+    table: CUSTOMER
+    filter: {CUST_TYPE: RETAIL}
+    subject: customer
+    class: ex-fibo:RetailCustomer
+    properties:
+      - {predicate: ex-fibo:customerName, column: FULL_NAME}
+      - {predicate: ex-fibo:domicileCountry, column: DOMICILE}
+
+  - id: CorporateCustomerMapping
+    table: CUSTOMER
+    filter: {CUST_TYPE: CORP}
+    subject: customer
+    class: ex-fibo:CorporateCustomer
+    properties:
+      - {predicate: ex-fibo:customerName, column: FULL_NAME}
+      - {predicate: ex-fibo:domicileCountry, column: DOMICILE}
+
+  - id: AccountMapping
+    table: ACCOUNT
+    subject: account
+    class: fibo-fbc-pas-caa:InvestmentAccount
+    properties:
+      - {predicate: ex-fibo:accountNumber, column: ACC_NUMBER}
+      - {predicate: ex-fibo:cashBalance, column: CASH_BALANCE, datatype: xsd:decimal}
+
+  - id: CustomerAccountLink
+    table: ACCOUNT
+    subject: customer
+    subject_column: CUST_ID
+    properties:
+      - {predicate: ex-fibo:hasAccount, ref: account}
+
+  - id: HoldingMapping
+    table: HOLDING
+    subject: holding
+    class: fibo-sec-sec-ast:PortfolioHolding
+    properties:
+      - {predicate: ex-fibo:holdingQuantity, column: QUANTITY, datatype: xsd:decimal}
+      - {predicate: ex-fibo:purchasePrice, column: PURCHASE_PRICE, datatype: xsd:decimal}
+      - {predicate: ex-fibo:holdsSecurity, ref: security}
+
+  - id: AccountHoldingLink
+    table: HOLDING
+    subject: account
+    subject_column: ACC_ID
+    properties:
+      - {predicate: ex-fibo:hasHolding, ref: holding}
+
+  - id: TradeOrderMapping
+    table: TRADE_ORDER
+    subject: order
+    class: fibo-fbc-pas-fpas:TradeOrder
+    properties:
+      - {predicate: ex-fibo:orderType, column: ORDER_TYPE}
+      - {predicate: ex-fibo:orderQuantity, column: ORDER_QTY, datatype: xsd:decimal}
+      - {predicate: ex-fibo:ordersSecurity, ref: security}
+
+  - id: AccountOrderLink
+    table: TRADE_ORDER
+    subject: account
+    subject_column: ACC_ID
+    properties:
+      - {predicate: ex-fibo:hasTradeOrder, ref: order}
+
+  - id: FinancialReportMapping
+    table: FIN_REPORT
+    subject: report
+    class: fro-sec:FinancialReport
+    properties:
+      - {predicate: fro-sec:fiscalYear, column: FISCAL_YEAR, datatype: xsd:integer}
+      - {predicate: fro-sec:revenueUSD, column: REVENUE_USD, datatype: xsd:decimal}
+      - {predicate: fro-sec:netIncomeUSD, column: NET_INCOME_USD, datatype: xsd:decimal}
+      - {predicate: fro-sec:reportedBy, ref: company}

@@ -1,0 +1,29 @@
+{
+ "mapped_terms": 220,
+ "defined": 216,
+ "by_source": {
+  "derived": 95,
+  "fibo": 48,
+  "fibo-reviewed": 4,
+  "none": 4,
+  "us-gaap": 69
+ },
+ "by_kind": {
+  "class": "148/152",
+  "object": "21/21",
+  "datatype": "47/47"
+ },
+ "usgaap_link_methods": {
+  "observed": 6,
+  "name-variant": 8,
+  "text-block": 24,
+  "name": 31
+ },
+ "review_decisions": {
+  "broad": 4,
+  "related": 7,
+  "reject": 11,
+  "exact": 2,
+  "close": 2
+ }
+}

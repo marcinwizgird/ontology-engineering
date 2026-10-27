@@ -429,7 +429,7 @@
   "pred_rows": 3,
   "strict_base": true,
   "variants_disagree": [
-   "V1"
+   "V5"
   ]
  },
  {
@@ -3067,14 +3067,12 @@
   "sparql": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX fiben: <https://example.org/fiben/voc#>\nSELECT (SUM(?osecuritiestransaction_hascount) AS ?agg0) ?olistedsecurity_hastickersymbol ?olistedsecurity_haslegalname ?operson_haspersonname WHERE { ?osecuritiestransaction a fiben:SecuritiesTransaction . ?olistedsecurity a fiben:ListedSecurity . ?financialserviceaccount1 a fiben:FinancialServiceAccount . ?operson a fiben:Person . ?osecuritiestransaction fiben:refersTo ?olistedsecurity . ?osecuritiestransaction fiben:isFacilitatedBy ?financialserviceaccount1 . ?financialserviceaccount1 fiben:isOwnedBy ?operson . ?osecuritiestransaction fiben:hasType ?osecuritiestransaction_hastype . ?olistedsecurity fiben:hasLegalName ?olistedsecurity_haslegalname . ?osecuritiestransaction fiben:hasSettlementDate ?osecuritiestransaction_hassettlementdate . ?osecuritiestransaction fiben:hasCount ?osecuritiestransaction_hascount . ?olistedsecurity fiben:hasTickerSymbol ?olistedsecurity_hastickersymbol . ?operson fiben:hasPersonName ?operson_haspersonname . { SELECT (?s0_oinnerperson_haspersonname AS ?operson_haspersonname) (SUM(?s0_oinnersecuritiestransaction_hascount) AS ?sub1) WHERE { ?s0_oinnersecuritiestransaction a fiben:SecuritiesTransaction . ?s0_oinnerlistedsecurity a fiben:ListedSecurity . ?s0_innerfinancialserviceaccount1 a fiben:FinancialServiceAccount . ?s0_oinnerperson a fiben:Person . ?s0_oinnersecuritiestransaction fiben:refersTo ?s0_oinnerlistedsecurity . ?s0_oinnersecuritiestransaction fiben:isFacilitatedBy ?s0_innerfinancialserviceaccount1 . ?s0_innerfinancialserviceaccount1 fiben:isOwnedBy ?s0_oinnerperson . ?s0_oinnersecuritiestransaction fiben:hasType ?s0_oinnersecuritiestransaction_hastype . ?s0_oinnerlistedsecurity fiben:hasTickerSymbol ?s0_oinnerlistedsecurity_hastickersymbol . ?s0_oinnersecuritiestransaction fiben:hasSettlementDate ?s0_oinnersecuritiestransaction_hassettlementdate . ?s0_oinnerperson fiben:hasPersonName ?s0_oinnerperson_haspersonname . ?s0_oinnersecuritiestransaction fiben:hasCount ?s0_oinnersecuritiestransaction_hascount . FILTER((?s0_oinnersecuritiestransaction_hastype = \"1\")) FILTER((?s0_oinnerlistedsecurity_hastickersymbol = \"MSFT\")) FILTER((?s0_oinnersecuritiestransaction_hassettlementdate >= \"2016-01-01T00:00:00\"^^xsd:dateTime)) FILTER((?s0_oinnersecuritiestransaction_hassettlementdate <= \"2018-12-31T23:59:00\"^^xsd:dateTime)) } GROUP BY ?s0_oinnerperson_haspersonname } FILTER((?osecuritiestransaction_hastype = \"1\")) FILTER((?olistedsecurity_haslegalname = \"International Business Machines Corporation\")) FILTER((?osecuritiestransaction_hassettlementdate >= \"2018-01-01T00:00:00\"^^xsd:dateTime)) FILTER((?osecuritiestransaction_hassettlementdate <= \"2018-12-31T23:59:00\"^^xsd:dateTime)) } GROUP BY ?olistedsecurity_hastickersymbol ?olistedsecurity_haslegalname ?operson_haspersonname ?sub1 HAVING ((SUM(?osecuritiestransaction_hascount) > ?sub1))",
   "stage": "compare",
   "error": "both empty",
-  "strict": false,
+  "strict": true,
   "lenient": true,
   "ms": 86,
   "pred_rows": 0,
   "strict_base": true,
-  "variants_disagree": [
-   "V2"
-  ]
+  "variants_disagree": []
  },
  {
   "sql_id": 221,
@@ -3205,12 +3203,14 @@
   "sparql": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX fiben: <https://example.org/fiben/voc#>\nSELECT (AVG(?omonetaryamount_hasamount) AS ?agg0) ?olistedsecurity_hastickersymbol WHERE { ?osecuritiestransaction_hasprice a fiben:MonetaryAmount . ?osecuritiestransaction a fiben:SecuritiesTransaction . ?olistedsecurity a fiben:ListedSecurity . ?osecuritiestransaction fiben:hasPrice ?osecuritiestransaction_hasprice . ?osecuritiestransaction fiben:refersTo ?olistedsecurity . ?osecuritiestransaction fiben:hasType ?osecuritiestransaction_hastype . ?osecuritiestransaction fiben:hasSettlementDate ?osecuritiestransaction_hassettlementdate . ?osecuritiestransaction_hasprice fiben:hasAmount ?omonetaryamount_hasamount . ?olistedsecurity fiben:hasTickerSymbol ?olistedsecurity_hastickersymbol . { SELECT (?s0_oinnerlistedsecurity_hastickersymbol AS ?olistedsecurity_hastickersymbol) (MIN(?s0_oinnermonetaryamount_hasamount) AS ?sub1) WHERE { ?s0_oinnersecuritiestransaction_hasprice a fiben:MonetaryAmount . ?s0_oinnersecuritiestransaction a fiben:SecuritiesTransaction . ?s0_oinnerlistedsecurity a fiben:ListedSecurity . ?s0_oinnersecuritiestransaction fiben:hasPrice ?s0_oinnersecuritiestransaction_hasprice . ?s0_oinnersecuritiestransaction fiben:refersTo ?s0_oinnerlistedsecurity . ?s0_oinnersecuritiestransaction fiben:hasType ?s0_oinnersecuritiestransaction_hastype . ?s0_oinnersecuritiestransaction fiben:hasSettlementDate ?s0_oinnersecuritiestransaction_hassettlementdate . ?s0_oinnerlistedsecurity fiben:hasTickerSymbol ?s0_oinnerlistedsecurity_hastickersymbol . ?s0_oinnersecuritiestransaction_hasprice fiben:hasAmount ?s0_oinnermonetaryamount_hasamount . FILTER((?s0_oinnersecuritiestransaction_hastype = \"1\")) FILTER((?s0_oinnersecuritiestransaction_hassettlementdate >= \"2019-01-01T00:00:00\"^^xsd:dateTime)) FILTER((?s0_oinnersecuritiestransaction_hassettlementdate <= \"2019-12-31T23:59:00\"^^xsd:dateTime)) } GROUP BY ?s0_oinnerlistedsecurity_hastickersymbol } FILTER((?osecuritiestransaction_hastype = \"2\")) FILTER((?osecuritiestransaction_hassettlementdate >= \"2020-01-01T00:00:00\"^^xsd:dateTime)) FILTER((?osecuritiestransaction_hassettlementdate <= \"2020-12-31T23:59:00\"^^xsd:dateTime)) } GROUP BY ?olistedsecurity_hastickersymbol ?sub1 HAVING ((AVG(?omonetaryamount_hasamount) > ?sub1))",
   "stage": "compare",
   "error": "both empty",
-  "strict": true,
+  "strict": false,
   "lenient": true,
   "ms": 117,
   "pred_rows": 0,
   "strict_base": true,
-  "variants_disagree": []
+  "variants_disagree": [
+   "V1"
+  ]
  },
  {
   "sql_id": 231,
@@ -3297,8 +3297,7 @@
   "pred_rows": 36,
   "strict_base": true,
   "variants_disagree": [
-   "V3",
-   "V4"
+   "V3"
   ]
  },
  {

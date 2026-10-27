@@ -16,6 +16,8 @@ FIBEN_CSV = RAW / "data"
 DB = Path(os.environ.get("NL2Q_DB", ROOT / "data" / "fiben_vkg.duckdb"))
 
 FIBO_DIR = REPO / "Ontology Repository" / "FIBO" / "fibo"
+# FASB US GAAP 2015 taxonomy label linkbases (git-ignored download, see nl2q/usgaap.py)
+USGAAP_DIR = ROOT / "data" / "raw" / "us-gaap-2015"
 CACHE = ROOT / ".cache"
 
 ARTIFACTS = ROOT / "artifacts"

@@ -1,0 +1,1424 @@
+{
+ "1": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "2": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "3": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "4": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "5": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "6": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "7": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "8": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "9": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "10": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "1:N-risk"
+ },
+ "11": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "12": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "13": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "14": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "15": {
+  "hierarchy": "unknown",
+  "nesting": "non-nested",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "16": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "17": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "18": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "19": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "20": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "21": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "22": {
+  "hierarchy": "unknown",
+  "nesting": "non-nested",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "23": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "24": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "25": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "26": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "27": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "28": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "29": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "30": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "31": {
+  "hierarchy": "unknown",
+  "nesting": "non-nested",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "32": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "33": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "34": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "35": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "36": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "37": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "38": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "39": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "40": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "41": {
+  "hierarchy": "unknown",
+  "nesting": "non-nested",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "42": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "43": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "44": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "45": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "46": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "47": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "48": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "49": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "50": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "51": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "52": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "53": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "54": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "55": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "56": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "57": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "58": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "59": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "60": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "61": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "62": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "63": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "64": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "65": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "66": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "67": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "68": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "69": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "70": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "71": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "72": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "73": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "74": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "75": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "76": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "77": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "78": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "79": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "80": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "81": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "82": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "1:N-risk"
+ },
+ "83": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "84": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "85": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "86": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "87": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "88": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "89": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "90": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "91": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "92": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "93": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "94": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "95": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "96": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "97": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "98": {
+  "hierarchy": "unknown",
+  "nesting": "non-nested",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "99": {
+  "hierarchy": "unknown",
+  "nesting": "non-nested",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "100": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "101": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "102": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "103": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "104": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "105": {
+  "hierarchy": "leaf",
+  "nesting": "non-nested",
+  "hops": "0-1",
+  "fan_trap": "functional"
+ },
+ "106": {
+  "hierarchy": "superclass-union",
+  "nesting": "non-nested",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "107": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "108": {
+  "hierarchy": "leaf",
+  "nesting": "type-n",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "109": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "110": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "111": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "112": {
+  "hierarchy": "leaf",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "113": {
+  "hierarchy": "leaf",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "114": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "115": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "116": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "117": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "118": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "119": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "120": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "121": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "122": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "123": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "124": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "125": {
+  "hierarchy": "unknown",
+  "nesting": "type-n",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "126": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "127": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "128": {
+  "hierarchy": "leaf",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "129": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "130": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "131": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "132": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "133": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "134": {
+  "hierarchy": "leaf",
+  "nesting": "type-n",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "135": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "136": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "137": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "138": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "139": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "140": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "141": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "142": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "143": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "144": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "145": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "146": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "147": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "148": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "149": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "functional"
+ },
+ "150": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "151": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "152": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "153": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "154": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "155": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "156": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "157": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "158": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "159": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "160": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "161": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "162": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "163": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "164": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "165": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "166": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "167": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "168": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "169": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "170": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "171": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "172": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "173": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "2",
+  "fan_trap": "1:N-risk"
+ },
+ "174": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "175": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "176": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "177": {
+  "hierarchy": "leaf",
+  "nesting": "type-a",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "178": {
+  "hierarchy": "unknown",
+  "nesting": "type-a",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "179": {
+  "hierarchy": "unknown",
+  "nesting": "type-a",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "180": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "181": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "182": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "183": {
+  "hierarchy": "leaf",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "184": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "185": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "186": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "187": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "188": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "189": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "190": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "191": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "192": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "193": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "194": {
+  "hierarchy": "leaf",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "195": {
+  "hierarchy": "leaf",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "196": {
+  "hierarchy": "leaf",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "197": {
+  "hierarchy": "unknown",
+  "nesting": "type-j",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "198": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "199": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "200": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "201": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "202": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "203": {
+  "hierarchy": "unknown",
+  "nesting": "type-j",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "204": {
+  "hierarchy": "leaf",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "205": {
+  "hierarchy": "unknown",
+  "nesting": "type-j",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "206": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-j",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "207": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "208": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "209": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "210": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "211": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "212": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "213": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "214": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "215": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "216": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "217": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "218": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "219": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "220": {
+  "hierarchy": "unknown",
+  "nesting": "type-ja",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "221": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "222": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "223": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "224": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "225": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "226": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "227": {
+  "hierarchy": "superclass-union",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "228": {
+  "hierarchy": "unknown",
+  "nesting": "type-ja",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "229": {
+  "hierarchy": "unknown",
+  "nesting": "type-ja",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "230": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "231": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "1:N-risk"
+ },
+ "232": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "233": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "234": {
+  "hierarchy": "leaf",
+  "nesting": "type-ja",
+  "hops": "3+",
+  "fan_trap": "functional"
+ },
+ "235": {
+  "hierarchy": "unknown",
+  "nesting": "type-ja",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "236": {
+  "hierarchy": "unknown",
+  "nesting": "type-ja",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ },
+ "237": {
+  "hierarchy": "unknown",
+  "nesting": "type-ja",
+  "hops": "unknown",
+  "fan_trap": "unknown"
+ }
+}

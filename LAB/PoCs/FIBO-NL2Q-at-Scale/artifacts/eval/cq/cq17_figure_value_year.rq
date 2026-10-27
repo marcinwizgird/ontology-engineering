@@ -1,0 +1,6 @@
+# CQ: Does a financial-statement figure carry a value and a fiscal year?
+# Authored from the banking scope (PLAN.md), not from FIBEN's gold questions.
+PREFIX fiben: <https://example.org/fiben/voc#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ASK { fiben:hasMetricValue rdfs:domain ?c1 . fiben:hasMetricYearFiscal rdfs:domain ?c2 . fiben:Revenue rdfs:subClassOf* ?c1 . fiben:Revenue rdfs:subClassOf* ?c2 }

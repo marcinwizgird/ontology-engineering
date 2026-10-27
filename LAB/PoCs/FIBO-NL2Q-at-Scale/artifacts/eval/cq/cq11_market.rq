@@ -1,0 +1,6 @@
+# CQ: On which market is a security traded?
+# Authored from the banking scope (PLAN.md), not from FIBEN's gold questions.
+PREFIX fiben: <https://example.org/fiben/voc#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ASK { fiben:isTradedOn rdfs:domain fiben:Security ; rdfs:range fiben:FinancialMarket }

@@ -100,7 +100,9 @@ if __name__ == "__main__":
     import sys
     if "--verify-variants" in sys.argv:
         rows = json.loads((paths.GOLD_DIR / "gold_sparql.json").read_text(encoding="utf-8"))
-        rows = verify_variants(rows)
+        vs = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--variants=")),
+                  ["V1", "V2", "V3", "V4", "V5"])
+        rows = verify_variants(rows, tuple(vs))
         (paths.GOLD_DIR / "gold_sparql.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
         md = report(rows)
         (paths.GOLD_DIR / "ceiling.md").write_text(

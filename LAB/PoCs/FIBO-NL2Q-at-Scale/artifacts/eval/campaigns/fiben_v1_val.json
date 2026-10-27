@@ -1,0 +1,33 @@
+{
+ "name": "FIBEN v1 small live check",
+ "dataset": "FIBEN-Standard",
+ "split": "val",
+ "date": "2026-10-19/20",
+ "model": "anthropic/claude-sonnet-5-5 (snapshot not pinned in v1)",
+ "baseline": "T",
+ "note": "v1 predates the Semantic Ladder: arms are mapped to their nearest rung, one run each, unanswerable suite unstratified (24 questions, results reconstructed from the run summaries). K4 runs used the v1 glossary (Gv1), which was written after seeing all gold SQL: those results are possibly contaminated (spec §4.5).",
+ "arms": [
+  {"id": "R", "label": "R: rules, no LLM", "ladder": "floor", "factors": "E0 / Gv1",
+   "runs": ["runs/20261019-105704-R-offline/R_val.rescored.jsonl"],
+   "summaries": ["runs/20261019-105704-R-offline/R_val_summary.json"]},
+  {"id": "T", "label": "T: text-to-SQL over the DDL", "ladder": "L0 (T-Raw)", "factors": "- / G0",
+   "runs": ["runs/20261019-123735-live-T/T_val.rescored.jsonl"], "summaries": [],
+   "note": "stopped at the budget cap after 59 questions"},
+  {"id": "A", "label": "A: direct SPARQL", "ladder": "L2 without OBQC", "factors": "E0 / Gv1",
+   "runs": ["runs/20261019-123312-live-A/A_val.rescored.jsonl"],
+   "summaries": ["runs/20261019-123312-live-A/A_val_summary.json"]},
+  {"id": "B", "label": "B: direct SPARQL + OBQC + repair", "ladder": "L2 (B-TBox)", "factors": "E0 / Gv1",
+   "runs": ["runs/20261019-122620-live-B/B_val.rescored.jsonl"],
+   "summaries": ["runs/20261019-122620-live-B/B_val_summary.json"]},
+  {"id": "S", "label": "S: grounding + IR plan + checks", "ladder": "v1 S (L3 precursor)", "factors": "E0 / Gv1",
+   "runs": ["runs/20261019-121806-live-S/S_val.rescored.jsonl"],
+   "summaries": ["runs/20261019-121806-live-S/S_val_summary.json"]},
+  {"id": "S2", "label": "S2: S + link neighbourhood", "ladder": "v1 S2", "factors": "E0 / Gv1",
+   "runs": ["runs/20261020-084427-live2-S/S_val.rescored.jsonl"],
+   "summaries": ["runs/20261020-084427-live2-S/S_val_summary.json"]},
+  {"id": "G", "label": "G: tool agent (schema browse + SQL)", "ladder": "Arm G", "factors": "- / G0",
+   "runs": ["runs/20261020-085440-live3-G/G_val.rescored.jsonl"], "summaries": [],
+   "note": "stopped at the budget cap after 57 questions; most refusals are step exhaustion"}
+ ],
+ "unanswerable_n": 24
+}

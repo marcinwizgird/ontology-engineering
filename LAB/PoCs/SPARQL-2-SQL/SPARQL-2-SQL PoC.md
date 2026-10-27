@@ -141,6 +141,14 @@ fro-sec:netIncomeUSD a owl:DatatypeProperty ; rdfs:range xsd:decimal .
 
 ### 4.2 W3C R2RML Mapping Specification (`vkg-artifacts/fiben-mappings.r2rml.ttl`)
 
+> **Superseded as the source.** The mapping is now specified in
+> `vkg-artifacts/mapping-spec.yaml`. `tools/build_mappings.py` generates the Turtle from it,
+> and `tools/check_mappings.py` checks the result for conformance (README, "R2RML mapping
+> specification").
+>
+> The listing below is the original handover version. Its markdown-mangled IRIs and
+> unquoted placeholders don't parse or load as written.
+
 ```turtle
 @prefix rr: [http://www.w3.org/ns/r2rml#](http://www.w3.org/ns/r2rml#) .
 @prefix xsd: [http://www.w3.org/2001/XMLSchema#](http://www.w3.org/2001/XMLSchema#) .

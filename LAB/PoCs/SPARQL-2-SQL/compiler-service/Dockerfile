@@ -17,6 +17,7 @@ COPY compiler-service/tests /poc/compiler-service/tests
 COPY compiler-service/app /poc/compiler-service/app
 COPY demo-sandbox/seed_duckdb.py demo-sandbox/queries.py /poc/demo-sandbox/
 COPY demo-sandbox/ddl /poc/demo-sandbox/ddl
-COPY vkg-artifacts/*.ttl /poc/vkg-artifacts/
+COPY vkg-artifacts/*.ttl vkg-artifacts/mapping-spec.yaml vkg-artifacts/db-metadata.json /poc/vkg-artifacts/
+COPY tools/build_mappings.py tools/check_mappings.py /poc/tools/
 WORKDIR /poc/compiler-service
 CMD ["pytest", "-q", "-s", "tests"]

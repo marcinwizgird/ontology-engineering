@@ -1,66 +1,181 @@
 {
  "bm25-K1": {
-  "n": 108,
-  "cand_recall": 0.473,
-  "tree_recall": 0.382,
-  "tree_precision": 0.535,
+  "n": 104,
+  "cand_recall": 0.481,
+  "tree_recall": 0.384,
+  "tree_precision": 0.538,
   "connected": 1.0,
-  "context_terms": 15.6,
-  "sec": 11.6
+  "context_terms": 15.8,
+  "sec": 33.4,
+  "enrichment": []
  },
  "tfidf-K1": {
-  "n": 108,
-  "cand_recall": 0.496,
-  "tree_recall": 0.388,
-  "tree_precision": 0.466,
+  "n": 104,
+  "cand_recall": 0.505,
+  "tree_recall": 0.401,
+  "tree_precision": 0.474,
   "connected": 1.0,
-  "context_terms": 18.5,
-  "sec": 62.6
+  "context_terms": 18.8,
+  "sec": 180.3,
+  "enrichment": []
  },
  "hybrid-K1": {
-  "n": 108,
-  "cand_recall": 0.484,
-  "tree_recall": 0.381,
+  "n": 104,
+  "cand_recall": 0.491,
+  "tree_recall": 0.39,
   "tree_precision": 0.472,
   "connected": 1.0,
-  "context_terms": 17.9,
-  "sec": 709.3
+  "context_terms": 18.2,
+  "sec": 180.7,
+  "enrichment": []
  },
  "hybrid-K2": {
-  "n": 108,
-  "cand_recall": 0.481,
-  "tree_recall": 0.373,
-  "tree_precision": 0.468,
+  "n": 104,
+  "cand_recall": 0.488,
+  "tree_recall": 0.383,
+  "tree_precision": 0.47,
   "connected": 1.0,
-  "context_terms": 17.9,
-  "sec": 50.5
+  "context_terms": 18.2,
+  "sec": 177.1,
+  "enrichment": []
  },
  "hybrid-K4": {
-  "n": 108,
-  "cand_recall": 0.641,
-  "tree_recall": 0.465,
-  "tree_precision": 0.592,
+  "n": 104,
+  "cand_recall": 0.651,
+  "tree_recall": 0.466,
+  "tree_precision": 0.583,
   "connected": 1.0,
   "context_terms": 17.3,
-  "sec": 41.8
+  "sec": 161.9,
+  "enrichment": []
  },
  "hybrid-K4-ppr": {
-  "n": 108,
-  "cand_recall": 0.59,
-  "tree_recall": 0.461,
-  "tree_precision": 0.515,
+  "n": 104,
+  "cand_recall": 0.594,
+  "tree_recall": 0.46,
+  "tree_precision": 0.511,
   "connected": 0.981,
-  "context_terms": 14.6,
-  "sec": 0.6
+  "context_terms": 14.7,
+  "sec": 2.6,
+  "enrichment": []
  },
  "hybrid-K4-k5": {
-  "n": 108,
-  "cand_recall": 0.678,
-  "tree_recall": 0.458,
-  "tree_precision": 0.584,
+  "n": 104,
+  "cand_recall": 0.683,
+  "tree_recall": 0.459,
+  "tree_precision": 0.576,
   "connected": 1.0,
   "context_terms": 20.8,
-  "sec": 227.3
+  "sec": 904.2,
+  "enrichment": []
+ },
+ "bm25-K1+E": {
+  "n": 104,
+  "cand_recall": 0.49,
+  "tree_recall": 0.383,
+  "tree_precision": 0.524,
+  "connected": 1.0,
+  "context_terms": 16.9,
+  "sec": 103.6,
+  "enrichment": [
+   "review",
+   "usgaap",
+   "derived"
+  ]
+ },
+ "tfidf-K1+E": {
+  "n": 104,
+  "cand_recall": 0.508,
+  "tree_recall": 0.396,
+  "tree_precision": 0.484,
+  "connected": 1.0,
+  "context_terms": 18.7,
+  "sec": 198.4,
+  "enrichment": [
+   "review",
+   "usgaap",
+   "derived"
+  ]
+ },
+ "hybrid-K1+E:review": {
+  "n": 104,
+  "cand_recall": 0.493,
+  "tree_recall": 0.401,
+  "tree_precision": 0.482,
+  "connected": 1.0,
+  "context_terms": 18.2,
+  "sec": 173.4,
+  "enrichment": [
+   "review"
+  ]
+ },
+ "hybrid-K1+E:review,usgaap": {
+  "n": 104,
+  "cand_recall": 0.493,
+  "tree_recall": 0.388,
+  "tree_precision": 0.485,
+  "connected": 1.0,
+  "context_terms": 18.1,
+  "sec": 91.4,
+  "enrichment": [
+   "review",
+   "usgaap"
+  ]
+ },
+ "hybrid-K1+E": {
+  "n": 104,
+  "cand_recall": 0.497,
+  "tree_recall": 0.388,
+  "tree_precision": 0.486,
+  "connected": 1.0,
+  "context_terms": 18.2,
+  "sec": 98.0,
+  "enrichment": [
+   "review",
+   "usgaap",
+   "derived"
+  ]
+ },
+ "hybrid-K2+E:review,usgaap": {
+  "n": 104,
+  "cand_recall": 0.492,
+  "tree_recall": 0.387,
+  "tree_precision": 0.485,
+  "connected": 1.0,
+  "context_terms": 18.0,
+  "sec": 94.5,
+  "enrichment": [
+   "review",
+   "usgaap"
+  ]
+ },
+ "hybrid-K2+E": {
+  "n": 104,
+  "cand_recall": 0.493,
+  "tree_recall": 0.386,
+  "tree_precision": 0.485,
+  "connected": 1.0,
+  "context_terms": 18.0,
+  "sec": 99.5,
+  "enrichment": [
+   "review",
+   "usgaap",
+   "derived"
+  ]
+ },
+ "hybrid-K4+E": {
+  "n": 104,
+  "cand_recall": 0.624,
+  "tree_recall": 0.455,
+  "tree_precision": 0.572,
+  "connected": 1.0,
+  "context_terms": 17.0,
+  "sec": 80.4,
+  "enrichment": [
+   "review",
+   "usgaap",
+   "derived"
+  ]
  },
  "in_context_baseline": {
   "cand_recall": 1.0,

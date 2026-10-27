@@ -365,6 +365,51 @@ class Builder:
             vals[(a, c)] = v
         return vals
 
+    def close_parents(self, con) -> int:
+        """Give every witness row of a subclass table its parent row, up to the root.
+
+        A subclass table's key is a foreign key to its parent's key, and Ontop trusts it
+        (join elimination). A witness chain that only touches the subclass table would
+        leave a dangling key and make the instance invalid. The parent row gets the same
+        key; its attributes stay NULL unless declared NOT NULL; its relation foreign keys
+        reuse an existing referenced row."""
+        added = 0
+        for table in self._top_down_order():
+            t = self.s.tables[table]
+            fk = t.parent_fk
+            if fk is None:
+                continue
+            have = {r[fk.ref_column] for r in self.rows.get(fk.ref_table, [])}
+            pt = self.s.tables[fk.ref_table]
+            rel = {f.column for f in pt.relation_fks}
+            for r in self.rows.get(table, []):
+                key = r[t.pk[0]]
+                if key in have:
+                    continue
+                row = {}
+                for col in pt.columns:
+                    if col.name in pt.pk:
+                        row[col.name] = key
+                    elif col.name in rel or not col.nullable:
+                        row[col.name] = self._sample(con, fk.ref_table, col.name)
+                    else:
+                        row[col.name] = None
+                self.rows[fk.ref_table].append(row)
+                have.add(key)
+                added += 1
+        return added
+
+    def _top_down_order(self) -> list[str]:
+        """Subclass tables deepest first, so a parent added for a leaf gets its own parent."""
+        parent = dict(self.s.subclass_edges)
+
+        def depth(t):
+            d = 0
+            while t in parent:
+                t, d = parent[t], d + 1
+            return d
+        return sorted(parent, key=depth, reverse=True)
+
     def for_query(self, con, sql: str, tag: str) -> int:
         tree = sqlglot.parse_one(sql, read="postgres")
         selects = [tree] if isinstance(tree, exp.Select) else [
@@ -429,6 +474,7 @@ def build(db_path=paths.DB) -> dict:
             per_query[q.sql_id] = b.for_query(con, sql2sparql.prepare_gold_sql(q.sql), str(q.sql_id))
         except Exception as exc:  # noqa: BLE001
             per_query[q.sql_id] = f"error: {type(exc).__name__}: {str(exc)[:120]}"
+    parents_added = b.close_parents(con)
     W, V5 = f"{paths.SCHEMA}_W", f"{paths.SCHEMA}_V5"
     for sch in (W, V5):
         con.execute(f'DROP SCHEMA IF EXISTS "{sch}" CASCADE')
@@ -450,7 +496,7 @@ def build(db_path=paths.DB) -> dict:
                     f'UNION ALL SELECT {cl} FROM "{W}"."{t.name}"')
     con.close()
     errors = {k: v for k, v in per_query.items() if isinstance(v, str)}
-    return {"witness_rows": total, "queries": len(per_query), "errors": len(errors),
+    return {"witness_rows": total, "parent_rows_added": parents_added, "queries": len(per_query), "errors": len(errors),
             "error_sample": list(errors.items())[:5]}
 
 
