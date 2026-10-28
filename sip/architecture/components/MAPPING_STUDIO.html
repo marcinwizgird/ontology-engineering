@@ -1,0 +1,648 @@
+<title>Mapping Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a design dossier. Sticky contents rail on wide screens, one reading column, wide tables scroll in place.
+   The two-sided motif (schema on the left, ontology on the right) recurs in the hero and the board. */
+:root {
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --ink: #1b2422;
+  --muted: #5b6764;
+  --rule: #d9dfdc;
+  --accent: #1f6f78;      /* ontology side: deep teal */
+  --accent-soft: #e2efef;
+  --data: #8a5a12;        /* schema side: ochre, the colour of ledgers */
+  --data-soft: #f6ecd9;
+  --ok: #2f7d4b; --ok-soft: #e3f1e7;
+  --warn: #9a6400; --warn-soft: #fbefd5;
+  --bad: #b23a3a; --bad-soft: #f8e3e3;
+  --code-bg: #eef1ef;
+  --f-display: "Literata", Georgia, "Times New Roman", serif;
+  --f-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121817; --surface: #19211f; --ink: #e4ebe8; --muted: #9aa8a4; --rule: #2c3734;
+    --accent: #6cc3c9; --accent-soft: #1d3436; --data: #e0b06a; --data-soft: #33291a;
+    --ok: #7cc795; --ok-soft: #1c3124; --warn: #e5b45a; --warn-soft: #362b16;
+    --bad: #ef8a8a; --bad-soft: #3a1f1f; --code-bg: #1f2826; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121817; --surface: #19211f; --ink: #e4ebe8; --muted: #9aa8a4; --rule: #2c3734;
+  --accent: #6cc3c9; --accent-soft: #1d3436; --data: #e0b06a; --data-soft: #33291a;
+  --ok: #7cc795; --ok-soft: #1c3124; --warn: #e5b45a; --warn-soft: #362b16;
+  --bad: #ef8a8a; --bad-soft: #3a1f1f; --code-bg: #1f2826; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body);
+  font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+code, .mono { font-family: var(--f-mono); font-size: .86em; }
+code { background: var(--code-bg); padding: .08em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 650; text-wrap: balance; line-height: 1.2; margin: 0; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.15rem; font-weight: 500; }
+p { margin: 0; max-width: 68ch; }
+ul, ol { margin: 0; padding-left: 1.2em; max-width: 68ch; display: grid; gap: .35em; }
+.eyebrow { font-size: .74rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; padding-top: 40px; font-size: .88rem; }
+nav.toc ol { list-style: none; padding: 0; gap: 2px; }
+nav.toc a { display: block; padding: 4px 8px; border-radius: 6px; color: var(--muted); text-decoration: none; }
+nav.toc a:hover { background: var(--accent-soft); color: var(--ink); }
+nav.toc .n { font-family: var(--f-mono); font-size: .78rem; margin-right: 6px; color: var(--accent); }
+main { min-width: 0; display: grid; gap: 64px; padding-top: 40px; }
+section { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section > header { display: grid; gap: 6px; border-top: 1px solid var(--rule); padding-top: 22px; }
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  nav.toc { display: none; }
+  main { gap: 48px; }
+}
+
+/* hero */
+.hero { display: grid; gap: 22px; }
+.hero h1 { font-size: clamp(2rem, 4.6vw, 3.1rem); }
+.hero .lede { font-size: 1.12rem; color: var(--ink); max-width: 62ch; }
+.meta { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 18px; font-size: .9rem; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; min-width: 0; }
+.status { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .04em; padding: 1px 9px; border-radius: 99px; background: var(--warn-soft); color: var(--warn); }
+.bridge { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px; overflow-x: auto; }
+.bridge svg { display: block; min-width: 640px; width: 100%; height: auto; }
+.bridge .cap { font-size: .82rem; color: var(--muted); margin-top: 8px; }
+
+/* three choices */
+.choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.choice { border-top: 3px solid var(--accent); background: var(--surface); padding: 14px 16px 16px; display: grid; gap: 6px; align-content: start; }
+.choice b { font-family: var(--f-display); font-weight: 500; font-size: 1.05rem; }
+.choice p { font-size: .93rem; color: var(--muted); }
+@media (max-width: 760px) { .choices { grid-template-columns: minmax(0, 1fr); } }
+
+/* tables */
+.tw { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--rule); }
+th { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--code-bg); }
+tr:last-child td { border-bottom: 0; }
+td.id { font-family: var(--f-mono); font-size: .82rem; color: var(--accent); white-space: nowrap; }
+.tw.wide table { min-width: 860px; }
+
+/* tags */
+.tag { display: inline-block; font-family: var(--f-mono); font-size: .72rem; padding: 0 6px; border-radius: 4px; white-space: nowrap; }
+.tag.d { background: var(--accent-soft); color: var(--accent); }
+.tag.m { background: var(--data-soft); color: var(--data); }
+.tag.ok { background: var(--ok-soft); color: var(--ok); }
+.tag.warn { background: var(--warn-soft); color: var(--warn); }
+.tag.bad { background: var(--bad-soft); color: var(--bad); }
+
+/* board mock */
+.board { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; overflow-x: auto; }
+.board-in { min-width: 780px; }
+.board .bar { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--rule); font-size: .82rem; color: var(--muted); }
+.board .bar b { color: var(--ink); }
+.cov { display: inline-flex; align-items: center; gap: 6px; }
+.cov i { display: inline-block; width: 70px; height: 6px; border-radius: 3px; background: var(--rule); position: relative; overflow: hidden; }
+.cov i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--accent); }
+.brow { display: grid; grid-template-columns: 1.15fr 1.1fr 1.3fr; border-bottom: 1px solid var(--rule); font-size: .85rem; }
+.brow:last-child { border-bottom: 0; }
+.brow > div { padding: 7px 14px; min-width: 0; }
+.brow.t { background: var(--data-soft); }
+.brow.t > div:first-child { font-weight: 700; color: var(--data); }
+.src { font-family: var(--f-mono); font-size: .8rem; }
+.src small { color: var(--muted); font-family: var(--f-body); margin-left: 6px; }
+.tgt { color: var(--accent); font-family: var(--f-mono); font-size: .8rem; }
+.tgt.none { color: var(--muted); font-style: italic; font-family: var(--f-body); }
+.state { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.state .act { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font-size: .8rem; }
+
+pre { margin: 0; background: var(--code-bg); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-family: var(--f-mono); font-size: .8rem; line-height: 1.5; }
+pre.mermaid { background: var(--surface); border: 1px solid var(--rule); text-align: center; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.two > div { display: grid; gap: 8px; min-width: 0; align-content: start; }
+@media (max-width: 760px) { .two { grid-template-columns: minmax(0, 1fr); } }
+.note { border-left: 3px solid var(--data); padding: 4px 0 4px 14px; color: var(--muted); font-size: .93rem; max-width: 70ch; }
+.releases { display: grid; gap: 0; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+.rel { display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--rule); font-size: .9rem; }
+.rel:last-child { border-bottom: 0; }
+.rel h3 { font-size: 1rem; }
+.rel .lbl { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: block; margin-bottom: 2px; }
+@media (max-width: 760px) { .rel { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--rule); padding-top: 16px; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+<div class="shell">
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#summary"><span class="n">1</span>Summary</a></li>
+    <li><a href="#hard"><span class="n">2</span>Why R2RML is hard</a></li>
+    <li><a href="#users"><span class="n">3</span>Users and use cases</a></li>
+    <li><a href="#principles"><span class="n">4</span>Principles</a></li>
+    <li><a href="#prior"><span class="n">5</span>Prior art</a></li>
+    <li><a href="#model"><span class="n">6</span>Information model</a></li>
+    <li><a href="#patterns"><span class="n">7</span>Pattern catalogue</a></li>
+    <li><a href="#studio"><span class="n">8</span>Mapping Studio</a></li>
+    <li><a href="#agent"><span class="n">9</span>Authoring agent</a></li>
+    <li><a href="#checks"><span class="n">10</span>Checks</a></li>
+    <li><a href="#interfaces"><span class="n">11</span>Interfaces</a></li>
+    <li><a href="#governance"><span class="n">12</span>Governance and AI</a></li>
+    <li><a href="#evaluation"><span class="n">13</span>Evaluation</a></li>
+    <li><a href="#delivery"><span class="n">14</span>Delivery plan</a></li>
+    <li><a href="#decisions"><span class="n">15</span>Decisions</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="hero">
+  <div class="eyebrow">SIP component design · populate stage</div>
+  <h1>Mapping Studio and the Mapping Authoring Agent</h1>
+  <p class="lede">An R2RML editor where people state what tables and columns <em>mean</em>, and an agent that drafts those statements for review. SIP compiles the R2RML. Nobody has to write Turtle.</p>
+  <dl class="meta">
+    <dt>Status</dt><dd><span class="status">PROPOSED</span> 2026-10-28 · not yet in the SysML models</dd>
+    <dt>Stages</dt><dd><code>populate</code> author maps · <code>validate</code> checks and tests · <code>model</code> impact of ontology edits</dd>
+    <dt>New elements</dt><dd><code>MappingStudio</code> (workbench editor) and <code>MappingAuthoringAgent</code> (agent <code>mapping-author</code>)</dd>
+    <dt>Builds on</dt><dd><code>vkg/</code>, the eleven <code>mapping.*</code> operations, the <code>agent-mapper</code> role, the SPARQL-2-SQL and FIBO-NL2Q-at-Scale PoCs</dd>
+    <dt>Source</dt><dd><code>sip/architecture/components/MAPPING_STUDIO.md</code></dd>
+  </dl>
+
+  <figure class="bridge" style="margin:0">
+    <svg viewBox="0 0 860 250" role="img" aria-label="Schema columns on the left linked to ontology terms on the right through mapping patterns in the middle">
+      <g font-family="JetBrains Mono, monospace" font-size="12">
+        <rect x="10" y="10" width="230" height="230" rx="8" fill="var(--data-soft)" stroke="var(--data)" stroke-opacity=".35"/>
+        <text x="24" y="34" fill="var(--data)" font-weight="600">CUSTOMER</text>
+        <text x="24" y="66" fill="var(--ink)">CUST_ID  PK</text>
+        <text x="24" y="96" fill="var(--ink)">CUST_NM</text>
+        <text x="24" y="126" fill="var(--ink)">CUST_TYP_CD  'R' | 'C'</text>
+        <text x="24" y="156" fill="var(--ink)">BRANCH_ID  FK</text>
+        <text x="24" y="186" fill="var(--data)" font-weight="600">ACCOUNT</text>
+        <text x="24" y="216" fill="var(--ink)">CUST_ID  FK</text>
+
+        <rect x="620" y="10" width="230" height="230" rx="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".35"/>
+        <text x="634" y="34" fill="var(--accent)" font-weight="600">FIBO scope</text>
+        <text x="634" y="66" fill="var(--ink)">entity/customer/{id}</text>
+        <text x="634" y="96" fill="var(--ink)">hasLegalName</text>
+        <text x="634" y="126" fill="var(--ink)">Retail / CorporateCustomer</text>
+        <text x="634" y="156" fill="var(--ink)">isServicedBy → Branch</text>
+        <text x="634" y="216" fill="var(--ink)">holdsAccount</text>
+      </g>
+      <g fill="none" stroke-width="1.6">
+        <path d="M240 62 C 420 62, 440 62, 620 62" stroke="var(--accent)"/>
+        <path d="M240 92 C 420 92, 440 92, 620 92" stroke="var(--accent)"/>
+        <path d="M240 122 C 420 122, 440 122, 620 122" stroke="var(--accent)"/>
+        <path d="M240 152 C 420 152, 440 152, 620 152" stroke="var(--warn)" stroke-dasharray="5 4"/>
+        <path d="M240 212 C 420 212, 440 212, 620 212" stroke="var(--accent)"/>
+      </g>
+      <g font-family="Public Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle">
+        <rect x="370" y="52" width="120" height="20" rx="10" fill="var(--surface)" stroke="var(--rule)"/>
+        <text x="430" y="66" fill="var(--muted)">P01 IRI policy</text>
+        <rect x="370" y="82" width="120" height="20" rx="10" fill="var(--surface)" stroke="var(--rule)"/>
+        <text x="430" y="96" fill="var(--muted)">column → property</text>
+        <rect x="355" y="112" width="150" height="20" rx="10" fill="var(--surface)" stroke="var(--rule)"/>
+        <text x="430" y="126" fill="var(--muted)">P03 discriminator</text>
+        <rect x="355" y="142" width="150" height="20" rx="10" fill="var(--warn-soft)" stroke="var(--warn)" stroke-opacity=".5"/>
+        <text x="430" y="156" fill="var(--warn)">P04 · M10 range?</text>
+        <rect x="355" y="202" width="150" height="20" rx="10" fill="var(--surface)" stroke="var(--rule)"/>
+        <text x="430" y="216" fill="var(--muted)">P05 inverse link</text>
+      </g>
+    </svg>
+    <figcaption class="cap">The editor's unit of work. People and the agent decide correspondences and patterns (middle); SIP compiles R2RML from them. A finding, such as the range question on <code>BRANCH_ID</code>, shows on the link that caused it.</figcaption>
+  </figure>
+</div>
+
+<section id="summary">
+  <header><span class="eyebrow">1</span><h2>Summary</h2></header>
+  <p>R2RML is the contract between a bank's databases and its ontology. Today it is written by hand in Turtle. That needs someone who knows the schema, the ontology and R2RML's details at once, and who can keep one IRI policy consistent across hundreds of maps. Very few people know all three. The design removes the need to.</p>
+  <ul>
+    <li><b>Mapping Studio</b> is a workbench editor. People work with <em>correspondences</em> and with <em>mapping patterns</em> such as subclass table, discriminator column, join table and code table. Every edit is previewed on real rows and checked immediately.</li>
+    <li><b>The Mapping Authoring Agent</b> drafts the mapping. It profiles the database, takes candidates from the deterministic <code>mapping.suggest</code>, and asks the model only where candidates are ambiguous. It compiles the maps, runs the editor's checks, and submits one staged proposal per triples map, with evidence.</li>
+  </ul>
+  <div class="choices">
+    <div class="choice"><b>R2RML stays the single source of truth</b><p>The Studio is a projection of the <code>mappings</code> graph. Every edit is an ordinary <code>mapping.*</code> change set with history, undo and staging. There is no editor-only format to drift.</p></div>
+    <div class="choice"><b>Author with patterns, not triples</b><p>Twelve patterns cover what the SPARQL-2-SQL and FIBEN mappings needed. Each has a detector, a form, a compiler and its own checks.</p></div>
+    <div class="choice"><b>Model proposes, critics decide, a person accepts</b><p>The agent can only stage. Ontology gaps it finds go to the ontologist as separate proposals.</p></div>
+  </div>
+  <div class="tw wide"><table>
+    <thead><tr><th>Capability</th><th>Reused from SIP today</th><th>New in this design</th></tr></thead>
+    <tbody>
+      <tr><td>Source</td><td><code>mapping.registerDatabase</code>, <code>mapping.introspect</code></td><td><code>mapping.profile</code>: statistics, value patterns, inferred keys and FKs, schema snapshots and drift</td></tr>
+      <tr><td>Suggestions</td><td><code>mapping.suggest</code> (lexical, structural, scored)</td><td>ontology scoping, retrieval over FIBO-sized ontologies, pattern detection, learning from reviewers</td></tr>
+      <tr><td>Authoring</td><td><code>mapping.addTriplesMap</code> / <code>update</code> / <code>remove</code> / <code>import</code></td><td>correspondence projection, IRI policy, pattern compiler, <code>mapping.applyPattern</code>, YAML spec</td></tr>
+      <tr><td>Checking</td><td><code>mapping.validate</code> (15 codes), <code>mapping.preview</code></td><td>merged rules with the PoC's M01–M12, data checks on samples, quick fixes, mapping tests</td></tr>
+      <tr><td>Agent</td><td>runtime, budgets, evidence, <code>agent-mapper</code>, <code>KnowledgeGraphBuilder</code></td><td><code>MappingAuthoringAgent</code> with six modes and an offline simulator</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="hard">
+  <header><span class="eyebrow">2</span><h2>Why hand-written R2RML is hard</h2></header>
+  <p>Each difficulty was hit in this repository's PoCs, and each becomes a feature.</p>
+  <div class="tw wide"><table>
+    <thead><tr><th></th><th>Difficulty</th><th>Where it bit</th><th>Answer in this design</th></tr></thead>
+    <tbody>
+      <tr><td class="id">H1</td><td>Two experts are needed. The data engineer knows <code>CUST_TYP_CD = 'C'</code>; the ontologist knows <code>CorporateCustomer</code>.</td><td>SPARQL-2-SQL discriminator maps</td><td>Correspondence board with both sides visible</td></tr>
+      <tr><td class="id">H2</td><td>One IRI policy across every map, or joins silently return nothing.</td><td>FIBEN hierarchies mint IRIs from the root table</td><td>IRI policy is a first-class object; templates are never typed</td></tr>
+      <tr><td class="id">H3</td><td>Wrong maps fail silently: empty answers, not errors.</td><td>NL2Q answers that were empty rather than wrong</td><td>Every edit shows sample triples; data checks</td></tr>
+      <tr><td class="id">H4</td><td>The foreign key and the property point in opposite directions.</td><td>SPARQL-2-SQL link maps</td><td>Inverse-link pattern P05; domain/range check M10</td></tr>
+      <tr><td class="id">H5</td><td>Datatypes must agree with the SQL type and <code>rdfs:range</code>.</td><td>M09 findings</td><td>Datatype taken from the range; mismatches fixed in one click</td></tr>
+      <tr><td class="id">H6</td><td>SQL details: quoted upper-case identifiers, filter views, NULL keys.</td><td>M03, M11</td><td>The compiler quotes; filters are form fields</td></tr>
+      <tr><td class="id">H7</td><td>Scale: 152 tables, 374 columns, 2,724 lines of R2RML.</td><td>FIBEN mapping</td><td>Coverage, FK clusters, batch review</td></tr>
+      <tr><td class="id">H8</td><td>Large target ontologies with lexical false friends.</td><td>FIBEN↔FIBO <code>alignment.csv</code></td><td>Ontology scoping and ranked retrieval; the model adjudicates the ambiguous cases</td></tr>
+      <tr><td class="id">H9</td><td>Drift: schemas change, ontologies are refactored.</td><td><code>refactor.renameIRI</code>, <code>mapping.impact</code></td><td>Schema snapshots and diff; agent repair modes</td></tr>
+      <tr><td class="id">H10</td><td>Correctness is judged by the queries, not the Turtle.</td><td>NL2Q gold SPARQL</td><td>Mapping tests from competency questions and gold queries</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="users">
+  <header><span class="eyebrow">3</span><h2>Users and use cases</h2></header>
+  <div class="two">
+    <div>
+      <h3>Personas</h3>
+      <ul>
+        <li><b>Data engineer</b> knows schema, data and SQL; needs to say what tables mean without learning OWL or R2RML.</li>
+        <li><b>Ontologist / mapper</b> decides correspondences and the IRI policy, reviews drafts, watches coverage.</li>
+        <li><b>Reviewer / steward</b> accepts or rejects staged maps, with evidence and a sample of their output.</li>
+        <li><b>NL2Q engineer</b> states the questions the mapping must answer, as tests.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Use cases</h3>
+      <ol>
+        <li>Connect a database and see what is in it.</li>
+        <li>Bootstrap a whole schema with the agent, then review.</li>
+        <li>Map one table by hand with a pattern wizard and live preview.</li>
+        <li>Define the IRI policy once for every map.</li>
+        <li>Fix findings with one-click quick fixes.</li>
+        <li>Write and run mapping tests.</li>
+        <li>Repair after a schema change or ontology refactoring.</li>
+        <li>Import an existing Ontop R2RML file and keep editing it.</li>
+        <li>Export R2RML for Ontop, or the YAML spec for git review.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="principles">
+  <header><span class="eyebrow">4</span><h2>Design principles</h2></header>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>Principle</th><th>Consequence</th></tr></thead>
+    <tbody>
+      <tr><td class="id">MP1</td><td>Nobody types Turtle</td><td>Forms edit correspondences and pattern parameters; a read-only Turtle view exists for experts and for learning</td></tr>
+      <tr><td class="id">MP2</td><td>One source of truth: R2RML in <code>mappings</code></td><td>Maps no pattern explains are shown as <em>custom</em> maps and never dropped</td></tr>
+      <tr><td class="id">MP3</td><td>Every edit shows data</td><td>Rows and triples with provenance within 1 s on samples</td></tr>
+      <tr><td class="id">MP4</td><td>Checks run continuously and come with fixes</td><td>One rule set for editor, agent and release gate</td></tr>
+      <tr><td class="id">MP5</td><td>Model proposes; critics decide; a person accepts</td><td>Machine principal stages only; evidence on every proposal</td></tr>
+      <tr><td class="id">MP6</td><td>Ontology edits are not mapping edits</td><td>Gaps and missing <code>subClassOf</code> go to the ontologist</td></tr>
+      <tr><td class="id">MP7</td><td>Correctness is measured by questions</td><td>Mapping tests live in the <code>cq</code> graph and gate releases</td></tr>
+      <tr><td class="id">MP8</td><td>Offline by default</td><td>Everything, the agent included, runs on the deterministic simulator</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="prior">
+  <header><span class="eyebrow">5</span><h2>Prior art and what we take from it</h2></header>
+  <div class="tw wide"><table>
+    <thead><tr><th>System</th><th>What we take</th><th>What we leave</th></tr></thead>
+    <tbody>
+      <tr><td>Ontop Protégé plugin</td><td>Logical-table SQL with a row preview; the map as the unit of review</td><td>Writing target templates in a text DSL</td></tr>
+      <tr><td>Karma (USC ISI)</td><td>Learning from the reviewer's choices; links chosen as a tree over the ontology graph</td><td>Its own model format, export-only R2RML</td></tr>
+      <tr><td>RMLEditor, Matey, YARRRML</td><td>A compact readable spec (our YAML) and a side-by-side data and graph view</td><td>Non-relational sources</td></tr>
+      <tr><td>Juma</td><td>Valid by construction: forms that cannot express an invalid map</td><td>Blocks as the main UI, too slow for 150 tables</td></tr>
+      <tr><td>BootOX, Ontop bootstrapper, D2RQ</td><td>The deterministic direct-mapping first draft</td><td>Stopping there: a direct mapping is not a mapping to FIBO</td></tr>
+      <tr><td>LLM-assisted schema matching</td><td>The model as adjudicator over retrieved candidates, in a JSON schema</td><td>Models generating R2RML Turtle free-form</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="model">
+  <header><span class="eyebrow">6</span><h2>Information model</h2></header>
+  <div class="tw wide"><table>
+    <thead><tr><th>Entity</th><th>Meaning</th><th>Stored in</th><th>Class</th></tr></thead>
+    <tbody>
+      <tr><td>SchemaSnapshot</td><td>Tables, columns, types, PK/FK at a point in time, hashed</td><td><code>metadata</code></td><td>content</td></tr>
+      <tr><td>Profile</td><td>Null rates, distinct counts, value patterns, inferred keys and FKs</td><td>cache by snapshot hash</td><td>derived</td></tr>
+      <tr><td>OntologyScope</td><td>Classes and properties the mapping may target</td><td><code>mappings</code></td><td>content</td></tr>
+      <tr><td>EntityDef</td><td>IRI policy per identity: path, root table, key, sharing tables</td><td><code>mappings</code></td><td>content</td></tr>
+      <tr><td>TriplesMap</td><td>W3C R2RML with skolem IRIs, as today</td><td><code>mappings</code></td><td>content</td></tr>
+      <tr><td>PatternInstance</td><td>Pattern and parameters a map was compiled from</td><td><code>mappings</code></td><td>content</td></tr>
+      <tr><td>Correspondence</td><td>Table↔class, column↔property, FK↔relation, with status</td><td>computed</td><td>derived</td></tr>
+      <tr><td>MappingDecision</td><td>"Not <code>hasName</code>", "ignore this table", with a reason</td><td><code>mappings</code></td><td>content</td></tr>
+      <tr><td>MappingTest</td><td>SPARQL with an expected result</td><td><code>cq</code></td><td>content</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two">
+    <div>
+      <h3>The IRI policy is an object</h3>
+      <p>Every subject map and referencing object map is compiled from an <code>EntityDef</code>. Changing a base IRI or a key is one edit that recompiles every affected map in one commit.</p>
+<pre>&lt;urn:sip:p:bank:r2rml#entity/customer&gt;
+    a sip:EntityDef ;
+    sip:pathSegment "customer" ;
+    sip:rootTable   "PUBLIC.CUSTOMER" ;
+    sip:keyColumn   "CUST_ID" ;
+    sip:sharedBy    "PUBLIC.RETAIL_CUSTOMER",
+                    "PUBLIC.CORPORATE_CUSTOMER" .</pre>
+    </div>
+    <div>
+      <h3>Lifting R2RML into patterns</h3>
+      <p>On import and on every change, <code>studio.lift</code> matches each map against the pattern compilers in reverse. If recompiling with the recovered parameters reproduces the map exactly, it is shown as that pattern. Otherwise it is a <em>custom</em> map with an expert form.</p>
+      <p>The Studio never rewrites a map just because it opened it. The PoC's <code>mapping-spec.yaml</code> becomes the import/export format for git review, about a third of the Turtle's length.</p>
+    </div>
+  </div>
+</section>
+
+<section id="patterns">
+  <header><span class="eyebrow">7</span><h2>The mapping pattern catalogue</h2></header>
+  <p>A pattern is a recurring relational shape with a known R2RML rendering: a <b>detector</b>, a <b>form</b>, a <b>compiler</b> and <b>pattern checks</b>. The catalogue is data, so patterns can be added without changing the Studio or the agent.</p>
+  <div class="tw wide"><table>
+    <thead><tr><th></th><th>Pattern</th><th>Detector</th><th>Compiles to</th><th>Pattern checks</th></tr></thead>
+    <tbody>
+      <tr><td class="id">P01</td><td>Entity table</td><td>table with a PK</td><td>subject from the <code>EntityDef</code>, <code>rr:class</code>, column maps</td><td>key unique and NOT NULL</td></tr>
+      <tr><td class="id">P02</td><td>Subclass table</td><td>PK is also an FK to the parent's PK</td><td>parent's <code>EntityDef</code>, subclass <code>rr:class</code></td><td>parent is an ancestor, else a <code>subClassOf</code> proposal</td></tr>
+      <tr><td class="id">P03</td><td>Discriminator subclass</td><td>low-cardinality column whose values name classes</td><td>one <code>rr:sqlQuery</code> view per value</td><td>values covered; disjointness</td></tr>
+      <tr><td class="id">P04</td><td>Forward link</td><td>FK on the subject's table</td><td>referencing object map or target template</td><td>domain/range; orphan rate</td></tr>
+      <tr><td class="id">P05</td><td>Inverse link</td><td>FK stored on the other side</td><td>class-less map whose subject is the referenced entity</td><td>direction agrees with domain/range</td></tr>
+      <tr><td class="id">P06</td><td>Join table (m:n)</td><td>PK = exactly two FKs, no data</td><td>one map, side A → side B</td><td>both sides typed</td></tr>
+      <tr><td class="id">P07</td><td>Associative entity</td><td>join table with attributes (<code>HOLDING</code>)</td><td>P01 for the table plus two P04 links</td><td>property chain documented</td></tr>
+      <tr><td class="id">P08</td><td>Code / lookup table</td><td>small code + description table, many FKs to it</td><td>individuals or SKOS concepts; FKs become links</td><td>every referenced code has a row</td></tr>
+      <tr><td class="id">P09</td><td>Inline code</td><td>coded column (<code>hasType = "1"</code>), no lookup table</td><td><code>rr:sqlQuery</code> with <code>CASE</code> from a value table</td><td>all observed values mapped</td></tr>
+      <tr><td class="id">P10</td><td>Value transform</td><td>value needs SQL to fit the range</td><td><code>rr:sqlQuery</code> with a named expression</td><td>parses, read-only, type matches range</td></tr>
+      <tr><td class="id">P11</td><td>Composite key</td><td>PK of several columns</td><td>multi-placeholder template</td><td>all key columns NOT NULL</td></tr>
+      <tr><td class="id">P12</td><td>Denormalised table</td><td>columns of another entity (<code>BRANCH_NAME</code>)</td><td>second subject map plus a link</td><td>minted key functional over rows</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Left out on purpose: entity-attribute-value tables (custom maps) and named graphs (<code>rr:graphMap</code> is outside SIP's R2RML subset).</p>
+</section>
+
+<section id="studio">
+  <header><span class="eyebrow">8</span><h2>Mapping Studio</h2></header>
+  <p>A workbench page over <code>POST /ops/{op}</code>, with seven views in the order the work is done.</p>
+
+  <h3>8.1 Connect and profile · 8.2 Scope the ontology</h3>
+  <p>A read-only database registration gives tables sorted by FK in-degree, per-column statistics and value patterns, inferred keys and FKs marked with confidence, and the FK graph clustered into work packages. The mapper then picks the ontology scope (FIBO modules, or classes and their neighbourhood) from the Ontology Repository's module tree. Suggestions come only from the scope; using an outside term widens it explicitly.</p>
+
+  <h3>8.3 The correspondence board</h3>
+  <div class="board" role="img" aria-label="Mock-up of the correspondence board">
+    <div class="board-in">
+      <div class="bar">
+        <span>Source <b>core_banking</b> · DuckDB</span>
+        <span>Scope <b>FIBO FBC + SEC</b></span>
+        <span class="cov">tables 41/152 <i style="--w:27%"></i></span>
+        <span class="cov">columns 210/374 <i style="--w:56%"></i></span>
+        <span>cluster <b>Customers &amp; accounts</b></span>
+      </div>
+      <div class="brow t"><div class="src">CUSTOMER <small>12,408 rows</small></div><div class="tgt">fibo-fbc-pas-caa:Customer</div><div class="state"><span class="tag d">P01</span><span class="tag ok">accepted</span><span class="act">preview</span></div></div>
+      <div class="brow"><div class="src">CUST_ID <small>int · PK</small></div><div class="tgt">IRI entity/customer</div><div class="state"><span class="tag ok">0 findings</span></div></div>
+      <div class="brow"><div class="src">CUST_NM <small>text · 0% null</small></div><div class="tgt">hasLegalName <span class="mono">0.91</span></div><div class="state"><span class="tag ok">accepted</span></div></div>
+      <div class="brow"><div class="src">CUST_TYP_CD <small>text · 2 values</small></div><div class="tgt">P03 Retail / Corporate</div><div class="state"><span class="tag m">agent · 0.82</span><span class="act">review</span></div></div>
+      <div class="brow"><div class="src">BRANCH_ID <small>int · FK</small></div><div class="tgt">isServicedBy → Branch</div><div class="state"><span class="tag warn">M10 range is Organization</span><span class="act">fix</span></div></div>
+      <div class="brow"><div class="src">RISK_SCORE <small>decimal</small></div><div class="tgt none">no property in scope</div><div class="state"><span class="tag bad">gap</span> sent to ontologist</div></div>
+      <div class="brow t"><div class="src">ACCOUNT <small>31,920 rows</small></div><div class="tgt">fibo-fbc-pas-caa:Account</div><div class="state"><span class="tag d">P01</span><span class="tag m">agent · 0.94</span></div></div>
+    </div>
+  </div>
+  <ul>
+    <li>Rows carry a state: <em>unmapped</em>, <em>suggested</em>, <em>proposed</em> (agent, staged), <em>accepted</em>, <em>ignored</em> (a decision with a reason), <em>gap</em>.</li>
+    <li>Drag a column onto a property to create a correspondence; pick a pattern from the row menu to open its form.</li>
+    <li>"Done" is a choice per column, not 100% coverage: an ignored column counts as covered.</li>
+  </ul>
+
+  <div class="two">
+    <div>
+      <h3>8.4 Entities and IRI policy</h3>
+      <p>A short wizard: base IRI; one <code>EntityDef</code> per root table, proposed from the PK and subclass structure, showing which tables share an identity; three example IRIs from real keys. Templates are typed nowhere else.</p>
+    </div>
+    <div>
+      <h3>8.5 Map editor</h3>
+      <p>The pattern form with pickers restricted to compatible terms; the generated SQL and its first 20 rows; sample triples with provenance and a gained/lost diff; a read-only Turtle view that highlights where each form field lands.</p>
+    </div>
+  </div>
+
+  <h3>8.6 Checks and quick fixes</h3>
+  <div class="tw wide"><table>
+    <thead><tr><th>Finding</th><th>Quick fixes offered</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag warn">M10</span> range mismatch (<code>isServicedBy</code> expects <code>Organization</code>)</td><td>pick a compatible property · propose <code>Branch subClassOf Organization</code> to the ontologist · keep, with a reason</td></tr>
+      <tr><td><span class="tag bad">M09</span> <code>DECIMAL</code> vs <code>xsd:integer</code></td><td>cast to the range's datatype (P10) · change <code>rr:datatype</code></td></tr>
+      <tr><td><span class="tag bad">D2</span> 3% of subject keys are NULL</td><td>filter <code>IS NOT NULL</code> · choose another key</td></tr>
+      <tr><td><span class="tag warn">P03</span> unmapped discriminator value <code>'X'</code></td><td>map it to a class · ignore it, documented</td></tr>
+      <tr><td><span class="tag d">M12</span> unused column</td><td>map it · ignore it with a reason</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="two">
+    <div>
+      <h3>8.7 Tests</h3>
+      <p>A <code>MappingTest</code> is SPARQL plus an expectation: non-empty, a count, rows, or <em>same answer as this SQL</em>, so a data engineer can state the truth in the language they know. Tests run in-process on samples and, when configured, on Ontop over full data. The 237 FIBEN gold queries import as a regression suite.</p>
+    </div>
+    <div>
+      <h3>8.8 Review and history</h3>
+      <p>Each staged map shows its form view, triples diff, findings, affected tests and evidence. Actions: accept, edit and accept (recorded as the reviewer's own commit), reject with reason (becomes a decision). Batch accept only for clean, high-confidence proposals, and logged.</p>
+    </div>
+  </div>
+</section>
+
+<section id="agent">
+  <header><span class="eyebrow">9</span><h2>Mapping Authoring Agent</h2></header>
+  <p>Agent <code>mapping-author</code>, stage <code>populate</code>, machine role <code>agent-mapper</code>: it can stage maps and never validate. Model tasks: <code>mapping.adjudicate</code> and <code>mapping.explain</code>.</p>
+  <div class="tw wide"><table>
+    <thead><tr><th>Mode</th><th>Trigger</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>bootstrap</td><td>new source, empty mapping</td><td>full pipeline, cluster by cluster</td></tr>
+      <tr><td>extend</td><td>new tables or columns in scope</td><td>pipeline over the unmapped part; existing maps as context</td></tr>
+      <tr><td>repair-drift</td><td>schema snapshot diff</td><td>updates affected maps; a dropped column is a removal proposal</td></tr>
+      <tr><td>repair-ontology</td><td><code>mapping.impact</code> after a refactoring</td><td>new targets for dangling references</td></tr>
+      <tr><td>fix</td><td>findings or failing tests</td><td>a corrected map, at most two attempts per finding</td></tr>
+      <tr><td>explain</td><td>a reviewer opens a proposal</td><td>plain-language description from the compiled map and three sample triples</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Pipeline <span class="tag d">D deterministic</span> <span class="tag m">M model</span></h3>
+<pre class="mermaid">flowchart LR
+  A0["A0 profile (D)<br/>introspect, profile,<br/>FK clusters"] --> A1["A1 candidates (D)<br/>mapping.suggest +<br/>retrieval over scope"]
+  A1 --> A2{"A2 confident?<br/>score and margin"}
+  A2 -->|yes| A4
+  A2 -->|no| A3["A3 adjudicate (M)<br/>choose among candidates<br/>or none / gap"]
+  A3 --> A4["A4 assemble (D)<br/>patterns + EntityDefs"]
+  A4 --> A5["A5 critic (D)<br/>rules, preview,<br/>data checks, tests"]
+  A5 -->|"findings, at most 2 rounds"| A3
+  A5 -->|clean| A6["A6 submit<br/>one proposal per map"]</pre>
+  <ul>
+    <li><b>A2 gate.</b> A decision reaches the model only when the best score is under 0.85 or its margin over the second is under 0.15. Clear structure (subclass tables, join tables) never does. Cost follows ambiguity, not schema size.</li>
+    <li><b>A3 adjudicate.</b> One table card at a time. The model picks a candidate ID, <code>none</code>, <code>gap</code> or a pattern ID per element. It cannot invent an IRI, a template or SQL; anything else is rejected before compiling.</li>
+    <li><b>A4 assemble.</b> If no IRI policy exists, the agent proposes one first, and everything else waits for it.</li>
+    <li><b>A6 submit.</b> In dependency order: IRI policy, entities, links. Gaps go to the ontologist through the ModelingCopilot's path.</li>
+  </ul>
+
+  <div class="two">
+    <div>
+      <h3>Model input (table card, abridged)</h3>
+<pre>{"table": "CUSTOMER", "rows": 12408,
+ "columns": [{"name": "CUST_TYP_CD",
+   "type": "VARCHAR", "null_rate": 0.0,
+   "distinct": 2, "pattern": "[A-Z]"}],
+ "fks": [{"column": "BRANCH_ID",
+          "references": "BRANCH.BRANCH_ID"}],
+ "candidates": {"table": [{"id": "c1",
+   "term": "fibo-fbc-pas-caa:Customer",
+   "score": 0.78}]},
+ "already_mapped": {"BRANCH": "ex-bank:Branch"}}</pre>
+    </div>
+    <div>
+      <h3>Model output (schema-enforced)</h3>
+<pre>{"table": {"choice": "c1", "pattern": "P01"},
+ "columns": [
+  {"column": "CUST_TYP_CD",
+   "choice": "pattern:P03",
+   "values": {"R": "c7", "C": "c8"}},
+  {"column": "RISK_SCORE", "choice": "gap",
+   "gap": {"kind": "datatypeProperty",
+           "label": "has risk score"}}],
+ "rationale": "short, per decision"}</pre>
+    </div>
+  </div>
+
+  <div class="two">
+    <div>
+      <h3>Offline simulator</h3>
+      <p><code>sim_mapping_author</code> takes the top candidate when its score is at least 0.5, <code>none</code> otherwise, and the detected pattern. The whole agent and the review queue run in tests with no model, and the simulator is the baseline a live model must beat.</p>
+    </div>
+    <div>
+      <h3>Scale and learning</h3>
+      <p>150-table schemas run cluster by cluster, each with its own budget and review batch. A live run first reports how many table cards pass the A2 gate and the expected tokens; nothing billed starts without approval. Rejections become hard constraints, accepted choices re-rank similar columns, and the five closest decisions go into the card as examples.</p>
+    </div>
+  </div>
+</section>
+
+<section id="checks">
+  <header><span class="eyebrow">10</span><h2>Checks: one critic for people and agents</h2></header>
+  <p>SIP's <code>mapping.validate</code> codes and the PoC's M01–M12 merge into one catalogue, used by the Studio, the agent's critic and the release gate. The gate fails on any error and on failing tests marked <em>required</em>.</p>
+  <div class="tw wide"><table>
+    <thead><tr><th>Family</th><th>Rules</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Structure</td><td>unknown table, column, placeholder (M01, M02); quoted identifiers (M03); non-read-only SQL; unknown parent map; join required</td><td>both</td></tr>
+      <tr><td>IRI policy</td><td>template keyed by a unique key (M04); IRI outside its typing table follows an FK (M05); every template family typed (M06); key NOT NULL (M11); IRI-space clash</td><td>PoC + SIP</td></tr>
+      <tr><td>Ontology</td><td>declared terms (M07); object vs datatype property (M08); datatype vs range and SQL type (M09); domain/range (M10); deprecated terms</td><td>both</td></tr>
+      <tr><td>Data <span class="tag d">new</span></td><td>D1 logical table returns rows; D2 key null rate; D3 subject uniqueness; D4 FK orphan rate; D5 literal parse rate; D6 disjoint types on one individual</td><td>new</td></tr>
+      <tr><td>Coverage</td><td>unused tables and columns (M12); in-scope classes without maps; decided-ignore excluded</td><td>both</td></tr>
+      <tr><td>Tests <span class="tag d">new</span></td><td>failing mapping tests</td><td>new</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="interfaces">
+  <header><span class="eyebrow">11</span><h2>Interfaces</h2></header>
+  <div class="tw wide"><table>
+    <thead><tr><th>Operation</th><th>Stage</th><th>CRUDV</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><code>mapping.profile</code></td><td>populate</td><td>R</td><td>profile, inferred keys and FKs, FK clusters</td></tr>
+      <tr><td><code>mapping.snapshot</code> / <code>diffSource</code></td><td>populate</td><td>C / R</td><td>schema snapshot; diff against the last one</td></tr>
+      <tr><td><code>mapping.setScope</code></td><td>populate</td><td>U</td><td>ontology scope for suggestions and the agent</td></tr>
+      <tr><td><code>mapping.setEntity</code> / <code>removeEntity</code></td><td>populate</td><td>C, U / D</td><td>IRI policy; recompiles dependent maps in the same commit</td></tr>
+      <tr><td><code>mapping.applyPattern</code></td><td>populate</td><td>C, U</td><td>compile a pattern to triples maps, one change set</td></tr>
+      <tr><td><code>mapping.lift</code>, <code>mapping.correspondences</code></td><td>populate</td><td>R</td><td>pattern view; the board's rows and coverage</td></tr>
+      <tr><td><code>mapping.decide</code></td><td>populate</td><td>C</td><td>record a decision (ignore, reject with reason)</td></tr>
+      <tr><td><code>mapping.addTest</code> / <code>test</code></td><td>validate</td><td>C / R</td><td>mapping tests in <code>cq</code>; run them</td></tr>
+      <tr><td><code>mapping.importSpec</code> / <code>exportSpec</code></td><td>populate, publish</td><td>C / R</td><td>YAML spec through the same compiler</td></tr>
+      <tr><td><code>mapping.validate</code>, <code>mapping.suggest</code></td><td>validate, populate</td><td>R</td><td>merged catalogue with quick fixes; scope, patterns, decision-aware ranking</td></tr>
+    </tbody>
+  </table></div>
+<pre>agent = platform.agents["mapping-author"]
+run = agent.run("bank", source_id="core_banking", mode="bootstrap",
+                clusters=["customers-accounts"], dry_run=True)   # estimate only
+run.summary()   # proposals, gaps, needs-a-person, cost</pre>
+</section>
+
+<section id="governance">
+  <header><span class="eyebrow">12</span><h2>Security, governance and AI use</h2></header>
+  <ul>
+    <li><b>Authorisation</b> is Semantic Turkey's model unchanged: <code>mapper</code>, ontologist, rdfgeek and project manager edit maps; V holders accept staged ones; <code>agent-mapper</code> only stages.</li>
+    <li><b>Databases are read-only.</b> Logical tables and test SQL must be one <code>SELECT</code>, with a timeout and a row cap.</li>
+    <li><b>What the model sees</b> is a project policy, <code>mapping.ai_exposure</code>: <code>names</code> (schema and statistics only); <code>profile</code>, the default (plus value patterns, no values); <code>samples</code> (plus up to five top values for low-cardinality columns, with personal-data columns masked). Each model call logs the policy decision.</li>
+    <li><b>Billing.</b> Live runs need <code>SIP_MODEL</code> and an approved estimate.</li>
+  </ul>
+</section>
+
+<section id="evaluation">
+  <header><span class="eyebrow">13</span><h2>Evaluation</h2></header>
+  <div class="tw wide"><table>
+    <thead><tr><th></th><th>Benchmark</th><th>Gold</th><th>What it tests</th></tr></thead>
+    <tbody>
+      <tr><td class="id">B1</td><td>SPARQL-2-SQL bank schema → FIBO subset</td><td>hand-written <code>mapping-spec.yaml</code>, 8 entities</td><td>real FIBO targets, discriminators, inverse links</td></tr>
+      <tr><td class="id">B2</td><td>FIBEN, 152 tables → FIBEN vocabulary</td><td>generated <code>fiben-mapping.r2rml.ttl</code></td><td>scale and hierarchies; easy lexically</td></tr>
+      <tr><td class="id">B2-O</td><td>FIBEN-Obfuscated (<code>TBL_C042.ATTR_05</code>)</td><td>same gold through <code>name_map.json</code></td><td>mapping from structure and data when names say nothing</td></tr>
+      <tr><td class="id">B3</td><td>FIBEN → FIBO</td><td><code>alignment.csv</code> exact rows plus a curated sample</td><td>the realistic task</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two">
+    <div>
+      <h3>Metrics</h3>
+      <ul>
+        <li>Correspondence precision, recall and F1 per kind.</li>
+        <li>Share of submitted maps with zero errors.</li>
+        <li>Answer equivalence: the 237 FIBEN gold queries under the candidate vs the gold mapping.</li>
+        <li>Reviewer effort: decisions per accepted map; share accepted unedited.</li>
+        <li>Cost: tokens per table; share of decisions sent to the model.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Targets for release R2</h3>
+      <ul>
+        <li>B1 and B2: F1 ≥ 0.9 with the simulator alone.</li>
+        <li>B2-O: the live agent beats the simulator by ≥ 20 F1 points.</li>
+        <li>B3: recall@1 of FIBO classes ≥ 0.7 on the curated sample, gaps flagged rather than forced.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="delivery">
+  <header><span class="eyebrow">14</span><h2>Delivery plan</h2></header>
+  <p>Each release ends with its verification cases passing offline and the SysML check clean.</p>
+  <div class="releases">
+    <div class="rel"><h3>R0 · Patterns and checks</h3><div><span class="lbl">Content</span>P01–P08, <code>EntityDef</code>, <code>applyPattern</code>, <code>lift</code>, merged <code>validate</code> with D1–D4, YAML spec import/export</div><div><span class="lbl">Exit</span>B1 spec imports, lifts with zero custom maps and re-exports the PoC's R2RML; FIBEN lifts with ≤ 5% custom maps</div></div>
+    <div class="rel"><h3>R1 · Studio</h3><div><span class="lbl">Content</span>Profile, board, IRI wizard, map editor with preview and Turtle view, quick fixes, review queue, tests</div><div><span class="lbl">Exit</span>Use cases 1, 3–6, 8, 9 offline on B1; a staged map reviewed end to end</div></div>
+    <div class="rel"><h3>R2 · Agent offline</h3><div><span class="lbl">Content</span>Agent with the simulator, all modes; P09–P12; D5–D6; evaluation harness</div><div><span class="lbl">Exit</span>Simulator targets on B1 and B2; harness reports every metric</div></div>
+    <div class="rel"><h3>R3 · Agent live</h3><div><span class="lbl">Content</span>Model adjudication, decision learning, B3 curation</div><div><span class="lbl">Exit</span>Live runs on B2-O and B3 after an approved estimate; targets met</div></div>
+  </div>
+</section>
+
+<section id="decisions">
+  <header><span class="eyebrow">15</span><h2>Decisions and open questions</h2></header>
+  <div class="tw wide"><table>
+    <thead><tr><th></th><th>Decision</th><th>Alternative</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td class="id">D1</td><td>R2RML in <code>mappings</code> is the only truth; the Studio projects it</td><td>editor model that generates R2RML</td><td>no drift; imported Ontop files stay editable</td></tr>
+      <tr><td class="id">D2</td><td>Author through a pattern catalogue</td><td>graphical triples editor; YARRRML text</td><td>valid by construction; matches how people reason</td></tr>
+      <tr><td class="id">D3</td><td>The model only chooses among candidates</td><td>model writes R2RML or templates</td><td>ungrounded templates break joins silently</td></tr>
+      <tr><td class="id">D4</td><td>One staged proposal per triples map</td><td>per run or per table</td><td>reviewable on one screen; partial acceptance</td></tr>
+      <tr><td class="id">D5</td><td>Ontology gaps go to the ontologist</td><td>agent adds terms</td><td>separation of duties</td></tr>
+      <tr><td class="id">D6</td><td>Profile-level exposure by default</td><td>send sample values</td><td>most decisions need patterns, not values</td></tr>
+      <tr><td class="id">D7</td><td>Tests are part of done</td><td>coverage alone</td><td>coverage says nothing about wrong joins</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Open questions</h3>
+  <ol>
+    <li><b>EAV and other unpatterned shapes.</b> Is a pivot pattern needed for target banks, or are custom maps enough?</li>
+    <li><b>Named graphs.</b> Add <code>rr:graphMap</code> so each source lands in its own graph for provenance?</li>
+    <li><b>Ontop in the release gate.</b> Full-data tests need the Docker sidecar. Gate or advisory?</li>
+    <li><b>Decision sharing.</b> Share an accepted "core banking → FIBO" decision set across projects?</li>
+    <li><b>Code tables.</b> Individuals or SKOS concepts by default? Proposed: SKOS when the scope has a concept scheme.</li>
+  </ol>
+</section>
+
+<footer>Semantic Intelligence Platform · component design proposal · source <code>sip/architecture/components/MAPPING_STUDIO.md</code></footer>
+</main>
+</div>
