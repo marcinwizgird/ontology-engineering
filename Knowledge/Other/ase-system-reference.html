@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>@page{size:A4;margin:14mm 12mm} html{color-scheme:light}</style>
+<title>ASE System Reference</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an engineer's reference manual in the ASE field-manual look - sticky rail, dense tables, status pills for real/stub/planned. */
+:root {
+  --bg: #f6f8f9;
+  --paper: #ffffff;
+  --ink: #18222d;
+  --muted: #586675;
+  --rule: #d6dde3;
+  --accent: #0d7068;
+  --accent-soft: #e0f1ef;
+  --warn: #8a5a00; --warn-bg: #fcf1d9;
+  --bad: #a3322a; --bad-bg: #fbe7e5;
+  --code-bg: #eef2f4;
+  --display: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161c; --paper: #171f27; --ink: #e4e9ee; --muted: #9babba; --rule: #2a3540;
+    --accent: #4fc2b6; --accent-soft: #15302d; --warn: #f0c36a; --warn-bg: #352a10; --bad: #f08a80; --bad-bg: #3a1c19; --code-bg: #1d2731;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161c; --paper: #171f27; --ink: #e4e9ee; --muted: #9babba; --rule: #2a3540;
+  --accent: #4fc2b6; --accent-soft: #15302d; --warn: #f0c36a; --warn-bg: #352a10; --bad: #f08a80; --bad-bg: #3a1c19; --code-bg: #1d2731;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); }
+.layout { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 72px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+nav.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; display: grid; gap: 2px; font-size: 14px; max-height: calc(100vh - 40px); overflow-y: auto; }
+nav.rail .label { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 12px 0 6px; }
+nav.rail a { color: var(--ink); text-decoration: none; padding: 3px 8px; border-left: 2px solid transparent; }
+nav.rail a:hover, nav.rail a:focus-visible { border-left-color: var(--accent); color: var(--accent); outline: none; }
+main { display: grid; gap: 56px; min-width: 0; }
+section { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 20px; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } nav.rail { position: static; max-height: none; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } nav.rail .label { grid-column: 1 / -1; } }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(32px, 5vw, 50px); font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; }
+h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; padding-top: 8px; border-top: 1px solid var(--rule); }
+h3 { font-size: 17px; font-weight: 600; margin-top: 8px; }
+p, li { max-width: 76ch; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.kicker { font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+.lead { font-size: 18px; line-height: 1.55; }
+.muted { color: var(--muted); }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+pre.cmd { font: 13px/1.55 var(--mono); background: var(--code-bg); padding: 14px 16px; border-radius: 6px; overflow-x: auto; margin: 0; }
+.table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+th { font: 600 11.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--bg); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pill { display: inline-block; font: 600 11px/1 var(--mono); padding: 4px 7px; border-radius: 999px; white-space: nowrap; }
+.pill.real { background: var(--accent-soft); color: var(--accent); }
+.pill.stub { background: var(--warn-bg); color: var(--warn); }
+.pill.none { background: var(--bad-bg); color: var(--bad); }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.stat { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; }
+.stat b { font: 800 26px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.note { background: var(--warn-bg); border-left: 3px solid var(--warn); padding: 12px 16px; border-radius: 4px; }
+.note strong { color: var(--warn); }
+.callout { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 4px; }
+.diagram { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; overflow-x: auto; }
+.diagram pre.mermaid { margin: 0; background: transparent; }
+details { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+details[open] summary { margin-bottom: 10px; }
+a { color: var(--accent); }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); padding-top: 16px; }
+@media print { nav.rail { display: none; } .layout { grid-template-columns: 1fr; padding-block: 0; } section { break-inside: auto; } h2 { break-after: avoid; } tr, .stat, .diagram { break-inside: avoid; } .table-wrap { overflow: visible; } }
+</style>
+
+<div class="layout">
+<nav class="rail" aria-label="Sections">
+  <span class="label">Now</span>
+  <a href="#glance">Status at a glance</a>
+  <a href="#e2e">End-to-end run</a>
+  <a href="#modules">Module map</a>
+  <span class="label">Mechanisms</span>
+  <a href="#orchestrator">Orchestrator from models</a>
+  <a href="#projects">Projects, runs, traces</a>
+  <a href="#graph">Knowledge graph</a>
+  <a href="#analysis">Analysis and checks</a>
+  <a href="#codegen">Code generation</a>
+  <a href="#eval">Evaluation today</a>
+  <span class="label">Surfaces</span>
+  <a href="#interfaces">CLI, MCP, app, notebooks</a>
+  <a href="#tests">Tests</a>
+  <a href="#config">Configuration</a>
+  <span class="label">Ahead</span>
+  <a href="#limits">Known limits and drift</a>
+  <a href="#phases">Planned phases</a>
+  <a href="#cheats">Command sheet</a>
+</nav>
+
+<main>
+<header style="display:grid;gap:14px">
+  <span class="kicker">Architect's reference · ASE Agentic System</span>
+  <h1>ASE System Reference</h1>
+  <p class="lead">What is implemented today, how a run flows end to end, where each mechanism lives in the code, and what the planned increments add. Written to be re-read before each work session.</p>
+  <p class="muted">State as of 28 October 2026, main at <code>1705f05</code>, increment I0 delivered (2026-09-21) plus the projects workspace (2026-10-15). Paths are relative to <code>ASE Agentic System/</code> unless noted.</p>
+</header>
+
+<section id="glance">
+  <h2>Status at a glance</h2>
+  <div class="grid-3">
+    <div class="stat"><b>I0</b><span>increment delivered; I1 to I6 exist as models only</span></div>
+    <div class="stat"><b>8 steps</b><span>in the generated I0 orchestrator</span></div>
+    <div class="stat"><b>34</b><span>registered perspective checks (docs say 36)</span></div>
+    <div class="stat"><b>6</b><span>RAG patterns in the library; 13 stage kinds</span></div>
+    <div class="stat"><b>2 graphs</b><span><code>ase</code> (control) and <code>ase-designs</code></span></div>
+    <div class="stat"><b>6 xfails</b><span>in RS-01, each naming the increment that clears it</span></div>
+  </div>
+  <p>Each IDEF0 activity and ASE extension, and what currently performs it:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Activity</th><th>Step</th><th>Today</th><th>Implementation</th><th>Replaced in</th></tr></thead>
+    <tbody>
+      <tr><td>A1 Consolidate inputs</td><td>loader</td><td><span class="pill real">real</span></td><td><code>spec.read_spec</code>: structural reader of RS markdown, derives budgets from sentences</td><td>I1 extends</td></tr>
+      <tr><td>A1</td><td>intake</td><td><span class="pill stub">stub</span></td><td>ScriptedAnswers: applies the oracle's §2.1 answers, asks nothing</td><td>I1 IntakeAgent</td></tr>
+      <tr><td>A2 Scenarios</td><td>(none)</td><td><span class="pill none">absent</span></td><td>Not in the I0 topology</td><td>I2 ScenarioAgent</td></tr>
+      <tr><td>A3 Styles / patterns</td><td>patterns</td><td><span class="pill stub">stub</span></td><td>RuleSelector: keyword table in <code>design.py</code>, defaults to NaiveRag</td><td>I2 PatternAgent</td></tr>
+      <tr><td>A4 Candidate architecture</td><td>design</td><td><span class="pill stub">stub</span></td><td>PatternCopier: copies the pattern into <code>design.sysml</code>, budgets overwritten, gate-checked</td><td>I2 DesignAgent</td></tr>
+      <tr><td>MECH</td><td>materialiser</td><td><span class="pill real">real</span></td><td><code>materialise.py</code>: the only writer of the design graph</td><td>I1 / I4 extend</td></tr>
+      <tr><td>A5 Explore options</td><td>analysis</td><td><span class="pill stub">partial</span></td><td>SweepOnly: analysis + 34 checks, no option exploration</td><td>I3 AnalysisAgent</td></tr>
+      <tr><td>A6 / A8 Evaluate, revisit</td><td>(none)</td><td><span class="pill none">absent</span></td><td>No human decision step yet</td><td>I3 EvidenceAgent</td></tr>
+      <tr><td>R1 Code</td><td>codegen</td><td><span class="pill real">real</span></td><td><code>codegen.generate</code>: LangGraph + DSPy program; retrieval stages bound from outside</td><td>I3 / I4 extend</td></tr>
+      <tr><td>R1 Evaluate</td><td>eval</td><td><span class="pill stub">stub</span></td><td>StubEvaluator: one metric on five placeholder questions, word-overlap retriever</td><td>I4 EvalAgent</td></tr>
+      <tr><td>R1 Optimise, deploy</td><td>(none)</td><td><span class="pill none">absent</span></td><td><code>optimise()</code> is generated but never invoked; no Deployer</td><td>I4</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="e2e">
+  <h2>End-to-end run</h2>
+  <p><code>python -m sysmlagents.cli run --project RS-01 --offline</code> walks this path. The topology comes from <code>AseWorkbenchI0</code> in <code>models/ase-evolution.sysml</code>; there is no back edge at I0 (<code>maxIterations = 1</code>).</p>
+  <div class="diagram"><pre class="mermaid">
+sequenceDiagram
+  participant CLI as cli run
+  participant P as pipeline.run
+  participant O as orchestrator.build("I0")
+  participant T as Tracer
+  participant WS as Project (workspace)
+  participant G as Graph store
+  CLI->>P: spec / project, offline
+  P->>WS: new_run() creates runs/run-id/, journal run.started
+  P->>T: wrap(STEPS["I0"])
+  P->>O: compile LangGraph from model flows
+  O->>T: loader, intake, patterns, design
+  T->>WS: design/design.sysml (gate-checked)
+  O->>G: materialiser writes design.cypher (+FalkorDB if up)
+  O->>T: analysis (sweep), re-materialise with findings
+  O->>T: codegen writes design/program.py, imports it
+  O->>T: eval binds stubs, DummyLM, writes design/eval/*
+  P->>WS: save run.json, finish_run, journal run.finished
+  </pre></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Step</th><th>Realises</th><th>Reads</th><th>Writes</th></tr></thead>
+    <tbody>
+      <tr><td class="num">01</td><td>loader</td><td>A1</td><td>spec markdown</td><td>record: spec id, title, requirements. No files</td></tr>
+      <tr><td class="num">02</td><td>intake</td><td>A1</td><td>spec §2.1 answers</td><td>answers_applied (7 for RS-01), questions_asked = []</td></tr>
+      <tr><td class="num">03</td><td>patterns</td><td>A3</td><td>spec text, <code>models/rag-patterns.sysml</code></td><td>pattern, rationale, rejections, ranked</td></tr>
+      <tr><td class="num">04</td><td>design</td><td>A4</td><td>library, derived budgets</td><td><code>design/design.sysml</code>; gate_ok, budgets</td></tr>
+      <tr><td class="num">05</td><td>materialiser</td><td>MECH</td><td>spec, design model, selection</td><td><code>design/design.cypher</code>; FalkorDB <code>ase-designs</code> when reachable</td></tr>
+      <tr><td class="num">06</td><td>analysis</td><td>A5</td><td>design model</td><td>analysis numbers, verdicts, findings; then re-materialises with Finding nodes (<code>materialiser(findings)</code>)</td></tr>
+      <tr><td class="num">07</td><td>codegen</td><td>R1</td><td>design model</td><td><code>design/program.py</code>, imported as a module</td></tr>
+      <tr><td class="num">08</td><td>eval</td><td>R1</td><td>program, spec, <code>inputs/corpus</code> if any</td><td><code>design/eval/eval-report.json|md</code>, <code>questions.json</code>; metrics</td></tr>
+    </tbody>
+  </table></div>
+  <p>Reference result for RS-01 (offline): NaiveRag, 1 LLM call, 1,520 ms, 2,200 tokens, bounded and provenance-preserving, all four verdicts satisfied, sweep 8 warnings and 5 info, design graph 43 nodes and 51 edges, groundedness 0.40 traced to FR-2 on placeholder text.</p>
+  <h3>Variants</h3>
+  <ul>
+    <li><code>--stop-after STEP</code> runs through <code>trace.Session.run_until</code> instead of the compiled LangGraph; same order, one step at a time.</li>
+    <li><code>--out DIR</code> runs outside projects (used by L2 tests); the graph partition key becomes the spec id.</li>
+    <li>With neither <code>--offline</code> nor <code>--online</code>, the run is offline when <code>OPENAI_API_KEY</code> is unset.</li>
+  </ul>
+</section>
+
+<section id="modules">
+  <h2>Module map</h2>
+  <p>All under <code>sysmlagents/</code>. <code>_paths.py</code> puts <code>AI Skills</code> on <code>sys.path</code> and resolves data files relative to the project, so code works from any working directory.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Layer</th><th>Module</th><th>Responsibility</th></tr></thead>
+    <tbody>
+      <tr><td>Package</td><td><code>__init__.py</code></td><td>Re-exports; <code>validator()</code> runs the skill gate <code>check_model.py</code> through the SkillPort, no LLM</td></tr>
+      <tr><td>Intake</td><td><code>spec.py</code></td><td><code>Spec</code>, <code>read_spec</code>: sections, FR/QR/C requirements, stakeholders, data, scripted answers, derived budgets</td></tr>
+      <tr><td>Design</td><td><code>design.py</code></td><td><code>rule_select</code> (keyword table, <code>RULES</code>, <code>PATTERN_CARDS</code>), <code>copy_pattern</code> writes the design package</td></tr>
+      <tr><td>Graph writer</td><td><code>materialise.py</code></td><td><code>build_partition</code> (design LPG), <code>write</code> (script + optional FalkorDB load), <code>replace_partition</code></td></tr>
+      <tr><td>Reading models</td><td><code>model_reader.py</code></td><td>Subset extractor: definitions, requirements, patterns (usages, flows, satisfy, unallocated). Not a parser; the gate decides well-formedness</td></tr>
+      <tr><td>Analysis</td><td><code>analysis.py</code></td><td><code>analyse_pattern</code>: calls, latency (critical path), tokens, bounded, provenance, verdicts; <code>compare</code>, <code>conformance</code>, <code>viable</code></td></tr>
+      <tr><td>Checks</td><td><code>kg.py</code>, <code>checks.py</code></td><td>In-memory check graph and registry; 34 <code>@registry.check</code> functions</td></tr>
+      <tr><td>Method</td><td><code>methodology.py</code>, <code>workflow.py</code></td><td>Read the viewpoint/perspective catalogue; <code>walk()</code> runs the methodology workflow and sweep</td></tr>
+      <tr><td>Proof</td><td><code>selfmodel.py</code>, <code>selftest.py</code></td><td>L1 verify (<code>cli selftest</code>); a separate "every check can fire" test over the tripwire model</td></tr>
+      <tr><td>Teaching</td><td><code>explain.py</code>, <code>diagram.py</code></td><td>Derivation tables, SVG and Mermaid diagrams of a pattern</td></tr>
+      <tr><td>Codegen</td><td><code>codegen.py</code></td><td><code>generate</code>, <code>generate_all</code>; <code>STAGE_CONTRACTS</code> (7 LLM kinds), <code>RETRIEVAL_STUBS</code> (6 kinds)</td></tr>
+      <tr><td>Runtime</td><td><code>evaluate.py</code>, <code>runtime_stub.py</code></td><td>Stub evaluator; <code>StubCorpus</code>, stub stage implementations, <code>offline_lm</code> (DummyLM), <code>configure_lm</code></td></tr>
+      <tr><td>Orchestration</td><td><code>pipeline.py</code>, <code>orchestrator.py</code></td><td><code>RunRecord</code>, step functions, <code>STEPS</code>; topology and LangGraph built from the models; <code>realises()</code></td></tr>
+      <tr><td>Inspection</td><td><code>trace.py</code>, <code>project.py</code></td><td>Per-step trace folders, <code>Session</code>; workspace and projects</td></tr>
+      <tr><td>Graph layer</td><td><code>semantic.py</code>, <code>lpg.py</code>, <code>falkor.py</code>, <code>graphstore.py</code></td><td>SysML to semantic graph to property graph; FalkorDB load and <code>AseGraphRAG</code>; one API over memory and FalkorDB, <code>parity()</code></td></tr>
+      <tr><td>Rendering</td><td><code>inspector.py</code></td><td>All views shared by the Streamlit app and the notebooks. New views go here</td></tr>
+      <tr><td>Interfaces</td><td><code>cli.py</code>, <code>mcp_server.py</code>, <code>launcher.py</code></td><td>CLI; <code>ase</code> MCP server (11 typed tools); <code>up</code>/<code>down</code> for Docker, FalkorDB, graphs, app</td></tr>
+      <tr><td>Proof of concept</td><td><code>agent.py</code></td><td><code>SysMLAgent</code>: LangChain ReAct agent writing SysML via skills. Not used by the pipeline</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="orchestrator">
+  <h2>Orchestrator from models</h2>
+  <p>The running workbench is generated, not hand-wired. This is what "ASE is modelled in ASE" means in code.</p>
+  <ol>
+    <li><code>orchestrator.self_model()</code> reads <code>ase-system.sysml</code> and <code>ase-evolution.sysml</code> together.</li>
+    <li><code>topology(increment)</code> takes the <code>AseWorkbench&lt;inc&gt;</code> part usages as nodes, its flows as edges, finds back edges by DFS, and reads <code>maxIterations</code>.</li>
+    <li><code>build(increment, steps)</code> maps each usage to a registered step function (a missing one raises <code>KeyError</code>), adds forward edges, and turns each back-edge tail into a conditional edge that retries while <code>rec.rework</code> is set and passes &lt; <code>maxIterations</code>.</li>
+    <li><code>realises(increment)</code> reads <code>@Realises</code> metadata so every trace folder is labelled with its IDEF0 activity.</li>
+  </ol>
+  <h3>What <code>cli selftest</code> asserts</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Assertion</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>Gate: <code>ase-system.sysml</code>, <code>ase-evolution.sysml</code> and both together pass the structural gate</td></tr>
+      <tr><td class="num">2</td><td>Aggregates: each agent's declared calls, latency and tokens equal the analysis of its pipeline (HierarchyGap, checked by hand until I3)</td></tr>
+      <tr><td class="num">3</td><td>Sweep: no error-severity finding on the self-model</td></tr>
+      <tr><td class="num">4</td><td>Orchestrator: for each built increment (only I0), the compiled graph's edges equal the model's topology</td></tr>
+      <tr><td class="num">5</td><td>Realises: every part of every <code>AseWorkbenchI*</code> has exactly one activity in A1 to A8, MECH or R1</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Adding a step means: add the part and flow to <code>ase-evolution.sysml</code>, add its <code>@Realises</code> entry, register the function in <code>pipeline.STEPS</code>, and selftest must still pass.</p>
+</section>
+
+<section id="projects">
+  <h2>Projects, runs, traces</h2>
+  <p>Every design is a project in the workspace (<code>ASE_WORKSPACE</code>, default <code>workspace/</code>, gitignored). <code>examples/RS-01/</code> is the committed reference project that tests read.</p>
+<pre class="cmd">workspace/&lt;project-id&gt;/
+  project.json        id, spec, increment, status, last_run, timestamps
+  spec/               the spec copied in
+  inputs/             corpus (copied from &lt;spec dir&gt;/data/&lt;RS&gt;/corpus if present)
+  design/             design.sysml, design.cypher, program.py, eval/, run.json (latest)
+  runs/&lt;YYYYmmdd-HHMMSS&gt;/
+    run.json  run.log
+    trace/index.json
+    trace/NN-&lt;ACT&gt;-&lt;step&gt;/  step.json, model.sysml, diagram.svg|.mmd,
+                            graph.before.json, graph.after.json, graph.delta.cypher, artifacts/
+  journal.jsonl       project.created, run.started, run.finished|failed, notes.updated
+  notes.md</pre>
+  <p><strong>RunRecord</strong> (<code>pipeline.py</code>) carries run and project ids, intake results, selection, design path and gate verdict, analysis and verdicts, findings, graph counts, program path, eval metrics, <code>steps_run</code> and <code>errors</code>. Underscored fields (<code>_spec</code>, <code>_design_model</code>, <code>_module</code>, …) are runtime-only and not serialised.</p>
+  <p><strong>step.json</strong> records the ICOM frame of the activity, record changes, findings, decisions added, graph before/after counts, changed artifacts, and the LLM calls taken from <code>dspy.settings.lm.history</code>.</p>
+</section>
+
+<section id="graph">
+  <h2>Knowledge graph</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Graph</th><th>Built by</th><th>Labels</th><th>Edges</th></tr></thead>
+    <tbody>
+      <tr><td><code>ase</code> (control)</td><td><code>lpg.project_lpg()</code> over <code>methodology/*.sysml</code></td><td>Activity, Viewpoint, Perspective, Concern, Stakeholder, Item, Check, Agent (+ Sourced, Extension, ReviewOnly)</td><td>CONSUMES, CONTROLLED_BY, PRODUCES, PERFORMED_BY, ASSIGNED_TO, RETRIEVES, DECOMPOSES_TO, DETAILS, DECLARES, FRAMES, EXPOSES, HELD_BY, SATISFIES, CONTAINS, FLOWS_TO, PRECEDES, SPECIALIZES</td></tr>
+      <tr><td><code>ase-designs</code></td><td><code>materialise.build_partition</code>, keyed by project id</td><td>Spec, Stakeholder, SpecRequirement, Decision, Design, Pattern (shared, merged), Stage, Requirement, Finding, Run</td><td>HAS_STAKEHOLDER, STATES, DECIDED, SUBMITTED_AS, INSTANTIATES, CONTAINS, FLOWS_TO, SATISFIES, UNALLOCATED, TRACES_TO, CHOSE, FOUND, PRODUCED, READ</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>MemoryStore</strong> supports a read-only Cypher subset: one MATCH with one linear path, WHERE with comparison and string operators, RETURN [DISTINCT], <code>count</code>, <code>labels</code>, <code>type</code>, <code>toLower</code>, <code>toUpper</code>, <code>size</code>, <code>coalesce</code>, ORDER BY a returned column, LIMIT. Writes, CALL, UNWIND, OPTIONAL, variable-length paths and comma patterns raise <code>UnsupportedCypher</code>.</li>
+    <li><strong>FalkorStore</strong> connects via <code>FALKOR_HOST</code>/<code>FALKOR_PORT</code> (localhost:6379). Docker image <code>falkordb/falkordb:v4.20.1</code>, container <code>ase-falkordb</code>, Browser on port 3000.</li>
+    <li><strong>parity()</strong> compares counts and 10 fixed queries across both backends. <code>cli up</code> loads <code>ase</code>, rebuilds <code>ase-designs</code> from every project's <code>design.cypher</code>, then checks parity.</li>
+    <li><code>ASE_NO_FALKOR=1</code> forces the script-only path; tests set it.</li>
+  </ul>
+</section>
+
+<section id="analysis">
+  <h2>Analysis and checks</h2>
+  <p><code>analysis.analyse_pattern</code> computes a pattern's properties from declared stage estimates:</p>
+  <ul>
+    <li><strong>Cycles</strong>: back edges found by DFS; cycle members are multiplied by <code>maxIterations</code>.</li>
+    <li><strong>Fan-out</strong>: multiplies the cost of everything downstream.</li>
+    <li><strong>Latency</strong>: critical path over the DAG of forward edges.</li>
+    <li><strong>Verdicts</strong>: LatencyBudget, CostBudget, GroundedAnswer (provenance on every retrieval-to-answer path), BoundedLoop. Labels: satisfied, CLAIMED BUT FAILS, holds unclaimed, correctly unallocated.</li>
+  </ul>
+  <p><code>kg.project()</code> builds a separate in-memory check graph joining design and methodology; <code>checks.py</code> registers 34 checks across 13 perspectives; <code>workflow.walk()</code> runs them in the methodology's order (Context, Functional, Information, Knowledge, Concurrency, Autonomy, Deployment, Operational, Development, then the perspective sweep). A check that raises becomes a warning finding rather than crashing the run.</p>
+  <p><code>python -m sysmlagents.selftest</code> (not the CLI command) proves every check can fire, using <code>models/tripwire.sysml</code>, a deliberately defective design.</p>
+</section>
+
+<section id="codegen">
+  <h2>Code generation</h2>
+  <p><code>codegen.generate(model, pattern)</code> emits one self-contained <code>program.py</code>. Same design and generator version give the same bytes.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Part of program.py</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td>Header</td><td>"Generated from … do not edit by hand", analysis summary, verdicts</td></tr>
+      <tr><td>Constants</td><td><code>MAX_ITERATIONS</code>, <code>BUDGET_MS</code>, <code>BUDGET_TOKENS</code> from the design's requirements; <code>IMPLEMENTATIONS</code> registry (empty, bound by stage kind from outside)</td></tr>
+      <tr><td>State</td><td><code>RagState</code>: question, queries, chunks (each with <code>source_id</code>), answer, citations, deficit, iteration, spent_tokens</td></tr>
+      <tr><td>Signatures</td><td>One <code>dspy.Signature</code> per LLM stage from <code>STAGE_CONTRACTS</code>; a kind with no contract gets a marked TODO signature</td></tr>
+      <tr><td>Program</td><td><code>&lt;Design&gt;Program(dspy.Module)</code> with a <code>ChainOfThought</code> per LLM stage; <code>forward()</code> runs the graph</td></tr>
+      <tr><td>Non-model stages</td><td>Functions that call <code>IMPLEMENTATIONS[kind]</code> or raise <code>NotImplementedError</code>: DenseRetriever, SparseRetriever, GraphRetriever, ReciprocalRankFusion, CrossEncoderReranker, WebSearchFallback</td></tr>
+      <tr><td>Graph</td><td><code>build_graph()</code>: LangGraph <code>StateGraph</code>; <code>hasFallback</code> with two successors becomes a conditional edge; back edges become bounded retry branches</td></tr>
+      <tr><td>Optimisation</td><td><code>metric()</code> for GEPA feedback; <code>optimise()</code> calls <code>dspy.GEPA</code> with the reflection model; <code>configure()</code> sets <code>dspy.LM</code></td></tr>
+    </tbody>
+  </table></div>
+  <p><code>generate_all()</code> writes the six library programs to <code>generated/</code>. Programs for RerankHybridRag and AgenticRag currently fail at run time with a LangGraph concurrent-update error on their parallel branches.</p>
+</section>
+
+<section id="eval">
+  <h2>Evaluation today</h2>
+  <ul>
+    <li><strong>Questions</strong>: five placeholders, one per functional requirement plus an out-of-corpus question ("What is the weather like on the moon?").</li>
+    <li><strong>Corpus</strong>: <code>&lt;project&gt;/inputs/corpus/*.txt</code> split on blank lines; otherwise the spec's own sentences, labelled as placeholder.</li>
+    <li><strong>Retrieval</strong>: word overlap, top 3, bound into <code>IMPLEMENTATIONS</code> by <code>runtime_stub.bind</code>.</li>
+    <li><strong>Model</strong>: offline DummyLM with a canned answer citing the first chunk; online <code>dspy.LM(SYSMLAGENTS_MODEL)</code>.</li>
+    <li><strong>Metric</strong>: one, groundedness (citations non-empty and all among retrieved ids), traced to the first grounding requirement.</li>
+    <li>Outputs: <code>design/eval/eval-report.json</code>, <code>eval-report.md</code>, <code>questions.json</code>. No optimisation is run.</li>
+  </ul>
+</section>
+
+<section id="interfaces">
+  <h2>CLI, MCP, app, notebooks</h2>
+  <h3>CLI (<code>python -m sysmlagents.cli</code>)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Command</th><th>Does</th></tr></thead>
+    <tbody>
+      <tr><td><code>project new &lt;spec&gt; [--id --name --description --owner]</code></td><td>Create a project from a spec</td></tr>
+      <tr><td><code>project list</code> · <code>project show &lt;id&gt;</code></td><td>List projects; show meta, runs, last journal entries, files</td></tr>
+      <tr><td><code>run [spec] [--project] [--offline|--online] [--out] [--stop-after] [--no-trace]</code></td><td>Run the pipeline; exit 1 on step errors</td></tr>
+      <tr><td><code>trace &lt;project&gt; [--run]</code></td><td>Per-step activity, status, time, graph delta, files, changed fields</td></tr>
+      <tr><td><code>status [project]</code> · <code>explain &lt;project&gt;</code></td><td>Latest run summary; derivation of the design's numbers</td></tr>
+      <tr><td><code>selftest</code></td><td>L1 self-model verification</td></tr>
+      <tr><td><code>up [--no-app] [--port]</code> · <code>down</code></td><td>Docker, FalkorDB, graphs, parity, Streamlit; stop FalkorDB</td></tr>
+    </tbody>
+  </table></div>
+  <h3>MCP server <code>ase</code> (11 tools)</h3>
+  <p><code>ase_step</code> (full ICOM frame), <code>ase_controls</code>, <code>ase_process</code>, <code>ase_viewpoint</code>, <code>ase_perspective</code>, <code>ase_concern</code>, <code>ase_obligations</code>, <code>ase_gap</code> (required attributes a design lacks), <code>ase_provenance</code>, <code>ase_status</code>, <code>ase_reload</code>. Typed tools only, no Cypher surface; falls back to the in-memory projection without FalkorDB.</p>
+  <h3>Streamlit workbench (<code>app/</code>)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Page</th><th>Shows</th></tr></thead>
+    <tbody>
+      <tr><td>Home</td><td>Docker, FalkorDB, built increments, graph counts and parity, model settings, projects</td></tr>
+      <tr><td>0 Projects</td><td>Create, browse; tabs for runs, files, journal, notes, settings</td></tr>
+      <tr><td>1 Process</td><td>IDEF0 diagram coloured real/stub/absent, ICOM frame per activity</td></tr>
+      <tr><td>2 Run</td><td>Step a run: next step, run until, run all; scripted stakeholder panel</td></tr>
+      <tr><td>3 Step Inspector</td><td>Per step: ICOM, SysML, code and files, graph delta, findings, record, LLM calls, tests</td></tr>
+      <tr><td>4 Knowledge Graph</td><td>Partition and backend choice, counts, parity, Cypher console</td></tr>
+      <tr><td>5 Evolution</td><td>I0 to I6 table, per-increment numbers, deltas, xfail burn-down</td></tr>
+      <tr><td>6 Specs</td><td>RS-01 to RS-10, submitted part, oracle behind a toggle</td></tr>
+      <tr><td>7 Methodology</td><td>Viewpoints, perspectives, concerns, activities and agents, checks</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Notebooks</h3>
+  <p><code>notebooks/I0/</code> is generated by <code>notebooks/build_i0.py</code> (edit the builder, never the notebooks): 00 start here, 01 self-model and evolution, 02 run end to end, one notebook per activity (A1, A3, A4, M, A5, R1), and 99 oracle RS-01. Each activity notebook follows the same template: ICOM, run, code, record before/after, SysML, graph delta, findings, oracle, component history.</p>
+</section>
+
+<section id="tests">
+  <h2>Tests</h2>
+  <p><code>tests/conftest.py</code> sets <code>ASE_NO_FALKOR=1</code> and a temporary <code>ASE_WORKSPACE</code>. No test calls a model. No L3 (<code>slow</code>) test exists yet.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>File</th><th>Layer</th><th>Covers</th></tr></thead>
+    <tbody>
+      <tr><td><code>test_selfmodel.py</code></td><td>L1</td><td><code>verify()</code> returns no issues</td></tr>
+      <tr><td><code>specs/test_rs_01.py</code></td><td>L2</td><td>RS-01 oracle: no forbidden questions, NaiveRag chosen with reasons, gate and budgets, <code>models/</code> hashes unchanged, numbers 1/1520/2200, graph content and trace edges, program shape, eval report</td></tr>
+      <tr><td><code>test_trace.py</code></td><td>L1/L2</td><td>Activity labels, folder order, ICOM frames, graph deltas, artifacts, Session equals LangGraph</td></tr>
+      <tr><td><code>test_project.py</code></td><td>unit</td><td>Workspace layout, ids, runs kept, partition per project, examples</td></tr>
+      <tr><td><code>test_graphstore.py</code></td><td>unit</td><td>Cypher subset, unsupported queries, script round trip; FalkorDB parity (skipped without it)</td></tr>
+      <tr><td><code>test_app.py</code></td><td>UI</td><td>Every page renders; Run page steps a project end to end</td></tr>
+      <tr><td><code>test_notebooks.py</code></td><td>UI</td><td>Executes every notebook offline (about 1.5 min)</td></tr>
+      <tr><td><code>test_pattern_catalogue.py</code></td><td>unit</td><td>55 patterns valid; catalogue check names equal the registry</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Strict xfails in RS-01 (the burn-down list)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Test</th><th>Cleared by</th></tr></thead>
+    <tbody>
+      <tr><td><code>test_expected_questions_asked</code></td><td>I1 elicitation</td></tr>
+      <tr><td><code>test_selection_cites_graph_query</code></td><td>I2 selection by graph query, recorded</td></tr>
+      <tr><td><code>test_spec_requirements_in_design</code></td><td>I2 spec requirements as requirement defs in the design</td></tr>
+      <tr><td><code>test_abstention_path</code></td><td>I3 abstention as a distinct outcome</td></tr>
+      <tr><td><code>test_real_retriever</code></td><td>I4 real dense retriever over the corpus</td></tr>
+      <tr><td><code>test_full_metric_set</code></td><td>I4 five metrics, 100+ synthetic examples, GEPA before/after</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="config">
+  <h2>Configuration</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Variable</th><th>Default</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><code>SYSMLAGENTS_MODEL</code></td><td><code>openai/gpt-5-mini</code></td><td>Model for generated programs and online eval (<code>provider/model</code>)</td></tr>
+      <tr><td><code>SYSMLAGENTS_REFLECTION_MODEL</code></td><td><code>openai/gpt-5</code></td><td>GEPA reflection model</td></tr>
+      <tr><td><code>OPENAI_API_KEY</code></td><td>unset</td><td>Its absence makes runs offline by default</td></tr>
+      <tr><td><code>ASE_WORKSPACE</code></td><td><code>workspace/</code></td><td>Projects root</td></tr>
+      <tr><td><code>ASE_NO_FALKOR</code></td><td>unset</td><td><code>1</code> skips FalkorDB loads</td></tr>
+      <tr><td><code>FALKOR_HOST</code> / <code>FALKOR_PORT</code></td><td>localhost / 6379</td><td>FalkorDB connection</td></tr>
+      <tr><td><code>ASE_DOCKER_DESKTOP</code></td><td>Docker Desktop default path</td><td>Used by <code>cli up</code> to start Docker</td></tr>
+      <tr><td><code>PYTHONIOENCODING</code></td><td>set to utf-8 by launchers</td><td>Needed on Windows</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Ports: Streamlit 8501, FalkorDB 6379, FalkorDB Browser 3000. Python env: conda <code>DATAENLIGHT_AI_ARCH_PATTERNS</code>.</p>
+</section>
+
+<section id="limits">
+  <h2>Known limits and drift</h2>
+  <h3>Code issues worth fixing</h3>
+  <ul>
+    <li><strong>Provider coupling.</strong> <code>configure_lm</code> decides offline/online on <code>OPENAI_API_KEY</code> only; <code>agent.py</code> imports <code>langchain_openai</code> directly; <code>requirements.txt</code> names an <code>llm.py</code> that doesn't exist. Plan item 0.8 (provider-agnostic model layer) is not started.</li>
+    <li><strong>Parallel branches.</strong> RerankHybridRag and AgenticRag programs crash with a LangGraph concurrent-update error. A fan-in fix exists in PR #1.</li>
+    <li><strong>New state keys are dropped.</strong> <code>RagState</code> has no <code>verdict</code> key, so LangGraph discards it: in CorrectiveRag the web fallback always runs. Any new stage output (entities, subgraph) must be added to the state schema.</li>
+    <li><strong>Loop bound not enforced.</strong> <code>_branch</code> increments <code>iteration</code> inside a routing function, which LangGraph does not persist; an always-ungrounded SelfRag hit <code>GraphRecursionError</code> after 3,334 calls instead of stopping at 3.</li>
+    <li><strong>Token budget stop never fires.</strong> Generated programs initialise <code>spent_tokens</code> but never increment it.</li>
+    <li><code>run_graph</code> recompiles the graph for every question.</li>
+    <li>The Run node id uses the start timestamp, not the run id (<code>pipeline.py:205</code>).</li>
+    <li><code>spec._derive_budgets</code> checks a key that is never set in the minutes branch (<code>spec.py:156</code>).</li>
+    <li>The offline DummyLM cites the first chunk for every question, so groundedness 0.40 measures retrieval overlap, not answer quality.</li>
+    <li>The materialiser runs twice per run; the second pass is untraced as its own step.</li>
+  </ul>
+  <h3>Documentation drift</h3>
+  <ul>
+    <li>36 checks in <code>ase-system.sysml</code>, <code>README.md</code> and the roadmap; 34 in code.</li>
+    <li>The MCP server docstring says eight tools; there are 11. The selfmodel docstring says five assertions, then four.</li>
+    <li>The I0 <code>@Delta</code> still names <code>designs/&lt;spec&gt;/design.sysml</code>; runs now write to <code>&lt;project&gt;/design/</code>.</li>
+    <li><code>examples/RS-01/</code> predates projects: its <code>run.json</code> has no project or run id.</li>
+    <li>IDEF0 agent names (ConsolidationAgent, ViewAuthoringAgent) differ from the system model (IntakeAgent, DesignAgent).</li>
+    <li>The Deployer is in the roadmap but not yet in either model.</li>
+    <li><code>docs/ase-architecture.html</code> was generated on 21 September 2026, before the evolution model last changed (12 October).</li>
+  </ul>
+</section>
+
+<section id="phases">
+  <h2>Planned phases</h2>
+  <p>The roadmap's increments are the destination. Each starts by updating <code>ase-evolution.sysml</code> (<code>@Delta</code>, <code>@Realises</code>) before code, and ends with the review checklist.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Inc</th><th>Adds</th><th>Definition of done</th></tr></thead>
+    <tbody>
+      <tr><td>I1</td><td>IntakeAgent; <code>RequirementsSpec</code> model; deterministic gap checklist from <code>PerformanceOnFunctional.requiredAttributes</code> and viewpoint concerns; LLM only words questions; <code>Stakeholder</code> interface (Console, Scripted); assumptions as Decision nodes</td><td>RS-01 §2.1 exact (asked ⊆ questions, forbidden ∩ questions = ∅); RS-02 version question asked; I0 still passes</td></tr>
+      <tr><td>I2</td><td>ScenarioAgent, PatternAgent, DesignAgent; <code>@PatternForm</code> projected to Pattern nodes; selection = Cypher query + rationale from retrieved fields; instantiation <code>part def &lt;Spec&gt;Design :&gt; &lt;Pattern&gt;</code></td><td>RS-02 rationale cites fields and query; RS-03 waiver recorded</td></tr>
+      <tr><td>I3</td><td>AnalysisAgent with <code>explore()</code> options table; EvidenceAgent; rework loop (max 3); minimal composition; three-way conditional codegen; security checks on trust boundaries</td><td>RS-06 options table and no design before decision; RS-04 conditional edge; RS-05 bounded loop</td></tr>
+      <tr><td>I4</td><td><code>rag_runtime/</code> (dense, BM25, RRF, rerank, filters); recipe-driven eval datasets with splits; GEPA with held-out gate; deterministic Deployer and deploy gate; <code>@Measured</code> feedback</td><td>RS-05 thresholds; RS-01 to 04 L3; RS-01 deploys in one command; degraded candidate refused; byte-identical regeneration</td></tr>
+      <tr><td>I5</td><td>Composer (bounded search, ≤3 candidates); workloadClass; trust and tenancy; graph retriever with parameterised Cypher; runtime patterns in deployment templates; promotion workflow</td><td>RS-07, RS-08 pass with <code>models/</code> unchanged; RS-03b after promotion</td></tr>
+      <tr><td>I6</td><td>Agent-as-part vocabulary; evidence packs; release gate; reproducibility harness; ASE's own prompts optimised; multi-agent deploy, canary, rollback</td><td>RS-09, RS-10 pass; all ten specs pass; ASE evidence pack produced by the pipeline</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p><strong>Near-term reordering under discussion.</strong> The <a href="https://claude.ai/artifact/7qQbpwCgQuKv2kMpkFd5CU">incremental delivery plan</a> pulls a thin slice of I4 forward (real retrieval, eval, local Docker deploy) so pilot clients get working agents sooner. The <a href="https://claude.ai/artifact/KPBes2qPMcbfc8eEZY75hS">4-week GraphRAG development plan</a> does the same for a naive GraphRAG pattern on FalkorDB. Both keep the non-negotiables and land each slice in the evolution model first.</p></div>
+</section>
+
+<section id="cheats">
+  <h2>Command sheet</h2>
+<pre class="cmd"># from ASE Agentic System/
+python -m sysmlagents.cli project new docs/specs/RS-01-hr-policy-assistant.md [--id ID]
+python -m sysmlagents.cli run --project RS-01 --offline [--stop-after design]
+python -m sysmlagents.cli trace RS-01 [--run ID]
+python -m sysmlagents.cli status | explain RS-01 | selftest
+python -m sysmlagents.cli up [--no-app]      # Docker + FalkorDB + graphs + app
+python -m sysmlagents.cli down
+python -m sysmlagents.selftest               # every check can fire (tripwire)
+python -m sysmlagents.mcp_server             # ase MCP server
+streamlit run app/Home.py                    # app alone, in-memory graphs
+python notebooks/build_i0.py                 # regenerate notebooks
+python docs/build_architecture_page.py       # regenerate docs/ase-architecture.html
+
+python -m pytest tests -q -c tests/pytest.ini
+python -m pytest tests -m "not slow" -c tests/pytest.ini
+python -m pytest tests/test_notebooks.py -c tests/pytest.ini
+
+# whole repo, from the repo root
+cd "AI Skills" &amp;&amp; python -m ontoagents verify          # expect VERIFY OK
+cd "ASE School/build" &amp;&amp; python build_reference.py &amp;&amp; python build_scripts.py</pre>
+</section>
+
+<footer>ASE System Reference · compiled 28 October 2026 from the repository at commit 1705f05. Regenerate or revise when an increment closes.</footer>
+</main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:"neutral",gantt:{useWidth:900}});</script>
+</body></html>

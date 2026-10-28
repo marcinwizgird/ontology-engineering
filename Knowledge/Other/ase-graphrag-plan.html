@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>@page{size:A4;margin:14mm 12mm} html{color-scheme:light}</style>
+<title>Naive GraphRAG Delivery Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sprint plan in the ASE field-manual look - rail of weeks, one ticket card per JIRA issue with id, points, owner and acceptance criteria. */
+:root {
+  --bg: #f6f8f9;
+  --paper: #ffffff;
+  --ink: #18222d;
+  --muted: #586675;
+  --rule: #d6dde3;
+  --accent: #0d7068;
+  --accent-soft: #e0f1ef;
+  --warn: #8a5a00; --warn-bg: #fcf1d9;
+  --code-bg: #eef2f4;
+  --display: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161c; --paper: #171f27; --ink: #e4e9ee; --muted: #9babba; --rule: #2a3540;
+    --accent: #4fc2b6; --accent-soft: #15302d; --warn: #f0c36a; --warn-bg: #352a10; --code-bg: #1d2731;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161c; --paper: #171f27; --ink: #e4e9ee; --muted: #9babba; --rule: #2a3540;
+  --accent: #4fc2b6; --accent-soft: #15302d; --warn: #f0c36a; --warn-bg: #352a10; --code-bg: #1d2731;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); }
+.layout { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 72px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; }
+nav.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; display: grid; gap: 2px; font-size: 14px; }
+nav.rail .label { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 12px 0 6px; }
+nav.rail a { color: var(--ink); text-decoration: none; padding: 3px 8px; border-left: 2px solid transparent; }
+nav.rail a:hover, nav.rail a:focus-visible { border-left-color: var(--accent); color: var(--accent); outline: none; }
+main { display: grid; gap: 56px; min-width: 0; }
+section { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 20px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } nav.rail { position: static; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } nav.rail .label { grid-column: 1 / -1; } }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(32px, 5vw, 50px); font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; }
+h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; padding-top: 8px; border-top: 1px solid var(--rule); }
+h3 { font-size: 17px; font-weight: 600; }
+p, li { max-width: 76ch; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.kicker { font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+.lead { font-size: 18px; line-height: 1.55; }
+.muted { color: var(--muted); }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+.table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+th { font: 600 11.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--bg); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.diagram { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; overflow-x: auto; }
+.diagram pre.mermaid { margin: 0; background: transparent; }
+.callout { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 4px; }
+.note { background: var(--warn-bg); border-left: 3px solid var(--warn); padding: 12px 16px; border-radius: 4px; }
+.note strong { color: var(--warn); }
+.week-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+.week-head .pts { font: 500 13px/1 var(--mono); color: var(--muted); }
+.epic { display: grid; gap: 10px; }
+.epic-title { font: 600 13px/1.3 var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+.tickets { display: grid; gap: 10px; }
+.ticket { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.ticket-top { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+.tid { font: 600 12.5px/1 var(--mono); color: var(--accent); }
+.tsum { font-weight: 600; flex: 1 1 280px; min-width: 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font: 500 11px/1 var(--mono); padding: 4px 7px; border-radius: 999px; background: var(--code-bg); color: var(--ink); white-space: nowrap; }
+.tag.own-a { background: var(--accent-soft); color: var(--accent); }
+.tag.stretch { background: var(--warn-bg); color: var(--warn); }
+.ticket p { font-size: 14px; }
+.ticket .ac { font-size: 13.5px; }
+.ticket .ac b { font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); display: block; margin-bottom: 4px; }
+.ticket .ac ul { gap: 2px; }
+.dep { font-size: 12.5px; color: var(--muted); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+button { font: 600 14px/1 var(--body); padding: 10px 14px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--paper); cursor: pointer; }
+button.secondary { background: transparent; color: var(--accent); }
+button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+#csv-status { font-size: 13px; color: var(--muted); }
+#csv-box { width: 100%; min-height: 160px; font: 12px/1.45 var(--mono); background: var(--code-bg); color: var(--ink); border: 1px solid var(--rule); border-radius: 6px; padding: 10px; }
+a { color: var(--accent); }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); padding-top: 16px; }
+@media print { nav.rail, .toolbar, #csv-box { display: none !important; } .layout { grid-template-columns: 1fr; padding-block: 0; } h2 { break-after: avoid; } .ticket, tr, .diagram { break-inside: avoid; } .table-wrap { overflow: visible; } }
+</style>
+
+<div class="layout">
+<nav class="rail" aria-label="Sections">
+  <span class="label">Plan</span>
+  <a href="#goal">Goal and done</a>
+  <a href="#design">Target design</a>
+  <a href="#decisions">Design decisions</a>
+  <a href="#timeline">Timeline</a>
+  <span class="label">Backlog</span>
+  <a href="#w1">Week 1</a>
+  <a href="#w2">Week 2</a>
+  <a href="#w3">Week 3</a>
+  <a href="#w4">Week 4</a>
+  <span class="label">Run it</span>
+  <a href="#risks">Risks</a>
+  <a href="#jira">Export to JIRA</a>
+</nav>
+
+<main>
+<header style="display:grid;gap:14px">
+  <span class="kicker">Development plan · 4 weeks · 2 to 27 November 2026</span>
+  <h1>Naive GraphRAG Delivery Plan</h1>
+  <p class="lead">In four weeks ASE designs, generates, indexes and evaluates a working naive GraphRAG agent over a real document corpus in FalkorDB. Both the indexer and the query agent are generated from library patterns, not hand-written.</p>
+  <p class="muted">Assumptions: weeks start Monday 2 November 2026; owners are the architecture owner (A) and the delivery owner (D), with points sized for two to three engineers. Ticket ids (GR-n) are local; JIRA assigns its own keys on import.</p>
+</header>
+
+<section id="goal">
+  <h2>Goal and definition of done</h2>
+  <p>"Naive" means the simplest GraphRAG that is still honest: entities and relations are extracted from chunks at indexing time; at query time, question terms are linked to graph entities, their neighbourhood is expanded a bounded number of hops, and the chunks attached to those entities are passed to the synthesizer with citations. No community summaries, no global search, no graph learning.</p>
+  <p>The 4-week goal is met when all of these hold:</p>
+  <ol>
+    <li><code>cli run --project RS-11 --online</code> selects <code>NaiveGraphRag</code>, passes the gate and the sweep, generates the indexer and the agent, builds the <code>kg:RS-11</code> graph in FalkorDB, and answers the RS-11 eval set with citations.</li>
+    <li>On the RS-11 eval set: cross-document recall and citation recall beat the word-overlap baseline on the same questions; unanswerable questions are refused.</li>
+    <li>The same run works offline (no key, no FalkorDB) with a deterministic extractor and an in-memory graph, so CI stays green.</li>
+    <li><code>cli selftest</code> is OK; regenerating the programs gives byte-identical files; <code>models/</code> changed only through the reviewed library commit in week 1.</li>
+    <li>Every design choice below is a Decision node with owner, date, reason and requirement.</li>
+  </ol>
+</section>
+
+<section id="design">
+  <h2>Target design</h2>
+  <p>Two new library patterns. <code>GraphIndexing</code> runs once per corpus (batch workload); <code>NaiveGraphRag</code> runs per question (interactive). Keeping them separate lets the analysis budget each on its own terms.</p>
+  <div class="diagram"><pre class="mermaid">
+flowchart LR
+  subgraph IDX["GraphIndexing (batch, per corpus)"]
+    L[Loader] --> C[Chunker] --> X["EntityRelationExtractor<br/>LLM, per chunk"] --> W[GraphWriter]
+  end
+  subgraph Q["NaiveGraphRag (interactive, per question)"]
+    G["GraphRetriever<br/>link entities, expand k hops,<br/>collect chunks"] --> S["AnswerSynthesizer<br/>LLM, cites source_id"]
+  end
+  W --> KG[("FalkorDB<br/>kg:&lt;project&gt;")]
+  KG --> G
+  </pre></div>
+  <h3>Graph schema (<code>kg:&lt;project&gt;</code>)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Element</th><th>Properties</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>(:Document)</code></td><td>id, title, path</td><td>Source file</td></tr>
+      <tr><td><code>(:Chunk)</code></td><td>id (<code>&lt;doc&gt;#&lt;n&gt;</code>), text, section, page</td><td>The unit that gets cited</td></tr>
+      <tr><td><code>(:Entity)</code></td><td>key (normalised), name, type, aliases</td><td>Party, defined term, clause, product, …</td></tr>
+      <tr><td><code>(:Document)-[:HAS_CHUNK]-&gt;(:Chunk)</code></td><td>order</td><td>Provenance</td></tr>
+      <tr><td><code>(:Chunk)-[:MENTIONS]-&gt;(:Entity)</code></td><td></td><td>Entity to evidence</td></tr>
+      <tr><td><code>(:Entity)-[:RELATED]-&gt;(:Entity)</code></td><td>type, chunk_id</td><td>Relation, with the chunk that states it</td></tr>
+    </tbody>
+  </table></div>
+  <p>Indexes: full-text on <code>Entity.name</code> and <code>Entity.aliases</code>; range on <code>Chunk.id</code> and <code>Entity.key</code>. All Cypher is parameterised. The <code>kg:*</code> graphs are product data, kept apart from ASE's own <code>ase</code> and <code>ase-designs</code> graphs.</p>
+  <h3>Expected analysis numbers (declared estimates)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Pattern</th><th>Stages</th><th class="num">LLM calls</th><th class="num">Latency ms</th><th class="num">Tokens</th></tr></thead>
+    <tbody>
+      <tr><td>NaiveRag (reference)</td><td>DenseRetriever 120 + AnswerSynthesizer 1,400</td><td class="num">1</td><td class="num">1,520</td><td class="num">2,200</td></tr>
+      <tr><td>NaiveGraphRag</td><td>GraphRetriever 250 + AnswerSynthesizer 1,400</td><td class="num">1</td><td class="num">1,650</td><td class="num">2,200</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">GraphRetriever's 250 ms is the library's existing estimate. Indexing cost scales with corpus size (one extraction call per chunk) and is reported by the ingestion report, not the per-question budget.</p>
+</section>
+
+<section id="decisions">
+  <h2>Design decisions to record in week 1</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Decision</th><th>Proposed choice</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td>DG-1</td><td>Bring GraphRetriever forward from I5 (where the roadmap and RS-07 place it)</td><td>Yes, single-tenant only; tenancy, fusion with dense and sparse, and RS-07 stay in I5</td><td>A</td></tr>
+      <tr><td>DG-2</td><td>Model indexing as its own pattern</td><td><code>GraphIndexing</code> pattern, so its cost and provenance are analysed and its program is generated</td><td>A</td></tr>
+      <tr><td>DG-3</td><td>Entity linking at query time</td><td>FalkorDB full-text index over names and aliases; no query-time LLM call. Embedding-based linking is a later option</td><td>A + D</td></tr>
+      <tr><td>DG-4</td><td>Expansion depth</td><td><code>maxHops = 2</code>, node cap 200, as stage-instance attributes on the design</td><td>D</td></tr>
+      <tr><td>DG-5</td><td>Graph naming and ownership</td><td><code>kg:&lt;project-id&gt;</code>, added to the launcher's owned graphs</td><td>D</td></tr>
+      <tr><td>DG-6</td><td>Offline path</td><td>Deterministic rule-based extractor plus an in-memory graph retriever; same interface as the live path</td><td>D</td></tr>
+      <tr><td>DG-7</td><td>Spec id</td><td>RS-11. PR #1 used RS-11 to RS-15 for its unmerged examples; those get renumbered if they are ever adopted</td><td>A</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="timeline">
+  <h2>Timeline</h2>
+  <div class="diagram"><pre class="mermaid">
+gantt
+  dateFormat YYYY-MM-DD
+  axisFormat %d %b
+  section Foundations
+  Model layer and codegen fixes      :e1, 2026-11-02, 5d
+  section Model and spec
+  Library change, RS-11, selection   :e2, 2026-11-02, 5d
+  section Ingestion
+  Chunk, extract, write kg graph     :e3, 2026-11-09, 5d
+  section Retriever
+  Link, expand, collect, bind        :e4, 2026-11-16, 5d
+  section Evaluation
+  Eval set, metrics, L2 and L3       :e5, 2026-11-16, 10d
+  section Hardening
+  Workbench, notebook, docs, demo    :e6, 2026-11-23, 5d
+  </pre></div>
+  <div id="week-summary" class="table-wrap"></div>
+</section>
+
+<section id="w1"><div class="week-head"><h2>Week 1 · 2 to 6 November</h2><span class="pts" data-pts="W1"></span></div><p>Make every later step possible: provider-agnostic model calls, generated programs that can carry new state and parallel branches, and the library, spec and selection for GraphRAG.</p><div class="weekbody" data-week="W1"></div></section>
+<section id="w2"><div class="week-head"><h2>Week 2 · 9 to 13 November</h2><span class="pts" data-pts="W2"></span></div><p>Turn a corpus into a knowledge graph in FalkorDB, through a generated indexing program, with an offline twin for tests.</p><div class="weekbody" data-week="W2"></div></section>
+<section id="w3"><div class="week-head"><h2>Week 3 · 16 to 20 November</h2><span class="pts" data-pts="W3"></span></div><p>Answer questions from the graph: link, expand, collect, cite. Start measuring.</p><div class="weekbody" data-week="W3"></div></section>
+<section id="w4"><div class="week-head"><h2>Week 4 · 23 to 27 November</h2><span class="pts" data-pts="W4"></span></div><p>Prove it end to end, make it inspectable, and close with the review gate and a demo.</p><div class="weekbody" data-week="W4"></div></section>
+
+<section id="risks">
+  <h2>Risks</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Risk</th><th>Effect</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td>Extraction quality is poor on real documents</td><td>Missing entities, weak recall</td><td>Gold triples in the fixture corpus; entity recall metric from week 2; tune the extraction signature before week 3</td></tr>
+      <tr><td>Indexing cost on larger corpora</td><td>Slow or expensive ingestion</td><td>One call per chunk, batched; ingestion report shows tokens; corpus kept at 20 to 30 documents for this plan</td></tr>
+      <tr><td>In-memory Cypher subset can't run graph queries</td><td>Offline tests diverge from live behaviour</td><td>Offline retriever traverses the LPG in Python; a parity test compares it with FalkorDB on the fixture</td></tr>
+      <tr><td>Roadmap order (GraphRetriever planned for I5)</td><td>Design drift, double work in I5</td><td>DG-1 recorded; scope limited to single tenant; I5 extends rather than replaces</td></tr>
+      <tr><td>Codegen fixes change existing generated programs</td><td>Unexpected diffs in <code>generated/</code></td><td>Regenerate in one PR, diff reviewed, notebooks re-run</td></tr>
+      <tr><td>Library change blurs the read-only rule</td><td>Review confusion</td><td>One labelled library commit by the architecture owner in week 1; no ASE run edits <code>models/</code></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="jira">
+  <h2>Export to JIRA</h2>
+  <p>The button copies every epic and story as CSV for JIRA's CSV importer (System → External system import → CSV). Map <em>Issue Id</em> and <em>Parent Id</em> to link stories to epics; <em>Story Points</em> to your story-point field; <em>Sprint</em> to sprint names you create first.</p>
+  <div class="toolbar">
+    <button id="copy-csv" type="button">Copy CSV for JIRA</button>
+    <button id="show-csv" type="button" class="secondary">Show CSV</button>
+    <span id="csv-status" role="status"></span>
+  </div>
+  <textarea id="csv-box" readonly hidden aria-label="CSV for JIRA import"></textarea>
+</section>
+
+<footer>Naive GraphRAG Delivery Plan · prepared 28 October 2026 against main at commit 1705f05. Points are planning estimates; re-plan after week 1.</footer>
+</main>
+</div>
+
+<script>
+const EPICS = [
+  {id:"GR-E1", week:"W1", title:"Foundations and codegen fixes", desc:"Provider-agnostic model calls and generated programs that can carry new state keys and parallel branches."},
+  {id:"GR-E2", week:"W1", title:"Library, spec and selection", desc:"GraphIndexing and NaiveGraphRag in the library, spec RS-11 with corpus, selection and evolution-model entries."},
+  {id:"GR-E3", week:"W2", title:"Corpus ingestion and graph build", desc:"Generated indexing program that chunks a corpus, extracts entities and relations, and writes kg:<project> to FalkorDB."},
+  {id:"GR-E4", week:"W3", title:"Graph retriever", desc:"Entity linking, bounded neighbourhood expansion and cited chunk collection, bound into the generated agent."},
+  {id:"GR-E5", week:"W3", title:"Evaluation and end to end", desc:"RS-11 eval set, graph-aware metrics, L2 and L3 tests, the live end-to-end run."},
+  {id:"GR-E6", week:"W4", title:"Hardening, inspection and handover", desc:"Workbench and notebook views, documentation, review gate and demo."}
+];
+
+const T = [
+  // ---------------- Week 1 ----------------
+  {id:"GR-1", epic:"GR-E1", week:"W1", own:"D", pts:3, sum:"Provider-agnostic model factory",
+   desc:"Add sysmlagents/llm.py with lm(role) returning dspy.LM from SYSMLAGENTS_MODEL (role=task) or SYSMLAGENTS_REFLECTION_MODEL (role=reflection). Offline returns the DummyLM. runtime_stub.configure_lm and codegen's configure() use it; the offline/online choice no longer depends on OPENAI_API_KEY.",
+   ac:["Switching provider is a change of one environment variable","All tests pass with no API key set","No provider SDK imported in pipeline, agent or codegen modules (grep check in a test)"], dep:""},
+  {id:"GR-2", epic:"GR-E1", week:"W1", own:"D", pts:5, sum:"Codegen: fan-in reducers so parallel retrievers can join",
+   desc:"Generated nodes return state deltas instead of the whole state; chunks from parallel branches merge through an Annotated reducer keyed by source_id; fusion waits for all inputs. Port and review the fan-in fix from PR #1. Regenerate generated/.",
+   ac:["RerankHybridRag and AgenticRag programs run offline without InvalidUpdateError","Regenerating twice gives byte-identical files","Notebooks re-run green"], dep:""},
+  {id:"GR-3", epic:"GR-E1", week:"W1", own:"D", pts:3, sum:"Codegen: declare every stage output in the state schema",
+   desc:"Build RagState from the union of STAGE_CONTRACTS outputs plus retrieval keys, so new keys such as verdict, entities and subgraph are not silently dropped by LangGraph.",
+   ac:["CorrectiveRag skips the web fallback when the relevance verdict is 'sufficient' (test)","A new contract output appears in RagState without hand edits"], dep:"GR-2"},
+  {id:"GR-4", epic:"GR-E1", week:"W1", own:"D", pts:2, sum:"Codegen: persist the loop counter in a node",
+   desc:"Move the iteration increment out of the routing function into a node so maxIterations is enforced. Hygiene item; does not block GraphRAG.",
+   ac:["An always-ungrounded SelfRag stops after 3 iterations (test)"], dep:"GR-2", tags:["hygiene"]},
+  {id:"GR-5", epic:"GR-E1", week:"W1", own:"D", pts:1, sum:"Declare runtime dependencies",
+   desc:"Add pypdf and sentence-transformers (already installed) to ASE requirements; remove the stale llm.py comment.",
+   ac:["Fresh environment installs cleanly; pip check reports no problems"], dep:""},
+  {id:"GR-6", epic:"GR-E2", week:"W1", own:"A", pts:2, sum:"Record GraphRAG design decisions DG-1 to DG-7",
+   desc:"Write the decisions in this plan as Decision records (owner, date, reason, requirement) and add a dated note to ROADMAP.md that a single-tenant GraphRetriever moves forward from I5.",
+   ac:["Seven Decision records exist and are linked to RS-11 requirements","ROADMAP.md notes the change and its reason"], dep:""},
+  {id:"GR-7", epic:"GR-E2", week:"W1", own:"A", pts:3, sum:"Library change: GraphIndexing and NaiveGraphRag patterns",
+   desc:"In rag-patterns.sysml add items Entity and Relation; stage defs Loader, Chunker, EntityRelationExtractor (llmCalls 1, declared latency and tokens per chunk), GraphWriter; attributes maxHops and nodeCap on GraphRetriever; patterns GraphIndexing (loader to chunker to extractor to writer) and NaiveGraphRag (graph to synth) with satisfy allocations. One commit labelled as a library change.",
+   ac:["Structural gate passes on the library","Analysis computes NaiveGraphRag at 1 call, 1,650 ms, 2,200 tokens, bounded, provenance preserved","Sweep has no errors; specs/README numbers table regenerated","cli selftest OK"], dep:"GR-6"},
+  {id:"GR-8", epic:"GR-E2", week:"W1", own:"D", pts:5, sum:"Codegen: contracts and programs for the new stage kinds",
+   desc:"Add a STAGE_CONTRACT for EntityRelationExtractor (chunk text to entities and relations as JSON) and RETRIEVAL_STUBS docs for Loader, Chunker, GraphWriter. generate_all emits graph_indexing.py and naive_graph_rag.py.",
+   ac:["Both programs import and run offline with stub implementations","Byte-identical regeneration","No TODO signatures in either program"], dep:"GR-3, GR-7"},
+  {id:"GR-9", epic:"GR-E2", week:"W1", own:"A", pts:3, sum:"Spec RS-11 Contract Relationship Assistant (single tenant)",
+   desc:"Write docs/specs/RS-11 in the RS format: submitted section with FR/QR/C ids (relate clauses via parties, defined terms and cross-references; cite document, clause, page; refuse when unsupported; 3 s latency; 5,000 tokens) and a hidden oracle naming NaiveGraphRag, expected numbers, questions and metrics.",
+   ac:["read_spec parses it; budgets derive to 3000 ms and 5000 tokens","Oracle lists expected pattern, rejections and metrics"], dep:"GR-6"},
+  {id:"GR-10", epic:"GR-E2", week:"W1", own:"D", pts:3, sum:"RS-11 fixture corpus with gold triples",
+   desc:"docs/specs/data/RS-11/corpus: 20 to 30 short synthetic contracts and amendments with shared parties, defined terms and cross-references, plus gold/triples.json and gold/answers.json. If an LLM helps write it, record the model, prompt and seed.",
+   ac:["Workspace.create copies the corpus into inputs/","Gold triples cover every multi-hop eval question","Architecture owner reviewed and approved the corpus"], dep:"GR-9"},
+  {id:"GR-11", epic:"GR-E2", week:"W1", own:"D", pts:2, sum:"RuleSelector: rules and card for NaiveGraphRag",
+   desc:"Add RULES and PATTERN_CARDS entries (relate, cross-reference, parties, defined terms, across documents, relationships, multi-hop).",
+   ac:["RS-11 selects NaiveGraphRag with a rationale and rejections","RS-01 still selects NaiveRag; existing tests unchanged"], dep:"GR-7, GR-9"},
+  {id:"GR-12", epic:"GR-E2", week:"W1", own:"A", pts:2, sum:"Evolution model: index step with @Delta and @Realises",
+   desc:"Add an index step (realises R1) between codegen and eval in the current workbench entry of ase-evolution.sysml, with its @Delta; mirror the tool in ase-system.sysml.",
+   ac:["cli selftest OK, including the orchestrator edge check","Generated orchestrator includes the index step"], dep:"GR-7"},
+
+  // ---------------- Week 2 ----------------
+  {id:"GR-13", epic:"GR-E3", week:"W2", own:"D", pts:2, sum:"Loaders for txt, md and pdf",
+   desc:"rag_runtime/loaders.py returns documents with id, title, path and page-aware text (pypdf for PDF).",
+   ac:["Unit tests over one file of each type","Page numbers preserved for PDF"], dep:"GR-5"},
+  {id:"GR-14", epic:"GR-E3", week:"W2", own:"D", pts:3, sum:"Chunker with stable ids and metadata",
+   desc:"rag_runtime/chunking.py: heading and paragraph aware, size cap, ids <doc>#<n>, keeps section and page. Chunk size is a design attribute.",
+   ac:["Same input gives the same ids","Chunks never split mid-sentence in tests","Section and page carried on every chunk"], dep:"GR-13"},
+  {id:"GR-15", epic:"GR-E3", week:"W2", own:"D", pts:5, sum:"Entity and relation extraction, live and offline",
+   desc:"Live: the generated EntityRelationExtractor signature via dspy. Offline: deterministic rule-based extractor (quoted defined terms, capitalised party names, 'clause n' references) behind the same interface.",
+   ac:["Offline extractor finds at least 80% of gold entities on the fixture","Live extraction LM calls appear in the trace step","Malformed model output is rejected and logged, never written"], dep:"GR-8, GR-10, GR-14"},
+  {id:"GR-16", epic:"GR-E3", week:"W2", own:"D", pts:3, sum:"Entity normalisation and alias merge",
+   desc:"Normalise keys (case, whitespace, punctuation, articles), merge aliases such as 'the Supplier' with the defined party, keep all surface names as aliases.",
+   ac:["Duplicate entity rate on the fixture below 5%","Alias merge is deterministic and unit tested"], dep:"GR-15"},
+  {id:"GR-17", epic:"GR-E3", week:"W2", own:"D", pts:5, sum:"Graph writer for kg:<project> in FalkorDB",
+   desc:"Write Document, Chunk, Entity nodes and HAS_CHUNK, MENTIONS, RELATED edges with parameterised, batched Cypher (UNWIND). Re-ingestion replaces the project's graph. Offline twin builds the same structure as an in-memory LPG.",
+   ac:["Counts in FalkorDB equal counts in the in-memory twin","No string-built Cypher with user data","Re-running ingestion is idempotent"], dep:"GR-16"},
+  {id:"GR-18", epic:"GR-E3", week:"W2", own:"D", pts:2, sum:"Indexes for entity linking",
+   desc:"Create full-text index on Entity name and aliases; range indexes on Chunk.id and Entity.key.",
+   ac:["Index creation is part of ingestion and idempotent","Full-text query returns gold entities for 10 sample terms"], dep:"GR-17"},
+  {id:"GR-19", epic:"GR-E3", week:"W2", own:"D", pts:3, sum:"cli ingest and owned kg graphs",
+   desc:"cli ingest --project <id> runs the generated indexing program; launcher treats kg:* graphs as owned (left intact by cli up, listed by status); journal event ingest.finished; traced as the index step.",
+   ac:["cli ingest --project RS-11 builds kg:RS-11","cli up does not delete kg graphs","Trace folder NN-R1-index exists with graph counts"], dep:"GR-12, GR-17"},
+  {id:"GR-20", epic:"GR-E3", week:"W2", own:"D", pts:2, sum:"Ingestion report",
+   desc:"design/ingest-report.json and .md: documents, chunks, entities, relations, extraction calls and tokens, duplicates merged, failures.",
+   ac:["Report written on every ingestion","Token totals match the LM history"], dep:"GR-19"},
+
+  // ---------------- Week 3 ----------------
+  {id:"GR-21", epic:"GR-E4", week:"W3", own:"D", pts:3, sum:"Entity linking from the question",
+   desc:"Link question terms to entities through the full-text index (live) or token match over names and aliases (offline). Return ranked entity keys with scores.",
+   ac:["Linking recall at least 0.8 on the eval questions' gold entities","Offline and live agree on the fixture for 10 sample questions"], dep:"GR-18"},
+  {id:"GR-22", epic:"GR-E4", week:"W3", own:"D", pts:3, sum:"Bounded neighbourhood expansion",
+   desc:"Expand from linked entities up to maxHops over RELATED, capped at nodeCap nodes, with parameterised Cypher; offline traversal over the LPG.",
+   ac:["Never returns more than nodeCap nodes","Hop depth honoured (unit test with a chain fixture)"], dep:"GR-21"},
+  {id:"GR-23", epic:"GR-E4", week:"W3", own:"D", pts:3, sum:"Chunk collection, ranking and provenance",
+   desc:"Collect chunks that mention expanded entities or state their relations; score by linked-entity overlap and hop distance; return top k as chunks with source_id, text and score; put relation lines in state for the synthesizer.",
+   ac:["Every returned chunk has a source_id that exists in the graph","Gold evidence chunk in top k for at least 70% of multi-hop questions"], dep:"GR-22"},
+  {id:"GR-24", epic:"GR-E4", week:"W3", own:"D", pts:2, sum:"Bind the graph retriever into the generated agent",
+   desc:"rag_runtime.bind(module, project) sets IMPLEMENTATIONS['GraphRetriever']; the eval step uses rag_runtime when the project has a kg graph, otherwise the stub.",
+   ac:["RS-11 eval runs through the real retriever online and the twin offline","RS-01 behaviour unchanged"], dep:"GR-23"},
+  {id:"GR-25", epic:"GR-E4", week:"W3", own:"D", pts:3, sum:"Parity test: in-memory retriever versus FalkorDB",
+   desc:"On the fixture corpus, both backends return the same entities and chunk ids for the eval questions. Skips without FalkorDB.",
+   ac:["Parity on all eval questions when FalkorDB is up","Skipped cleanly in CI"], dep:"GR-24"},
+  {id:"GR-26", epic:"GR-E4", week:"W3", own:"D", pts:2, sum:"Retrieval trace",
+   desc:"step.json for eval records linked entities, hops, chunk ids per question; inspector renders them.",
+   ac:["Step Inspector shows linked entities and chunks for any question"], dep:"GR-24"},
+  {id:"GR-27", epic:"GR-E5", week:"W3", own:"A", pts:3, sum:"RS-11 eval set",
+   desc:"30 questions: 10 single-hop, 10 multi-hop across documents, 5 definitions, 5 unanswerable, each with gold chunk ids and gold entities. Versioned with author and date.",
+   ac:["Every multi-hop question needs at least two documents","Approved by the architecture owner"], dep:"GR-10"},
+  {id:"GR-28", epic:"GR-E5", week:"W3", own:"D", pts:5, sum:"Graph-aware metrics",
+   desc:"Add citation recall@k, cross-document recall, entity-linking recall, abstention accuracy and groundedness, plus measured p95 latency and tokens per answer; each traced to an RS-11 requirement in the report.",
+   ac:["Metrics computed on the offline run with known expected values","Report names the requirement behind each metric"], dep:"GR-27"},
+
+  // ---------------- Week 4 ----------------
+  {id:"GR-29", epic:"GR-E5", week:"W4", own:"D", pts:2, sum:"Baseline comparison",
+   desc:"Run the same eval set with the word-overlap baseline retriever and put both results side by side in the report.",
+   ac:["Report shows GraphRAG versus baseline per metric"], dep:"GR-28"},
+  {id:"GR-30", epic:"GR-E5", week:"W4", own:"D", pts:3, sum:"L2 oracle test test_rs_11.py",
+   desc:"Assert the RS-11 oracle offline: selection, rejections, gate, budgets, numbers, graph content, programs, eval report. Anything this plan can't satisfy is a strict xfail naming its increment.",
+   ac:["Passes offline with no key and no FalkorDB","models/ hash unchanged by the run"], dep:"GR-28"},
+  {id:"GR-31", epic:"GR-E5", week:"W4", own:"D", pts:2, sum:"L3 test with live model and FalkorDB",
+   desc:"Mark slow. Ingest, run the eval set live, assert thresholds agreed in GR-27.",
+   ac:["Passes on the workbench machine with FalkorDB up and a configured model"], dep:"GR-29"},
+  {id:"GR-32", epic:"GR-E5", week:"W4", own:"A", pts:2, sum:"End-to-end acceptance run",
+   desc:"cli run --project RS-11 --online on a clean checkout; review the run record, trace and decision log; record go or no-go as a Decision.",
+   ac:["All five definition-of-done conditions hold","Decision recorded"], dep:"GR-31"},
+  {id:"GR-33", epic:"GR-E6", week:"W4", own:"D", pts:3, sum:"Workbench: knowledge-graph view for kg graphs",
+   desc:"Knowledge Graph page can pick kg:<project> (read-only), search entities and show a neighbourhood; rendering lives in inspector.py.",
+   ac:["Entity search and neighbourhood view work for RS-11","No write path from the app"], dep:"GR-19"},
+  {id:"GR-34", epic:"GR-E6", week:"W4", own:"D", pts:3, sum:"Generated GraphRAG notebook",
+   desc:"Extend notebooks/build_i0.py (or a sibling builder) with a GraphRAG notebook: ingest, inspect graph, ask, trace, evaluate. Never edit the notebook by hand.",
+   ac:["test_notebooks.py executes it offline"], dep:"GR-24"},
+  {id:"GR-35", epic:"GR-E6", week:"W4", own:"D", pts:5, sum:"Agent container (stretch)",
+   desc:"Generate a Dockerfile and compose file for the RS-11 agent with a REST endpoint on the shared FalkorDB network.",
+   ac:["Container answers an RS-11 question locally","Byte-identical regeneration"], dep:"GR-32", tags:["stretch"]},
+  {id:"GR-36", epic:"GR-E6", week:"W4", own:"A", pts:2, sum:"Documentation updates",
+   desc:"Update ROADMAP.md, README.md, the team handbook and the system reference for GraphRAG; regenerate docs/ase-architecture.html.",
+   ac:["Docs match the code; no 36-checks drift introduced"], dep:"GR-32"},
+  {id:"GR-37", epic:"GR-E6", week:"W4", own:"A", pts:1, sum:"Review gate and demo",
+   desc:"Run the roadmap's review checklist (models diff, selftest, orchestrator regen, tests, decision log) and demo the RS-11 agent.",
+   ac:["Checklist recorded in the project notes","Demo held"], dep:"GR-36"}
+];
+
+const WEEK_NAMES = {W1:"Week 1 (2 to 6 Nov)", W2:"Week 2 (9 to 13 Nov)", W3:"Week 3 (16 to 20 Nov)", W4:"Week 4 (23 to 27 Nov)"};
+const OWNER = {A:"Architecture owner", D:"Delivery owner"};
+
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+function ticketCard(t) {
+  const c = el("article", "ticket");
+  const top = el("div", "ticket-top");
+  top.append(el("span", "tid", t.id), el("span", "tsum", t.sum));
+  const meta = el("div", "meta");
+  meta.append(el("span", "tag", t.pts + " pts"), el("span", "tag" + (t.own === "A" ? " own-a" : ""), OWNER[t.own]));
+  (t.tags || []).forEach(x => meta.append(el("span", "tag" + (x === "stretch" ? " stretch" : ""), x)));
+  top.append(meta);
+  c.append(top, el("p", "", t.desc));
+  const ac = el("div", "ac"); ac.append(el("b", "", "Acceptance criteria"));
+  const ul = el("ul"); t.ac.forEach(a => ul.append(el("li", "", a))); ac.append(ul); c.append(ac);
+  if (t.dep) c.append(el("div", "dep", "Depends on: " + t.dep));
+  return c;
+}
+
+function render() {
+  document.querySelectorAll(".weekbody").forEach(body => {
+    const wk = body.dataset.week;
+    const items = T.filter(t => t.week === wk);
+    const epicIds = [...new Set(items.map(t => t.epic))];
+    epicIds.forEach(eid => {
+      const ep = EPICS.find(e => e.id === eid);
+      const box = el("div", "epic");
+      box.append(el("div", "epic-title", ep.id + " · " + ep.title));
+      const list = el("div", "tickets");
+      items.filter(t => t.epic === eid).forEach(t => list.append(ticketCard(t)));
+      box.append(list); body.append(box);
+    });
+    const pts = items.reduce((s, t) => s + t.pts, 0);
+    const span = document.querySelector('[data-pts="' + wk + '"]');
+    if (span) span.textContent = items.length + " stories · " + pts + " points";
+  });
+  const tbl = el("table");
+  tbl.innerHTML = "<thead><tr><th>Week</th><th>Focus</th><th>Stories</th><th>Points</th><th>A / D points</th></tr></thead>";
+  const tb = el("tbody");
+  const focus = {W1:"Foundations, library, spec", W2:"Ingestion and graph build", W3:"Retriever, eval set, metrics", W4:"End to end, inspection, review"};
+  let total = 0, totalN = 0;
+  ["W1","W2","W3","W4"].forEach(w => {
+    const its = T.filter(t => t.week === w);
+    const p = its.reduce((s, t) => s + t.pts, 0);
+    const pa = its.filter(t => t.own === "A").reduce((s, t) => s + t.pts, 0);
+    total += p; totalN += its.length;
+    const tr = el("tr");
+    [WEEK_NAMES[w], focus[w], String(its.length), String(p), pa + " / " + (p - pa)].forEach((v, i) => { const td = el("td", i >= 2 ? "num" : "", v); tr.append(td); });
+    tb.append(tr);
+  });
+  const tr = el("tr");
+  ["Total", "", String(totalN), String(total), ""].forEach((v, i) => { const td = el("td", i >= 2 ? "num" : "", v); if (i === 0) td.style.fontWeight = "600"; tr.append(td); });
+  tb.append(tr);
+  tbl.append(tb);
+  document.getElementById("week-summary").append(tbl);
+}
+
+function csvCell(v) { const s = String(v == null ? "" : v); return '"' + s.replace(/"/g, '""') + '"'; }
+function buildCsv() {
+  const rows = [["Issue Id","Parent Id","Issue Type","Summary","Description","Story Points","Labels","Sprint"]];
+  EPICS.forEach(e => rows.push([e.id, "", "Epic", e.title, e.desc, "", "ase graphrag", "GraphRAG " + e.week]));
+  T.forEach(t => {
+    const desc = t.desc + "\n\nAcceptance criteria:\n" + t.ac.map(a => "- " + a).join("\n") +
+      (t.dep ? "\n\nDepends on: " + t.dep : "") + "\n\nOwner: " + OWNER[t.own];
+    const labels = ["ase", "graphrag", t.own === "A" ? "architecture" : "delivery"].concat(t.tags || []).join(" ");
+    rows.push([t.id, t.epic, "Story", t.sum, desc, t.pts, labels, "GraphRAG " + t.week]);
+  });
+  return rows.map(r => r.map(csvCell).join(",")).join("\r\n");
+}
+
+render();
+const box = document.getElementById("csv-box");
+const status = document.getElementById("csv-status");
+document.getElementById("show-csv").addEventListener("click", () => {
+  box.value = buildCsv(); box.hidden = !box.hidden;
+  if (!box.hidden) { box.focus(); box.select(); }
+});
+document.getElementById("copy-csv").addEventListener("click", () => {
+  const csv = buildCsv();
+  const fallback = () => { box.value = csv; box.hidden = false; box.focus(); box.select(); status.textContent = "Copy blocked here: the CSV is selected below, press Ctrl+C."; };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(csv).then(() => { status.textContent = "Copied " + (EPICS.length + T.length) + " issues as CSV."; }, fallback);
+  } else { fallback(); }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:"neutral",gantt:{useWidth:900}});</script>
+</body></html>

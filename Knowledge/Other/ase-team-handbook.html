@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>@page{size:A4;margin:14mm 12mm} html{color-scheme:light}</style>
+<title>ASE Team Handbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the ASE field-manual look (same tokens as docs/agentic-design-playbook.html) - a sticky left rail of chapters, one column of reading text, tables and diagrams set off on paper. */
+:root {
+  --bg: #f6f8f9;
+  --paper: #ffffff;
+  --ink: #18222d;
+  --muted: #586675;
+  --rule: #d6dde3;
+  --accent: #0d7068;
+  --accent-soft: #e0f1ef;
+  --warn: #8a5a00; --warn-bg: #fcf1d9;
+  --code-bg: #eef2f4;
+  --display: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161c; --paper: #171f27; --ink: #e4e9ee; --muted: #9babba; --rule: #2a3540;
+    --accent: #4fc2b6; --accent-soft: #15302d; --warn: #f0c36a; --warn-bg: #352a10; --code-bg: #1d2731;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161c; --paper: #171f27; --ink: #e4e9ee; --muted: #9babba; --rule: #2a3540;
+  --accent: #4fc2b6; --accent-soft: #15302d; --warn: #f0c36a; --warn-bg: #352a10; --code-bg: #1d2731;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); }
+.layout { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 72px; display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 40px; }
+nav.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; display: grid; gap: 2px; font-size: 14px; }
+nav.rail .label { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 12px 0 6px; }
+nav.rail a { color: var(--ink); text-decoration: none; padding: 3px 8px; border-left: 2px solid transparent; }
+nav.rail a:hover, nav.rail a:focus-visible { border-left-color: var(--accent); color: var(--accent); outline: none; }
+main { display: grid; gap: 56px; min-width: 0; }
+section { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 20px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } nav.rail { position: static; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } nav.rail .label { grid-column: 1 / -1; } }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(32px, 5vw, 50px); font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; }
+h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; padding-top: 8px; border-top: 1px solid var(--rule); }
+h3 { font-size: 17px; font-weight: 600; margin-top: 8px; }
+p, li { max-width: 72ch; }
+p { margin: 0; }
+ul, ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.kicker { font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+.lead { font-size: 18px; line-height: 1.55; color: var(--ink); }
+.muted { color: var(--muted); }
+code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+pre.cmd { font: 13px/1.55 var(--mono); background: var(--code-bg); padding: 14px 16px; border-radius: 6px; overflow-x: auto; margin: 0; }
+.table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+th { font: 600 12px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card h3 { margin: 0; }
+.rule-no { font: 500 12px/1 var(--mono); color: var(--accent); }
+.note { background: var(--warn-bg); color: var(--ink); border-left: 3px solid var(--warn); padding: 12px 16px; border-radius: 4px; }
+.note strong { color: var(--warn); }
+.callout { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 4px; }
+.diagram { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; overflow-x: auto; }
+.diagram pre.mermaid { margin: 0; background: transparent; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 12px/1 var(--mono); padding: 5px 8px; border-radius: 999px; background: var(--code-bg); color: var(--ink); }
+.chip.ext { background: var(--accent-soft); color: var(--accent); }
+dl.gloss { display: grid; grid-template-columns: minmax(140px, 200px) minmax(0, 1fr); gap: 8px 20px; margin: 0; }
+dl.gloss dt { font-weight: 600; }
+dl.gloss dd { margin: 0; max-width: 72ch; }
+@media (max-width: 560px) { dl.gloss { grid-template-columns: 1fr; } dl.gloss dd { margin-bottom: 8px; } }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--rule); padding-top: 16px; }
+@media print { nav.rail { display: none; } .layout { grid-template-columns: 1fr; padding-block: 0; } h2 { break-after: avoid; } tr, .card, .diagram { break-inside: avoid; } .table-wrap { overflow: visible; } }
+</style>
+
+<div class="layout">
+<nav class="rail" aria-label="Chapters">
+  <span class="label">Why</span>
+  <a href="#what">What ASE is</a>
+  <a href="#business">Business philosophy</a>
+  <a href="#principles">Engineering principles</a>
+  <span class="label">How</span>
+  <a href="#repo">Repository map</a>
+  <a href="#method">The method</a>
+  <a href="#library">Pattern library</a>
+  <a href="#self">ASE modelled in ASE</a>
+  <a href="#graph">Knowledge graph</a>
+  <span class="label">Where it goes</span>
+  <a href="#evolution">Evolution I0 to I6</a>
+  <a href="#specs">Reference specs</a>
+  <a href="#catalogue">Pattern catalogue</a>
+  <span class="label">Working here</span>
+  <a href="#work">How we work</a>
+  <a href="#week1">Your first week</a>
+  <a href="#gloss">Glossary</a>
+</nav>
+
+<main>
+<header style="display:grid;gap:14px">
+  <span class="kicker">Onboarding · Agentic Systems Engineering</span>
+  <h1>ASE Team Handbook</h1>
+  <p class="lead">ASE takes a written specification and produces an engineered, analysed and optimised agentic system. This handbook explains why it exists, how it is built, where it is going, and the rules everyone on the team works by.</p>
+  <p class="muted">Sources: <code>CLAUDE.md</code>, <code>docs/ROADMAP.md</code>, <code>models/*.sysml</code>, <code>methodology/*.sysml</code>, <code>docs/ase-agent-factory.pdf</code> (business briefing, October 2026). State as of 28 October 2026, increment I0 delivered.</p>
+</header>
+
+<section id="what">
+  <h2>What ASE is</h2>
+  <p>ASE is an <strong>agent factory</strong>. A client's requirements go in as a specification. ASE consolidates them, picks a proven design from a pattern library, models the design in SysML v2, proves its properties with automated checks, gets a human decision, generates the code, evaluates it, optimises it and, from increment I4, deploys it.</p>
+  <div class="callout"><p>"The goal is to produce agents the way a plant produces parts: from a library of proven designs, through a fixed routing, with inspection at every station." <span class="muted">(business briefing)</span></p></div>
+  <p>Three assets serve that aim, and when priorities conflict, ASE wins:</p>
+  <div class="grid-2">
+    <div class="card"><span class="rule-no">PRIMARY</span><h3>ASE Agentic System</h3><p>The factory itself: models, analysis, code generation, the workbench app, the MCP server.</p></div>
+    <div class="card"><span class="rule-no">FEEDS ASE</span><h3>Pattern knowledge base</h3><p>The SysML v2 pattern library, the methodology and catalogue, the knowledge graph, and the skill library. ASE selects designs from it; ASE runs feed gaps back into it.</p></div>
+    <div class="card"><span class="rule-no">USES ASE</span><h3>ASE School</h3><p>An advanced course in agentic architecture engineering. Every module ships a real production asset; "the coursework <em>is</em> the factory build".</p></div>
+  </div>
+</section>
+
+<section id="business">
+  <h2>Business philosophy</h2>
+  <p>The business case rests on one observation: most companies need the same few kinds of agent, and they need them built, checked and maintained reliably rather than invented each time.</p>
+  <h3>The product is five agent types, not industries</h3>
+  <div class="chips"><span class="chip">Document Q&amp;A</span><span class="chip">Document checker</span><span class="chip">Triage &amp; router</span><span class="chip">Exception handler</span><span class="chip">Report drafter</span></div>
+  <p>Each type is a pattern family in the library. A new client is a new specification for an existing type, not a new project from scratch.</p>
+  <h3>The economic lever is fleet maintenance</h3>
+  <p>"A fix to a template, a security patch or a model upgrade is made once. ASE then regenerates every affected agent, re-runs its tests and redeploys only those that pass." That only works because generated code is deterministic and every agent has its own evals.</p>
+  <h3>Who it is for</h3>
+  <ul>
+    <li><strong>Mid-sized companies</strong>, including those on smaller ERPs (Business Central, Odoo, Sage, Epicor), as well as large ones.</li>
+    <li><strong>A partner channel</strong>: ERP resellers and managed IT providers who need "a repeatable, tested product they can resell without an AI team".</li>
+  </ul>
+  <h3>Commitments to clients</h3>
+  <div class="grid-2">
+    <div class="card"><h3>Vendor-neutral</h3><p>"The LLM provider is configuration." Generated code uses open frameworks (LangGraph, DSPy), so the client owns it.</p></div>
+    <div class="card"><h3>Governance by design</h3><p>"The audit trail is a by-product of production, not extra work." Every decision is a recorded graph node.</p></div>
+    <div class="card"><h3>Nothing ships untested</h3><p>An agent is deployed only after it passes evals tied to the client's own requirements.</p></div>
+  </div>
+  <h3>How the factory is measured</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Metric</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Throughput</td><td>Agents delivered per period</td></tr>
+      <tr><td>First-pass yield</td><td>Share of designs that pass all checks and evals without rework</td></tr>
+      <tr><td>Lead time</td><td>Spec in to deployed agent; target "under one day" for a standard type</td></tr>
+      <tr><td>Cost per agent</td><td>Machine and people cost to produce one agent</td></tr>
+      <tr><td>Rework rate</td><td>Share of designs sent back from evaluation (activities A7, A8)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Commercial sequence</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>When</th><th>Offer</th></tr></thead>
+    <tbody>
+      <tr><td>Now</td><td>Design sprint (2 to 3 weeks, fixed price), architecture review, training</td></tr>
+      <tr><td>Next</td><td>Agent packs, partner channel, AI assurance and evidence packs (EU AI Act, ISO/IEC 42001)</td></tr>
+      <tr><td>Later</td><td>The factory as a platform</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="principles">
+  <h2>Engineering principles</h2>
+  <p>These rules are not style preferences. Tests and review enforce them, and a change that breaks one is rejected however good it is otherwise.</p>
+  <h3>Six non-negotiables</h3>
+  <div class="grid-2">
+    <div class="card"><span class="rule-no">1</span><h3>Controls are read-only</h3><p>The pattern library (<code>models/rag-patterns.sysml</code>), <code>methodology/</code> and the skill library are obeyed, never edited by an ASE run. Gaps become an <code>@Extension</code> on the design, with a reason. A passing spec with a dirty <code>models/</code> diff is a failing spec. Promotion into the library is a human commit.</p></div>
+    <div class="card"><span class="rule-no">2</span><h3>ASE is modelled in ASE</h3><p><code>models/ase-system.sysml</code> describes ASE's own agents, flows and budgets in the same vocabulary it uses for clients. The orchestrator is generated from it, and selftest proves they match.</p></div>
+    <div class="card"><span class="rule-no">3</span><h3>Every decision has a record</h3><p>Pattern choice, waiver, deferral, assumption, optimiser acceptance: each is a graph node with owner, date, reason and the requirement it affects. "ASE drafts options and revisions; it never ratifies one."</p></div>
+    <div class="card"><span class="rule-no">4</span><h3>Generated artifacts are never edited</h3><p><code>generated/</code> and <code>ASE School/notebooks/</code> are build outputs. Change the generator, then regenerate.</p></div>
+    <div class="card"><span class="rule-no">5</span><h3>Skills live in one place</h3><p>Only in <code>AI Skills/skills/</code>. Architecture skills map to the methodology and are read through the <code>ase</code> MCP tools.</p></div>
+    <div class="card"><span class="rule-no">6</span><h3>Provider-agnostic</h3><p>The model is chosen by <code>SYSMLAGENTS_MODEL</code> (a <code>provider/model</code> string) through <code>dspy.LM</code> or a LangChain factory. No provider SDK in pipeline, agent or codegen code. Offline paths work with no key.</p></div>
+  </div>
+  <h3>The production contract</h3>
+  <p>ASE's output is a deployed agent, not a source file. Three rules make that repeatable:</p>
+  <ol>
+    <li><strong>Code is deterministic.</strong> Same design, same library version, same generator version gives a byte-identical program and deployment package.</li>
+    <li><strong>What a model produces is governed, not deterministic.</strong> Eval datasets and optimised prompts are versioned artifacts with seed, model, input hashes and approver. A regenerated artifact is a new version, never an overwrite.</li>
+    <li><strong>Nothing is deployed that has not passed its evals.</strong> The deploy gate reads the requirement thresholds and the held-out verdict.</li>
+  </ol>
+  <h3>Where the model decides, and where it doesn't</h3>
+  <p>Deterministic where the model determines the answer: code generation, analysis, traceability, evidence packs, deployment, and deciding <em>what</em> is missing from a spec. Model-driven where it does not: wording elicitation questions, writing rationale, composing new designs, synthesising datasets, writing instructions.</p>
+</section>
+
+<section id="repo">
+  <h2>Repository map</h2>
+  <p>Three projects with one-way dependencies. There is no install step and no packaging; <code>sysmlagents/_paths.py</code> puts <code>AI Skills</code> on the import path.</p>
+  <div class="diagram"><pre class="mermaid">
+flowchart LR
+  S["AI Skills<br/>skills/ + ontoagents"] --> A["ASE Agentic System<br/>sysmlagents, models, app"]
+  A --> C["ASE School<br/>course notebooks"]
+  S --> C
+  </pre></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Path</th><th>What lives there</th></tr></thead>
+    <tbody>
+      <tr><td><code>AI Skills/skills/</code></td><td>32 skills: architecture process (<code>ase-arch-*</code>), 9 viewpoints, 13 perspectives, the 55-pattern catalogue, the SysML gate (<code>description-to-sysmlv2</code>)</td></tr>
+      <tr><td><code>AI Skills/ontoagents/</code></td><td>Shared substrate: <code>skill_port</code> (progressive disclosure of skills), <code>lc_tools</code> (skills as LangChain tools), <code>observability</code> (traces for LangChain and DSPy)</td></tr>
+      <tr><td><code>ASE Agentic System/models/</code></td><td>Pattern library, ASE self-model, evolution model, tripwire model</td></tr>
+      <tr><td><code>ASE Agentic System/methodology/</code></td><td>IDEF0 process, viewpoint and perspective catalogue, profile</td></tr>
+      <tr><td><code>ASE Agentic System/sysmlagents/</code></td><td>The Python implementation: pipeline, analysis, checks, codegen, graph stores, CLI, MCP server</td></tr>
+      <tr><td><code>ASE Agentic System/app/</code></td><td>Streamlit workbench for inspecting runs</td></tr>
+      <tr><td><code>ASE Agentic System/docs/</code></td><td>Roadmap, specs RS-01 to RS-10, briefing, playbook, generated architecture page</td></tr>
+      <tr><td><code>ASE Agentic System/workspace/</code></td><td>One folder per project (gitignored: may hold client material)</td></tr>
+      <tr><td><code>ASE School/</code></td><td>Programme design, modules M01 to M12, notebooks, build scripts</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="method">
+  <h2>The method</h2>
+  <p>ASE follows the Architecture Definition Process of Rozanski and Woods (<em>Software Systems Architecture</em>, 2nd ed., ch. 7), expressed as an IDEF0 model in <code>methodology/ase-process-idef0.sysml</code>. Every ASE step realises one activity.</p>
+  <div class="diagram"><pre class="mermaid">
+flowchart LR
+  A1["A1 Consolidate the inputs"] --> A2["A2 Identify scenarios"]
+  A2 --> A3["A3 Identify relevant styles"]
+  A3 --> A4["A4 Produce candidate architecture"]
+  A4 --> A5["A5 Explore options"]
+  A5 --> A6{"A6 Evaluate with stakeholders"}
+  A6 -- rework --> A7["A7 Rework the architecture"]
+  A6 -- revisit --> A8["A8 Revisit the requirements"]
+  A7 --> A5
+  A8 --> A5
+  A6 -- accepted --> R1["R1 Realise: code, evaluate, optimise, deploy"]
+  </pre></div>
+  <p>IDEF0 separates <strong>inputs</strong> (consumed; you may transform them) from <strong>controls</strong> (governing; not yours to change). Viewpoints, perspectives and the pattern catalogue are controls. This one distinction drives the read-only rule.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Node</th><th>Activity</th><th>Controls</th><th>Output</th><th>ASE agent</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td>Consolidate the inputs</td><td>Stakeholder agreement</td><td>Consolidated inputs, open areas</td><td>IntakeAgent (assists)</td></tr>
+      <tr><td>A2</td><td>Identify scenarios</td><td>Quality property requirements</td><td>Architectural scenarios</td><td>ScenarioAgent (assists)</td></tr>
+      <tr><td>A3</td><td>Identify relevant styles</td><td>Pattern catalogue</td><td>Candidate styles</td><td>PatternAgent (performs)</td></tr>
+      <tr><td>A4</td><td>Produce a candidate architecture</td><td>Styles, viewpoints, perspectives</td><td>Draft views</td><td>DesignAgent (performs)</td></tr>
+      <tr><td>A5</td><td>Explore the options</td><td>Viewpoints, perspectives</td><td>Refined views, decisions</td><td>AnalysisAgent (performs)</td></tr>
+      <tr><td>A6</td><td>Evaluate with stakeholders</td><td>Stakeholder concerns</td><td>Review comments, acceptance</td><td>EvidenceAgent (assists)</td></tr>
+      <tr><td>A7</td><td>Rework the architecture</td><td>Styles, viewpoints, perspectives</td><td>Reworked views</td><td>DesignAgent (performs)</td></tr>
+      <tr><td>A8</td><td>Revisit the requirements</td><td>Stakeholder agreement</td><td>Revised requirements</td><td>EvidenceAgent (assists); "may draft a revision, may not ratify one"</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Viewpoints and perspectives</h3>
+  <p>Built on ISO/IEC/IEEE 42010 constructs. A perspective earns its place only if it declares at least one computable check.</p>
+  <p><strong>9 viewpoints</strong> (highlighted = ASE extensions):</p>
+  <div class="chips"><span class="chip">Context</span><span class="chip">Functional</span><span class="chip">Information</span><span class="chip ext">Knowledge</span><span class="chip">Concurrency</span><span class="chip ext">Autonomy</span><span class="chip">Deployment</span><span class="chip">Operational</span><span class="chip">Development</span></div>
+  <p><strong>13 perspectives, 34 automated checks</strong>:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Perspective</th><th>Checks</th></tr></thead>
+    <tbody>
+      <tr><td>Security</td><td>trust_escalation, data_exposure, tool_authorisation, sandbox_consistency, trust_declared</td></tr>
+      <tr><td>Performance &amp; Scalability</td><td>latency_budget, critical_path, fanout_compounding</td></tr>
+      <tr><td>Availability &amp; Resilience</td><td>articulation_points, minimum_cut, fallback_coverage, cascade_depth</td></tr>
+      <tr><td>Evolution</td><td>variation_rules, vocabulary_conformance, orphan_stages, dangling_exits, duplicate_capability</td></tr>
+      <tr><td>Regulation</td><td>requirement_traceability, verification_coverage, evidence_generable, concern_coverage, check_coverage, orphan_stakeholder, high_risk_classification</td></tr>
+      <tr><td>Development Resource</td><td>build_surface</td></tr>
+      <tr><td>Cost (extension)</td><td>cost_budget, llm_call_count, cost_sensitivity</td></tr>
+      <tr><td>Groundedness (extension)</td><td>provenance_paths, citation_carriers, unsourced_stages</td></tr>
+      <tr><td>Drift (extension)</td><td>bounded_cycles, progress_conditions, envelope_gate</td></tr>
+      <tr><td>Location, Usability, Accessibility, Internationalisation</td><td>Review-only, each with a recorded reason</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="library">
+  <h2>Pattern library</h2>
+  <p><code>models/rag-patterns.sysml</code> holds six RAG patterns over one shared stage vocabulary. Patterns differ only in which stages they compose and how they wire them. Every stage carries declared estimates: <code>llmCalls</code>, <code>latencyMs</code>, <code>costTokens</code>, <code>fanOut</code>, <code>preservesProvenance</code>, <code>hasFallback</code>.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Pattern</th><th>Stages</th><th class="num">LLM calls</th><th class="num">Latency ms</th><th class="num">Tokens</th><th>Provenance</th></tr></thead>
+    <tbody>
+      <tr><td>NaiveRag</td><td>dense retriever, synthesizer</td><td class="num">1</td><td class="num">1,520</td><td class="num">2,200</td><td>yes</td></tr>
+      <tr><td>RerankHybridRag</td><td>dense + sparse, fusion, rerank, synthesizer</td><td class="num">1</td><td class="num">1,715</td><td class="num">2,200</td><td>yes</td></tr>
+      <tr><td>HydeRag</td><td>HyDE generator, dense, synthesizer</td><td class="num">2</td><td class="num">2,420</td><td class="num">3,300</td><td>no</td></tr>
+      <tr><td>CorrectiveRag</td><td>dense, relevance judge, web fallback, synthesizer</td><td class="num">2</td><td class="num">3,020</td><td class="num">3,000</td><td>yes</td></tr>
+      <tr><td>SelfRag</td><td>dense, synthesizer, groundedness judge (loop, max 3)</td><td class="num">6</td><td class="num">6,660</td><td class="num">9,300</td><td>yes</td></tr>
+      <tr><td>AgenticRag</td><td>orchestrator, multi-query, dense + sparse, fusion, rerank, synthesizer, judge (loop, max 5)</td><td class="num">46</td><td class="num">16,575</td><td class="num">68,600</td><td>yes</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">Numbers are computed by the analysis from the declared stage estimates (worst case over the loop bound), not typed in. <code>GraphRetriever</code> and <code>QueryReformulator</code> are defined in the vocabulary but not yet used by any pattern.</p>
+</section>
+
+<section id="self">
+  <h2>ASE modelled in ASE</h2>
+  <p><code>models/ase-system.sysml</code> describes the target workbench, <code>AseWorkbench</code>, in the same vocabulary as client designs. Each agent appears twice: as a leaf stage with aggregate numbers, and as its own pipeline. The self-test asserts the two agree.</p>
+  <div class="diagram"><pre class="mermaid">
+flowchart LR
+  L[SpecLoader] --> I[IntakeAgent]
+  I --> S[ScenarioAgent] --> P[PatternAgent] --> D[DesignAgent]
+  D --> M[(Materialiser)] --> AN[AnalysisAgent] --> E{EvidenceAgent}
+  E -- rework / revisit --> D
+  E -- accepted --> C[CodegenAgent] --> EV[EvalAgent] --> O[OptimiserAgent]
+  O -- measurements --> M
+  </pre></div>
+  <p>Run-level budgets for ASE itself: 3 hours latency (a recorded decision dated 2026-09-21, because the optimiser alone is 96% of the path) and 1,000,000 tokens. The model also records ASE's own known gaps (TrustBoundaryGap, GateVisibilityGap, HierarchyGap, ExternalKindGap) as stated positions rather than hiding them.</p>
+  <p><code>models/ase-evolution.sysml</code> holds the workbench at each increment, I0 to I6, as its own pattern, with <code>@Release</code>, <code>@Delta</code> (stub, introduce, extend, replace, measure) and <code>@Realises</code> (which IDEF0 activity each step performs). <code>orchestrator.build()</code> generates the running LangGraph from the current increment's flows.</p>
+</section>
+
+<section id="graph">
+  <h2>Knowledge graph</h2>
+  <p>Two backends behind one API (<code>graphstore.py</code>): an in-memory graph for tests and offline work, and FalkorDB in Docker for the full stack. <code>parity()</code> checks they agree.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Graph</th><th>Holds</th><th>Who writes</th></tr></thead>
+    <tbody>
+      <tr><td><code>ase</code> (control)</td><td>Methodology: activities, viewpoints, perspectives, concerns, checks</td><td>Nobody at run time; read-only</td></tr>
+      <tr><td><code>ase-designs</code></td><td>Every project's design, requirements, decisions, findings and runs, partitioned as <code>design:&lt;project-id&gt;</code></td><td>Only <code>materialise.py</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>The <code>ase</code> MCP server exposes typed tools (<code>ase_step</code>, <code>ase_controls</code>, <code>ase_viewpoint</code>, <code>ase_perspective</code>, <code>ase_gap</code>, …) rather than raw Cypher, by design, so agents can read the method but never write to it.</p>
+</section>
+
+<section id="evolution">
+  <h2>Evolution, I0 to I6</h2>
+  <p>Seven increments. Each ends with a working product that does strictly more than the last, is described by its own SysML model, and passes every spec assigned to it or to any earlier increment.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Inc</th><th>Goal</th><th>Specs</th><th>What changes</th></tr></thead>
+    <tbody>
+      <tr><td>I0 ✓</td><td>Walking skeleton: one command runs the pipeline on RS-01; the self-model exists</td><td>RS-01</td><td>Scripted answers, keyword selector, pattern copy, sweep only, stub evaluator. Delivered 2026-09-21</td></tr>
+      <tr><td>I1</td><td>Intake: find what is missing against the methodology, ask, record assumptions</td><td>RS-01 full, RS-02</td><td>IntakeAgent; deterministic gap detection; the LLM only words the questions</td></tr>
+      <tr><td>I2</td><td>Pattern selection from the graph; design instantiation</td><td>RS-02, RS-03</td><td>ScenarioAgent, PatternAgent, DesignAgent; <code>@PatternForm</code> in the library</td></tr>
+      <tr><td>I3</td><td>Analysis, options, negotiation, conditional edges</td><td>RS-04 to RS-06</td><td>AnalysisAgent, EvidenceAgent; first rework loop (max 3); options table</td></tr>
+      <tr><td>I4</td><td>Spec in, deployed and measured agent out</td><td>RS-01 to RS-05 at L3</td><td>Real retrieval runtime, eval datasets, GEPA with held-out gate, Deployer, measured numbers written back</td></tr>
+      <tr><td>I5</td><td>Vocabulary extension and pattern composition</td><td>RS-07, RS-08</td><td>Composer; trust and tenancy; runtime patterns in deployment templates; promotion workflow</td></tr>
+      <tr><td>I6</td><td>Multi-agent composition and governed self-improvement</td><td>RS-09, RS-10</td><td>Agent-as-part vocabulary, evidence packs, release gate, canary deploys; ASE optimises its own prompts</td></tr>
+    </tbody>
+  </table></div>
+  <p>Specs move through four tiers: <strong>1</strong> runs end to end, <strong>2</strong> finds the gap and gets a decision, <strong>3</strong> negotiates or extends the vocabulary, <strong>4</strong> multi-agent, regulated evidence, the method applied to itself.</p>
+</section>
+
+<section id="specs">
+  <h2>Reference specs</h2>
+  <p>Each spec has a submitted part (given to ASE, "deliberately incomplete, sometimes inconsistent, occasionally infeasible") and a hidden test oracle with scripted stakeholder answers. They are the acceptance tests of the factory.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Spec</th><th>Tier</th><th>Expected design</th><th>What it proves</th></tr></thead>
+    <tbody>
+      <tr><td>RS-01 HR Policy Assistant</td><td>1</td><td>NaiveRag</td><td>The full happy path</td></tr>
+      <tr><td>RS-02 Equipment Manual Assistant</td><td>1</td><td>RerankHybridRag</td><td>Reasoned selection, parallel branches, a version filter the library lacks</td></tr>
+      <tr><td>RS-03 Research Abstracts Explorer</td><td>2</td><td>HydeRag, gap signed off</td><td>Surfacing an unallocated requirement and getting a decision</td></tr>
+      <tr><td>RS-04 Support KB with Web Fallback</td><td>2</td><td>CorrectiveRag</td><td>Conditional branch, fallback, first security finding</td></tr>
+      <tr><td>RS-05 Clinical Guideline Q&amp;A</td><td>2</td><td>SelfRag</td><td>Bounded loop, abstention, measured feedback (flagship)</td></tr>
+      <tr><td>RS-06 Enterprise Knowledge Copilot</td><td>3</td><td>Infeasible as specified</td><td>Proving infeasibility and negotiating instead of designing</td></tr>
+      <tr><td>RS-07 Multi-tenant Contract Assistant</td><td>3</td><td>RerankHybridRag + GraphRetriever + tenancy</td><td>Security end to end; vocabulary extended with a reason</td></tr>
+      <tr><td>RS-08 Conversational Onboarding</td><td>3</td><td>Composed, two workload classes</td><td>New stage kinds, response-time classes</td></tr>
+      <tr><td>RS-09 Competitive Intelligence Agent</td><td>4</td><td>Multi-agent orchestrator–worker</td><td>Concurrency and autonomy views, network-science checks</td></tr>
+      <tr><td>RS-10 Regulated Financial Advice</td><td>4</td><td>SelfRag + human oversight + evidence pack</td><td>Full regulation perspective; gated optimisation</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="catalogue">
+  <h2>Pattern catalogue</h2>
+  <p>Beyond RAG, the library will grow from a catalogue of 55 agentic patterns (Arsanjani and Bustos, <em>Agentic Architectural Patterns for Building Multi-Agent Systems</em>), held in <code>AI Skills/skills/ase-arch-patterns/references/patterns.json</code>. They are ordered single-agent first: a pattern is built only after the patterns it requires.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Stage</th><th>Theme</th><th class="num">Patterns</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>P1</td><td>Minimal single agent</td><td class="num">6</td><td>Single Agent Baseline, Sensing with RAG, Watchdog Timeout, Agent Calls Human</td></tr>
+      <tr><td>P2</td><td>Reasoning and self-correction</td><td class="num">6</td><td>Structured Reasoning and Self-Correction, Instruction Fidelity Auditing</td></tr>
+      <tr><td>P3</td><td>Auditable and guarded</td><td class="num">6</td><td>Agent Self-Defense, Authentication and Authorization, Sandboxing, Rate Limiting</td></tr>
+      <tr><td>P4</td><td>Evaluated and optimised</td><td class="num">4</td><td>Custom Evaluation Metrics, Red Teaming, Tokenomics</td></tr>
+      <tr><td>P5</td><td>Production single agent</td><td class="num">6</td><td>Fallback Model, Incremental Checkpointing, Event-Driven Reactivity</td></tr>
+      <tr><td>P6</td><td>Top-down multi-agent</td><td class="num">9</td><td>Agent Router, Supervisor, Multi-Agent Planning, Tool and Agent Registry</td></tr>
+      <tr><td>P7</td><td>Meta-agents, resilience, governance of teams</td><td class="num">10</td><td>Supervision Tree, Blackboard, Canary Agent Testing</td></tr>
+      <tr><td>P8</td><td>Decentralised coordination, self-improvement</td><td class="num">8</td><td>Consensus, Negotiation, Swarm, Measuring Business Value</td></tr>
+    </tbody>
+  </table></div>
+  <p>The catalogue is itself a control: obey it, never edit it during a project. <code>scripts/catalogue.py coverage</code> reports which stage a system has reached and which prerequisites are missing.</p>
+</section>
+
+<section id="work">
+  <h2>How we work</h2>
+  <h3>Item by item, with a review gate</h3>
+  <ol>
+    <li>Every item has a written goal, the files it touches, a definition of done, and its model delta if it changes ASE's agents, flows or tools.</li>
+    <li>The model delta (<code>ase-system.sysml</code>, <code>ase-evolution.sysml</code>) lands before the code.</li>
+    <li>One item per pull request, rebased on current main, small enough to review in one sitting.</li>
+    <li>Verify (<code>cli selftest</code> plus tests), report, and wait for approval before the next item.</li>
+  </ol>
+  <h3>Three test layers</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Layer</th><th>What it checks</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>L1 Gate and self-model</td><td>Models pass the structural gate; the sweep has no errors; the orchestrator regenerates identically; every step realises an activity</td><td><code>cli selftest</code>, <code>tests/test_selfmodel.py</code></td></tr>
+      <tr><td>L2 Spec oracles</td><td>Each RS-xx end to end with the scripted stakeholder. What the current increment cannot meet is <code>xfail</code> naming the increment that will; burn them down, never delete assertions</td><td><code>tests/specs/test_rs_xx.py</code></td></tr>
+      <tr><td>L3 Generated product</td><td>The generated agent on real data clears its metric thresholds; from I4 through its deployed endpoint</td><td>marked <code>slow</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>Tests run with no FalkorDB and no model calls. If your change needs a key or a database to pass its tests, it's not done.</p>
+  <h3>Pull request checklist</h3>
+  <ul>
+    <li>Rebased on current main, no conflicts.</li>
+    <li><code>models/</code>, <code>methodology/</code> and skills unchanged, or the change is a reviewed library change and says so.</li>
+    <li>No provider SDK imported in pipeline, agent or codegen code.</li>
+    <li>A new step has an <code>@Realises</code> entry, and <code>cli selftest</code> is OK.</li>
+    <li>Offline tests pass with no key and no database.</li>
+    <li>Generated files regenerated, not edited.</li>
+    <li>Runs go through projects (<code>workspace/&lt;id&gt;/runs/</code>), not ad-hoc folders.</li>
+  </ul>
+</section>
+
+<section id="week1">
+  <h2>Your first week</h2>
+  <p>Python environment: conda <code>DATAENLIGHT_AI_ARCH_PATTERNS</code>, with the root <code>requirements.txt</code> plus <code>ASE Agentic System/requirements.txt</code>. On Windows set <code>PYTHONIOENCODING=utf-8</code>. From <code>ASE Agentic System/</code>:</p>
+<pre class="cmd">python -m sysmlagents.cli selftest                    # L1: should end with OK
+python -m pytest tests -m "not slow" -c tests/pytest.ini
+python -m sysmlagents.cli run docs/specs/RS-01-hr-policy-assistant.md --offline
+python -m sysmlagents.cli trace RS-01                # the steps of that run
+python -m sysmlagents.cli explain RS-01
+python -m sysmlagents.cli up                         # Docker + FalkorDB + graphs + workbench app</pre>
+  <ol>
+    <li><strong>Day 1.</strong> Read <code>CLAUDE.md</code>, then this handbook, then <code>docs/ROADMAP.md</code> sections 2 and 3.</li>
+    <li><strong>Day 2.</strong> Run the commands above. Open the workbench and follow one RS-01 run step by step in the Step Inspector.</li>
+    <li><strong>Day 3.</strong> Read <code>models/rag-patterns.sysml</code> and the <code>AseWorkbench</code> part of <code>models/ase-system.sysml</code>. Compare one pattern's computed numbers with the table above.</li>
+    <li><strong>Day 4.</strong> Read RS-01 and RS-02 in <code>docs/specs/</code>, including the hidden oracle, and <code>tests/specs/test_rs_01.py</code>.</li>
+    <li><strong>Day 5.</strong> Pick a first item with your reviewer and write its one-paragraph item spec before any code.</li>
+  </ol>
+  <div class="note"><p><strong>Known documentation drift.</strong> A few documents disagree with the code; trust the code and models. <code>ase-system.sysml</code>, <code>README.md</code> and the roadmap say 36 checks; there are 34. The IDEF0 file calls two agents ConsolidationAgent and ViewAuthoringAgent; the system model calls them IntakeAgent and DesignAgent. The Deployer is in the roadmap but not yet in the models. <code>docs/ase-architecture.html</code> was last generated on 21 September 2026.</p></div>
+</section>
+
+<section id="gloss">
+  <h2>Glossary</h2>
+  <dl class="gloss">
+    <dt>Control</dt><dd>Something an activity must obey and may not change: viewpoints, perspectives, pattern library, catalogue, stakeholder agreement.</dd>
+    <dt>Input</dt><dd>Something an activity consumes and may transform: the spec, scenarios, draft views.</dd>
+    <dt>Spec (RS-xx)</dt><dd>A reference specification with a submitted part and a hidden test oracle.</dd>
+    <dt>Project</dt><dd>One design in the workspace: <code>spec/</code>, <code>inputs/</code>, <code>design/</code>, <code>runs/</code>, <code>journal.jsonl</code>. Keys its graph partition.</dd>
+    <dt>Stage</dt><dd>One step of an agent's pipeline, with declared estimates (calls, latency, tokens, fan-out, provenance, fallback).</dd>
+    <dt>Pattern</dt><dd>A named composition of stages and flows, with requirements it satisfies.</dd>
+    <dt>@Extension</dt><dd>A recorded departure from the library, with a reason, on a design. Promoted into the library only by a human commit.</dd>
+    <dt>@Realises</dt><dd>Metadata linking an ASE step to the IDEF0 activity it performs.</dd>
+    <dt>Increment (I0 to I6)</dt><dd>One release of the workbench, modelled in <code>ase-evolution.sysml</code>.</dd>
+    <dt>Gate</dt><dd>The structural SysML check (<code>check_model.py</code>) that decides well-formedness before anything reads a model.</dd>
+    <dt>Sweep</dt><dd>Running all 34 perspective checks over a model.</dd>
+    <dt>Oracle</dt><dd>The expected outcome for a spec: pattern, questions asked and not asked, findings, decisions, metrics.</dd>
+    <dt>GEPA</dt><dd>Reflective prompt optimisation for DSPy programs; used with a held-out acceptance gate.</dd>
+  </dl>
+</section>
+
+<footer>ASE Team Handbook · compiled 28 October 2026 from the repository at commit 1705f05. Update it when an increment closes.</footer>
+</main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:"neutral",gantt:{useWidth:900}});</script>
+</body></html>
