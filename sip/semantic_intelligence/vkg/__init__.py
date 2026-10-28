@@ -7,6 +7,9 @@ The Ontop / R2RML role in the platform, kept dependency-light:
 * ``r2rml``       the W3C R2RML model, parsed from / serialised to the project's
                   ``mappings`` named graph;
 * ``suggest``     scored mapping proposals from schema + ontology (never applied);
+* ``patterns``    the IRI policy (EntityDefs) and mapping patterns P01-P08: compile
+                  parameters to triples maps, lift maps back (exactly, or "custom");
+* ``spec``        the YAML mapping spec (the SPARQL-2-SQL PoC's format), import/export;
 * ``validate``    static mapping checks, coverage, impact of ontology refactorings;
 * ``materialise`` an R2RML processor with per-triple provenance;
 * ``query``       SPARQL over mapped data + the (staged) ontology with RDFS-style

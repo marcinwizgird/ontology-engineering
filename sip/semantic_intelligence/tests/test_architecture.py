@@ -18,7 +18,7 @@ from pathlib import Path
 PKG = Path(__file__).resolve().parents[1]
 SIP = PKG.parent
 LAYER = {"core": 0, "governance": 1, "owl": 2, "skos": 2, "reasoning": 2, "quality": 2,
-         "search": 2, "alignment": 2, "io": 2, "kg": 2, "scope": 2, "vkg": 2, "platform": 3,
+         "search": 2, "alignment": 2, "io": 2, "kg": 2, "scope": 2, "vkg": 2, "repository": 2, "platform": 3,
          "demo": 5,
          "agents": 4, "api": 5, "tests": 6, "__init__": 0, "__main__": 6}
 

@@ -1446,14 +1446,17 @@ def map_import(self: Platform, ctx, data: str, format: str = "turtle",
 
 
 @operation("mapping.validate", capability="rdf", crudv="R", stage="validate")
-def map_validate(self: Platform, ctx, staged: bool = True,
-                 source_id: str | None = None) -> dict:
-    """Static checks of the maps against the (staged) ontology and the schemas + coverage."""
+def map_validate(self: Platform, ctx, staged: bool = True, source_id: str | None = None,
+                 data_limit: int | None = 1000) -> dict:
+    """Static checks of the maps against the (staged) ontology and the schemas, the
+    conformance rules M04-M12, data checks D1-D4 on a sample (``data_limit=None`` skips
+    them) and coverage."""
     from .vkg.validate import coverage, validate
     warnings: list[str] = []
     maps = _vkg_maps(ctx, staged, warnings)
     onto = ctx.ontology(staged=staged)
-    findings = validate(maps, onto, ctx.databases, default_source=source_id)
+    findings = validate(maps, onto, ctx.databases, default_source=source_id,
+                        data_limit=data_limit)
     summary = {s: sum(f["severity"] == s for f in findings) for s in ("error", "warning", "info")}
     return {"maps": len(maps), "summary": summary, "findings": findings,
             "coverage": coverage(maps, onto, ctx.config.default_namespace),
@@ -1518,6 +1521,204 @@ def map_impact(self: Platform, ctx, entities: list[str], staged: bool = True) ->
     from .vkg.validate import impact
     iris = [str(_iri(ctx, e)) for e in entities]
     return {"entities": iris, "affected": impact(_vkg_maps(ctx, staged), iris)}
+
+
+# --------------------------------------------------------------------------- #
+# Mapping Studio R0: IRI policy (EntityDefs), patterns, lifting, the YAML spec
+# (sip/architecture/components/MAPPING_STUDIO.md §6-§7). EntityDefs live in the
+# mappings graph next to the maps; a map compiled from a pattern carries sip:pattern.
+# --------------------------------------------------------------------------- #
+
+def _vkg_entities(ctx: ProjectContext, staged: bool = True):
+    from .vkg.patterns import parse_entities
+    return parse_entities(_vkg_graph(ctx, staged))
+
+
+def _vkg_policy(ctx: ProjectContext, maps, staged: bool = True):
+    """(entities, default schema, inferred?) — stored EntityDefs, else inferred from maps."""
+    from .vkg.patterns import infer_entities
+    inferred, schema = infer_entities(maps)
+    stored = _vkg_entities(ctx, staged)
+    return (stored or inferred), schema, not stored
+
+
+def _data_base(ctx: ProjectContext) -> str:
+    return ctx.config.base_uri.rstrip("/#") + "/data/"
+
+
+def _pattern_params(ctx: ProjectContext, params: dict) -> dict:
+    """Resolve CURIEs / local names of ontology terms in pattern parameters."""
+    from rdflib.namespace import XSD as _XSD
+
+    def term(x: str) -> str:
+        return str(_XSD) + x[4:] if x.startswith("xsd:") else str(_iri(ctx, x))
+    out = dict(params)
+    if out.get("class"):
+        out["class"] = term(out["class"])
+    if out.get("properties"):
+        out["properties"] = [dict(p, predicate=term(p["predicate"]),
+                                  **({"datatype": term(p["datatype"])} if p.get("datatype")
+                                     else {})) for p in out["properties"]]
+    if out.get("cases"):
+        out["cases"] = {v: dict(c, **{"class": term(c["class"])})
+                        for v, c in out["cases"].items()}
+    if out.get("links"):
+        out["links"] = [dict(ln, predicate=term(ln["predicate"])) for ln in out["links"]]
+    return out
+
+
+@operation("mapping.setEntity", capability=_VKG_W, crudv="C", stage="populate", writes=True)
+def map_set_entity(self: Platform, ctx, name: str, path: str, table: str, key,
+                   base: str | None = None) -> ChangeSet:
+    """Define or change one identity of the IRI policy; maps compiled from it are
+    recompiled in the same commit, so one undo reverts both."""
+    import re
+    from .core.namespaces import SIP
+    from .vkg.patterns import EntityDef, compile_map, entity_iri, entity_triples, lift
+    from .vkg.r2rml import map_nodes
+    if not re.match(r"^[A-Za-z][A-Za-z0-9_.-]{0,99}$", name):
+        raise ValueError(f"entity name {name!r}: letters, digits, '_', '.', '-'")
+    new = EntityDef(name, path.strip("/"), table, key, base or _data_base(ctx))
+    g = _vkg_graph(ctx)
+    old_ents = _vkg_entities(ctx)
+    cs = ChangeSet("mapping.setEntity", {"entity": name, **new.as_dict()}, ctx.layout.mappings)
+    cs.remove_all(list(g.triples((entity_iri(ctx.name, name), None, None))))
+    cs.add_all(entity_triples(ctx.name, new))
+    if name in old_ents:
+        ents = dict(old_ents, **{name: new})
+        maps = _vkg_maps(ctx)
+        _, schema, _ = _vkg_policy(ctx, maps)
+        for tm in maps:
+            got = lift(tm, old_ents, schema=schema)
+            uses = got and (got[1]["subject"] == name or any(
+                p.get("ref") == name for p in got[1].get("properties", [])))
+            if uses:
+                again = compile_map(got[1], ents, schema=schema)
+                cs.remove_all([t for t in map_nodes(g, URIRef(tm.iri))
+                               if t[1] != SIP.pattern])
+                cs.add_all(again.triples())
+    return cs
+
+
+@operation("mapping.removeEntity", capability=_VKG_W, crudv="D", stage="populate",
+           writes=True)
+def map_remove_entity(self: Platform, ctx, name: str, force: bool = False) -> ChangeSet:
+    """Remove an identity of the IRI policy (refused while maps are compiled from it)."""
+    from .vkg.patterns import entity_iri, lift
+    triples = list(_vkg_graph(ctx).triples((entity_iri(ctx.name, name), None, None)))
+    if not triples:
+        raise ValueError(f"no entity {name!r}")
+    ents = _vkg_entities(ctx)
+    maps = _vkg_maps(ctx)
+    _, schema, _ = _vkg_policy(ctx, maps)
+    users = [tm.id for tm in maps if (got := lift(tm, ents, schema=schema)) and (
+        got[1]["subject"] == name or any(p.get("ref") == name
+                                         for p in got[1].get("properties", [])))]
+    if users and not force:
+        raise ValueError(f"maps {users} are compiled from entity {name!r}; remove them or "
+                         "force=True")
+    return ChangeSet("mapping.removeEntity", {"entity": name}, ctx.layout.mappings
+                     ).remove_all(triples)
+
+
+@operation("mapping.applyPattern", capability=_VKG_W, crudv="C", stage="populate",
+           writes=True)
+def map_apply_pattern(self: Platform, ctx, pattern: str, params: dict,
+                      source_id: str | None = None, schema: str | None = None) -> ChangeSet:
+    """Compile a mapping pattern (P01-P08) with its parameters into triples maps, adding
+    them or replacing maps with the same id, as one change set."""
+    from .core.namespaces import SIP
+    from .vkg.patterns import PatternError, compile_pattern
+    from .vkg.r2rml import map_nodes
+    ents = _vkg_entities(ctx)
+    if not ents:
+        raise ValueError("define the IRI policy first (mapping.setEntity)")
+    try:
+        maps = compile_pattern(pattern, _pattern_params(ctx, params), ents, schema=schema,
+                               mint=lambda i: _map_iri(ctx, i))
+    except (PatternError, KeyError) as e:
+        raise ValueError(f"pattern {pattern}: {e}") from None
+    g = _vkg_graph(ctx)
+    cs = ChangeSet("mapping.applyPattern", {"pattern": pattern, "maps": [m.iri for m in maps]},
+                   ctx.layout.mappings)
+    for tm in maps:
+        if source_id:
+            tm.source = source_id
+        cs.remove_all(map_nodes(g, URIRef(tm.iri)))
+        cs.add_all(tm.triples())
+        cs.add(URIRef(tm.iri), SIP.pattern, Literal(pattern))
+    return cs
+
+
+@operation("mapping.lift", capability="rdf", crudv="R", stage="populate")
+def map_lift(self: Platform, ctx, staged: bool = True) -> dict:
+    """Pattern view of the maps: each map's pattern and parameters, or ``custom`` when no
+    pattern reproduces it exactly. Uses the stored IRI policy, else one inferred from the
+    maps' templates."""
+    from .vkg.patterns import lift_all
+    maps = _vkg_maps(ctx, staged)
+    ents, schema, inferred = _vkg_policy(ctx, maps, staged)
+    db = next(iter(ctx.databases.values())).schema() if len(ctx.databases) == 1 else None
+    out = lift_all(maps, ents, schema=schema, db_schema=db)
+    out.update({"entities": {n: e.as_dict() for n, e in sorted(ents.items())},
+                "entities_inferred": inferred, "schema": schema})
+    return out
+
+
+@operation("mapping.importSpec", capability=_VKG_W, crudv="C", stage="populate", writes=True)
+def map_import_spec(self: Platform, ctx, spec, source_id: str | None = None,
+                    replace: bool = False) -> ChangeSet:
+    """Load a YAML mapping spec (text or dict, the SPARQL-2-SQL PoC's format): its
+    entities become the IRI policy and its maps are compiled through the patterns.
+    Maps and entities with the same names are replaced; ``replace=True`` drops all others."""
+    from .vkg.patterns import entity_iri, entity_triples, parse_entities
+    from .vkg.r2rml import map_nodes
+    from .vkg.spec import compile_spec, load_spec
+    data = load_spec(spec) if isinstance(spec, str) else spec
+    ents, maps = compile_spec(data, mint=lambda i: _map_iri(ctx, i))
+    g = _vkg_graph(ctx)
+    cs = ChangeSet("mapping.importSpec", {"maps": [m.iri for m in maps],
+                                          "entities": sorted(ents)}, ctx.layout.mappings)
+    new = {m.iri for m in maps}
+    for m in _vkg_maps(ctx):
+        if replace or m.iri in new:
+            cs.remove_all(map_nodes(g, URIRef(m.iri)))
+    for name in parse_entities(g):
+        if replace or name in ents:
+            cs.remove_all(list(g.triples((entity_iri(ctx.name, name), None, None))))
+    for e in ents.values():
+        cs.add_all(entity_triples(ctx.name, e))
+    for m in maps:
+        if source_id:
+            m.source = source_id
+        cs.add_all(m.triples())
+    return cs
+
+
+@operation("mapping.exportSpec", capability="rdf", crudv="R", stage="publish")
+def map_export_spec(self: Platform, ctx, staged: bool = False, format: str = "yaml"):
+    """The mappings as a YAML spec (``format="dict"`` for the parsed form). Maps no
+    pattern reproduces are listed under ``custom`` in R2RML dict form."""
+    import re
+    from rdflib.namespace import XSD as _XSD
+    from .vkg.spec import dump_spec, maps_to_spec
+    maps = _vkg_maps(ctx, staged)
+    ents, schema, _ = _vkg_policy(ctx, maps, staged)
+    used = {u for m in maps for u in m.terms()}
+    prefixes = {"xsd": str(_XSD)}
+    if any(u.startswith(ctx.config.default_namespace) for u in used):
+        prefixes[re.sub(r"[^A-Za-z0-9_-]", "-", ctx.name)] = ctx.config.default_namespace
+    for p, ns in ctx.ontology(with_imports=False).namespaces():
+        if p and any(u.startswith(str(ns)) for u in used) and str(ns) not in prefixes.values():
+            prefixes[p] = str(ns)
+    bases = [e.base for e in ents.values()]
+    base = max(set(bases), key=bases.count) if bases else _data_base(ctx)
+    out = maps_to_spec(maps, ents, base_iri=base, prefixes=prefixes, schema=schema)
+    if format == "dict":
+        return out
+    if format != "yaml":
+        raise ValueError("format is yaml | dict")
+    return dump_spec(out)
 
 
 def describe_operations() -> list[dict]:

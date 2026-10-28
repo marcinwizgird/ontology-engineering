@@ -21,6 +21,28 @@ unknown-parent         rr:parentTriplesMap names no triples map
 join-required          a parent map over a different logical table without a join
 iri-space-clash        maps minting subjects in one IRI space with different templates
 =====================  =============================================================
+
+Conformance rules merged from the SPARQL-2-SQL PoC (``tools/check_mappings.py``); an IRI
+*family* is a template's constant prefix (``https://…/data/customer/``):
+
+=====================  =============================================================
+M04                    a typed subject's template is keyed by its table's primary key
+M05                    an IRI used outside its typing tables follows a foreign key to
+                       the key those tables' maps use
+M06                    every IRI family is typed by at least one map
+M10                    subjects / objects compatible with rdfs:domain / rdfs:range
+M11                    subject template columns are NOT NULL
+M12                    coverage: tables and columns no map uses (info)
+=====================  =============================================================
+
+Data checks on a sample (``data_limit`` rows per logical table; ``None`` skips them):
+
+=====================  =============================================================
+D1                     the logical table returns rows
+D2                     rows whose subject key is NULL (they produce no subject)
+D3                     a typed map's subject key repeats within the sample
+D4                     IRI links whose key has no row in the typing tables (orphans)
+=====================  =============================================================
 """
 
 from __future__ import annotations
@@ -32,9 +54,11 @@ from rdflib.namespace import OWL, RDF, RDFS, SKOS, XSD
 
 from ..owl.rendering import local_name
 from .r2rml import TermMap, TriplesMap
-from .source import RelationalSource, UnsafeSQL, check_select, unquote
+from .materialise import logical_sql
+from .source import RelationalSource, Table, UnsafeSQL, check_select, unquote
 
-__all__ = ["validate", "coverage", "impact", "rename_in_mappings"]
+__all__ = ["validate", "conformance", "data_checks", "coverage", "impact",
+           "rename_in_mappings"]
 
 _BUILTIN = (str(RDF), str(RDFS), str(OWL), str(SKOS), str(XSD))
 
@@ -141,7 +165,19 @@ def _check_term(tm: TriplesMap, t: TermMap, cols: dict | None, out: list[dict], 
 
 
 def validate(maps: list[TriplesMap], ontology: Graph, sources: dict[str, RelationalSource],
-             *, default_source: str | None = None) -> list[dict]:
+             *, default_source: str | None = None, data_limit: int | None = 1000,
+             unused: bool = True) -> list[dict]:
+    """Every check: the static ones below, the PoC's conformance rules (:func:`conformance`)
+    and, unless ``data_limit`` is None, the data checks (:func:`data_checks`)."""
+    out = _static(maps, ontology, sources, default_source)
+    out += conformance(maps, ontology, sources, default_source=default_source, unused=unused)
+    if data_limit is not None:
+        out += data_checks(maps, sources, default_source=default_source, limit=data_limit)
+    return out
+
+
+def _static(maps: list[TriplesMap], ontology: Graph, sources: dict[str, RelationalSource],
+            default_source: str | None) -> list[dict]:
     out: list[dict] = []
     by_iri = {m.iri: m for m in maps}
     for tm in maps:
@@ -241,6 +277,257 @@ def validate(maps: list[TriplesMap], ontology: Graph, sources: dict[str, Relatio
             out.append(_f("warning", "iri-space-clash", None,
                           f"maps {sorted(owners[prefix])} mint subjects under {prefix!r} with "
                           f"different template shapes {sorted(shapes)}"))
+    return out
+
+
+# --------------------------------------------------------------------------- #
+# conformance rules (M04-M06, M10-M12) and data checks (D1-D4)
+# --------------------------------------------------------------------------- #
+
+def _source_of(tm: TriplesMap, sources: dict, default_source: str | None):
+    sid = tm.source or default_source or (next(iter(sources)) if len(sources) == 1 else None)
+    return sources.get(sid) if sid else None
+
+
+_FROM = re.compile(r'(?is)\bfrom\s+((?:"(?:[^"]|"")+"|[A-Za-z_][\w$]*)'
+                   r'(?:\s*\.\s*(?:"(?:[^"]|"")+"|[A-Za-z_][\w$]*))?)')
+
+
+def _base_table(tm: TriplesMap, src: RelationalSource | None) -> Table | None:
+    """The table a map reads: its rr:tableName, or the FROM table of a one-table query."""
+    if src is None:
+        return None
+    name = tm.table_name
+    if name is None:
+        m = _FROM.search(tm.sql_query)
+        if not m or re.search(r"(?i)\bjoin\b", tm.sql_query):
+            return None
+        name = m.group(1)
+    return src.schema().table(name)
+
+
+def family(template: str) -> str:
+    """An IRI family: the constant prefix of a template."""
+    return template.split("{", 1)[0]
+
+
+def _cols(t: TermMap) -> tuple[str, ...]:
+    return tuple(unquote(c).lower() for c in t.columns())
+
+
+def _ancestors(g: Graph):
+    """class -> itself and its ancestors (rdfs:subClassOf, owl:equivalentClass)."""
+    up: dict = {}
+    for s, o in g.subject_objects(RDFS.subClassOf):
+        up.setdefault(s, set()).add(o)
+    for s, o in g.subject_objects(OWL.equivalentClass):
+        up.setdefault(s, set()).add(o)
+        up.setdefault(o, set()).add(s)
+    memo: dict = {}
+
+    def close(c):
+        if c not in memo:
+            seen, todo = {c}, [c]
+            while todo:
+                for p in up.get(todo.pop(), ()):
+                    if p not in seen:
+                        seen.add(p)
+                        todo.append(p)
+            memo[c] = seen
+        return memo[c]
+    return close
+
+
+def conformance(maps: list[TriplesMap], ontology: Graph, sources: dict[str, RelationalSource],
+                *, default_source: str | None = None, unused: bool = True) -> list[dict]:
+    """The SPARQL-2-SQL PoC's rules M04-M06 and M10-M12 over SIP's model."""
+    out: list[dict] = []
+    tables = {tm.iri: _base_table(tm, _source_of(tm, sources, default_source)) for tm in maps}
+    typing: dict[str, dict[str, tuple]] = {}       # family -> {table: subject columns}
+    fam_classes: dict[str, set] = {}
+    for tm in maps:
+        if tm.classes and tm.subject.template:
+            f, t = family(tm.subject.template), tables[tm.iri]
+            typing.setdefault(f, {})[(t.name if t else tm.table_name or tm.iri).lower()] = \
+                _cols(tm.subject)
+            fam_classes.setdefault(f, set()).update(URIRef(c) for c in tm.classes)
+    close = _ancestors(ontology)
+
+    def subsumed(classes: set, target) -> bool:
+        return target == OWL.Thing or any(target in close(c) for c in classes)
+
+    def link(tm: TriplesMap, tpl: TermMap, t: Table, role: str) -> None:
+        f = family(tpl.template)
+        owners = typing.get(f)
+        if not owners or owners.get(t.name.lower()) == _cols(tpl):
+            return                          # M06 reports untyped families once
+        cols = [unquote(c).lower() for c in tpl.columns()]
+        fk = next((k for k in t.foreign_keys if [c.lower() for c in k.columns] == cols), None)
+        if fk is None:
+            out.append(_f("error", "M05", tm, f"{role} {f}... uses {cols}, which is not a "
+                          f"foreign key of {t.name}"))
+        elif owners.get(fk.ref_table.lower()) != tuple(c.lower() for c in fk.ref_columns):
+            out.append(_f("error", "M05", tm, f"{role} {f}... follows {cols} -> "
+                          f"{fk.ref_table}{fk.ref_columns}, not the key that table's maps use "
+                          "for these IRIs"))
+
+    by_iri = {m.iri: m for m in maps}
+    for tm in maps:
+        t = tables[tm.iri]
+        if t is not None and tm.subject.template:
+            pk = tuple(c.lower() for c in t.primary_key)
+            if tm.classes and pk and set(_cols(tm.subject)) != set(pk):
+                out.append(_f("error", "M04", tm, f"subject uses {list(_cols(tm.subject))}, "
+                              f"not the primary key {t.primary_key} of {t.name}"))
+            for c in _cols(tm.subject):
+                col = t.column(c)
+                if col is not None and col.nullable:
+                    out.append(_f("warning", "M11", tm, f"subject column {col.name} is "
+                                  "nullable: rows where it is NULL produce no subject",
+                                  column=col.name))
+            if not tm.classes:
+                link(tm, tm.subject, t, "subject")
+            for p in tm.poms:
+                if p.object is not None and p.object.template and p.object.kind() == "iri":
+                    link(tm, p.object, t, f"object of {local_name(p.predicate)}")
+        subj = {URIRef(c) for c in tm.classes} | (
+            fam_classes.get(family(tm.subject.template), set()) if tm.subject.template else set())
+        for p in tm.poms:
+            pi = URIRef(p.predicate)
+            for d in ontology.objects(pi, RDFS.domain):
+                if isinstance(d, URIRef) and subj and not subsumed(subj, d):
+                    out.append(_f("error", "M10", tm, f"{local_name(p.predicate)} has domain "
+                                  f"{local_name(d)}; the subject is only ever "
+                                  f"{', '.join(sorted(local_name(c) for c in subj))}"))
+            if p.ref is not None:
+                parent = by_iri.get(p.ref.parent)
+                objs = {URIRef(c) for c in parent.classes} if parent else set()
+            elif p.object.template and p.object.kind() == "iri":
+                objs = fam_classes.get(family(p.object.template), set())
+            else:
+                continue
+            for r in ontology.objects(pi, RDFS.range):
+                if isinstance(r, URIRef) and objs and not subsumed(objs, r):
+                    out.append(_f("error", "M10", tm, f"{local_name(p.predicate)} has range "
+                                  f"{local_name(r)}; the object is only ever "
+                                  f"{', '.join(sorted(local_name(c) for c in objs))}"))
+    fams = {family(tm.subject.template) for tm in maps if tm.subject.template} | {
+        family(p.object.template) for tm in maps for p in tm.poms
+        if p.object is not None and p.object.template and p.object.kind() == "iri"}
+    for f in sorted(fams - set(typing)):
+        out.append(_f("warning", "M06", None, f"IRIs {f}... are never given a class"))
+    if unused:
+        out += _unused(maps, sources, tables, default_source)
+    return out
+
+
+def _unused(maps, sources, tables, default_source) -> list[dict]:
+    """M12: per source a map reads, the tables and columns no map uses."""
+    used: dict[tuple[str, str], set[str]] = {}
+    for tm in maps:
+        src, t = _source_of(tm, sources, default_source), tables[tm.iri]
+        if src is None or t is None:
+            continue
+        cols = set(_cols(tm.subject))
+        for p in tm.poms:
+            cols |= set(_cols(p.object)) if p.object is not None else {
+                unquote(c).lower() for c, _ in p.ref.joins}
+        if tm.sql_query:                    # filter columns count as used
+            low = tm.sql_query.lower()
+            cols |= {c.name.lower() for c in t.columns
+                     if re.search(rf'(?<![\w$]){re.escape(c.name.lower())}(?![\w$])', low)}
+        used.setdefault((src.id, t.name), set()).update(cols)
+    out = []
+    for sid in sorted({k[0] for k in used}):
+        for name, t in sorted(sources[sid].schema().tables.items()):
+            u = used.get((sid, name))
+            if u is None:
+                out.append(_f("info", "M12", None, f"table {name} ({sid}) is not mapped",
+                              table=name))
+                continue
+            missing = [c.name for c in t.columns if c.name.lower() not in u]
+            if missing:
+                out.append(_f("info", "M12", None, f"{name} ({sid}): unmapped columns "
+                              f"{', '.join(missing)}", table=name))
+    return out
+
+
+def data_checks(maps: list[TriplesMap], sources: dict[str, RelationalSource], *,
+                default_source: str | None = None, limit: int = 1000) -> list[dict]:
+    """D1-D4 on at most *limit* rows per logical table. A query that fails here is
+    reported by the static checks (bad-sql, unknown-table), so it is skipped."""
+    out: list[dict] = []
+    typed: dict[str, list[tuple]] = {}        # family -> [(source, sql, key columns)]
+    for tm in maps:
+        src = _source_of(tm, sources, default_source)
+        if tm.classes and tm.subject.template and src is not None:
+            typed.setdefault(family(tm.subject.template), []).append(
+                (src, logical_sql(tm, src), _cols(tm.subject)))
+    known_cache: dict[str, set | None] = {}
+
+    def known_keys(f: str, src) -> set | None:
+        if f not in known_cache:
+            keys: set | None = set()
+            for s, sql, kc in typed.get(f, []):
+                if s is not src:
+                    continue
+                try:
+                    cols, rows = s.query(sql)
+                except Exception:
+                    keys = None
+                    break
+                low = [c.lower() for c in cols]
+                if not all(c in low for c in kc):
+                    keys = None
+                    break
+                ix = [low.index(c) for c in kc]
+                keys |= {tuple(r[i] for i in ix) for r in rows}
+            known_cache[f] = keys
+        return known_cache[f]
+
+    for tm in maps:
+        src = _source_of(tm, sources, default_source)
+        if src is None:
+            continue
+        try:
+            cols, rows = src.query(logical_sql(tm, src), limit=limit)
+        except Exception:
+            continue
+        if not rows:
+            out.append(_f("warning", "D1", tm, "the logical table returns no rows"))
+            continue
+        idx = {c.lower(): i for i, c in enumerate(cols)}
+
+        def key(row, t: TermMap):
+            ix = [idx.get(c) for c in _cols(t)]
+            return None if not ix or None in ix else tuple(row[i] for i in ix)
+        keys = [key(r, tm.subject) for r in rows]
+        nulls = sum(k is not None and None in k for k in keys)
+        if nulls:
+            out.append(_f("warning", "D2", tm, f"{nulls} of {len(rows)} sampled rows have a "
+                          "NULL subject key and produce no subject",
+                          rate=round(nulls / len(rows), 4)))
+        full = [k for k in keys if k is not None and None not in k]
+        if tm.classes and len(set(full)) < len(full):
+            out.append(_f("warning", "D3", tm, f"{len(full) - len(set(full))} repeated subject "
+                          f"keys in {len(rows)} sampled rows: the template is not a key of "
+                          "this logical table"))
+        links = [tm.subject] if not tm.classes and tm.subject.template else []
+        links += [p.object for p in tm.poms if p.object is not None and p.object.template
+                  and p.object.kind() == "iri"]
+        for t in links:
+            f = family(t.template)
+            if f not in typed:
+                continue
+            known = known_keys(f, src)
+            if not known:
+                continue
+            vals = [k for k in (key(r, t) for r in rows) if k is not None and None not in k]
+            orphans = [v for v in vals if v not in known]
+            if orphans:
+                out.append(_f("warning", "D4", tm, f"{len(orphans)} of {len(vals)} sampled "
+                              f"links to {f}... have no typed row (e.g. {list(orphans[0])})",
+                              rate=round(len(orphans) / len(vals), 4)))
     return out
 
 
