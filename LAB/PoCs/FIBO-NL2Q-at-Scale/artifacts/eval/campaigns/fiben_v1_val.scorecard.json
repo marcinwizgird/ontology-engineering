@@ -9,6 +9,3554 @@
   "note": "v1 predates the Semantic Ladder: arms are mapped to their nearest rung, one run each, unanswerable suite unstratified (24 questions, results reconstructed from the run summaries). K4 runs used the v1 glossary (Gv1), which was written after seeing all gold SQL: those results are possibly contaminated (spec \u00a74.5).",
   "unanswerable_n": 24
  },
+ "gate1": {
+  "annotation": {
+   "terms": 220,
+   "E0": 48,
+   "E1": 216,
+   "E1_missing": [
+    "AutonomousAgent",
+    "Country",
+    "ElementsOfFinancialReport",
+    "FinancialReport"
+   ]
+  },
+  "cq": {
+   "passed": 17,
+   "total": 17,
+   "rate": 1.0,
+   "results": {
+    "cq01_listed_security_is_security": {
+     "question": "Is every listed security a security (and a financial instrument)?",
+     "pass": true
+    },
+    "cq02_agents": {
+     "question": "Are persons and corporations both autonomous agents?",
+     "pass": true
+    },
+    "cq03_revenue_is_statement_element": {
+     "question": "Is revenue reported as an element of a financial statement?",
+     "pass": true
+    },
+    "cq04_statement_measures": {
+     "question": "Do expense, liability, asset and equity figures all roll up to financial-statement elements?",
+     "pass": true
+    },
+    "cq05_account_owner": {
+     "question": "Who owns an account? (an account is related to the person who owns it)",
+     "pass": true
+    },
+    "cq06_account_manager": {
+     "question": "Who manages an account?",
+     "pass": true
+    },
+    "cq07_holding_security": {
+     "question": "Which security does a holding refer to?",
+     "pass": true
+    },
+    "cq08_holding_account": {
+     "question": "In which account is a holding held?",
+     "pass": true
+    },
+    "cq09_trade_account": {
+     "question": "Through which account was a securities transaction made?",
+     "pass": true
+    },
+    "cq10_issuer": {
+     "question": "Which corporation issued a security?",
+     "pass": true
+    },
+    "cq11_market": {
+     "question": "On which market is a security traded?",
+     "pass": true
+    },
+    "cq12_report_provider": {
+     "question": "Which corporation provided a financial report?",
+     "pass": true
+    },
+    "cq13_report_member": {
+     "question": "Which report does a financial-statement element belong to?",
+     "pass": true
+    },
+    "cq14_citizenship": {
+     "question": "What is a person's citizenship?",
+     "pass": true
+    },
+    "cq15_price": {
+     "question": "What is the last traded price of a listed security, as an amount?",
+     "pass": true
+    },
+    "cq16_industry": {
+     "question": "In which industry sector is a corporation classified?",
+     "pass": true
+    },
+    "cq17_figure_value_year": {
+     "question": "Does a financial-statement figure carry a value and a fiscal year?",
+     "pass": true
+    }
+   }
+  },
+  "ova": {
+   "E0": {
+    "verdict": "revise",
+    "by_severity": {
+     "blocker": 0,
+     "major": 1,
+     "minor": 415,
+     "info": 2
+    },
+    "waived": 5,
+    "by_check": {
+     "DL-08": {
+      "info": 1
+     },
+     "LEX-02": {
+      "minor": 152
+     },
+     "META-01": {
+      "minor": 1
+     },
+     "METRIC-01": {
+      "major": 1
+     },
+     "METRIC-02": {
+      "info": 1
+     },
+     "PROP-01": {
+      "minor": 68
+     },
+     "SHC-08": {
+      "minor": 194
+     }
+    },
+    "level": "thesaurus",
+    "report": "ova_e0.md"
+   },
+   "E1": {
+    "verdict": "revise",
+    "by_severity": {
+     "blocker": 0,
+     "major": 1,
+     "minor": 157,
+     "info": 2
+    },
+    "waived": 5,
+    "by_check": {
+     "DL-08": {
+      "info": 1
+     },
+     "LEX-02": {
+      "minor": 23
+     },
+     "META-01": {
+      "minor": 1
+     },
+     "METRIC-01": {
+      "major": 1
+     },
+     "METRIC-02": {
+      "info": 1
+     },
+     "PROP-01": {
+      "minor": 68
+     },
+     "SHC-08": {
+      "minor": 65
+     }
+    },
+    "level": "thesaurus",
+    "report": "ova_e1.md"
+   },
+   "catalogue": {
+    "checks": 131,
+    "oops_pitfalls_referenced": [
+     "P01",
+     "P02",
+     "P03",
+     "P04",
+     "P05",
+     "P06",
+     "P07",
+     "P08",
+     "P10",
+     "P11",
+     "P13",
+     "P17",
+     "P19",
+     "P20",
+     "P21",
+     "P22",
+     "P24",
+     "P25",
+     "P26",
+     "P27",
+     "P28",
+     "P29",
+     "P30",
+     "P31",
+     "P32",
+     "P33",
+     "P34",
+     "P35",
+     "P36",
+     "P38",
+     "P39",
+     "P40",
+     "P41"
+    ],
+    "families_with_oops_oracle": 4,
+    "families_with_foops_oracle": 1
+   }
+  },
+  "key_integrity": {
+   "FIBEN": 0,
+   "FIBEN_V1": 0,
+   "FIBEN_V2": 0,
+   "FIBEN_V3": 0,
+   "FIBEN_V4": 0,
+   "FIBEN_V5": 0,
+   "FIBEN_V6": 0
+  },
+  "shacl": {
+   "FIBEN": 0,
+   "FIBEN_V1": 0,
+   "FIBEN_V2": 0,
+   "FIBEN_V3": 0,
+   "FIBEN_V4": 0,
+   "FIBEN_V5": 0,
+   "FIBEN_V6": 0
+  },
+  "shacl_cross_check": {
+   "conforms": false,
+   "injected": {
+    "minCount": 0,
+    "class": 9
+   },
+   "pyshacl_found": {
+    "minCount": 0,
+    "class": 9,
+    "other": 0
+   },
+   "agree": true
+  },
+  "ceiling": {
+   "accepted": 219,
+   "of": 237,
+   "recorded_v1": 219
+  },
+  "ceiling_v6": {
+   "accepted_v1_v5": 219,
+   "agree_v6": 219,
+   "disagree_v6": []
+  },
+  "mutation_v1_v5": {
+   "mutants": 820,
+   "detected": 508,
+   "detection_rate": 0.6195,
+   "executable_mutants": 751,
+   "detection_rate_executable": 0.5846,
+   "caught_only_by_variants": 172,
+   "base_only_detection_rate_executable": 0.3555,
+   "undetected_on_empty_gold": 143,
+   "detection_rate_executable_nonempty_gold": 0.6194,
+   "detection_rate_executable_nonempty_excl_superclass": 0.8449,
+   "base_only_rate_executable_nonempty_gold": 0.5158,
+   "superclass_detection_rate_executable_nonempty_excl_equivalent": 0.4444,
+   "superclass_equivalent_under_constraints": 199,
+   "variants": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5"
+   ],
+   "by_op": {
+    "drop_filter": {
+     "n": 197,
+     "detected": 159,
+     "by_base": 104,
+     "only_by_variants": 55,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "superclass": {
+     "n": 218,
+     "detected": 8,
+     "by_base": 8,
+     "only_by_variants": 0,
+     "equivalent_under_constraints": 199,
+     "not_executable": 0
+    },
+    "flip_cmp": {
+     "n": 121,
+     "detected": 109,
+     "by_base": 64,
+     "only_by_variants": 45,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "shift_number": {
+     "n": 131,
+     "detected": 114,
+     "by_base": 32,
+     "only_by_variants": 13,
+     "equivalent_under_constraints": 0,
+     "not_executable": 69
+    },
+    "swap_agg": {
+     "n": 122,
+     "detected": 103,
+     "by_base": 48,
+     "only_by_variants": 55,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "drop_limit": {
+     "n": 10,
+     "detected": 3,
+     "by_base": 2,
+     "only_by_variants": 1,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "drop_negation": {
+     "n": 3,
+     "detected": 3,
+     "by_base": 2,
+     "only_by_variants": 1,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "drop_distinct": {
+     "n": 18,
+     "detected": 9,
+     "by_base": 7,
+     "only_by_variants": 2,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    }
+   },
+   "undetected": [
+    {
+     "sql_id": 1,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 3,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 4,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 5,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 6,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 7,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 8,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 9,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 9,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 10,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 11,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 11,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 12,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 12,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 13,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 14,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 16,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 16,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 17,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 18,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 19,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 20,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 21,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 23,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 24,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 25,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 25,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 26,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 27,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 28,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 29,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 30,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 32,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 33,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 34,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 35,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 36,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 37,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 38,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 39,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 40,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 40,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 42,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 43,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 44,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 45,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 46,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 47,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 48,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 49,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 49,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 49,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 49,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 50,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 51,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 52,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 53,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 54,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 55,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 56,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 57,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 58,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 58,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 59,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 60,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 61,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 62,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 63,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 64,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 65,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 66,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 67,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 67,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 67,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 68,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 69,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 70,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 71,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 71,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 71,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 72,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 73,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 74,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 75,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 76,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 77,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 78,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 79,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 80,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 81,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 82,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 82,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 83,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 84,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 85,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 85,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 85,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 86,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 86,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 87,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 88,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 89,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 90,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 91,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 92,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 93,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 94,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 94,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 94,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 95,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 96,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 97,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 100,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 101,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 102,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 103,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 104,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 105,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 106,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 107,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 108,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 109,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 110,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 111,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 112,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 113,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 114,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 115,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 116,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 117,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 118,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 119,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 120,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 121,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 121,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 122,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 122,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 123,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 124,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 126,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 127,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 128,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 128,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 129,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 131,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 132,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 133,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 134,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 134,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 135,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 135,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 135,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 136,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 136,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 137,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 137,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 137,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 138,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 138,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 138,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 139,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 139,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 139,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 140,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 140,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 141,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 141,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 142,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 142,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 143,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 143,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 144,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 145,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 145,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 146,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 146,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 147,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 148,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 149,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 150,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 150,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 151,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 151,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 152,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 152,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 153,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 153,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 153,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 154,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 154,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 155,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 155,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 155,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 156,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 157,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 158,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 159,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 159,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 160,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 161,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 162,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 162,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 162,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 163,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 164,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 164,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 165,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 165,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 166,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 166,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 166,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 167,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 167,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 168,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 168,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 170,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 170,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 170,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 171,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 172,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 172,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 172,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 173,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 173,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 174,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 175,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 175,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 176,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 176,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 176,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 177,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 180,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 181,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 181,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 182,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 183,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 184,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 185,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 186,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 187,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 187,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 188,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 188,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 189,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 189,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 190,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 190,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 190,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 191,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 191,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 192,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 192,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 192,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 193,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 194,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 194,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 195,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 195,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 196,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 196,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 198,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 198,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 199,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 200,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 201,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 202,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 204,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 204,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 204,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 206,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 207,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 208,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 209,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 210,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 210,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 211,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 212,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 213,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 214,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 215,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 216,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 217,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 217,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 217,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 217,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 218,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 219,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 220,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 220,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 221,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 221,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 221,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 222,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 223,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 223,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 223,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 224,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 224,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 225,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 225,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 227,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 227,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 231,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 233,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 234,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 234,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 234,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 234,
+     "op": "superclass",
+     "empty_gold": true
+    }
+   ]
+  },
+  "mutation_v1_v6": {
+   "mutants": 820,
+   "detected": 508,
+   "detection_rate": 0.6195,
+   "executable_mutants": 750,
+   "detection_rate_executable": 0.584,
+   "caught_only_by_variants": 172,
+   "base_only_detection_rate_executable": 0.3547,
+   "undetected_on_empty_gold": 143,
+   "detection_rate_executable_nonempty_gold": 0.6185,
+   "detection_rate_executable_nonempty_excl_superclass": 0.8444,
+   "base_only_rate_executable_nonempty_gold": 0.5147,
+   "superclass_detection_rate_executable_nonempty_excl_equivalent": 0.4444,
+   "superclass_equivalent_under_constraints": 199,
+   "variants": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6"
+   ],
+   "by_op": {
+    "drop_filter": {
+     "n": 197,
+     "detected": 159,
+     "by_base": 103,
+     "only_by_variants": 55,
+     "equivalent_under_constraints": 0,
+     "not_executable": 1
+    },
+    "superclass": {
+     "n": 218,
+     "detected": 8,
+     "by_base": 8,
+     "only_by_variants": 0,
+     "equivalent_under_constraints": 199,
+     "not_executable": 0
+    },
+    "flip_cmp": {
+     "n": 121,
+     "detected": 109,
+     "by_base": 64,
+     "only_by_variants": 45,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "shift_number": {
+     "n": 131,
+     "detected": 114,
+     "by_base": 32,
+     "only_by_variants": 13,
+     "equivalent_under_constraints": 0,
+     "not_executable": 69
+    },
+    "swap_agg": {
+     "n": 122,
+     "detected": 103,
+     "by_base": 48,
+     "only_by_variants": 55,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "drop_limit": {
+     "n": 10,
+     "detected": 3,
+     "by_base": 2,
+     "only_by_variants": 1,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "drop_negation": {
+     "n": 3,
+     "detected": 3,
+     "by_base": 2,
+     "only_by_variants": 1,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    },
+    "drop_distinct": {
+     "n": 18,
+     "detected": 9,
+     "by_base": 7,
+     "only_by_variants": 2,
+     "equivalent_under_constraints": 0,
+     "not_executable": 0
+    }
+   },
+   "undetected": [
+    {
+     "sql_id": 1,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 3,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 4,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 5,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 6,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 7,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 8,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 9,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 9,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 10,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 11,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 11,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 12,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 12,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 13,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 14,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 16,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 16,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 17,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 18,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 19,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 20,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 21,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 23,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 24,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 25,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 25,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 26,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 27,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 28,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 29,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 30,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 32,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 33,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 34,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 35,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 36,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 37,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 38,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 39,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 40,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 40,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 42,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 43,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 44,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 45,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 46,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 47,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 48,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 49,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 49,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 49,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 49,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 50,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 51,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 52,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 53,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 54,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 55,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 56,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 57,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 58,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 58,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 59,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 60,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 61,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 62,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 63,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 64,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 65,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 66,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 67,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 67,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 67,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 68,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 69,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 70,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 71,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 71,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 71,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 72,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 73,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 74,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 75,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 76,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 77,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 78,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 79,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 80,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 81,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 82,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 82,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 83,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 84,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 85,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 85,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 85,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 86,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 86,
+     "op": "drop_limit",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 87,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 88,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 89,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 90,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 91,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 92,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 93,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 94,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 94,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 94,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 95,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 96,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 97,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 100,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 101,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 102,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 103,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 104,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 105,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 106,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 107,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 108,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 109,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 110,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 111,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 112,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 113,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 114,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 115,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 116,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 117,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 118,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 119,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 120,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 121,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 121,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 122,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 122,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 123,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 124,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 126,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 127,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 128,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 128,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 129,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 131,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 132,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 133,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 134,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 134,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 135,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 135,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 135,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 136,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 136,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 137,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 137,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 137,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 138,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 138,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 138,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 139,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 139,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 139,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 140,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 140,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 141,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 141,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 142,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 142,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 143,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 143,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 144,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 145,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 145,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 146,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 146,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 147,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 148,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 149,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 150,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 150,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 151,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 151,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 152,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 152,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 153,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 153,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 153,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 154,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 154,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 155,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 155,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 155,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 156,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 157,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 158,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 159,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 159,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 160,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 161,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 162,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 162,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 162,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 163,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 164,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 164,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 165,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 165,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 166,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 166,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 166,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 167,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 167,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 168,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 168,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 170,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 170,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 170,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 171,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 172,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 172,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 172,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 173,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 173,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 174,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 175,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 175,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 176,
+     "op": "swap_agg",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 176,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 176,
+     "op": "drop_distinct",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 177,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 180,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 181,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 181,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 182,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 183,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 184,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 185,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 186,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 187,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 187,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 188,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 188,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 189,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 189,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 190,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 190,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 190,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 191,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 191,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 192,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 192,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 192,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 193,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 194,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 194,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 195,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 195,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 196,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 196,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 198,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 198,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 199,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 200,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 201,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 202,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 204,
+     "op": "drop_filter",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 204,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 204,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 206,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 207,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 208,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 209,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 210,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 210,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 211,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 212,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 213,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 214,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 215,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 216,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 217,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 217,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 217,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 217,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 218,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 219,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 220,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 220,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 221,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 221,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 221,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 222,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 223,
+     "op": "shift_number",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 223,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 223,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 224,
+     "op": "shift_number",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 224,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 225,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 225,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 226,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 227,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 227,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 231,
+     "op": "superclass",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 233,
+     "op": "superclass",
+     "empty_gold": false
+    },
+    {
+     "sql_id": 234,
+     "op": "drop_filter",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 234,
+     "op": "flip_cmp",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 234,
+     "op": "swap_agg",
+     "empty_gold": true
+    },
+    {
+     "sql_id": 234,
+     "op": "superclass",
+     "empty_gold": true
+    }
+   ]
+  },
+  "must_pass": {
+   "key integrity (all instances)": true,
+   "SHACL (all instances)": true,
+   "competency questions": true,
+   "compiler ceiling no regression": true
+  }
+ },
  "arms": [
   {
    "arm": "R",
@@ -19,18 +3567,18 @@
    "n": 63,
    "note": "",
    "suite_ex": {
-    "mean": 0.0952,
+    "mean": 0.0794,
     "ci": [
-     0.0172,
-     0.1935
+     0.0164,
+     0.1587
     ],
     "n": 63
    },
    "wrong_but_executed": {
-    "mean": 0.7619,
+    "mean": 0.7143,
     "ci": [
-     0.6316,
-     0.875
+     0.5753,
+     0.8361
     ],
     "n": 63
    },
@@ -42,22 +3590,22 @@
     ],
     "n": 63
    },
-   "failed": 0.0159,
+   "failed": 0.0794,
    "suite_ex_in_ceiling": {
-    "mean": 0.1071,
+    "mean": 0.0893,
     "ci": [
-     0.02,
-     0.2182
+     0.0189,
+     0.1765
     ],
     "n": 56
    },
    "slices": {
     "hierarchy": {
      "leaf": {
-      "mean": 0.1,
+      "mean": 0.0667,
       "ci": [
        0.0,
-       0.2593
+       0.1667
       ],
       "n": 30
      },
@@ -88,10 +3636,10 @@
       "n": 25
      },
      "type-a": {
-      "mean": 0.1538,
+      "mean": 0.0769,
       "ci": [
        0.0,
-       0.4615
+       0.2308
       ],
       "n": 13
      },
@@ -138,10 +3686,10 @@
       "n": 12
      },
      "3+": {
-      "mean": 0.1,
+      "mean": 0.0667,
       "ci": [
        0.0,
-       0.2581
+       0.1724
       ],
       "n": 30
      },
@@ -164,10 +3712,10 @@
       "n": 5
      },
      "functional": {
-      "mean": 0.1176,
+      "mean": 0.098,
       "ci": [
-       0.0227,
-       0.2353
+       0.0208,
+       0.1915
       ],
       "n": 51
      },
@@ -194,12 +3742,12 @@
     ]
    },
    "utility": {
-    "c=1": -0.7713,
-    "c=2": -1.5874,
-    "c=5": -4.0356,
+    "c=1": -0.7483,
+    "c=2": -1.5299,
+    "c=5": -3.8747,
     "components_per_q": {
-     "correct": 0.069,
-     "wrong": 0.8161,
+     "correct": 0.0575,
+     "wrong": 0.7816,
      "correct_refusal": 0.0115,
      "false_refusal": 0.092
     },
@@ -832,18 +4380,18 @@
    "n": 63,
    "note": "",
    "suite_ex": {
-    "mean": 0.254,
+    "mean": 0.2698,
     "ci": [
-     0.1486,
-     0.3833
+     0.1618,
+     0.4032
     ],
     "n": 63
    },
    "wrong_but_executed": {
-    "mean": 0.4603,
+    "mean": 0.4444,
     "ci": [
-     0.3273,
-     0.5893
+     0.3103,
+     0.5733
     ],
     "n": 63
    },
@@ -857,20 +4405,20 @@
    },
    "failed": 0.0,
    "suite_ex_in_ceiling": {
-    "mean": 0.2857,
+    "mean": 0.3036,
     "ci": [
-     0.1695,
-     0.4286
+     0.1818,
+     0.451
     ],
     "n": 56
    },
    "slices": {
     "hierarchy": {
      "leaf": {
-      "mean": 0.3333,
+      "mean": 0.3667,
       "ci": [
-       0.1765,
-       0.5385
+       0.2051,
+       0.5833
       ],
       "n": 30
      },
@@ -893,10 +4441,10 @@
     },
     "nesting": {
      "non-nested": {
-      "mean": 0.56,
+      "mean": 0.6,
       "ci": [
-       0.3684,
-       0.7917
+       0.4074,
+       0.8182
       ],
       "n": 25
      },
@@ -943,10 +4491,10 @@
       "n": 14
      },
      "2": {
-      "mean": 0.3333,
+      "mean": 0.4167,
       "ci": [
-       0.0769,
-       0.6364
+       0.1429,
+       0.8
       ],
       "n": 12
      },
@@ -977,10 +4525,10 @@
       "n": 5
      },
      "functional": {
-      "mean": 0.2941,
+      "mean": 0.3137,
       "ci": [
-       0.1731,
-       0.4444
+       0.1923,
+       0.4681
       ],
       "n": 51
      },
@@ -1007,12 +4555,12 @@
     ]
    },
    "utility": {
-    "c=1": -0.1287,
-    "c=2": -0.4621,
-    "c=5": -1.4621,
+    "c=1": -0.1057,
+    "c=2": -0.4276,
+    "c=5": -1.3931,
     "components_per_q": {
-     "correct": 0.1839,
-     "wrong": 0.3333,
+     "correct": 0.1954,
+     "wrong": 0.3218,
      "correct_refusal": 0.2759,
      "false_refusal": 0.2069
     },
@@ -1022,7 +4570,7 @@
    "stability": null,
    "economics": {
     "usd_per_q": 0.01796,
-    "usd_per_correct": 0.0707,
+    "usd_per_correct": 0.0665,
     "latency_p50_s": 5.29,
     "latency_p95_s": 13.64,
     "tokens_per_q": null
@@ -1037,18 +4585,18 @@
    "n": 63,
    "note": "",
    "suite_ex": {
-    "mean": 0.2063,
+    "mean": 0.2222,
     "ci": [
-     0.1081,
-     0.3214
+     0.1212,
+     0.3438
     ],
     "n": 63
    },
    "wrong_but_executed": {
-    "mean": 0.6349,
+    "mean": 0.619,
     "ci": [
-     0.5082,
-     0.75
+     0.4906,
+     0.7344
     ],
     "n": 63
    },
@@ -1062,20 +4610,20 @@
    },
    "failed": 0.0,
    "suite_ex_in_ceiling": {
-    "mean": 0.2321,
+    "mean": 0.25,
     "ci": [
-     0.1273,
-     0.3617
+     0.1379,
+     0.3846
     ],
     "n": 56
    },
    "slices": {
     "hierarchy": {
      "leaf": {
-      "mean": 0.3,
+      "mean": 0.3333,
       "ci": [
-       0.1471,
-       0.5
+       0.1765,
+       0.5385
       ],
       "n": 30
      },
@@ -1098,10 +4646,10 @@
     },
     "nesting": {
      "non-nested": {
-      "mean": 0.44,
+      "mean": 0.48,
       "ci": [
-       0.2609,
-       0.6667
+       0.2963,
+       0.7143
       ],
       "n": 25
      },
@@ -1148,10 +4696,10 @@
       "n": 14
      },
      "2": {
-      "mean": 0.25,
+      "mean": 0.3333,
       "ci": [
-       0.0,
-       0.5455
+       0.0769,
+       0.6364
       ],
       "n": 12
      },
@@ -1182,10 +4730,10 @@
       "n": 5
      },
      "functional": {
-      "mean": 0.2353,
+      "mean": 0.2549,
       "ci": [
-       0.125,
-       0.3721
+       0.1404,
+       0.3958
       ],
       "n": 51
      },
@@ -1212,12 +4760,12 @@
     ]
    },
    "utility": {
-    "c=1": -0.277,
-    "c=2": -0.7483,
-    "c=5": -2.1621,
+    "c=1": -0.254,
+    "c=2": -0.7138,
+    "c=5": -2.0931,
     "components_per_q": {
-     "correct": 0.1494,
-     "wrong": 0.4713,
+     "correct": 0.1609,
+     "wrong": 0.4598,
      "correct_refusal": 0.2644,
      "false_refusal": 0.1149
     },
@@ -1227,7 +4775,7 @@
    "stability": null,
    "economics": {
     "usd_per_q": 0.02042,
-    "usd_per_correct": 0.099,
+    "usd_per_correct": 0.0919,
     "latency_p50_s": 5.94,
     "latency_p95_s": 14.7,
     "tokens_per_q": null
@@ -1437,28 +4985,28 @@
    "n": 59,
    "gold_queries": 44,
    "metric": "correct",
-   "diff": -0.1864,
+   "diff": -0.2034,
    "ci": [
-    -0.3065,
-    -0.0727
+    -0.322,
+    -0.0893
    ],
-   "p": 0.0034,
-   "discordant": 0.2203,
-   "mde": 0.1712,
-   "p_holm": 0.0306
+   "p": 0.0018,
+   "discordant": 0.2373,
+   "mde": 0.1777,
+   "p_holm": 0.018
   },
   "R:wrong": {
    "n": 59,
    "gold_queries": 44,
    "metric": "wrong",
-   "diff": 0.0339,
+   "diff": -0.0169,
    "ci": [
-    -0.1356,
-    0.1964
+    -0.2182,
+    0.1695
    ],
-   "p": 0.8238,
-   "discordant": 0.339,
-   "mde": 0.2124,
+   "p": 1.0,
+   "discordant": 0.4237,
+   "mde": 0.2374,
    "p_holm": 1.0
   },
   "A:correct": {
@@ -1521,56 +5069,56 @@
    "n": 59,
    "gold_queries": 44,
    "metric": "correct",
-   "diff": -0.0169,
+   "diff": 0.0,
    "ci": [
-    -0.1148,
-    0.0816
+    -0.1034,
+    0.1091
    ],
    "p": 1.0,
-   "discordant": 0.1186,
-   "mde": 0.1256,
+   "discordant": 0.1356,
+   "mde": 0.1343,
    "p_holm": 1.0
   },
   "S:wrong": {
    "n": 59,
    "gold_queries": 44,
    "metric": "wrong",
-   "diff": -0.2542,
+   "diff": -0.2712,
    "ci": [
-    -0.3929,
-    -0.1186
+    -0.4118,
+    -0.1333
    ],
-   "p": 0.0003,
-   "discordant": 0.2881,
-   "mde": 0.1958,
-   "p_holm": 0.0033
+   "p": 0.0001,
+   "discordant": 0.3051,
+   "mde": 0.2015,
+   "p_holm": 0.0011
   },
   "S2:correct": {
    "n": 59,
    "gold_queries": 44,
    "metric": "correct",
-   "diff": -0.0678,
+   "diff": -0.0508,
    "ci": [
-    -0.1698,
-    0.0333
+    -0.1579,
+    0.0545
    ],
-   "p": 0.2891,
-   "discordant": 0.1356,
-   "mde": 0.1343,
+   "p": 0.5078,
+   "discordant": 0.1525,
+   "mde": 0.1425,
    "p_holm": 1.0
   },
   "S2:wrong": {
    "n": 59,
    "gold_queries": 44,
    "metric": "wrong",
-   "diff": -0.0678,
+   "diff": -0.0847,
    "ci": [
-    -0.1774,
-    0.0345
+    -0.2,
+    0.0179
    ],
-   "p": 0.3438,
-   "discordant": 0.1695,
-   "mde": 0.1502,
+   "p": 0.2266,
+   "discordant": 0.1864,
+   "mde": 0.1575,
    "p_holm": 1.0
   },
   "G:correct": {

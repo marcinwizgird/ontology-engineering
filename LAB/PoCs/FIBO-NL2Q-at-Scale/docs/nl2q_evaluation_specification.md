@@ -1,6 +1,6 @@
 # Evaluation Specification & Methodology: Neuro-Symbolic NL2Q (With vs. Without Ontologies)
 
-* **Document ID:** EVAL-SPEC-NL2Q-2026-V3.1 (supersedes V2; changes in §9)
+* **Document ID:** EVAL-SPEC-NL2Q-2026-V3.2 (supersedes V2; changes in §9)
 * **Date:** 2026-10-27
 * **Scope:** Standardized Evaluation Protocol for FIBO/FIBEN NL2Q PoC v2.0 and Cross-Benchmark PoCs (ACME Insurance, BIRD `financial`, FIBEN-Obfuscated)
 * **Core Engine Anchor:** Verified `SPARQL-2-SQL` Compiler (Ontop 5.5.0 sidecar + sqlglot transpiler + DuckDB 1.5.6 execution worker)
@@ -106,6 +106,7 @@ To show that findings are not an artifact of a single schema, evaluate across fo
    * Identical data and ontology to FIBEN-Standard.
    * The physical table and column names in DuckDB and the R2RML are replaced by opaque legacy identifiers (`TBL_C001`, `ATTR_04`), and the mapping and `db-metadata.json` are regenerated.
    * Separates semantic grounding from LLM memorization of the public FIBEN schema. By design, `L0` loses its name signal here; `L1` keeps the catalog.
+   * **Built (V3.2, `nl2q/evalkit/obfuscate.py`).** 152 tables → `TBL_C001`–`TBL_C152` in a seeded order; 374 columns → `ATTR_nn` per table; constraints → `FK_nnnn`. The data is not copied: `<instance>_OBF` view schemas exist for Base and V1–V6. The renamed R2RML and `db-metadata.json` pass the M01–M12 conformance rules with 0 errors and 0 warnings. All 237 gold SQL queries were rewritten through the map and return the same answer on all 7 instances. The only differences are 5 ties broken differently under `LIMIT` and 3 gold queries whose own answer varies between runs. The name map (`artifacts/eval/obfuscated/name_map.json`) is the key, and no arm's prompt may read it.
 3. **ACME Insurance (`cwd-benchmark-data`, literature comparability).**
    * 29 tables, 44 gold queries, human-authored OWL and multi-table `rr:sqlQuery` R2RML views.
    * **Recorded:** 44/44 gold SQL execute; 26/44 gold SPARQL compile through Ontop, and all 26 match.
@@ -154,6 +155,13 @@ Each split includes an **Unanswerable & Clarification Suite**. Every stratum is 
 * **`U2` (Mapped Concepts, Unmapped Relationship):** both classes are mapped (220 terms), but no mapped path links them in the requested sense. Construction: no edge between them in the allowed-edge graph, inheritance included. This directly regression-tests the **Arm S2** trap.
 * **`U3` (Out-of-Range Slice):** the filter lies outside the populated VoID bounds, e.g. a year with no facts or an unknown ticker. Construction: the filter value is absent from the value index or outside the min/max partition bounds. Grain ambiguity, which has no objective construction, is held out of U3. It may be added only as **`U3b`**, labelled by two annotators, with Cohen's κ reported and κ ≥ 0.7 required.
 
+**Built (V3.2, `nl2q/evalkit/unanswerable.py`, `artifacts/eval/unanswerable/strata.json`):** 50 questions per stratum, split 20 / 10 / 20 (train / val / test).
+* **U1:** FIBO classes from the LOAN, DER, IND and CAE modules (a pool of 236) whose label shares no word with a mapped label, a mapped synonym or a `Gv1` phrase.
+* **U2:** populated mapped class pairs with **no path of two hops or fewer**. This is stricter than "no edge", because a two-hop route could be a fair reading of "associated with".
+* **U3:** lookups, not counts, because "how many … in 2009" has the honest answer 0. Each item stores the SQL that proves its value is absent (count 0).
+
+The 24 hand-written v1 questions stay as a legacy set, because half of them trained v1's refusals.
+
 ### 4.4 Stratification Tags for Slice Analysis
 Every answerable question is tagged across four structural dimensions, derived automatically from the gold SPARQL and the schema (`nl2q/evalkit/slices.py`). Results are reported per slice rather than hidden in one macro-average:
 1. **Taxonomic Reasoning Depth:** `Single-Table Leaf` vs. `Superclass Hierarchy Union`. Examples: `ElementOfFinancialStatement` spans 8 subclass tables; `Disclosure` spans 118.
@@ -167,7 +175,7 @@ Slice results are **descriptive**. A slice difference counts as a finding only i
 
 | Risk | Control | Verified by |
 | :--- | :--- | :--- |
-| Curated knowledge written after seeing the gold (the v1 glossary) | `Gv1` is used only to reproduce v1. `Gtrain` is authored from train-split gold only, and its author's access is logged. | Glossary entries list the train query IDs they were derived from |
+| Curated knowledge written after seeing the gold (the v1 glossary) | `Gv1` is used only to reproduce v1. `Gtrain` is authored from train-split gold only, and its author's access is logged. **Built (V3.2):** `nl2q/evalkit/gtrain.py` induces it automatically (11 entries from 94 train gold queries), records the train-ID hash, and raises on any non-train question. `NL2Q_GLOSSARY` selects `v1` / `train` / `none`. | Glossary entries list the train query IDs they were derived from; `tests/test_gate2_datasets.py` |
 | Enrichment reading benchmark answers | `nl2q/enrich.py` may not import or read gold, splits or questions | `tests/test_enrich.py::test_enrichment_cannot_read_benchmark_answers` |
 | A transfer mapping tuned to its questions (BIRD) | The mapping is authored and committed before the questions file is opened; the commit precedes the first evaluation run | Git history |
 | Schema memorization (FIBEN public since 2020) | FIBEN-Obfuscated | §4.1 |
@@ -218,6 +226,20 @@ Evaluation proceeds through four gates. A higher gate runs only after the **must
    * **Refusal recall** per stratum and overall (target ≥ 0.80);
    * **False-refusal rate** on answerable questions;
    * **Refusal precision at a stated prevalence:** precision depends on the share of unanswerables, so it is reported at the split's actual mix **and** re-weighted to a fixed 20% unanswerable prevalence (target ≥ 0.90).
+
+**Recorded (V3.2, val split, v1 components; `nl2q/evalkit/gate2.py`, `artifacts/eval/gate2/gate2_val.md`).** 56 answerable questions (42 gold queries) and 30 unanswerable. The oracles come from 219 gold SPARQL queries: 694 edges and 822 filter values. Only 112 of 275 questions contain a filter value verbatim, so the C1 oracle stays *partial*.
+
+| Config | Recall@5 | Recall@20 | MRR | Value F1 (indexed) | Grounding ceiling | Edge P / R (relaxed) | Refusal U1 / U2 / U3 · false |
+|---|---|---|---|---|---|---|---|
+| hybrid K1 E0 G0 | 21.1% | 30.9% | 0.755 | 0.653 | 25.0% | 35.7% / 51.1% | 100 / 40 / 70% · 23.2% |
+| hybrid K1 E1 G0 | 21.3% | 31.9% | 0.735 | 0.653 | 25.0% | 38.5% / 51.1% | 100 / 40 / 40% · 30.4% |
+| hybrid K4 E0 Gtrain | 22.6% | 38.4% | 0.786 | 0.653 | 25.0% | 36.7% / 49.4% | 100 / 40 / 70% · 23.2% |
+| hybrid K4 E0 Gv1 *(possibly contaminated)* | 31.9% | 63.6% | 0.845 | 0.653 | 30.4% | 42.0% / 55.2% | 100 / 40 / 20% · 23.2% |
+
+* **Grounding is the binding constraint.** The best re-ranked tree covers the gold terms for at most 30% of the questions, and only about half of the gold classes.
+* **The equivalence-aware ceiling equals the literal one**, because no question's tree swapped a gold class for an equivalent superclass.
+* **Gv1 vs Gtrain is the contamination measurement.** The glossary written after seeing all the gold lifts recall@20 by 25 points over the one induced from train only.
+* **The v1 rule gate fails the C4 targets.** U1 recall is 100%, but the gate's FIBO-tier test mirrors U1's construction, so that figure is optimistic. U2 recall is 40%, and 23% of answerable questions are falsely refused, so precision at 20% prevalence is 43%, against a target of 90%.
 
 ---
 
@@ -379,10 +401,10 @@ In line with `PLAN.md` §4.4, §7 and §8, no prompt or architecture reaches rel
 |---|---|---|---|
 | **S1** | This specification (V3) | — | done |
 | **S2** | Scoring core: cluster bootstrap, run aggregation, McNemar on majorities, MDE, Holm, utility with floor and components, refusal metrics at prevalence, stability, $/correct, ceiling-normalized EX, slice tags; scorecard Table C from existing runs | $0 | **done**: `evalkit/statistics.py`, `slices.py`, `scoring.py`, `scorecard.py`; `tests/test_evalkit.py` (14). The v1 scorecard (`artifacts/eval/campaigns/fiben_v1_val.scorecard.md`) reproduces `RESULTS.md` §9 exactly. |
-| **S3** | Gate 1: V6 instance, SHACL shapes + pySHACL on Base + V1–V6, VoID partitions, CQ ASK tests, annotation coverage, ceiling + mutation on Base + V1–V6, SIP validation-agent scan; Table A | $0 | **done; Gate 1 must-pass: PASS**. Files: `evalkit/gate1.py`, `v6.py`, `shacl.py`, `void.py`, `artifacts/eval/cq/` (17 CQs).<br>• Key integrity: 0 dangling keys on all 7 instances, after the V5 repair.<br>• SHACL: 0 violations on all 7 instances; pySHACL agrees with the SQL compilation on injected defects.<br>• CQs: 17/17.<br>• Ceiling: 219/237, and 219/219 on V6.<br>• OVA (reported): E0 1 major / 415 minor, E1 1 / 157; covers 33 of 41 OOPS! pitfalls.<br>• VoID: 111 of 152 classes are empty.<br>• Rescoring of the v1 live runs on the repaired V5 is in progress. |
-| **S4** | Gate 2: gold intermediates from gold SPARQL, recall@k / MRR, value-linking F1, equivalence-aware grounding ceiling, edge precision | $0 | planned |
+| **S3** | Gate 1: V6 instance, SHACL shapes + pySHACL on Base + V1–V6, VoID partitions, CQ ASK tests, annotation coverage, ceiling + mutation on Base + V1–V6, SIP validation-agent scan; Table A | $0 | **done; Gate 1 must-pass: PASS**. Files: `evalkit/gate1.py`, `v6.py`, `shacl.py`, `void.py`, `artifacts/eval/cq/` (17 CQs).<br>• Key integrity: 0 dangling keys on all 7 instances, after the V5 repair.<br>• SHACL: 0 violations on all 7 instances; pySHACL agrees with the SQL compilation on injected defects.<br>• CQs: 17/17.<br>• Ceiling: 219/237, and 219/219 on V6.<br>• OVA (reported): E0 1 major / 415 minor, E1 1 / 157; covers 33 of 41 OOPS! pitfalls.<br>• VoID: 111 of 152 classes are empty.<br>• The v1 live runs were rescored on the repaired V5: R, S and S2 moved by 1.6–4.8 points, the other arms not at all (`RESULTS.md` §7.2, §9). |
+| **S4** | Gate 2: gold intermediates from gold SPARQL, recall@k / MRR, value-linking F1, equivalence-aware grounding ceiling, edge precision | $0 | **done**: `evalkit/gold_intermediates.py`, `gate2.py`; `artifacts/eval/gate2/`. Val results are in §5, Gate 2. The C1 oracle is partial until the questions are span-annotated. The alternative-path part of the ceiling waits for C5 (S5). |
 | **S5** | Ports C1–C6 with OracleAdapters (refactor of `program.py`), per-port latency/tokens/cost; Gate 3 matrix runnable offline with the simulator | $0 (live run ≈ US$9–13) | planned |
-| **S6** | Datasets: U1–U3 by construction, FIBEN-Obfuscated, `Gtrain` glossary, L1.5 hierarchy views | $0 | planned |
+| **S6** | Datasets: U1–U3 by construction, FIBEN-Obfuscated, `Gtrain` glossary, L1.5 hierarchy views | $0 | **done**: `evalkit/unanswerable.py` (150 questions), `obfuscate.py` (7 `_OBF` schemas, renamed mapping and metadata, gold verified), `gtrain.py` (11 entries, train only), `l15.py` (7 `_L15` schemas, 152 views each, 8 flattened hierarchies, 0 count mismatches); `tests/test_gate2_datasets.py` (10). |
 | **S7** | Arms: L1 T-Catalog, L1.5 T-Views, L3 S-v2 (VoID/SHACL + C4 + IR), L4 S-Agentic | $0 to build; live runs billed | planned |
 | **S8** | BIRD `financial` (blind mapping), fresh-paraphrase probe (needs a person), curation-hours log | $0 to build | planned |
 
@@ -406,3 +428,9 @@ In line with `PLAN.md` §4.4, §7 and §8, no prompt or architecture reaches rel
 * V6 built and validated;
 * superclass mutation detection re-based on swaps that are not equivalent under the declared keys;
 * Gate 1 passes.
+
+**V3.2 (2026-10-27).** Stages S4 and S6 done:
+* Gate 2 recorded on val;
+* U1–U3 built (U2 tightened to "no path of two hops or fewer"; U3 lookups only, with absence evidence);
+* FIBEN-Obfuscated, `Gtrain` and the L1.5 views built and verified;
+* glossary selection added (`NL2Q_GLOSSARY`).

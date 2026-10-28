@@ -126,7 +126,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
 
 <main>
 <header class="doc">
-  <div class="sec-num">EVAL-SPEC-NL2Q-2026 · V3.1 · technical specification</div>
+  <div class="sec-num">EVAL-SPEC-NL2Q-2026 · V3.2 · technical specification</div>
   <h1>Evaluating neuro-symbolic NL2Q with and without ontologies</h1>
   <p class="lede">How the FIBO/FIBEN NL2Q proof of concept is measured, from build-time ontology health to end-to-end safety. Each layer of semantics is isolated, the runtime is split into six testable ports, and every comparison follows a pre-registered statistical plan.</p>
   <dl class="meta">
@@ -141,10 +141,10 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
 </header>
 
 <section id="status">
-  <div class="head"><div class="sec-num">Status at a glance</div><h2>Gate 1 passes; Gates 2–4 are specified and partly built</h2></div>
+  <div class="head"><div class="sec-num">Status at a glance</div><h2>Gate 1 passes; Gate 2 is measured; Gates 3–4 are specified and partly built</h2></div>
   <div class="gates">
     <div class="gate"><span class="g">Gate 1 · $0</span><h4>Build &amp; data health</h4><span class="pill pass">PASS</span><p>Keys, SHACL and CQs clean on all 7 instances after the V5 repair.</p></div>
-    <div class="gate"><span class="g">Gate 2 · $0</span><h4>Component metrics</h4><span class="pill plan">stage S4</span><p>Concept recall exists (H1); gold intermediates and grounding ceiling to build.</p></div>
+    <div class="gate"><span class="g">Gate 2 · $0</span><h4>Component metrics</h4><span class="pill pass">measured</span><p>Val: recall@20 31% (no glossary), 38% (Gtrain); grounding ceiling 25%; v1 refusal gate below target.</p></div>
     <div class="gate"><span class="g">Gate 3 · ≈ US$9–13</span><h4>Oracle ceilings</h4><span class="pill plan">stage S5</span><p>Needs the C1–C6 ports and oracle adapters.</p></div>
     <div class="gate"><span class="g">Gate 4 · billed</span><h4>End to end</h4><span class="pill warn">scoring ready</span><p>Scoring core done; v1 arms scored; new ladder arms not built.</p></div>
   </div>
@@ -253,7 +253,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
       <tr><td class="n">V6</td><td>Counterfactual superclass-only clones of subclass individuals, with references mirrored only through keys that allow them</td><td>Superclass swaps, where any valid instance can show them</td><td><span class="pill pass">0</span></td></tr>
     </tbody>
   </table></div>
-  <div class="note warn"><p><b>V5 repair (V3.1).</b> The v1 witness builder left 1,570 subclass rows without their parent rows, breaking 4 subclass keys (e.g. 685 <code>ListedSecurity</code> rows with no <code>Security</code> row). The builder now adds the parent chain (2,255 rows). The repair left the ceiling unchanged at 219/237 and moved executable-mutant detection from 58.3% to 58.5%. Rescoring the v1 live runs on the repaired V5 is in progress.</p></div>
+  <div class="note warn"><p><b>V5 repair (V3.1).</b> The v1 witness builder left 1,570 subclass rows without their parent rows, breaking 4 subclass keys (e.g. 685 <code>ListedSecurity</code> rows with no <code>Security</code> row). The builder now adds the parent chain (2,255 rows). The repair left the ceiling unchanged at 219/237 and moved executable-mutant detection from 58.3% to 58.5%. The v1 live runs were rescored: R, S and S2 moved by 1.6–4.8 points, the other arms not at all (§6).</p></div>
   <div class="note"><p><b>What V6 showed.</b> V6 changes the gold answer of 63 queries, and all 219 accepted gold queries still agree on it. But <b>199 of the 218 v1 superclass mutants are equivalent under the declared keys</b>: the swapped variable is reached through a key that targets the subclass (<code>HOLDING.REFERSTO → LISTEDSECURITY</code>), so no valid instance can tell the two queries apart. v1's "9 of 218 caught" measured the schema, not the test suite. Superclass detection is now reported on the 19 non-equivalent swaps (8 of 18 executable with non-empty gold).</p></div>
 
   <h3 id="unanswerable">4.3 Unanswerable suite, labelled by construction</h3>
@@ -313,13 +313,24 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
   </table></div>
   <div class="note"><p><b>Known limits.</b> The pySHACL cross-check could not inject a NULL in a required attribute: the sampled tables declare no NOT NULL attributes. The CQs run over allowed edges rendered as <code>rdfs:domain</code>/<code>rdfs:range</code>, so a CQ pairing one edge's domain with another edge's range of the same property would pass.</p></div>
 
-  <h3 id="gate2">Gate 2 · Component metrics <span class="pill plan">stage S4</span></h3>
+  <h3 id="gate2">Gate 2 · Component metrics <span class="pill pass">S4 done</span></h3>
   <ul>
     <li><b>Oracle sources.</b> Gold terms, edges and filter values are extracted automatically from accepted gold SPARQL. Gold <b>mention spans</b> need human annotation (annotator, date, agreement on a 20% double-annotated sample). Until then the C1 oracle uses verbatim value spans and is labelled <i>partial</i>.</li>
     <li><b>Retrieval (C1 + C2):</b> concept recall@k for k = 5, 10, 20 and MRR; value-linking F1 on (value, owning property) pairs.</li>
     <li><b>Pruning (C3):</b> an <b>equivalence-aware grounding ceiling</b>. A term set counts if it covers the gold terms up to equivalences this data makes true, or if a query built from it passes the suite. Edge precision is reported with the subgraph's token count.</li>
     <li><b>Refusal gate (C4):</b> recall per U stratum; false-refusal rate on answerable questions; precision at the split's mix and at a fixed 20% prevalence (target ≥ 0.90).</li>
   </ul>
+  <p><b>Recorded (V3.2, val, v1 components).</b> 56 answerable questions and 30 unanswerable (U1–U3). Oracles from 219 gold SPARQL queries: 694 edges, 822 filter values. Only 112 of 275 questions contain a value verbatim, so the C1 oracle stays partial.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Config</th><th>Recall@5</th><th>Recall@20</th><th>MRR</th><th>Value F1</th><th>Grounding ceiling</th><th>Edge P / R</th><th>Refusal U1 / U2 / U3 · false</th></tr></thead>
+    <tbody>
+      <tr><td>hybrid K1 E0 G0</td><td>21.1%</td><td>30.9%</td><td>0.755</td><td>0.653</td><td>25.0%</td><td>35.7% / 51.1%</td><td>100 / 40 / 70% · 23.2%</td></tr>
+      <tr><td>hybrid K1 E1 G0</td><td>21.3%</td><td>31.9%</td><td>0.735</td><td>0.653</td><td>25.0%</td><td>38.5% / 51.1%</td><td>100 / 40 / 40% · 30.4%</td></tr>
+      <tr><td>hybrid K4 E0 Gtrain</td><td>22.6%</td><td>38.4%</td><td>0.786</td><td>0.653</td><td>25.0%</td><td>36.7% / 49.4%</td><td>100 / 40 / 70% · 23.2%</td></tr>
+      <tr><td>hybrid K4 E0 Gv1 <i>(possibly contaminated)</i></td><td>31.9%</td><td>63.6%</td><td>0.845</td><td>0.653</td><td>30.4%</td><td>42.0% / 55.2%</td><td>100 / 40 / 20% · 23.2%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note warn"><p><b>Readings.</b> Grounding is the binding constraint: the best tree covers the gold terms for at most 30% of questions. The 25-point recall gap between Gv1 and Gtrain measures the contamination risk. The v1 rule gate's U1 recall is optimistic, because its FIBO-tier test mirrors U1's construction. With 23% false refusals, precision at 20% prevalence is 43%, against the 90% target. Edge figures are hierarchy-relaxed. The equivalence-aware ceiling equalled the literal one on val.</p></div>
 
   <h3 id="gate3">Gate 3 · Oracle-injected matrix <span class="pill plan">stage S5</span></h3>
   <div class="tbl"><table>
@@ -371,16 +382,16 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
   <div class="tbl"><table>
     <thead><tr><th>v1 arm</th><th>Nearest rung</th><th>Suite EX [95% CI]</th><th>Wrong-but-executed ↓</th><th>Refused (answerable)</th><th>Δ wrong vs T [CI], Holm p</th><th>$/question</th></tr></thead>
     <tbody>
-      <tr><td>R: rules, no LLM</td><td>floor</td><td class="n">9.5% [2–19]</td><td class="n">76.2%</td><td class="n">12.7%</td><td class="n">+3.4 [−14, +20], 1.00</td><td class="n">0</td></tr>
+      <tr><td>R: rules, no LLM</td><td>floor</td><td class="n">7.9% [2–16]</td><td class="n">71.4%</td><td class="n">12.7%</td><td class="n">−1.7 [−22, +17], 1.00</td><td class="n">0</td></tr>
       <tr><td>T: text-to-SQL over DDL</td><td>L0</td><td class="n">28.8% [16–42]</td><td class="n">71.2%</td><td class="n">0%</td><td>baseline</td><td class="n">0.085</td></tr>
       <tr><td>A: direct SPARQL</td><td>L2 without OBQC</td><td class="n">19.1% [10–30]</td><td class="n">63.5%</td><td class="n">0%</td><td class="n">−5.1 [−17, +7], 1.00</td><td class="n">0.012</td></tr>
       <tr><td>B: SPARQL + OBQC + repair</td><td>L2</td><td class="n">20.6% [10–33]</td><td class="n">79.4%</td><td class="n">0%</td><td class="n">+8.5 [+2, +16], 0.44</td><td class="n">0.015</td></tr>
-      <tr><td><b>S: grounding + IR + checks</b></td><td>L3 precursor</td><td class="n">25.4% [15–38]</td><td class="n"><b>46.0%</b></td><td class="n">28.6%</td><td class="n"><b>−25.4 [−39, −12], &lt; 0.01</b></td><td class="n">0.018</td></tr>
-      <tr><td>S2: S + link neighbourhood</td><td>v1 S2</td><td class="n">20.6% [11–32]</td><td class="n">63.5%</td><td class="n">15.9%</td><td class="n">−6.8 [−18, +3], 1.00</td><td class="n">0.020</td></tr>
+      <tr><td><b>S: grounding + IR + checks</b></td><td>L3 precursor</td><td class="n">27.0% [16–40]</td><td class="n"><b>44.4%</b></td><td class="n">28.6%</td><td class="n"><b>−27.1 [−41, −13], 0.001</b></td><td class="n">0.018</td></tr>
+      <tr><td>S2: S + link neighbourhood</td><td>v1 S2</td><td class="n">22.2% [12–34]</td><td class="n">61.9%</td><td class="n">15.9%</td><td class="n">−8.5 [−20, +2], 1.00</td><td class="n">0.020</td></tr>
       <tr><td>G: tool agent</td><td>arm G</td><td class="n">8.8% [2–18]</td><td class="n">8.8%</td><td class="n">73.7%*</td><td class="n">−61.4 [−75, −47], &lt; 0.01</td><td class="n">0.134</td></tr>
     </tbody>
   </table></div>
-  <p>* Mostly step exhaustion, not principled refusal. T and G stopped at their budget caps (59 and 57 questions). No accuracy difference is significant; minimum detectable differences are 11–29 pp. S's lower wrong-but-executed rate survives clustering and Holm correction, but part of it comes from refusing 29% of answerable questions. These figures predate the V5 repair; their re-check is in progress.</p>
+  <p>* Mostly step exhaustion, not principled refusal. T and G stopped at their budget caps (59 and 57 questions). No accuracy difference is significant; minimum detectable differences are 11–29 pp. S's lower wrong-but-executed rate survives clustering and Holm correction, but part of it comes from refusing 29% of answerable questions. Rescored after the V5 repair: R, S and S2 moved by 1.6–4.8 points; the other arms are unchanged.</p>
 </section>
 
 <section id="gonogo">
@@ -408,12 +419,12 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
   <div class="tbl"><table>
     <thead><tr><th>Stage</th><th>Content</th><th>Cost</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td class="n">S1</td><td>Specification V3 / V3.1</td><td>—</td><td><span class="pill pass">done</span></td></tr>
+      <tr><td class="n">S1</td><td>Specification V3 / V3.1 / V3.2</td><td>—</td><td><span class="pill pass">done</span></td></tr>
       <tr><td class="n">S2</td><td>Scoring core: cluster bootstrap, nested runs, McNemar on majorities, MDE, Holm, utility with floor, refusal at prevalence, stability, $/correct, slices, scorecard. 19 tests; reproduces <code>RESULTS.md</code> §9 exactly.</td><td>$0</td><td><span class="pill pass">done</span></td></tr>
-      <tr><td class="n">S3</td><td>Gate 1: V5 repair, V6, key integrity, SHACL + pySHACL, VoID, 17 CQs, OVA scan, coverage, ceiling and mutation on Base + V1–V6, Table A</td><td>$0</td><td><span class="pill pass">done · PASS</span> <span class="pill warn">v1 rescore running</span></td></tr>
-      <tr><td class="n">S4</td><td>Gate 2: gold intermediates, recall@k / MRR, value-linking F1, grounding ceiling, edge precision</td><td>$0</td><td><span class="pill plan">next</span></td></tr>
+      <tr><td class="n">S3</td><td>Gate 1: V5 repair, V6, key integrity, SHACL + pySHACL, VoID, 17 CQs, OVA scan, coverage, ceiling and mutation on Base + V1–V6, Table A</td><td>$0</td><td><span class="pill pass">done · PASS</span></td></tr>
+      <tr><td class="n">S4</td><td>Gate 2: gold intermediates, recall@k / MRR, value-linking F1, grounding ceiling, edge precision</td><td>$0</td><td><span class="pill pass">done</span></td></tr>
       <tr><td class="n">S5</td><td>Ports C1–C6 with oracle adapters; per-port latency, tokens and cost; Gate 3 runnable offline</td><td>$0 (live ≈ US$9–13)</td><td><span class="pill plan">planned</span></td></tr>
-      <tr><td class="n">S6</td><td>Datasets: U1–U3 by construction, FIBEN-Obfuscated, <code>Gtrain</code>, L1.5 views</td><td>$0</td><td><span class="pill plan">planned</span></td></tr>
+      <tr><td class="n">S6</td><td>Datasets: U1–U3 by construction (150 questions), FIBEN-Obfuscated (gold identical on 7 instances; mapping passes M01–M12), <code>Gtrain</code> (11 entries, train only), L1.5 views (7 instances, 0 count mismatches)</td><td>$0</td><td><span class="pill pass">done</span></td></tr>
       <tr><td class="n">S7</td><td>Arms L1, L1.5, L3, L4</td><td>live runs billed</td><td><span class="pill plan">planned</span></td></tr>
       <tr><td class="n">S8</td><td>BIRD <code>financial</code> (blind mapping), fresh-paraphrase probe (needs a person), curation log</td><td>$0 to build</td><td><span class="pill plan">planned</span></td></tr>
     </tbody>
@@ -421,7 +432,7 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
 </section>
 
 <section id="revisions">
-  <div class="head"><div class="sec-num">9 · Revision log</div><h2>From V2 to V3.1</h2></div>
+  <div class="head"><div class="sec-num">9 · Revision log</div><h2>From V2 to V3.2</h2></div>
   <div class="grid2">
     <div class="panel"><h4>V3 · 26 October</h4><ul>
       <li>Enrichment became a measured factor; coverage corrected to 216/220; v1 diagnosis corrected to a vocabulary gap.</li>
@@ -437,11 +448,17 @@ footer{border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:
       <li>Superclass mutation detection re-based: 199 of 218 swaps are equivalent under the declared keys.</li>
       <li>Gate 1 passes.</li>
     </ul></div>
+    <div class="panel"><h4>V3.2 · 27 October</h4><ul>
+      <li>Gate 2 measured on val (S4).</li>
+      <li>U1–U3 built; U2 tightened to no path of two hops or fewer; U3 lookups with absence evidence.</li>
+      <li>FIBEN-Obfuscated, Gtrain and L1.5 views built and verified (S6).</li>
+      <li>Glossary selection <code>NL2Q_GLOSSARY</code> = v1 / train / none.</li>
+    </ul></div>
   </div>
 </section>
 
 <footer>
-  <span>Generated from <code>docs/nl2q_evaluation_specification.md</code> (V3.1) and the Gate 1 artifacts in <code>artifacts/eval/</code>.</span>
+  <span>Generated from <code>docs/nl2q_evaluation_specification.md</code> (V3.2) and the Gate 1 and Gate 2 artifacts in <code>artifacts/eval/</code>.</span>
   <span>Companion: the executive overview of the same specification.</span>
 </footer>
 </main>

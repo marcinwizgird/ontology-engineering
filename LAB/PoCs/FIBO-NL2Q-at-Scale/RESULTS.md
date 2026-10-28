@@ -243,6 +243,42 @@ exists. Every learned arm must beat it on accuracy *and* on wrong-but-executed.
   and a valid superclass near miss is possible only where no FK references the subclass
   row. That is the remaining gap to the 95% target.
 
+### 7.2 Repair of the witness instance (2026-10-27)
+
+The evaluation specification's Gate 1 key-integrity check found V5 invalid. Its witness
+rows broke 4 subclass foreign keys: 1,570 subclass rows had no parent row (e.g. 685
+`ListedSecurity` rows without a `Security` row). Ontop trusts declared keys, so on V5 a
+SPARQL query and the gold SQL could disagree because of the data.
+
+`witness.Builder.close_parents` now adds the parent chain (2,255 rows). After the repair:
+* **every instance** (Base, V1–V6) has zero dangling keys and zero SHACL violations;
+* the **compiler ceiling** is unchanged (219/237);
+* **mutation detection** moved from 58.3% to 58.5% of executable mutants;
+* the **live check** moved by 1.6–4.8 points for R, S and S2 (§9).
+
+The new taxonomic counterfactual instance V6 (`nl2q/evalkit/v6.py`) showed that **199 of
+the 218 superclass mutants are equivalent under the declared keys**: the swapped variable
+is reached through a key that targets the subclass (`HOLDING.REFERSTO -> LISTEDSECURITY`),
+so no valid instance can separate the two queries. The 9/218 above measured the schema,
+not the metric.
+
+### 7.3 Gate 2 and the new datasets (2026-10-27)
+
+Evaluation-framework stages S4 and S6 (`docs/nl2q_evaluation_specification.md` §8) cost $0.
+
+**Gate 2** (`python -m nl2q.evalkit.gate2 --split val`, `artifacts/eval/gate2/gate2_val.md`) scores the v1 grounding components against oracles extracted from the gold SPARQL. Val has 56 answerable questions and 30 unanswerable.
+
+* **Retrieval.** Recall@20 of the gold terms is 31% with no glossary, 38% with `Gtrain` (induced from train only) and 64% with the v1 glossary. Gv1 was written after reading all gold. The 25-point gap between the two glossaries is the size of the contamination risk §5 flagged.
+* **Value linking.** F1 is 0.65 on the properties the value index covers. Codes such as `hasType = "1"` are not linked at all.
+* **Grounding.** The best re-ranked tree covers every gold term for only 25–30% of questions. Equivalence-aware matching adds nothing on val.
+* **Refusal (v1 rule gate).** Recall is 100% on U1, 40% on U2 and 20–70% on U3, with 23% false refusals. Precision at 20% prevalence is 43%, against a target of 90%.
+
+**New datasets:**
+* **U1–U3** (`nl2q/evalkit/unanswerable.py`): 150 questions labelled by construction.
+* **FIBEN-Obfuscated** (`obfuscate.py`): opaque names over views. The gold gives identical answers on all 7 instances, apart from ties under `LIMIT`. The renamed mapping passes M01–M12.
+* **`Gtrain`** (`gtrain.py`).
+* **L1.5 hierarchy views** (`l15.py`): verified on all 7 instances.
+
 ## 8. ACME insurance on the same stack (literature comparability, P4)
 
 * 29 tables loaded; the data.world R2RML adapted for Ontop (table names, `sqlQuery` as
@@ -255,16 +291,18 @@ exists. Every learned arm must beat it on accuracy *and* on wrong-but-executed.
 
 ## 9. Small live check (Sonnet 5.5, val, one run per arm)
 
-Re-scored offline (`nl2q/rescore.py`) on the base data and all five variants:
+Re-scored offline (`nl2q/rescore.py`) on the base data and all five variants. **Updated
+2026-10-27** after the V5 repair (§7.2): R, S and S2 changed by 1.6–4.8 points; the other
+arms are unchanged.
 * **Relaxed** means the answer may omit the gold query's extra context columns; FIBEN's gold
   SQL projects names and tickers a direct answer leaves out.
 * **Suite** means correct on the base data and every variant.
 
 | Arm | n | strict EX (base) | relaxed EX (base) | **suite, relaxed** | **wrong-but-executed (suite)** | refused | $/question |
 |---|---|---|---|---|---|---|---|
-| R: rules, no LLM | 63 | 0.079 | 0.254 | 0.095 | 0.762 | 0.127 | 0 |
-| **S: grounding + plan + checks** | 63 | 0.159 | 0.476 | **0.254** | **0.460** | 0.286 | 0.018 |
-| S2: S + link neighbourhood + glossary fix | 63 | 0.190 | 0.571 | 0.206 | 0.635 | 0.159 | 0.020 |
+| R: rules, no LLM | 63 | 0.079 | 0.254 | 0.079 | 0.714 | 0.127 | 0 |
+| **S: grounding + plan + checks** | 63 | 0.159 | 0.476 | **0.270** | **0.444** | 0.286 | 0.018 |
+| S2: S + link neighbourhood + glossary fix | 63 | 0.190 | 0.571 | 0.222 | 0.619 | 0.159 | 0.020 |
 | A: direct SPARQL | 63 | 0.222 | 0.492 | 0.190 | 0.635 | 0 (0.175 failed) | 0.012 |
 | B: A + OBQC + repair | 63 | 0.222 | 0.619 | 0.206 | 0.794 | 0 | 0.015 |
 | T: text-to-SQL over the DDL | 59 † | 0.220 | 0.593 | 0.288 | 0.712 | 0 | 0.085 |
@@ -284,12 +322,14 @@ Unanswerable set (24 questions the mapping cannot answer):
 | T, G | not run (budget) |
 
 Findings:
-* **No accuracy winner at n = 63.** Paired exact McNemar on suite accuracy:
-  * S2 vs T: −6.8 points, p = 0.29;
-  * S2 vs B: 0.0 points, p = 1.0;
-  * S vs S2: +4.8 points for S, p = 0.38.
+* **No accuracy winner at n = 63.** Re-analysed under the evaluation specification
+  (`artifacts/eval/campaigns/fiben_v1_val.scorecard.md`: gold-query cluster bootstrap,
+  McNemar on paired outcomes, Holm correction), no arm differs from T on suite accuracy
+  except R and G (both worse). The minimum detectable differences are 11–29 points.
 * **Safety is the measurable difference.** S has the lowest confidently-wrong rate of all
-  arms that answer (46% vs 64–79%), and the only principled refusals.
+  arms that answer (44% vs 62–79%), and the only principled refusals. Against T the gap is
+  −27 points (95% CI −41 to −13, Holm p = 0.001), but part of it comes from S refusing 29%
+  of answerable questions.
 * **More context made S answer more, not better.** S2's change (all links touching the
   involved classes) cut refusals by 13 points and raised wrong answers by 18. The
   recall-over-pruning recommendation does not hold here as stated: unless the planner can

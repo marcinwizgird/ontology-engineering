@@ -1,0 +1,2173 @@
+{
+ "note": "Unanswerable questions labelled by construction (specification §4.3). Gold outcome: refuse or ask for clarification.",
+ "seed": 20261027,
+ "counts": {
+  "U1": {
+   "val": 10,
+   "test": 20,
+   "train": 20
+  },
+  "U2": {
+   "test": 20,
+   "train": 20,
+   "val": 10
+  },
+  "U3": {
+   "train": 20,
+   "test": 20,
+   "val": 10
+  }
+ },
+ "items": [
+  {
+   "id": "U1-001",
+   "stratum": "U1",
+   "question": "List all covered warrants.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/RightsAndWarrants/CoveredWarrant",
+    "fibo_label": "covered warrant",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-002",
+   "stratum": "U1",
+   "question": "How many warrant exercise actions are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/CAE/CorporateEvents/SecurityRelatedCorporateActions/WarrantExerciseAction",
+    "fibo_label": "warrant exercise action",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-003",
+   "stratum": "U1",
+   "question": "Which structured warrants does Continental Building Products Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/RightsAndWarrants/StructuredWarrant",
+    "fibo_label": "structured warrant",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-004",
+   "stratum": "U1",
+   "question": "Show the receiving counterparty details for Ferro Corporation.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/DerivativesBasics/ReceivingParty",
+    "fibo_label": "receiving counterparty",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-005",
+   "stratum": "U1",
+   "question": "List all households.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/EconomicIndicators/Household",
+    "fibo_label": "household",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-006",
+   "stratum": "U1",
+   "question": "How many cardholders are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansSpecific/CardAccounts/Cardholder",
+    "fibo_label": "cardholder",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-007",
+   "stratum": "U1",
+   "question": "Which excess return swaps does Carter's, Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Swaps/ExcessReturnSwap",
+    "fibo_label": "excess return swap",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-008",
+   "stratum": "U1",
+   "question": "Show the barrier reverse convertible certificate details for Halliburton Company.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/StructuredInstruments/BarrierReverseConvertibleCertificate",
+    "fibo_label": "barrier reverse convertible certificate",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-009",
+   "stratum": "U1",
+   "question": "List all employment situation establishment surveys.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/NorthAmericanIndicators/USEconomicIndicators/EmploymentSituationEstablishmentSurvey",
+    "fibo_label": "employment situation establishment survey",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-010",
+   "stratum": "U1",
+   "question": "How many twin-win certificates are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/StructuredInstruments/TwinWinCertificate",
+    "fibo_label": "twin-win certificate",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-011",
+   "stratum": "U1",
+   "question": "Which borrower rights does The Coca-Cola Company have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoansRegulatory/BorrowerRight",
+    "fibo_label": "borrower right",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-012",
+   "stratum": "U1",
+   "question": "Show the how submitted details for Rentech Nitrogen Partners, L.P.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/RealEstateLoans/HomeMortgageDisclosureActCoveredMortgages/HowSubmitted",
+    "fibo_label": "how submitted",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-013",
+   "stratum": "U1",
+   "question": "List all bullions.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/CommoditiesContracts/Bullion",
+    "fibo_label": "bullion",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-014",
+   "stratum": "U1",
+   "question": "How many dispersion swaps are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Swaps/DispersionSwap",
+    "fibo_label": "dispersion swap",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-015",
+   "stratum": "U1",
+   "question": "Which unemployed populations does Apollo Global Management, LLC have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/EconomicIndicators/UnemployedPopulation",
+    "fibo_label": "unemployed population",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-016",
+   "stratum": "U1",
+   "question": "Show the urban consumers universe details for Bristol-Myers Squibb Company.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/NorthAmericanIndicators/USEconomicIndicators/UrbanConsumersUniverse",
+    "fibo_label": "urban consumers universe",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-017",
+   "stratum": "U1",
+   "question": "List all borrower data protection requirements.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoansRegulatory/BorrowerDataProtectionRequirement",
+    "fibo_label": "borrower data protection requirement",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-018",
+   "stratum": "U1",
+   "question": "How many consumer rights are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoansRegulatory/ConsumerRight",
+    "fibo_label": "consumer right",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-019",
+   "stratum": "U1",
+   "question": "Which public record categories does The Hershey Company have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoanApplications/PublicRecordCategory",
+    "fibo_label": "public record category",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-020",
+   "stratum": "U1",
+   "question": "Show the student loan details for GW Pharmaceuticals.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansSpecific/StudentLoans/StudentLoan",
+    "fibo_label": "student loan",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-021",
+   "stratum": "U1",
+   "question": "List all loan at application stages.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoanApplications/LoanAtApplicationStage",
+    "fibo_label": "loan at application stage",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-022",
+   "stratum": "U1",
+   "question": "How many dwelling capacities are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/RealEstateLoans/MortgageOrigination/DwellingCapacity",
+    "fibo_label": "dwelling capacity",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-023",
+   "stratum": "U1",
+   "question": "Which basket certificates does Energen Corporation have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/StructuredInstruments/BasketCertificate",
+    "fibo_label": "basket certificate",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-024",
+   "stratum": "U1",
+   "question": "Show the assessment boundary details for Fortune Brands Home & Security, Inc.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansSpecific/GreenLoans/AssessmentBoundary",
+    "fibo_label": "assessment boundary",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-025",
+   "stratum": "U1",
+   "question": "List all reverse convertible certificates.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/StructuredInstruments/ReverseConvertibleCertificate",
+    "fibo_label": "reverse convertible certificate",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-026",
+   "stratum": "U1",
+   "question": "How many swap dealers are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Swaps/SwapDealer",
+    "fibo_label": "swap dealer",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-027",
+   "stratum": "U1",
+   "question": "Which loan application phases does Quanex Building Products Corporation have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoanApplications/LoanApplicationPhase",
+    "fibo_label": "loan application phase",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-028",
+   "stratum": "U1",
+   "question": "Show the perpetual warrant details for Continental Resources, Inc.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/RightsAndWarrants/PerpetualWarrant",
+    "fibo_label": "perpetual warrant",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-029",
+   "stratum": "U1",
+   "question": "List all implied volatilities.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/Indicators/Indicators/ImpliedVolatility",
+    "fibo_label": "implied volatility",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-030",
+   "stratum": "U1",
+   "question": "How many cashflow expressions are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/DerivativesBasics/CashflowExpression",
+    "fibo_label": "cashflow expression",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-031",
+   "stratum": "U1",
+   "question": "Which spin offs does McDermott International, Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/CAE/CorporateEvents/CorporateActions/SpinOff",
+    "fibo_label": "spin off",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-032",
+   "stratum": "U1",
+   "question": "Show the allotment right formula details for CRA International.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/RightsAndWarrants/AllotmentRightFormula",
+    "fibo_label": "allotment right formula",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-033",
+   "stratum": "U1",
+   "question": "List all correlation swaps.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Swaps/CorrelationSwap",
+    "fibo_label": "correlation swap",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-034",
+   "stratum": "U1",
+   "question": "How many fixed basket constituents are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/EconomicIndicators/FixedBasketConstituent",
+    "fibo_label": "fixed basket constituent",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-035",
+   "stratum": "U1",
+   "question": "Which express certificates does Gigamon Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/StructuredInstruments/ExpressCertificate",
+    "fibo_label": "express certificate",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-036",
+   "stratum": "U1",
+   "question": "Show the put warrant details for JPMorgan Chase & Co.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/RightsAndWarrants/PutWarrant",
+    "fibo_label": "put warrant",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-037",
+   "stratum": "U1",
+   "question": "List all covered calls.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Options/CoveredCall",
+    "fibo_label": "covered call",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-038",
+   "stratum": "U1",
+   "question": "How many borrower assessments are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoanApplications/BorrowerAssessment",
+    "fibo_label": "borrower assessment",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-039",
+   "stratum": "U1",
+   "question": "Which dutch auctions does W.W. Grainger, Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/CAE/CorporateEvents/SecurityRelatedCorporateActions/DutchAuction",
+    "fibo_label": "dutch auction",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-040",
+   "stratum": "U1",
+   "question": "Show the government-sponsored loan details for Fastenal.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/RealEstateLoans/MortgageOrigination/GovernmentSponsoredLoan",
+    "fibo_label": "government-sponsored loan",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-041",
+   "stratum": "U1",
+   "question": "List all motorhome loan purposes.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansSpecific/LoanProducts/MotorhomeLoanPurpose",
+    "fibo_label": "motorhome loan purpose",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-042",
+   "stratum": "U1",
+   "question": "How many government-specified statistical areas are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/EconomicIndicators/GovernmentSpecifiedStatisticalArea",
+    "fibo_label": "government-specified statistical area",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-043",
+   "stratum": "U1",
+   "question": "Which loan application at agreement stages does Continental Building Products Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoanApplications/LoanApplicationAtAgreementStage",
+    "fibo_label": "loan application at agreement stage",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-044",
+   "stratum": "U1",
+   "question": "Show the motor vehicle loan details for Ferro Corporation.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansSpecific/ConsumerLoans/MotorVehicleLoan",
+    "fibo_label": "motor vehicle loan",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-045",
+   "stratum": "U1",
+   "question": "List all protective puts.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/Options/ProtectivePut",
+    "fibo_label": "protective put",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "val"
+  },
+  {
+   "id": "U1-046",
+   "stratum": "U1",
+   "question": "How many notifications are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/CAE/CorporateEvents/CorporateActions/Notification",
+    "fibo_label": "notification",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-047",
+   "stratum": "U1",
+   "question": "Which discouraged worker populations does Carter's, Inc have?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/EconomicIndicators/DiscouragedWorkerPopulation",
+    "fibo_label": "discouraged worker population",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U1-048",
+   "stratum": "U1",
+   "question": "Show the metal details for Halliburton Company.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/CommoditiesContracts/Metal",
+    "fibo_label": "metal",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-049",
+   "stratum": "U1",
+   "question": "List all productivities.",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/IND/EconomicIndicators/EconomicIndicators/Productivity",
+    "fibo_label": "productivity",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "train"
+  },
+  {
+   "id": "U1-050",
+   "stratum": "U1",
+   "question": "How many consumer protection laws are there?",
+   "construction": {
+    "fibo_iri": "https://spec.edmcouncil.org/fibo/ontology/LOAN/LoansGeneral/LoansRegulatory/ConsumerProtectionLaw",
+    "fibo_label": "consumer protection law",
+    "mapped": false,
+    "label_words_in_mapped_vocabulary": [],
+    "pool_size": 236
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-001",
+   "stratum": "U2",
+   "question": "For each loss, list the holdings it is linked to.",
+   "construction": {
+    "classes": [
+     "Loss",
+     "Holding"
+    ],
+    "populated": [
+     14198,
+     534473
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-002",
+   "stratum": "U2",
+   "question": "Which cash and cash equivalents belong to each email address?",
+   "construction": {
+    "classes": [
+     "EmailAddress",
+     "CashAndCashEquivalents"
+    ],
+    "populated": [
+     50000,
+     45671
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-003",
+   "stratum": "U2",
+   "question": "Show every financial instrument together with its accounts payable and accrued liabilities.",
+   "construction": {
+    "classes": [
+     "FinancialInstrument",
+     "AccountsPayableAndAccruedLiabilities"
+    ],
+    "populated": [
+     2745,
+     32183
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": null
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-004",
+   "stratum": "U2",
+   "question": "Which disclosures are associated with each country?",
+   "construction": {
+    "classes": [
+     "Country",
+     "Disclosure"
+    ],
+    "populated": [
+     249,
+     208158
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-005",
+   "stratum": "U2",
+   "question": "For each email address, list the industry sector classifiers it is linked to.",
+   "construction": {
+    "classes": [
+     "EmailAddress",
+     "IndustrySectorClassifier"
+    ],
+    "populated": [
+     50000,
+     452
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-006",
+   "stratum": "U2",
+   "question": "Which debts belong to each monetary amount?",
+   "construction": {
+    "classes": [
+     "MonetaryAmount",
+     "Debt"
+    ],
+    "populated": [
+     502745,
+     5325
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-007",
+   "stratum": "U2",
+   "question": "Show every postal address together with its asset.",
+   "construction": {
+    "classes": [
+     "PostalAddress",
+     "Asset"
+    ],
+    "populated": [
+     79989,
+     48016
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-008",
+   "stratum": "U2",
+   "question": "Which industry sector classification schemes are associated with each expense?",
+   "construction": {
+    "classes": [
+     "Expense",
+     "IndustrySectorClassificationScheme"
+    ],
+    "populated": [
+     38757,
+     1
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-009",
+   "stratum": "U2",
+   "question": "For each debt, list the contract parties it is linked to.",
+   "construction": {
+    "classes": [
+     "Debt",
+     "ContractParty"
+    ],
+    "populated": [
+     5325,
+     2094
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-010",
+   "stratum": "U2",
+   "question": "Which holdings belong to each asset?",
+   "construction": {
+    "classes": [
+     "Asset",
+     "Holding"
+    ],
+    "populated": [
+     48016,
+     534473
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-011",
+   "stratum": "U2",
+   "question": "Show every currency together with its contract.",
+   "construction": {
+    "classes": [
+     "Currency",
+     "Contract"
+    ],
+    "populated": [
+     1,
+     2998
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-012",
+   "stratum": "U2",
+   "question": "Which financial service accounts are associated with each element of financial statement?",
+   "construction": {
+    "classes": [
+     "ElementOfFinancialStatement",
+     "FinancialServiceAccount"
+    ],
+    "populated": [
+     443794,
+     97270
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 5
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-013",
+   "stratum": "U2",
+   "question": "For each financial market, list the element of financial statements it is linked to.",
+   "construction": {
+    "classes": [
+     "FinancialMarket",
+     "ElementOfFinancialStatement"
+    ],
+    "populated": [
+     3,
+     443794
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-014",
+   "stratum": "U2",
+   "question": "Which distribution to owners belong to each security?",
+   "construction": {
+    "classes": [
+     "Security",
+     "DistributionToOwner"
+    ],
+    "populated": [
+     2745,
+     48325
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-015",
+   "stratum": "U2",
+   "question": "Show every security together with its financial service account.",
+   "construction": {
+    "classes": [
+     "Security",
+     "FinancialServiceAccount"
+    ],
+    "populated": [
+     2745,
+     97270
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-016",
+   "stratum": "U2",
+   "question": "Which financial instruments are associated with each postal address?",
+   "construction": {
+    "classes": [
+     "PostalAddress",
+     "FinancialInstrument"
+    ],
+    "populated": [
+     79989,
+     2745
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": null
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-017",
+   "stratum": "U2",
+   "question": "For each inventory current, list the contracts it is linked to.",
+   "construction": {
+    "classes": [
+     "InventoryCurrent",
+     "Contract"
+    ],
+    "populated": [
+     26594,
+     2998
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-018",
+   "stratum": "U2",
+   "question": "Which currencies belong to each element of financial statement?",
+   "construction": {
+    "classes": [
+     "ElementOfFinancialStatement",
+     "Currency"
+    ],
+    "populated": [
+     443794,
+     1
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 5
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-019",
+   "stratum": "U2",
+   "question": "Show every contract together with its virtual address.",
+   "construction": {
+    "classes": [
+     "Contract",
+     "VirtualAddress"
+    ],
+    "populated": [
+     2998,
+     130073
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-020",
+   "stratum": "U2",
+   "question": "Which financial markets are associated with each autonomous agent?",
+   "construction": {
+    "classes": [
+     "AutonomousAgent",
+     "FinancialMarket"
+    ],
+    "populated": [
+     52424,
+     3
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-021",
+   "stratum": "U2",
+   "question": "For each contract party, list the comprehensive incomes it is linked to.",
+   "construction": {
+    "classes": [
+     "ContractParty",
+     "ComprehensiveIncome"
+    ],
+    "populated": [
+     2094,
+     52512
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-022",
+   "stratum": "U2",
+   "question": "Which cash and cash equivalents belong to each contract party?",
+   "construction": {
+    "classes": [
+     "ContractParty",
+     "CashAndCashEquivalents"
+    ],
+    "populated": [
+     2094,
+     45671
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-023",
+   "stratum": "U2",
+   "question": "Show every comprehensive income together with its currency.",
+   "construction": {
+    "classes": [
+     "ComprehensiveIncome",
+     "Currency"
+    ],
+    "populated": [
+     52512,
+     1
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 5
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-024",
+   "stratum": "U2",
+   "question": "Which long term debts are associated with each holding?",
+   "construction": {
+    "classes": [
+     "Holding",
+     "LongTermDebt"
+    ],
+    "populated": [
+     534473,
+     20315
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-025",
+   "stratum": "U2",
+   "question": "For each industry sector classification scheme, list the addresses it is linked to.",
+   "construction": {
+    "classes": [
+     "IndustrySectorClassificationScheme",
+     "Address"
+    ],
+    "populated": [
+     1,
+     210062
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-026",
+   "stratum": "U2",
+   "question": "Which industry sector classification schemes belong to each postal address?",
+   "construction": {
+    "classes": [
+     "PostalAddress",
+     "IndustrySectorClassificationScheme"
+    ],
+    "populated": [
+     79989,
+     1
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-027",
+   "stratum": "U2",
+   "question": "Show every corporation together with its financial service account.",
+   "construction": {
+    "classes": [
+     "Corporation",
+     "FinancialServiceAccount"
+    ],
+    "populated": [
+     2324,
+     97270
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-028",
+   "stratum": "U2",
+   "question": "Which industry sector classifiers are associated with each person?",
+   "construction": {
+    "classes": [
+     "Person",
+     "IndustrySectorClassifier"
+    ],
+    "populated": [
+     50100,
+     452
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-029",
+   "stratum": "U2",
+   "question": "For each cash and cash equivalents, list the monetary amounts it is linked to.",
+   "construction": {
+    "classes": [
+     "CashAndCashEquivalents",
+     "MonetaryAmount"
+    ],
+    "populated": [
+     45671,
+     502745
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-030",
+   "stratum": "U2",
+   "question": "Which virtual addresses belong to each long term debt?",
+   "construction": {
+    "classes": [
+     "LongTermDebt",
+     "VirtualAddress"
+    ],
+    "populated": [
+     20315,
+     130073
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-031",
+   "stratum": "U2",
+   "question": "Show every person together with its distribution to owner.",
+   "construction": {
+    "classes": [
+     "Person",
+     "DistributionToOwner"
+    ],
+    "populated": [
+     50100,
+     48325
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-032",
+   "stratum": "U2",
+   "question": "Which financial reports are associated with each monetary amount?",
+   "construction": {
+    "classes": [
+     "MonetaryAmount",
+     "FinancialReport"
+    ],
+    "populated": [
+     502745,
+     48301
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-033",
+   "stratum": "U2",
+   "question": "For each asset, list the email addresses it is linked to.",
+   "construction": {
+    "classes": [
+     "Asset",
+     "EmailAddress"
+    ],
+    "populated": [
+     48016,
+     50000
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "val"
+  },
+  {
+   "id": "U2-034",
+   "stratum": "U2",
+   "question": "Which autonomous agents belong to each disclosure?",
+   "construction": {
+    "classes": [
+     "Disclosure",
+     "AutonomousAgent"
+    ],
+    "populated": [
+     208158,
+     52424
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-035",
+   "stratum": "U2",
+   "question": "Show every disclosure together with its virtual address.",
+   "construction": {
+    "classes": [
+     "Disclosure",
+     "VirtualAddress"
+    ],
+    "populated": [
+     208158,
+     130073
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-036",
+   "stratum": "U2",
+   "question": "Which persons are associated with each comprehensive income?",
+   "construction": {
+    "classes": [
+     "ComprehensiveIncome",
+     "Person"
+    ],
+    "populated": [
+     52512,
+     50100
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-037",
+   "stratum": "U2",
+   "question": "For each autonomous agent, list the accounts payable and accrued liabilities it is linked to.",
+   "construction": {
+    "classes": [
+     "AutonomousAgent",
+     "AccountsPayableAndAccruedLiabilities"
+    ],
+    "populated": [
+     52424,
+     32183
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-038",
+   "stratum": "U2",
+   "question": "Which elements of financial reports belong to each country?",
+   "construction": {
+    "classes": [
+     "Country",
+     "ElementsOfFinancialReport"
+    ],
+    "populated": [
+     249,
+     8120084
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-039",
+   "stratum": "U2",
+   "question": "Show every long term debt together with its security.",
+   "construction": {
+    "classes": [
+     "LongTermDebt",
+     "Security"
+    ],
+    "populated": [
+     20315,
+     2745
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-040",
+   "stratum": "U2",
+   "question": "Which financial markets are associated with each loss?",
+   "construction": {
+    "classes": [
+     "Loss",
+     "FinancialMarket"
+    ],
+    "populated": [
+     14198,
+     3
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-041",
+   "stratum": "U2",
+   "question": "For each country, list the accounts payable and accrued liabilities it is linked to.",
+   "construction": {
+    "classes": [
+     "Country",
+     "AccountsPayableAndAccruedLiabilities"
+    ],
+    "populated": [
+     249,
+     32183
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-042",
+   "stratum": "U2",
+   "question": "Which phone numbers belong to each expense?",
+   "construction": {
+    "classes": [
+     "Expense",
+     "PhoneNumber"
+    ],
+    "populated": [
+     38757,
+     80073
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-043",
+   "stratum": "U2",
+   "question": "Show every goodwill together with its financial instrument.",
+   "construction": {
+    "classes": [
+     "Goodwill",
+     "FinancialInstrument"
+    ],
+    "populated": [
+     34290,
+     2745
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": null
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-044",
+   "stratum": "U2",
+   "question": "Which goodwills are associated with each securities transaction?",
+   "construction": {
+    "classes": [
+     "SecuritiesTransaction",
+     "Goodwill"
+    ],
+    "populated": [
+     500000,
+     34290
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-045",
+   "stratum": "U2",
+   "question": "For each distribution to owner, list the phone numbers it is linked to.",
+   "construction": {
+    "classes": [
+     "DistributionToOwner",
+     "PhoneNumber"
+    ],
+    "populated": [
+     48325,
+     80073
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-046",
+   "stratum": "U2",
+   "question": "Which stockholders equities belong to each address?",
+   "construction": {
+    "classes": [
+     "Address",
+     "StockholdersEquity"
+    ],
+    "populated": [
+     210062,
+     43780
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-047",
+   "stratum": "U2",
+   "question": "Show every revenue together with its address.",
+   "construction": {
+    "classes": [
+     "Revenue",
+     "Address"
+    ],
+    "populated": [
+     42474,
+     210062
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-048",
+   "stratum": "U2",
+   "question": "Which listed securities are associated with each loss?",
+   "construction": {
+    "classes": [
+     "Loss",
+     "ListedSecurity"
+    ],
+    "populated": [
+     14198,
+     2745
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "test"
+  },
+  {
+   "id": "U2-049",
+   "stratum": "U2",
+   "question": "For each equity, list the phone numbers it is linked to.",
+   "construction": {
+    "classes": [
+     "Equity",
+     "PhoneNumber"
+    ],
+    "populated": [
+     43780,
+     80073
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 4
+   },
+   "split": "train"
+  },
+  {
+   "id": "U2-050",
+   "stratum": "U2",
+   "question": "Which stockholders equities belong to each listed security?",
+   "construction": {
+    "classes": [
+     "ListedSecurity",
+     "StockholdersEquity"
+    ],
+    "populated": [
+     2745,
+     43780
+    ],
+    "path_within_2_hops": false,
+    "shortest_path": 3
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-001",
+   "stratum": "U3",
+   "question": "What was the revenue of Discovery Inc. in fiscal year 2022?",
+   "construction": {
+    "kind": "year",
+    "value": "2022",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2022",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-002",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol CJQQ?",
+   "construction": {
+    "kind": "ticker",
+    "value": "CJQQ",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'CJQQ') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'CJQQ')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-003",
+   "stratum": "U3",
+   "question": "Who are the officers of Miraquel Holdings Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Miraquel Holdings",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Miraquel Holdings%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Miraquel Holdings%')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-004",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2013-09-26.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2013-09-26",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2013-09-26'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-005",
+   "stratum": "U3",
+   "question": "Which stocks does Evander Quarrington hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Evander Quarrington",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Evander' AND \"HASLASTNAME\" = 'Quarrington'",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-006",
+   "stratum": "U3",
+   "question": "What was the revenue of Quest Diagnostics Incorporated in fiscal year 2024?",
+   "construction": {
+    "kind": "year",
+    "value": "2024",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2024",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-007",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol PVUB?",
+   "construction": {
+    "kind": "ticker",
+    "value": "PVUB",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'PVUB') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'PVUB')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-008",
+   "stratum": "U3",
+   "question": "Who are the officers of Dexquel Holdings Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Dexquel Holdings",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Dexquel Holdings%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Dexquel Holdings%')",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-009",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2011-07-08.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2011-07-08",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2011-07-08'",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-010",
+   "stratum": "U3",
+   "question": "Which stocks does Desislava Thornbury hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Desislava Thornbury",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Desislava' AND \"HASLASTNAME\" = 'Thornbury'",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-011",
+   "stratum": "U3",
+   "question": "What was the revenue of The Coca-Cola Company in fiscal year 2000?",
+   "construction": {
+    "kind": "year",
+    "value": "2000",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2000",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-012",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol QGFE?",
+   "construction": {
+    "kind": "ticker",
+    "value": "QGFE",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'QGFE') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'QGFE')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-013",
+   "stratum": "U3",
+   "question": "Who are the officers of Brenbren Dynamics Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Brenbren Dynamics",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Brenbren Dynamics%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Brenbren Dynamics%')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-014",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2012-04-12.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2012-04-12",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2012-04-12'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-015",
+   "stratum": "U3",
+   "question": "Which stocks does Faustina Lyddiard hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Faustina Lyddiard",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Faustina' AND \"HASLASTNAME\" = 'Lyddiard'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-016",
+   "stratum": "U3",
+   "question": "What was the revenue of Bristol-Myers Squibb Company in fiscal year 2021?",
+   "construction": {
+    "kind": "year",
+    "value": "2021",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2021",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-017",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol XQJN?",
+   "construction": {
+    "kind": "ticker",
+    "value": "XQJN",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'XQJN') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'XQJN')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-018",
+   "stratum": "U3",
+   "question": "Who are the officers of Lunmira Holdings Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Lunmira Holdings",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Lunmira Holdings%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Lunmira Holdings%')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-019",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2020-05-04.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2020-05-04",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2020-05-04'",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-020",
+   "stratum": "U3",
+   "question": "Which stocks does Desislava Vellacott hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Desislava Vellacott",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Desislava' AND \"HASLASTNAME\" = 'Vellacott'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-021",
+   "stratum": "U3",
+   "question": "What was the revenue of Installed Building Products, Inc. in fiscal year 2005?",
+   "construction": {
+    "kind": "year",
+    "value": "2005",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2005",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-022",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol WWCE?",
+   "construction": {
+    "kind": "ticker",
+    "value": "WWCE",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'WWCE') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'WWCE')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-023",
+   "stratum": "U3",
+   "question": "Who are the officers of Tivoph Labs Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Tivoph Labs",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Tivoph Labs%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Tivoph Labs%')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-024",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2013-09-07.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2013-09-07",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2013-09-07'",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-025",
+   "stratum": "U3",
+   "question": "Which stocks does Hesper Quarrington hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Hesper Quarrington",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Hesper' AND \"HASLASTNAME\" = 'Quarrington'",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-026",
+   "stratum": "U3",
+   "question": "What was the revenue of MicroStrategy in fiscal year 2009?",
+   "construction": {
+    "kind": "year",
+    "value": "2009",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2009",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-027",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol GJHC?",
+   "construction": {
+    "kind": "ticker",
+    "value": "GJHC",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'GJHC') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'GJHC')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-028",
+   "stratum": "U3",
+   "question": "Who are the officers of Brenzar Dynamics Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Brenzar Dynamics",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Brenzar Dynamics%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Brenzar Dynamics%')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-029",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2020-01-23.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2020-01-23",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2020-01-23'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-030",
+   "stratum": "U3",
+   "question": "Which stocks does Faustina Mabbott hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Faustina Mabbott",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Faustina' AND \"HASLASTNAME\" = 'Mabbott'",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-031",
+   "stratum": "U3",
+   "question": "What was the revenue of McDermott International, Inc. in fiscal year 2009?",
+   "construction": {
+    "kind": "year",
+    "value": "2009",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2009",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-032",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol NUUZ?",
+   "construction": {
+    "kind": "ticker",
+    "value": "NUUZ",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'NUUZ') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'NUUZ')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-033",
+   "stratum": "U3",
+   "question": "Who are the officers of Tandex Holdings Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Tandex Holdings",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Tandex Holdings%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Tandex Holdings%')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-034",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2011-08-20.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2011-08-20",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2011-08-20'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-035",
+   "stratum": "U3",
+   "question": "Which stocks does Hesper Quarrington hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Hesper Quarrington",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Hesper' AND \"HASLASTNAME\" = 'Quarrington'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-036",
+   "stratum": "U3",
+   "question": "What was the revenue of JPMorgan Chase & Co. in fiscal year 2005?",
+   "construction": {
+    "kind": "year",
+    "value": "2005",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2005",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-037",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol LZHP?",
+   "construction": {
+    "kind": "ticker",
+    "value": "LZHP",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'LZHP') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'LZHP')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-038",
+   "stratum": "U3",
+   "question": "Who are the officers of Kaloph Dynamics Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Kaloph Dynamics",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Kaloph Dynamics%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Kaloph Dynamics%')",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-039",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2018-02-20.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2018-02-20",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2018-02-20'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-040",
+   "stratum": "U3",
+   "question": "Which stocks does Evander Ashgrove hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Evander Ashgrove",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Evander' AND \"HASLASTNAME\" = 'Ashgrove'",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-041",
+   "stratum": "U3",
+   "question": "What was the revenue of Discovery Inc. in fiscal year 2007?",
+   "construction": {
+    "kind": "year",
+    "value": "2007",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2007",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-042",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol ZFQM?",
+   "construction": {
+    "kind": "ticker",
+    "value": "ZFQM",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'ZFQM') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'ZFQM')",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-043",
+   "stratum": "U3",
+   "question": "Who are the officers of Zarmira Labs Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Zarmira Labs",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Zarmira Labs%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Zarmira Labs%')",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-044",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2012-01-13.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2012-01-13",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2012-01-13'",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-045",
+   "stratum": "U3",
+   "question": "Which stocks does Desislava Thornbury hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Desislava Thornbury",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Desislava' AND \"HASLASTNAME\" = 'Thornbury'",
+    "count": 0
+   },
+   "split": "val"
+  },
+  {
+   "id": "U3-046",
+   "stratum": "U3",
+   "question": "What was the revenue of Quest Diagnostics Incorporated in fiscal year 2009?",
+   "construction": {
+    "kind": "year",
+    "value": "2009",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"ELEMENTOFFINANCIALSTATEMENT\" WHERE \"HASMETRICYEARFISCAL\" = 2009",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-047",
+   "stratum": "U3",
+   "question": "What is the last traded value of the stock with ticker symbol OURM?",
+   "construction": {
+    "kind": "ticker",
+    "value": "OURM",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE upper(\"HASTICKERSYMBOL\") = 'OURM') + (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE upper(\"HASTICKERSYMBOL\") = 'OURM')",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-048",
+   "stratum": "U3",
+   "question": "Who are the officers of Ophoph Labs Inc.?",
+   "construction": {
+    "kind": "company",
+    "value": "Ophoph Labs",
+    "evidence_sql": "SELECT (SELECT count(*) FROM \"FIBEN\".\"CORPORATION\" WHERE \"HASLEGALNAME\" ILIKE '%Ophoph Labs%') + (SELECT count(*) FROM \"FIBEN\".\"LISTEDSECURITY\" WHERE \"HASLEGALNAME\" ILIKE '%Ophoph Labs%')",
+    "count": 0
+   },
+   "split": "train"
+  },
+  {
+   "id": "U3-049",
+   "stratum": "U3",
+   "question": "List the stock trades settled on 2012-08-04.",
+   "construction": {
+    "kind": "settlement-date",
+    "value": "2012-08-04",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"SECURITIESTRANSACTION\" WHERE CAST(\"HASSETTLEMENTDATE\" AS DATE) = DATE '2012-08-04'",
+    "count": 0
+   },
+   "split": "test"
+  },
+  {
+   "id": "U3-050",
+   "stratum": "U3",
+   "question": "Which stocks does Desislava Quarrington hold?",
+   "construction": {
+    "kind": "person",
+    "value": "Desislava Quarrington",
+    "evidence_sql": "SELECT count(*) FROM \"FIBEN\".\"PERSON\" WHERE \"HASFIRSTNAME\" = 'Desislava' AND \"HASLASTNAME\" = 'Quarrington'",
+    "count": 0
+   },
+   "split": "train"
+  }
+ ]
+}

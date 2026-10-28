@@ -1,0 +1,65 @@
+{
+ "tables": 152,
+ "columns": 374,
+ "instances": [
+  "FIBEN_OBF",
+  "FIBEN_V1_OBF",
+  "FIBEN_V2_OBF",
+  "FIBEN_V3_OBF",
+  "FIBEN_V4_OBF",
+  "FIBEN_V5_OBF",
+  "FIBEN_V6_OBF"
+ ],
+ "conformance_v1": {
+  "errors": 0,
+  "warnings": 0,
+  "rules": []
+ },
+ "conformance_obf": {
+  "errors": 0,
+  "warnings": 0,
+  "rules": []
+ },
+ "gold": {
+  "queries": 237,
+  "rewrite_errors": [],
+  "mismatches": [],
+  "ties": [
+   {
+    "sql_id": 22,
+    "instance": "FIBEN"
+   },
+   {
+    "sql_id": 22,
+    "instance": "FIBEN_V4"
+   },
+   {
+    "sql_id": 31,
+    "instance": "FIBEN_V5"
+   },
+   {
+    "sql_id": 98,
+    "instance": "FIBEN_V5"
+   },
+   {
+    "sql_id": 98,
+    "instance": "FIBEN_V6"
+   }
+  ],
+  "unstable_gold": [
+   {
+    "sql_id": 178,
+    "instance": "FIBEN_V2"
+   },
+   {
+    "sql_id": 179,
+    "instance": "FIBEN_V3"
+   },
+   {
+    "sql_id": 179,
+    "instance": "FIBEN_V6"
+   }
+  ],
+  "both_error": 7
+ }
+}

@@ -1,0 +1,2724 @@
+@prefix fiben: <https://example.org/fiben/voc#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_subject> .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_subject> .
+
+<https://example.org/fiben/mapping#ACCRUEDLIABILITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ACCRUEDLIABILITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ACCRUEDLIABILITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ACCRUEDLIABILITIES_subject> .
+
+<https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_subject> .
+
+<https://example.org/fiben/mapping#ADDRESS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ADDRESS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ADDRESS_r0>,
+        <https://example.org/fiben/mapping#ADDRESS_r1>,
+        <https://example.org/fiben/mapping#ADDRESS_r2> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ADDRESS_subject> .
+
+<https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_subject> .
+
+<https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_subject> .
+
+<https://example.org/fiben/mapping#ASSET> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ASSET_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ASSET_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ASSET_subject> .
+
+<https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_subject> .
+
+<https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#AUTONOMOUSAGENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#AUTONOMOUSAGENT_table> ;
+    rr:subjectMap <https://example.org/fiben/mapping#AUTONOMOUSAGENT_subject> .
+
+<https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_subject> .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_subject> .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_subject> .
+
+<https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#CAPITALUNITS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CAPITALUNITS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CAPITALUNITS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CAPITALUNITS_subject> .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_subject> .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_subject> .
+
+<https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_subject> .
+
+<https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_subject> .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOME> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#COMPREHENSIVEINCOME_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#COMPREHENSIVEINCOME_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#COMPREHENSIVEINCOME_subject> .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_subject> .
+
+<https://example.org/fiben/mapping#CONTRACT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CONTRACT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CONTRACT_d0>,
+        <https://example.org/fiben/mapping#CONTRACT_d1>,
+        <https://example.org/fiben/mapping#CONTRACT_d2>,
+        <https://example.org/fiben/mapping#CONTRACT_d3>,
+        <https://example.org/fiben/mapping#CONTRACT_r0>,
+        <https://example.org/fiben/mapping#CONTRACT_r1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CONTRACT_subject> .
+
+<https://example.org/fiben/mapping#CONTRACTPARTY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CONTRACTPARTY_table> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CONTRACTPARTY_subject> .
+
+<https://example.org/fiben/mapping#CONVERSIONOFSTOCK> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CONVERSIONOFSTOCK_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CONVERSIONOFSTOCK_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CONVERSIONOFSTOCK_subject> .
+
+<https://example.org/fiben/mapping#CORPORATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CORPORATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CORPORATION_d0>,
+        <https://example.org/fiben/mapping#CORPORATION_d1>,
+        <https://example.org/fiben/mapping#CORPORATION_r0>,
+        <https://example.org/fiben/mapping#CORPORATION_r1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CORPORATION_subject> .
+
+<https://example.org/fiben/mapping#COSTMETHODINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_subject> .
+
+<https://example.org/fiben/mapping#COUNTRY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#COUNTRY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#COUNTRY_d0>,
+        <https://example.org/fiben/mapping#COUNTRY_d1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#COUNTRY_subject> .
+
+<https://example.org/fiben/mapping#CURRENCY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#CURRENCY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#CURRENCY_d0>,
+        <https://example.org/fiben/mapping#CURRENCY_d1>,
+        <https://example.org/fiben/mapping#CURRENCY_d2> ;
+    rr:subjectMap <https://example.org/fiben/mapping#CURRENCY_subject> .
+
+<https://example.org/fiben/mapping#DEBT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DEBT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DEBT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DEBT_subject> .
+
+<https://example.org/fiben/mapping#DEBTCONVERSION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DEBTCONVERSION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DEBTCONVERSION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DEBTCONVERSION_subject> .
+
+<https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_subject> .
+
+<https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_subject> .
+
+<https://example.org/fiben/mapping#DERIVATIVE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DERIVATIVE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DERIVATIVE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DERIVATIVE_subject> .
+
+<https://example.org/fiben/mapping#DISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DISCLOSURE_d0>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d1>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d10>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d11>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d12>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d13>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d2>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d3>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d4>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d5>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d6>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d7>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d8>,
+        <https://example.org/fiben/mapping#DISCLOSURE_d9> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_subject> .
+
+<https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_subject> .
+
+<https://example.org/fiben/mapping#DIVIDENDSPAYABLE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#DIVIDENDSPAYABLE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#DIVIDENDSPAYABLE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#DIVIDENDSPAYABLE_subject> .
+
+<https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_subject> .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d0>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d1>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d10>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d11>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d12>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d13>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d2>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d3>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d4>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d5>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d6>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d7>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d8>,
+        <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d9> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_subject> .
+
+<https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_r0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_subject> .
+
+<https://example.org/fiben/mapping#EMAILADDRESS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EMAILADDRESS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EMAILADDRESS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EMAILADDRESS_subject> .
+
+<https://example.org/fiben/mapping#ENTITYLOCATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ENTITYLOCATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ENTITYLOCATION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ENTITYLOCATION_subject> .
+
+<https://example.org/fiben/mapping#EQUITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EQUITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EQUITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EQUITY_subject> .
+
+<https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_subject> .
+
+<https://example.org/fiben/mapping#EXPENSE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EXPENSE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EXPENSE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EXPENSE_subject> .
+
+<https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_subject> .
+
+<https://example.org/fiben/mapping#EXTRAORDINARYITEMS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#EXTRAORDINARYITEMS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#EXTRAORDINARYITEMS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#EXTRAORDINARYITEMS_subject> .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCIALINSTRUMENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCIALINSTRUMENT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCIALINSTRUMENT_subject> .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_subject> .
+
+<https://example.org/fiben/mapping#FINANCIALMARKET> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCIALMARKET_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCIALMARKET_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCIALMARKET_subject> .
+
+<https://example.org/fiben/mapping#FINANCIALMETRICS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCIALMETRICS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCIALMETRICS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCIALMETRICS_subject> .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCIALREPORT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCIALREPORT_d0>,
+        <https://example.org/fiben/mapping#FINANCIALREPORT_r0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCIALREPORT_subject> .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d0>,
+        <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d1>,
+        <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r0>,
+        <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_subject> .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_subject> .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_subject> .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCINGRECEIVABLES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLES_subject> .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_subject> .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_subject> .
+
+<https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_subject> .
+
+<https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_subject> .
+
+<https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_subject> .
+
+<https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#GOODWILL> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#GOODWILL_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#GOODWILL_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#GOODWILL_subject> .
+
+<https://example.org/fiben/mapping#GUARANTEES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#GUARANTEES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#GUARANTEES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#GUARANTEES_subject> .
+
+<https://example.org/fiben/mapping#GUARANTOROBLIGATIONS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_subject> .
+
+<https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_subject> .
+
+<https://example.org/fiben/mapping#HOLDING> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#HOLDING_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#HOLDING_d0>,
+        <https://example.org/fiben/mapping#HOLDING_d1>,
+        <https://example.org/fiben/mapping#HOLDING_r0>,
+        <https://example.org/fiben/mapping#HOLDING_r1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#HOLDING_subject> .
+
+<https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_subject> .
+
+<https://example.org/fiben/mapping#INCOMETAXCONTINGENCY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_subject> .
+
+<https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_subject> .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d0>,
+        <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_subject> .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d0>,
+        <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d1>,
+        <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d2>,
+        <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d3>,
+        <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_r0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_subject> .
+
+<https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_subject> .
+
+<https://example.org/fiben/mapping#INTERESTANDOTHERINCOME> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_subject> .
+
+<https://example.org/fiben/mapping#INTERESTCOSTSINCURRED> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_subject> .
+
+<https://example.org/fiben/mapping#INVENTORYCURRENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INVENTORYCURRENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INVENTORYCURRENT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INVENTORYCURRENT_subject> .
+
+<https://example.org/fiben/mapping#INVENTORYNONCURRENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INVENTORYNONCURRENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INVENTORYNONCURRENT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INVENTORYNONCURRENT_subject> .
+
+<https://example.org/fiben/mapping#INVESTMENTINCOME> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INVESTMENTINCOME_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INVESTMENTINCOME_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INVESTMENTINCOME_subject> .
+
+<https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_subject> .
+
+<https://example.org/fiben/mapping#LIABILITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LIABILITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LIABILITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LIABILITY_subject> .
+
+<https://example.org/fiben/mapping#LINEOFCREDITFACILITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LINEOFCREDITFACILITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LINEOFCREDITFACILITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LINEOFCREDITFACILITY_subject> .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LISTEDSECURITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LISTEDSECURITY_d0>,
+        <https://example.org/fiben/mapping#LISTEDSECURITY_d1>,
+        <https://example.org/fiben/mapping#LISTEDSECURITY_d2>,
+        <https://example.org/fiben/mapping#LISTEDSECURITY_r0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LISTEDSECURITY_subject> .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_subject> .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_subject> .
+
+<https://example.org/fiben/mapping#LONGTERMDEBT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LONGTERMDEBT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LONGTERMDEBT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LONGTERMDEBT_subject> .
+
+<https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_subject> .
+
+<https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_subject> .
+
+<https://example.org/fiben/mapping#LOSS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#LOSS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#LOSS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#LOSS_subject> .
+
+<https://example.org/fiben/mapping#MARKETABLESECURITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#MARKETABLESECURITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#MARKETABLESECURITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#MARKETABLESECURITIES_subject> .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#MONETARYAMOUNT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#MONETARYAMOUNT_d0>,
+        <https://example.org/fiben/mapping#MONETARYAMOUNT_r0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#MONETARYAMOUNT_subject> .
+
+<https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_subject> .
+
+<https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_subject> .
+
+<https://example.org/fiben/mapping#NONCONTROLLINGINTEREST> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_subject> .
+
+<https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_subject> .
+
+<https://example.org/fiben/mapping#OTHERASSETS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERASSETS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERASSETS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERASSETS_subject> .
+
+<https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_subject> .
+
+<https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#OTHERASSETSNONCURRENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_subject> .
+
+<https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_subject> .
+
+<https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_subject> .
+
+<https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_subject> .
+
+<https://example.org/fiben/mapping#PERSON> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PERSON_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PERSON_d0>,
+        <https://example.org/fiben/mapping#PERSON_d1>,
+        <https://example.org/fiben/mapping#PERSON_d2>,
+        <https://example.org/fiben/mapping#PERSON_d3>,
+        <https://example.org/fiben/mapping#PERSON_d4>,
+        <https://example.org/fiben/mapping#PERSON_d5>,
+        <https://example.org/fiben/mapping#PERSON_r0>,
+        <https://example.org/fiben/mapping#PERSON_r1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PERSON_subject> .
+
+<https://example.org/fiben/mapping#PHONENUMBER> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PHONENUMBER_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PHONENUMBER_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PHONENUMBER_subject> .
+
+<https://example.org/fiben/mapping#POSTALADDRESS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#POSTALADDRESS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#POSTALADDRESS_d0>,
+        <https://example.org/fiben/mapping#POSTALADDRESS_d1>,
+        <https://example.org/fiben/mapping#POSTALADDRESS_d2>,
+        <https://example.org/fiben/mapping#POSTALADDRESS_d3>,
+        <https://example.org/fiben/mapping#POSTALADDRESS_d4>,
+        <https://example.org/fiben/mapping#POSTALADDRESS_r0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#POSTALADDRESS_subject> .
+
+<https://example.org/fiben/mapping#PREFERREDSTOCK> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PREFERREDSTOCK_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PREFERREDSTOCK_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PREFERREDSTOCK_subject> .
+
+<https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_subject> .
+
+<https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_subject> .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_subject> .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_subject> .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_subject> .
+
+<https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_subject> .
+
+<https://example.org/fiben/mapping#REALESTATEPROPERTIES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#REALESTATEPROPERTIES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#REALESTATEPROPERTIES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#REALESTATEPROPERTIES_subject> .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#REALIZEDGAINLOSS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#REALIZEDGAINLOSS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#REALIZEDGAINLOSS_subject> .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_subject> .
+
+<https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_subject> .
+
+<https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_subject> .
+
+<https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_subject> .
+
+<https://example.org/fiben/mapping#RENTEXPENSE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#RENTEXPENSE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#RENTEXPENSE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#RENTEXPENSE_subject> .
+
+<https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_subject> .
+
+<https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_subject> .
+
+<https://example.org/fiben/mapping#REVENUE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#REVENUE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#REVENUE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#REVENUE_subject> .
+
+<https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_subject> .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SECURITIESTRANSACTION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_d0>,
+        <https://example.org/fiben/mapping#SECURITIESTRANSACTION_d1>,
+        <https://example.org/fiben/mapping#SECURITIESTRANSACTION_d2>,
+        <https://example.org/fiben/mapping#SECURITIESTRANSACTION_r0>,
+        <https://example.org/fiben/mapping#SECURITIESTRANSACTION_r1>,
+        <https://example.org/fiben/mapping#SECURITIESTRANSACTION_r2> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_subject> .
+
+<https://example.org/fiben/mapping#SECURITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SECURITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SECURITY_r0>,
+        <https://example.org/fiben/mapping#SECURITY_r1> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SECURITY_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_subject> .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_subject> .
+
+<https://example.org/fiben/mapping#SHORTTERMDEBT> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SHORTTERMDEBT_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SHORTTERMDEBT_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SHORTTERMDEBT_subject> .
+
+<https://example.org/fiben/mapping#STOCKHOLDERSEQUITY> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_subject> .
+
+<https://example.org/fiben/mapping#SUBSEQUENTEVENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#SUBSEQUENTEVENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#SUBSEQUENTEVENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#SUBSEQUENTEVENTS_subject> .
+
+<https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_subject> .
+
+<https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_subject> .
+
+<https://example.org/fiben/mapping#TREASURYSTOCK> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#TREASURYSTOCK_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#TREASURYSTOCK_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#TREASURYSTOCK_subject> .
+
+<https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_subject> .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_subject> .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#VALUATIONALLOWANCE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#VALUATIONALLOWANCE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#VALUATIONALLOWANCE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#VALUATIONALLOWANCE_subject> .
+
+<https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_subject> .
+
+<https://example.org/fiben/mapping#VIRTUALADDRESS> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#VIRTUALADDRESS_table> ;
+    rr:subjectMap <https://example.org/fiben/mapping#VIRTUALADDRESS_subject> .
+
+<https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES> a rr:TriplesMap ;
+    rr:logicalTable <https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_table> ;
+    rr:predicateObjectMap <https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_d0> ;
+    rr:subjectMap <https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_subject> .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_d0> rr:objectMap <https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_subject> rr:class fiben:AccountsPayableAndAccruedLiabilities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEANDACCRUEDLIABILITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C033\"" .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_d0> rr:objectMap <https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_subject> rr:class fiben:AccountsPayableDetails ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ACCOUNTSPAYABLEDETAILS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C120\"" .
+
+<https://example.org/fiben/mapping#ACCRUEDLIABILITIES_d0> rr:objectMap <https://example.org/fiben/mapping#ACCRUEDLIABILITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ACCRUEDLIABILITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ACCRUEDLIABILITIES_subject> rr:class fiben:AccruedLiabilities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ACCRUEDLIABILITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C016\"" .
+
+<https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_d0> rr:objectMap <https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_subject> rr:class fiben:AccumulatedOtherComprehensiveIncomeLoss ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ACCUMULATEDOTHERCOMPREHENSIVEINCOMELOSS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C068\"" .
+
+<https://example.org/fiben/mapping#ADDRESS_r0> rr:objectMap <https://example.org/fiben/mapping#ADDRESS_r0_o> ;
+    rr:predicate fiben:isIndexTo .
+
+<https://example.org/fiben/mapping#ADDRESS_r0_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#ADDRESS_r1> rr:objectMap <https://example.org/fiben/mapping#ADDRESS_r1_o> ;
+    rr:predicate fiben:postalAddress .
+
+<https://example.org/fiben/mapping#ADDRESS_r1_o> rr:template "https://example.org/fiben/data/postaladdress/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#ADDRESS_r2> rr:objectMap <https://example.org/fiben/mapping#ADDRESS_r2_o> ;
+    rr:predicate fiben:virtualAddress .
+
+<https://example.org/fiben/mapping#ADDRESS_r2_o> rr:template "https://example.org/fiben/data/virtualaddress/{\"ATTR_04\"}" .
+
+<https://example.org/fiben/mapping#ADDRESS_subject> rr:class fiben:Address ;
+    rr:template "https://example.org/fiben/data/address/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ADDRESS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C080\"" .
+
+<https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_d0> rr:objectMap <https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_subject> rr:class fiben:AllowanceForCreditLosses ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ALLOWANCEFORCREDITLOSSES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C052\"" .
+
+<https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_d0> rr:objectMap <https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_subject> rr:class fiben:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShare ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ANTIDILUTIVESECURITIESEXCLUDEDFROMCOMPUTATIONOFEARNINGSPERSHARE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C144\"" .
+
+<https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_d0> rr:objectMap <https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_subject> rr:class fiben:AssetImpairmentCharges ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ASSETIMPAIRMENTCHARGES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C015\"" .
+
+<https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_subject> rr:class fiben:AssetRetirementObligationDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ASSETRETIREMENTOBLIGATIONDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C021\"" .
+
+<https://example.org/fiben/mapping#ASSET_d0> rr:objectMap <https://example.org/fiben/mapping#ASSET_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ASSET_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ASSET_subject> rr:class fiben:Asset ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ASSET_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C143\"" .
+
+<https://example.org/fiben/mapping#AUTONOMOUSAGENT_subject> rr:class fiben:AutonomousAgent ;
+    rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#AUTONOMOUSAGENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C139\"" .
+
+<https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_d0> rr:objectMap <https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_subject> rr:class fiben:AvailableForSaleSecurities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#AVAILABLEFORSALESECURITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C121\"" .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_d0> rr:objectMap <https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_subject> rr:class fiben:BusinessAcquisitionIntegrationRestructuringAndOtherRelatedCosts ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONINTEGRATIONRESTRUCTURINGANDOTHERRELATEDCOSTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C151\"" .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_d0> rr:objectMap <https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_subject> rr:class fiben:BusinessAcquisitionProForMainFormation ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#BUSINESSACQUISITIONPROFORMAINFORMATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C013\"" .
+
+<https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_subject> rr:class fiben:BusinessCombinationDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#BUSINESSCOMBINATIONDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C057\"" .
+
+<https://example.org/fiben/mapping#CAPITALUNITS_d0> rr:objectMap <https://example.org/fiben/mapping#CAPITALUNITS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CAPITALUNITS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CAPITALUNITS_subject> rr:class fiben:CapitalUnits ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CAPITALUNITS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C117\"" .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_subject> rr:class fiben:CashAndCashEquivalentsDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTSDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C060\"" .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_d0> rr:objectMap <https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_subject> rr:class fiben:CashAndCashEquivalents ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CASHANDCASHEQUIVALENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C126\"" .
+
+<https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_subject> rr:class fiben:CashCashEquivalentsAndShortTermInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CASHCASHEQUIVALENTSANDSHORTTERMINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C081\"" .
+
+<https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_d0> rr:objectMap <https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_subject> rr:class fiben:ChangeInAccountingEstimate ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CHANGEINACCOUNTINGESTIMATE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C104\"" .
+
+<https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_d0> rr:objectMap <https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_subject> rr:class fiben:ChangesInFairValueOfPlanAssets ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CHANGESINFAIRVALUEOFPLANASSETS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C138\"" .
+
+<https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_d0> rr:objectMap <https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_subject> rr:class fiben:CommitmentsContingenciesAndGuarantees ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#COMMITMENTSCONTINGENCIESANDGUARANTEES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C047\"" .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_d0> rr:objectMap <https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_subject> rr:class fiben:ComprehensiveIncomeLoss ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOMELOSS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C020\"" .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOME_d0> rr:objectMap <https://example.org/fiben/mapping#COMPREHENSIVEINCOME_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOME_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOME_subject> rr:class fiben:ComprehensiveIncome ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#COMPREHENSIVEINCOME_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C039\"" .
+
+<https://example.org/fiben/mapping#CONTRACTPARTY_subject> rr:class fiben:ContractParty ;
+    rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CONTRACTPARTY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C146\"" .
+
+<https://example.org/fiben/mapping#CONTRACT_d0> rr:objectMap <https://example.org/fiben/mapping#CONTRACT_d0_o> ;
+    rr:predicate fiben:hasEffectiveDate .
+
+<https://example.org/fiben/mapping#CONTRACT_d0_o> rr:column "\"ATTR_04\"" ;
+    rr:datatype xsd:dateTime .
+
+<https://example.org/fiben/mapping#CONTRACT_d1> rr:objectMap <https://example.org/fiben/mapping#CONTRACT_d1_o> ;
+    rr:predicate fiben:hasPosition .
+
+<https://example.org/fiben/mapping#CONTRACT_d1_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#CONTRACT_d2> rr:objectMap <https://example.org/fiben/mapping#CONTRACT_d2_o> ;
+    rr:predicate fiben:hasExpirationDate .
+
+<https://example.org/fiben/mapping#CONTRACT_d2_o> rr:column "\"ATTR_06\"" ;
+    rr:datatype xsd:dateTime .
+
+<https://example.org/fiben/mapping#CONTRACT_d3> rr:objectMap <https://example.org/fiben/mapping#CONTRACT_d3_o> ;
+    rr:predicate fiben:hasTitle .
+
+<https://example.org/fiben/mapping#CONTRACT_d3_o> rr:column "\"ATTR_07\"" .
+
+<https://example.org/fiben/mapping#CONTRACT_r0> rr:objectMap <https://example.org/fiben/mapping#CONTRACT_r0_o> ;
+    rr:predicate fiben:hasContractParty .
+
+<https://example.org/fiben/mapping#CONTRACT_r0_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#CONTRACT_r1> rr:objectMap <https://example.org/fiben/mapping#CONTRACT_r1_o> ;
+    rr:predicate fiben:isManagedBy .
+
+<https://example.org/fiben/mapping#CONTRACT_r1_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#CONTRACT_subject> rr:class fiben:Contract ;
+    rr:template "https://example.org/fiben/data/contract/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CONTRACT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C108\"" .
+
+<https://example.org/fiben/mapping#CONVERSIONOFSTOCK_d0> rr:objectMap <https://example.org/fiben/mapping#CONVERSIONOFSTOCK_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#CONVERSIONOFSTOCK_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CONVERSIONOFSTOCK_subject> rr:class fiben:ConversionOfStock ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CONVERSIONOFSTOCK_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C010\"" .
+
+<https://example.org/fiben/mapping#CORPORATION_d0> rr:objectMap <https://example.org/fiben/mapping#CORPORATION_d0_o> ;
+    rr:predicate fiben:hasTickerSymbol .
+
+<https://example.org/fiben/mapping#CORPORATION_d0_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#CORPORATION_d1> rr:objectMap <https://example.org/fiben/mapping#CORPORATION_d1_o> ;
+    rr:predicate fiben:hasLegalName .
+
+<https://example.org/fiben/mapping#CORPORATION_d1_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#CORPORATION_r0> rr:objectMap <https://example.org/fiben/mapping#CORPORATION_r0_o> ;
+    rr:predicate fiben:isClassifiedBy .
+
+<https://example.org/fiben/mapping#CORPORATION_r0_o> rr:template "https://example.org/fiben/data/industrysectorclassifier/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#CORPORATION_r1> rr:objectMap <https://example.org/fiben/mapping#CORPORATION_r1_o> ;
+    rr:predicate fiben:isDomiciledIn .
+
+<https://example.org/fiben/mapping#CORPORATION_r1_o> rr:template "https://example.org/fiben/data/country/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#CORPORATION_subject> rr:class fiben:Corporation ;
+    rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CORPORATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C115\"" .
+
+<https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_subject> rr:class fiben:CostMethodInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#COSTMETHODINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C069\"" .
+
+<https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_d0> rr:objectMap <https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_subject> rr:class fiben:CostsOfRetirementPlans ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#COSTSOFRETIREMENTPLANS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C056\"" .
+
+<https://example.org/fiben/mapping#COUNTRY_d0> rr:objectMap <https://example.org/fiben/mapping#COUNTRY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#COUNTRY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#COUNTRY_d1> rr:objectMap <https://example.org/fiben/mapping#COUNTRY_d1_o> ;
+    rr:predicate fiben:hasNumericCountryCode .
+
+<https://example.org/fiben/mapping#COUNTRY_d1_o> rr:column "\"ATTR_03\"" .
+
+<https://example.org/fiben/mapping#COUNTRY_subject> rr:class fiben:Country ;
+    rr:template "https://example.org/fiben/data/country/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#COUNTRY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C014\"" .
+
+<https://example.org/fiben/mapping#CURRENCY_d0> rr:objectMap <https://example.org/fiben/mapping#CURRENCY_d0_o> ;
+    rr:predicate fiben:hasNumericCode .
+
+<https://example.org/fiben/mapping#CURRENCY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#CURRENCY_d1> rr:objectMap <https://example.org/fiben/mapping#CURRENCY_d1_o> ;
+    rr:predicate fiben:hasCurrencyName .
+
+<https://example.org/fiben/mapping#CURRENCY_d1_o> rr:column "\"ATTR_03\"" .
+
+<https://example.org/fiben/mapping#CURRENCY_d2> rr:objectMap <https://example.org/fiben/mapping#CURRENCY_d2_o> ;
+    rr:predicate fiben:hasMinorUnit .
+
+<https://example.org/fiben/mapping#CURRENCY_d2_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#CURRENCY_subject> rr:class fiben:Currency ;
+    rr:template "https://example.org/fiben/data/currency/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#CURRENCY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C079\"" .
+
+<https://example.org/fiben/mapping#DEBTCONVERSION_d0> rr:objectMap <https://example.org/fiben/mapping#DEBTCONVERSION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DEBTCONVERSION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DEBTCONVERSION_subject> rr:class fiben:DebtConversion ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DEBTCONVERSION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C150\"" .
+
+<https://example.org/fiben/mapping#DEBT_d0> rr:objectMap <https://example.org/fiben/mapping#DEBT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DEBT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DEBT_subject> rr:class fiben:Debt ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DEBT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C036\"" .
+
+<https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_d0> rr:objectMap <https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_subject> rr:class fiben:DeferredTaxAssetsAndLiabilities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DEFERREDTAXASSETSANDLIABILITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C114\"" .
+
+<https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_d0> rr:objectMap <https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_subject> rr:class fiben:DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLoss ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DEFINEDBENEFITPLANAMOUNTSRECOGNIZEDINOTHERCOMPREHENSIVEINCOMELOSS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C002\"" .
+
+<https://example.org/fiben/mapping#DERIVATIVE_d0> rr:objectMap <https://example.org/fiben/mapping#DERIVATIVE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DERIVATIVE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DERIVATIVE_subject> rr:class fiben:Derivative ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DERIVATIVE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C083\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasMetricYearCalendar .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d0_o> rr:column "\"ATTR_02\"" ;
+    rr:datatype xsd:integer .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d1> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d1_o> ;
+    rr:predicate fiben:hasMetricStartDate .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d10> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d10_o> ;
+    rr:predicate fiben:hasMetricYearFiscal .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d10_o> rr:column "\"ATTR_12\"" ;
+    rr:datatype xsd:integer .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d11> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d11_o> ;
+    rr:predicate fiben:hasUrl .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d11_o> rr:column "\"ATTR_13\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d12> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d12_o> ;
+    rr:predicate fiben:hasMetricContextDimensions .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d12_o> rr:column "\"ATTR_14\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d13> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d13_o> ;
+    rr:predicate fiben:hasMetricStartQuarter .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d13_o> rr:column "\"ATTR_15\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d1_o> rr:column "\"ATTR_03\"" ;
+    rr:datatype xsd:date .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d2> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d2_o> ;
+    rr:predicate fiben:hasDocumentType .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d2_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d3> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d3_o> ;
+    rr:predicate fiben:hasMetricEndQuarter .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d3_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d4> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d4_o> ;
+    rr:predicate fiben:hasUnit .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d4_o> rr:column "\"ATTR_06\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d5> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d5_o> ;
+    rr:predicate fiben:applicablePeriod .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d5_o> rr:column "\"ATTR_07\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d6> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d6_o> ;
+    rr:predicate fiben:hasUniqueIdentifier .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d6_o> rr:column "\"ATTR_08\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d7> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d7_o> ;
+    rr:predicate fiben:hasMetricEndDate .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d7_o> rr:column "\"ATTR_09\"" ;
+    rr:datatype xsd:date .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d8> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d8_o> ;
+    rr:predicate fiben:isComputed .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d8_o> rr:column "\"ATTR_10\"" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d9> rr:objectMap <https://example.org/fiben/mapping#DISCLOSURE_d9_o> ;
+    rr:predicate fiben:hasMetricValue .
+
+<https://example.org/fiben/mapping#DISCLOSURE_d9_o> rr:column "\"ATTR_11\"" ;
+    rr:datatype xsd:double .
+
+<https://example.org/fiben/mapping#DISCLOSURE_subject> rr:class fiben:Disclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C062\"" .
+
+<https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_d0> rr:objectMap <https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_subject> rr:class fiben:DistributionToOwner ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DISTRIBUTIONTOOWNER_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C105\"" .
+
+<https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_d0> rr:objectMap <https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_subject> rr:class fiben:DividendPaymentRestrictions ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DIVIDENDPAYMENTRESTRICTIONS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C152\"" .
+
+<https://example.org/fiben/mapping#DIVIDENDSPAYABLE_d0> rr:objectMap <https://example.org/fiben/mapping#DIVIDENDSPAYABLE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#DIVIDENDSPAYABLE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#DIVIDENDSPAYABLE_subject> rr:class fiben:DividendsPayable ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#DIVIDENDSPAYABLE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C122\"" .
+
+<https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_d0> rr:objectMap <https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_subject> rr:class fiben:EffectiveIncomeTaxRateReconciliation ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EFFECTIVEINCOMETAXRATERECONCILIATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C100\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d0> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d0_o> ;
+    rr:predicate fiben:hasMetricYearCalendar .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d0_o> rr:column "\"ATTR_02\"" ;
+    rr:datatype xsd:integer .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d1> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d1_o> ;
+    rr:predicate fiben:hasMetricStartDate .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d10> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d10_o> ;
+    rr:predicate fiben:hasMetricYearFiscal .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d10_o> rr:column "\"ATTR_12\"" ;
+    rr:datatype xsd:integer .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d11> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d11_o> ;
+    rr:predicate fiben:hasUrl .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d11_o> rr:column "\"ATTR_13\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d12> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d12_o> ;
+    rr:predicate fiben:hasMetricContextDimensions .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d12_o> rr:column "\"ATTR_14\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d13> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d13_o> ;
+    rr:predicate fiben:hasMetricStartQuarter .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d13_o> rr:column "\"ATTR_15\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d1_o> rr:column "\"ATTR_03\"" ;
+    rr:datatype xsd:date .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d2> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d2_o> ;
+    rr:predicate fiben:hasDocumentType .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d2_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d3> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d3_o> ;
+    rr:predicate fiben:hasMetricEndQuarter .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d3_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d4> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d4_o> ;
+    rr:predicate fiben:hasUnit .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d4_o> rr:column "\"ATTR_06\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d5> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d5_o> ;
+    rr:predicate fiben:applicablePeriod .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d5_o> rr:column "\"ATTR_07\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d6> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d6_o> ;
+    rr:predicate fiben:hasUniqueIdentifier .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d6_o> rr:column "\"ATTR_08\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d7> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d7_o> ;
+    rr:predicate fiben:hasMetricEndDate .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d7_o> rr:column "\"ATTR_09\"" ;
+    rr:datatype xsd:date .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d8> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d8_o> ;
+    rr:predicate fiben:isComputed .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d8_o> rr:column "\"ATTR_10\"" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d9> rr:objectMap <https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d9_o> ;
+    rr:predicate fiben:hasMetricValue .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_d9_o> rr:column "\"ATTR_11\"" ;
+    rr:datatype xsd:double .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_subject> rr:class fiben:ElementOfFinancialStatement ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ELEMENTOFFINANCIALSTATEMENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C006\"" .
+
+<https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_r0> rr:objectMap <https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_r0_o> ;
+    rr:predicate fiben:isMemberOf .
+
+<https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_r0_o> rr:template "https://example.org/fiben/data/financialreport/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_subject> rr:class fiben:ElementsOfFinancialReport ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ELEMENTSOFFINANCIALREPORT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C076\"" .
+
+<https://example.org/fiben/mapping#EMAILADDRESS_d0> rr:objectMap <https://example.org/fiben/mapping#EMAILADDRESS_d0_o> ;
+    rr:predicate fiben:hasValue .
+
+<https://example.org/fiben/mapping#EMAILADDRESS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EMAILADDRESS_subject> rr:class fiben:EmailAddress ;
+    rr:template "https://example.org/fiben/data/virtualaddress/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EMAILADDRESS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C131\"" .
+
+<https://example.org/fiben/mapping#ENTITYLOCATION_d0> rr:objectMap <https://example.org/fiben/mapping#ENTITYLOCATION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ENTITYLOCATION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ENTITYLOCATION_subject> rr:class fiben:EntityLocation ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ENTITYLOCATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C086\"" .
+
+<https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_subject> rr:class fiben:EquityMethodInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EQUITYMETHODINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C124\"" .
+
+<https://example.org/fiben/mapping#EQUITY_d0> rr:objectMap <https://example.org/fiben/mapping#EQUITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#EQUITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EQUITY_subject> rr:class fiben:Equity ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EQUITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C098\"" .
+
+<https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_subject> rr:class fiben:ErrorCorrectionsAndPriorPeriodAdjustments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#ERRORCORRECTIONSANDPRIORPERIODADJUSTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C149\"" .
+
+<https://example.org/fiben/mapping#EXPENSE_d0> rr:objectMap <https://example.org/fiben/mapping#EXPENSE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#EXPENSE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EXPENSE_subject> rr:class fiben:Expense ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EXPENSE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C101\"" .
+
+<https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_d0> rr:objectMap <https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_subject> rr:class fiben:ExtinguishmentOfDebt ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EXTINGUISHMENTOFDEBT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C005\"" .
+
+<https://example.org/fiben/mapping#EXTRAORDINARYITEMS_d0> rr:objectMap <https://example.org/fiben/mapping#EXTRAORDINARYITEMS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#EXTRAORDINARYITEMS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#EXTRAORDINARYITEMS_subject> rr:class fiben:ExtraordinaryItems ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#EXTRAORDINARYITEMS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C130\"" .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_subject> rr:class fiben:FinancialInstrumentsSubjectToMandatoryRedemption ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENTSSUBJECTTOMANDATORYREDEMPTION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C134\"" .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENT_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALINSTRUMENT_d0_o> ;
+    rr:predicate fiben:isTransferable .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENT_subject> rr:class fiben:FinancialInstrument ;
+    rr:template "https://example.org/fiben/data/financialinstrument/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALINSTRUMENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C127\"" .
+
+<https://example.org/fiben/mapping#FINANCIALMARKET_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALMARKET_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCIALMARKET_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCIALMARKET_subject> rr:class fiben:FinancialMarket ;
+    rr:template "https://example.org/fiben/data/financialmarket/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALMARKET_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C040\"" .
+
+<https://example.org/fiben/mapping#FINANCIALMETRICS_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALMETRICS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCIALMETRICS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCIALMETRICS_subject> rr:class fiben:FinancialMetrics ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALMETRICS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C085\"" .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALREPORT_d0_o> ;
+    rr:predicate fiben:hasUniqueIdentifier .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT_d0_o> rr:column "\"ATTR_03\"" .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT_r0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALREPORT_r0_o> ;
+    rr:predicate fiben:isProvidedBy .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT_r0_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT_subject> rr:class fiben:FinancialReport ;
+    rr:template "https://example.org/fiben/data/financialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALREPORT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C027\"" .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d0_o> ;
+    rr:predicate fiben:hasAccountNumber .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d0_o> rr:column "\"ATTR_04\"" ;
+    rr:datatype xsd:integer .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d1> rr:objectMap <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d1_o> ;
+    rr:predicate fiben:hasStartDate .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_d1_o> rr:column "\"ATTR_05\"" ;
+    rr:datatype xsd:dateTime .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r0> rr:objectMap <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r0_o> ;
+    rr:predicate fiben:isManagedBy .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r0_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r1> rr:objectMap <https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r1_o> ;
+    rr:predicate fiben:isOwnedBy .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_r1_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_subject> rr:class fiben:FinancialServiceAccount ;
+    rr:template "https://example.org/fiben/data/financialserviceaccount/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCIALSERVICEACCOUNT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C055\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_subject> rr:class fiben:FinancingReceivableAllowanceForCreditLosses ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLEALLOWANCEFORCREDITLOSSES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C145\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_subject> rr:class fiben:FinancingReceivableCreditQualityIndicators ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLECREDITQUALITYINDICATORS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C136\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_subject> rr:class fiben:FinancingReceivablesPastDue ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLESPASTDUE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C023\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLES_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLES_subject> rr:class fiben:FinancingReceivables ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C067\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_d0> rr:objectMap <https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_subject> rr:class fiben:FinancingReceivableTroubledDebtRestructurings ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FINANCINGRECEIVABLETROUBLEDDEBTRESTRUCTURINGS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C007\"" .
+
+<https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_d0> rr:objectMap <https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_subject> rr:class fiben:ForeignCurrencyTranslation ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FOREIGNCURRENCYTRANSLATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C037\"" .
+
+<https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_d0> rr:objectMap <https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_subject> rr:class fiben:ForwardContractIndexedToIssuersEquity ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FORWARDCONTRACTINDEXEDTOISSUERSEQUITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C030\"" .
+
+<https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_subject> rr:class fiben:FresHstArtAdjustments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#FRESHSTARTADJUSTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C133\"" .
+
+<https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_subject> rr:class fiben:GainLossOnInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#GAINLOSSONINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C071\"" .
+
+<https://example.org/fiben/mapping#GOODWILL_d0> rr:objectMap <https://example.org/fiben/mapping#GOODWILL_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#GOODWILL_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#GOODWILL_subject> rr:class fiben:Goodwill ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#GOODWILL_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C103\"" .
+
+<https://example.org/fiben/mapping#GUARANTEES_d0> rr:objectMap <https://example.org/fiben/mapping#GUARANTEES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#GUARANTEES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#GUARANTEES_subject> rr:class fiben:Guarantees ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#GUARANTEES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C017\"" .
+
+<https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_d0> rr:objectMap <https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_subject> rr:class fiben:GuarantorObligations ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#GUARANTOROBLIGATIONS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C110\"" .
+
+<https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_d0> rr:objectMap <https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_subject> rr:class fiben:HeldToMaturitySecurities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#HELDTOMATURITYSECURITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C012\"" .
+
+<https://example.org/fiben/mapping#HOLDING_d0> rr:objectMap <https://example.org/fiben/mapping#HOLDING_d0_o> ;
+    rr:predicate fiben:hasDescription .
+
+<https://example.org/fiben/mapping#HOLDING_d0_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#HOLDING_d1> rr:objectMap <https://example.org/fiben/mapping#HOLDING_d1_o> ;
+    rr:predicate fiben:hasCount .
+
+<https://example.org/fiben/mapping#HOLDING_d1_o> rr:column "\"ATTR_05\"" ;
+    rr:datatype xsd:double .
+
+<https://example.org/fiben/mapping#HOLDING_r0> rr:objectMap <https://example.org/fiben/mapping#HOLDING_r0_o> ;
+    rr:predicate fiben:isHeldBy .
+
+<https://example.org/fiben/mapping#HOLDING_r0_o> rr:template "https://example.org/fiben/data/financialserviceaccount/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#HOLDING_r1> rr:objectMap <https://example.org/fiben/mapping#HOLDING_r1_o> ;
+    rr:predicate fiben:refersTo .
+
+<https://example.org/fiben/mapping#HOLDING_r1_o> rr:template "https://example.org/fiben/data/financialinstrument/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#HOLDING_subject> rr:class fiben:Holding ;
+    rr:template "https://example.org/fiben/data/holding/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#HOLDING_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C031\"" .
+
+<https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_d0> rr:objectMap <https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_subject> rr:class fiben:ImpairedFinancingReceivables ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#IMPAIREDFINANCINGRECEIVABLES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C112\"" .
+
+<https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_d0> rr:objectMap <https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_subject> rr:class fiben:IncomeTaxContingency ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INCOMETAXCONTINGENCY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C045\"" .
+
+<https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_d0> rr:objectMap <https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_subject> rr:class fiben:IndefiniteLivedIntangibleAssets ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INDEFINITELIVEDINTANGIBLEASSETS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C099\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d0> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d0_o> ;
+    rr:predicate fiben:hasDescription .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d1> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d1_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_d1_o> rr:column "\"ATTR_03\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_subject> rr:class fiben:IndustrySectorClassificationScheme ;
+    rr:template "https://example.org/fiben/data/industrysectorclassificationscheme/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFICATIONSCHEME_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C058\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d0> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d0_o> ;
+    rr:predicate fiben:hasUniqueIdentifier .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d0_o> rr:column "\"ATTR_03\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d1> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d1_o> ;
+    rr:predicate fiben:hasDescription .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d1_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d2> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d2_o> ;
+    rr:predicate fiben:hasNumericCode .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d2_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d3> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d3_o> ;
+    rr:predicate fiben:hasFormalName .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_d3_o> rr:column "\"ATTR_06\"" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_r0> rr:objectMap <https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_r0_o> ;
+    rr:predicate fiben:isDefinedBy .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_r0_o> rr:template "https://example.org/fiben/data/industrysectorclassificationscheme/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_subject> rr:class fiben:IndustrySectorClassifier ;
+    rr:template "https://example.org/fiben/data/industrysectorclassifier/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INDUSTRYSECTORCLASSIFIER_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C092\"" .
+
+<https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_d0> rr:objectMap <https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_subject> rr:class fiben:IntangibleAssetsAndGoodwill ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INTANGIBLEASSETSANDGOODWILL_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C082\"" .
+
+<https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_d0> rr:objectMap <https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_subject> rr:class fiben:InterestAndOtherIncome ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INTERESTANDOTHERINCOME_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C064\"" .
+
+<https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_d0> rr:objectMap <https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_subject> rr:class fiben:InterestCostsIncurred ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INTERESTCOSTSINCURRED_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C032\"" .
+
+<https://example.org/fiben/mapping#INVENTORYCURRENT_d0> rr:objectMap <https://example.org/fiben/mapping#INVENTORYCURRENT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INVENTORYCURRENT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INVENTORYCURRENT_subject> rr:class fiben:InventoryCurrent ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INVENTORYCURRENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C109\"" .
+
+<https://example.org/fiben/mapping#INVENTORYNONCURRENT_d0> rr:objectMap <https://example.org/fiben/mapping#INVENTORYNONCURRENT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INVENTORYNONCURRENT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INVENTORYNONCURRENT_subject> rr:class fiben:InventoryNoncurrent ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INVENTORYNONCURRENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C088\"" .
+
+<https://example.org/fiben/mapping#INVESTMENTINCOME_d0> rr:objectMap <https://example.org/fiben/mapping#INVESTMENTINCOME_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INVESTMENTINCOME_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INVESTMENTINCOME_subject> rr:class fiben:InvestmentIncome ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INVESTMENTINCOME_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C111\"" .
+
+<https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_d0> rr:objectMap <https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_subject> rr:class fiben:InvestmentsAndOtherNoncurrentAssets ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#INVESTMENTSANDOTHERNONCURRENTASSETS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C128\"" .
+
+<https://example.org/fiben/mapping#LIABILITY_d0> rr:objectMap <https://example.org/fiben/mapping#LIABILITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LIABILITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LIABILITY_subject> rr:class fiben:Liability ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LIABILITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C116\"" .
+
+<https://example.org/fiben/mapping#LINEOFCREDITFACILITY_d0> rr:objectMap <https://example.org/fiben/mapping#LINEOFCREDITFACILITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LINEOFCREDITFACILITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LINEOFCREDITFACILITY_subject> rr:class fiben:LineOfCreditFacility ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LINEOFCREDITFACILITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C001\"" .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_d0> rr:objectMap <https://example.org/fiben/mapping#LISTEDSECURITY_d0_o> ;
+    rr:predicate fiben:hasListingDate .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_d0_o> rr:column "\"ATTR_03\"" ;
+    rr:datatype xsd:dateTime .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_d1> rr:objectMap <https://example.org/fiben/mapping#LISTEDSECURITY_d1_o> ;
+    rr:predicate fiben:hasTickerSymbol .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_d1_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_d2> rr:objectMap <https://example.org/fiben/mapping#LISTEDSECURITY_d2_o> ;
+    rr:predicate fiben:hasLegalName .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_d2_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_r0> rr:objectMap <https://example.org/fiben/mapping#LISTEDSECURITY_r0_o> ;
+    rr:predicate fiben:hasLastTradedValue .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_r0_o> rr:template "https://example.org/fiben/data/monetaryamount/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_subject> rr:class fiben:ListedSecurity ;
+    rr:template "https://example.org/fiben/data/financialinstrument/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LISTEDSECURITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C042\"" .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_d0> rr:objectMap <https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_subject> rr:class fiben:LongLivedAssetsHeldForSale ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSHELDFORSALE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C011\"" .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_d0> rr:objectMap <https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_subject> rr:class fiben:LongLivedAssetsToBeAbandoned ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LONGLIVEDASSETSTOBEABANDONED_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C054\"" .
+
+<https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_d0> rr:objectMap <https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_subject> rr:class fiben:LongTermDebtMaturities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LONGTERMDEBTMATURITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C097\"" .
+
+<https://example.org/fiben/mapping#LONGTERMDEBT_d0> rr:objectMap <https://example.org/fiben/mapping#LONGTERMDEBT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LONGTERMDEBT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LONGTERMDEBT_subject> rr:class fiben:LongTermDebt ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LONGTERMDEBT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C059\"" .
+
+<https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_d0> rr:objectMap <https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_subject> rr:class fiben:LongTermPurchaseCommitment ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LONGTERMPURCHASECOMMITMENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C065\"" .
+
+<https://example.org/fiben/mapping#LOSS_d0> rr:objectMap <https://example.org/fiben/mapping#LOSS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#LOSS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#LOSS_subject> rr:class fiben:Loss ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#LOSS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C070\"" .
+
+<https://example.org/fiben/mapping#MARKETABLESECURITIES_d0> rr:objectMap <https://example.org/fiben/mapping#MARKETABLESECURITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#MARKETABLESECURITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#MARKETABLESECURITIES_subject> rr:class fiben:MarketableSecurities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#MARKETABLESECURITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C089\"" .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT_d0> rr:objectMap <https://example.org/fiben/mapping#MONETARYAMOUNT_d0_o> ;
+    rr:predicate fiben:hasAmount .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT_d0_o> rr:column "\"ATTR_03\"" ;
+    rr:datatype xsd:double .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT_r0> rr:objectMap <https://example.org/fiben/mapping#MONETARYAMOUNT_r0_o> ;
+    rr:predicate fiben:hasCurrency .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT_r0_o> rr:template "https://example.org/fiben/data/currency/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT_subject> rr:class fiben:MonetaryAmount ;
+    rr:template "https://example.org/fiben/data/monetaryamount/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#MONETARYAMOUNT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C061\"" .
+
+<https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_d0> rr:objectMap <https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_subject> rr:class fiben:NetPeriodicBenefitCostNotYetRecognized ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#NETPERIODICBENEFITCOSTNOTYETRECOGNIZED_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C051\"" .
+
+<https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_d0> rr:objectMap <https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_subject> rr:class fiben:NewAccountingPronouncementEarlyAdoption ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#NEWACCOUNTINGPRONOUNCEMENTEARLYADOPTION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C102\"" .
+
+<https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_d0> rr:objectMap <https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_subject> rr:class fiben:NoncontrollingInterest ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#NONCONTROLLINGINTEREST_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C043\"" .
+
+<https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_d0> rr:objectMap <https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_subject> rr:class fiben:OperatingLossCarryForwards ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OPERATINGLOSSCARRYFORWARDS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C132\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_subject> rr:class fiben:OtherAssetsAndOtherLiabilities ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERASSETSANDOTHERLIABILITIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C094\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_subject> rr:class fiben:OtherAssetsDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERASSETSDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C091\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_subject> rr:class fiben:OtherAssetsNoncurrent ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERASSETSNONCURRENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C118\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETS_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERASSETS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERASSETS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERASSETS_subject> rr:class fiben:OtherAssets ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERASSETS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C087\"" .
+
+<https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_subject> rr:class fiben:OtherLiabilitiesDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERLIABILITIESDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C063\"" .
+
+<https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_subject> rr:class fiben:OtherNonOperatingIncomeExpense ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERNONOPERATINGINCOMEEXPENSE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C147\"" .
+
+<https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_d0> rr:objectMap <https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_subject> rr:class fiben:OtherOwnershipInterests ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHEROWNERSHIPINTERESTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C019\"" .
+
+<https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_d0> rr:objectMap <https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_subject> rr:class fiben:OtherThanTemporaryImpairmentCreditLossesRecognizedInEarnings ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#OTHERTHANTEMPORARYIMPAIRMENTCREDITLOSSESRECOGNIZEDINEARNINGS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C050\"" .
+
+<https://example.org/fiben/mapping#PERSON_d0> rr:objectMap <https://example.org/fiben/mapping#PERSON_d0_o> ;
+    rr:predicate fiben:hasGender .
+
+<https://example.org/fiben/mapping#PERSON_d0_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#PERSON_d1> rr:objectMap <https://example.org/fiben/mapping#PERSON_d1_o> ;
+    rr:predicate fiben:hasDateOfBirth .
+
+<https://example.org/fiben/mapping#PERSON_d1_o> rr:column "\"ATTR_05\"" ;
+    rr:datatype xsd:dateTime .
+
+<https://example.org/fiben/mapping#PERSON_d2> rr:objectMap <https://example.org/fiben/mapping#PERSON_d2_o> ;
+    rr:predicate fiben:hasPersonName .
+
+<https://example.org/fiben/mapping#PERSON_d2_o> rr:column "\"ATTR_06\"" .
+
+<https://example.org/fiben/mapping#PERSON_d3> rr:objectMap <https://example.org/fiben/mapping#PERSON_d3_o> ;
+    rr:predicate fiben:hasLastName .
+
+<https://example.org/fiben/mapping#PERSON_d3_o> rr:column "\"ATTR_07\"" .
+
+<https://example.org/fiben/mapping#PERSON_d4> rr:objectMap <https://example.org/fiben/mapping#PERSON_d4_o> ;
+    rr:predicate fiben:hasFirstName .
+
+<https://example.org/fiben/mapping#PERSON_d4_o> rr:column "\"ATTR_08\"" .
+
+<https://example.org/fiben/mapping#PERSON_d5> rr:objectMap <https://example.org/fiben/mapping#PERSON_d5_o> ;
+    rr:predicate fiben:hasMiddleNameOrInitial .
+
+<https://example.org/fiben/mapping#PERSON_d5_o> rr:column "\"ATTR_09\"" .
+
+<https://example.org/fiben/mapping#PERSON_r0> rr:objectMap <https://example.org/fiben/mapping#PERSON_r0_o> ;
+    rr:predicate fiben:hasCitizenship .
+
+<https://example.org/fiben/mapping#PERSON_r0_o> rr:template "https://example.org/fiben/data/country/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#PERSON_r1> rr:objectMap <https://example.org/fiben/mapping#PERSON_r1_o> ;
+    rr:predicate fiben:hasPlaceOfBirth .
+
+<https://example.org/fiben/mapping#PERSON_r1_o> rr:template "https://example.org/fiben/data/country/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#PERSON_subject> rr:class fiben:Person ;
+    rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PERSON_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C141\"" .
+
+<https://example.org/fiben/mapping#PHONENUMBER_d0> rr:objectMap <https://example.org/fiben/mapping#PHONENUMBER_d0_o> ;
+    rr:predicate fiben:hasValue .
+
+<https://example.org/fiben/mapping#PHONENUMBER_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PHONENUMBER_subject> rr:class fiben:PhoneNumber ;
+    rr:template "https://example.org/fiben/data/virtualaddress/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PHONENUMBER_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C084\"" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d0> rr:objectMap <https://example.org/fiben/mapping#POSTALADDRESS_d0_o> ;
+    rr:predicate fiben:hasAddressLine1 .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d0_o> rr:column "\"ATTR_03\"" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d1> rr:objectMap <https://example.org/fiben/mapping#POSTALADDRESS_d1_o> ;
+    rr:predicate fiben:hasAddressLine2 .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d1_o> rr:column "\"ATTR_04\"" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d2> rr:objectMap <https://example.org/fiben/mapping#POSTALADDRESS_d2_o> ;
+    rr:predicate fiben:hasCity .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d2_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d3> rr:objectMap <https://example.org/fiben/mapping#POSTALADDRESS_d3_o> ;
+    rr:predicate fiben:hasPostalCode .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d3_o> rr:column "\"ATTR_06\"" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d4> rr:objectMap <https://example.org/fiben/mapping#POSTALADDRESS_d4_o> ;
+    rr:predicate fiben:hasState .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_d4_o> rr:column "\"ATTR_07\"" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_r0> rr:objectMap <https://example.org/fiben/mapping#POSTALADDRESS_r0_o> ;
+    rr:predicate fiben:hasCountry .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_r0_o> rr:template "https://example.org/fiben/data/country/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_subject> rr:class fiben:PostalAddress ;
+    rr:template "https://example.org/fiben/data/postaladdress/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#POSTALADDRESS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C041\"" .
+
+<https://example.org/fiben/mapping#PREFERREDSTOCK_d0> rr:objectMap <https://example.org/fiben/mapping#PREFERREDSTOCK_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PREFERREDSTOCK_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PREFERREDSTOCK_subject> rr:class fiben:PreferredStock ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PREFERREDSTOCK_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C137\"" .
+
+<https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_d0> rr:objectMap <https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_subject> rr:class fiben:ProductWarrantyLiability ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PRODUCTWARRANTYLIABILITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C093\"" .
+
+<https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_d0> rr:objectMap <https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_subject> rr:class fiben:PropertyManagementFee ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PROPERTYMANAGEMENTFEE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C004\"" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_d0> rr:objectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_subject> rr:class fiben:PropertyPlantAndEquipmentIncomeStatementDisclosures ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTINCOMESTATEMENTDISCLOSURES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C009\"" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_d0> rr:objectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_subject> rr:class fiben:PropertyPlantAndEquipmentUseFullives ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENTUSEFULLIVES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C028\"" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_d0> rr:objectMap <https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_subject> rr:class fiben:PropertyPlantAndEquipment ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PROPERTYPLANTANDEQUIPMENT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C123\"" .
+
+<https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_d0> rr:objectMap <https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_subject> rr:class fiben:PropertySubjectToOrAvailableForOperatingLease ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#PROPERTYSUBJECTTOORAVAILABLEFOROPERATINGLEASE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C025\"" .
+
+<https://example.org/fiben/mapping#REALESTATEPROPERTIES_d0> rr:objectMap <https://example.org/fiben/mapping#REALESTATEPROPERTIES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#REALESTATEPROPERTIES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#REALESTATEPROPERTIES_subject> rr:class fiben:RealEstateProperties ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#REALESTATEPROPERTIES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C072\"" .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_subject> rr:class fiben:RealizedGainLossOnInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSSONINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C024\"" .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSS_d0> rr:objectMap <https://example.org/fiben/mapping#REALIZEDGAINLOSS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSS_subject> rr:class fiben:RealizedGainLoss ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#REALIZEDGAINLOSS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C046\"" .
+
+<https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_d0> rr:objectMap <https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_subject> rr:class fiben:ReconciliationOfOperatingProfitLossFromSegmentsToConsolidated ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#RECONCILIATIONOFOPERATINGPROFITLOSSFROMSEGMENTSTOCONSOLIDATED_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C026\"" .
+
+<https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0> rr:objectMap <https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_subject> rr:class fiben:RecordedUnconditionalPurchaseObligation ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#RECORDEDUNCONDITIONALPURCHASEOBLIGATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C053\"" .
+
+<https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_d0> rr:objectMap <https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_subject> rr:class fiben:RedeemableNoncontrollingInterest ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#REDEEMABLENONCONTROLLINGINTEREST_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C107\"" .
+
+<https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_d0> rr:objectMap <https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_subject> rr:class fiben:RelatedPartyTransactionsByRelatedParty ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#RELATEDPARTYTRANSACTIONSBYRELATEDPARTY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C034\"" .
+
+<https://example.org/fiben/mapping#RENTEXPENSE_d0> rr:objectMap <https://example.org/fiben/mapping#RENTEXPENSE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#RENTEXPENSE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#RENTEXPENSE_subject> rr:class fiben:RentExpense ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#RENTEXPENSE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C129\"" .
+
+<https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_d0> rr:objectMap <https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_subject> rr:class fiben:RestrictedCashAndCashEquivalents ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#RESTRICTEDCASHANDCASHEQUIVALENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C066\"" .
+
+<https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_d0> rr:objectMap <https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_subject> rr:class fiben:RestructuringAndRelatedCosts ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#RESTRUCTURINGANDRELATEDCOSTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C142\"" .
+
+<https://example.org/fiben/mapping#REVENUE_d0> rr:objectMap <https://example.org/fiben/mapping#REVENUE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#REVENUE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#REVENUE_subject> rr:class fiben:Revenue ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#REVENUE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C038\"" .
+
+<https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_d0> rr:objectMap <https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_subject> rr:class fiben:SaleLeaseBackTransaction ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SALELEASEBACKTRANSACTION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C035\"" .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_d0> rr:objectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_d0_o> ;
+    rr:predicate fiben:hasType .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_d0_o> rr:column "\"ATTR_05\"" .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_d1> rr:objectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_d1_o> ;
+    rr:predicate fiben:hasSettlementDate .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_d1_o> rr:column "\"ATTR_06\"" ;
+    rr:datatype xsd:dateTime .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_d2> rr:objectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_d2_o> ;
+    rr:predicate fiben:hasCount .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_d2_o> rr:column "\"ATTR_07\"" ;
+    rr:datatype xsd:double .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_r0> rr:objectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_r0_o> ;
+    rr:predicate fiben:hasPrice .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_r0_o> rr:template "https://example.org/fiben/data/monetaryamount/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_r1> rr:objectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_r1_o> ;
+    rr:predicate fiben:isFacilitatedBy .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_r1_o> rr:template "https://example.org/fiben/data/financialserviceaccount/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_r2> rr:objectMap <https://example.org/fiben/mapping#SECURITIESTRANSACTION_r2_o> ;
+    rr:predicate fiben:refersTo .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_r2_o> rr:template "https://example.org/fiben/data/financialinstrument/{\"ATTR_04\"}" .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_subject> rr:class fiben:SecuritiesTransaction ;
+    rr:template "https://example.org/fiben/data/securitiestransaction/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SECURITIESTRANSACTION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C022\"" .
+
+<https://example.org/fiben/mapping#SECURITY_r0> rr:objectMap <https://example.org/fiben/mapping#SECURITY_r0_o> ;
+    rr:predicate fiben:isProvidedBy .
+
+<https://example.org/fiben/mapping#SECURITY_r0_o> rr:template "https://example.org/fiben/data/autonomousagent/{\"ATTR_03\"}" .
+
+<https://example.org/fiben/mapping#SECURITY_r1> rr:objectMap <https://example.org/fiben/mapping#SECURITY_r1_o> ;
+    rr:predicate fiben:isTradedOn .
+
+<https://example.org/fiben/mapping#SECURITY_r1_o> rr:template "https://example.org/fiben/data/financialmarket/{\"ATTR_02\"}" .
+
+<https://example.org/fiben/mapping#SECURITY_subject> rr:class fiben:Security ;
+    rr:template "https://example.org/fiben/data/financialinstrument/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SECURITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C044\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_subject> rr:class fiben:ShareBasedCompensationActivity ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONACTIVITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C096\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_subject> rr:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGrantDateIntrinsicValue ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODGRANTDATEINTRINSICVALUE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C077\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_subject> rr:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodWeightedAverageGrantDateFairValue ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSGRANTSINPERIODWEIGHTEDAVERAGEGRANTDATEFAIRVALUE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C048\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_subject> rr:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestExercisable ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTEXERCISABLE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C029\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_subject> rr:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsVestedAndExpectedToVestOutstandingAndExercisable ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDOPTIONSVESTEDANDEXPECTEDTOVESTOUTSTANDINGANDEXERCISABLE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C008\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_subject> rr:class fiben:ShareBasedCompensationArrangementByShareBasedPaymentAwardRestrictedStockUnitsVestedAndExpectedToVest ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONARRANGEMENTBYSHAREBASEDPAYMENTAWARDRESTRICTEDSTOCKUNITSVESTEDANDEXPECTEDTOVEST_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C090\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_d0> rr:objectMap <https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_subject> rr:class fiben:ShareBasedCompensationRestrictedStockUnitsAwardActivity ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHAREBASEDCOMPENSATIONRESTRICTEDSTOCKUNITSAWARDACTIVITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C049\"" .
+
+<https://example.org/fiben/mapping#SHORTTERMDEBT_d0> rr:objectMap <https://example.org/fiben/mapping#SHORTTERMDEBT_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SHORTTERMDEBT_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SHORTTERMDEBT_subject> rr:class fiben:ShortTermDebt ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SHORTTERMDEBT_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C106\"" .
+
+<https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_d0> rr:objectMap <https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_subject> rr:class fiben:StockholdersEquity ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#STOCKHOLDERSEQUITY_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C119\"" .
+
+<https://example.org/fiben/mapping#SUBSEQUENTEVENTS_d0> rr:objectMap <https://example.org/fiben/mapping#SUBSEQUENTEVENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#SUBSEQUENTEVENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#SUBSEQUENTEVENTS_subject> rr:class fiben:SubsequentEvents ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#SUBSEQUENTEVENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C140\"" .
+
+<https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_d0> rr:objectMap <https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_subject> rr:class fiben:TaxCreditCarryForward ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#TAXCREDITCARRYFORWARD_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C135\"" .
+
+<https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_d0> rr:objectMap <https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_subject> rr:class fiben:TradingSecuritiesAndOtherTradingAssets ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#TRADINGSECURITIESANDOTHERTRADINGASSETS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C073\"" .
+
+<https://example.org/fiben/mapping#TREASURYSTOCK_d0> rr:objectMap <https://example.org/fiben/mapping#TREASURYSTOCK_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#TREASURYSTOCK_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#TREASURYSTOCK_subject> rr:class fiben:TreasuryStock ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#TREASURYSTOCK_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C003\"" .
+
+<https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_subject> rr:class fiben:UnrealizedGainLossOnInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#UNREALIZEDGAINLOSSONINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C018\"" .
+
+<https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_d0> rr:objectMap <https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_subject> rr:class fiben:UnrealizedLossOnInvestments ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#UNREALIZEDLOSSONINVESTMENTS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C074\"" .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_subject> rr:class fiben:UnrecordedUnconditionalPurchaseObligationsDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATIONSDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C078\"" .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0> rr:objectMap <https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_subject> rr:class fiben:UnrecordedUnconditionalPurchaseObligation ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#UNRECORDEDUNCONDITIONALPURCHASEOBLIGATION_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C075\"" .
+
+<https://example.org/fiben/mapping#VALUATIONALLOWANCE_d0> rr:objectMap <https://example.org/fiben/mapping#VALUATIONALLOWANCE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#VALUATIONALLOWANCE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#VALUATIONALLOWANCE_subject> rr:class fiben:ValuationAllowance ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#VALUATIONALLOWANCE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C148\"" .
+
+<https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_d0> rr:objectMap <https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_subject> rr:class fiben:ValuationAndQualifyingAccountsDisclosure ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#VALUATIONANDQUALIFYINGACCOUNTSDISCLOSURE_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C125\"" .
+
+<https://example.org/fiben/mapping#VIRTUALADDRESS_subject> rr:class fiben:VirtualAddress ;
+    rr:template "https://example.org/fiben/data/virtualaddress/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#VIRTUALADDRESS_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C095\"" .
+
+<https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_d0> rr:objectMap <https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_d0_o> ;
+    rr:predicate fiben:hasName .
+
+<https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_d0_o> rr:column "\"ATTR_02\"" .
+
+<https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_subject> rr:class fiben:WeightedAverageNumberOfShares ;
+    rr:template "https://example.org/fiben/data/elementsoffinancialreport/{\"ATTR_01\"}" .
+
+<https://example.org/fiben/mapping#WEIGHTEDAVERAGENUMBEROFSHARES_table> rr:tableName "\"FIBEN_OBF\".\"TBL_C113\"" .
+

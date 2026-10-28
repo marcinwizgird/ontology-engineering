@@ -6,7 +6,10 @@
     alignment is ``exact``;
   - tier ``fibo``: every other FIBO term — known to the domain but not mapped to this
     data; a match here explains a refusal ("FIBO defines X, this data does not map it").
-* **glossary** — curated local knowledge (``nl2q.glossary``).
+* **glossary** — curated local knowledge. ``NL2Q_GLOSSARY`` selects it (specification
+  §4.5): ``v1`` (default, ``nl2q.glossary``, written after seeing all gold: *possibly
+  contaminated*), ``train`` (``Gtrain``, induced from the train split only,
+  ``nl2q.evalkit.gtrain``) or ``none`` (``G0``).
 * **values** — the value index: distinct values of name-like and code columns, keyed by
   (class, property), read *through the mapping* from the database at build time.
   Personal names are included only when ``include_personal=True`` (FIBEN's people are
@@ -32,7 +35,7 @@ import os
 import pickle
 import re
 from collections import Counter
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from functools import lru_cache
 
 from . import fibo, paths, schema, vkg_build
@@ -47,6 +50,22 @@ def _layers(spec: str) -> tuple[str, ...]:
 
 #: the enrichment layers used when a caller does not choose (``nl2q.h1`` sets this per config)
 ENRICH: tuple[str, ...] = _layers(os.environ.get("NL2Q_ENRICH", "none"))
+
+GLOSSARIES = ("v1", "train", "none")
+#: the glossary used when a caller does not choose (``nl2q.evalkit.gate2`` sets this per config)
+GLOSSARY: str = os.environ.get("NL2Q_GLOSSARY", "v1")
+
+
+def glossary_entries(name: str) -> list[dict]:
+    if name not in GLOSSARIES:
+        raise ValueError(f"glossary {name!r}: one of {GLOSSARIES}")
+    if name == "none":
+        return []
+    if name == "train":
+        from .evalkit import gtrain
+        return gtrain.load()["entries"]
+    from .glossary import GLOSSARY as GV1
+    return GV1
 
 
 @dataclass
@@ -181,12 +200,19 @@ def build(include_personal: bool = True, enrich: tuple[str, ...] = ()) -> Pack:
     return Pack(build_terms(enrich), build_values(include_personal), GLOSSARY, edges, sub)
 
 
-def load(include_personal: bool = True, enrich: tuple[str, ...] | None = None) -> Pack:
-    return _load(include_personal, ENRICH if enrich is None else tuple(enrich))
+def load(include_personal: bool = True, enrich: tuple[str, ...] | None = None,
+         glossary: str | None = None) -> Pack:
+    return _load(include_personal, ENRICH if enrich is None else tuple(enrich), glossary or GLOSSARY)
 
 
 @lru_cache(maxsize=8)
-def _load(include_personal: bool, enrich: tuple[str, ...]) -> Pack:
+def _load(include_personal: bool, enrich: tuple[str, ...], glossary: str) -> Pack:
+    p = _base(include_personal, enrich)
+    return p if glossary == "v1" else replace(p, glossary=glossary_entries(glossary))
+
+
+@lru_cache(maxsize=8)
+def _base(include_personal: bool, enrich: tuple[str, ...]) -> Pack:
     tag = "-".join(enrich) or "none"
     cache = paths.CACHE / f"pack_{int(include_personal)}_{tag}.pkl"
     if cache.exists():

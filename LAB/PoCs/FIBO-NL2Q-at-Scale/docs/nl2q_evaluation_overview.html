@@ -85,7 +85,7 @@ code{font-family:var(--f-mono);font-size:.85em}
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Executive overview · NL2Q evaluation specification V3.1 · Semantic Intelligence Platform</div>
+  <div class="eyebrow">Executive overview · NL2Q evaluation specification V3.2 · Semantic Intelligence Platform</div>
   <h1>How we will know whether ontologies make bank-data questions safer</h1>
   <p class="question">The proof of concept lets people ask questions about banking data in plain English. The evaluation answers two questions: does putting a business ontology (FIBO) between the question and the database give fewer wrong answers, and which part of it earns its keep?</p>
   <div class="meta"><span>27 October 2026</span><span>Benchmark: IBM FIBEN, 152 tables, 11.7M rows</span><span>Companion: technical specification</span></div>
@@ -95,21 +95,22 @@ code{font-family:var(--f-mono);font-size:.85em}
   <div class="verdict">
     <span class="pill pass">Measurement foundation: ready</span>
     <p><b>The test bench is sound and its first gate passes.</b> Every database instance, data shape and ontology check that guards the measurements is clean.</p>
-    <p><b>It found and fixed a defect in our own test data.</b> One of the test databases had rows that broke its own key rules, which can make a correct query look wrong. We repaired it. The published results barely moved, and a final re-check of the live runs is under way.</p>
+    <p><b>It found and fixed a defect in our own test data.</b> One of the test databases had rows that broke its own key rules, which can make a correct query look wrong. We repaired it and re-ran every check. The published results moved by at most 5 points, and no conclusion changed.</p>
     <p><b>What we know so far is limited but real.</b> In the first small trial, the ontology approach gave significantly fewer confident wrong answers than plain text-to-SQL. No approach was clearly more accurate, and the sample is too small to detect differences under about 19 points.</p>
-    <p><b>Next:</b> finish the free, offline stages, then run the paid comparisons on a larger question set.</p>
+    <p><b>New: the component check (Gate 2) is done, and it locates the weak step.</b> The system finds the right business terms for only about a quarter of questions, and its current refusal rule turns away 23% of answerable questions. The knowledge written after seeing the benchmark answers inflated term finding by 25 points over knowledge drawn from training questions only.</p>
+    <p><b>Next:</b> rebuild the runtime into swappable parts (free), then a ~US$10 diagnostic run.</p>
   </div>
 </section>
 
 <section>
   <div class="eyebrow">What we know today</div>
   <div class="figs">
-    <div class="fig"><div class="n">−25 <small>pts</small></div><h3>Fewer confident wrong answers</h3><p>The ontology approach versus text-to-SQL (46% vs 71%), significant after correcting for multiple comparisons. Part of the gap comes from refusing more questions.</p></div>
-    <div class="fig"><div class="n">25–29%</div><h3>Best accuracy so far</h3><p>Correct on the real data and on every altered test copy. No approach is significantly more accurate than another.</p></div>
+    <div class="fig"><div class="n">−27 <small>pts</small></div><h3>Fewer confident wrong answers</h3><p>The ontology approach versus text-to-SQL (44% vs 71%), significant after correcting for multiple comparisons. Part of the gap comes from refusing more questions.</p></div>
+    <div class="fig"><div class="n">27–29%</div><h3>Best accuracy so far</h3><p>Correct on the real data and on every altered test copy. No approach is significantly more accurate than another.</p></div>
     <div class="fig"><div class="n">≈ 19 <small>pts</small></div><h3>Smallest detectable gap</h3><p>With 63 trial questions. Finding a 5-point difference needs about 800 questions, so the next runs must be larger.</p></div>
     <div class="fig"><div class="n">92%</div><h3>Of bank queries expressible</h3><p>219 of 237 benchmark queries go through the ontology to the right SQL, unchanged by the data repair.</p></div>
   </div>
-  <p class="small muted">From a single trial run per approach on 63 validation questions (19–20 October), re-analysed with the new statistics. These figures predate the test-data repair, whose re-check is still running.</p>
+  <p class="small muted">From a single trial run per approach on 63 validation questions (19–20 October), re-analysed with the new statistics and re-checked on the repaired test data.</p>
 </section>
 
 <section>
@@ -130,7 +131,7 @@ code{font-family:var(--f-mono);font-size:.85em}
   <h2>Four gates: cheap checks before paid runs</h2>
   <div class="gates">
     <div class="gate"><span class="g">Gate 1 · free</span><span class="pill pass">passed</span><h3>Is the test bench sound?</h3><p>Data integrity, ontology quality, and whether the test copies catch wrong queries.</p></div>
-    <div class="gate"><span class="g">Gate 2 · free</span><span class="pill plan">next</span><h3>Does each part work?</h3><p>Finding the right terms, the right values, and refusing correctly.</p></div>
+    <div class="gate"><span class="g">Gate 2 · free</span><span class="pill warn">measured · weak</span><h3>Does each part work?</h3><p>Right values: mostly. Right terms: about a quarter of questions. Refusing correctly: below target.</p></div>
     <div class="gate"><span class="g">Gate 3 · ≈ US$10</span><span class="pill plan">planned</span><h3>Where are answers lost?</h3><p>Hands each step the perfect input in turn, to see which step loses most.</p></div>
     <div class="gate"><span class="g">Gate 4 · paid</span><span class="pill warn">scoring ready</span><h3>Which approach wins?</h3><p>All six approaches, three runs each, scored on accuracy, safety, speed and cost.</p></div>
   </div>
@@ -153,9 +154,9 @@ code{font-family:var(--f-mono);font-size:.85em}
   <div class="tbl"><table>
     <thead><tr><th>Criterion</th><th>Target</th><th>Where we are</th></tr></thead>
     <tbody>
-      <tr class="hi"><td>Confident wrong answers</td><td class="n">≤ 2%, and below the SQL approaches</td><td>46% at best; lower than SQL (significant)</td></tr>
-      <tr><td>Accuracy on answerable questions</td><td class="n">≥ 85%</td><td>25–29% at best</td></tr>
-      <tr><td>Refusing what the data cannot answer</td><td class="n">≥ 80% caught, ≥ 90% precise</td><td>100% caught on a small set; precision not yet measured</td></tr>
+      <tr class="hi"><td>Confident wrong answers</td><td class="n">≤ 2%, and below the SQL approaches</td><td>44% at best; lower than SQL (significant)</td></tr>
+      <tr><td>Accuracy on answerable questions</td><td class="n">≥ 85%</td><td>27–29% at best</td></tr>
+      <tr><td>Refusing what the data cannot answer</td><td class="n">≥ 80% caught, ≥ 90% precise</td><td>Current rule: 40–100% caught by type; 43% precise (23% of answerable questions refused)</td></tr>
       <tr><td>Transfer to a second bank dataset</td><td class="n">≤ 15-point drop</td><td>not measured</td></tr>
       <tr><td>Consistency across runs</td><td class="n">≥ 90%</td><td>not measured (one run so far)</td></tr>
       <tr><td>Speed and cost</td><td class="n">≤ 10 s, ≤ US$0.05 per question</td><td>US$0.02 per question; speed under review</td></tr>
@@ -167,7 +168,7 @@ code{font-family:var(--f-mono);font-size:.85em}
   <div class="eyebrow">Decisions and people needed</div>
   <h2>What it takes to reach a verdict</h2>
   <ol class="asks">
-    <li><span class="k">1</span><div><h3>Continue the free stages</h3><p>Component tests, the refusal question set, the disguised-schema version and the new approaches. Engineering time only.</p></div><span class="w"><b>No spend</b>Starting now</span></li>
+    <li><span class="k">1</span><div><h3>Continue the free stages</h3><p>Done: component tests, the 150-question refusal set, the disguised-schema version, the train-only glossary and the category views. Remaining: swappable runtime parts and the new approaches. Engineering time only.</p></div><span class="w"><b>No spend</b>In progress</span></li>
     <li><span class="k">2</span><div><h3>Approve the diagnostic run (Gate 3)</h3><p>One run that shows which step loses the most answers, so improvement effort goes to the right place.</p></div><span class="w"><b>≈ US$9–13</b>After the ports are built</span></li>
     <li><span class="k">3</span><div><h3>Approve the full comparison (Gate 4)</h3><p>Six approaches, three runs each, on validation and then the held-out test set.</p></div><span class="w"><b>Estimate on request</b>v1 estimate for its remaining runs: US$160–255</span></li>
     <li><span class="k">4</span><div><h3>Assign three small human tasks</h3><p>Mark the key phrases in a sample of questions; re-word 30 test questions without having seen the benchmark; write the second bank dataset's mapping before reading its questions.</p></div><span class="w"><b>People, not budget</b>Person-days, logged</span></li>
@@ -176,7 +177,7 @@ code{font-family:var(--f-mono);font-size:.85em}
 </section>
 
 <footer>
-  <span>Source: EVAL-SPEC-NL2Q-2026 V3.1 (<code>docs/nl2q_evaluation_specification.md</code>), Gate 1 artifacts and the v1 scorecard (<code>artifacts/eval/</code>).</span>
+  <span>Source: EVAL-SPEC-NL2Q-2026 V3.2 (<code>docs/nl2q_evaluation_specification.md</code>), Gate 1 and Gate 2 artifacts and the v1 scorecard (<code>artifacts/eval/</code>).</span>
   <span>Figures from one trial run per approach on 63 validation questions; treat percentages as indicative until repeated runs are done.</span>
 </footer>
 

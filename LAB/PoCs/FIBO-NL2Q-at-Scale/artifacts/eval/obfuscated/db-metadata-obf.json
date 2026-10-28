@@ -1,0 +1,8255 @@
+{
+ "relations": [
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C033_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0010",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C033\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C033\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C120_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0011",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C120\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C120\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C016_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0012",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C016\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C016\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C068_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0013",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C068\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C068\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C080_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0001",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C080\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C139\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0002",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C080\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C041\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0003",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C080\""
+      ],
+      "columns": [
+       "\"ATTR_04\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C095\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C080\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C052_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0014",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C052\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C052\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C144_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0015",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C144\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C144\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C143_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0128",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C143\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C143\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C015_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0016",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C015\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C015\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C021_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0017",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C021\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C021\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C139_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C139\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C121_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0018",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C121\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C121\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C151_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0019",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C151\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C151\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C013_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0020",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C013\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C013\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C057_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0021",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C057\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C057\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C117_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0022",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C117\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C117\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C126_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0023",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C126\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C126\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C060_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0024",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C060\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C060\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C081_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0025",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C081\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C081\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C104_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0026",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C104\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C104\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C138_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0027",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C138\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C138\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C047_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0028",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C047\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C047\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C039_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0129",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C039\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C039\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C020_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0029",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C020\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C020\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C108_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0006",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C108\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C146\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0007",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C108\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C115\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"ATTR_07\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C108\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C146_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0148",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C146\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C141\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C146\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C010_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0030",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C010\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C010\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C115_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0004",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C115\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C139\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0008",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C115\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C092\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0009",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C115\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C014\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C115\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C069_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0031",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C069\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C069\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C056_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0032",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C056\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C056\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C014_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C014\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C079_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C079\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C036_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0033",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C036\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C036\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C150_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0034",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C150\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C150\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C114_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0035",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C114\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C114\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C002_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0036",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C002\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C002\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C083_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0037",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C083\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C083\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C062_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0136",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C076\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_07\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_08\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_09\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"ATTR_10\"",
+     "isNullable": true,
+     "datatype": "bpchar"
+    },
+    {
+     "name": "\"ATTR_11\"",
+     "isNullable": true,
+     "datatype": "float8"
+    },
+    {
+     "name": "\"ATTR_12\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_13\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_14\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_15\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C062\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C105_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0130",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C105\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C105\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C152_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0038",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C152\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C152\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C122_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0039",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C122\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C122\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C100_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0040",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C100\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C100\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C006_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0137",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C076\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_07\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_08\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_09\"",
+     "isNullable": true,
+     "datatype": "date"
+    },
+    {
+     "name": "\"ATTR_10\"",
+     "isNullable": true,
+     "datatype": "bpchar"
+    },
+    {
+     "name": "\"ATTR_11\"",
+     "isNullable": true,
+     "datatype": "float8"
+    },
+    {
+     "name": "\"ATTR_12\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_13\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_14\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_15\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C006\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C076_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0138",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C076\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C027\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C076\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C131_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0158",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C131\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C095\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C131\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C086_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0041",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C086\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C086\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C098_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0131",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C098\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C098\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C124_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0042",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C124\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C124\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C149_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0043",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C149\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C149\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C101_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0132",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C101\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C101\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C005_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0044",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C005\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C005\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C130_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0045",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C130\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C130\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C127_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "bpchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C127\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C134_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0046",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C134\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C134\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C040_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C040\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C085_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0047",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C085\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C085\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C027_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0140",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C027\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C115\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C027\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C055_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0141",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C055\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C141\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0142",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C055\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C141\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "int4"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C055\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C145_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0048",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C145\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C145\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C136_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0049",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C136\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C136\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C067_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0050",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C067\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C067\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C023_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0051",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C023\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C023\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C007_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0052",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C007\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C007\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C037_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0053",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C037\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C037\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C030_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0054",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C030\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C030\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C133_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0055",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C133\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C133\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C071_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0056",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C071\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C071\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C103_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0057",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C103\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C103\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C017_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0058",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C017\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C017\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C110_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0059",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C110\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C110\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C012_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0060",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C012\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C012\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C031_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0143",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C031\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C055\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0144",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C031\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C042\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "float8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C031\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C112_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0061",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C112\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C112\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C045_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0062",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C045\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C045\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C099_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0063",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C099\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C099\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C058_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C058\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C092_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0145",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C092\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C058\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C092\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C082_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0064",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C082\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C082\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C064_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0065",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C064\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C064\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C032_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0066",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C032\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C032\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C109_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0067",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C109\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C109\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C088_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0068",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C088\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C088\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C111_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0069",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C111\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C111\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C128_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0070",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C128\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C128\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C116_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0133",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C116\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C116\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C001_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0071",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C001\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C001\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C042_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0146",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C042\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C061\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0157",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C042\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C044\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C042\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C011_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0072",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C011\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C011\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C054_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0073",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C054\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C054\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C059_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0074",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C059\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C059\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C097_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0075",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C097\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C097\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C065_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0076",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C065\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C065\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C070_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0134",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C070\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C070\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C089_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0077",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C089\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C089\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C061_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0147",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C061\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C079\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "float8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C061\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C051_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0078",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C051\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C051\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C102_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0079",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C102\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C102\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C043_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0080",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C043\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C043\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C132_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0081",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C132\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C132\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C087_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0082",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C087\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C087\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C094_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0083",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C094\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C094\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C091_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0084",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C091\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C091\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C118_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0085",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C118\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C118\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C063_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0086",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C063\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C063\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C147_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0087",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C147\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C147\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C019_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0088",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C019\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C019\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C050_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0089",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C050\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C050\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C141_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0005",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C141\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C139\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0149",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C141\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C014\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0150",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C141\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C014\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_07\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_08\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_09\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C141\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C084_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0159",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C084\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C095\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C084\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C041_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0151",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C041\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C014\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_07\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C041\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C137_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0090",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C137\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C137\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C093_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0091",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C093\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C093\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C004_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0092",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C004\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C004\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C123_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0093",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C123\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C123\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C009_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0094",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C009\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C009\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C028_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0095",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C028\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C028\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C025_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0096",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C025\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C025\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C072_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0097",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C072\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C072\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C046_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0098",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C046\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C046\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C024_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0099",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C024\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C024\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C026_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0100",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C026\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C026\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C053_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0101",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C053\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C053\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C107_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0102",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C107\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C107\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C034_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0103",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C034\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C034\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C129_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0104",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C129\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C129\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C066_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0105",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C066\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C066\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C142_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0106",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C142\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C142\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C038_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0135",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C038\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C006\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C038\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C035_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0107",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C035\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C035\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C022_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0152",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C022\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C061\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0153",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C022\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C055\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0154",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C022\""
+      ],
+      "columns": [
+       "\"ATTR_04\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C042\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_04\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_05\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    },
+    {
+     "name": "\"ATTR_06\"",
+     "isNullable": true,
+     "datatype": "timestamp"
+    },
+    {
+     "name": "\"ATTR_07\"",
+     "isNullable": true,
+     "datatype": "float8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C022\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C044_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0139",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C044\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C127\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0155",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C044\""
+      ],
+      "columns": [
+       "\"ATTR_03\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C115\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    },
+    {
+     "name": "FK_0156",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C044\""
+      ],
+      "columns": [
+       "\"ATTR_02\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C040\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_03\"",
+     "isNullable": true,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C044\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C096_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0108",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C096\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C096\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C077_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0109",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C077\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C077\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C048_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0110",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C048\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C048\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C029_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0111",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C029\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C029\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C008_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0112",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C008\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C008\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C090_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0113",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C090\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C090\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C049_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0114",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C049\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C049\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C106_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0115",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C106\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C106\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C119_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0116",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C119\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C119\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C140_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0117",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C140\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C140\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C135_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0118",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C135\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C135\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C073_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0119",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C073\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C073\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C003_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0120",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C003\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C003\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C018_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0121",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C018\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C018\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C074_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0122",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C074\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C074\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C075_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0123",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C075\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C075\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C078_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0124",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C078\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C078\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C148_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0125",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C148\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C148\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C125_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0126",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C125\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C125\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C095_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C095\""
+   ]
+  },
+  {
+   "uniqueConstraints": [
+    {
+     "name": "TBL_C113_pkey",
+     "determinants": [
+      "\"ATTR_01\""
+     ],
+     "isPrimaryKey": true
+    }
+   ],
+   "otherFunctionalDependencies": [],
+   "foreignKeys": [
+    {
+     "name": "FK_0127",
+     "from": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C113\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     },
+     "to": {
+      "relation": [
+       "\"FIBEN_OBF\"",
+       "\"TBL_C062\""
+      ],
+      "columns": [
+       "\"ATTR_01\""
+      ]
+     }
+    }
+   ],
+   "columns": [
+    {
+     "name": "\"ATTR_01\"",
+     "isNullable": false,
+     "datatype": "int8"
+    },
+    {
+     "name": "\"ATTR_02\"",
+     "isNullable": true,
+     "datatype": "varchar"
+    }
+   ],
+   "name": [
+    "\"FIBEN_OBF\"",
+    "\"TBL_C113\""
+   ]
+  }
+ ],
+ "metadata": {
+  "dbmsProductName": "PostgreSQL",
+  "dbmsVersion": "16.0",
+  "driverName": "PostgreSQL JDBC Driver",
+  "driverVersion": "42.7.4",
+  "quotationString": "\"",
+  "extractionTime": "generated-from-DDL",
+  "idFactoryType": "POSTGRESQL"
+ }
+}

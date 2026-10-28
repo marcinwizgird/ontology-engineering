@@ -154,11 +154,11 @@ def test_superclass_swaps_equivalent_under_declared_keys(triples, cls, expected)
 # ----------------------------------------------------------------------------- scorecard
 @pytest.mark.skipif(not HAS_V1_RUNS, reason="v1 run files not present")
 def test_scorecard_reproduces_the_published_v1_numbers():
-    """RESULTS.md §9: suite relaxed EX and wrong-but-executed (suite) per arm."""
+    """RESULTS.md §9 (after the V5 repair): suite relaxed EX and wrong-but-executed per arm."""
     from nl2q.evalkit import scorecard
     sc = scorecard.build(V1)
     got = {a["arm"]: (a["suite_ex"]["mean"], a["wrong_but_executed"]["mean"]) for a in sc["arms"]}
-    published = {"R": (0.095, 0.762), "S": (0.254, 0.460), "S2": (0.206, 0.635), "A": (0.190, 0.635),
+    published = {"R": (0.079, 0.714), "S": (0.270, 0.444), "S2": (0.222, 0.619), "A": (0.190, 0.635),
                  "B": (0.206, 0.794), "T": (0.288, 0.712), "G": (0.088, 0.088)}
     for arm, (ex, wbe) in published.items():
         assert got[arm][0] == pytest.approx(ex, abs=0.001), arm

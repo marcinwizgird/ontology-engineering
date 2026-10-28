@@ -1,0 +1,386 @@
+{
+ "glossary": "Gtrain",
+ "author": "nl2q.evalkit.gtrain (automatic induction; no hand edits)",
+ "created": "2026-10-27",
+ "access": {
+  "split": "train",
+  "questions": 114,
+  "gold_queries": 94,
+  "train_sql_ids_sha256": "1986b04a68237f3c77abe73b75326167de33ec8d7c1383274c1c13b10f9f46e2"
+ },
+ "parameters": {
+  "min_support": 3,
+  "min_precision": 0.6,
+  "min_lift": 1.2,
+  "max_terms_per_phrase": 1
+ },
+ "entries": [
+  {
+   "term": "alphabet",
+   "kind": "code",
+   "means": "ListedSecurity with hasLegalName = \"Alphabet Inc.\"",
+   "uses": [
+    "ListedSecurity",
+    "hasLegalName"
+   ],
+   "derived_from": [
+    12,
+    86,
+    124,
+    145,
+    174,
+    216
+   ],
+   "evidence": {
+    "alphabet": {
+     "support": 6,
+     "precision": 0.75
+    }
+   }
+  },
+  {
+   "term": "citigroup",
+   "kind": "code",
+   "means": "ListedSecurity with hasLegalName = \"Citigroup Inc.\"",
+   "uses": [
+    "ListedSecurity",
+    "hasLegalName"
+   ],
+   "derived_from": [
+    53,
+    157,
+    158
+   ],
+   "evidence": {
+    "citigroup": {
+     "support": 3,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "ibm / purchased / shares / managers",
+   "kind": "code",
+   "means": "ListedSecurity with hasLegalName = \"International Business Machines Corporation\"",
+   "uses": [
+    "ListedSecurity",
+    "hasLegalName"
+   ],
+   "derived_from": [
+    27,
+    29,
+    34,
+    37,
+    47,
+    51,
+    64,
+    74,
+    159,
+    172,
+    184,
+    186,
+    211,
+    214,
+    219,
+    220,
+    227
+   ],
+   "evidence": {
+    "ibm": {
+     "support": 17,
+     "precision": 0.85
+    },
+    "purchased": {
+     "support": 8,
+     "precision": 0.727
+    },
+    "shares": {
+     "support": 8,
+     "precision": 0.889
+    },
+    "managers": {
+     "support": 3,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "purchase",
+   "kind": "code",
+   "means": "SecuritiesTransaction with hasType = \"1\"",
+   "uses": [
+    "SecuritiesTransaction",
+    "hasType"
+   ],
+   "derived_from": [
+    19,
+    65,
+    90
+   ],
+   "evidence": {
+    "purchase": {
+     "support": 3,
+     "precision": 0.6
+    }
+   }
+  },
+  {
+   "term": "companies",
+   "kind": "synonym",
+   "means": "Corporation",
+   "uses": [
+    "Corporation"
+   ],
+   "derived_from": [
+    8,
+    75,
+    136,
+    202,
+    204,
+    233
+   ],
+   "evidence": {
+    "companies": {
+     "support": 6,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "reported",
+   "kind": "synonym",
+   "means": "ElementOfFinancialStatement",
+   "uses": [
+    "ElementOfFinancialStatement"
+   ],
+   "derived_from": [
+    167,
+    204,
+    233
+   ],
+   "evidence": {
+    "reported": {
+     "support": 3,
+     "precision": 0.6
+    }
+   }
+  },
+  {
+   "term": "citigroup",
+   "kind": "synonym",
+   "means": "FinancialServiceAccount",
+   "uses": [
+    "FinancialServiceAccount"
+   ],
+   "derived_from": [
+    53,
+    157,
+    158
+   ],
+   "evidence": {
+    "citigroup": {
+     "support": 3,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "stocks / sold / purchased / bought / shares / investors / purchase / managers / owners",
+   "kind": "synonym",
+   "means": "ListedSecurity",
+   "uses": [
+    "ListedSecurity"
+   ],
+   "derived_from": [
+    6,
+    8,
+    19,
+    27,
+    29,
+    34,
+    36,
+    37,
+    40,
+    47,
+    49,
+    51,
+    53,
+    55,
+    56,
+    59,
+    60,
+    64,
+    65,
+    66,
+    67,
+    69,
+    74,
+    81,
+    85,
+    90,
+    117,
+    118,
+    120,
+    123,
+    124,
+    131,
+    145,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    156,
+    157,
+    158,
+    159,
+    161,
+    172,
+    174,
+    184,
+    186,
+    187,
+    188,
+    192,
+    194,
+    195,
+    196,
+    202,
+    211,
+    214,
+    216,
+    219,
+    220,
+    225,
+    226,
+    227
+   ],
+   "evidence": {
+    "stocks": {
+     "support": 52,
+     "precision": 1.0
+    },
+    "sold": {
+     "support": 13,
+     "precision": 1.0
+    },
+    "purchased": {
+     "support": 11,
+     "precision": 1.0
+    },
+    "bought": {
+     "support": 9,
+     "precision": 1.0
+    },
+    "shares": {
+     "support": 9,
+     "precision": 1.0
+    },
+    "investors": {
+     "support": 6,
+     "precision": 1.0
+    },
+    "purchase": {
+     "support": 5,
+     "precision": 1.0
+    },
+    "managers": {
+     "support": 3,
+     "precision": 1.0
+    },
+    "owners": {
+     "support": 3,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "customers",
+   "kind": "synonym",
+   "means": "Person",
+   "uses": [
+    "Person"
+   ],
+   "derived_from": [
+    102,
+    107,
+    124,
+    130
+   ],
+   "evidence": {
+    "customers": {
+     "support": 4,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "ibm / alphabet",
+   "kind": "synonym",
+   "means": "hasLegalName",
+   "uses": [
+    "hasLegalName"
+   ],
+   "derived_from": [
+    2,
+    12,
+    27,
+    29,
+    34,
+    37,
+    47,
+    51,
+    64,
+    74,
+    86,
+    97,
+    112,
+    124,
+    130,
+    134,
+    145,
+    159,
+    172,
+    174,
+    184,
+    186,
+    211,
+    214,
+    216,
+    219,
+    220,
+    227
+   ],
+   "evidence": {
+    "ibm": {
+     "support": 20,
+     "precision": 1.0
+    },
+    "alphabet": {
+     "support": 8,
+     "precision": 1.0
+    }
+   }
+  },
+  {
+   "term": "selling",
+   "kind": "synonym",
+   "means": "hasSettlementDate",
+   "uses": [
+    "hasSettlementDate"
+   ],
+   "derived_from": [
+    40,
+    172,
+    173
+   ],
+   "evidence": {
+    "selling": {
+     "support": 3,
+     "precision": 1.0
+    }
+   }
+  }
+ ]
+}

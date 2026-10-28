@@ -79,8 +79,8 @@ class BM25:
 
 class TermIndex:
     def __init__(self, level: int = 4, tiers: tuple[str, ...] = ("mapped",),
-                 enrich: tuple[str, ...] | None = None):
-        pack = knowledge.load(enrich=enrich)
+                 enrich: tuple[str, ...] | None = None, glossary: str | None = None):
+        pack = knowledge.load(enrich=enrich, glossary=glossary)
         self.docs = [t for t in pack.terms if t.tier in tiers]
         # K4: curated glossary phrases are added to the terms they use
         gloss: dict[str, list[str]] = defaultdict(list)
@@ -125,13 +125,14 @@ class TermIndex:
 
 
 def term_index(level: int = 4, tiers: tuple[str, ...] = ("mapped",),
-               enrich: tuple[str, ...] | None = None) -> TermIndex:
-    return _term_index(level, tiers, knowledge.ENRICH if enrich is None else tuple(enrich))
+               enrich: tuple[str, ...] | None = None, glossary: str | None = None) -> TermIndex:
+    return _term_index(level, tiers, knowledge.ENRICH if enrich is None else tuple(enrich),
+                       glossary or knowledge.GLOSSARY)
 
 
 @lru_cache(maxsize=16)
-def _term_index(level: int, tiers: tuple[str, ...], enrich: tuple[str, ...]) -> TermIndex:
-    return TermIndex(level, tiers, enrich)
+def _term_index(level: int, tiers: tuple[str, ...], enrich: tuple[str, ...], glossary: str) -> TermIndex:
+    return TermIndex(level, tiers, enrich, glossary)
 
 
 # ----------------------------------------------------------------------------- #
